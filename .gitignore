@@ -5,4 +5,8 @@ node_modules
 .cache
 .output
 .env
+.idea
+.npmrc
+.vscode
+git@github.com:kmettom/
 dist
