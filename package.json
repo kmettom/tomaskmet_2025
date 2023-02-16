@@ -8,7 +8,7 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "gsap": "^3.11.4",
+    "gsap": "npm:@gsap/business@^3.11.4",
     "nuxt": "^3.2.0",
     "three": "^0.149.0"
   },

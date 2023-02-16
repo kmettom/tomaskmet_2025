@@ -4,6 +4,8 @@
     <p>about page</p>
 
     <CanvasImage :srcLink="'img/screen_1.jpg'" />
+    <CanvasImage :srcLink="'img/screen_1.jpg'" />
+    <CanvasImage :srcLink="'img/screen_1.jpg'" />
 
   </div>
 </template>
