@@ -1,13 +1,14 @@
 <template>
 
   <span>
-    {{srcLink}}
-    <img :src="srcLink"  />
+    <img ref="img" alt="picture" :src="srcLink" />
   </span>
 
 </template>
 
 <script>
+
+import {Canvas} from "~/utils/canvas";
 
 export default {
   props: {
@@ -18,15 +19,19 @@ export default {
   },
   data() {
     return {
+
     }
   },
   methods: {
-    addToCanvas() {
-      console.log('add to canvas' , this.srcLink)
+    addToCanvas(_img) {
+      Canvas.addImage(_img);
     }
   },
   mounted() {
-    this.addToCanvas();
+    this.addToCanvas(this.$refs.img);
+    // this.$refs.img.addEventListener('load', () => {
+    //   this.addToCanvas(this.$refs.img);
+    // });
   },
 
 }

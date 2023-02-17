@@ -1,26 +1,57 @@
 <template>
-  <div>
+  <div id="tPortfolio">
 
     <div id="smooth-wrapper">
       <div id="smooth-content">
 
         <CommonHeader />
-        <NuxtPage/>
+        <SectionAbout />
+        <SectionProjects />
+        <SectionContact />
+<!--        <NuxtPage/>-->
         <CommonFooter />
 
       </div>
     </div>
 
+    <div ref="canvas" id="tAnimationContainer"></div>
+
   </div>
 
 </template>
-<script setup>
+<script  >
 
 import {Canvas} from "~/utils/canvas";
 
-// Canvas.init();
-
-console.log(Canvas);
+export default {
+  data() {
+    return {
+    }
+  },
+  methods: {
+  },
+  mounted() {
+    Canvas.init(this.$refs.canvas);
+  },
+}
 
 
 </script>
+
+<style>
+
+#tAnimationContainer {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  margin: 0 auto;
+  pointer-events: none;
+  z-index: -1;
+}
+
+</style>
+
+
