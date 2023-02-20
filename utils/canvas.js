@@ -9,6 +9,10 @@ import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 
 import scrollFragment from './shaders/scrollFragment.glsl';
 import scrollVertex from './shaders/scrollVertex.glsl';
+import defaultFragment from './shaders/defaultFragment.glsl';
+import defaultVertex from './shaders/defaultVertex.glsl';
+import projectFragment from './shaders/projectFragment.glsl';
+import projectVertex from './shaders/projectVertex.glsl';
 
 let Canvas = {
     scrollPosition: 0,
@@ -19,12 +23,24 @@ let Canvas = {
     scene: new THREE.Scene(),
     materials: [],
     imageStore: [],
+    scroller: null,
+    currentScroll: 0,
+    options: {
+        default:{
+            fragmentShader: defaultFragment,
+            vertexShader: defaultVertex,
+        },
+        project: {
+            fragmentShader: projectFragment,
+            vertexShader: projectVertex,
+      },
+    },
     init(_canvasElement) {
         this.container = _canvasElement;
 
         gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-        let scroller = ScrollSmoother.create({
+        this.scroller = ScrollSmoother.create({
             wrapper: "#smooth-wrapper",
             container: "#smooth-content",
             smooth: 1,
@@ -34,7 +50,6 @@ let Canvas = {
                 this.scrollPosition = _data.progress;
             },
         });
-
 
         this.width = this.container.offsetWidth;
         this.height = this.container.offsetHeight;
@@ -58,7 +73,6 @@ let Canvas = {
 
         // this.controls = new OrbitControls( this.camera, this.renderer.domElement );
 
-        this.currentScroll = 0;
         this.raycaster = new THREE.Raycaster();
         this.pointer.cursor = new THREE.Vector2();
 
@@ -79,44 +93,110 @@ let Canvas = {
 
     },
     setImageMeshPositions(){
-        const imgMargin = 20;
-
         if(!this.imageStore) return;
 
         for (var i = 0; i < this.imageStore.length ; i++) {
 
-            if(this.imageStore[i].mesh.name.includes("imagegallery") ){
-                this.imageStore[i].mesh.position.x = this.imageStore[i].left - this.width/2 + this.imageStore[i].width/2 ;
-            }else {
+            if(
+                this.currentScroll < this.imageStore[i].top + this.imageStore[i].height
+                && this.imageStore[i].top  < this.currentScroll + this.height
+            ){
 
-                if(
-                    this.currentScroll < this.imageStore[i].top + this.imageStore[i].height
-                    && this.imageStore[i].top  < this.currentScroll + this.height
-                    || this.galleryActive.value !== 0
-                ){
+                let thumbOut = ( 1 - this.imageStore[i].thumbOutAction.value/1.5);
+                this.imageStore[i].mesh.position.x = ( this.imageStore[i].left - this.width/2 + this.imageStore[i].width/2) * thumbOut;
 
-                    let thumbOut = ( 1 - this.imageStore[i].thumbOutAction.value/1.5);
-                    this.imageStore[i].mesh.position.x = imgMargin * this.galleryActive.value + ( this.imageStore[i].left * ( 1 - this.galleryActive.value ) - this.width/2 + this.imageStore[i].width/2) * thumbOut;
-
-                    let galleryImgCoef = store.state.galleryHeight / document.body.offsetHeight ;
-                    galleryImgCoef = galleryImgCoef >= 1 ? (this.currentScroll * galleryImgCoef) : ( - this.currentScroll * ( 1 - galleryImgCoef))
-
-                    let thumbOutScrollCounter = 0 ;
-                    // console.log("saveScrollPosition" , this.saveScrollPosition, this.currentScroll);
-                    // if( this.imageStore[i].thumbOutAction.value !== 0 ){
-                    //    thumbOutScrollCounter = this.saveScrollPosition;
-                    // }
-                    let galleryImgPos = (  ( galleryImgCoef ) - this.height/2 +  this.imageStore[i].top  - ( this.imageStore[i].height * i ) - imgMargin - ( imgMargin * i ) ) * this.galleryActive.value;
-                    this.imageStore[i].mesh.position.y =  ( this.currentScroll + galleryImgPos - this.imageStore[i].top + this.height/2 - this.imageStore[i].height/2) * thumbOut + thumbOutScrollCounter;
-
-                }
-                else {
-                    this.imageStore[i].mesh.position.y = this.height*2;
-                }
+                let thumbOutScrollCounter = 0 ;
+                this.imageStore[i].mesh.position.y =  ( this.currentScroll - this.imageStore[i].top + this.height/2 - this.imageStore[i].height/2) * thumbOut + thumbOutScrollCounter;
 
             }
+            else {
+                this.imageStore[i].mesh.position.y = this.height*2;
+            }
+
 
         }
+    },
+
+    addImage(_img, _type) {
+        let meshIndex = this.imageStore.length;
+
+        let id = `meshImage${_type}_${meshIndex}`;
+        let fragmentShader= this.options.default.fragmentShader;
+        let vertexShader = this.options.default.vertexShader;
+
+        if(_type){
+            fragmentShader = this.options[_type].fragmentShader;
+            vertexShader = this.options[_type].vertexShader;
+        }
+
+        let geometry;
+        let bounds = _img.getBoundingClientRect();
+        let position = { top : bounds.top , left: bounds.left};
+        position.top += this.currentScroll;
+
+        geometry = new THREE.PlaneGeometry( bounds.width , bounds.height );
+
+        let texture = new THREE.Texture(_img);
+        texture.needsUpdate = true;
+
+        let material = new THREE.ShaderMaterial({
+            uniforms:{
+                time: {value:0},
+                uImage: {value: texture},
+                vectorVNoise: {value: new THREE.Vector2( 1.5 , 1.5 )}, // 1.5
+                vectorWave: {value: new THREE.Vector2( 0.5 , 0.5 )}, // 0.5
+                hoverState: {value: 0},
+                cursorPositionX: {value: 0},
+                cursorPositionY: {value: 0},
+                aniIn: {value: 0},
+                aniOut: {value: 0},
+                aniOutToArticle: {value: 0},
+                aniInImageGallery: {value: 0},
+                aniOutImageGallery: {value: 0},
+                galleryActive: {value: 0},
+            },
+            fragmentShader: fragmentShader,
+            vertexShader: vertexShader,
+            transparent: true,
+            name: `meshImage${_type}`,
+            // opacity: 0.1,
+            // side: THREE.DoubleSide,
+            // wireframe: true
+        });
+
+        this.materials.push(material);
+
+        let mesh = new THREE.Mesh( geometry, material );
+        mesh.name =  id;
+
+        mesh.castShadow = true;
+        mesh.receiveShadow = true;
+        this.scene.add(mesh);
+
+        const newMesh = {
+            name:id,
+            img: _img,
+            mesh: mesh,
+            top: position.top,
+            left: position.left,
+            width: bounds.width,
+            height: bounds.height,
+            thumbOutAction: {value: 0},
+        }
+
+        this.imageStore.push(newMesh);
+        // this.meshMouseListeners(newMesh, material);
+        // this.meshAniIn(newMesh, material, _type);
+
+        gsap.to(material.uniforms.aniIn , {
+            duration: 1.25,
+            value: 1
+        })
+
+        // this.scroll.setSize();
+
+        this.setImageMeshPositions();
+
     },
     composerPass(){
         this.composer = new EffectComposer(this.renderer);
@@ -155,25 +235,24 @@ let Canvas = {
         this.time+=0.05;
 
         // this.scroll.render();
-        // this.scrollInProgress = this.currentScroll != this.scroll.scrollToRender ;
-        // this.currentScroll = this.scroll.scrollToRender;
+        // this.scroll.scrollToRender;
+
+        this.scrollInProgress = this.scrollPosition * this.height !== this.currentScroll;
+        this.currentScroll = this.scrollPosition * this.height;
+
 
         // if(this.resizeInProgress ) {
         //   this.resetImageMeshPosition();
         // }
 
         //animate on scroll
-        // if(
-        //     this.scrollInProgress
-        //     || ( 0 < this.galleryActive.value && this.galleryActive.value < 1)
-        //     || this.thumbToArticleAnimation
-        // ){
-
+        if(
+            this.scrollInProgress
+        ){
             this.customPass.uniforms.scrollSpeed.value = 0;
             // this.customPass.uniforms.scrollSpeed.value = this.scroll.speedTarget;
             this.setImageMeshPositions();
-
-        // }
+        }
 
         //animate on hover
         for (var i = 0; i < this.materials.length; i++) {
@@ -189,41 +268,8 @@ let Canvas = {
         window.requestAnimationFrame(this.render.bind(this));
 
     },
-    addImage(_img) {
 
-
-    }
 }
 
 export {Canvas};
-
-// class Canvas {
-//     constructor() {
-//         this.scrollPosition = 0;
-//     }
-//     init() {
-//
-//         gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-//
-//         let scroller = ScrollSmoother.create({
-//             wrapper: "#smooth-wrapper",
-//             container: "#smooth-content",
-//             smooth: 1,
-//             effects: false,       // enable Data-set effects (default is false)
-//             smoothTouch: 0.1,        // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
-//             onUpdate: (_data) => {
-//                 // this.scrollPosition = _data.progress;
-//                 this.scrollPosition = _data.progress;
-//                 // console.log("log client - scroller - onUpdate", _data.progress );
-//             },
-//         });
-//
-//     }
-//     addImage() {
-//
-//     }
-// }
-
-// export default Canvas;
-
 

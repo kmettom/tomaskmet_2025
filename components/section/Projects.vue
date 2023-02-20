@@ -8,13 +8,19 @@
       <div class="project">
         <h2>Project 1</h2>
         <p>Project 1 description</p>
-        <CanvasImage :srcLink="'img/screen_1.jpg'" />
+        <CanvasImage :typeOfMesh="'project'" :srcLink="'img/screen_1.jpg'" />
       </div>
 
       <div class="project">
         <h2>Project 2</h2>
         <p>Project 2 description</p>
-        <CanvasImage :srcLink="'img/screen_1.jpg'" />
+        <CanvasImage :typeOfMesh="'project'" :srcLink="'img/screen_1.jpg'" />
+      </div>
+
+      <div class="project">
+        <h2>Project 3</h2>
+        <p>Project 3 description</p>
+        <CanvasImage :typeOfMesh="'project'" :srcLink="'img/screen_1.jpg'" />
       </div>
 
     </div>
@@ -45,4 +51,9 @@ export default {
 </script>
 
 <style>
+
+.project{
+
+}
+
 </style>

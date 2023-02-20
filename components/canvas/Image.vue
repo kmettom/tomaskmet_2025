@@ -15,6 +15,10 @@ export default {
     srcLink: {
       type: String,
       required: true
+    },
+    typeOfMesh: {
+      type: String,
+      required: true
     }
   },
   data() {
@@ -23,12 +27,15 @@ export default {
     }
   },
   methods: {
-    addToCanvas(_img) {
-      Canvas.addImage(_img);
-    }
+    // addToCanvas() {
+    //   Canvas.addImage(this.$refs.img, this.typeOfMesh);
+    // }
   },
   mounted() {
-    this.addToCanvas(this.$refs.img);
+
+    Canvas.addImage(this.$refs.img, this.typeOfMesh);
+
+    // this.addToCanvas();
     // this.$refs.img.addEventListener('load', () => {
     //   this.addToCanvas(this.$refs.img);
     // });
@@ -38,4 +45,9 @@ export default {
 </script>
 
 <style>
+
+img{
+  opacity: 0;
+}
+
 </style>

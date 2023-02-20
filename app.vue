@@ -1,5 +1,5 @@
 <template>
-  <div id="tPortfolio">
+  <div id="appContainer">
 
     <div id="smooth-wrapper">
       <div id="smooth-content">
@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <div ref="canvas" id="tAnimationContainer"></div>
+    <div ref="canvas" id="animationContainer"></div>
 
   </div>
 
@@ -40,7 +40,7 @@ export default {
 
 <style>
 
-#tAnimationContainer {
+#animationContainer {
   width: 100vw;
   height: 100vh;
   position: fixed;
