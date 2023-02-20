@@ -73,7 +73,7 @@ let Canvas = {
 
         // this.controls = new OrbitControls( this.camera, this.renderer.domElement );
 
-        this.raycaster = new THREE.Raycaster();
+        // this.raycaster = new THREE.Raycaster();
         this.pointer.cursor = new THREE.Vector2();
 
         this.setSize();
@@ -101,13 +101,8 @@ let Canvas = {
                 this.currentScroll < this.imageStore[i].top + this.imageStore[i].height
                 && this.imageStore[i].top  < this.currentScroll + this.height
             ){
-
-                let thumbOut = ( 1 - this.imageStore[i].thumbOutAction.value/1.5);
-                this.imageStore[i].mesh.position.x = ( this.imageStore[i].left - this.width/2 + this.imageStore[i].width/2) * thumbOut;
-
-                let thumbOutScrollCounter = 0 ;
-                this.imageStore[i].mesh.position.y =  ( this.currentScroll - this.imageStore[i].top + this.height/2 - this.imageStore[i].height/2) * thumbOut + thumbOutScrollCounter;
-
+                this.imageStore[i].mesh.position.x = ( this.imageStore[i].left - this.width/2 + this.imageStore[i].width/2);
+                this.imageStore[i].mesh.position.y =  ( this.currentScroll - this.imageStore[i].top + this.height/2 - this.imageStore[i].height/2);
             }
             else {
                 this.imageStore[i].mesh.position.y = this.height*2;

@@ -27,18 +27,9 @@ export default {
     }
   },
   methods: {
-    // addToCanvas() {
-    //   Canvas.addImage(this.$refs.img, this.typeOfMesh);
-    // }
   },
   mounted() {
-
     Canvas.addImage(this.$refs.img, this.typeOfMesh);
-
-    // this.addToCanvas();
-    // this.$refs.img.addEventListener('load', () => {
-    //   this.addToCanvas(this.$refs.img);
-    // });
   },
 
 }

@@ -50,10 +50,16 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" >
 
-.project{
-
-}
+//.project{
+//  max-width: 300px;
+//  margin-bottom: 100px;
+//  position:relative;
+//  img{
+//    position: relative;
+//    max-width: 100%;
+//  }
+//}
 
 </style>
