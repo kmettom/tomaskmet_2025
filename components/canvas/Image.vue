@@ -1,9 +1,5 @@
 <template>
-
-  <span>
-    <img ref="img" alt="picture" :src="srcLink" />
-  </span>
-
+  <img ref="img" alt="picture" :src="srcLink" />
 </template>
 
 <script>
@@ -38,7 +34,9 @@ export default {
 <style>
 
 img{
-  opacity: 0;
+  /*position: relative;*/
+  /*width: 100%;*/
+  opacity: 0.5;
 }
 
 </style>

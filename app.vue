@@ -1,8 +1,8 @@
 <template>
-  <div id="appContainer">
+  <div id="appContainer"  >
 
-    <div id="smooth-wrapper">
-      <div id="smooth-content">
+    <div id="smooth-wrapper"  >
+      <div id="smooth-content" ref="page" >
 
         <CommonHeader />
         <SectionAbout />
@@ -31,7 +31,7 @@ export default {
   methods: {
   },
   mounted() {
-    Canvas.init(this.$refs.canvas);
+    Canvas.init(this.$refs.canvas, this.$refs.page);
   },
 }
 

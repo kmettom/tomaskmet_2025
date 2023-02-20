@@ -8,19 +8,19 @@
       <div class="project">
         <h2>Project 1</h2>
         <p>Project 1 description</p>
-        <CanvasImage :typeOfMesh="'project'" :srcLink="'img/screen_1.jpg'" />
+        <CanvasImage class="img" :typeOfMesh="'project'" :srcLink="'img/screen_1.jpg'" />
       </div>
 
       <div class="project">
         <h2>Project 2</h2>
         <p>Project 2 description</p>
-        <CanvasImage :typeOfMesh="'project'" :srcLink="'img/screen_1.jpg'" />
+        <CanvasImage class="img" :typeOfMesh="'project'" :srcLink="'img/screen_1.jpg'" />
       </div>
 
       <div class="project">
         <h2>Project 3</h2>
         <p>Project 3 description</p>
-        <CanvasImage :typeOfMesh="'project'" :srcLink="'img/screen_1.jpg'" />
+        <CanvasImage class="img" :typeOfMesh="'project'" :srcLink="'img/screen_1.jpg'" />
       </div>
 
     </div>
@@ -53,10 +53,10 @@ export default {
 <style lang="scss" >
 
 //.project{
-//  max-width: 300px;
+//  max-width: 450px;
 //  margin-bottom: 100px;
 //  position:relative;
-//  img{
+//  .img{
 //    position: relative;
 //    max-width: 100%;
 //  }

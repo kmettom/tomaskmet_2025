@@ -2,6 +2,7 @@ import {gsap} from "gsap";
 import { ScrollSmoother } from "gsap/ScrollSmoother.js";
 import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 import * as THREE from 'three';
+import Scroll from './scroll.js';
 
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
@@ -17,13 +18,14 @@ import projectVertex from './shaders/projectVertex.glsl';
 let Canvas = {
     scrollPosition: 0,
     scrollInProgress : false,
-    container : null,
+    canvasContainer : null,
+    pageContainer : null,
     pointer : {cursor: null , intersects: null },
     time: 0,
     scene: new THREE.Scene(),
     materials: [],
     imageStore: [],
-    scroller: null,
+    scroll: null,
     currentScroll: 0,
     options: {
         default:{
@@ -35,28 +37,35 @@ let Canvas = {
             vertexShader: projectVertex,
       },
     },
-    init(_canvasElement) {
-        this.container = _canvasElement;
+    init(_canvasElement, _pageContainer) {
+        this.canvasContainer = _canvasElement;
+        this.pageContainer = _pageContainer;
 
         gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-        this.scroller = ScrollSmoother.create({
-            wrapper: "#smooth-wrapper",
-            container: "#smooth-content",
-            smooth: 1,
-            effects: false,       // enable Data-set effects (default is false)
-            smoothTouch: 0.1,        // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
-            onUpdate: (_data) => {
-                this.scrollPosition = _data.progress;
-            },
+        // this.scroller = ScrollSmoother.create({
+        //     wrapper: "#smooth-wrapper",
+        //     canvasContainer: "#smooth-content",
+        //     smooth: 1,
+        //     effects: false,       // enable Data-set effects (default is false)
+        //     smoothTouch: 0.1,        // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+        //     onUpdate: (_data) => {
+        //         console.log(_data);
+        //         this.scrollPosition = _data.progress;
+        //     },
+        // });
+
+        console.log("Scroll", Scroll);
+
+        this.scroll = new Scroll({
+            dom: this.pageContainer,
         });
 
-        this.width = this.container.offsetWidth;
-        this.height = this.container.offsetHeight;
+        this.width = this.canvasContainer.offsetWidth;
+        this.height = this.canvasContainer.offsetHeight;
 
         this.camera = new THREE.PerspectiveCamera( 70, this.width/this.height, 100, 2000 );
         this.camera.position.z = 600; // 600
-
         this.camera.fov = 2*Math.atan( (this.height/2)/600 )* (180/Math.PI);
 
         this.renderer = new THREE.WebGLRenderer({
@@ -69,7 +78,7 @@ let Canvas = {
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-        this.container.appendChild( this.renderer.domElement );
+        this.canvasContainer.appendChild( this.renderer.domElement );
 
         // this.controls = new OrbitControls( this.camera, this.renderer.domElement );
 
@@ -89,9 +98,8 @@ let Canvas = {
             this.pointer.cursor.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
         });
 
-        // this.render();
-
     },
+
     setImageMeshPositions(){
         if(!this.imageStore) return;
 
@@ -102,12 +110,12 @@ let Canvas = {
                 && this.imageStore[i].top  < this.currentScroll + this.height
             ){
                 this.imageStore[i].mesh.position.x = ( this.imageStore[i].left - this.width/2 + this.imageStore[i].width/2);
-                this.imageStore[i].mesh.position.y =  ( this.currentScroll - this.imageStore[i].top + this.height/2 - this.imageStore[i].height/2);
+                this.imageStore[i].mesh.position.y =  this.currentScroll - this.imageStore[i].top + this.height/2 - this.imageStore[i].height/2 ;
+
             }
             else {
                 this.imageStore[i].mesh.position.y = this.height*2;
             }
-
 
         }
     },
@@ -188,7 +196,7 @@ let Canvas = {
             value: 1
         })
 
-        // this.scroll.setSize();
+        this.scroll.setSize();
 
         this.setImageMeshPositions();
 
@@ -215,8 +223,8 @@ let Canvas = {
         this.composer.addPass(this.customPass);
     },
     setSize(){
-        this.width = this.container.offsetWidth;
-        this.height = this.container.offsetHeight;
+        this.width = this.canvasContainer.offsetWidth;
+        this.height = this.canvasContainer.offsetHeight;
 
         this.camera.aspect = this.width/this.height;
         this.camera.updateProjectionMatrix();
@@ -229,16 +237,14 @@ let Canvas = {
 
         this.time+=0.05;
 
-        // this.scroll.render();
-        // this.scroll.scrollToRender;
+        this.scroll.render();
+        this.scrollInProgress = this.currentScroll !== this.scroll.scrollToRender ;
+        this.currentScroll = this.scroll.scrollToRender;
 
-        this.scrollInProgress = this.scrollPosition * this.height !== this.currentScroll;
-        this.currentScroll = this.scrollPosition * this.height;
+        // this.scrollInProgress = this.scrollPosition * this.pageContainer.offsetHeight !== this.currentScroll;
+        // this.currentScroll = this.scrollPosition * this.pageContainer.offsetHeight;
 
-
-        // if(this.resizeInProgress ) {
-        //   this.resetImageMeshPosition();
-        // }
+        console.log(this.currentScroll, window.scrollY, this.scrollPosition, this.pageContainer.offsetHeight );
 
         //animate on scroll
         if(
@@ -254,14 +260,12 @@ let Canvas = {
             this.materials[i].uniforms.time.value = this.time;
         }
 
-        // this.checkGalleryImageHovers()
+        // if(this.resizeInProgress ) {
+        //   this.resetImageMeshPosition();
+        // }
 
         this.composer.render()
-
-
-
         window.requestAnimationFrame(this.render.bind(this));
-
     },
 
 }
