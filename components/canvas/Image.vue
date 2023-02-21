@@ -31,12 +31,12 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" >
 
 img{
   /*position: relative;*/
   /*width: 100%;*/
-  opacity: 0.5;
+  opacity: 0;
 }
 
 </style>

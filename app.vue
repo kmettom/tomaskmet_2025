@@ -1,8 +1,8 @@
 <template>
   <div id="appContainer"  >
 
-    <div id="smooth-wrapper"  >
-      <div id="smooth-content" ref="page" >
+    <div id="scrollContainer"  >
+      <div id="scrollContent" ref="page" >
 
         <CommonHeader />
         <SectionAbout />
@@ -38,7 +38,14 @@ export default {
 
 </script>
 
-<style>
+<style lang="scss" >
+
+#scrollContainer{
+  position: fixed;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+}
 
 #animationContainer {
   width: 100vw;
@@ -51,6 +58,7 @@ export default {
   pointer-events: none;
   z-index: -1;
 }
+
 
 </style>
 

@@ -38,24 +38,11 @@ let Canvas = {
       },
     },
     init(_canvasElement, _pageContainer) {
+
         this.canvasContainer = _canvasElement;
         this.pageContainer = _pageContainer;
 
         gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-
-        // this.scroller = ScrollSmoother.create({
-        //     wrapper: "#smooth-wrapper",
-        //     canvasContainer: "#smooth-content",
-        //     smooth: 1,
-        //     effects: false,       // enable Data-set effects (default is false)
-        //     smoothTouch: 0.1,        // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
-        //     onUpdate: (_data) => {
-        //         console.log(_data);
-        //         this.scrollPosition = _data.progress;
-        //     },
-        // });
-
-        console.log("Scroll", Scroll);
 
         this.scroll = new Scroll({
             dom: this.pageContainer,
@@ -196,7 +183,9 @@ let Canvas = {
             value: 1
         })
 
-        this.scroll.setSize();
+        console.log(this.scroll);
+
+        // this.scroll.setSize();
 
         this.setImageMeshPositions();
 
@@ -244,7 +233,7 @@ let Canvas = {
         // this.scrollInProgress = this.scrollPosition * this.pageContainer.offsetHeight !== this.currentScroll;
         // this.currentScroll = this.scrollPosition * this.pageContainer.offsetHeight;
 
-        console.log(this.currentScroll, window.scrollY, this.scrollPosition, this.pageContainer.offsetHeight );
+        // console.log(this.currentScroll, window.scrollY, this.scrollPosition, this.pageContainer.offsetHeight );
 
         //animate on scroll
         if(

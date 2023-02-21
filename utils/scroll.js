@@ -3,11 +3,7 @@ const lerp = (a, b, n) => (1 - n) * a + n * b
 export default class Scroll{
   constructor(_options){
 
-    this.DOM = { main: _options.dom };
-
-    // the scrollable element
-    // we translate this element when scrolling (y-axis)
-    this.DOM.scrollable = this.DOM.main.querySelector("div[data-scroll]");
+    this.DOM = { scrollable: _options.dom };
     this.docScroll = 0;
     this.scrollToRender = 0;
     this.current = 0;
@@ -19,10 +15,7 @@ export default class Scroll{
     this.setSize();
     this.getScroll();
     this.init();
-    this.style();
     this.initEvents();
-
-    // requestAnimationFrame(() => this.render());
   }
 
   init(){
@@ -33,13 +26,6 @@ export default class Scroll{
     // translate the scrollable element
     this.setPosition();
     this.shouldRender = true;
-  }
-
-  style(){
-    this.DOM.main.style.position = "fixed";
-    this.DOM.main.style.width = this.DOM.main.style.height = "100%";
-    this.DOM.main.style.top = this.DOM.main.style.left = 0;
-    this.DOM.main.style.overflow = "hidden";
   }
 
   getScroll(){
