@@ -39,6 +39,8 @@ let Canvas = {
     },
     init(_canvasElement, _pageContainer) {
 
+        console.log("INIT")
+
         this.canvasContainer = _canvasElement;
         this.pageContainer = _pageContainer;
 
@@ -72,8 +74,8 @@ let Canvas = {
         // this.raycaster = new THREE.Raycaster();
         this.pointer.cursor = new THREE.Vector2();
 
-        this.setSize();
 
+        this.setSize();
         // this.setLight()
 
         this.composerPass()
@@ -175,7 +177,7 @@ let Canvas = {
         }
 
         this.imageStore.push(newMesh);
-        // this.meshMouseListeners(newMesh, material);
+        this.meshMouseListeners(newMesh, material);
         // this.meshAniIn(newMesh, material, _type);
 
         gsap.to(material.uniforms.aniIn , {
@@ -183,11 +185,37 @@ let Canvas = {
             value: 1
         })
 
-        console.log(this.scroll);
+        console.log("add Image");
 
         // this.scroll.setSize();
+        // this.setSize();
 
         this.setImageMeshPositions();
+
+    },
+
+    meshMouseListeners(_mesh, _material) {
+
+        _mesh.img.addEventListener('mouseenter',(event)=>{
+            _mesh.mesh.renderOrder = 1;
+            this.hoverInProgress = true;
+
+            gsap.to(_material.uniforms.hoverState, {
+                duration: 0.5,
+                value:1
+            })
+        })
+
+        _mesh.img.addEventListener('mouseout',()=>{
+            _mesh.mesh.renderOrder = 0;
+
+            this.hoverInProgress = false;
+
+            gsap.to(_material.uniforms.hoverState,{
+                duration: 0.5,
+                value:0
+            })
+        })
 
     },
     composerPass(){
