@@ -8,7 +8,6 @@
         <SectionAbout />
         <SectionProjects />
         <SectionContact />
-<!--        <NuxtPage/>-->
         <CommonFooter />
 
       </div>

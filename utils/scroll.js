@@ -3,7 +3,11 @@ const lerp = (a, b, n) => (1 - n) * a + n * b
 export default class Scroll{
   constructor(_options){
 
-    this.DOM = { scrollable: _options.dom };
+    this.DOM = {
+      scrollable: _options.dom,
+      scrollspeed : _options.dom.querySelectorAll("div[data-scroll-speed]"),
+    };
+
     this.docScroll = 0;
     this.scrollToRender = 0;
     this.current = 0;
@@ -12,6 +16,7 @@ export default class Scroll{
     this.speedTarget = 0;
     this.scrollTo = {target: 0 , executed: true}
 
+
     this.setSize();
     this.getScroll();
     this.init();
@@ -19,6 +24,8 @@ export default class Scroll{
   }
 
   init(){
+      console.log(this.DOM);
+
     // sets the initial value (no interpolation) - translate the scroll value
     for (const key in this.renderedStyles) {
       this.current = this.scrollToRender = this.getScroll();
@@ -54,6 +61,13 @@ export default class Scroll{
     // translate the scrollable container
     if ( Math.round(this.scrollToRender) !==  Math.round(this.current) || this.scrollToRender < 10  || !this.scrollTo.executed ) {
       this.DOM.scrollable.style.transform = `translate3d(0,${-1 * this.scrollToRender}px,0)`;
+    }
+
+    for (const item of this.DOM.scrollspeed) {
+      if (item.dataset.scrollSpeed) {
+        const speed = item.dataset.scrollSpeed;
+        item.style.transform = `translate3d(0,${ -1 * this.scrollToRender * speed }px,0)`;
+      }
     }
 
   }

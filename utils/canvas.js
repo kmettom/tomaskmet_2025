@@ -1,6 +1,4 @@
 import {gsap} from "gsap";
-import { ScrollSmoother } from "gsap/ScrollSmoother.js";
-import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 import * as THREE from 'three';
 import Scroll from './scroll.js';
 
@@ -44,8 +42,6 @@ let Canvas = {
         this.canvasContainer = _canvasElement;
         this.pageContainer = _pageContainer;
 
-        gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-
         this.scroll = new Scroll({
             dom: this.pageContainer,
         });
@@ -74,7 +70,6 @@ let Canvas = {
         // this.raycaster = new THREE.Raycaster();
         this.pointer.cursor = new THREE.Vector2();
 
-
         this.setSize();
         // this.setLight()
 
@@ -98,8 +93,10 @@ let Canvas = {
                 this.currentScroll < this.imageStore[i].top + this.imageStore[i].height
                 && this.imageStore[i].top  < this.currentScroll + this.height
             ){
+
                 this.imageStore[i].mesh.position.x = ( this.imageStore[i].left - this.width/2 + this.imageStore[i].width/2);
-                this.imageStore[i].mesh.position.y =  this.currentScroll - this.imageStore[i].top + this.height/2 - this.imageStore[i].height/2 ;
+                this.imageStore[i].mesh.position.y =  - this.imageStore[i].img.getBoundingClientRect().top + this.height/2 - this.imageStore[i].height/2;
+                // this.imageStore[i].mesh.position.y =  this.currentScroll - this.imageStore[i].top + this.height/2 - this.imageStore[i].height/2 ;
 
             }
             else {
@@ -110,6 +107,9 @@ let Canvas = {
     },
 
     addImage(_img, _type) {
+
+        console.log("add Image");
+
         let meshIndex = this.imageStore.length;
 
         let id = `meshImage${_type}_${meshIndex}`;
@@ -126,9 +126,10 @@ let Canvas = {
         let position = { top : bounds.top , left: bounds.left};
         position.top += this.currentScroll;
 
+
         geometry = new THREE.PlaneGeometry( bounds.width , bounds.height );
 
-        let texture = new THREE.Texture(_img);
+        let texture = new THREE.TextureLoader().load( _img.src );
         texture.needsUpdate = true;
 
         let material = new THREE.ShaderMaterial({
@@ -151,9 +152,6 @@ let Canvas = {
             vertexShader: vertexShader,
             transparent: true,
             name: `meshImage${_type}`,
-            // opacity: 0.1,
-            // side: THREE.DoubleSide,
-            // wireframe: true
         });
 
         this.materials.push(material);
@@ -184,11 +182,6 @@ let Canvas = {
             duration: 1.25,
             value: 1
         })
-
-        console.log("add Image");
-
-        // this.scroll.setSize();
-        // this.setSize();
 
         this.setImageMeshPositions();
 
@@ -258,15 +251,8 @@ let Canvas = {
         this.scrollInProgress = this.currentScroll !== this.scroll.scrollToRender ;
         this.currentScroll = this.scroll.scrollToRender;
 
-        // this.scrollInProgress = this.scrollPosition * this.pageContainer.offsetHeight !== this.currentScroll;
-        // this.currentScroll = this.scrollPosition * this.pageContainer.offsetHeight;
-
-        // console.log(this.currentScroll, window.scrollY, this.scrollPosition, this.pageContainer.offsetHeight );
-
         //animate on scroll
-        if(
-            this.scrollInProgress
-        ){
+        if( this.scrollInProgress){
             this.customPass.uniforms.scrollSpeed.value = 0;
             // this.customPass.uniforms.scrollSpeed.value = this.scroll.speedTarget;
             this.setImageMeshPositions();

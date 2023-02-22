@@ -1,5 +1,5 @@
 <template>
-  <img ref="img" alt="picture" :src="srcLink" />
+  <img style="" ref="img" alt="picture" :src="srcLink" />
 </template>
 
 <script>
@@ -25,7 +25,9 @@ export default {
   methods: {
   },
   mounted() {
-    Canvas.addImage(this.$refs.img, this.typeOfMesh);
+    setTimeout( () => {
+      Canvas.addImage(this.$refs.img, this.typeOfMesh);
+    } , 1000);
   },
 
 }
@@ -34,8 +36,6 @@ export default {
 <style lang="scss" >
 
 img{
-  /*position: relative;*/
-  /*width: 100%;*/
   opacity: 0;
 }
 
