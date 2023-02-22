@@ -1,4 +1,4 @@
-# Tomas Kmet - portfolio - Nuxt 3
+# Tomas Kmet - portfolio - Nuxt 3 | ThreeJS | GSAP
 
 ## Setup
 
