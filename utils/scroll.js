@@ -63,11 +63,23 @@ export default class Scroll{
       this.DOM.scrollable.style.transform = `translate3d(0,${-1 * this.scrollToRender}px,0)`;
     }
 
+
     for (const item of this.DOM.scrollspeed) {
-      if (item.dataset.scrollSpeed) {
-        const speed = item.dataset.scrollSpeed;
+      const bounds = item.getBoundingClientRect();
+      let speed = item.dataset.scrollSpeed ? item.dataset.scrollSpeed : false;
+
+      console.log("item: " , bounds );
+      const itemBottom = bounds.top + bounds.height;
+
+      if( itemBottom < this.scrollToRender && bounds.top > window.innerHeight + this.scrollToRender ){
+        item.classList.add("active");
+  
+      }
+
+      if(speed){
         item.style.transform = `translate3d(0,${ -1 * this.scrollToRender * speed }px,0)`;
       }
+
     }
 
   }
