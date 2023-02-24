@@ -59,7 +59,7 @@ export default {
 }
 
 .active{
-  border: 1px solid purple;
+  border: 5px solid purple;
 }
 
 

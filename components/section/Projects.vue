@@ -5,21 +5,27 @@
 
     <div class="projects-wrapper">
 
-      <div class="project" data-scroll-speed="" >
+      <div class="project"  >
         <h2>Project 1</h2>
-        <p>Project 1 description</p>
+        <p>Project description</p>
         <CanvasImage class="project-img" :typeOfMesh="'project'" :srcLink="'img/screen_2.png'" />
       </div>
 
-      <div class="project" data-scroll-speed="" >
+      <div class="project"  >
         <h2>Project 2</h2>
-        <p>Project 2 description</p>
+        <p>Project description</p>
         <CanvasImage class="project-img" :typeOfMesh="'project'" :srcLink="'img/screen_2.png'" />
       </div>
 
-      <div class="project" data-scroll-speed="" >
-        <h2>Project 2</h2>
-        <p>Project 2 description</p>
+      <div class="project" data-scroll-active="0.8" >
+        <h2>Project 3</h2>
+        <p>Project description</p>
+        <CanvasImage class="project-img" :typeOfMesh="'project'" :srcLink="'img/screen_2.png'" />
+      </div>
+
+      <div class="project" >
+        <h2>Project 4</h2>
+        <p>Project description</p>
         <CanvasImage class="project-img" :typeOfMesh="'project'" :srcLink="'img/screen_2.png'" />
       </div>
 
@@ -59,8 +65,5 @@ export default {
   }
 }
 
-.active{
-  border: 1px solid purple;
-}
 
 </style>

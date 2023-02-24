@@ -6,6 +6,7 @@ export default class Scroll{
     this.DOM = {
       scrollable: _options.dom,
       scrollspeed : _options.dom.querySelectorAll("div[data-scroll-speed]"),
+      scrollactive : _options.dom.querySelectorAll("div[data-scroll-active]"),
     };
 
     this.docScroll = 0;
@@ -63,23 +64,25 @@ export default class Scroll{
       this.DOM.scrollable.style.transform = `translate3d(0,${-1 * this.scrollToRender}px,0)`;
     }
 
-
     for (const item of this.DOM.scrollspeed) {
       const bounds = item.getBoundingClientRect();
       let speed = item.dataset.scrollSpeed ? item.dataset.scrollSpeed : false;
-
-      console.log("item: " , bounds );
-      const itemBottom = bounds.top + bounds.height;
-
-      if( itemBottom < this.scrollToRender && bounds.top > window.innerHeight + this.scrollToRender ){
-        item.classList.add("active");
-  
-      }
-
       if(speed){
         item.style.transform = `translate3d(0,${ -1 * this.scrollToRender * speed }px,0)`;
       }
+    }
 
+    for (const item of this.DOM.scrollactive) {
+      const bounds = item.getBoundingClientRect();
+      const activeRange = item.dataset.scrollActive;
+      
+      //todo - finish active range and event emiter study and finish
+
+      if( bounds.bottom > 0 && bounds.top < window.innerHeight ){
+        item.classList.add("active");
+      } else {
+        item.classList.remove("active");
+      }
     }
 
   }
