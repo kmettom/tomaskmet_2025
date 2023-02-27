@@ -6,10 +6,6 @@
 
 <script>
 export default {
-  // components: {
-  //   image: () => import('~/components/common/Image.vue')
-  // },
-  // page properties go here
 }
 </script>
 
