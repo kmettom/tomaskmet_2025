@@ -25,8 +25,6 @@ export default class Scroll{
   }
 
   init(){
-      console.log(this.DOM);
-
     // sets the initial value (no interpolation) - translate the scroll value
     for (const key in this.renderedStyles) {
       this.current = this.scrollToRender = this.getScroll();
@@ -74,11 +72,11 @@ export default class Scroll{
 
     for (const item of this.DOM.scrollactive) {
       const bounds = item.getBoundingClientRect();
-      const activeRange = item.dataset.scrollActive;
-      
+      const activeRange = item.dataset.scrollActive ? (1 - item.dataset.scrollActive) * window.innerHeight : 0;
+
       //todo - finish active range and event emiter study and finish
 
-      if( bounds.bottom > 0 && bounds.top < window.innerHeight ){
+      if( bounds.bottom > activeRange && bounds.top < ( window.innerHeight - activeRange) ){
         item.classList.add("active");
       } else {
         item.classList.remove("active");

@@ -37,8 +37,6 @@ let Canvas = {
     },
     init(_canvasElement, _pageContainer) {
 
-        console.log("INIT")
-
         this.canvasContainer = _canvasElement;
         this.pageContainer = _pageContainer;
 
@@ -107,8 +105,6 @@ let Canvas = {
     },
 
     addImage(_img, _type) {
-
-        console.log("add Image");
 
         let meshIndex = this.imageStore.length;
 

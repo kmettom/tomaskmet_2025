@@ -23,7 +23,7 @@
         <CanvasImage class="project-img" :typeOfMesh="'project'" :srcLink="'img/screen_2.png'" />
       </div>
 
-      <div class="project" >
+      <div class="project" data-scroll-active="" >
         <h2>Project 4</h2>
         <p>Project description</p>
         <CanvasImage class="project-img" :typeOfMesh="'project'" :srcLink="'img/screen_2.png'" />

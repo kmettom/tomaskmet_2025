@@ -58,9 +58,6 @@ export default {
   z-index: -1;
 }
 
-.active{
-  border: 5px solid purple;
-}
 
 
 </style>
