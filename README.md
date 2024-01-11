@@ -4,6 +4,8 @@
 
 Install the dependencies:
 
+NODE VERSION: 18
+
 ```bash
 # yarn
 yarn install

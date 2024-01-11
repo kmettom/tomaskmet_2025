@@ -1,12 +1,6 @@
-node_modules
-*.log*
-.nuxt
-.nitro
-.cache
-.output
-.env
 .idea
-.npmrc
-.vscode
-git@github.com:kmettom/
-dist
+/node_modules
+/dist
+.nuxt
+.output
+
