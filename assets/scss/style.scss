@@ -1,18 +1,22 @@
+@import "_typography";
+@import "_media_queries";
 
-html{
+html {
   -webkit-font-smoothing: antialiased;
   vertical-align: baseline;
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: transparent;
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
-  background: #BFC0B2;
-  color: #1B1818;
   font-family: sans-serif;
+
+
+  background-color: #575050;
+  color: #BFC0B2;
 }
 
-.webgl-img{
-  img{
+.webgl-img {
+  img {
     opacity: 0;
   }
 }
@@ -20,8 +24,3 @@ html{
 
 @import '_common.scss';
 @import '_animations.scss';
-
-
-
-
-
