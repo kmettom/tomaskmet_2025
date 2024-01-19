@@ -1,6 +1,8 @@
 @import "_typography";
 @import "_media_queries";
 
+
+
 html {
   -webkit-font-smoothing: antialiased;
   vertical-align: baseline;
@@ -15,6 +17,11 @@ html {
   color: #BFC0B2;
 }
 
+html * {
+  margin: 0;
+  padding: 0;
+}
+
 .webgl-img {
   img {
     opacity: 0;
@@ -22,5 +29,5 @@ html {
 }
 
 
-@import '_common.scss';
+// @import '_common.scss';
 @import '_animations.scss';

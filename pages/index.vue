@@ -5,6 +5,26 @@
       <div class="temp">Holla Tomas</div>
     </Container>
 
+    <!-- HERO -->
+    <Container additionalClass="heroSection">
+      <h2 class="heading-1" id="thomas">Thomas</h2>
+      <h2 id="kmet" class="heading-1">Kmet</h2>
+      <div class="body-m" id="summary">
+        Web Developer with <br />
+        managerial background, <br />
+        coding and bringing a full<br />
+        team to help your project.
+      </div>
+      <div class="body-m" id="services">
+        web3<br />
+        creative <br />
+        apps<br />
+        websites<br />
+        e-commerce
+      </div>
+    </Container>
+
+    <!-- ABOUT -->
     <Container additionalClass="aboutSection">
       <h2 class="body-xs">About</h2>
       <div class="body-l">
@@ -75,6 +95,72 @@ watch(
   margin-bottom: 50px;
 }
 
+//=======>>>   HERO   <<<==========//
+.heroSection {
+  // border: 1px solid salmon;
+  height: 600px;
+  position: relative;
+
+  &[data-v-4c47fd49] {
+    margin-top: 100px;
+    max-width: 1048px;
+
+    @include respond-width($w-m) {
+      max-width: 780px;
+      height: 420px;
+    }
+
+    @include respond-width($w-s) {
+      max-width: 326px;
+      height: 188px;
+      margin-bottom: 100px;
+    }
+  }
+
+  #kmet {
+    position: absolute;
+    bottom: 45px;
+    right: 0;
+
+    @include respond-width($w-s) {
+      bottom: 0px;
+    }
+  }
+
+  #summary {
+    position: absolute;
+    top: 160px;
+    right: 0;
+
+    @include respond-width($w-m) {
+      top: 76px;
+    }
+
+    @include respond-width($w-s) {
+      top: 174px;
+      right: -25px;
+    }
+  }
+
+  #services {
+    position: absolute;
+    text-align: right;
+    bottom: 102px;
+    left: 408px;
+
+    @include respond-width($w-m) {
+      bottom: 80px;
+      left: 315px;
+    }
+
+    @include respond-width($w-s) {
+      bottom: 18px;
+      left: 51px;
+    }
+  }
+}
+
+
 
 //=======>>>   ABOUT   <<<==========//
 
@@ -82,7 +168,6 @@ watch(
   display: grid;
   grid-template-columns: 10fr 14fr;
   text-transform: uppercase;
-  border: 1px solid blueviolet;
 
   @include respond-width($w-m-s) {
     padding: 40px;
