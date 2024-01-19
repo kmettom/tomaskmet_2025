@@ -169,6 +169,19 @@ watch(
   grid-template-columns: 10fr 14fr;
   text-transform: uppercase;
 
+  & p {
+    margin-bottom: 30px;
+
+    @include respond-width($w-m) {
+      margin-bottom: 10px;
+    }
+
+    @include respond-width($w-xs) {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+
   @include respond-width($w-m-s) {
     padding: 40px;
   }
