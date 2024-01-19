@@ -3,9 +3,9 @@
 
 
 :root {
-  --color: #BFC0B2;
-  --bgColor: #575050;
-  // --bgColor: #1B1818; design color
+  --light-color: #BFC0B2;
+  --dark-color: #575050;
+  // --dark-color: #1B1818; design color
 }
 
 
@@ -19,8 +19,8 @@ html {
   font-family: sans-serif;
 
 
-  background-color: var(--bgColor);
-  color: var(--color);
+  background-color: var(--dark-color);
+  color: var(--light-color);
 }
 
 html * {
@@ -28,6 +28,7 @@ html * {
   padding: 0;
 
   text-transform: uppercase;
+  box-sizing: border-box;
 }
 
 .webgl-img {

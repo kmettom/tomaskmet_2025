@@ -29,7 +29,7 @@
         coding and bringing a full<br />
         team to help your project.
       </div>
-      <div class="body-m" id="services">
+      <div class="body-m" id="servicesList">
         web3<br />
         creative <br />
         apps<br />
@@ -53,6 +53,19 @@
       </div>
     </Container>
 
+    <!-- SERVICES -->
+    <div id="services">
+      <Container>
+        <h2 class="heading-1">Services</h2>
+
+
+        <div class="frame">
+          <Service title="Main Title" :icon="GlobeIcon"
+            text="Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id urna auctor donec sed. Sit cursus pretium convallis enim congue dolor. In rhoncus fusce eget diam scelerisque diam est pharetra sem." />
+        </div>
+      </Container>
+
+    </div>
 
   </div>
 </template>
@@ -60,6 +73,8 @@
 <script setup>
 import Container from "@/components/common/container.vue";
 import DownloadButton from "@/components/common/downloadButton.vue";
+import Service from "@/components/common/service.vue";
+import GlobeIcon from "@/components/icons/globe.client.vue";
 import { onMounted, watch } from "vue";
 
 useSeoMeta({
@@ -195,7 +210,7 @@ watch(
     }
   }
 
-  #services {
+  #servicesList {
     position: absolute;
     text-align: right;
     bottom: 102px;
@@ -221,6 +236,16 @@ watch(
   display: grid;
   grid-template-columns: 10fr 14fr;
   text-transform: uppercase;
+  padding-bottom: 200px;
+
+  @include respond-width($w-m-s) {
+    padding: 40px;
+  }
+
+  @include respond-width($w-xs) {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
 
   & p {
     margin-bottom: 30px;
@@ -234,14 +259,34 @@ watch(
       margin-bottom: 10px;
     }
   }
+}
 
-  @include respond-width($w-m-s) {
-    padding: 40px;
+//=======>>>   SERVICES   <<<==========//
+#services {
+  padding-top: 150px;
+  padding-bottom: 150px;
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  text-align: center;
+  // min-height: 700px;
+
+  & h2 {
+    margin-bottom: 150px;
+  }
+
+  & .frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   @include respond-width($w-xs) {
-    grid-template-columns: 1fr;
-    padding: 20px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+    & h2 {
+      margin-bottom: 50px;
+    }
   }
 }
 

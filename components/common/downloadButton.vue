@@ -24,7 +24,8 @@ export default {
     align-items: center;
     justify-content: center;
     gap: 4px;
-    background-color: var(--color);
+    color: var(--dark-color);
+    background-color: var(--light-color);
     padding: 30px 40px;
     border: none;
 

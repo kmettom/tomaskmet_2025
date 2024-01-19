@@ -81,7 +81,7 @@ export default {
   width: 100%;
   height: 100vh;
   z-index: 99;
-  background-color: var(--color);
+  background-color: var(--light-color);
   overflow: hidden;
   display: flex;
   justify-content: center;
