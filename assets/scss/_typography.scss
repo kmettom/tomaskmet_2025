@@ -28,19 +28,16 @@
 
 @mixin body-font {
     font-family: 'PP Neue Montreal Book';
-    text-transform: uppercase;
     font-weight: 400;
 }
 
 @mixin body-font-bold {
     font-family: 'PP Neue Montreal Bold';
-    text-transform: uppercase;
     font-weight: 700;
 }
 
 @mixin header-font {
     font-family: 'PP Formula Black';
-    text-transform: uppercase;
     font-weight: 900;
 }
 
@@ -75,7 +72,7 @@
 .body-xs {
     @include body-font;
     font-size: 12px;
-    line-height: 166.6%;
+    line-height: 20px;
 }
 
 .body-xs-bold {

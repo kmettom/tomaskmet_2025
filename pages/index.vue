@@ -1,9 +1,23 @@
 <template>
   <div class="wrapper">
 
-    <Container>
-      <div class="temp">Holla Tomas</div>
-    </Container>
+    <!-- NAVIGATION -->
+    <div id="topNavigation" class="body-xs">
+      <div id="location">
+        <span>Portugal</span>
+        <span id="splitter">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+        <span>11:35 PM</span>
+      </div>
+
+      <div>Folio 24</div>
+
+      <nav>
+        <span>About</span>
+        <span>Services</span>
+        <span>Work</span>
+        <span class="active">Contact me</span>
+      </nav>
+    </div>
 
     <!-- HERO -->
     <Container additionalClass="heroSection">
@@ -25,7 +39,7 @@
     </Container>
 
     <!-- ABOUT -->
-    <Container additionalClass="aboutSection">
+    <Container id="about" additionalClass="aboutSection">
       <h2 class="body-xs">About</h2>
       <div class="body-l">
         <p>A Self taught developer with managerial background and 8 years of hands on coding experience.</p>
@@ -87,12 +101,51 @@ watch(
 <style lang="scss">
 @import "assets/scss/style";
 
-// Global
-.wrapper {}
+//=======>>>   NAVIGATION   <<<==========//
 
+#topNavigation {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
 
-.temp {
-  margin-bottom: 50px;
+  // site navigation
+  & nav {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+
+    & span {
+      cursor: pointer;
+
+      &.active {
+        font-weight: bold;
+
+        &::before {
+          content: '';
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          background: url('public/imgs/right-arrow.svg') no-repeat;
+          background-size: cover;
+          margin-right: 4px;
+          position: relative;
+          bottom: -4px;
+        }
+      }
+    }
+  }
+
+  & #location {
+    display: flex;
+
+    @include respond-width($w-xs) {
+      flex-direction: column;
+
+      #splitter {
+        display: none;
+      }
+    }
+  }
 }
 
 //=======>>>   HERO   <<<==========//

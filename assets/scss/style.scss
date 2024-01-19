@@ -2,6 +2,12 @@
 @import "_media_queries";
 
 
+:root {
+  --color: #BFC0B2;
+  --bgColor: #575050;
+  // --bgColor: #1B1818; design color
+}
+
 
 html {
   -webkit-font-smoothing: antialiased;
@@ -13,13 +19,15 @@ html {
   font-family: sans-serif;
 
 
-  background-color: #575050;
-  color: #BFC0B2;
+  background-color: var(--bgColor);
+  color: var(--color);
 }
 
 html * {
   margin: 0;
   padding: 0;
+
+  text-transform: uppercase;
 }
 
 .webgl-img {

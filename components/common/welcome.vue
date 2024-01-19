@@ -1,5 +1,4 @@
 <template>
-
   <div class="welcome">
     <div class="welcome-txt-wrapper">
       <div class="welcome-txt-main">
@@ -11,11 +10,10 @@
     </div>
 
   </div>
-
 </template>
 <script>
-import {gsap} from "gsap";
-import {SplitText} from "gsap/SplitText";
+import { gsap } from "gsap";
+import { SplitText } from "gsap/SplitText";
 
 gsap.registerPlugin(SplitText);
 
@@ -34,16 +32,16 @@ export default {
     welcomeAnimation() {
 
       const tl = gsap.timeline();
-      const chars = new SplitText(".welcome-txt-main", {type: "words,chars"}).chars;
-      gsap.set(".welcome-txt-main", {perspective: 400});
-      tl.fromTo(chars, {y: "10px", opacity: 0}, {
+      const chars = new SplitText(".welcome-txt-main", { type: "words,chars" }).chars;
+      gsap.set(".welcome-txt-main", { perspective: 400 });
+      tl.fromTo(chars, { y: "10px", opacity: 0 }, {
         duration: this.welcomeAniDuration,
         opacity: 1,
         y: "0px",
         stagger: 0.02
       });
-      gsap.to('.welcome-txt-main', {duration: 0.3, opacity: 1})
-      gsap.to('.welcome-by', {duration: 0.3, opacity: 1})
+      gsap.to('.welcome-txt-main', { duration: 0.3, opacity: 1 })
+      gsap.to('.welcome-by', { duration: 0.3, opacity: 1 })
 
       gsap.to('.welcome', {
         duration: this.welcomeHideDuration,
@@ -76,7 +74,6 @@ export default {
 
 </script>
 <style lang="scss" scoped>
-
 .welcome {
   position: fixed;
   top: 0;
@@ -84,7 +81,7 @@ export default {
   width: 100%;
   height: 100vh;
   z-index: 99;
-  background-color: #BFC0B2;
+  background-color: var(--color);
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -105,6 +102,4 @@ export default {
 .welcome-by {
   opacity: 0;
 }
-
-
 </style>
