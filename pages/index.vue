@@ -91,6 +91,45 @@
       </Container>
     </div>
 
+    <!-- CTA -->
+    <div id="callToActionSection">
+      <Container>
+        <div class="frame">
+          <div class="heading-1">Get in</div>
+          <div id="secondPart">
+            <div class="heading-1">touch</div>
+            <div id="actionList" class="body-m">
+              <div>
+                <div class="iconFrame">
+                  <img :src="PhoneIcon" alt="Phone icon">
+                </div>
+                <span>Book a call</span>
+              </div>
+              <div>
+                <div class="iconFrame">
+                  <img :src="LetterIcon" alt="Letter icon">
+                </div>
+                <span>Send a request</span>
+              </div>
+            </div>
+            <div id="socialMediaList" class="body-m">
+              <div><span>Instagram</span></div>
+              <div><span>Email</span></div>
+              <div><span>Twitter</span></div>
+              <div><span>LinkedIn</span></div>
+            </div>
+          </div>
+
+        </div>
+      </Container>
+      <div id="bottomElement">
+        <div class="iconFrame">
+          <img :src="BasketBallIcon" alt="Basket ball icon">
+        </div>
+      </div>
+    </div>
+
+
   </div>
 </template>
 
@@ -100,8 +139,10 @@ import DownloadButton from "@/components/common/downloadButton.vue";
 import Project from "@/components/common/project.vue";
 import Service from "@/components/common/service.vue";
 import GlobeIcon from "@/components/icons/globe.client.vue";
+import BasketBallIcon from 'public/icons/basket-ball.png';
+import LetterIcon from 'public/icons/letter.svg';
+import PhoneIcon from 'public/icons/phone.svg';
 import { onMounted, watch } from "vue";
-
 useSeoMeta({
   title: 'Showcase Nuxt ThreeJS Starter Pack - Tomas Kmet - Web developer',
   ogTitle: 'Showcase Nuxt ThreeJS Starter Pack - Tomas Kmet - Web developer',
@@ -165,7 +206,7 @@ watch(
           display: inline-block;
           width: 16px;
           height: 16px;
-          background: url('public/imgs/right-arrow.svg') no-repeat;
+          background: url('public/icons/right-arrow.svg') no-repeat;
           background-size: cover;
           margin-right: 4px;
           position: relative;
@@ -190,7 +231,6 @@ watch(
 
 //=======>>>   HERO   <<<==========//
 .heroSection {
-  // border: 1px solid salmon;
   height: 600px;
   position: relative;
 
@@ -293,7 +333,6 @@ watch(
   background-color: var(--light-color);
   color: var(--dark-color);
   text-align: center;
-  // min-height: 700px;
 
   & h2 {
     margin-bottom: 150px;
@@ -368,6 +407,143 @@ watch(
 
       @include respond-width($w-xs) {
         gap: 50px;
+      }
+    }
+  }
+}
+
+//=======>>>   CTA   <<<==========//
+#callToActionSection {
+  position: relative;
+  color: var(--dark-color);
+  background-color: var(--light-color);
+
+  padding-top: 150px;
+  padding-bottom: 150px;
+
+  & .frame {
+    display: flex;
+    flex-direction: column;
+
+    @include respond-width($w-m) {
+      margin: 0 auto;
+      max-width: 598px;
+      height: 420px;
+    }
+
+    @include respond-width($w-s) {
+      max-width: 300px;
+      height: 188px;
+    }
+
+    & #secondPart {
+      position: relative;
+      align-self: flex-end;
+      bottom: 40px;
+
+      @include respond-width($w-m) {
+        bottom: 24px;
+      }
+
+      @include respond-width($w-s) {
+        bottom: 10px;
+      }
+
+      & #actionList {
+        position: absolute;
+        right: 0;
+        bottom: 100%;
+        padding-right: 240px;
+        padding-bottom: 18px;
+
+        @include respond-width($w-m) {
+          padding-right: 21px;
+          padding-bottom: 14px;
+        }
+
+        @include respond-width($w-s) {
+          right: calc(100% - 16px);
+          bottom: 0;
+          height: 100%;
+
+          // first option
+          &>div:first-child {
+            margin-bottom: 15px;
+
+            // first option icon
+            & .iconFrame {
+              position: relative;
+              left: 10px;
+            }
+          }
+        }
+      }
+
+      & #socialMediaList {
+        position: absolute;
+        text-align: right;
+        bottom: 50px;
+        right: 100%;
+        padding-bottom: 5px;
+        padding-right: 10px;
+
+        @include respond-width($w-m) {
+          bottom: 36px;
+          padding-bottom: 0px;
+          padding-right: 10px;
+        }
+
+        @include respond-width($w-s) {
+          text-align: left;
+          left: 5px;
+          top: calc(100% - 10px);
+        }
+      }
+    }
+
+    & .heading-1 {
+      white-space: nowrap;
+    }
+  }
+
+  // single action item
+  & #actionList>div {
+    display: flex;
+
+    @include respond-width($w-s) {
+      text-align: right;
+    }
+
+    & .iconFrame {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 4px;
+    }
+  }
+
+  & #bottomElement {
+    width: 150px;
+    height: 25px;
+    background-color: var(--dark-color);
+    position: absolute;
+    left: 30%;
+    bottom: 0;
+
+    @include respond-width($w-s) {
+      width: 100px;
+    }
+
+    & .iconFrame {
+      position: absolute;
+      left: 75%;
+      bottom: 100%;
+      transform: translateX(-50%);
+
+      & img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
   }
