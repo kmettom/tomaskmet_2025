@@ -103,6 +103,11 @@
     @include header-font;
     font-size: 70px;
     line-height: 120%;
+
+    @include respond-width($w-xs) {
+        font-size: 30px;
+        line-height: 120%;
+    }
 }
 
 .heading-4 {

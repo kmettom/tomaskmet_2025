@@ -64,7 +64,31 @@
             text="Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id urna auctor donec sed. Sit cursus pretium convallis enim congue dolor. In rhoncus fusce eget diam scelerisque diam est pharetra sem." />
         </div>
       </Container>
+    </div>
 
+    <!-- WORK -->
+    <div id="work">
+      <Container>
+        <h2 class="heading-1">Work</h2>
+
+        <div id="gallery">
+          <div id="firstLine">
+            <Project title="01" imageSrc="imgPlaceholders/510x600.png" name="Bright union" type="UI App" />
+            <Project title="02" imageSrc="imgPlaceholders/330x388.png" name="African origins" type="Website"
+              position="end" />
+          </div>
+
+          <Project imgWidth="200px" imgHeight="300px" title="03" imageSrc="imgPlaceholders/1050x600.png"
+            name="Neo sephiri" type="Website" />
+
+          <Project title="04" imageSrc="imgPlaceholders/510x600.png" name="Bright union" type="SDK" position="end" />
+
+          <Project title="05" imageSrc="imgPlaceholders/330x388.png" name="Pure goat " type="Website" />
+
+          <Project title="06" imageSrc="imgPlaceholders/1050x600.png" name="Jagoda Kondratiuk portfolio" type="Website" />
+        </div>
+
+      </Container>
     </div>
 
   </div>
@@ -73,6 +97,7 @@
 <script setup>
 import Container from "@/components/common/container.vue";
 import DownloadButton from "@/components/common/downloadButton.vue";
+import Project from "@/components/common/project.vue";
 import Service from "@/components/common/service.vue";
 import GlobeIcon from "@/components/icons/globe.client.vue";
 import { onMounted, watch } from "vue";
@@ -291,35 +316,60 @@ watch(
 }
 
 
+//=======>>>   WORK   <<<==========//
+
+#work {
+  padding-top: 200px;
+  padding-bottom: 200px;
+  margin: auto 10%;
+
+  @include respond-width($w-s) {
+    margin: auto 5%;
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  @include respond-width($w-xs) {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
 
 
+  & h2 {
+    text-align: right;
+    padding-bottom: 100px;
 
-// .inline-example {
-//   vertical-align: top;
-//   display: inline-block;
-//   padding-right: 20px;
-// }
+    @include respond-width($w-s) {
+      padding-bottom: 50px;
+    }
+  }
 
-// #fixedElContainer {
-//   height: 1250px;
-//   position: relative;
-//   margin-top: 75px;
+  & #gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 150px;
 
-//   &:before {
-//     left: -20px;
-//     content: '';
-//     position: absolute;
-//     height: 100%;
-//     width: 2px;
-//     background: #1B1818;
-//   }
-// }
+    @include respond-width($w-xs) {
+      gap: 50px;
+    }
 
-// .scroll-top-btn {
-//   text-align: center;
-//   margin-top: 70px;
-//   cursor: pointer;
-//   padding: 35px 0px;
-//   text-decoration: underline;
-// }
+    & #firstLine {
+      display: flex;
+      justify-content: space-between;
+      height: 850px;
+      flex-direction: row;
+      gap: 50px;
+
+      @include respond-width($w-m-s) {
+        flex-direction: column;
+        height: auto;
+        gap: 150px;
+      }
+
+      @include respond-width($w-xs) {
+        gap: 50px;
+      }
+    }
+  }
+}
 </style>

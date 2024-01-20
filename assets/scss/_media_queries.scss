@@ -12,3 +12,6 @@ $w-xs: 550px; // mobile resolution
         @content;
     }
 }
+
+// Usage:
+// @include respond-width($w-m-s) {
