@@ -90,7 +90,6 @@
     @include respond-width($w-m) {
         font-size: 200px;
         line-height: 200px;
-
     }
 
     @include respond-width($w-s) {
