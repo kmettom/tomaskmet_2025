@@ -139,7 +139,6 @@
       <span id="design">Design: Jagoda Kodnratiuk</span>
     </div>
 
-
   </div>
 </template>
 
@@ -153,6 +152,9 @@ import BasketBallIcon from 'public/icons/basket-ball.png';
 import LetterIcon from 'public/icons/letter.svg';
 import PhoneIcon from 'public/icons/phone.svg';
 import { onMounted, watch } from "vue";
+
+const { data } = await useAsyncData('index', () => queryContent('/index').findOne())
+
 useSeoMeta({
   title: 'Showcase Nuxt ThreeJS Starter Pack - Tomas Kmet - Web developer',
   ogTitle: 'Showcase Nuxt ThreeJS Starter Pack - Tomas Kmet - Web developer',

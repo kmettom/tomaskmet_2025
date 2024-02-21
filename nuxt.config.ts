@@ -2,21 +2,16 @@
 
 import glsl from 'vite-plugin-glsl';
 export default defineNuxtConfig({
-    // head: {
-    //     link: [
-    //         { rel: 'stylesheet', href: '/path/to/your/css/file.css' }
-    //     ]
-    // },
     routeRules: {
         '/_nuxt/**': { headers: { 'cache-control': 's-maxage=86400' } },
+        // '/home': { redirect: {to: '/' , statusCode: 301 } },
     },
     modules: [
-        // '@nuxt/content',
+        '@nuxt/content',
         ['@nuxt-modules/compression',
             { algorithm: 'brotliCompress' }
         ],
         "@nuxt/image" ,
-        // 'nuxt-purgecss',
     ],
     build: {
         transpile: ['gsap'],
@@ -48,6 +43,7 @@ export default defineNuxtConfig({
     nitro: {
         compressPublicAssets: true,
     },
+
     // app: {
     //     pageTransition: { name: 'page', mode: 'out-in' }
     // },
