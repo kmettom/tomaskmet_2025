@@ -2,7 +2,7 @@
     <div class="main">
         <div class="header">
             <div class="iconFrame">
-                <component :is="iconComponent"></component>
+                {{ icon }}
             </div>
             <h4 class="heading-4">{{ title }}</h4>
         </div>
@@ -22,13 +22,8 @@ export default {
             default: '',
         },
         icon: {
-            type: Object, // icon is Vue component
+            type: String,
             default: null,
-        },
-    },
-    computed: {
-        iconComponent() {
-            return this.icon;
         },
     },
 };
@@ -59,5 +54,7 @@ export default {
 
 .iconFrame {
     display: inline-block;
+    position: relative;
+    bottom: 3px;
 }
 </style>

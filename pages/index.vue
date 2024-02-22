@@ -60,7 +60,7 @@
 
 
         <div class="frame">
-          <Service title="Main Title" :icon="GlobeIcon"
+          <Service title="Main Title" icon='🌐'
             text="Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id urna auctor donec sed. Sit cursus pretium convallis enim congue dolor. In rhoncus fusce eget diam scelerisque diam est pharetra sem." />
         </div>
       </Container>
@@ -100,16 +100,16 @@
             <div class="heading-1">touch</div>
             <div id="actionList" class="body-m">
               <div>
-                <div class="iconFrame">
+                <!-- <div class="iconFrame">
                   <img :src="PhoneIcon" alt="Phone icon">
-                </div>
-                <span>Book a call</span>
+                </div> -->
+                <span>📞 Book a call</span>
               </div>
               <div>
-                <div class="iconFrame">
+                <!-- <div class="iconFrame">
                   <img :src="LetterIcon" alt="Letter icon">
-                </div>
-                <span>Send a request</span>
+                </div> -->
+                <span>✉️ Send a request</span>
               </div>
             </div>
             <div id="socialMediaList" class="body-m">
@@ -147,10 +147,7 @@ import Container from "@/components/common/container.vue";
 import DownloadButton from "@/components/common/downloadButton.vue";
 import Project from "@/components/common/project.vue";
 import Service from "@/components/common/service.vue";
-import GlobeIcon from "@/components/icons/globe.client.vue";
 import BasketBallIcon from 'public/icons/basket-ball.png';
-import LetterIcon from 'public/icons/letter.svg';
-import PhoneIcon from 'public/icons/phone.svg';
 import { onMounted, watch } from "vue";
 
 const { data } = await useAsyncData('index', () => queryContent('/index').findOne())
@@ -474,11 +471,13 @@ watch(
         }
 
         @include respond-width($w-s) {
-          right: calc(100% - 16px);
+          right: calc(100% + 4px);
+          width: 100px;
           bottom: 0;
           height: 100%;
+          padding: 0;
 
-          // first option
+          // first option 
           &>div:first-child {
             margin-bottom: 15px;
 
