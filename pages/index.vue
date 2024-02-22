@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper">
+    <div class="bg-image" />
 
     <!-- NAVIGATION -->
     <div id="topNavigation" class="body-xs">
@@ -147,8 +148,8 @@ import Container from "@/components/common/container.vue";
 import DownloadButton from "@/components/common/downloadButton.vue";
 import Project from "@/components/common/project.vue";
 import Service from "@/components/common/service.vue";
-import BasketBallIcon from 'public/icons/basket-ball.png';
 import { onMounted, watch } from "vue";
+import BasketBallIcon from '/icons/basket-ball.png';
 
 const { data } = await useAsyncData('index', () => queryContent('/index').findOne())
 
@@ -191,6 +192,39 @@ watch(
 <style lang="scss">
 @import "assets/scss/style";
 
+
+
+//=======>>>   WRAPPER background image   <<<==========//
+.wrapper {
+  position: relative;
+
+  .bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/tomas-photo.jpg') no-repeat;
+    background-size: 780px;
+    border: 1px solid red;
+    filter: blur(10px);
+    z-index: -1;
+
+    @include respond-width($w-m) {
+      background-size: 630px;
+    }
+
+    @include respond-width($w-s) {
+      background-size: 380px;
+    }
+
+    @include respond-width($w-xs) {
+      background-size: 260px;
+    }
+  }
+}
+
+
 //=======>>>   NAVIGATION   <<<==========//
 
 #topNavigation {
@@ -215,7 +249,7 @@ watch(
           display: inline-block;
           width: 16px;
           height: 16px;
-          background: url('public/icons/right-arrow.svg') no-repeat;
+          background: url('/icons/right-arrow.svg') no-repeat;
           background-size: cover;
           margin-right: 4px;
           position: relative;
@@ -243,9 +277,11 @@ watch(
   height: 600px;
   position: relative;
 
+
   &[data-v-4c47fd49] {
     margin-top: 100px;
     max-width: 1048px;
+    margin-bottom: 100px;
 
     @include respond-width($w-m) {
       max-width: 780px;
@@ -255,6 +291,7 @@ watch(
     @include respond-width($w-s) {
       max-width: 326px;
       height: 188px;
+      margin-top: 0px;
       margin-bottom: 100px;
     }
   }
