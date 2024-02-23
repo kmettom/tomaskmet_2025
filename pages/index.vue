@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper">
+    <div class="bg-image" />
 
     <!-- NAVIGATION -->
     <div id="topNavigation" class="body-xs">
@@ -58,10 +59,9 @@
       <Container>
         <h2 class="heading-1">Services</h2>
 
-
         <div class="frame">
-          <Service title="Main Title" :icon="GlobeIcon"
-            text="Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id urna auctor donec sed. Sit cursus pretium convallis enim congue dolor. In rhoncus fusce eget diam scelerisque diam est pharetra sem." />
+          <Service v-for="(service, index) in services" :key="index" :title="service.title" :icon="service.icon"
+            :text="service.text" :desktopStyles="service.desktopStyles" :tabletStyles="service.tabletStyles" />
         </div>
       </Container>
     </div>
@@ -72,11 +72,14 @@
         <h2 class="heading-1">Work</h2>
 
         <div id="gallery">
-          <div id="firstLine">
+          <!-- <div id="firstLine">
             <Project title="01" imageSrc="imgPlaceholders/510x600.png" name="Bright union" type="UI App" />
             <Project title="02" imageSrc="imgPlaceholders/330x388.png" name="African origins" type="Website"
               position="end" />
-          </div>
+          </div> -->
+          <Project title="01" imageSrc="imgPlaceholders/510x600.png" name="Bright union" type="UI App" />
+          <Project title="02" imageSrc="imgPlaceholders/330x388.png" name="African origins" type="Website"
+            position="end" />
 
           <Project imgWidth="200px" imgHeight="300px" title="03" imageSrc="imgPlaceholders/1050x600.png"
             name="Neo sephiri" type="Website" />
@@ -100,16 +103,16 @@
             <div class="heading-1">touch</div>
             <div id="actionList" class="body-m">
               <div>
-                <div class="iconFrame">
+                <!-- <div class="iconFrame">
                   <img :src="PhoneIcon" alt="Phone icon">
-                </div>
-                <span>Book a call</span>
+                </div> -->
+                <span>📞 Book a call</span>
               </div>
               <div>
-                <div class="iconFrame">
+                <!-- <div class="iconFrame">
                   <img :src="LetterIcon" alt="Letter icon">
-                </div>
-                <span>Send a request</span>
+                </div> -->
+                <span>✉️ Send a request</span>
               </div>
             </div>
             <div id="socialMediaList" class="body-m">
@@ -147,11 +150,9 @@ import Container from "@/components/common/container.vue";
 import DownloadButton from "@/components/common/downloadButton.vue";
 import Project from "@/components/common/project.vue";
 import Service from "@/components/common/service.vue";
-import GlobeIcon from "@/components/icons/globe.client.vue";
-import BasketBallIcon from 'public/icons/basket-ball.png';
-import LetterIcon from 'public/icons/letter.svg';
-import PhoneIcon from 'public/icons/phone.svg';
+import services from '@/content/services.model.json';
 import { onMounted, watch } from "vue";
+import BasketBallIcon from '/icons/basket-ball.png';
 
 const { data } = await useAsyncData('index', () => queryContent('/index').findOne())
 
@@ -194,6 +195,39 @@ watch(
 <style lang="scss">
 @import "assets/scss/style";
 
+
+
+//=======>>>   WRAPPER background image   <<<==========//
+.wrapper {
+  position: relative;
+
+  .bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/tomas-photo.jpg') no-repeat;
+    background-size: 780px;
+    filter: blur(10px);
+    z-index: -1;
+    opacity: 0.8;
+
+    @include respond-width($w-m) {
+      background-size: 630px;
+    }
+
+    @include respond-width($w-s) {
+      background-size: 380px;
+    }
+
+    @include respond-width($w-xs) {
+      background-size: 260px;
+    }
+  }
+}
+
+
 //=======>>>   NAVIGATION   <<<==========//
 
 #topNavigation {
@@ -218,7 +252,7 @@ watch(
           display: inline-block;
           width: 16px;
           height: 16px;
-          background: url('public/icons/right-arrow.svg') no-repeat;
+          background: url('/icons/right-arrow.svg') no-repeat;
           background-size: cover;
           margin-right: 4px;
           position: relative;
@@ -246,9 +280,11 @@ watch(
   height: 600px;
   position: relative;
 
+
   &[data-v-4c47fd49] {
     margin-top: 100px;
     max-width: 1048px;
+    margin-bottom: 100px;
 
     @include respond-width($w-m) {
       max-width: 780px;
@@ -258,6 +294,7 @@ watch(
     @include respond-width($w-s) {
       max-width: 326px;
       height: 188px;
+      margin-top: 0px;
       margin-bottom: 100px;
     }
   }
@@ -347,13 +384,21 @@ watch(
   text-align: center;
 
   & h2 {
-    margin-bottom: 150px;
+    // margin-bottom: 150px;
   }
 
   & .frame {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    position: relative;
+
+    height: 700px;
+
+    @include respond-width($w-s) {
+      height: 1400px;
+
+    }
   }
 
   @include respond-width($w-xs) {
@@ -474,11 +519,13 @@ watch(
         }
 
         @include respond-width($w-s) {
-          right: calc(100% - 16px);
+          right: calc(100% + 4px);
+          width: 100px;
           bottom: 0;
           height: 100%;
+          padding: 0;
 
-          // first option
+          // first option 
           &>div:first-child {
             margin-bottom: 15px;
 
