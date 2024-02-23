@@ -1,34 +1,30 @@
 <template>
+  <div id="appContainer">
 
-  <div id="appContainer" >
+    <CommonWelcome :welcomeInit="welcomeInit" @welcomeComplete="welcomeFinished()" />
+    <!--    <CommonNavigation :pageActive="contentActive" />-->
 
-    <CommonWelcome :welcomeInit="welcomeInit" @welcomeComplete="welcomeFinished()"/>
-<!--    <CommonNavigation :pageActive="contentActive" />-->
+    <div id="scrollContainer">
+      <div id="scrollableContent" ref="scrollableContent">
 
-      <div id="scrollContainer"  >
-        <div id="scrollableContent"  ref="scrollableContent" >
+        <NuxtPage :pageActive="contentActive" :transition="{
+          name: 'pagetransition',
+          onBeforeEnter: (el) => {
+            Canvas.scrollToTop(0)
+          },
+        }" />
 
-          <NuxtPage :pageActive="contentActive"
-                    :transition="{
-                      name: 'pagetransition',
-                      onBeforeEnter: (el) => {
-                        Canvas.scrollToTop(0)
-                      },
-                    }"
-          />
-
-        </div>
       </div>
+    </div>
 
     <div ref="canvas" id="animationContainer"></div>
 
   </div>
-
 </template>
 <script setup>
 
-import {Canvas} from "~/utils/canvas";
-import {Display} from "~/utils/display";
+import { Canvas } from "~/utils/canvas";
+import { Display } from "~/utils/display";
 
 const canvas = ref("canvas");
 const welcomeInit = ref(false);
@@ -40,7 +36,7 @@ useHead({
   }
 })
 
-onMounted( () => {
+onMounted(() => {
   Display.init();
   welcomeInit.value = true
   Canvas.init(canvas.value, scrollableContent.value);
@@ -54,15 +50,12 @@ const welcomeFinished = () => {
 </script >
 
 <style lang="scss" >
-
-@import "assets/scss/style";
-
-.headline{
+.headline {
   font-size: 100px;
   font-family: 'PP Formula Black', sans-serif;
 }
 
-#scrollContainer{
+#scrollContainer {
   position: fixed;
   height: 100%;
   left: 0;
@@ -70,7 +63,7 @@ const welcomeFinished = () => {
   overflow: hidden;
 }
 
-#scrollableContent{
+#scrollableContent {
   will-change: transform;
 }
 
@@ -85,7 +78,6 @@ const welcomeFinished = () => {
   pointer-events: none;
   z-index: -1;
 }
-
 </style>
 
 

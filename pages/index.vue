@@ -72,11 +72,14 @@
         <h2 class="heading-1">Work</h2>
 
         <div id="gallery">
-          <div id="firstLine">
+          <!-- <div id="firstLine">
             <Project title="01" imageSrc="imgPlaceholders/510x600.png" name="Bright union" type="UI App" />
             <Project title="02" imageSrc="imgPlaceholders/330x388.png" name="African origins" type="Website"
               position="end" />
-          </div>
+          </div> -->
+          <Project title="01" imageSrc="imgPlaceholders/510x600.png" name="Bright union" type="UI App" />
+          <Project title="02" imageSrc="imgPlaceholders/330x388.png" name="African origins" type="Website"
+            position="end" />
 
           <Project imgWidth="200px" imgHeight="300px" title="03" imageSrc="imgPlaceholders/1050x600.png"
             name="Neo sephiri" type="Website" />
