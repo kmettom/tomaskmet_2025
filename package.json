@@ -24,6 +24,7 @@
     "load-bmfont": "^1.4.1",
     "nuxt": "^3.8.0",
     "nuxt-purgecss": "^2.0.0",
+    "nuxt-viewport": "^2.1.4",
     "sass": "^1.64.1",
     "sass-loader": "^13.3.2",
     "three": "^0.149.0",
