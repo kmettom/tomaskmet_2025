@@ -20,7 +20,7 @@
     "@nuxt/content": "^2.12.0",
     "@nuxt/image": "^1.0.0",
     "@nuxtjs/style-resources": "^1.2.1",
-    "gsap": "npm:@gsap/business@^3.11.4",
+    "gsap": "npm:@gsap/business@^3.12.5",
     "load-bmfont": "^1.4.1",
     "nuxt": "^3.8.0",
     "nuxt-purgecss": "^2.0.0",
