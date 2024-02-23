@@ -1,5 +1,5 @@
 <template>
-    <div class="main">
+    <div class="main" :style="isTablet ? [desktopStyles, tabletStyles] : desktopStyles">
         <div class="header">
             <div class="iconFrame">
                 {{ icon }}
@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { useNuxtApp } from '#app';
+
 export default {
     props: {
         text: {
@@ -25,7 +27,23 @@ export default {
             type: String,
             default: null,
         },
+        desktopStyles: {
+            type: Object,
+            default: {},
+        },
+        tabletStyles: {
+            type: Object,
+            default: {},
+        },
     },
+    setup() {
+        const { $viewport } = useNuxtApp()
+
+        const isTablet = computed(() => $viewport.isLessThan('tablet'))
+        return {
+            isTablet
+        }
+    }
 };
 </script>
 
@@ -39,11 +57,7 @@ export default {
     background-color: var(--dark-color);
     padding: 50px 40px;
     text-align: left;
-    // overflow: auto;
-
-    @include respond-width($w-xs) {
-        width: min(80vw, 400px);
-    }
+    position: absolute;
 }
 
 .header {

@@ -59,10 +59,9 @@
       <Container>
         <h2 class="heading-1">Services</h2>
 
-
         <div class="frame">
-          <Service title="Main Title" icon='🌐'
-            text="Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id urna auctor donec sed. Sit cursus pretium convallis enim congue dolor. In rhoncus fusce eget diam scelerisque diam est pharetra sem." />
+          <Service v-for="(service, index) in services" :key="index" :title="service.title" :icon="service.icon"
+            :text="service.text" :desktopStyles="service.desktopStyles" :tabletStyles="service.tabletStyles" />
         </div>
       </Container>
     </div>
@@ -148,6 +147,7 @@ import Container from "@/components/common/container.vue";
 import DownloadButton from "@/components/common/downloadButton.vue";
 import Project from "@/components/common/project.vue";
 import Service from "@/components/common/service.vue";
+import services from '@/content/services.model.json';
 import { onMounted, watch } from "vue";
 import BasketBallIcon from '/icons/basket-ball.png';
 
@@ -206,9 +206,9 @@ watch(
     height: 100%;
     background: url('/tomas-photo.jpg') no-repeat;
     background-size: 780px;
-    border: 1px solid red;
     filter: blur(10px);
     z-index: -1;
+    opacity: 0.8;
 
     @include respond-width($w-m) {
       background-size: 630px;
@@ -381,13 +381,21 @@ watch(
   text-align: center;
 
   & h2 {
-    margin-bottom: 150px;
+    // margin-bottom: 150px;
   }
 
   & .frame {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    position: relative;
+
+    height: 700px;
+
+    @include respond-width($w-s) {
+      height: 1400px;
+
+    }
   }
 
   @include respond-width($w-xs) {
