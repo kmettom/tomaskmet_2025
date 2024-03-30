@@ -22,7 +22,7 @@
 
     <!-- HERO -->
     <Container additionalClass="heroSection">
-      <h2 class="heading-1" id="thomas">Thomas</h2>
+      <h2 class="heading-1" id="thomas">Tomas</h2>
       <h2 id="kmet" class="heading-1">Kmet</h2>
       <div class="body-m" id="summary">
         Web Developer with <br />
@@ -116,10 +116,10 @@
               </div>
             </div>
             <div id="socialMediaList" class="body-m">
-              <div><span>Instagram</span></div>
-              <div><span>Email</span></div>
-              <div><span>Twitter</span></div>
-              <div><span>LinkedIn</span></div>
+              <div><a href="https://www.instagram.com/kmettom/" target="_blank">Instagram</a></div>
+              <div><a href="" target="_blank">Email</a></div>
+              <div><a href="https://twitter.com/KmetTom" target="_blank">Twitter</a></div>
+              <div><a href="https://www.linkedin.com/in/tomas-kmet/" target="_blank">LinkedIn</a></div>
             </div>
           </div>
 
@@ -136,10 +136,10 @@
 
     <div id="footer" class="body-xs">
       <span id="rights">
-        © 2023 Tomas Kmet&nbsp;&nbsp;|&nbsp;&nbsp;All rights reserved
+        © {{new Date().getFullYear()}} Tomas Kmet&nbsp;&nbsp;|&nbsp;&nbsp;All rights reserved
       </span>
       <span id="font">Font: Pangram Pangram<span id="fontSeparator">&nbsp;&nbsp;|&nbsp;&nbsp;</span></span>
-      <span id="design">Design: Jagoda Kodnratiuk</span>
+      <span id="design">Design: <a href="https://jagodakondratiuk.com" target="_blank">Jagoda Kodnratiuk</a></span>
     </div>
 
   </div>
