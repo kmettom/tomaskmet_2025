@@ -12,10 +12,16 @@ let props = defineProps([
   'srcLink',
   'shader',
   'imageHover',
-  'meshId',
   'width',
   'height',
 ]);
+
+const generateRandomId = () => {
+  return  Math.floor(Math.random() * 100000);
+}
+
+const meshIdRandom = ref(generateRandomId())
+const generatedMeshId = ref(props.srcLink + meshIdRandom.value)
 
 const img = ref("img");
 const imgLoaded = ref(false);
@@ -30,7 +36,7 @@ const addImageToCanvas = (_timeout) => {
       addImageToCanvas(true)
       return
     }
-    Canvas.addImageAsMesh(img.value.children[0], props.shader, props.meshId, false)
+    Canvas.addImageAsMesh(img.value.children[0], props.shader, generatedMeshId.value, false)
   }, _timeout ? 200 : 0)
 
 };
@@ -40,11 +46,11 @@ const imageLoaded = () => {
 };
 
 watch(() => props.imageHover, (_status) => {
-  Canvas.hoverMesh(props.meshId, _status);
+  Canvas.hoverMesh(generatedMeshId.value, _status);
 });
 
 onBeforeUnmount(() => {
-  Canvas.removeMesh(props.meshId);
+  Canvas.removeMesh(generatedMeshId.value);
 });
 
 </script>

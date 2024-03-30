@@ -27,7 +27,8 @@
             <a href="https://example.com" target="_blank">👉 visit site</a>
         </div>
         <div class="frame" :style="getImgFrameStyles()" @click="!isExpanded && toggleDesc()">
-            <img :src="imageSrc" :alt="imageDesc">
+          <CanvasImage :shader="'example2'" :srcLink="imageSrc" />
+<!--            <img :src="imageSrc" :alt="imageDesc">-->
             <div v-if="isExpanded" class="nextItem" @click="visitNext">
                 next: bright union 👆
             </div>
@@ -43,75 +44,155 @@
     <div class="closeIcon" @click="toggleDesc">
         <IconsClose />
     </div>
-</template>red
+</template>
 
-<script>
+<script setup>
+import { ref, toRefs } from "vue";
 
-export default {
-    props: {
-        title: {
-            type: String,
-            required: true,
-        },
-        name: {
-            type: String,
-            required: true,
-        },
-        type: {
-            type: String,
-            required: true,
-        },
-        imageSrc: {
-            type: String,
-            required: true,
-        },
-        imageDesc: {
-            type: String,
-            default: 'Project image',
-        },
-        position: {
-            type: String,
-            default: 'start',
-            validator: value => ['start', 'end'].includes(value),
-        },
-        imgWidth: {
-            type: String,
-            default: 'fit-content',
-        },
-        imgHeight: {
-            type: String,
-            default: 'fit-content',
-        },
-    },
-    methods: {
-        getCanvasStyles() {
-            return {
-                alignSelf: `flex-${this.position}`,
-            };
-        },
-        getImgFrameStyles() {
-            return {
-                width: this.imgWidth,
-                height: this.imgHeight,
-            };
-        },
-        toggleDesc() {
-            this.isExpanded = !this.isExpanded;
-        },
-        visitNext() {
-            console.log('visit next');
-        },
-        visitPrev() {
-            console.log('visit prev');
-        },
-    },
-    data() {
-        return {
-            isExpanded: false,
-        };
-    },
+const props = defineProps({
+  title: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  type: {
+    type: String,
+    required: true,
+  },
+  imageSrc: {
+    type: String,
+    required: true,
+  },
+  imageDesc: {
+    type: String,
+    default: 'Project image',
+  },
+  position: {
+    type: String,
+    default: 'start',
+    validator: value => ['start', 'end'].includes(value),
+  },
+  imgWidth: {
+    type: String,
+    default: 'fit-content',
+  },
+  imgHeight: {
+    type: String,
+    default: 'fit-content',
+  },
+});
+
+const {
+  title,
+  name,
+  type,
+  imageSrc,
+  imageDesc,
+  position,
+  imgWidth,
+  imgHeight
+} = toRefs(props);
+
+const isExpanded = ref(false);
+
+const getCanvasStyles = () => {
+  return {
+    alignSelf: `flex-${position.value}`,
+  };
 };
+
+const getImgFrameStyles = () => {
+  return {
+    width: imgWidth.value,
+    height: imgHeight.value,
+  };
+};
+
+const toggleDesc = () => {
+  isExpanded.value = !isExpanded.value;
+};
+
+const visitNext = () => {
+  console.log('visit next');
+};
+
+const visitPrev = () => {
+  console.log('visit prev');
+};
+
 </script>
+
+<!--<script>-->
+
+<!--export default {-->
+<!--    props: {-->
+<!--        title: {-->
+<!--            type: String,-->
+<!--            required: true,-->
+<!--        },-->
+<!--        name: {-->
+<!--            type: String,-->
+<!--            required: true,-->
+<!--        },-->
+<!--        type: {-->
+<!--            type: String,-->
+<!--            required: true,-->
+<!--        },-->
+<!--        imageSrc: {-->
+<!--            type: String,-->
+<!--            required: true,-->
+<!--        },-->
+<!--        imageDesc: {-->
+<!--            type: String,-->
+<!--            default: 'Project image',-->
+<!--        },-->
+<!--        position: {-->
+<!--            type: String,-->
+<!--            default: 'start',-->
+<!--            validator: value => ['start', 'end'].includes(value),-->
+<!--        },-->
+<!--        imgWidth: {-->
+<!--            type: String,-->
+<!--            default: 'fit-content',-->
+<!--        },-->
+<!--        imgHeight: {-->
+<!--            type: String,-->
+<!--            default: 'fit-content',-->
+<!--        },-->
+<!--    },-->
+
+<!--    methods: {-->
+<!--        getCanvasStyles() {-->
+<!--            return {-->
+<!--                alignSelf: `flex-${this.position}`,-->
+<!--            };-->
+<!--        },-->
+<!--        getImgFrameStyles() {-->
+<!--            return {-->
+<!--                width: this.imgWidth,-->
+<!--                height: this.imgHeight,-->
+<!--            };-->
+<!--        },-->
+<!--        toggleDesc() {-->
+<!--            this.isExpanded = !this.isExpanded;-->
+<!--        },-->
+<!--        visitNext() {-->
+<!--            console.log('visit next');-->
+<!--        },-->
+<!--        visitPrev() {-->
+<!--            console.log('visit prev');-->
+<!--        },-->
+<!--    },-->
+<!--    data() {-->
+<!--        return {-->
+<!--            isExpanded: false,-->
+<!--        };-->
+<!--    },-->
+<!--};-->
+<!--</script>-->
 
 <style lang="scss" scoped>
 @import "@/assets/scss/style";

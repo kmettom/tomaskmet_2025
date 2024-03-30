@@ -15,7 +15,7 @@
          @mouseover="hoverImage = true"
          @mouseleave="hoverImage = false"
     >
-      <CanvasImage :width="'550'" :height="'365'" :imageHover="hoverImage" :meshId="'about'" :shader="'example1'" :srcLink="'imgs/01l.webp'"/>
+      <CanvasImage :width="'550'" :height="'365'" :imageHover="hoverImage" :shader="'example1'" :srcLink="'imgs/01l.webp'"/>
     </div>
     <div class="">
       <p>
