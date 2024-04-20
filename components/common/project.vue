@@ -101,7 +101,7 @@ const {
   imgHeight
 } = toRefs(props);
 
-// const isExpanded = ref(false);
+const isExpanded = ref(false);
 
 const getCanvasStyles = () => {
   return {
@@ -117,7 +117,9 @@ const getImgFrameStyles = () => {
 };
 
 const toggleDesc = () => {
-  isExpanded.value = !isExpanded.value;
+  // emit('kt' , )
+  // props.isExpanded = !props.isExpanded
+  // isExpanded.value = !isExpanded.value;
 };
 
 const visitNext = () => {
@@ -129,75 +131,6 @@ const visitPrev = () => {
 };
 
 </script>
-
-<!--<script>-->
-
-<!--export default {-->
-<!--    props: {-->
-<!--        title: {-->
-<!--            type: String,-->
-<!--            required: true,-->
-<!--        },-->
-<!--        name: {-->
-<!--            type: String,-->
-<!--            required: true,-->
-<!--        },-->
-<!--        type: {-->
-<!--            type: String,-->
-<!--            required: true,-->
-<!--        },-->
-<!--        imageSrc: {-->
-<!--            type: String,-->
-<!--            required: true,-->
-<!--        },-->
-<!--        imageDesc: {-->
-<!--            type: String,-->
-<!--            default: 'Project image',-->
-<!--        },-->
-<!--        position: {-->
-<!--            type: String,-->
-<!--            default: 'start',-->
-<!--            validator: value => ['start', 'end'].includes(value),-->
-<!--        },-->
-<!--        imgWidth: {-->
-<!--            type: String,-->
-<!--            default: 'fit-content',-->
-<!--        },-->
-<!--        imgHeight: {-->
-<!--            type: String,-->
-<!--            default: 'fit-content',-->
-<!--        },-->
-<!--    },-->
-
-<!--    methods: {-->
-<!--        getCanvasStyles() {-->
-<!--            return {-->
-<!--                alignSelf: `flex-${this.position}`,-->
-<!--            };-->
-<!--        },-->
-<!--        getImgFrameStyles() {-->
-<!--            return {-->
-<!--                width: this.imgWidth,-->
-<!--                height: this.imgHeight,-->
-<!--            };-->
-<!--        },-->
-<!--        toggleDesc() {-->
-<!--            this.isExpanded = !this.isExpanded;-->
-<!--        },-->
-<!--        visitNext() {-->
-<!--            console.log('visit next');-->
-<!--        },-->
-<!--        visitPrev() {-->
-<!--            console.log('visit prev');-->
-<!--        },-->
-<!--    },-->
-<!--    data() {-->
-<!--        return {-->
-<!--            isExpanded: false,-->
-<!--        };-->
-<!--    },-->
-<!--};-->
-<!--</script>-->
 
 <style lang="scss" scoped>
 @import "@/assets/scss/style";

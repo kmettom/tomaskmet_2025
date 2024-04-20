@@ -16,18 +16,18 @@
       <span class="active">Contact me</span>
     </nav>
   </div>
-<!--  <div class="">-->
-<!--    <NuxtLink aria-label="showcase" to="/">-->
-<!--      Showcase-->
-<!--    </NuxtLink>-->
-<!--    <br/>-->
-<!--    <NuxtLink aria-label="about" to="/about">-->
-<!--      About-->
-<!--    </NuxtLink>-->
-<!--  </div>-->
+  <!--  <div class="">-->
+  <!--    <NuxtLink aria-label="showcase" to="/">-->
+  <!--      Showcase-->
+  <!--    </NuxtLink>-->
+  <!--    <br/>-->
+  <!--    <NuxtLink aria-label="about" to="/about">-->
+  <!--      About-->
+  <!--    </NuxtLink>-->
+  <!--  </div>-->
 </template>
 <script setup>
-import { onMounted } from "vue";
+import {onMounted} from "vue";
 
 const props = defineProps({
   pageActive: Boolean
@@ -44,12 +44,13 @@ onMounted(() => {
 
 #topNavigation {
   position: fixed;
-  top:0;
+  top: 0;
   right: 0;
   left: 0;
   display: flex;
   justify-content: space-between;
   padding: 20px;
+  z-index: 99;
 
   // site navigation
   & nav {
@@ -59,21 +60,33 @@ onMounted(() => {
 
     & span {
       cursor: pointer;
+      line-height: 15px;
 
+      &::before {
+        opacity: 0;
+        content: '';
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background: url('/icons/right-arrow.svg') no-repeat;
+        background-size: cover;
+        margin-right: 4px;
+        position: relative;
+        bottom: -4px;
+        transform: translateX(-10px);
+        transition: ease all 0.3s;
+      }
+
+      &:hover{
+        font-weight: bold;
+      }
       &.active {
         font-weight: bold;
-
         &::before {
-          content: '';
-          display: inline-block;
-          width: 16px;
-          height: 16px;
-          background: url('/icons/right-arrow.svg') no-repeat;
-          background-size: cover;
-          margin-right: 4px;
-          position: relative;
-          bottom: -4px;
+          transform: translateX(0px);
+          opacity: 1;
         }
+
       }
     }
   }

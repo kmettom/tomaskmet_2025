@@ -1,9 +1,6 @@
 <template>
   <div class="wrapper">
     <div class="bg-image" />
-
-
-
     <!-- HERO -->
     <Container additionalClass="heroSection">
       <h2 class="heading-1" id="thomas">Tomas</h2>
@@ -54,13 +51,7 @@
     <div id="work">
       <Container>
         <h2 class="heading-1">Work</h2>
-
         <div id="gallery">
-          <!-- <div id="firstLine">
-            <Project title="01" imageSrc="imgPlaceholders/510x600.png" name="Bright union" type="UI App" />
-            <Project title="02" imageSrc="imgPlaceholders/330x388.png" name="African origins" type="Website"
-              position="end" />
-          </div> -->
           <span v-scrollActive="0.8" >
           <Project :isExpanded="projectsExpanded" title="01" imageSrc="imgPlaceholders/510x600.png" name="Bright union" type="UI App" />
           </span>
@@ -109,7 +100,9 @@
                 <!-- <div class="iconFrame">
                   <img :src="LetterIcon" alt="Letter icon">
                 </div> -->
-                <span>✉️ Send a request</span>
+                <a href="mailto:hello@783studio.com">
+                  <span>✉️ Send a request</span>
+                </a>
               </div>
             </div>
             <div id="socialMediaList" class="body-m">
@@ -133,7 +126,7 @@
 
     <div id="footer" class="body-xs">
       <span id="rights">
-        © {{new Date().getFullYear()}} Tomas Kmet&nbsp;&nbsp;|&nbsp;&nbsp;All rights reserved
+        © {{new Date().getFullYear()}} Studio 783&nbsp;&nbsp;|&nbsp;&nbsp;All rights reserved
       </span>
       <span id="font">Font: Pangram Pangram<span id="fontSeparator">&nbsp;&nbsp;|&nbsp;&nbsp;</span></span>
       <span id="design">Design: <a href="https://jagodakondratiuk.com" target="_blank">Jagoda Kodnratiuk</a></span>
@@ -476,7 +469,7 @@ watch(
           height: 100%;
           padding: 0;
 
-          // first option 
+          // first option
           &>div:first-child {
             margin-bottom: 15px;
 
