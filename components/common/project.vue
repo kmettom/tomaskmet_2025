@@ -1,5 +1,5 @@
 <template>
-    <div :style="getCanvasStyles()" :class="[isExpanded ? ['expandedCanvas', 'canvas'] : 'canvas']">
+    <div :style="getCanvasStyles()" :class="[props.isExpanded ? ['expandedCanvas', 'canvas'] : 'canvas']">
         <div class="heading-3">{{ title }}</div>
 
         <div class="description">
@@ -26,13 +26,13 @@
 
             <a href="https://example.com" target="_blank">👉 visit site</a>
         </div>
-        <div class="frame" :style="getImgFrameStyles()" @click="!isExpanded && toggleDesc()">
+        <div class="frame" :style="getImgFrameStyles()" @click="!props.isExpanded && toggleDesc()">
           <CanvasImage :shader="'example2'" :srcLink="imageSrc" />
 <!--            <img :src="imageSrc" :alt="imageDesc">-->
-            <div v-if="isExpanded" class="nextItem" @click="visitNext">
+            <div v-if="props.isExpanded" class="nextItem" @click="visitNext">
                 next: bright union 👆
             </div>
-            <div v-if="isExpanded" class="prevItem" @click="visitPrev">
+            <div v-if="props.isExpanded" class="prevItem" @click="visitPrev">
                 previous: african origins 👇
             </div>
         </div>
@@ -101,7 +101,7 @@ const {
   imgHeight
 } = toRefs(props);
 
-const isExpanded = ref(false);
+// const isExpanded = ref(false);
 
 const getCanvasStyles = () => {
   return {
@@ -117,9 +117,7 @@ const getImgFrameStyles = () => {
 };
 
 const toggleDesc = () => {
-  // emit('kt' , )
-  // props.isExpanded = !props.isExpanded
-  // isExpanded.value = !isExpanded.value;
+  this.$emit('update:isExpanded', !this.isExpanded);
 };
 
 const visitNext = () => {
