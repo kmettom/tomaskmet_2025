@@ -62,29 +62,29 @@
               position="end" />
           </div> -->
           <span v-scrollActive="0.8" >
-          <Project  title="01" imageSrc="imgPlaceholders/510x600.png" name="Bright union" type="UI App" />
+          <Project :isExpanded="projectsExpanded" title="01" imageSrc="imgPlaceholders/510x600.png" name="Bright union" type="UI App" />
           </span>
           <span v-scrollActive="0.8" >
 
-          <Project title="02" imageSrc="imgPlaceholders/330x388.png" name="African origins" type="Website"
+          <Project :isExpanded="projectsExpanded" title="02" imageSrc="imgPlaceholders/330x388.png" name="African origins" type="Website"
             position="end" />
           </span>
           <span v-scrollActive="0.8" >
 
-          <Project imgWidth="200px" imgHeight="300px" title="03" imageSrc="imgPlaceholders/1050x600.png"
+          <Project :isExpanded="projectsExpanded" imgWidth="200px" imgHeight="300px" title="03" imageSrc="imgPlaceholders/1050x600.png"
             name="Neo sephiri" type="Website" />
           </span>
           <span v-scrollActive="0.8" >
 
-          <Project title="04" imageSrc="imgPlaceholders/510x600.png" name="Bright union" type="SDK" position="end" />
+          <Project :isExpanded="projectsExpanded" title="04" imageSrc="imgPlaceholders/510x600.png" name="Bright union" type="SDK" position="end" />
           </span>
           <span v-scrollActive="0.8" >
 
-          <Project title="05" imageSrc="imgPlaceholders/330x388.png" name="Pure goat " type="Website" />
+          <Project :isExpanded="projectsExpanded" title="05" imageSrc="imgPlaceholders/330x388.png" name="Pure goat " type="Website" />
           </span>
           <span v-scrollActive="0.8" >
 
-          <Project title="06" imageSrc="imgPlaceholders/1050x600.png" name="Jagoda Kondratiuk portfolio" type="Website" />
+          <Project :isExpanded="projectsExpanded" title="06" imageSrc="imgPlaceholders/1050x600.png" name="Jagoda Kondratiuk portfolio" type="Website" />
           </span>
         </div>
 
@@ -162,6 +162,8 @@ useSeoMeta({
 
 const hoverImage1 = ref(false);
 const hoverImage2 = ref(false);
+
+const projectsExpanded = ref(false);
 
 const props = defineProps({
   pageActive: Boolean

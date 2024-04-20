@@ -83,6 +83,11 @@ const props = defineProps({
     type: String,
     default: 'fit-content',
   },
+  isExpanded:{
+    type: Boolean,
+    default: false,
+    required: true,
+  }
 });
 
 const {
@@ -96,7 +101,7 @@ const {
   imgHeight
 } = toRefs(props);
 
-const isExpanded = ref(false);
+// const isExpanded = ref(false);
 
 const getCanvasStyles = () => {
   return {
