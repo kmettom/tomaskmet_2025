@@ -28,6 +28,7 @@ import example2Fragment from './shaders/example2Fragment.glsl';
 import example2Vertex from './shaders/example2Vertex.glsl';
 
 import MSDFfragment from './shaders/MSDFfragment.glsl';
+import MSDFfragmentBlur from './shaders/MSDFfragmentBlur.glsl';
 import MSDFvertex from './shaders/MSDFvertex.glsl';
 
 const CanvasOptions = {
@@ -240,6 +241,8 @@ let Canvas = {
 
     addTextAsMSDF(_shader, _id, _htmlEl, _text){
 
+        console.log("addTextAsMSDF")
+
         let bounds = _htmlEl.getBoundingClientRect();
         let position = { top : bounds.top , left: bounds.left};
         position.top += this.currentScroll;
@@ -285,7 +288,7 @@ let Canvas = {
                     derivatives: false, //true,
                 },
                 uniforms: {
-                    uColor: { value: new THREE.Color('#1b1818') },
+                    uColor: { value: new THREE.Color('#ffffff') },
                     // Common
                     uOpacity: { value: 1 },
                     uMap: { value: null },
@@ -304,7 +307,7 @@ let Canvas = {
                     aniIn: {value: 0},
                 },
                 vertexShader: MSDFvertex,
-                fragmentShader: MSDFfragment,
+                fragmentShader: MSDFfragmentBlur,
             });
 
             material.uniforms.uMap.value = atlas;
@@ -328,6 +331,8 @@ let Canvas = {
                 width: 0, //bounds.width,
                 height: bounds.height * 1.43 // bounds.height,
             }
+
+            console.log("newMesh FONT" , newMesh)
 
             this.imageStore.push(newMesh);
 
