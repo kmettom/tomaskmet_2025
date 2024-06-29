@@ -4,14 +4,9 @@
       Go To Showcase
     </NuxtLink>
     <h1 class="headline">
-      <div class="image-hover-block img-l-wrapper"
-           @mouseover="textHover = true"
-           @mouseleave="textHover = false"
-      >
-        <CanvasText :meshId="'headline-2'" :shader="'example1'" :textHover="textHover">
+        <CanvasText :meshId="'headline-about'" :shader="'default'">
           About
         </CanvasText>
-      </div>
     </h1>
     <p class="">
       This is a showcase of examples and usage of NuxtThreeJSStarterPack, Nuxt framework with implemented ThreeJS
@@ -21,8 +16,8 @@
          @mouseover="hoverImage = true"
          @mouseleave="hoverImage = false"
     >
-      <CanvasImage :width="'550'" :height="'365'" :imageHover="hoverImage" :shader="'example1'"
-                   :srcLink="'imgs/01l.webp'"/>
+<!--      <CanvasImage :width="'550'" :height="'365'" :imageHover="hoverImage" :shader="'example1'"-->
+<!--                   :srcLink="'imgs/01l.webp'"/>-->
     </div>
     <div class="">
       <p>

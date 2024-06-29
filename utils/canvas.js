@@ -241,8 +241,6 @@ let Canvas = {
 
     addTextAsMSDF(_shader, _id, _htmlEl, _text){
 
-        console.log("addTextAsMSDF")
-
         let bounds = _htmlEl.getBoundingClientRect();
         let position = { top : bounds.top , left: bounds.left};
         position.top += this.currentScroll;
@@ -318,7 +316,7 @@ let Canvas = {
             // const scaleCoefX = bounds.height / mesh.geometry._layout._height;
             const scaleCoefY = bounds.width / mesh.geometry._layout._width;
 
-            mesh.scale.set(1*scaleCoefY, -1*scaleCoefY, 1);
+            mesh.scale.set(scaleCoefY, -1*scaleCoefY, 1);
 
             this.scene.add(mesh)
 
@@ -332,8 +330,6 @@ let Canvas = {
                 height: bounds.height * 1.43 // bounds.height,
             }
 
-            console.log("newMesh FONT" , newMesh)
-
             this.imageStore.push(newMesh);
 
             this._setMeshPositions();
@@ -342,7 +338,6 @@ let Canvas = {
                 if(!_htmlEl.dataset.scrollActive) this.activateMesh(_id, true);
             },250)
             this.meshMouseListeners(newMesh, material);
-
         });
     },
     addImageAsMesh(_img, _shader, _meshId, _mouseListeners) {
@@ -417,14 +412,19 @@ let Canvas = {
 
         _mesh.img.addEventListener('mouseenter',(event)=>{
             _mesh.mesh.renderOrder = 1;
+            console.log("mouseenter")
             gsap.to(_material.uniforms.hoverState, {
                 duration: 0.5,
-                value:1
+                value:1,
+                onUpdate: (value) => {
+                    console.log(value)
+                }
             })
         })
 
         _mesh.img.addEventListener('mouseout',()=>{
             _mesh.mesh.renderOrder = 0;
+            console.log("mouseout")
             gsap.to(_material.uniforms.hoverState,{
                 duration: 0.5,
                 value:0

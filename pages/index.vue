@@ -1,21 +1,21 @@
 <template>
   <div class="wrapper">
-    <div class="bg-image" />
+    <div class="bg-image"/>
     <!-- HERO -->
     <Container additionalClass="heroSection">
       <h2 class="heading-1" id="thomas">Tomas</h2>
       <h2 id="kmet" class="heading-1">Kmet</h2>
       <div class="body-m" id="summary">
-        Web Developer with <br />
-        managerial background, <br />
-        coding and bringing a full<br />
+        Web Developer with <br/>
+        managerial background, <br/>
+        coding and bringing a full<br/>
         team to help your project.
       </div>
       <div class="body-m" id="servicesList">
-        web3<br />
-        creative <br />
-        apps<br />
-        websites<br />
+        web3<br/>
+        creative <br/>
+        apps<br/>
+        websites<br/>
         e-commerce
       </div>
     </Container>
@@ -26,23 +26,28 @@
       <div class="body-l">
         <p>A Self taught developer with managerial background and 8 years of hands on coding experience.</p>
         <p>WORKING WITH AGENCIES, COMPANIES and freelancers using broad spectrum frameworks and backend API's.</p>
-        <p>Interested in developing web apps, dapps, websites and e-commerce, happily spending time with Web3 or animating
-          with WebGl. Looking forward to learning more. Connected with a broad network to fit the needs of a wide range of
+        <p>Interested in developing web apps, dapps, websites and e-commerce, happily spending time with Web3 or
+          animating
+          with WebGl. Looking forward to learning more. Connected with a broad network to fit the needs of a wide range
+          of
           projects.</p>
-        <p>Collaborate with other developers, designers and marketers to shape and create brands, experiences and products
+        <p>Collaborate with other developers, designers and marketers to shape and create brands, experiences and
+          products
           together.</p>
-<!--        <DownloadButton />-->
+        <!--        <DownloadButton />-->
       </div>
     </Container>
 
     <!-- SERVICES -->
     <div id="services">
       <Container>
-        <h2 class="heading-1">Services</h2>
+        <h2 class="heading-1">
+          Services
+        </h2>
 
         <div class="frame">
           <Service v-for="(service, index) in services" :key="index" :title="service.title" :icon="service.icon"
-            :text="service.text" :desktopStyles="service.desktopStyles" :tabletStyles="service.tabletStyles" />
+                   :text="service.text" :desktopStyles="service.desktopStyles" :tabletStyles="service.tabletStyles"/>
         </div>
       </Container>
     </div>
@@ -50,32 +55,44 @@
     <!-- WORK -->
     <div id="work">
       <Container>
-        <h2 class="heading-1">Work</h2>
+        <h2 class="heading-1">
+          <span v-scrollActive="0.8">
+            <CanvasText :meshId="'headline-work'" :shader="'default'">
+              Work
+            </CanvasText>
+          </span>
+        </h2>
         <div id="gallery">
-          <span v-scrollActive="0.8" >
-          <Project :isExpanded="projectsExpanded" title="01" imageSrc="imgPlaceholders/510x600.png" name="Bright union" type="UI App" />
+          <span v-scrollActive="0.8">
+          <Project :isExpanded="projectsExpanded" title="01" imageSrc="imgPlaceholders/510x600.png" name="Bright union"
+                   type="UI App"/>
           </span>
-          <span v-scrollActive="0.8" >
+          <span v-scrollActive="0.8">
 
-          <Project :isExpanded="projectsExpanded" title="02" imageSrc="imgPlaceholders/330x388.png" name="African origins" type="Website"
-            position="end" />
+          <Project :isExpanded="projectsExpanded" title="02" imageSrc="imgPlaceholders/330x388.png"
+                   name="African origins" type="Website"
+                   position="end"/>
           </span>
-          <span v-scrollActive="0.8" >
+          <span v-scrollActive="0.8">
 
-          <Project :isExpanded="projectsExpanded" imgWidth="200px" imgHeight="300px" title="03" imageSrc="imgPlaceholders/1050x600.png"
-            name="Neo sephiri" type="Website" />
+          <Project :isExpanded="projectsExpanded" imgWidth="200px" imgHeight="300px" title="03"
+                   imageSrc="imgPlaceholders/1050x600.png"
+                   name="Neo sephiri" type="Website"/>
           </span>
-          <span v-scrollActive="0.8" >
+          <span v-scrollActive="0.8">
 
-          <Project :isExpanded="projectsExpanded" title="04" imageSrc="imgPlaceholders/510x600.png" name="Bright union" type="SDK" position="end" />
+          <Project :isExpanded="projectsExpanded" title="04" imageSrc="imgPlaceholders/510x600.png" name="Bright union"
+                   type="SDK" position="end"/>
           </span>
-          <span v-scrollActive="0.8" >
+          <span v-scrollActive="0.8">
 
-          <Project :isExpanded="projectsExpanded" title="05" imageSrc="imgPlaceholders/330x388.png" name="Pure goat " type="Website" />
+          <Project :isExpanded="projectsExpanded" title="05" imageSrc="imgPlaceholders/330x388.png" name="Pure goat "
+                   type="Website"/>
           </span>
-          <span v-scrollActive="0.8" >
+          <span v-scrollActive="0.8">
 
-          <Project :isExpanded="projectsExpanded" title="06" imageSrc="imgPlaceholders/1050x600.png" name="Jagoda Kondratiuk portfolio" type="Website" />
+          <Project :isExpanded="projectsExpanded" title="06" imageSrc="imgPlaceholders/1050x600.png"
+                   name="Jagoda Kondratiuk portfolio" type="Website"/>
           </span>
         </div>
 
@@ -126,7 +143,7 @@
 
     <div id="footer" class="body-xs">
       <span id="rights">
-        © {{new Date().getFullYear()}} Studio 783&nbsp;&nbsp;|&nbsp;&nbsp;All rights reserved
+        © {{ new Date().getFullYear() }} Studio 783&nbsp;&nbsp;|&nbsp;&nbsp;All rights reserved
       </span>
       <span id="font">Font: Pangram Pangram<span id="fontSeparator">&nbsp;&nbsp;|&nbsp;&nbsp;</span></span>
       <span id="design">Design: <a href="https://jagodakondratiuk.com" target="_blank">Jagoda Kodnratiuk</a></span>
@@ -141,10 +158,10 @@ import DownloadButton from "@/components/common/downloadButton.vue";
 import Project from "@/components/common/project.vue";
 import Service from "@/components/common/service.vue";
 import services from '@/content/services.model.json';
-import { onMounted, watch } from "vue";
+import {onMounted, watch} from "vue";
 import BasketBallIcon from '/icons/basket-ball.png';
 
-const { data } = await useAsyncData('index', () => queryContent('/index').findOne())
+const {data} = await useAsyncData('index', () => queryContent('/index').findOne())
 
 useSeoMeta({
   title: 'Showcase Nuxt ThreeJS Starter Pack - Tomas Kmet - Web developer',
@@ -173,12 +190,12 @@ onMounted(() => {
 });
 
 watch(
-  () => props.pageActive,
-  (newValue, oldValue) => {
-    if (newValue) {
-      pageAniIn();
+    () => props.pageActive,
+    (newValue, oldValue) => {
+      if (newValue) {
+        pageAniIn();
+      }
     }
-  }
 );
 
 
@@ -216,7 +233,6 @@ watch(
     }
   }
 }
-
 
 
 //=======>>>   HERO   <<<==========//
@@ -285,7 +301,6 @@ watch(
     }
   }
 }
-
 
 
 //=======>>>   ABOUT   <<<==========//
@@ -470,7 +485,7 @@ watch(
           padding: 0;
 
           // first option
-          &>div:first-child {
+          & > div:first-child {
             margin-bottom: 15px;
 
             // first option icon
@@ -510,7 +525,7 @@ watch(
   }
 
   // single action item
-  & #actionList>div {
+  & #actionList > div {
     display: flex;
 
     @include respond-width($w-s) {

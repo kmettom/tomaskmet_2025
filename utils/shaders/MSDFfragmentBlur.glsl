@@ -48,13 +48,8 @@ void main() {
     // Texture sample
     vec3 s = texture2D(uMap, vUv).rgb;
 
-    // If hoverState is 1, apply blur
-    if (hoverState == 1.0) {
-        s = blur(uMap, vUv, uResolution, uBlurIntensity);
-    }
-
     // Signed distance
-    float sigDist = median(s.r, s.g, s.b) - 0.51;
+    float sigDist = median(s.r, s.g, s.b) - 0.51 * aniIn - (0.25 * hoverState);
     float afwidth = 1.4142135623730951 / 2.0;
 
     #ifdef IS_SMALL
