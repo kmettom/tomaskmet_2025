@@ -49,7 +49,7 @@ void main() {
     vec3 s = texture2D(uMap, vUv).rgb;
 
     // Signed distance
-    float sigDist = median(s.r, s.g, s.b) - 0.51 * aniIn - (0.25 * hoverState);
+    float sigDist = median(s.r, s.g, s.b) - 0.51 - (0.25 * hoverState) - (0.51 * (1.0 - aniIn));
     float afwidth = 1.4142135623730951 / 2.0;
 
     #ifdef IS_SMALL
@@ -80,7 +80,8 @@ void main() {
     if (alpha < uAlphaTest) discard;
 
     // Some animation
-    alpha *= sin(time);
+    //    alpha *= sin(time);
+    //        alpha *= sin(1.0);
 
     // Output: Common
 

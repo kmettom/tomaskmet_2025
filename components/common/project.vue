@@ -28,7 +28,6 @@
         </div>
         <div class="frame" :style="getImgFrameStyles()" @click="!props.isExpanded && toggleDesc()">
           <CanvasImage :shader="'example2'" :srcLink="imageSrc" />
-<!--            <img :src="imageSrc" :alt="imageDesc">-->
             <div v-if="props.isExpanded" class="nextItem" @click="visitNext">
                 next: bright union 👆
             </div>

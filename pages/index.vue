@@ -3,8 +3,8 @@
     <div class="bg-image"/>
     <!-- HERO -->
     <Container additionalClass="heroSection">
-      <h2 class="heading-1" id="thomas">Tomas</h2>
-      <h2 id="kmet" class="heading-1">Kmet</h2>
+      <h2 class="heading-1" id="thomas">STUDIO</h2>
+      <h2 id="kmet" class="heading-1">783</h2>
       <div class="body-m" id="summary">
         Web Developer with <br/>
         managerial background, <br/>
@@ -56,7 +56,7 @@
     <div id="work">
       <Container>
         <h2 class="heading-1">
-          <span v-scrollActive="0.8">
+          <span v-scrollActive="0.65">
             <CanvasText :meshId="'headline-work'" :shader="'default'">
               Work
             </CanvasText>
