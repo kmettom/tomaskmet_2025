@@ -1,5 +1,5 @@
 <template>
-  <span ref="html" >
+  <span ref="html">
     <slot></slot>
   </span>
 </template>
@@ -12,6 +12,7 @@ let props = defineProps([
   'shader',
   'meshId',
   'textHover',
+  'theme'
 ]);
 
 const html = ref("html");
@@ -19,11 +20,11 @@ const html = ref("html");
 onMounted(async () => {
   let innerHTML = html.value?.innerHTML;
   //remove nuxt slot comment from innerHTML, only once
-  if(innerHTML.includes('<!--]-->')) innerHTML = innerHTML.slice(0, innerHTML.indexOf('<!--]-->')).slice(innerHTML.indexOf('<!--[-->') + 9);
+  if (innerHTML.includes('<!--]-->')) innerHTML = innerHTML.slice(0, innerHTML.indexOf('<!--]-->')).slice(innerHTML.indexOf('<!--[-->') + 9);
   // delay canvas initialization to wait for font loaded
   setTimeout(() => {
-    Canvas.addTextAsMSDF( props.shader, props.meshId, html.value, innerHTML )
-  },50)
+    Canvas.addTextAsMSDF(props.shader, props.meshId, html.value, innerHTML, props.theme)
+  }, 50)
 })
 
 watch(() => props.textHover, (_status) => {
@@ -38,7 +39,7 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 
-span{
+span {
   opacity: 0;
 }
 

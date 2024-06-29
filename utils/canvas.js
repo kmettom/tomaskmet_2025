@@ -147,7 +147,6 @@ let Canvas = {
 
     activateMesh(_id, _state) {
         const mesh = this.scene.getObjectByName(_id);
-        console.log("activate - " , _id, _state)
         gsap.to(mesh.material.uniforms.aniIn, {
             duration: 1.25,
             value: _state ? 1 : 0,
@@ -241,7 +240,7 @@ let Canvas = {
         }
     },
 
-    addTextAsMSDF(_shader, _id, _htmlEl, _text) {
+    addTextAsMSDF(_shader, _id, _htmlEl, _text, _theme) {
 
         let bounds = _htmlEl.getBoundingClientRect();
         let position = {top: bounds.top, left: bounds.left};
@@ -267,6 +266,9 @@ let Canvas = {
                 loader.load(path, resolve);
             });
         }
+
+        const basicColor = _theme === 'dark' ? '#000000' : '#ffffff';
+        console.log("basicColor", basicColor)
 
         Promise.all([
             loadFontAtlas(atlasUrl),

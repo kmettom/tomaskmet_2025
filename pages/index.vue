@@ -3,8 +3,20 @@
     <div class="bg-image"/>
     <!-- HERO -->
     <Container additionalClass="heroSection">
-      <h2 class="heading-1" id="thomas">STUDIO</h2>
-      <h2 id="kmet" class="heading-1">783</h2>
+      <h2 class="heading-1" id="">
+        <span v-scrollActive="0.85">
+          <CanvasText :meshId="'headline-studio'" :shader="'default'" :theme="'light'">
+            STUDIO
+          </CanvasText>
+        </span>
+      </h2>
+      <h2 id="kmet" class="heading-1">
+        <span v-scrollActive="0.85">
+          <CanvasText :meshId="'headline-783'" :shader="'default'" :theme="'light'">
+            783
+          </CanvasText>
+        </span>
+      </h2>
       <div class="body-m" id="summary">
         Web Developer with <br/>
         managerial background, <br/>
@@ -42,7 +54,11 @@
     <div id="services">
       <Container>
         <h2 class="heading-1">
-          Services
+          <span v-scrollActive="0.85">
+          <CanvasText :meshId="'headline-services'" :shader="'default'" :theme="'dark'">
+            Services
+          </CanvasText>
+        </span>
         </h2>
 
         <div class="frame">
@@ -57,7 +73,7 @@
       <Container>
         <h2 class="heading-1">
           <span v-scrollActive="0.65">
-            <CanvasText :meshId="'headline-work'" :shader="'default'">
+            <CanvasText :meshId="'headline-work'" :shader="'default'" :theme="'light'">
               Work
             </CanvasText>
           </span>
@@ -103,9 +119,21 @@
     <div id="callToActionSection">
       <Container>
         <div class="frame">
-          <div class="heading-1">Get in</div>
+          <div class="heading-1">
+            <span v-scrollActive="0.85">
+              <CanvasText :meshId="'headline-get-in'" :shader="'default'" :theme="'dark'">
+                STUDIO
+              </CanvasText>
+            </span>
+          </div>
           <div id="secondPart">
-            <div class="heading-1">touch</div>
+            <div class="heading-1">
+              <span v-scrollActive="0.85">
+                <CanvasText :meshId="'headline-touch'" :shader="'default'" :theme="'dark'">
+                  STUDIO
+                </CanvasText>
+              </span>
+            </div>
             <div id="actionList" class="body-m">
               <div>
                 <!-- <div class="iconFrame">
