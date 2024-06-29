@@ -122,7 +122,7 @@
           <div class="heading-1">
             <span v-scrollActive="0.85">
               <CanvasText :meshId="'headline-get-in'" :shader="'default'" :theme="'dark'">
-                STUDIO
+                Get in
               </CanvasText>
             </span>
           </div>
@@ -130,7 +130,7 @@
             <div class="heading-1">
               <span v-scrollActive="0.85">
                 <CanvasText :meshId="'headline-touch'" :shader="'default'" :theme="'dark'">
-                  STUDIO
+                  touch
                 </CanvasText>
               </span>
             </div>

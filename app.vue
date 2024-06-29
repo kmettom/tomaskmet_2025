@@ -1,8 +1,8 @@
 <template>
   <div id="appContainer">
 
-    <CommonWelcome :welcomeInit="welcomeInit" @welcomeComplete="welcomeFinished()" />
-        <CommonNavigation :pageActive="contentActive" />
+    <CommonWelcome :welcomeInit="welcomeInit" @welcomeComplete="welcomeFinished()"/>
+    <CommonNavigation :pageActive="contentActive"/>
 
     <div id="scrollContainer">
       <div id="scrollableContent" ref="scrollableContent">
@@ -12,7 +12,7 @@
           onBeforeEnter: (el) => {
             Canvas.scrollToTop(0)
           },
-        }" />
+        }"/>
 
       </div>
     </div>
@@ -23,8 +23,8 @@
 </template>
 <script setup>
 
-import { Canvas } from "~/utils/canvas";
-import { Display } from "~/utils/display";
+import {Canvas} from "~/utils/canvas";
+import {Display} from "~/utils/display";
 
 const canvas = ref("canvas");
 const welcomeInit = ref(false);
@@ -47,9 +47,9 @@ const welcomeFinished = () => {
   contentActive.value = true;
 }
 
-</script >
+</script>
 
-<style lang="scss" >
+<style lang="scss">
 .headline {
   font-size: 100px;
   font-family: 'PP Formula Black', sans-serif;
@@ -76,7 +76,7 @@ const welcomeFinished = () => {
   right: 0px;
   margin: 0 auto;
   pointer-events: none;
-  z-index: -1;
+  z-index: 0; //-1
 }
 </style>
 

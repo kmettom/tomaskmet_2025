@@ -267,9 +267,6 @@ let Canvas = {
             });
         }
 
-        const basicColor = _theme === 'dark' ? '#000000' : '#ffffff';
-        console.log("basicColor", basicColor)
-
         Promise.all([
             loadFontAtlas(atlasUrl),
             loadFont(fontUrl),
@@ -290,7 +287,7 @@ let Canvas = {
                     derivatives: false, //true,
                 },
                 uniforms: {
-                    uColor: {value: new THREE.Color('#ffffff')},
+                    uColor: {value: new THREE.Color(_theme === 'dark' ? '#1B1818' : '#BFC0B2')},
                     // Common
                     uOpacity: {value: 1},
                     uMap: {value: null},
