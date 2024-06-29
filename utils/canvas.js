@@ -412,19 +412,14 @@ let Canvas = {
 
         _mesh.img.addEventListener('mouseenter',(event)=>{
             _mesh.mesh.renderOrder = 1;
-            console.log("mouseenter")
             gsap.to(_material.uniforms.hoverState, {
                 duration: 0.5,
                 value:1,
-                onUpdate: (value) => {
-                    console.log(value)
-                }
             })
         })
 
         _mesh.img.addEventListener('mouseout',()=>{
             _mesh.mesh.renderOrder = 0;
-            console.log("mouseout")
             gsap.to(_material.uniforms.hoverState,{
                 duration: 0.5,
                 value:0
