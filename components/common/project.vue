@@ -1,20 +1,20 @@
 <template>
   <div :style="getCanvasStyles()" :class="[props.isExpanded ? ['expandedCanvas', 'canvas'] : 'canvas']">
-    <div class="heading-3">{{ title }}</div>
+    <div class="heading-3">{{ props.title }}</div>
 
     <div class="description">
       <div class="statistics">
         <div class="infoRow">
           <div>client:</div>
-          <div>African origins</div>
+          <div>{{ props.project.client }}</div>
         </div>
         <div class="infoRow">
           <div>year:</div>
-          <div>2020</div>
+          <div>{{ props.project.year }}</div>
         </div>
-        <div class="infoRow">
+        <div class="infoRow" v-if="props.project.award">
           <div>award</div>
-          <div>sotd</div>
+          <div>{{ props.project.award }}</div>
         </div>
       </div>
 
@@ -26,7 +26,7 @@
 
       <a href="https://example.com" target="_blank">👉 visit site</a>
     </div>
-    <div class="frame" :style="getImgFrameStyles()" @click="!props.isExpanded && toggleDesc()">
+    <div class="frame" :style="getImgFrameStyles()">
       <CanvasImage :shader="'example2'" :srcLink="imageSrc"/>
       <div v-if="props.isExpanded" class="nextItem" @click="visitNext">
         next: bright union 👆
@@ -37,7 +37,7 @@
     </div>
   </div>
   <div class="info body-m">
-    <span>{{ name }}</span>
+    <span>{{ client }}</span>
     <span>{{ type }}</span>
   </div>
   <div class="closeIcon" @click="toggleDesc">
@@ -49,43 +49,23 @@
 import {ref, toRefs} from "vue";
 
 const props = defineProps({
+  project: {
+    type: Object,
+    required: true,
+  },
   title: {
     type: String,
     required: true,
-  },
-  name: {
-    type: String,
-    required: true,
-  },
-  type: {
-    type: String,
-    required: true,
-  },
-  imageSrc: {
-    type: String,
-    required: true,
-  },
-  imageDesc: {
-    type: String,
-    default: 'Project image',
-  },
-  position: {
-    type: String,
-    default: 'start',
-    validator: value => ['start', 'end'].includes(value),
-  },
-  imgWidth: {
-    type: String,
-    default: 'fit-content',
-  },
-  imgHeight: {
-    type: String,
-    default: 'fit-content',
   },
   isExpanded: {
     type: Boolean,
     default: false,
     required: true,
+  },
+  isActive: {
+    type: Boolean,
+    default: false,
+    // required: true
   }
 });
 
@@ -116,7 +96,7 @@ const getImgFrameStyles = () => {
 const emit = defineEmits(['update:isExpanded']);
 
 const toggleDesc = () => {
-  emit('update:isExpanded', !props.isExpanded);
+  emit('update:isExpanded', false);
 };
 
 const visitNext = () => {

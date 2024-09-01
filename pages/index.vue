@@ -1,6 +1,7 @@
 <template>
   <div class="wrapper">
-    <div class="bg-image"/>
+    <div class=""/>
+    <!--   class: bg-image-->
     <!-- HERO -->
     <Container additionalClass="heroSection">
       <h2 class="heading-1" id="">
@@ -78,38 +79,40 @@
             </CanvasText>
           </span>
         </h2>
-        <div id="gallery">
-          <span v-scrollActive="0.8">
-          <Project :isExpanded="projectsExpanded" title="01" imageSrc="imgPlaceholders/510x600.png" name="Bright union"
-                   type="UI App"/>
-          </span>
-          <span v-scrollActive="0.8">
+        <div id="gallery" @click="projectsExpanded=!projectsExpanded">
+          <!--          {{ projectsExpanded }}-->
 
-          <Project :isExpanded="projectsExpanded" title="02" imageSrc="imgPlaceholders/330x388.png"
-                   name="African origins" type="Website"
-                   position="end"/>
+          <!--          <span v-for=""-->
+          <span v-scrollActive="0.8" v-for="(project, index) in projects">
+          <Project :isExpanded="projectsExpanded" project="project" title="index"/>
           </span>
-          <span v-scrollActive="0.8">
+          <!--          <span v-scrollActive="0.8">-->
 
-          <Project :isExpanded="projectsExpanded" imgWidth="200px" imgHeight="300px" title="03"
-                   imageSrc="imgPlaceholders/1050x600.png"
-                   name="Neo sephiri" type="Website"/>
-          </span>
-          <span v-scrollActive="0.8">
+          <!--          <Project :isExpanded="projectsExpanded" title="02" imageSrc="imgPlaceholders/330x388.png"-->
+          <!--                   name="African origins" type="Website"-->
+          <!--                   position="end"/>-->
+          <!--          </span>-->
+          <!--          <span v-scrollActive="0.8">-->
 
-          <Project :isExpanded="projectsExpanded" title="04" imageSrc="imgPlaceholders/510x600.png" name="Bright union"
-                   type="SDK" position="end"/>
-          </span>
-          <span v-scrollActive="0.8">
+          <!--          <Project :isExpanded="projectsExpanded" imgWidth="200px" imgHeight="300px" title="03"-->
+          <!--                   imageSrc="imgPlaceholders/1050x600.png"-->
+          <!--                   name="Neo sephiri" type="Website"/>-->
+          <!--          </span>-->
+          <!--          <span v-scrollActive="0.8">-->
 
-          <Project :isExpanded="projectsExpanded" title="05" imageSrc="imgPlaceholders/330x388.png" name="Pure goat "
-                   type="Website"/>
-          </span>
-          <span v-scrollActive="0.8">
+          <!--          <Project :isExpanded="projectsExpanded" title="04" imageSrc="imgPlaceholders/510x600.png" name="Bright union"-->
+          <!--                   type="SDK" position="end"/>-->
+          <!--          </span>-->
+          <!--          <span v-scrollActive="0.8">-->
 
-          <Project :isExpanded="projectsExpanded" title="06" imageSrc="imgPlaceholders/1050x600.png"
-                   name="Jagoda Kondratiuk portfolio" type="Website"/>
-          </span>
+          <!--          <Project :isExpanded="projectsExpanded" title="05" imageSrc="imgPlaceholders/330x388.png" name="Pure goat "-->
+          <!--                   type="Website"/>-->
+          <!--          </span>-->
+          <!--          <span v-scrollActive="0.8">-->
+
+          <!--          <Project :isExpanded="projectsExpanded" title="06" imageSrc="imgPlaceholders/1050x600.png"-->
+          <!--                   name="Jagoda Kondratiuk portfolio" type="Website"/>-->
+          <!--          </span>-->
         </div>
 
       </Container>
@@ -186,6 +189,7 @@ import DownloadButton from "@/components/common/downloadButton.vue";
 import Project from "@/components/common/project.vue";
 import Service from "@/components/common/service.vue";
 import services from '@/content/services.model.json';
+import projects from '@/content/projects.json';
 import {onMounted, watch} from "vue";
 import BasketBallIcon from '/icons/basket-ball.png';
 
@@ -237,16 +241,16 @@ watch(
   position: relative;
 
   .bg-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('/tomas-photo.jpg') no-repeat;
-    background-size: 780px;
-    filter: blur(10px);
-    z-index: -1;
-    opacity: 0.8;
+    //position: absolute;
+    //top: 0;
+    //left: 0;
+    //width: 100%;
+    //height: 100%;
+    //background: url('/tomas-photo.jpg') no-repeat;
+    //background-size: 780px;
+    //filter: blur(10px);
+    //z-index: -1;
+    //opacity: 0.8;
 
     @include respond-width($w-m) {
       background-size: 630px;
