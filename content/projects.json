@@ -1,26 +1,28 @@
-[
-  {
-    "client": "websites",
-    "year": "2020",
-    "award": "sotd",
-    "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
-    "image": {
-      "src": "imgPlaceholders/510x600.png",
-      "description": "image description",
-      "width": "",
-      "height": ""
+{
+  "projects": [
+    {
+      "client": "websites",
+      "year": "2020",
+      "award": "sotd",
+      "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
+      "image": {
+        "src": "imgPlaceholders/510x600.png",
+        "description": "image description",
+        "width": "",
+        "height": ""
+      }
+    },
+    {
+      "client": "websites",
+      "year": "2020",
+      "award": "sotd",
+      "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
+      "image": {
+        "src": "imgPlaceholders/510x600.png",
+        "description": "image description",
+        "width": "",
+        "height": ""
+      }
     }
-  },
-  {
-    "client": "websites",
-    "year": "2020",
-    "award": "sotd",
-    "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
-    "image": {
-      "src": "imgPlaceholders/510x600.png",
-      "description": "image description",
-      "width": "",
-      "height": ""
-    }
-  }
-]
+  ]
+}
