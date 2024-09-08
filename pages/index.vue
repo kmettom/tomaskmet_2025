@@ -83,9 +83,8 @@
           <!--          {{ projectsExpanded }}-->
 
           <!--          <span v-for=""-->
-          <span v-scrollActive="0.8" v-for="(project, index) in projects">
-            {{ project.client }}
-            <!--          <Project :isExpanded="projectsExpanded" project="project" title="index"/>-->
+          <span v-scrollActive="0.8" v-for="(project, index) in projects.projects">
+                      <Project :isExpanded="projectsExpanded" :project="project" :title="index.toString()"/>
           </span>
           <!--          <span v-scrollActive="0.8">-->
 

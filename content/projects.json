@@ -1,7 +1,7 @@
 {
   "projects": [
     {
-      "client": "websites",
+      "client": "Client",
       "year": "2020",
       "award": "sotd",
       "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
@@ -13,7 +13,7 @@
       }
     },
     {
-      "client": "websites",
+      "client": "Client",
       "year": "2020",
       "award": "sotd",
       "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",

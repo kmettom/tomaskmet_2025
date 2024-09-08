@@ -27,7 +27,7 @@
       <a href="https://example.com" target="_blank">👉 visit site</a>
     </div>
     <div class="frame" :style="getImgFrameStyles()">
-      <CanvasImage :shader="'example2'" :srcLink="imageSrc"/>
+      <CanvasImage :shader="'example2'" :srcLink="props.project.image.src"/>
       <div v-if="props.isExpanded" class="nextItem" @click="visitNext">
         next: bright union 👆
       </div>
@@ -37,8 +37,8 @@
     </div>
   </div>
   <div class="info body-m">
-    <span>{{ client }}</span>
-    <span>{{ type }}</span>
+    <span>{{ props.project.client }}</span>
+    <!--    <span>{{ type }}</span>-->
   </div>
   <div class="closeIcon" @click="toggleDesc">
     <IconsClose/>
@@ -50,7 +50,6 @@ import {ref, toRefs} from "vue";
 
 const props = defineProps({
   project: {
-    type: Object,
     required: true,
   },
   title: {
@@ -70,26 +69,22 @@ const props = defineProps({
 });
 
 const {
+  project,
   title,
-  name,
-  type,
-  imageSrc,
-  imageDesc,
-  position,
-  imgWidth,
-  imgHeight
+  isExpanded,
+  isActive,
 } = toRefs(props);
 
 const getCanvasStyles = () => {
   return {
-    alignSelf: `flex-${position.value}`,
+    alignSelf: `flex-${props.project?.position?.value}`,
   };
 };
 
 const getImgFrameStyles = () => {
   return {
-    width: imgWidth.value,
-    height: imgHeight.value,
+    width: props.project?.image?.width.value,
+    height: props.project?.image?.height.value,
   };
 };
 
