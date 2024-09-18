@@ -36,8 +36,6 @@ import Project from "@/components/common/project.vue";
 const projectsExpandedIndex = ref(0)
 const projectsExpanded = ref(false)
 
-console.log("projects", projects)
-
 const visitNext = () => {
   console.log('visit next');
 };

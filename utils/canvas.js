@@ -464,6 +464,11 @@ let Canvas = {
         }, _delay)
     },
 
+    scrollTo(_position ,_delay) {
+        setTimeout(() => {
+            this.scroll.render(_position, false);
+        }, _delay)
+    },
 
     render(currentTime) {
         this.animations.cursorCallBack()
