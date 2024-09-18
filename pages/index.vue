@@ -139,11 +139,9 @@
 <script setup>
 import Container from "@/components/common/container.vue";
 import SectionWork from "@/components/sections/sectionWork.vue";
-import DownloadButton from "@/components/common/downloadButton.vue";
-import Project from "@/components/common/project.vue";
+// import DownloadButton from "@/components/common/downloadButton.vue";
 import Service from "@/components/common/service.vue";
 import services from '@/content/services.model.json';
-import projects from '@/content/projects.json';
 import {onMounted, watch} from "vue";
 import BasketBallIcon from '/icons/basket-ball.png';
 

@@ -31,9 +31,12 @@
 <script setup lang="ts">
 import Container from "@/components/common/container.vue";
 import projects from '@/content/projects.json'
+import Project from "@/components/common/project.vue";
 
 const projectsExpandedIndex = ref(0)
 const projectsExpanded = ref(false)
+
+console.log("projects", projects)
 
 const visitNext = () => {
   console.log('visit next');
