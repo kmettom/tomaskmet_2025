@@ -28,12 +28,6 @@
     </div>
     <div class="frame" :style="getImgFrameStyles()">
       <CanvasImage :shader="'example2'" :srcLink="props.project.image.src"/>
-      <div v-if="props.isExpanded" class="nextItem" @click="visitNext">
-        next: bright union 👆
-      </div>
-      <div v-if="props.isExpanded" class="prevItem" @click="visitPrev">
-        previous: african origins 👇
-      </div>
     </div>
   </div>
   <div class="info body-m">
@@ -94,13 +88,6 @@ const toggleDesc = () => {
   emit('update:isExpanded', false);
 };
 
-const visitNext = () => {
-  console.log('visit next');
-};
-
-const visitPrev = () => {
-  console.log('visit prev');
-};
 
 </script>
 
@@ -148,6 +135,7 @@ const visitPrev = () => {
   justify-content: space-between;
   align-items: center;
   padding: 20vh 0;
+  transition: ease all 0.3s;
 
   @include respond-width($w-s) {
     flex-direction: column-reverse;
@@ -243,23 +231,6 @@ const visitPrev = () => {
       cursor: auto;
     }
 
-    .nextItem {
-      position: absolute;
-      top: -30px;
-      left: 50%;
-      transform: translate(-50%, 0);
-      width: max-content;
-      cursor: pointer;
-    }
-
-    .prevItem {
-      position: absolute;
-      bottom: -30px;
-      left: 50%;
-      transform: translate(-50%, 0);
-      width: max-content;
-      cursor: pointer;
-    }
   }
 
   .closeIcon {

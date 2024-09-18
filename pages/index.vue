@@ -69,54 +69,7 @@
       </Container>
     </div>
 
-    <!-- WORK -->
-    <div id="work">
-      <Container>
-        <h2 class="heading-1">
-          <span v-scrollActive="0.65">
-            <CanvasText :meshId="'headline-work'" :shader="'default'" :theme="'light'">
-              Work
-            </CanvasText>
-          </span>
-        </h2>
-        <div id="gallery" @click="projectsExpanded=!projectsExpanded">
-          <!--          {{ projectsExpanded }}-->
-
-          <!--          <span v-for=""-->
-          <span v-scrollActive="0.8" v-for="(project, index) in projects.projects">
-                      <Project :isExpanded="projectsExpanded" :project="project" :title="index.toString()"/>
-          </span>
-          <!--          <span v-scrollActive="0.8">-->
-
-          <!--          <Project :isExpanded="projectsExpanded" title="02" imageSrc="imgPlaceholders/330x388.png"-->
-          <!--                   name="African origins" type="Website"-->
-          <!--                   position="end"/>-->
-          <!--          </span>-->
-          <!--          <span v-scrollActive="0.8">-->
-
-          <!--          <Project :isExpanded="projectsExpanded" imgWidth="200px" imgHeight="300px" title="03"-->
-          <!--                   imageSrc="imgPlaceholders/1050x600.png"-->
-          <!--                   name="Neo sephiri" type="Website"/>-->
-          <!--          </span>-->
-          <!--          <span v-scrollActive="0.8">-->
-
-          <!--          <Project :isExpanded="projectsExpanded" title="04" imageSrc="imgPlaceholders/510x600.png" name="Bright union"-->
-          <!--                   type="SDK" position="end"/>-->
-          <!--          </span>-->
-          <!--          <span v-scrollActive="0.8">-->
-
-          <!--          <Project :isExpanded="projectsExpanded" title="05" imageSrc="imgPlaceholders/330x388.png" name="Pure goat "-->
-          <!--                   type="Website"/>-->
-          <!--          </span>-->
-          <!--          <span v-scrollActive="0.8">-->
-
-          <!--          <Project :isExpanded="projectsExpanded" title="06" imageSrc="imgPlaceholders/1050x600.png"-->
-          <!--                   name="Jagoda Kondratiuk portfolio" type="Website"/>-->
-          <!--          </span>-->
-        </div>
-
-      </Container>
-    </div>
+    <SectionWork/>
 
     <!-- CTA -->
     <div id="callToActionSection">
@@ -185,6 +138,7 @@
 
 <script setup>
 import Container from "@/components/common/container.vue";
+import SectionWork from "@/components/sections/sectionWork.vue";
 import DownloadButton from "@/components/common/downloadButton.vue";
 import Project from "@/components/common/project.vue";
 import Service from "@/components/common/service.vue";
@@ -205,6 +159,7 @@ useSeoMeta({
 const hoverImage1 = ref(false);
 const hoverImage2 = ref(false);
 
+const projectsExpandedIndex = ref(0);
 const projectsExpanded = ref(false);
 
 const props = defineProps({
@@ -214,6 +169,7 @@ const props = defineProps({
 const pageAniIn = () => {
   console.log('Example method - animate page transition')
 };
+
 
 onMounted(() => {
   if (props.pageActive) {
@@ -438,6 +394,24 @@ watch(
 
     @include respond-width($w-xs) {
       gap: 50px;
+    }
+
+    .nextItem {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: max-content;
+      cursor: pointer;
+    }
+
+    .prevItem {
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: max-content;
+      cursor: pointer;
     }
 
     & #firstLine {
