@@ -1,6 +1,5 @@
+<!--TODO: extended version - to use scroll, block normal scroll, only scroll by action, debounce and trigger scroll move - add this feature to Canvas scroll -->
 <template>
-
-  <!-- WORK -->
   <div id="work">
     <Container>
       <h2 class="heading-1">

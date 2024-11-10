@@ -6,15 +6,18 @@ export default defineNuxtConfig({
     "/_nuxt/**": { headers: { "cache-control": "s-maxage=86400" } },
     // '/home': { redirect: {to: '/' , statusCode: 301 } },
   },
+
   modules: [
     "@nuxt/content",
     ["@nuxt-modules/compression", { algorithm: "brotliCompress" }],
     "@nuxt/image",
     "nuxt-viewport",
   ],
+
   build: {
     transpile: ["gsap"],
   },
+
   vite: {
     plugins: [glsl()],
     css: {
@@ -25,6 +28,7 @@ export default defineNuxtConfig({
       },
     },
   },
+
   hooks: {
     "build:manifest": (manifest) => {
       // find the app entry, css list
@@ -38,13 +42,15 @@ export default defineNuxtConfig({
       }
     },
   },
-  nitro: {
-    compressPublicAssets: true,
-  },
 
   // app: {
   //     pageTransition: { name: 'page', mode: 'out-in' }
   // },
+  nitro: {
+    compressPublicAssets: true,
+  },
+
+  compatibilityDate: "2024-11-10",
 });
 
 // module.exports = {
