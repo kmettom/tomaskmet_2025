@@ -472,7 +472,6 @@ let Canvas = {
 
     render(currentTime) {
         this.animations.cursorCallBack()
-
         this.time += 0.05;
 
         this.scroll.render();

@@ -1,10 +1,7 @@
 {
-  "name": "nuxt-three-js-starter-pack",
-  "description": "Starter pack for Nuxt.js and Three.js with developed animation features",
+  "name": "783Stucio.com",
+  "description": "",
   "version": "1.0.0",
-  "engines": {
-    "node": "18.x"
-  },
   "private": true,
   "scripts": {
     "start": "node .output/server/index.mjs",
@@ -23,18 +20,18 @@
     "consola": "^3.2.3",
     "gsap": "npm:@gsap/business@^3.12.5",
     "load-bmfont": "^1.4.1",
-    "nuxt": "^3.13.1",
+    "nuxt": "^3.14.1592",
     "nuxt-purgecss": "^2.0.0",
     "nuxt-viewport": "^2.1.4",
     "sass": "^1.64.1",
     "sass-loader": "^13.3.2",
-    "three": "^0.168.0",
-    "three-bmfont-text": "^3.0.1",
+    "three": "^0.171.0",
+    "three-bmfont-text": "^2.3.0",
     "three-bmfont-text-es": "^3.0.5",
     "three-msdf-text-utils": "^1.1.6",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-glsl": "^1.1.2",
-    "vue": "^3.5.3",
+    "vue": "^3.5.13",
     "vue-router": "^4.2.4"
   }
 }
