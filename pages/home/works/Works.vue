@@ -45,7 +45,7 @@ const visitPrev = () => {
 </script>
 
 <style lang="scss" scoped>
-@import "style";
+@import "/assets/scss/style";
 
 
 //=======>>>   WORK   <<<==========//

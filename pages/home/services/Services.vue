@@ -25,7 +25,7 @@ import Service from "~/pages/home/services/Service.vue";
 </script>
 
 <style lang="scss" scoped>
-@import "style";
+@import "/assets/scss/style";
 
 //=======>>>   SERVICES   <<<==========//
 #services {
