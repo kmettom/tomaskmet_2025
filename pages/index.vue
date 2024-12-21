@@ -1,138 +1,11 @@
 <template>
   <div class="wrapper">
-    <div class=""/>
-    <!--   class: bg-image-->
-    <!-- HERO -->
-<!--    <Container additionalClass="heroSection">-->
-<!--      <h2 class="heading-1" id="">-->
-<!--        <span v-scrollActive="0.85">-->
-<!--          <CanvasText :meshId="'headline-studio'" :shader="'default'" :theme="'light'">-->
-<!--            STUDIO-->
-<!--          </CanvasText>-->
-<!--        </span>-->
-<!--      </h2>-->
-<!--      <h2 id="kmet" class="heading-1">-->
-<!--        <span v-scrollActive="0.85">-->
-<!--          <CanvasText :meshId="'headline-783'" :shader="'default'" :theme="'light'">-->
-<!--            783-->
-<!--          </CanvasText>-->
-<!--        </span>-->
-<!--      </h2>-->
-<!--      <div class="body-m" id="summary">-->
-<!--        Web Developer with <br/>-->
-<!--        managerial background, <br/>-->
-<!--        coding and bringing a full<br/>-->
-<!--        team to help your project.-->
-<!--      </div>-->
-<!--      <div class="body-m" id="servicesList">-->
-<!--        web3<br/>-->
-<!--        creative <br/>-->
-<!--        apps<br/>-->
-<!--        websites<br/>-->
-<!--        e-commerce-->
-<!--      </div>-->
-<!--    </Container>-->
-
-    <!-- ABOUT -->
-<!--    <Container id="about" additionalClass="aboutSection">-->
-<!--      <h2 class="body-xs">About</h2>-->
-<!--      <div class="body-l">-->
-<!--        <p>A Self taught developer with managerial background and 8 years of hands on coding experience.</p>-->
-<!--        <p>WORKING WITH AGENCIES, COMPANIES and freelancers using broad spectrum frameworks and backend API's.</p>-->
-<!--        <p>Interested in developing web apps, dapps, websites and e-commerce, happily spending time with Web3 or-->
-<!--          animating-->
-<!--          with WebGl. Looking forward to learning more. Connected with a broad network to fit the needs of a wide range-->
-<!--          of-->
-<!--          projects.</p>-->
-<!--        <p>Collaborate with other developers, designers and marketers to shape and create brands, experiences and-->
-<!--          products-->
-<!--          together.</p>-->
-<!--        &lt;!&ndash;        <DownloadButton />&ndash;&gt;-->
-<!--      </div>-->
-<!--    </Container>-->
-
-    <!-- SERVICES -->
-    <div id="services">
-      <Container>
-        <h2 class="heading-1">
-          <span v-scrollActive="0.85">
-          <CanvasText :meshId="'headline-services'" :shader="'default'" :theme="'dark'">
-            Services
-          </CanvasText>
-        </span>
-        </h2>
-
-        <div class="frame">
-          <Service v-for="(service, index) in services" :key="index" :title="service.title" :icon="service.icon"
-                   :text="service.text" :desktopStyles="service.desktopStyles" :tabletStyles="service.tabletStyles"/>
-        </div>
-      </Container>
-    </div>
-
+    <Hero></Hero>
+    <About></About>
+    <Services></Services>
+    <CTA></CTA>
     <Work/>
-
-    <!-- CTA -->
-<!--    <div id="callToActionSection">-->
-<!--      <Container>-->
-<!--        <div class="frame">-->
-<!--          <div class="heading-1">-->
-<!--            <span v-scrollActive="0.85">-->
-<!--              <CanvasText :meshId="'headline-get-in'" :shader="'default'" :theme="'dark'">-->
-<!--                Get in-->
-<!--              </CanvasText>-->
-<!--            </span>-->
-<!--          </div>-->
-<!--          <div id="secondPart">-->
-<!--            <div class="heading-1">-->
-<!--              <span v-scrollActive="0.85">-->
-<!--                <CanvasText :meshId="'headline-touch'" :shader="'default'" :theme="'dark'">-->
-<!--                  touch-->
-<!--                </CanvasText>-->
-<!--              </span>-->
-<!--            </div>-->
-<!--            <div id="actionList" class="body-m">-->
-<!--              <div>-->
-<!--                &lt;!&ndash; <div class="iconFrame">-->
-<!--                  <img :src="PhoneIcon" alt="Phone icon">-->
-<!--                </div> &ndash;&gt;-->
-<!--                <span>📞 Book a call</span>-->
-<!--              </div>-->
-<!--              <div>-->
-<!--                &lt;!&ndash; <div class="iconFrame">-->
-<!--                  <img :src="LetterIcon" alt="Letter icon">-->
-<!--                </div> &ndash;&gt;-->
-<!--                <a href="mailto:hello@783studio.com">-->
-<!--                  <span>✉️ Send a request</span>-->
-<!--                </a>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <div id="socialMediaList" class="body-m">-->
-<!--              <div><a href="https://www.instagram.com/kmettom/" target="_blank">Instagram</a></div>-->
-<!--              <div><a href="" target="_blank">Email</a></div>-->
-<!--              <div><a href="https://twitter.com/KmetTom" target="_blank">Twitter</a></div>-->
-<!--              <div><a href="https://www.linkedin.com/in/tomas-kmet/" target="_blank">LinkedIn</a></div>-->
-<!--            </div>-->
-<!--          </div>-->
-
-<!--        </div>-->
-<!--      </Container>-->
-<!--      <div id="bottomElement">-->
-<!--        <div class="iconFrame">-->
-<!--          <img :src="BasketBallIcon" alt="Basket ball icon">-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-
-    <!-- FOOTER -->
-
-<!--    <div id="footer" class="body-xs">-->
-<!--      <span id="rights">-->
-<!--        © {{ new Date().getFullYear() }} Studio 783&nbsp;&nbsp;|&nbsp;&nbsp;All rights reserved-->
-<!--      </span>-->
-<!--      <span id="font">Font: Pangram Pangram<span id="fontSeparator">&nbsp;&nbsp;|&nbsp;&nbsp;</span></span>-->
-<!--      <span id="design">Design: <a href="https://jagodakondratiuk.com" target="_blank">Jagoda Kodnratiuk</a></span>-->
-<!--    </div>-->
-
+    <Footer></Footer>
   </div>
 </template>
 
@@ -140,10 +13,13 @@
 import Container from "@/components/common/container.vue";
 import Work from "~/components/sections/Works.vue";
 import DownloadButton from "@/components/common/downloadButton.vue";
-import Service from "@/components/common/service.vue";
+import Services from "@/components/sections/Services.vue";
 import services from '@/content/services.model.json';
 import {onMounted, watch} from "vue";
-import BasketBallIcon from '/icons/basket-ball.png';
+import Hero from "~/components/sections/Hero.vue";
+import About from "~/components/sections/About.vue";
+import CTA from "~/components/sections/CTA.vue";
+import Footer from "~/components/sections/Footer.vue";
 
 const {data} = await useAsyncData('index', () => queryContent('/index').findOne())
 

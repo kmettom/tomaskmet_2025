@@ -54,7 +54,8 @@
 
 <script setup lang="ts">
 import Container from "@/components/common/container.vue";
-import BasketBallIcon from "*.png";
+import BasketBallIcon from '/icons/basket-ball.png';
+
 </script>
 
 <style lang="scss" scoped>
