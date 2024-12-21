@@ -53,77 +53,149 @@
 </template>
 
 <script setup lang="ts">
-import Container from "@/components/common/container.vue";
-import BasketBallIcon from '/icons/basket-ball.png';
+import Container from "~/components/common/Container.vue";
+import BasketBallIcon from '@components//icons/basket-ball.png';
 
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/scss/style";
 
-//=======>>>   HERO   <<<==========//
-.heroSection {
-  height: 600px;
+//=======>>>   CTA   <<<==========//
+#callToActionSection {
   position: relative;
+  color: var(--dark-color);
+  background-color: var(--light-color);
 
+  padding-top: 150px;
+  padding-bottom: 150px;
 
-  &[data-v-4c47fd49] {
-    margin-top: 100px;
-    max-width: 1048px;
-    margin-bottom: 100px;
+  & .frame {
+    display: flex;
+    flex-direction: column;
 
     @include respond-width($w-m) {
-      max-width: 780px;
+      margin: 0 auto;
+      max-width: 598px;
       height: 420px;
     }
 
     @include respond-width($w-s) {
-      max-width: 326px;
+      max-width: 300px;
       height: 188px;
-      margin-top: 0px;
-      margin-bottom: 100px;
+    }
+
+    & #secondPart {
+      position: relative;
+      align-self: flex-end;
+      bottom: 40px;
+
+      @include respond-width($w-m) {
+        bottom: 24px;
+      }
+
+      @include respond-width($w-s) {
+        bottom: 10px;
+      }
+
+      & #actionList {
+        position: absolute;
+        right: 0;
+        bottom: 100%;
+        padding-right: 240px;
+        padding-bottom: 18px;
+
+        @include respond-width($w-m) {
+          padding-right: 21px;
+          padding-bottom: 14px;
+        }
+
+        @include respond-width($w-s) {
+          right: calc(100% + 4px);
+          width: 100px;
+          bottom: 0;
+          height: 100%;
+          padding: 0;
+
+          // first option
+          & > div:first-child {
+            margin-bottom: 15px;
+
+            // first option icon
+            & .iconFrame {
+              position: relative;
+              left: 10px;
+            }
+          }
+        }
+      }
+
+      & #socialMediaList {
+        position: absolute;
+        text-align: right;
+        bottom: 50px;
+        right: 100%;
+        padding-bottom: 5px;
+        padding-right: 10px;
+
+        @include respond-width($w-m) {
+          bottom: 36px;
+          padding-bottom: 0px;
+          padding-right: 10px;
+        }
+
+        @include respond-width($w-s) {
+          text-align: left;
+          left: 5px;
+          top: calc(100% - 10px);
+        }
+      }
+    }
+
+    & .heading-1 {
+      white-space: nowrap;
     }
   }
 
-  #kmet {
-    position: absolute;
-    bottom: 45px;
-    right: 0;
+  // single action item
+  & #actionList > div {
+    display: flex;
 
     @include respond-width($w-s) {
-      bottom: 0px;
+      text-align: right;
+    }
+
+    & .iconFrame {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 4px;
     }
   }
 
-  #summary {
+  & #bottomElement {
+    width: 150px;
+    height: 25px;
+    background-color: var(--dark-color);
     position: absolute;
-    top: 160px;
-    right: 0;
-
-    @include respond-width($w-m) {
-      top: 76px;
-    }
+    left: 30%;
+    bottom: 0;
 
     @include respond-width($w-s) {
-      top: 174px;
-      right: -25px;
-    }
-  }
-
-  #servicesList {
-    position: absolute;
-    text-align: right;
-    bottom: 102px;
-    left: 408px;
-
-    @include respond-width($w-m) {
-      bottom: 80px;
-      left: 315px;
+      width: 100px;
     }
 
-    @include respond-width($w-s) {
-      bottom: 18px;
-      left: 51px;
+    & .iconFrame {
+      position: absolute;
+      left: 75%;
+      bottom: 100%;
+      transform: translateX(-50%);
+
+      & img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
   }
 }

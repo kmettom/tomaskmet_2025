@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import Container from "@/components/common/container.vue";
+import Container from "~/components/common/Container.vue";
 </script>
 
 <style lang="scss" scoped>

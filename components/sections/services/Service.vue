@@ -48,7 +48,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "assets/scss/style";
+@import "style";
 
 .main {
     width: 340px;
