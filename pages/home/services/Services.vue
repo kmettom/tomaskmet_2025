@@ -21,11 +21,11 @@
 <script setup lang="ts">
 import Container from "~/components/common/Container.vue";
 import services from "~/content/services.model.json";
-import Service from "~/components/sections/services/Service.vue";
+import Service from "~/pages/home/services/Service.vue";
 </script>
 
 <style lang="scss" scoped>
-@import "assets/scss/style";
+@import "style";
 
 //=======>>>   SERVICES   <<<==========//
 #services {

@@ -30,7 +30,7 @@
 <script setup lang="ts">
 import Container from "~/components/common/Container.vue";
 import projects from '~/content/projects.json'
-import Project from "~/components/sections/works/Project.vue";
+import Project from "~/pages/home/works/Project.vue";
 
 const projectsExpandedIndex = ref(0)
 const projectsExpanded = ref(false)
@@ -45,7 +45,7 @@ const visitPrev = () => {
 </script>
 
 <style lang="scss" scoped>
-@import "assets/scss/style";
+@import "style";
 
 
 //=======>>>   WORK   <<<==========//

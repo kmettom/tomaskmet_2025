@@ -11,15 +11,15 @@
 
 <script setup>
 import Container from "~/components/common/Container.vue";
-import Work from "~/components/sections/works/Works.vue";
+import Work from "~/pages/home/works/Works.vue";
 import DownloadButton from "~/components/common/DownloadButton.vue";
-import Services from "~/components/sections/services/Services.vue";
+import Services from "~/pages/home/services/Services.vue";
 import services from '@/content/services.model.json';
 import {onMounted, watch} from "vue";
-import Hero from "~/components/sections/Hero.vue";
-import About from "~/components/sections/About.vue";
-import CTA from "~/components/sections/CTA.vue";
-import Footer from "~/components/sections/Footer.vue";
+import Hero from "~/pages/home/Hero.vue";
+import About from "~/pages/home/About.vue";
+import CTA from "~/pages/home/CTA.vue";
+import Footer from "~/pages/home/Footer.vue";
 
 const {data} = await useAsyncData('index', () => queryContent('/index').findOne())
 

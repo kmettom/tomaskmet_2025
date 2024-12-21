@@ -92,7 +92,7 @@ const toggleDesc = () => {
 </script>
 
 <style lang="scss" scoped>
-@import "assets/scss/style";
+@import "style";
 
 .halfWidth {
   display: inline-block;

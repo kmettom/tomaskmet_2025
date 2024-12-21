@@ -59,7 +59,7 @@ import BasketBallIcon from '@components//icons/basket-ball.png';
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/style";
+@import "assets/scss/style";
 
 //=======>>>   CTA   <<<==========//
 #callToActionSection {
