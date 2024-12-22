@@ -10,7 +10,6 @@
 <script setup>
 import Container from "~/components/common/Container.vue";
 import Work from "~/pages/home/works/Works.vue";
-import DownloadButton from "~/components/common/DownloadButton.vue";
 import Services from "~/pages/home/services/Services.vue";
 import services from '@/content/services.model.json';
 import {onMounted, watch} from "vue";

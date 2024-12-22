@@ -1,5 +1,5 @@
 <template>
-    <div :class="['main', additionalClass]">
+    <div :class="['section-container', additionalClass]">
         <slot/>
     </div>
 </template>
@@ -16,9 +16,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.main {
-    max-width: 1048px;
-    margin: 0 auto;
-}
+@import "assets/scss/components/Container";
 </style>
   

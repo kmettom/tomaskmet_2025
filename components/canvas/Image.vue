@@ -56,9 +56,5 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
-
-img {
-
-}
-
+@import "assets/scss/components/WebGlImage";
 </style>
