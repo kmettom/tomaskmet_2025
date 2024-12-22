@@ -14,37 +14,8 @@ import Container from "~/components/common/Container.vue";
 </script>
 
 <style lang="scss" scoped>
-@import "assets/scss/style";
-
-//=======>>>   FOOTER   <<<==========//
-
-#footer {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 15px;
-
-  @include respond-width($w-s) {
-    padding-top: 5px;
-    padding-bottom: 5px;
-  }
-
-  & #fontSeparator {
-    display: none;
-  }
-
-  @include respond-width($w-s) {
-    display: block;
-    text-align: center;
-
-    & #rights {
-      display: block;
-    }
-
-    & #fontSeparator {
-      display: inline;
-    }
-  }
-}
+@import "assets/scss/global/Global";
+@import "assets/scss/components/Footer";
 
 
 </style>

@@ -1,0 +1,75 @@
+
+//=======>>>   WORK   <<<==========//
+
+#work {
+  padding-top: 200px;
+  padding-bottom: 200px;
+  margin: auto 10%;
+
+  @include respond-width($w-s) {
+    margin: auto 5%;
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  @include respond-width($w-xs) {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+
+  & h2 {
+    text-align: right;
+    padding-bottom: 100px;
+
+    @include respond-width($w-s) {
+      padding-bottom: 50px;
+    }
+  }
+
+  & #gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 150px;
+
+    @include respond-width($w-xs) {
+      gap: 50px;
+    }
+
+    .nextItem {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: max-content;
+      cursor: pointer;
+    }
+
+    .prevItem {
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: max-content;
+      cursor: pointer;
+    }
+
+    & #firstLine {
+      display: flex;
+      justify-content: space-between;
+      height: 850px;
+      flex-direction: row;
+      gap: 50px;
+
+      @include respond-width($w-m-s) {
+        flex-direction: column;
+        height: auto;
+        gap: 150px;
+      }
+
+      @include respond-width($w-xs) {
+        gap: 50px;
+      }
+    }
+  }
+}

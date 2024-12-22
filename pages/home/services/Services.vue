@@ -26,43 +26,7 @@ import Service from "~/pages/home/services/Service.vue";
 </script>
 
 <style lang="scss" scoped>
-@import "/assets/scss/style";
-
-//=======>>>   SERVICES   <<<==========//
-#services {
-  padding-top: 150px;
-  padding-bottom: 150px;
-  background-color: var(--light-color);
-  color: var(--dark-color);
-  text-align: center;
-
-  & h2 {
-    // margin-bottom: 150px;
-  }
-
-  & .frame {
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
-    position: relative;
-
-    height: 700px;
-
-    @include respond-width($w-s) {
-      height: 1400px;
-
-    }
-  }
-
-  @include respond-width($w-xs) {
-    padding-top: 50px;
-    padding-bottom: 50px;
-
-    & h2 {
-      margin-bottom: 50px;
-    }
-  }
-}
-
+@import "/assets/scss/global/Global";
+@import "/assets/scss/pages/home/services/Services";
 
 </style>

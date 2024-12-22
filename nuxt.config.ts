@@ -3,7 +3,7 @@
 import glsl from "vite-plugin-glsl";
 export default defineNuxtConfig({
   routeRules: {
-    "/_nuxt/**": { headers: { "cache-control": "s-maxage=86400" } },
+    // "/_nuxt/**": { headers: { "cache-control": "s-maxage=86400" } },
     // '/home': { redirect: {to: '/' , statusCode: 301 } },
   },
 

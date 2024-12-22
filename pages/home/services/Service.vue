@@ -48,27 +48,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "/assets/scss/style";
+@import "/assets/scss/global/Global";
+@import "/assets/scss/pages/home/services/Service";
 
-.main {
-    width: 340px;
-    aspect-ratio: 1/1;
-    color: var(--light-color);
-    background-color: var(--dark-color);
-    padding: 50px 40px;
-    text-align: left;
-    position: absolute;
-}
-
-.header {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.iconFrame {
-    display: inline-block;
-    position: relative;
-    bottom: 3px;
-}
 </style>

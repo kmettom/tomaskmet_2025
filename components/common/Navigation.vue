@@ -38,7 +38,7 @@ onMounted(() => {
 
 </script>
 <style lang="scss">
-@import "assets/scss/style";
+@import "global/style";
 
 //=======>>>   NAVIGATION   <<<==========//
 
