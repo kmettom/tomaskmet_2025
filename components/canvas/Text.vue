@@ -1,6 +1,6 @@
 <template>
   <span ref="html">
-    <slot></slot>
+    <slot/>
   </span>
 </template>
 
@@ -8,7 +8,7 @@
 
 import {Canvas} from "~/utils/canvas";
 
-let props = defineProps([
+const props = defineProps([
   'shader',
   'meshId',
   'textHover',

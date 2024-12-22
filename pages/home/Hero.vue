@@ -1,32 +1,32 @@
 <!--TODO: extended version - to use scroll, block normal scroll, only scroll by action, debounce and trigger scroll move - add this feature to Canvas scroll -->
 <template>
   <div id="Hero">
-    <Container additionalClass="heroSection">
-      <h2 class="heading-1" id="">
+    <Container additional-class="heroSection">
+      <h2 id="" class="heading-1">
         <span v-scrollActive="0.85">
-          <CanvasText :meshId="'headline-studio'" :shader="'default'" :theme="'light'">
+          <CanvasText :mesh-id="'headline-studio'" :shader="'default'" :theme="'light'">
             STUDIO
           </CanvasText>
         </span>
       </h2>
       <h2 id="kmet" class="heading-1">
         <span v-scrollActive="0.85">
-          <CanvasText :meshId="'headline-783'" :shader="'default'" :theme="'light'">
+          <CanvasText :mesh-id="'headline-783'" :shader="'default'" :theme="'light'">
             783
           </CanvasText>
         </span>
       </h2>
-      <div class="body-m" id="summary">
-        Web Developer with <br/>
-        managerial background, <br/>
-        coding and bringing a full<br/>
+      <div id="summary" class="body-m">
+        Web Developer with <br>
+        managerial background, <br>
+        coding and bringing a full<br>
         team to help your project.
       </div>
-      <div class="body-m" id="servicesList">
-        web3<br/>
-        creative <br/>
-        apps<br/>
-        websites<br/>
+      <div id="servicesList" class="body-m">
+        web3<br>
+        creative <br>
+        apps<br>
+        websites<br>
         e-commerce
       </div>
     </Container>

@@ -30,7 +30,7 @@
 import {onMounted} from "vue";
 
 const props = defineProps({
-  pageActive: Boolean
+  sectionActive: Boolean
 });
 
 onMounted(() => {

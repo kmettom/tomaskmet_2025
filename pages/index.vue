@@ -1,12 +1,10 @@
 <template>
-  <div class="wrapper">
-    <Hero></Hero>
-    <About></About>
-    <Work/>
-    <Services></Services>
-    <CTA></CTA>
-    <Footer></Footer>
-  </div>
+    <Hero/>
+    <About/>
+  <Work/>
+    <Services/>
+    <CTA/>
+    <Footer/>
 </template>
 
 <script setup>
@@ -64,16 +62,5 @@ watch(
 </script>
 
 <style lang="scss">
-@import "assets/scss/style";
-
-//=======>>>   WRAPPER background image   <<<==========//
-.wrapper {
-  position: relative;
-}
-
-
-
-
-
 
 </style>

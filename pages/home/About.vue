@@ -1,6 +1,6 @@
 <!--TODO: extended version - to use scroll, block normal scroll, only scroll by action, debounce and trigger scroll move - add this feature to Canvas scroll -->
 <template>
-  <Container id="about" additionalClass="aboutSection">
+  <Container id="about" additional-class="aboutSection">
     <h2 class="body-xs">About</h2>
     <div class="body-l">
       <p>A Self taught developer with managerial background and 8 years of hands on coding experience.</p>

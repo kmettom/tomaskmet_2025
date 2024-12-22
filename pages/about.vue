@@ -4,7 +4,7 @@
       Go To Showcase
     </NuxtLink>
     <h1 class="headline">
-        <CanvasText :meshId="'headline-about'" :shader="'default'">
+        <CanvasText :mesh-id="'headline-about'" :shader="'default'">
           About
         </CanvasText>
     </h1>
@@ -12,7 +12,8 @@
       This is a showcase of examples and usage of NuxtThreeJSStarterPack, Nuxt framework with implemented ThreeJS
       library.
     </p>
-    <div class="image-hover-block img-l-wrapper"
+    <div
+class="image-hover-block img-l-wrapper"
          @mouseover="hoverImage = true"
          @mouseleave="hoverImage = false"
     >
@@ -22,7 +23,7 @@
     <div class="">
       <p>
         Developed by: <a target="_blank" href="https://tomaskmet.com">Tomas Kmet</a>
-        <br/>
+        <br>
         GitHub: <a target="_blank" href="https://github.com/kmettom/NuxtThreeJSStarterPack">NuxtThreeJSStarterPack</a>
       </p>
     </div>

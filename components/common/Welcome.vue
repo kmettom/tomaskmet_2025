@@ -28,6 +28,16 @@ export default {
       welcomeHideDelay: 0.5, //0.5
     }
   },
+  watch: {
+    welcomeInit(newValue, oldValue) {
+      if (newValue) {
+        this.welcomeAnimation()
+      }
+    }
+  },
+  mounted() {
+
+  },
   methods: {
     welcomeAnimation() {
 
@@ -56,16 +66,6 @@ export default {
 
     welcomeComplete() {
       this.$emit('welcomeComplete')
-    }
-  },
-  mounted() {
-
-  },
-  watch: {
-    welcomeInit(newValue, oldValue) {
-      if (newValue) {
-        this.welcomeAnimation()
-      }
     }
   }
 

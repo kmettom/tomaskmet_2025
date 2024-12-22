@@ -1,13 +1,14 @@
 <template>
   <div id="appContainer">
 
-    <CommonWelcome :welcomeInit="welcomeInit" @welcomeComplete="welcomeFinished()"/>
-    <CommonNavigation :pageActive="contentActive"/>
+    <CommonWelcome :welcome-init="welcomeInit" @welcome-complete="welcomeFinished()"/>
+    <CommonNavigation :page-active="contentActive"/>
 
     <div id="scrollContainer">
       <div id="scrollableContent" ref="scrollableContent">
 
-        <NuxtPage :pageActive="contentActive" :transition="{
+        <NuxtPage
+:page-active="contentActive" :transition="{
           name: 'pagetransition',
           onBeforeEnter: (el) => {
             Canvas.scrollToTop(0)
@@ -17,7 +18,7 @@
       </div>
     </div>
 
-    <div ref="canvas" id="animationContainer"></div>
+    <div id="animationContainer" ref="canvas"/>
 
   </div>
 </template>
@@ -42,7 +43,7 @@ onMounted(() => {
   Canvas.init(canvas.value, scrollableContent.value);
 });
 
-let contentActive = ref(false);
+const contentActive = ref(false);
 const welcomeFinished = () => {
   contentActive.value = true;
 }

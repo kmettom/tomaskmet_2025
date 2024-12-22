@@ -1,6 +1,6 @@
-const lerp = (a, b, n) => (1 - n) * a + n * b
-
 import {Canvas} from "./canvas";
+
+const lerp = (a, b, n) => (1 - n) * a + n * b
 
 export default class Scroll {
     constructor(_options, _activeCallback) {

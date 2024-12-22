@@ -4,7 +4,7 @@
     <Container>
       <h2 class="heading-1">
           <span v-scrollActive="0.65">
-            <CanvasText :meshId="'headline-work'" :shader="'default'" :theme="'light'">
+            <CanvasText :mesh-id="'headline-work'" :shader="'default'" :theme="'light'">
               Work
             </CanvasText>
           </span>
@@ -14,9 +14,10 @@
         <div class="nextItem" @click="visitNext">
           next: bright union 👆
         </div>
-        <div v-scrollActive="0.8" v-for="(project, index) in projects.projects" @click="() => { projectsExpandedIndex = index;
+        <div
+v-for="(project, index) in projects.projects" v-scrollActive="0.8" @click="() => { projectsExpandedIndex = index;
         projectsExpanded=!projectsExpanded}">
-          <Project :isExpanded="projectsExpanded" :project="project" :title="index.toString()"/>
+          <Project :is-expanded="projectsExpanded" :project="project" :title="index.toString()"/>
         </div>
         <div class="prevItem" @click="visitPrev">
           previous: african origins 👇

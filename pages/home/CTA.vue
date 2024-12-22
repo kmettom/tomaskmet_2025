@@ -5,7 +5,7 @@
       <div class="frame">
         <div class="heading-1">
             <span v-scrollActive="0.85">
-              <CanvasText :meshId="'headline-get-in'" :shader="'default'" :theme="'dark'">
+              <CanvasText :mesh-id="'headline-get-in'" :shader="'default'" :theme="'dark'">
                 Get in
               </CanvasText>
             </span>
@@ -13,7 +13,7 @@
         <div id="secondPart">
           <div class="heading-1">
               <span v-scrollActive="0.85">
-                <CanvasText :meshId="'headline-touch'" :shader="'default'" :theme="'dark'">
+                <CanvasText :mesh-id="'headline-touch'" :shader="'default'" :theme="'dark'">
                   touch
                 </CanvasText>
               </span>

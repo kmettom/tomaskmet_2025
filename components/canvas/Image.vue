@@ -1,6 +1,6 @@
 <template>
   <span ref="img" class="webgl-img">
-      <NuxtImg @load="imageLoaded" :width="width" :height="height" alt="picture" :src="srcLink"/>
+      <NuxtImg :width="width" :height="height" alt="picture" :src="srcLink" @load="imageLoaded"/>
   </span>
 </template>
 
@@ -8,7 +8,7 @@
 
 import {Canvas} from "~/utils/canvas";
 
-let props = defineProps([
+const props = defineProps([
   'srcLink',
   'shader',
   'imageHover',

@@ -1,46 +1,6 @@
-<template>
-  <div :style="getCanvasStyles()" :class="[props.isExpanded ? ['expandedCanvas', 'canvas'] : 'canvas']">
-    <div class="heading-3">{{ props.title }}</div>
-
-    <div class="description">
-      <div class="statistics">
-        <div class="infoRow">
-          <div>client:</div>
-          <div>{{ props.project.client }}</div>
-        </div>
-        <div class="infoRow">
-          <div>year:</div>
-          <div>{{ props.project.year }}</div>
-        </div>
-        <div class="infoRow" v-if="props.project.award">
-          <div>award</div>
-          <div>{{ props.project.award }}</div>
-        </div>
-      </div>
-
-
-      <p>Nibh tempor egestas magna tristique. Tortor pulvinar ac faucibus pharetra elit nunc. Sapien justo lacus
-        varius augue neque consectetur sit. Nulla eget auctor arcu dictum semper quam nulla facilisis. Posuere id
-        elit ipsum magna quis blandit ultrices hendrerit fermentum. Nisl consequat non felis neque habitant neque
-        egestas quis sed. Scelerisque vel integer ultrices ac erat volutpat. </p>
-
-      <a href="https://example.com" target="_blank">👉 visit site</a>
-    </div>
-    <div class="frame" :style="getImgFrameStyles()">
-      <CanvasImage :shader="'example2'" :srcLink="props.project.image.src"/>
-    </div>
-  </div>
-  <div class="info body-m">
-    <span>{{ props.project.client }}</span>
-    <!--    <span>{{ type }}</span>-->
-  </div>
-  <div class="closeIcon" @click="toggleDesc">
-    <IconsClose/>
-  </div>
-</template>
-
 <script setup>
 import {ref, toRefs} from "vue";
+import IconsClose from "~/components/common/icons/close.client.vue";
 
 const props = defineProps({
   project: {
@@ -88,8 +48,48 @@ const toggleDesc = () => {
   emit('update:isExpanded', false);
 };
 
-
 </script>
+
+<template>
+  <div :style="getCanvasStyles()" :class="[props.isExpanded ? ['expandedCanvas', 'canvas'] : 'canvas']">
+    <div class="heading-3">{{ props.title }}</div>
+
+    <div class="description">
+      <div class="statistics">
+        <div class="infoRow">
+          <div>client:</div>
+          <div>{{ props.project.client }}</div>
+        </div>
+        <div class="infoRow">
+          <div>year:</div>
+          <div>{{ props.project.year }}</div>
+        </div>
+        <div v-if="props.project.award" class="infoRow">
+          <div>award</div>
+          <div>{{ props.project.award }}</div>
+        </div>
+      </div>
+
+
+      <p>Nibh tempor egestas magna tristique. Tortor pulvinar ac faucibus pharetra elit nunc. Sapien justo lacus
+        varius augue neque consectetur sit. Nulla eget auctor arcu dictum semper quam nulla facilisis. Posuere id
+        elit ipsum magna quis blandit ultrices hendrerit fermentum. Nisl consequat non felis neque habitant neque
+        egestas quis sed. Scelerisque vel integer ultrices ac erat volutpat. </p>
+
+      <a href="https://example.com" target="_blank">👉 visit site</a>
+    </div>
+    <div class="frame" :style="getImgFrameStyles()">
+      <CanvasImage :shader="'example2'" :src-link="props.project.image.src"/>
+    </div>
+  </div>
+  <div class="info body-m">
+    <span>{{ props.project.client }}</span>
+    <!--    <span>{{ type }}</span>-->
+  </div>
+  <div class="closeIcon" @click="toggleDesc">
+    <IconsClose/>
+  </div>
+</template>
 
 <style lang="scss" scoped>
 @import "/assets/scss/style";

@@ -8,6 +8,7 @@ export default defineNuxtConfig({
   },
 
   modules: [
+    "@nuxt/eslint",
     "@nuxt/content",
     ["@nuxt-modules/compression", { algorithm: "brotliCompress" }],
     "@nuxt/image",

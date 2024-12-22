@@ -4,15 +4,16 @@
     <Container>
       <h2 class="heading-1">
           <span v-scrollActive="0.85">
-          <CanvasText :meshId="'headline-services'" :shader="'default'" :theme="'dark'">
+          <CanvasText :mesh-id="'headline-services'" :shader="'default'" :theme="'dark'">
             Services
           </CanvasText>
         </span>
       </h2>
 
       <div class="frame">
-        <Service v-for="(service, index) in services" :key="index" :title="service.title" :icon="service.icon"
-                 :text="service.text" :desktopStyles="service.desktopStyles" :tabletStyles="service.tabletStyles"/>
+        <Service
+v-for="(service, index) in services" :key="index" :title="service.title" :icon="service.icon"
+                 :text="service.text" :desktop-styles="service.desktopStyles" :tablet-styles="service.tabletStyles"/>
       </div>
     </Container>
   </div>
