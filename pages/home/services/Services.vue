@@ -1,4 +1,3 @@
-<!--TODO: extended version - to use scroll, block normal scroll, only scroll by action, debounce and trigger scroll move - add this feature to Canvas scroll -->
 <template>
   <div id="services">
     <Container>
@@ -12,7 +11,8 @@
 
       <div class="frame">
         <Service
-v-for="(service, index) in services" :key="index" :title="service.title" :icon="service.icon"
+v-for="(service, index) in services"
+:key="index" :title="service.title" :icon="service.icon"
                  :text="service.text" :desktop-styles="service.desktopStyles" :tablet-styles="service.tabletStyles"/>
       </div>
     </Container>
