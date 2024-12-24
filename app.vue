@@ -1,31 +1,43 @@
 <template>
-  <div id="appContainer">
-
     <CommonWelcome :welcome-init="welcomeInit" @welcome-complete="welcomeFinished()"/>
-    <CommonNavigation :page-active="contentActive"/>
-
-    <div id="scrollContainer">
-      <div id="scrollableContent" ref="scrollableContent">
-
-        <NuxtPage
-:page-active="contentActive" :transition="{
+  <defaultPageLayout>
+    <NuxtPage
+        :page-active="contentActive" :transition="{
           name: 'pagetransition',
           onBeforeEnter: (el) => {
             Canvas.scrollToTop(0)
           },
         }"/>
+  </defaultPageLayout>
 
-      </div>
-    </div>
 
-    <div id="animationContainer" ref="canvas"/>
+<!--  <div id="appContainer">-->
 
-  </div>
+<!--    <CommonNavigation :page-active="contentActive"/>-->
+
+<!--    <div id="scrollContainer">-->
+<!--      <div id="scrollableContent" ref="scrollableContent">-->
+
+<!--        <NuxtPage-->
+<!--:page-active="contentActive" :transition="{-->
+<!--          name: 'pagetransition',-->
+<!--          onBeforeEnter: (el) => {-->
+<!--            Canvas.scrollToTop(0)-->
+<!--          },-->
+<!--        }"/>-->
+
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div id="animationContainer" ref="canvas"/>-->
+
+<!--  </div>-->
 </template>
 <script setup>
 
 import {Canvas} from "~/utils/canvas";
 import {Display} from "~/utils/display";
+import defaultPageLayout from "~/layout/defaultPageLayout";
 
 const canvas = ref("canvas");
 const welcomeInit = ref(false);
@@ -51,10 +63,6 @@ const welcomeFinished = () => {
 </script>
 
 <style lang="scss">
-.headline {
-  font-size: 100px;
-  font-family: 'PP Formula Black', sans-serif;
-}
 
 #scrollContainer {
   position: fixed;

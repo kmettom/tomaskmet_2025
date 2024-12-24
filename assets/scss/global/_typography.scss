@@ -80,6 +80,11 @@
     line-height: 166.6%;
 }
 
+.headline {
+    font-size: 100px;
+    font-family: 'PP Formula Black', sans-serif;
+}
+
 .heading-1 {
     @include header-font;
     font-size: 298px;

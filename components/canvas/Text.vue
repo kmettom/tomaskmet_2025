@@ -39,12 +39,6 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 
-span {
-  opacity: 0;
-}
-
-img {
-
-}
+@import "assets/scss/components/WebGlText";
 
 </style>
