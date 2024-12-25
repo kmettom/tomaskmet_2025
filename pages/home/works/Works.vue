@@ -1,4 +1,3 @@
-<!--TODO: extended version - to use scroll, block normal scroll, only scroll by action, debounce and trigger scroll move - add this feature to Canvas scroll -->
 <template>
   <div id="work">
     <Container>

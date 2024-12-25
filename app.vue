@@ -39,11 +39,3 @@ const welcomeFinished = () => {
   contentActive.value = true;
 };
 </script>
-
-<!--TODO: Navigation interactions -->
-<!--TODO: Scroll track - for navigation and projects -->
-<!--TODO: content blocks ani in-->
-<!--TODO: Projects state transition -->
-<!--TODO: Lint/prettier setup -->
-
-<!--TODO: Update package versions? -->
