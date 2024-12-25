@@ -20,5 +20,9 @@
 
 
 <script setup lang="ts">
-import {Canvas} from "~/utils/canvas";
 </script>
+
+<style lang="scss">
+@import "/assets/scss/components/DefaultPageLayout";
+
+</style>

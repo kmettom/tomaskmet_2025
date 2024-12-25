@@ -1,6 +1,6 @@
 <template>
     <CommonWelcome :welcome-init="welcomeInit" @welcome-complete="welcomeFinished()"/>
-  <defaultPageLayout>
+  <DefaultPageLayout>
     <NuxtPage
         :page-active="contentActive" :transition="{
           name: 'pagetransition',
@@ -8,36 +8,13 @@
             Canvas.scrollToTop(0)
           },
         }"/>
-  </defaultPageLayout>
-
-
-<!--  <div id="appContainer">-->
-
-<!--    <CommonNavigation :page-active="contentActive"/>-->
-
-<!--    <div id="scrollContainer">-->
-<!--      <div id="scrollableContent" ref="scrollableContent">-->
-
-<!--        <NuxtPage-->
-<!--:page-active="contentActive" :transition="{-->
-<!--          name: 'pagetransition',-->
-<!--          onBeforeEnter: (el) => {-->
-<!--            Canvas.scrollToTop(0)-->
-<!--          },-->
-<!--        }"/>-->
-
-<!--      </div>-->
-<!--    </div>-->
-
-<!--    <div id="animationContainer" ref="canvas"/>-->
-
-<!--  </div>-->
+  </DefaultPageLayout>
 </template>
 <script setup>
 
 import {Canvas} from "~/utils/canvas";
 import {Display} from "~/utils/display";
-import defaultPageLayout from "~/layout/defaultPageLayout";
+import DefaultPageLayout from "~/layout/DefaultPageLayout.vue";
 
 const canvas = ref("canvas");
 const welcomeInit = ref(false);
@@ -62,32 +39,7 @@ const welcomeFinished = () => {
 
 </script>
 
-<style lang="scss">
 
-#scrollContainer {
-  position: fixed;
-  height: 100%;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-}
-
-#scrollableContent {
-  will-change: transform;
-}
-
-#animationContainer {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  margin: 0 auto;
-  pointer-events: none;
-  z-index: 0; //-1
-}
-</style>
 
 <!--TODO: Navigation interactions -->
 <!--TODO: Scroll track - for navigation and projects -->
