@@ -1,7 +1,7 @@
 import { Canvas } from '~/utils/canvas.js';
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.directive('scrollActive', {
-    mounted(el, binding, vnode) {
+    mounted(el, binding, _) {
       setTimeout(() => {
         Canvas.addScrollActiveElement({
           elNode: el,

@@ -10,7 +10,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         });
       }, 150);
     },
-    unmounted(el, binding) {
+    unmounted(el, _) {
       Canvas.removeScrollSpeedElement(el);
     },
   });

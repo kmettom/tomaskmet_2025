@@ -13,13 +13,28 @@
 <script setup>
 import { Canvas } from '~/utils/canvas';
 
-const props = defineProps([
-  'srcLink',
-  'shader',
-  'imageHover',
-  'width',
-  'height',
-]);
+const props = defineProps({
+  srcLink: {
+    type: String,
+    required: true,
+  },
+  shader: {
+    type: String,
+    default: 'default',
+  },
+  imageHover: {
+    type: Boolean,
+    default: false,
+  },
+  width: {
+    type: String,
+    default: '100%',
+  },
+  height: {
+    type: String,
+    default: '100%',
+  },
+});
 
 const generateRandomId = () => {
   return Math.floor(Math.random() * 100000);

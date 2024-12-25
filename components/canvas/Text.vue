@@ -7,7 +7,24 @@
 <script setup>
 import { Canvas } from '~/utils/canvas';
 
-const props = defineProps(['shader', 'meshId', 'textHover', 'theme']);
+const props = defineProps({
+  shader: {
+    type: String,
+    required: true,
+  },
+  meshId: {
+    type: String,
+    required: true,
+  },
+  textHover: {
+    type: Boolean,
+    default: false,
+  },
+  theme: {
+    type: String,
+    default: 'dark',
+  },
+});
 
 const html = ref('html');
 

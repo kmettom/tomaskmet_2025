@@ -19,17 +19,14 @@
       <!--                   :srcLink="'imgs/01l.webp'"/>-->
     </div>
     <div class="">
-      <p>
-        Developed by:
-        <a target="_blank" href="https://tomaskmet.com">Tomas Kmet</a>
-        <br />
-        GitHub:
-        <a
-          target="_blank"
-          href="https://github.com/kmettom/NuxtThreeJSStarterPack"
-          >NuxtThreeJSStarterPack</a
-        >
-      </p>
+      Developed by:
+      <a target="_blank" href="https://tomaskmet.com">Tomas Kmet</a>
+      <span>GitHub:</span>
+      <a
+        target="_blank"
+        href="https://github.com/kmettom/NuxtThreeJSStarterPack"
+        >NuxtThreeJSStarterPack</a
+      >
     </div>
   </div>
 </template>
@@ -48,7 +45,7 @@ const props = defineProps({
 });
 
 const hoverImage = ref(false);
-const textHover = ref(false);
+// const textHover = ref(false);
 
 const pageAnimateIn = () => {
   console.log('Example method - animate page transition');
@@ -62,7 +59,7 @@ onMounted(() => {
 
 watch(
   () => props.pageActive,
-  (newValue, oldValue) => {
+  (newValue, _) => {
     if (newValue) {
       pageAnimateIn();
     }

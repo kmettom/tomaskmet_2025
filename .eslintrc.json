@@ -1,4 +1,10 @@
 {
-  "extends": ["@nuxt", "plugin:prettier/recommended", "prettier"]
-  // ... other configurations ...
+  "extends": ["@nuxt", "plugin:prettier/recommended", "prettier"],
+
+  "compilerOptions": {
+    // ... other options ...
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "ignoreUnusedVariablesStartingWith": "_"
+  }
 }

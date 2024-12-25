@@ -3,7 +3,7 @@ import { Canvas } from './canvas';
 const lerp = (a, b, n) => (1 - n) * a + n * b;
 
 export default class Scroll {
-  constructor(_options, _activeCallback) {
+  constructor(_options, _) {
     this.DOM = {
       scrollable: _options.dom,
       scrollspeed: [],
@@ -29,7 +29,7 @@ export default class Scroll {
 
   init() {
     // sets the initial value (no interpolation) - translate the scroll value
-    for (const key in this.renderedStyles) {
+    for (const _ in this.renderedStyles) {
       this.current = this.scrollToRender = this.getScroll();
     }
     // translate the scrollable element

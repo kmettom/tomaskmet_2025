@@ -32,11 +32,11 @@ export default {
     },
     desktopStyles: {
       type: Object,
-      default: {},
+      default: () => {},
     },
     tabletStyles: {
       type: Object,
-      default: {},
+      default: () => {},
     },
   },
   setup() {

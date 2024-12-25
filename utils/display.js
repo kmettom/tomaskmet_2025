@@ -1,4 +1,4 @@
-let Display = {
+const Display = {
   isMobile: null,
 
   init() {

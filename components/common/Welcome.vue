@@ -13,7 +13,12 @@ import { SplitText } from 'gsap/SplitText';
 gsap.registerPlugin(SplitText);
 
 export default {
-  props: ['welcomeInit'],
+  props: {
+    welcomeInit: {
+      type: Boolean,
+      required: true,
+    },
+  },
   data() {
     return {
       show: false,
@@ -24,8 +29,8 @@ export default {
     };
   },
   watch: {
-    welcomeInit(newValue, oldValue) {
-      if (newValue) {
+    welcomeInit(newValue) {
+      if ((newValue, _)) {
         this.welcomeAnimation();
       }
     },
@@ -60,7 +65,7 @@ export default {
         },
       });
     },
-
+    emits: ['welcomeComplete'],
     welcomeComplete() {
       this.$emit('welcomeComplete');
     },

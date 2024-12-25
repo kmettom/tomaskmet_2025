@@ -24,17 +24,17 @@
         </span>
       </h2>
       <div id="summary" class="body-m">
-        Web Developer with <br />
-        managerial background, <br />
-        coding and bringing a full<br />
-        team to help your project.
+        <p>Web Developer with</p>
+        <p>managerial background,</p>
+        <p>coding and bringing a full</p>
+        <p>team to help your project.</p>
       </div>
       <div id="servicesList" class="body-m">
-        web3<br />
-        creative <br />
-        apps<br />
-        websites<br />
-        e-commerce
+        <p>web3</p>
+        <p>creative</p>
+        <p>apps</p>
+        <p>websites</p>
+        <p>e-commerce</p>
       </div>
     </Container>
   </div>

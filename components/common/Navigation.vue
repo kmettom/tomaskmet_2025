@@ -29,9 +29,9 @@
 <script setup>
 import { onMounted } from 'vue';
 
-const props = defineProps({
-  sectionActive: Boolean,
-});
+// const props = defineProps({
+//   // sectionActive: Boolean,
+// });
 
 onMounted(() => {});
 </script>

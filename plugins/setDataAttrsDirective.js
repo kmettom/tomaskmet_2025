@@ -10,7 +10,7 @@ const addDataSetToEl = (_attrs, _el) => {
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.directive('setDataAttrs', {
-    mounted: function (el, binding, vnode) {
+    mounted: function (el, binding, _) {
       addDataSetToEl(binding.value, el);
 
       if (el.childNodes) {

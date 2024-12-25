@@ -54,11 +54,3 @@ export default defineNuxtConfig({
 
   compatibilityDate: '2024-11-10',
 });
-
-// module.exports = {
-//     buildModules: ['nuxt-compress'],
-// };
-
-// serverMiddleware: [
-//     { path: '/api/send-email', handler: '~/api/send-email.js' }
-// ],

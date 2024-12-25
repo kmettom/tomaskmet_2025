@@ -29,9 +29,7 @@ useHead({
 });
 
 onMounted(() => {
-  // Display.init();
   welcomeInit.value = true;
-  // Canvas.init(canvas.value, scrollableContent.value);
 });
 
 const contentActive = ref(false);

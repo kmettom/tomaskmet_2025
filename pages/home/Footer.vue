@@ -18,9 +18,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import Container from '~/components/common/Container.vue';
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss" scoped>
 @import 'assets/scss/global/Global';

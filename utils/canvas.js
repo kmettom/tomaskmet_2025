@@ -27,7 +27,7 @@ import example1Vertex from './shaders/example1Vertex.glsl';
 import example2Fragment from './shaders/example2Fragment.glsl';
 import example2Vertex from './shaders/example2Vertex.glsl';
 
-import MSDFfragment from './shaders/MSDFfragment.glsl';
+// import MSDFfragment from './shaders/MSDFfragment.glsl';
 import MSDFfragmentBlur from './shaders/MSDFfragmentBlur.glsl';
 import MSDFvertex from './shaders/MSDFvertex.glsl';
 
@@ -51,7 +51,7 @@ const CanvasOptions = {
     vertexShader: example2Vertex,
   },
 };
-let Canvas = {
+const Canvas = {
   navigation: null,
   scrollInProgress: false,
   canvasContainer: null,
@@ -170,7 +170,9 @@ let Canvas = {
     }
   },
 
-  onScrollCallBack(_item, _scrollPosition, _scrollSpeed) {},
+  onScrollCallBack(_item, _scrollPosition, _scrollSpeed) {
+    console.log('onScrollCallBack');
+  },
 
   addScrollSpeedElement(_el) {
     if (_el.options?.includes('fixed')) {
@@ -262,14 +264,14 @@ let Canvas = {
     const atlasUrl = '/font/PPFormula-CondensedBlack.png';
 
     const loadFontAtlas = (path) => {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve, _) => {
         const loader = new THREE.TextureLoader();
         loader.load(path, resolve);
       });
     };
 
     const loadFont = (path) => {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve, _) => {
         const loader = new FontLoader();
         loader.load(path, resolve);
       });
@@ -418,7 +420,7 @@ let Canvas = {
   },
 
   meshMouseListeners(_mesh, _material) {
-    _mesh.img.addEventListener('mouseenter', (event) => {
+    _mesh.img.addEventListener('mouseenter', (_) => {
       _mesh.mesh.renderOrder = 1;
       gsap.to(_material.uniforms.hoverState, {
         duration: 0.5,
@@ -476,7 +478,7 @@ let Canvas = {
     }, _delay);
   },
 
-  render(currentTime) {
+  render(_currentTime) {
     this.animations.cursorCallBack();
     this.time += 0.05;
 
