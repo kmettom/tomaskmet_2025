@@ -1,45 +1,46 @@
 <template>
-    <CommonWelcome :welcome-init="welcomeInit" @welcome-complete="welcomeFinished()"/>
+  <CommonWelcome
+    :welcome-init="welcomeInit"
+    @welcome-complete="welcomeFinished()"
+  />
   <DefaultPageLayout>
     <NuxtPage
-        :page-active="contentActive" :transition="{
-          name: 'pagetransition',
-          onBeforeEnter: (el) => {
-            Canvas.scrollToTop(0)
-          },
-        }"/>
+      :page-active="contentActive"
+      :transition="{
+        name: 'pagetransition',
+        onBeforeEnter: (el) => {
+          Canvas.scrollToTop(0);
+        },
+      }"
+    />
   </DefaultPageLayout>
 </template>
 <script setup>
+import { Canvas } from '~/utils/canvas';
+import { Display } from '~/utils/display';
+import DefaultPageLayout from '~/layout/DefaultPageLayout.vue';
 
-import {Canvas} from "~/utils/canvas";
-import {Display} from "~/utils/display";
-import DefaultPageLayout from "~/layout/DefaultPageLayout.vue";
-
-const canvas = ref("canvas");
+const canvas = ref('canvas');
 const welcomeInit = ref(false);
-const scrollableContent = ref("scrollableContent");
+const scrollableContent = ref('scrollableContent');
 
 useHead({
   htmlAttrs: {
     lang: 'en',
-  }
-})
+  },
+});
 
 onMounted(() => {
   Display.init();
-  welcomeInit.value = true
+  welcomeInit.value = true;
   Canvas.init(canvas.value, scrollableContent.value);
 });
 
 const contentActive = ref(false);
 const welcomeFinished = () => {
   contentActive.value = true;
-}
-
+};
 </script>
-
-
 
 <!--TODO: Navigation interactions -->
 <!--TODO: Scroll track - for navigation and projects -->
@@ -48,4 +49,3 @@ const welcomeFinished = () => {
 <!--TODO: Lint/prettier setup -->
 
 <!--TODO: Update package versions? -->
-

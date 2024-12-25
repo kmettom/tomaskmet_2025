@@ -1,0 +1,4 @@
+{
+  "extends": ["@nuxt", "plugin:prettier/recommended", "prettier"]
+  // ... other configurations ...
+}

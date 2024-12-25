@@ -1,21 +1,29 @@
 <!--TODO: extended version - to use scroll, block normal scroll, only scroll by action, debounce and trigger scroll move - add this feature to Canvas scroll -->
 <template>
   <div id="footer" class="body-xs">
-      <span id="rights">
-        © {{ new Date().getFullYear() }} Studio 783&nbsp;&nbsp;|&nbsp;&nbsp;All rights reserved
-      </span>
-    <span id="font">Font: Pangram Pangram<span id="fontSeparator">&nbsp;&nbsp;|&nbsp;&nbsp;</span></span>
-    <span id="design">Design: <a href="https://jagodakondratiuk.com" target="_blank">Jagoda Kodnratiuk</a></span>
+    <span id="rights">
+      © {{ new Date().getFullYear() }} Studio 783&nbsp;&nbsp;|&nbsp;&nbsp;All
+      rights reserved
+    </span>
+    <span id="font"
+      >Font: Pangram Pangram<span id="fontSeparator"
+        >&nbsp;&nbsp;|&nbsp;&nbsp;</span
+      ></span
+    >
+    <span id="design"
+      >Design:
+      <a href="https://jagodakondratiuk.com" target="_blank"
+        >Jagoda Kodnratiuk</a
+      ></span
+    >
   </div>
 </template>
 
 <script setup lang="ts">
-import Container from "~/components/common/Container.vue";
+import Container from '~/components/common/Container.vue';
 </script>
 
 <style lang="scss" scoped>
-@import "assets/scss/global/Global";
-@import "assets/scss/components/Footer";
-
-
+@import 'assets/scss/global/Global';
+@import 'assets/scss/components/Footer';
 </style>

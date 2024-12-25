@@ -1,19 +1,14 @@
 <template>
   <div class="welcome">
     <div class="welcome-txt-wrapper">
-      <div class="welcome-txt-main">
-        Nuxt ThreeJS Starter Pack
-      </div>
-      <div class="welcome-by">
-        Developed by tomaskmet.com
-      </div>
+      <div class="welcome-txt-main">Nuxt ThreeJS Starter Pack</div>
+      <div class="welcome-by">Developed by tomaskmet.com</div>
     </div>
-
   </div>
 </template>
 <script>
-import { gsap } from "gsap";
-import { SplitText } from "gsap/SplitText";
+import { gsap } from 'gsap';
+import { SplitText } from 'gsap/SplitText';
 
 gsap.registerPlugin(SplitText);
 
@@ -26,32 +21,34 @@ export default {
       welcomeAniDelay: 0.25, //0.25
       welcomeHideDuration: 0.5, //0.5
       welcomeHideDelay: 0.5, //0.5
-    }
+    };
   },
   watch: {
     welcomeInit(newValue, oldValue) {
       if (newValue) {
-        this.welcomeAnimation()
+        this.welcomeAnimation();
       }
-    }
+    },
   },
-  mounted() {
-
-  },
+  mounted() {},
   methods: {
     welcomeAnimation() {
-
       const tl = gsap.timeline();
-      const chars = new SplitText(".welcome-txt-main", { type: "words,chars" }).chars;
-      gsap.set(".welcome-txt-main", { perspective: 400 });
-      tl.fromTo(chars, { y: "10px", opacity: 0 }, {
-        duration: this.welcomeAniDuration,
-        opacity: 1,
-        y: "0px",
-        stagger: 0.02
-      });
-      gsap.to('.welcome-txt-main', { duration: 0.3, opacity: 1 })
-      gsap.to('.welcome-by', { duration: 0.3, opacity: 1 })
+      const chars = new SplitText('.welcome-txt-main', { type: 'words,chars' })
+        .chars;
+      gsap.set('.welcome-txt-main', { perspective: 400 });
+      tl.fromTo(
+        chars,
+        { y: '10px', opacity: 0 },
+        {
+          duration: this.welcomeAniDuration,
+          opacity: 1,
+          y: '0px',
+          stagger: 0.02,
+        },
+      );
+      gsap.to('.welcome-txt-main', { duration: 0.3, opacity: 1 });
+      gsap.to('.welcome-by', { duration: 0.3, opacity: 1 });
 
       gsap.to('.welcome', {
         duration: this.welcomeHideDuration,
@@ -59,19 +56,17 @@ export default {
         height: 0,
         ease: 'power4.in',
         onComplete: () => {
-          this.welcomeComplete()
-        }
-      })
+          this.welcomeComplete();
+        },
+      });
     },
 
     welcomeComplete() {
-      this.$emit('welcomeComplete')
-    }
-  }
-
-}
-
+      this.$emit('welcomeComplete');
+    },
+  },
+};
 </script>
 <style lang="scss" scoped>
-@import "assets/scss/components/Welcome";
+@import 'assets/scss/components/Welcome';
 </style>

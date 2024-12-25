@@ -1,4 +1,3 @@
-
 //=======>>>   NAVIGATION   <<<==========//
 
 #topNavigation {
@@ -36,7 +35,7 @@
         transition: ease all 0.3s;
       }
 
-      &:hover{
+      &:hover {
         font-weight: bold;
       }
       &.active {
@@ -45,7 +44,6 @@
           transform: translateX(0px);
           opacity: 1;
         }
-
       }
     }
   }

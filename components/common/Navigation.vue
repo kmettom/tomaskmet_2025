@@ -27,18 +27,15 @@
   <!--  </div>-->
 </template>
 <script setup>
-import {onMounted} from "vue";
+import { onMounted } from 'vue';
 
 const props = defineProps({
-  sectionActive: Boolean
+  sectionActive: Boolean,
 });
 
-onMounted(() => {
-});
-
+onMounted(() => {});
 </script>
 <style lang="scss">
-@import "/assets/scss/global/Global";
-@import "/assets/scss/components/Navigation";
-
+@import '/assets/scss/global/Global';
+@import '/assets/scss/components/Navigation';
 </style>

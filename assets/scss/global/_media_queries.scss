@@ -6,11 +6,11 @@ $w-s: 800px; // ipad small resolution
 $w-xs: 550px; // mobile resolution
 
 @mixin respond-width($media) {
-    $max-width: $media + 1px;
+  $max-width: $media + 1px;
 
-    @media (max-width: #{$max-width}) {
-        @content;
-    }
+  @media (max-width: #{$max-width}) {
+    @content;
+  }
 }
 
 // Usage:

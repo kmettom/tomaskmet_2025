@@ -11,8 +11,10 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint": "npm run lint:eslint && npm run prettier",
+    "lint:eslint": "eslint .",
+    "prettier": "prettier --write .",
+    "lintfix": "eslint . --fix && prettier --write --list-different ."
   },
   "devDependencies": {
     "@nuxt-modules/compression": "^0.1.0",
@@ -22,11 +24,14 @@
     "@nuxtjs/style-resources": "^1.2.1",
     "consola": "^3.2.3",
     "eslint": "^9.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
     "gsap": "npm:@gsap/business@^3.12.5",
     "load-bmfont": "^1.4.1",
     "nuxt": "^3.14.1592",
     "nuxt-purgecss": "^2.0.0",
     "nuxt-viewport": "^2.1.4",
+    "prettier": "^3.4.2",
     "sass": "^1.64.1",
     "sass-loader": "^13.3.2",
     "three": "^0.171.0",

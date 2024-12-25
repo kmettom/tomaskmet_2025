@@ -1,28 +1,19 @@
-
 <template>
+  <div id="appContainer">
+    <CommonNavigation :page-active="null" />
 
-<div id="appContainer">
+    <div id="scrollContainer">
+      <div id="scrollableContent" ref="scrollableContent">
+        <slot />
+      </div>
+    </div>
 
-<CommonNavigation :page-active="null"/>
-
-<div id="scrollContainer">
-  <div id="scrollableContent" ref="scrollableContent">
-
-    <slot></slot>
-
+    <div id="animationContainer" ref="canvas" />
   </div>
-</div>
+</template>
 
-<div id="animationContainer" ref="canvas"/>
-
-</div>
-  </template>
-
-
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss">
-@import "/assets/scss/components/DefaultPageLayout";
-
+@import '/assets/scss/components/DefaultPageLayout';
 </style>

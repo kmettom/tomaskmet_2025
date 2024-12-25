@@ -1,6 +1,6 @@
 <script setup>
-import {ref, toRefs} from "vue";
-import IconsClose from "~/components/common/icons/close.client.vue";
+import { ref, toRefs } from 'vue';
+import IconsClose from '~/components/common/icons/close.client.vue';
 
 const props = defineProps({
   project: {
@@ -19,15 +19,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
     // required: true
-  }
+  },
 });
 
-const {
-  project,
-  title,
-  isExpanded,
-  isActive,
-} = toRefs(props);
+const { project, title, isExpanded, isActive } = toRefs(props);
 
 const getCanvasStyles = () => {
   return {
@@ -47,11 +42,13 @@ const emit = defineEmits(['update:isExpanded']);
 const toggleDesc = () => {
   emit('update:isExpanded', false);
 };
-
 </script>
 
 <template>
-  <div :style="getCanvasStyles()" :class="[props.isExpanded ? ['expandedCanvas', 'canvas'] : 'canvas']">
+  <div
+    :style="getCanvasStyles()"
+    :class="[props.isExpanded ? ['expandedCanvas', 'canvas'] : 'canvas']"
+  >
     <div class="heading-3">{{ props.title }}</div>
 
     <div class="description">
@@ -70,16 +67,19 @@ const toggleDesc = () => {
         </div>
       </div>
 
-
-      <p>Nibh tempor egestas magna tristique. Tortor pulvinar ac faucibus pharetra elit nunc. Sapien justo lacus
-        varius augue neque consectetur sit. Nulla eget auctor arcu dictum semper quam nulla facilisis. Posuere id
-        elit ipsum magna quis blandit ultrices hendrerit fermentum. Nisl consequat non felis neque habitant neque
-        egestas quis sed. Scelerisque vel integer ultrices ac erat volutpat. </p>
+      <p>
+        Nibh tempor egestas magna tristique. Tortor pulvinar ac faucibus
+        pharetra elit nunc. Sapien justo lacus varius augue neque consectetur
+        sit. Nulla eget auctor arcu dictum semper quam nulla facilisis. Posuere
+        id elit ipsum magna quis blandit ultrices hendrerit fermentum. Nisl
+        consequat non felis neque habitant neque egestas quis sed. Scelerisque
+        vel integer ultrices ac erat volutpat.
+      </p>
 
       <a href="https://example.com" target="_blank">👉 visit site</a>
     </div>
     <div class="frame" :style="getImgFrameStyles()">
-      <CanvasImage :shader="'example2'" :src-link="props.project.image.src"/>
+      <CanvasImage :shader="'example2'" :src-link="props.project.image.src" />
     </div>
   </div>
   <div class="info body-m">
@@ -87,12 +87,11 @@ const toggleDesc = () => {
     <!--    <span>{{ type }}</span>-->
   </div>
   <div class="closeIcon" @click="toggleDesc">
-    <IconsClose/>
+    <IconsClose />
   </div>
 </template>
 
 <style lang="scss" scoped>
-@import "/assets/scss/global/Global";
-@import "/assets/scss/pages/home/works/Projects";
-
+@import '/assets/scss/global/Global';
+@import '/assets/scss/pages/home/works/Projects';
 </style>
