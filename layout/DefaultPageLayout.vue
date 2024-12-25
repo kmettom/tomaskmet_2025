@@ -12,7 +12,19 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Display } from '~/utils/display';
+import { Canvas } from '~/utils/canvas';
+
+const canvas = ref('canvas');
+
+const scrollableContent = ref('scrollableContent');
+
+onMounted(() => {
+  Display.init();
+  Canvas.init(canvas.value, scrollableContent.value);
+});
+</script>
 
 <style lang="scss">
 @import '/assets/scss/components/DefaultPageLayout';

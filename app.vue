@@ -20,9 +20,7 @@ import { Canvas } from '~/utils/canvas';
 import { Display } from '~/utils/display';
 import DefaultPageLayout from '~/layout/DefaultPageLayout.vue';
 
-const canvas = ref('canvas');
 const welcomeInit = ref(false);
-const scrollableContent = ref('scrollableContent');
 
 useHead({
   htmlAttrs: {
