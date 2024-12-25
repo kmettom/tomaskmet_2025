@@ -17,7 +17,7 @@
 </template>
 <script setup>
 import { Canvas } from '~/utils/canvas';
-import { Display } from '~/utils/display';
+// import { Display } from '~/utils/display';
 import DefaultPageLayout from '~/layout/DefaultPageLayout.vue';
 
 const welcomeInit = ref(false);
@@ -29,9 +29,9 @@ useHead({
 });
 
 onMounted(() => {
-  Display.init();
+  // Display.init();
   welcomeInit.value = true;
-  Canvas.init(canvas.value, scrollableContent.value);
+  // Canvas.init(canvas.value, scrollableContent.value);
 });
 
 const contentActive = ref(false);
