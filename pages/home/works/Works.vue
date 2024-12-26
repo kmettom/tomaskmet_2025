@@ -19,12 +19,7 @@
           v-for="(project, index) in projects.projects"
           v-bind:key="project.client"
           v-scrollActive="0.8"
-          @click="
-            () => {
-              projectsExpandedIndex = index;
-              projectsExpanded = !projectsExpanded;
-            }
-          "
+          @click="expandProjectView(index)"
         >
           <Project
             :is-expanded="projectsExpanded"
@@ -47,6 +42,11 @@ import Project from '~/pages/home/works/Project.vue';
 
 const projectsExpandedIndex = ref(0);
 const projectsExpanded = ref(false);
+
+const expandProjectView = (index: number) => {
+  projectsExpandedIndex.value = index;
+  projectsExpanded.value = !projectsExpanded.value;
+};
 
 const visitNext = () => {
   console.log('visit next');

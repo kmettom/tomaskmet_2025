@@ -3,18 +3,16 @@ import withNuxt from './.nuxt/eslint.config.mjs';
 
 export default withNuxt({
   settings: {
-    'no-warn-ignored': true,
+    // 'no-warn-ignored': true,
   },
   rules: {
-    // 'comma-dangle': ['error', 'always-multiline'],
     '@typescript-eslint/no-unused-vars': [
-      'warn',
+      'error',
       {
         argsIgnorePattern: '^_',
-        varsIgnorePattern: '^_$',
-        caughtErrorsIgnorePattern: '^_$',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
       },
     ],
   },
 });
-// Your custom configs here

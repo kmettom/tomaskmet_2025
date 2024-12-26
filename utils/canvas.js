@@ -170,8 +170,8 @@ const Canvas = {
     }
   },
 
-  onScrollCallBack(_item, _scrollPosition, _scrollSpeed) {
-    console.log('onScrollCallBack');
+  onScrollCallBack() {
+    // console.log('onScrollCallBack', _item, _scrollPosition, _scrollSpeed);
   },
 
   addScrollSpeedElement(_el) {
@@ -264,14 +264,14 @@ const Canvas = {
     const atlasUrl = '/font/PPFormula-CondensedBlack.png';
 
     const loadFontAtlas = (path) => {
-      return new Promise((resolve, _) => {
+      return new Promise((resolve) => {
         const loader = new THREE.TextureLoader();
         loader.load(path, resolve);
       });
     };
 
     const loadFont = (path) => {
-      return new Promise((resolve, _) => {
+      return new Promise((resolve) => {
         const loader = new FontLoader();
         loader.load(path, resolve);
       });
@@ -420,7 +420,7 @@ const Canvas = {
   },
 
   meshMouseListeners(_mesh, _material) {
-    _mesh.img.addEventListener('mouseenter', (_) => {
+    _mesh.img.addEventListener('mouseenter', () => {
       _mesh.mesh.renderOrder = 1;
       gsap.to(_material.uniforms.hoverState, {
         duration: 0.5,
@@ -478,7 +478,7 @@ const Canvas = {
     }, _delay);
   },
 
-  render(_currentTime) {
+  render() {
     this.animations.cursorCallBack();
     this.time += 0.05;
 
@@ -501,7 +501,8 @@ const Canvas = {
 
     try {
       requestAnimationFrame(this.render.bind(this));
-    } catch (_) {
+    } catch (e) {
+      console.error(e);
       setImmediate(this.render.bind(this));
     }
   },

@@ -2,7 +2,7 @@ const addDataSetToEl = (_attrs, _el) => {
   if (_el.nodeName == '#text') return;
 
   for (let key in _attrs) {
-    if (_attrs.hasOwnProperty(key) && _el.setAttribute) {
+    if (Object.prototype.hasOwnProperty.call(_attrs, key) && _el.setAttribute) {
       _el.setAttribute('data-' + key, _attrs[key]);
     }
   }
@@ -10,7 +10,7 @@ const addDataSetToEl = (_attrs, _el) => {
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.directive('setDataAttrs', {
-    mounted: function (el, binding, _) {
+    mounted: function (el, binding) {
       addDataSetToEl(binding.value, el);
 
       if (el.childNodes) {
