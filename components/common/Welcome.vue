@@ -19,6 +19,8 @@ export default {
       required: true,
     },
   },
+  emits: ['welcomeComplete'],
+
   data() {
     return {
       show: false,
@@ -65,7 +67,6 @@ export default {
         },
       });
     },
-    emits: ['welcomeComplete'],
     welcomeComplete() {
       this.$emit('welcomeComplete');
     },

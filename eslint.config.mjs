@@ -5,5 +5,14 @@ export default withNuxt({
   settings: {
     // 'no-warn-ignored': true,
   },
-  rules: {},
+  rules: {
+    'vue/html-self-closing': [
+      'warn',
+      {
+        html: {
+          void: 'any',
+        },
+      },
+    ],
+  },
 });

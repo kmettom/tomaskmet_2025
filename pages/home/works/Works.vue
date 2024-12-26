@@ -17,7 +17,7 @@
         <div class="nextItem" @click="visitNext">next: bright union 👆</div>
         <div
           v-for="(project, index) in projects.projects"
-          v-bind:key="project.client"
+          :key="project.client"
           v-scrollActive="0.8"
           @click="expandProjectView(index)"
         >
