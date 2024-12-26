@@ -5,14 +5,5 @@ export default withNuxt({
   settings: {
     // 'no-warn-ignored': true,
   },
-  rules: {
-    '@typescript-eslint/no-unused-vars': [
-      'error',
-      {
-        argsIgnorePattern: '^_',
-        varsIgnorePattern: '^_',
-        caughtErrorsIgnorePattern: '^_',
-      },
-    ],
-  },
+  rules: {},
 });

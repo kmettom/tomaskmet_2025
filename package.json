@@ -11,7 +11,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "lint": "npm run lint:eslint && npm run prettier",
+    "lint": "npm run prettier && npm run lint:eslint ",
     "lint:eslint": "eslint .",
     "prettier": "prettier --write .",
     "lintfix": "eslint . --fix && prettier --write --list-different ."
