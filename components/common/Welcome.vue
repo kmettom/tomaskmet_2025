@@ -32,7 +32,7 @@ export default {
   },
   watch: {
     welcomeInit(newValue) {
-      if ((newValue, _)) {
+      if (newValue) {
         this.welcomeAnimation();
       }
     },

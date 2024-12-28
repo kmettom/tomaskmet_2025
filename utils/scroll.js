@@ -114,17 +114,17 @@ export default class Scroll {
     }
   }
 
-  setElementActive(item, _status) {
-    if (_status) {
+  setElementActive(item, status) {
+    if (status) {
       item.elNode.classList.add('active');
     } else {
       item.elNode.classList.remove('active');
     }
 
-    Canvas.onActiveElCallback(item, _status);
+    Canvas.onActiveElCallback(item, status);
 
     if (item.containedMeshId) {
-      Canvas.activateMesh(item.containedMeshId, _status);
+      Canvas.activateMesh(item.containedMeshId, status);
     }
   }
 

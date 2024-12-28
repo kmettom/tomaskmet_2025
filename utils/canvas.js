@@ -94,9 +94,9 @@ const Canvas = {
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     this.canvasContainer.appendChild(this.renderer.domElement);
   },
-  init(_canvasElement, _scrollableContent) {
-    this.canvasContainer = _canvasElement;
-    this.scrollableContent = _scrollableContent;
+  init(canvasElement, scrollableContent) {
+    this.canvasContainer = canvasElement;
+    this.scrollableContent = scrollableContent;
 
     this.initScroll();
 
@@ -143,12 +143,12 @@ const Canvas = {
     }
   },
 
-  hoverMesh(_id, _state) {
-    const mesh = this.scene.getObjectByName(_id);
+  hoverMesh(id, state) {
+    const mesh = this.scene.getObjectByName(id);
     if (!mesh) return;
     gsap.to(mesh.material.uniforms.hoverState, {
       duration: 0.5,
-      value: _state ? 1 : 0,
+      value: state ? 1 : 0,
     });
   },
 

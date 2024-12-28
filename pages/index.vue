@@ -54,7 +54,7 @@ onMounted(() => {
 
 watch(
   () => props.pageActive,
-  (newValue, _) => {
+  (newValue) => {
     if (newValue) {
       pageAniIn();
     }
