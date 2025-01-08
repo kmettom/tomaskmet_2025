@@ -3,10 +3,7 @@
 import glsl from 'vite-plugin-glsl';
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  routeRules: {
-    // "/_nuxt/**": { headers: { "cache-control": "s-maxage=86400" } },
-    // '/home': { redirect: {to: '/' , statusCode: 301 } },
-  },
+  routeRules: {},
 
   modules: [
     '@nuxt/eslint',
@@ -15,10 +12,12 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'nuxt-viewport',
   ],
+
   image: {
     provider: 'ipx',
     dir: 'public/',
   },
+
   build: {
     transpile: ['gsap'],
   },
@@ -47,13 +46,8 @@ export default defineNuxtConfig({
       }
     },
   },
-
-  // app: {
-  //     pageTransition: { name: 'page', mode: 'out-in' }
-  // },
   nitro: {
     compressPublicAssets: true,
   },
-
-  compatibilityDate: '2024-11-10',
+  compatibilityDate: '2025-01-08',
 });

@@ -1,17 +1,20 @@
 <template>
   {{ srcLink }}
   <span ref="img" class="webgl-img">
-    <NuxtImg
+    <!--    <NuxtImg-->
+    <!--      :width="width"-->
+    <!--      :height="height"-->
+    <!--      alt="picture"-->
+    <!--      :src="srcLink"-->
+    <!--      @load="imageLoaded"-->
+    <!--    />-->
+    <img
       :width="width"
       :height="height"
       alt="picture"
-      :src="srcLink"
+      src="public/images/01l.jpg"
       @load="imageLoaded"
     />
-    <!--    <img-->
-    <!--        alt="picture"-->
-    <!--        src="public/images/01l.jpg"-->
-    <!--    />-->
     <!--    <img-->
     <!--        alt="picture"-->
     <!--        :src="require(srcLink)"-->
