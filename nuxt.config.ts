@@ -15,7 +15,10 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'nuxt-viewport',
   ],
-
+  image: {
+    provider: 'ipx',
+    dir: 'public',
+  },
   build: {
     transpile: ['gsap'],
   },

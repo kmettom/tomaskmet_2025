@@ -1,4 +1,5 @@
 <template>
+  {{ srcLink }}
   <span ref="img" class="webgl-img">
     <NuxtImg
       :width="width"
