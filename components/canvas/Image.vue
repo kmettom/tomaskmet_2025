@@ -8,14 +8,14 @@
       :src="srcLink"
       @load="imageLoaded"
     />
-<!--    <img-->
-<!--        alt="picture"-->
-<!--        src="public/images/01l.jpg"-->
-<!--    />-->
-<!--    <img-->
-<!--        alt="picture"-->
-<!--        :src="require(srcLink)"-->
-<!--    />-->
+    <!--    <img-->
+    <!--        alt="picture"-->
+    <!--        src="public/images/01l.jpg"-->
+    <!--    />-->
+    <!--    <img-->
+    <!--        alt="picture"-->
+    <!--        :src="require(srcLink)"-->
+    <!--    />-->
   </span>
 </template>
 
