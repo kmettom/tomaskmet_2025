@@ -1,0 +1,124 @@
+@font-face {
+  font-family: 'PP Formula Black';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('/font/PPFormula-CondensedBlack.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal Book';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/font/ppneuemontreal-book.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal Bold';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/font/ppneuemontreal-bold.otf') format('truetype');
+}
+
+// ================================
+
+@mixin body-font {
+  font-family: 'PP Neue Montreal Book';
+  font-weight: 400;
+}
+
+@mixin body-font-bold {
+  font-family: 'PP Neue Montreal Bold';
+  font-weight: 700;
+}
+
+@mixin header-font {
+  font-family: 'PP Formula Black';
+  font-weight: 900;
+}
+
+.body-l {
+  @include body-font;
+  font-size: 30px;
+  line-height: 120%;
+
+  @include respond-width($w-m) {
+    font-size: 16px;
+    line-height: 137.5%;
+  }
+}
+
+.body-m {
+  @include body-font;
+  font-size: 16px;
+  line-height: 137.5%;
+
+  @include respond-width($w-s) {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+.body-s {
+  @include body-font;
+  font-size: 14px;
+  line-height: 128.5%;
+}
+
+.body-xs {
+  @include body-font;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.body-xs-bold {
+  @include body-font-bold;
+  font-size: 12px;
+  line-height: 166.6%;
+}
+
+.headline {
+  font-size: 100px;
+  font-family: 'PP Formula Black', sans-serif;
+}
+
+.heading-1 {
+  @include header-font;
+  font-size: 298px;
+  line-height: 300px;
+  // background-color: gold;
+
+  @include respond-width($w-m) {
+    font-size: 200px;
+    line-height: 200px;
+  }
+
+  @include respond-width($w-s) {
+    font-size: 100px;
+    line-height: 100px;
+  }
+}
+
+.heading-3 {
+  @include header-font;
+  font-size: 70px;
+  line-height: 120%;
+
+  @include respond-width($w-xs) {
+    font-size: 30px;
+    line-height: 120%;
+  }
+}
+
+.heading-4 {
+  @include header-font;
+  font-size: 30px;
+}
+
+.heading-5 {
+  @include header-font;
+  font-size: 20px;
+  line-height: 110%;
+}
