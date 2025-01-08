@@ -6,7 +6,7 @@
       "award": "sotd",
       "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
       "image": {
-        "src": "public/images/01l.jpg",
+        "src": "/public/images/01l.jpg",
         "description": "image description",
         "width": "",
         "height": ""

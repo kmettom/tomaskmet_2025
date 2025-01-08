@@ -17,7 +17,7 @@ export default defineNuxtConfig({
   ],
   image: {
     provider: 'ipx',
-    dir: 'public',
+    dir: 'public/',
   },
   build: {
     transpile: ['gsap'],
