@@ -31,10 +31,10 @@
 <script setup lang="ts">
 import Container from '~/components/common/Container.vue';
 import services from '~/content/services.model.json';
-import Service from '~/pages/home/services/Service.vue';
+import Service from '~/pages/index/services/Service.vue';
 </script>
 
 <style lang="scss" scoped>
 @import '/assets/scss/global/Global';
-@import '/assets/scss/pages/home/services/Services';
+@import '/assets/scss/pages/index/services/Services';
 </style>

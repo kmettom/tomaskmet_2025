@@ -75,5 +75,5 @@ import BasketBallIcon from '~/public/icons/basket-ball.png';
 
 <style lang="scss" scoped>
 @import 'assets/scss/global/Global';
-@import 'assets/scss/pages/home/CTA';
+@import 'assets/scss/pages/index/CTA';
 </style>

@@ -1,24 +1,12 @@
 <template>
-  {{ srcLink }}
   <span ref="img" class="webgl-img">
-    <!--    <NuxtImg-->
-    <!--      :width="width"-->
-    <!--      :height="height"-->
-    <!--      alt="picture"-->
-    <!--      :src="srcLink"-->
-    <!--      @load="imageLoaded"-->
-    <!--    />-->
-    <img
+    <NuxtImg
       :width="width"
       :height="height"
       alt="picture"
-      src="public/images/01l.jpg"
+      :src="srcLink"
       @load="imageLoaded"
     />
-    <!--    <img-->
-    <!--        alt="picture"-->
-    <!--        :src="require(srcLink)"-->
-    <!--    />-->
   </span>
 </template>
 
@@ -52,7 +40,7 @@ const generateRandomId = () => {
   return Math.floor(Math.random() * 100000);
 };
 
-const meshIdRandom = ref(generateRandomId());
+const meshIdRandom = ref(generateRandomId() + props.srcLink);
 const generatedMeshId = ref(props.srcLink + meshIdRandom.value);
 
 const img = ref('img');

@@ -1,24 +1,23 @@
 <template>
   <div>
-    <Hero />
-    <About />
+    <SectionHero />
+    <SectionAbout />
     <Work />
     <Services />
-    <CTA />
+    <SectionCta />
     <Footer />
   </div>
 </template>
 
 <script setup>
 // import Container from '~/components/common/Container.vue';
-import Work from '~/pages/home/works/Works.vue';
-import Services from '~/pages/home/services/Services.vue';
-// import services from '@/content/services.model.json';
+import Work from '~/pages/index/works/Works.vue';
+import Services from '~/pages/index/services/Services.vue';
 import { onMounted, watch } from 'vue';
-import Hero from '~/pages/home/Hero.vue';
-import About from '~/pages/home/About.vue';
-import CTA from '~/pages/home/CTA.vue';
-import Footer from '~/pages/home/Footer.vue';
+import SectionHero from '~/pages/index/SectionHero.vue';
+import SectionAbout from '~/pages/index/SectionAbout.vue';
+import SectionCta from '~/pages/index/SectionCTA.vue';
+import Footer from '~/components/common/Footer.vue';
 
 // const { data } = await useAsyncData('index', () =>
 //   queryContent('/index').findOne(),

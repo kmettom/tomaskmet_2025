@@ -1,9 +1,11 @@
 <template>
   <div class="page-container">
-    <NuxtLink aria-label="Go To Showcase" to="/"> Go To Showcase </NuxtLink>
+    <NuxtLink aria-label="Go To Showcase" to="/public">
+      Go home
+    </NuxtLink>
     <h1 class="headline">
       <CanvasText :mesh-id="'headline-about'" :shader="'default'">
-        About
+        Playground
       </CanvasText>
     </h1>
     <p class="">

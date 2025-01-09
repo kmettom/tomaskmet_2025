@@ -38,7 +38,7 @@
 <script setup lang="ts">
 import Container from '~/components/common/Container.vue';
 import projects from '~/content/projects.json';
-import Project from '~/pages/home/works/Project.vue';
+import Project from '~/pages/index/works/Project.vue';
 
 const projectsExpandedIndex = ref(0);
 const projectsExpanded = ref(false);
@@ -59,5 +59,5 @@ const visitPrev = () => {
 
 <style lang="scss" scoped>
 @import '/assets/scss/global/Global';
-@import '/assets/scss/pages/home/works/Works';
+@import '/assets/scss/pages/index/works/Works';
 </style>

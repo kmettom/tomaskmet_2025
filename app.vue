@@ -1,5 +1,5 @@
 <template>
-  <CommonWelcome
+  <CommonWelcomeScreen
     :welcome-init="welcomeInit"
     @welcome-complete="welcomeFinished()"
   />

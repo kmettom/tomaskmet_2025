@@ -52,5 +52,5 @@ export default {
 
 <style lang="scss" scoped>
 @import '/assets/scss/global/Global';
-@import '/assets/scss/pages/home/services/Service';
+@import '/assets/scss/pages/index/services/Service';
 </style>
