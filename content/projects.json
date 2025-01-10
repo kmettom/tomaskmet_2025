@@ -1,40 +1,38 @@
-{
-  "projects": [
-    {
-      "client": "Client 1",
-      "year": "2020",
-      "award": "sotd",
-      "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
-      "image": {
-        "src": "images/01l.webp",
-        "description": "image description",
-        "width": "",
-        "height": ""
-      }
-    },
-    {
-      "client": "Client 2",
-      "year": "2021",
-      "award": "sotd",
-      "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
-      "image": {
-        "src": "images/02l.jpg",
-        "description": "image description",
-        "width": "",
-        "height": ""
-      }
-    },
-    {
-      "client": "Client 3",
-      "year": "2022",
-      "award": "sotd",
-      "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
-      "image": {
-        "src": "images/03l.jpg",
-        "description": "image description",
-        "width": "",
-        "height": ""
-      }
+[
+  {
+    "name": "Client 1",
+    "year": "2020",
+    "award": "sotd",
+    "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
+    "image": {
+      "src": "images/01l.webp",
+      "description": "image description",
+      "width": "",
+      "height": ""
     }
-  ]
-}
+  },
+  {
+    "name": "Client 2",
+    "year": "2021",
+    "award": "sotd",
+    "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
+    "image": {
+      "src": "images/02l.jpg",
+      "description": "image description",
+      "width": "",
+      "height": ""
+    }
+  },
+  {
+    "name": "Client 3",
+    "year": "2022",
+    "award": "sotd",
+    "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
+    "image": {
+      "src": "images/03l.jpg",
+      "description": "image description",
+      "width": "",
+      "height": ""
+    }
+  }
+]

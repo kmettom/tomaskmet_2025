@@ -1,5 +1,5 @@
 <template>
-  <div id="work">
+  <div class="works-section">
     <Container>
       <h2 class="heading-1">
         <span v-scrollActive="0.65">
@@ -14,10 +14,16 @@
       </h2>
 
       <div id="gallery">
-        <div class="nextItem" @click="visitNext">next: bright union 👆</div>
         <div
-          v-for="(project, index) in projects.projects"
-          :key="project.client"
+          v-if="projectsExpanded && nextProject"
+          class="change-project-btn next-item"
+          @click="visitNext"
+        >
+          previous: {{ nextProject }} 👆
+        </div>
+        <div
+          v-for="(project, index) in projects"
+          :key="project.name"
           v-scrollActive="0.8"
           @click="expandProjectView(index)"
         >
@@ -27,8 +33,15 @@
             :title="index.toString()"
           />
         </div>
-        <div class="prevItem" @click="visitPrev">
-          previous: african origins 👇
+        <div v-if="projectsExpanded" class="close-icon" @click="expandProjectView(0)">
+          <IconsClose />
+        </div>
+        <div
+          v-if="projectsExpanded && prevProject"
+          class="change-project-btn prev-item"
+          @click="visitPrev"
+        >
+          next: {{nextProject}} 👇
         </div>
       </div>
     </Container>
@@ -39,12 +52,19 @@
 import Container from '~/components/common/Container.vue';
 import projects from '~/content/projects.json';
 import Project from '~/pages/index/works/Project.vue';
+import IconsClose from "~/components/common/icons/close.client.vue";
 
-const projectsExpandedIndex = ref(0);
-const projectsExpanded = ref(false);
+const activeProjectsIndex = ref(0);
+const projectsExpanded = ref(true);
+const nextProject = computed(() => {
+  return projects[activeProjectsIndex.value + 1]?.name ?? false;
+});
+const prevProject = computed(() => {
+  return projects[activeProjectsIndex.value - 1]?.name ?? false;
+});
 
 const expandProjectView = (index: number) => {
-  projectsExpandedIndex.value = index;
+  activeProjectsIndex.value = index;
   projectsExpanded.value = !projectsExpanded.value;
 };
 

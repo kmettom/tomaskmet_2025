@@ -1,26 +1,9 @@
-.halfWidth {
-  display: inline-block;
-  width: 50%;
-}
-
-.halfHeight {
-  height: 50%;
-}
-
 .canvas {
   display: inline-block;
 }
 
 .description {
   display: none;
-}
-
-.closeIcon {
-  display: none;
-
-  &:hover {
-    cursor: pointer;
-  }
 }
 
 .frame {

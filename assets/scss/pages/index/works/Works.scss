@@ -1,9 +1,10 @@
 //=======>>>   WORK   <<<==========//
 
-#work {
+.works-section {
   padding-top: 200px;
   padding-bottom: 200px;
   margin: auto 10%;
+  position: relative;
 
   @include respond-width($w-s) {
     margin: auto 5%;
@@ -29,45 +30,46 @@
     display: flex;
     flex-direction: column;
     gap: 150px;
+    position: relative;
 
     @include respond-width($w-xs) {
       gap: 50px;
     }
+  }
 
-    .nextItem {
-      position: absolute;
-      top: -30px;
-      left: 50%;
-      transform: translate(-50%, 0);
-      width: max-content;
-      cursor: pointer;
+  #firstLine {
+    display: flex;
+    justify-content: space-between;
+    height: 850px;
+    flex-direction: row;
+    gap: 50px;
+
+    @include respond-width($w-m-s) {
+      flex-direction: column;
+      height: auto;
+      gap: 150px;
     }
 
-    .prevItem {
-      position: absolute;
-      bottom: -30px;
-      left: 50%;
-      transform: translate(-50%, 0);
-      width: max-content;
-      cursor: pointer;
-    }
-
-    & #firstLine {
-      display: flex;
-      justify-content: space-between;
-      height: 850px;
-      flex-direction: row;
+    @include respond-width($w-xs) {
       gap: 50px;
-
-      @include respond-width($w-m-s) {
-        flex-direction: column;
-        height: auto;
-        gap: 150px;
-      }
-
-      @include respond-width($w-xs) {
-        gap: 50px;
-      }
     }
   }
+
+  .close-icon{
+    position: fixed;
+    top: 25%;
+    right: 15px;
+  }
+
+  .change-project-btn {
+    cursor: pointer;
+    //position: absolute;
+    &.next-item{
+      top:100px
+    }
+    &.prev-item{
+      bottom:100px;
+    }
+  }
+
 }

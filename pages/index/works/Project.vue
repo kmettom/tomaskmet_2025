@@ -1,5 +1,4 @@
 <script setup>
-// import { toRefs } from 'vue';
 import IconsClose from '~/components/common/icons/close.client.vue';
 
 const props = defineProps({
@@ -39,10 +38,6 @@ const getImgFrameStyles = () => {
 };
 
 const emit = defineEmits(['update:isExpanded']);
-
-const toggleDesc = () => {
-  emit('update:isExpanded', false);
-};
 </script>
 
 <template>
@@ -85,16 +80,12 @@ const toggleDesc = () => {
       </div>
     </div>
     <div class="info body-m">
-      <span>{{ props.project.client }}</span>
-      <!--    <span>{{ type }}</span>-->
-    </div>
-    <div class="closeIcon" @click="toggleDesc">
-      <IconsClose />
+      <span>{{ props.project.name }}</span>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 @import '/assets/scss/global/Global';
-@import '/assets/scss/pages/index/works/Projects';
+@import '/assets/scss/pages/index/works/Project';
 </style>
