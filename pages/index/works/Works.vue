@@ -36,18 +36,18 @@
                 }
               : ''
           "
-          @click="expandProjectView(index)"
         >
           <Project
             :is-expanded="projectsExpanded"
             :project="project"
             :index="index"
+            @expand="expandProjectView(index)"
           />
         </div>
         <div
           v-if="projectsExpanded"
           class="close-icon"
-          @click="expandProjectView(0)"
+          @click="expandProjectView(null)"
         >
           <IconsClose />
         </div>
@@ -78,9 +78,10 @@ const prevProject = computed(() => {
   return projects[activeProjectsIndex.value - 1]?.name ?? false;
 });
 
-const expandProjectView = (index: number) => {
-  activeProjectsIndex.value = index;
-  projectsExpanded.value = !projectsExpanded.value;
+const expandProjectView = (index: number | null) => {
+  console.log('expandProjectView - scroll to ', index);
+  activeProjectsIndex.value = index === null ? 0 : index;
+  projectsExpanded.value = index !== null;
 };
 
 const visitNext = () => {

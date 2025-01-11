@@ -20,14 +20,20 @@ const props = defineProps({
 });
 
 const projectNumber = computed(() => {
-  return "0" + (props.index + 1).toString();
-})
+  return '0' + (props.index + 1).toString();
+});
 const hoverImage = ref(false);
+
+const emit = defineEmits(['expand']);
 </script>
 
 <template>
-  <div :class="`project ${props.isExpanded ? 'expanded' : ''}`"  @mouseover="hoverImage = true"
-       @mouseleave="hoverImage = false" >
+  <div
+    :class="`project ${props.isExpanded ? 'expanded' : ''}`"
+    @mouseover="hoverImage = true"
+    @mouseleave="hoverImage = false"
+    @click="emit('expand')"
+  >
     <div class="heading-3">{{ projectNumber }}</div>
     <div class="description">
       <div class="statistics">
@@ -56,7 +62,7 @@ const hoverImage = ref(false);
       :height="`${project.image.height}px`"
       :shader="'example2'"
       :src-link="props.project.image.src"
-      :imageHover="hoverImage"
+      :image-hover="hoverImage"
     />
     <div class="info body-m">
       <span>{{ props.project.name }}</span>
