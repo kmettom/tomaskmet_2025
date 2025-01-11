@@ -1,8 +1,4 @@
-.project{
-  display: inline-block;
-}
-
-.canvas {
+.project {
   display: inline-block;
 }
 
@@ -10,15 +6,7 @@
   display: none;
 }
 
-.frame {
-  position: relative;
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-.canvas.expandedCanvas {
+.expanded {
   position: relative;
   height: 100vh;
   width: 100%;

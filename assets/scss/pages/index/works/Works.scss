@@ -16,9 +16,7 @@
     padding-top: 50px;
     padding-bottom: 50px;
   }
-
 }
-
 
 h2 {
   text-align: right;
@@ -28,7 +26,6 @@ h2 {
     padding-bottom: 50px;
   }
 }
-
 
 .close-icon {
   position: fixed;
@@ -47,10 +44,10 @@ h2 {
   }
 }
 
+.project-item {
+  position: relative;
+}
 .project-inline {
   display: inline-block;
   width: 50%;
 }
-
-
-

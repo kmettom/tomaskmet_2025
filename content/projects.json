@@ -6,15 +6,13 @@
     "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
     "websiteLink": "",
     "image": {
-      "src": "images/01l.webp",
-      "description": "image description",
-      "width": "150",
-      "height": "200"
+      "src": "images/01.png",
+      "description": "image description"
     },
     "position": {
-      "inline": true,
-      "top": "0%"
-    }
+      "inline": true
+    },
+    "scrollSpeed": "-0.1"
   },
   {
     "name": "Client 2",
@@ -23,14 +21,12 @@
     "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
     "websiteLink": "",
     "image": {
-      "src": "images/02l.jpg",
-      "description": "image description",
-      "width": "200",
-      "height": "300"
+      "src": "images/02.png",
+      "description": "image description"
     },
     "position": {
       "inline": true,
-      "top": "50%"
+      "top": "250px"
     }
   },
   {
@@ -40,14 +36,11 @@
     "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
     "websiteLink": "",
     "image": {
-      "src": "images/03l.jpg",
-      "description": "image description",
-      "width": "800",
-      "height": "300"
+      "src": "images/03.png",
+      "description": "image description"
     },
     "position": {
-      "inline": false,
-      "top": "50%"
+      "inline": false
     }
   }
 ]

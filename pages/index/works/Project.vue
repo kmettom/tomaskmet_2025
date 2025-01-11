@@ -1,5 +1,4 @@
 <script setup>
-
 const props = defineProps({
   project: {
     type: Object,
@@ -17,63 +16,48 @@ const props = defineProps({
   index: {
     type: Number,
     required: true,
-  }
+  },
 });
 
-const getCanvasStyles = () => {
-  return {
-    alignSelf: `flex-${props.project?.position?.value}`,
-  };
-};
-
-const getImgFrameStyles = () => {
-  return {
-    width: props.project?.image?.width.value,
-    height: props.project?.image?.height.value,
-  };
-};
-
+const projectNumber = computed(() => {
+  return "0" + (props.index + 1).toString();
+})
+const hoverImage = ref(false);
 </script>
 
 <template>
-  <div class="project">
-    <div
-      :style="getCanvasStyles()"
-      :class="[props.isExpanded ? ['expandedCanvas', 'canvas'] : 'canvas']"
-    >
-      <div class="heading-3">{{ props.index }}</div>
-
-      <div class="description">
-        <div class="statistics">
-          <div class="infoRow">
-            <div>client:</div>
-            <div>{{ props.project.client }}</div>
-          </div>
-          <div class="infoRow">
-            <div>year:</div>
-            <div>{{ props.project.year }}</div>
-          </div>
-          <div v-if="props.project.award" class="infoRow">
-            <div>award</div>
-            <div>{{ props.project.award }}</div>
-          </div>
+  <div :class="`project ${props.isExpanded ? 'expanded' : ''}`"  @mouseover="hoverImage = true"
+       @mouseleave="hoverImage = false" >
+    <div class="heading-3">{{ projectNumber }}</div>
+    <div class="description">
+      <div class="statistics">
+        <div class="infoRow">
+          <div>client:</div>
+          <div>{{ props.project.client }}</div>
         </div>
-
-        <p>
-          {{project.description}}
-        </p>
-
-        <a :href="project.websiteLink" target="_blank">👉 visit site</a>
+        <div class="infoRow">
+          <div>year:</div>
+          <div>{{ props.project.year }}</div>
+        </div>
+        <div v-if="props.project.award" class="infoRow">
+          <div>award</div>
+          <div>{{ props.project.award }}</div>
+        </div>
       </div>
-      <div class="frame" :style="getImgFrameStyles()">
-        <CanvasImage
-          :width="`${project.image.width}px`"
-          :height="`${project.image.height}px`"
-          :shader="'example2'"
-          :src-link="props.project.image.src"
-        />
-      </div>
+
+      <p>
+        {{ project.description }}
+      </p>
+
+      <a :href="project.websiteLink" target="_blank">👉 visit site</a>
     </div>
+    <CanvasImage
+      :width="`${project.image.width}px`"
+      :height="`${project.image.height}px`"
+      :shader="'example2'"
+      :src-link="props.project.image.src"
+      :imageHover="hoverImage"
+    />
     <div class="info body-m">
       <span>{{ props.project.name }}</span>
     </div>

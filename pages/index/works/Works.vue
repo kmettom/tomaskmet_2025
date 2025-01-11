@@ -25,10 +25,24 @@
           v-for="(project, index) in projects"
           :key="project.name"
           v-scrollActive="0.8"
-          :class="`${project.position.inline ? 'project-inline' : ''}`"
+          v-scrollSpeed="projectsExpanded ? 0 : project.scrollSpeed"
+          class="project-item"
+          :class="`${project.position.inline && !projectsExpanded ? 'project-inline' : ''}`"
+          :style="
+            project.position.top && !projectsExpanded
+              ? {
+                  top: project.position.top,
+                  paddingBottom: project.position.top,
+                }
+              : ''
+          "
           @click="expandProjectView(index)"
         >
-          <Project :is-expanded="projectsExpanded" :project="project" :index="index" />
+          <Project
+            :is-expanded="projectsExpanded"
+            :project="project"
+            :index="index"
+          />
         </div>
         <div
           v-if="projectsExpanded"
