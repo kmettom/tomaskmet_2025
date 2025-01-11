@@ -25,15 +25,16 @@
           v-for="(project, index) in projects"
           :key="project.name"
           v-scrollActive="0.8"
+          :class="`${project.position.inline ? 'project-inline' : ''}`"
           @click="expandProjectView(index)"
         >
-          <Project
-            :is-expanded="projectsExpanded"
-            :project="project"
-            :title="index.toString()"
-          />
+          <Project :is-expanded="projectsExpanded" :project="project" :index="index" />
         </div>
-        <div v-if="projectsExpanded" class="close-icon" @click="expandProjectView(0)">
+        <div
+          v-if="projectsExpanded"
+          class="close-icon"
+          @click="expandProjectView(0)"
+        >
           <IconsClose />
         </div>
         <div
@@ -41,7 +42,7 @@
           class="change-project-btn prev-item"
           @click="visitPrev"
         >
-          next: {{nextProject}} 👇
+          next: {{ nextProject }} 👇
         </div>
       </div>
     </Container>
@@ -52,10 +53,10 @@
 import Container from '~/components/common/Container.vue';
 import projects from '~/content/projects.json';
 import Project from '~/pages/index/works/Project.vue';
-import IconsClose from "~/components/common/icons/close.client.vue";
+import IconsClose from '~/components/common/icons/close.client.vue';
 
 const activeProjectsIndex = ref(0);
-const projectsExpanded = ref(true);
+const projectsExpanded = ref(false);
 const nextProject = computed(() => {
   return projects[activeProjectsIndex.value + 1]?.name ?? false;
 });

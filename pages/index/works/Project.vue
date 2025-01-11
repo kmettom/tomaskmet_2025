@@ -1,13 +1,8 @@
 <script setup>
-import IconsClose from '~/components/common/icons/close.client.vue';
 
 const props = defineProps({
   project: {
     type: Object,
-    required: true,
-  },
-  title: {
-    type: String,
     required: true,
   },
   isExpanded: {
@@ -18,11 +13,12 @@ const props = defineProps({
   isActive: {
     type: Boolean,
     default: false,
-    // required: true
   },
+  index: {
+    type: Number,
+    required: true,
+  }
 });
-
-// const {  title } = toRefs(props);
 
 const getCanvasStyles = () => {
   return {
@@ -37,16 +33,15 @@ const getImgFrameStyles = () => {
   };
 };
 
-const emit = defineEmits(['update:isExpanded']);
 </script>
 
 <template>
-  <div>
+  <div class="project">
     <div
       :style="getCanvasStyles()"
       :class="[props.isExpanded ? ['expandedCanvas', 'canvas'] : 'canvas']"
     >
-      <div class="heading-3">{{ props.title }}</div>
+      <div class="heading-3">{{ props.index }}</div>
 
       <div class="description">
         <div class="statistics">
@@ -65,18 +60,18 @@ const emit = defineEmits(['update:isExpanded']);
         </div>
 
         <p>
-          Nibh tempor egestas magna tristique. Tortor pulvinar ac faucibus
-          pharetra elit nunc. Sapien justo lacus varius augue neque consectetur
-          sit. Nulla eget auctor arcu dictum semper quam nulla facilisis.
-          Posuere id elit ipsum magna quis blandit ultrices hendrerit fermentum.
-          Nisl consequat non felis neque habitant neque egestas quis sed.
-          Scelerisque vel integer ultrices ac erat volutpat.
+          {{project.description}}
         </p>
 
-        <a href="https://example.com" target="_blank">👉 visit site</a>
+        <a :href="project.websiteLink" target="_blank">👉 visit site</a>
       </div>
       <div class="frame" :style="getImgFrameStyles()">
-        <CanvasImage :shader="'example2'" :src-link="props.project.image.src" />
+        <CanvasImage
+          :width="`${project.image.width}px`"
+          :height="`${project.image.height}px`"
+          :shader="'example2'"
+          :src-link="props.project.image.src"
+        />
       </div>
     </div>
     <div class="info body-m">

@@ -4,11 +4,16 @@
     "year": "2020",
     "award": "sotd",
     "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
+    "websiteLink": "",
     "image": {
       "src": "images/01l.webp",
       "description": "image description",
-      "width": "",
-      "height": ""
+      "width": "150",
+      "height": "200"
+    },
+    "position": {
+      "inline": true,
+      "top": "0%"
     }
   },
   {
@@ -16,11 +21,16 @@
     "year": "2021",
     "award": "sotd",
     "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
+    "websiteLink": "",
     "image": {
       "src": "images/02l.jpg",
       "description": "image description",
-      "width": "",
-      "height": ""
+      "width": "200",
+      "height": "300"
+    },
+    "position": {
+      "inline": true,
+      "top": "50%"
     }
   },
   {
@@ -28,11 +38,16 @@
     "year": "2022",
     "award": "sotd",
     "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
+    "websiteLink": "",
     "image": {
       "src": "images/03l.jpg",
       "description": "image description",
-      "width": "",
-      "height": ""
+      "width": "800",
+      "height": "300"
+    },
+    "position": {
+      "inline": false,
+      "top": "50%"
     }
   }
 ]
