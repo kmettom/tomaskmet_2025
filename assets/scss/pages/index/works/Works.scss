@@ -28,19 +28,19 @@ h2 {
 }
 
 .close-icon {
-  position: fixed;
-  top: 25%;
-  right: 15px;
+  //position: fixed;
+  //top: 25%;
+  //right: 15px;
 }
 
 .change-project-btn {
   cursor: pointer;
   //position: absolute;
   &.next-item {
-    top: 100px;
+    //top: 100px;
   }
   &.prev-item {
-    bottom: 100px;
+    //bottom: 100px;
   }
 }
 

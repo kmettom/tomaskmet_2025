@@ -26,9 +26,10 @@ const projectNumber = computed(() => {
 });
 const hoverImage = ref(false);
 
-const emit = defineEmits(['expand']);
+const emit = defineEmits(['expandProjects']);
 
 const expandProject = (status) => {
+  console.log(status);
   const timeline = gsap.timeline();
   timeline.from('.project-image img', {
     opacity: 0,
@@ -45,7 +46,6 @@ const expandProject = (status) => {
   //   duration: 0.5,
   //   ease: 'power2.out',
   // }, '-=0.3'); // Overlap slightly using negative delay
-
 };
 // watch props.isExpanded
 watch(
@@ -62,7 +62,7 @@ watch(
     :class="`project ${props.isExpanded ? 'expanded' : ''}`"
     @mouseover="hoverImage = true"
     @mouseleave="hoverImage = false"
-    @click="emit('expand')"
+    @click="emit('expandProjects')"
   >
     <div class="heading-3">{{ projectNumber }}</div>
     <div class="description">
@@ -87,7 +87,7 @@ watch(
 
       <a :href="project.websiteLink" target="_blank">👉 visit site</a>
     </div>
-    <div class="project-image-sm">
+    <div class="project-image">
       <CanvasImage
         :width="`${project.image.width}px`"
         :height="`${project.image.height}px`"
