@@ -50,7 +50,7 @@
             <IconsClose />
           </div>
         </div>
-        <div v-if="projectsExpanded">
+        <div >
           <div
             class="change-project-btn next-item"
             @click="goToProject(activeProjectsIndex + 1)"
@@ -90,12 +90,11 @@ const projectRefs = useTemplateRef('projects');
 const goToProject = (index: number) => {
   activeProjectsIndex.value = index;
   //get project position
-  const projectPosition = 0;
+  // const projectPosition = 0;
 
   console.log('projectRefs.value', projectRefs.value, index);
 
-  Canvas.scrollTo(projectPosition, 0.5);
-  console.log('visit next');
+  // Canvas.scrollTo(projectPosition, 0.5);
 };
 </script>
 

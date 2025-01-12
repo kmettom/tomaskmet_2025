@@ -4,14 +4,15 @@
     @welcome-complete="welcomeFinished()"
   />
   <DefaultPageLayout>
+    :transition="{
+    name: 'pagetransition',
+    onBeforeEnter: (el) => {
+    Canvas.scrollToTop(0);
+    },
+    }"
     <NuxtPage
       :page-active="contentActive"
-      :transition="{
-        name: 'pagetransition',
-        onBeforeEnter: (el) => {
-          Canvas.scrollToTop(0);
-        },
-      }"
+
     />
   </DefaultPageLayout>
 </template>

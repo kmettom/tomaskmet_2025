@@ -1,6 +1,6 @@
 <script setup>
 import { watch } from 'vue';
-import { gsap } from 'gsap';
+// import { gsap } from 'gsap';
 const props = defineProps({
   project: {
     type: Object,
@@ -30,15 +30,16 @@ const emit = defineEmits(['expandProjects']);
 
 const expandProject = (status) => {
   console.log(status);
-  const timeline = gsap.timeline();
-  timeline.from('.project-image img', {
-    opacity: 0,
-    y: 0,
-    height: '80vh',
-    width: '50vw',
-    duration: 0.5,
-    ease: 'power2.out',
-  });
+
+  // const timeline = gsap.timeline();
+  // timeline.from('.project-image img', {
+  //   opacity: 0,
+  //   y: 0,
+  //   height: '80vh',
+  //   width: '50vw',
+  //   duration: 0.5,
+  //   ease: 'power2.out',
+  // });
 
   // timeline.from('.client', {
   //   opacity: 0,
