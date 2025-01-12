@@ -6,13 +6,12 @@
     "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
     "websiteLink": "",
     "image": {
-      "src": "images/01.png",
-      "description": "image description"
+      "src": "images/01ex.png",
+      "alt": "image description"
     },
     "position": {
       "inline": true
-    },
-    "scrollSpeed": "-0.1"
+    }
   },
   {
     "name": "Client 2",
@@ -22,7 +21,7 @@
     "websiteLink": "",
     "image": {
       "src": "images/02.png",
-      "description": "image description"
+      "alt": "image description"
     },
     "position": {
       "inline": true,
@@ -37,7 +36,7 @@
     "websiteLink": "",
     "image": {
       "src": "images/03.png",
-      "description": "image description"
+      "alt": "image description"
     },
     "position": {
       "inline": false

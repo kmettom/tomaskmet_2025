@@ -6,9 +6,22 @@
   display: none;
 }
 
+.project-image {
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+}
+
 .expanded {
   position: relative;
-  height: 100vh;
+  height: 80vh;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -130,15 +143,4 @@
       right: 5%;
     }
   }
-}
-
-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.info {
-  display: flex;
-  justify-content: space-between;
 }

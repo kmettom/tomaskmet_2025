@@ -24,8 +24,6 @@
         <div
           v-for="(project, index) in projects"
           :key="project.name"
-          v-scrollActive="0.8"
-          v-scrollSpeed="projectsExpanded ? 0 : project.scrollSpeed"
           class="project-item"
           :class="`${project.position.inline && !projectsExpanded ? 'project-inline' : ''}`"
           :style="

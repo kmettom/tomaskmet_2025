@@ -1,4 +1,6 @@
 <script setup>
+import { watch } from 'vue';
+import { gsap } from 'gsap';
 const props = defineProps({
   project: {
     type: Object,
@@ -25,10 +27,38 @@ const projectNumber = computed(() => {
 const hoverImage = ref(false);
 
 const emit = defineEmits(['expand']);
+
+const expandProject = (status) => {
+  const timeline = gsap.timeline();
+  timeline.from('.project-image img', {
+    opacity: 0,
+    y: 0,
+    height: '80vh',
+    width: '50vw',
+    duration: 0.5,
+    ease: 'power2.out',
+  });
+
+  // timeline.from('.client', {
+  //   opacity: 0,
+  //   x: -20, // Move it slightly from the left
+  //   duration: 0.5,
+  //   ease: 'power2.out',
+  // }, '-=0.3'); // Overlap slightly using negative delay
+
+};
+// watch props.isExpanded
+watch(
+  () => props.isExpanded,
+  (newValue) => {
+    expandProject(newValue);
+  },
+);
 </script>
 
 <template>
   <div
+    v-scrollActive="0.8"
     :class="`project ${props.isExpanded ? 'expanded' : ''}`"
     @mouseover="hoverImage = true"
     @mouseleave="hoverImage = false"
@@ -57,13 +87,15 @@ const emit = defineEmits(['expand']);
 
       <a :href="project.websiteLink" target="_blank">👉 visit site</a>
     </div>
-    <CanvasImage
-      :width="`${project.image.width}px`"
-      :height="`${project.image.height}px`"
-      :shader="'example2'"
-      :src-link="props.project.image.src"
-      :image-hover="hoverImage"
-    />
+    <div class="project-image-sm">
+      <CanvasImage
+        :width="`${project.image.width}px`"
+        :height="`${project.image.height}px`"
+        :shader="'example2'"
+        :src-link="props.project.image.src"
+        :image-hover="hoverImage"
+      />
+    </div>
     <div class="info body-m">
       <span>{{ props.project.name }}</span>
     </div>
