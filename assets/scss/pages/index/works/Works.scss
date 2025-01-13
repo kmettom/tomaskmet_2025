@@ -3,11 +3,11 @@
 .works-section {
   padding-top: 200px;
   padding-bottom: 200px;
-  margin: auto 0;
+  margin: auto 0 auto 150px;
   position: relative;
 
   @include respond-width($w-s) {
-    margin: auto 0;
+    margin: auto 0 auto 50px;
     padding-top: 100px;
     padding-bottom: 100px;
   }
@@ -41,7 +41,7 @@ h2 {
   z-index: 10;
 }
 
-.gallery-controls-btn{
+.gallery-controls-btn {
   position: absolute;
   background: transparent;
   outline: none;

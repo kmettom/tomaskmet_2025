@@ -26,10 +26,8 @@ import Footer from '~/components/common/Footer.vue';
 useSeoMeta({
   title: '783Studio - Web design & development',
   ogTitle: '783Studio - Web design & development',
-  description:
-    '783Studio - Web design & development',
-  ogDescription:
-    '783Studio - Web design & development',
+  description: '783Studio - Web design & development',
+  ogDescription: '783Studio - Web design & development',
 });
 
 // const hoverImage1 = ref(false);

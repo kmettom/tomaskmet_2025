@@ -184,7 +184,7 @@ const Canvas = {
         _el.containerEl = document.getElementById(_el.containerId);
         _el.childEl = _el.elNode.children[0];
         _el.containerBottom = _el.containerEl.getBoundingClientRect().bottom;
-        _el.margin = 60;
+        _el.margin = 0;
         this.scroll.DOM.scrollspeed.push(_el);
       }, 750);
       return;
