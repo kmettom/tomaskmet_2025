@@ -3,17 +3,15 @@
     :welcome-init="welcomeInit"
     @welcome-complete="welcomeFinished()"
   />
-  <DefaultPageLayout>
+  <DefaultPageLayout
     :transition="{
-    name: 'pagetransition',
-    onBeforeEnter: (el) => {
-    Canvas.scrollToTop(0);
-    },
+      name: 'pagetransition',
+      onBeforeEnter: (el) => {
+        Canvas.scrollToTop(0);
+      },
     }"
-    <NuxtPage
-      :page-active="contentActive"
-
-    />
+  >
+    <NuxtPage :page-active="contentActive" />
   </DefaultPageLayout>
 </template>
 <script setup>

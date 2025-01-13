@@ -1,5 +1,5 @@
 <script setup>
-import { watch } from 'vue';
+// import { watch } from 'vue';
 // import { gsap } from 'gsap';
 const props = defineProps({
   project: {
@@ -28,33 +28,34 @@ const hoverImage = ref(false);
 
 const emit = defineEmits(['expandProjects']);
 
-const expandProject = (status) => {
-  console.log(status);
+// const expandProject = (status) => {
+//   console.log(status);
 
-  // const timeline = gsap.timeline();
-  // timeline.from('.project-image img', {
-  //   opacity: 0,
-  //   y: 0,
-  //   height: '80vh',
-  //   width: '50vw',
-  //   duration: 0.5,
-  //   ease: 'power2.out',
-  // });
+// const timeline = gsap.timeline();
+// timeline.from('.project-image img', {
+//   opacity: 0,
+//   y: 0,
+//   height: '80vh',
+//   width: '50vw',
+//   duration: 0.5,
+//   ease: 'power2.out',
+// });
 
-  // timeline.from('.client', {
-  //   opacity: 0,
-  //   x: -20, // Move it slightly from the left
-  //   duration: 0.5,
-  //   ease: 'power2.out',
-  // }, '-=0.3'); // Overlap slightly using negative delay
-};
+// timeline.from('.client', {
+//   opacity: 0,
+//   x: -20, // Move it slightly from the left
+//   duration: 0.5,
+//   ease: 'power2.out',
+// }, '-=0.3'); // Overlap slightly using negative delay
+// };
+
 // watch props.isExpanded
-watch(
-  () => props.isExpanded,
-  (newValue) => {
-    expandProject(newValue);
-  },
-);
+// watch(
+//   () => props.isExpanded,
+//   (newValue) => {
+//     expandProject(newValue);
+//   },
+// );
 </script>
 
 <template>
@@ -90,8 +91,6 @@ watch(
     </div>
     <div class="project-image">
       <CanvasImage
-        :width="`${project.image.width}px`"
-        :height="`${project.image.height}px`"
         :shader="'example2'"
         :src-link="props.project.image.src"
         :image-hover="hoverImage"
