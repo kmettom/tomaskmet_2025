@@ -13,14 +13,13 @@
             </CanvasText>
             <span class="canvas-text-spacing">
               <CanvasText
-                  :mesh-id="'headline-in'"
-                  :shader="'default'"
-                  :theme="'dark'"
+                :mesh-id="'headline-in'"
+                :shader="'default'"
+                :theme="'dark'"
               >
-              in
-            </CanvasText>
+                in
+              </CanvasText>
             </span>
-
           </span>
         </div>
         <div id="secondPart">
@@ -37,9 +36,9 @@
           </div>
           <div id="actionList" class="body-m">
             <div>
-<!--               <div class="iconFrame">-->
-<!--                <img :src="PhoneIcon" alt="Phone icon">-->
-<!--              </div> -->
+              <!--               <div class="iconFrame">-->
+              <!--                <img :src="PhoneIcon" alt="Phone icon">-->
+              <!--              </div> -->
               <span>📞 Book a call</span>
             </div>
             <div>
