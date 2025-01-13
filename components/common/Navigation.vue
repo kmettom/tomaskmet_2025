@@ -4,10 +4,10 @@
     <div id="location">
       <span>Portugal</span>
       <span id="splitter">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-      <span>11:35 PM</span>
+      <span>{{ localTime }}</span>
     </div>
 
-    <div>Folio 24</div>
+    <div>Folio {{ currentYear }}</div>
 
     <nav>
       <span>About</span>
@@ -16,24 +16,35 @@
       <span class="active">Contact me</span>
     </nav>
   </div>
-  <!--  <div class="">-->
-  <!--    <NuxtLink aria-label="showcase" to="/">-->
-  <!--      Showcase-->
-  <!--    </NuxtLink>-->
-  <!--    <br/>-->
-  <!--    <NuxtLink aria-label="about" to="/about">-->
-  <!--      About-->
-  <!--    </NuxtLink>-->
-  <!--  </div>-->
 </template>
 <script setup>
-import { onMounted } from 'vue';
+// const props = defineProps({
+//   sectionActive: Boolean,
+// });
 
-const props = defineProps({
-  sectionActive: Boolean,
+const currentYear = new Date().getFullYear().toString().slice(-2);
+
+const localTime = ref('');
+const timezone = 'Europe/Lisbon';
+
+let intervalId = null;
+function updateLisbonTime() {
+  localTime.value = new Intl.DateTimeFormat('en-GB', {
+    timeZone: timezone,
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true,
+  }).format(new Date());
+}
+
+onMounted(() => {
+  updateLisbonTime();
+  intervalId = setInterval(updateLisbonTime, 60000);
 });
 
-onMounted(() => {});
+onUnmounted(() => {
+  clearInterval(intervalId);
+});
 </script>
 <style lang="scss">
 @import '/assets/scss/global/Global';

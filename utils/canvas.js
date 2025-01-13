@@ -168,6 +168,9 @@ const Canvas = {
         _active,
       );
     }
+    if (_item.options?.includes('navigation')) {
+      console.log(_item);
+    }
   },
 
   onScrollCallBack() {

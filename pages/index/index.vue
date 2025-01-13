@@ -1,11 +1,23 @@
 <template>
   <div>
-    <SectionHero />
-    <SectionAbout />
-    <Work />
-    <Services />
-    <SectionCta />
-    <Footer />
+    <div v-scrollActive:navigation="1" data-nav-id="hero">
+      <SectionHero />
+    </div>
+    <div v-scrollActive:navigation="1" data-nav-id="about">
+      <SectionAbout />
+    </div>
+    <div v-scrollActive:navigation="1" data-nav-id="work">
+      <Work />
+    </div>
+    <div v-scrollActive:navigation="1" data-nav-id="services">
+      <Services />
+    </div>
+    <div>
+      <SectionCta />
+    </div>
+    <div>
+      <Footer />
+    </div>
   </div>
 </template>
 

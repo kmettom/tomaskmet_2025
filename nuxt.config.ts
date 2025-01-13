@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     ['@nuxt-modules/compression', { algorithm: 'brotliCompress' }],
     '@nuxt/image',
     'nuxt-viewport',
+    '@pinia/nuxt',
   ],
 
   image: {
