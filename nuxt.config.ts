@@ -28,7 +28,7 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          extractCSS: false,
+          // extractCSS: false,
         },
       },
     },
