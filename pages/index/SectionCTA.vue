@@ -5,12 +5,22 @@
         <div class="heading-1">
           <span v-scrollActive="0.85">
             <CanvasText
-              :mesh-id="'headline-get-in'"
+              :mesh-id="'headline-get'"
               :shader="'default'"
               :theme="'dark'"
             >
-              Get in
+              Get
             </CanvasText>
+            <span class="canvas-text-spacing">
+              <CanvasText
+                  :mesh-id="'headline-in'"
+                  :shader="'default'"
+                  :theme="'dark'"
+              >
+              in
+            </CanvasText>
+            </span>
+
           </span>
         </div>
         <div id="secondPart">
@@ -27,9 +37,9 @@
           </div>
           <div id="actionList" class="body-m">
             <div>
-              <!-- <div class="iconFrame">
-                <img :src="PhoneIcon" alt="Phone icon">
-              </div> -->
+<!--               <div class="iconFrame">-->
+<!--                <img :src="PhoneIcon" alt="Phone icon">-->
+<!--              </div> -->
               <span>📞 Book a call</span>
             </div>
             <div>

@@ -7,7 +7,11 @@
   padding-top: 150px;
   padding-bottom: 150px;
 
-  & .frame {
+  .heading-1 {
+    white-space: nowrap;
+  }
+
+  .frame {
     display: flex;
     flex-direction: column;
 
@@ -22,75 +26,72 @@
       height: 188px;
     }
 
-    & #secondPart {
-      position: relative;
-      align-self: flex-end;
-      bottom: 40px;
+  }
+
+  #secondPart {
+    position: relative;
+    align-self: flex-end;
+    bottom: 40px;
+
+    @include respond-width($w-m) {
+      bottom: 24px;
+    }
+
+    @include respond-width($w-s) {
+      bottom: 10px;
+    }
+
+    #actionList {
+      position: absolute;
+      right: 0;
+      bottom: 100%;
+      padding-right: 240px;
+      padding-bottom: 18px;
 
       @include respond-width($w-m) {
-        bottom: 24px;
+        padding-right: 0px;
+        padding-bottom: 14px;
       }
 
       @include respond-width($w-s) {
-        bottom: 10px;
-      }
+        right: calc(100% + 4px);
+        width: 100px;
+        bottom: 0;
+        height: 100%;
+        padding: 0;
 
-      & #actionList {
-        position: absolute;
-        right: 0;
-        bottom: 100%;
-        padding-right: 240px;
-        padding-bottom: 18px;
+        // first option
+        & > div:first-child {
+          margin-bottom: 15px;
 
-        @include respond-width($w-m) {
-          padding-right: 21px;
-          padding-bottom: 14px;
-        }
-
-        @include respond-width($w-s) {
-          right: calc(100% + 4px);
-          width: 100px;
-          bottom: 0;
-          height: 100%;
-          padding: 0;
-
-          // first option
-          & > div:first-child {
-            margin-bottom: 15px;
-
-            // first option icon
-            & .iconFrame {
-              position: relative;
-              left: 10px;
-            }
+          // first option icon
+           .iconFrame {
+            position: relative;
+            left: 10px;
           }
-        }
-      }
-
-      & #socialMediaList {
-        position: absolute;
-        text-align: right;
-        bottom: 50px;
-        right: 100%;
-        padding-bottom: 5px;
-        padding-right: 10px;
-
-        @include respond-width($w-m) {
-          bottom: 36px;
-          padding-bottom: 0px;
-          padding-right: 10px;
-        }
-
-        @include respond-width($w-s) {
-          text-align: left;
-          left: 5px;
-          top: calc(100% - 10px);
         }
       }
     }
 
-    & .heading-1 {
-      white-space: nowrap;
+    #socialMediaList {
+      position: absolute;
+      text-align: right;
+      bottom: 50px;
+      right: 100%;
+      padding-bottom: 5px;
+      padding-right: 10px;
+
+      @include respond-width($w-m) {
+        bottom: 36px;
+        padding-bottom: 0px;
+        padding-right: 10px;
+      }
+
+      @include respond-width($w-s) {
+        text-align: left;
+        left: 5px;
+        top: calc(100% - 10px);
+      }
     }
   }
 
@@ -134,5 +135,10 @@
         object-fit: cover;
       }
     }
+  }
+  .canvas-text-spacing{
+    padding-left: 20px;
+    position: relative;
+    display: inline-block;
   }
 }
