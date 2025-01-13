@@ -26,21 +26,34 @@ h2 {
     padding-bottom: 50px;
   }
 }
+#gallery {
+  position: relative;
+  //position: absolute;
+}
+
+.gallery-controls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50vh;
+  height: 100vh;
+  bottom: 0;
+  z-index: 10;
+}
 
 .close-icon {
-  //position: fixed;
-  //top: 25%;
-  //right: 15px;
+  position: absolute;
+  top: 25%;
+  right: 15px;
 }
 
 .change-project-btn {
-  //cursor: pointer;
-  //position: absolute;
+  position: absolute;
   &.next-item {
-    //top: 100px;
+    top: 100px;
   }
   &.prev-item {
-    //bottom: 100px;
+    bottom: 100px;
   }
 }
 

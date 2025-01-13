@@ -1,5 +1,9 @@
 .project {
   display: inline-block;
+  height: 1vh;
+  width: 1vw;
+  transition: ease all 0.5s;
+  cursor: pointer;
 }
 
 .description {
@@ -13,7 +17,7 @@
 
 .expanded {
   position: relative;
-  height: 80vh;
+  height: 100vh;
   width: 100%;
   display: flex;
   justify-content: space-between;

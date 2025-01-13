@@ -474,7 +474,7 @@ const Canvas = {
 
   scrollTo(_position, _delay) {
     setTimeout(() => {
-      this.scroll.render(_position, false);
+      this.scroll.render(_position, true);
     }, _delay);
   },
 

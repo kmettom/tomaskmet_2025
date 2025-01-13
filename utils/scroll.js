@@ -158,7 +158,6 @@ export default class Scroll {
   }
 
   setPosition() {
-    // translate the scrollable container
     if (
       Math.round(this.scrollToRender) !== Math.round(this.current) ||
       this.scrollToRender < 10 ||

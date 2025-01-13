@@ -13,28 +13,27 @@
         </span>
       </h2>
 
-      <div id="gallery">
-          <div v-if="projectsExpanded">
-            <div class="close-icon" @click="expandProjectView(null)">
-              <IconsClose />
-            </div>
-          </div>
-          <div
-              v-if="projectsExpanded && nextProjectName"
-              class="change-project-btn next-item"
-              @click="goToProject(activeProjectsIndex + 1)"
+      <div id="gallery" ref="projectGalleryRef" >
+        <div v-if="projectsExpanded" class="gallery-controls">
+          <button class="close-icon" @click="expandProjectView(null)">
+            <IconsClose />
+          </button>
+          <button
+            v-if="projectsExpanded && nextProjectName"
+            class="change-project-btn next-item"
+            @click="goToProject(activeProjectsIndex + 1)"
           >
             next: {{ nextProjectName }} 👇
-          </div>
-        <div v-if="projectsExpanded && prevProjectName">
-          <!--          v-scrollSpeed="'gallery'"-->
-          <div
-            class="change-project-btn next-item"
+          </button>
+          <button
+            v-if="projectsExpanded && prevProjectName"
+            class="change-project-btn prev-item"
             @click="goToProject(activeProjectsIndex - 1)"
           >
             previous: {{ prevProjectName }} 👆
-          </div>
+          </button>
         </div>
+
         <div
           v-for="(project, index) in projectsData"
           :key="project.name"
@@ -84,11 +83,13 @@ const expandProjectView = (index: number | null) => {
   projectsExpanded.value = index !== null;
 };
 const projectItemRefs = useTemplateRefsList<HTMLDivElement>();
+const projectGalleryRef = ref();
 
 const goToProject = (index: number) => {
   activeProjectsIndex.value = index;
-  const projectPosition = projectItemRefs.value[index].offsetTop;
-  console.log("projectPosition", projectPosition)
+  // console.log("projectGalleryRef", projectGalleryRef.value.getBoundingClientRect().top);
+  const projectPosition = projectItemRefs.value[index].getBoundingClientRect().bottom ;
+  // console.log('projectPosition', index, projectPosition);
   Canvas.scrollTo(projectPosition, 0.5);
 };
 </script>
