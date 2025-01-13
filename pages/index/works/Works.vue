@@ -76,6 +76,10 @@ import { useTemplateRefsList } from '@vueuse/core';
 const projects = ref(projectsData);
 const activeProjectsIndex = ref(0);
 const projectsExpanded = ref(false);
+
+const projectItemRefs = useTemplateRefsList<HTMLDivElement>();
+const projectGalleryRef = ref();
+
 const nextProjectName = computed(() => {
   return projects.value[activeProjectsIndex.value + 1]?.name ?? null;
 });
@@ -86,16 +90,15 @@ const prevProjectName = computed(() => {
 const expandProjectView = (index: number | null) => {
   activeProjectsIndex.value = index === null ? 0 : index;
   projectsExpanded.value = index !== null;
+  setTimeout(() => {
+    if (index) goToProject(index);
+  }, 1000);
 };
-const projectItemRefs = useTemplateRefsList<HTMLDivElement>();
-const projectGalleryRef = ref();
 
 const goToProject = (index: number) => {
   activeProjectsIndex.value = index;
-  // console.log("projectGalleryRef", projectGalleryRef.value.getBoundingClientRect().top);
   const projectPosition =
-    projectItemRefs.value[index].getBoundingClientRect().bottom;
-  // console.log('projectPosition', index, projectPosition);
+    projectItemRefs.value[index].getBoundingClientRect().top + window.scrollY;
   Canvas.scrollTo(projectPosition, 0.5);
 };
 </script>

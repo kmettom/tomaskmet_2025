@@ -161,7 +161,7 @@ const Canvas = {
   },
 
   onActiveElCallback(_item, _active) {
-    if (_item.options?.includes('examplecallback')) {
+    if (_item.options?.includes('projectCallback')) {
       // do something when _active is true or false
       console.log(
         'Example callback triggered, element active state: ',

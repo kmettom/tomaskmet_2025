@@ -60,7 +60,7 @@ const emit = defineEmits(['expandProjects']);
 
 <template>
   <div
-    v-scrollActive:once:top="0.9"
+    v-scrollActive:once:top:projectCallback="0.9"
     :class="`project ${props.isExpanded ? 'expanded' : ''}`"
     @mouseover="hoverImage = true"
     @mouseleave="hoverImage = false"

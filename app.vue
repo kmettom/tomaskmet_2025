@@ -16,7 +16,6 @@
 </template>
 <script setup>
 import { Canvas } from '~/utils/canvas';
-// import { Display } from '~/utils/display';
 import DefaultPageLayout from '~/layout/DefaultPageLayout.vue';
 
 const welcomeInit = ref(false);
