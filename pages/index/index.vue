@@ -24,12 +24,12 @@ import Footer from '~/components/common/Footer.vue';
 // );
 
 useSeoMeta({
-  title: 'Showcase Nuxt ThreeJS Starter Pack - Tomas Kmet - Web developer',
-  ogTitle: 'Showcase Nuxt ThreeJS Starter Pack - Tomas Kmet - Web developer',
+  title: '783Studio - Web design & development',
+  ogTitle: '783Studio - Web design & development',
   description:
-    'Showcase Nuxt ThreeJS Starter Pack - Tomas Kmet - Web developer',
+    '783Studio - Web design & development',
   ogDescription:
-    'Showcase Nuxt ThreeJS Starter Pack - Tomas Kmet - Web developer',
+    '783Studio - Web design & development',
 });
 
 // const hoverImage1 = ref(false);

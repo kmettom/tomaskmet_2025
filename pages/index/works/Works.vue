@@ -16,23 +16,22 @@
       <div id="gallery" ref="projectGalleryRef">
         <div
           v-if="projectsExpanded"
-          v-scrollSpeed="'gallery'"
-          class="gallery-controls"
+          v-scrollSpeed:fixed="'gallery'"
         >
-          <div>
-            <button class="close-icon" @click="expandProjectView(null)">
+          <div class="gallery-controls" >
+            <button class="gallery-controls-btn close-btn" @click="expandProjectView(null)">
               <IconsClose />
             </button>
             <button
               v-if="projectsExpanded && nextProjectName"
-              class="change-project-btn next-item"
+              class="gallery-controls-btn change-project-btn next-item"
               @click="goToProject(activeProjectsIndex + 1)"
             >
               next: {{ nextProjectName }} 👇
             </button>
             <button
               v-if="projectsExpanded && prevProjectName"
-              class="change-project-btn prev-item"
+              class="gallery-controls-btn change-project-btn prev-item"
               @click="goToProject(activeProjectsIndex - 1)"
             >
               previous: {{ prevProjectName }} 👆

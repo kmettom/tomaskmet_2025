@@ -3,11 +3,11 @@
 .works-section {
   padding-top: 200px;
   padding-bottom: 200px;
-  margin: auto 10%;
+  margin: auto 0;
   position: relative;
 
   @include respond-width($w-s) {
-    margin: auto 5%;
+    margin: auto 0;
     padding-top: 100px;
     padding-bottom: 100px;
   }
@@ -35,25 +35,33 @@ h2 {
   position: absolute;
   top: 0;
   right: 0;
-  width: 50vh;
+  width: 50%;
   height: 100vh;
   bottom: 0;
   z-index: 10;
 }
 
-.close-icon {
+.gallery-controls-btn{
   position: absolute;
-  top: 25%;
-  right: 15px;
+  background: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
-
+.close-btn {
+  top: 25%;
+  right: 0;
+}
 .change-project-btn {
-  position: absolute;
+  height: 100px;
+  width: 100%;
+  color: var(--light-color);
+  border: 1px solid red;
   &.next-item {
-    top: 100px;
+    top: 0;
   }
   &.prev-item {
-    bottom: 100px;
+    bottom: 0;
   }
 }
 
