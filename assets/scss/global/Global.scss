@@ -1,4 +1,4 @@
-@import 'media_queries';
-@import 'typography';
-@import 'common';
-@import 'animations';
+@forward 'media_queries';
+@forward 'typography';
+@forward 'common';
+@forward 'animations';

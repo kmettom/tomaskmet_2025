@@ -21,6 +21,6 @@
 <script setup lang="ts"></script>
 
 <style lang="scss" scoped>
-@import 'assets/scss/global/Global';
-@import 'assets/scss/components/Footer';
+@use 'assets/scss/global/Global';
+@use 'assets/scss/components/Footer';
 </style>

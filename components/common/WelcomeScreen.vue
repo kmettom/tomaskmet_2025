@@ -74,5 +74,5 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import 'assets/scss/components/Welcome';
+@use 'assets/scss/components/Welcome';
 </style>

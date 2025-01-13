@@ -16,5 +16,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import 'assets/scss/components/Container';
+@use 'assets/scss/components/Container';
 </style>

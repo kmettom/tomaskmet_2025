@@ -60,5 +60,5 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
-@import 'assets/scss/components/WebGlText';
+@use 'assets/scss/components/WebGlText';
 </style>

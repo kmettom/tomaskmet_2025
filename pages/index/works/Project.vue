@@ -103,6 +103,6 @@ const emit = defineEmits(['expandProjects']);
 </template>
 
 <style lang="scss" scoped>
-@import '/assets/scss/global/Global';
-@import '/assets/scss/pages/index/works/Project';
+@use '/assets/scss/global/Global';
+@use '/assets/scss/pages/index/works/Project';
 </style>

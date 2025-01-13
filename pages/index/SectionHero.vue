@@ -45,6 +45,6 @@ import Container from '~/components/common/Container.vue';
 </script>
 
 <style lang="scss" scoped>
-@import '/assets/scss/global/Global';
-@import '/assets/scss/pages/index/Hero';
+@use '/assets/scss/global/Global';
+@use '/assets/scss/pages/index/Hero';
 </style>

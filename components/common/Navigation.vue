@@ -50,6 +50,6 @@ onUnmounted(() => {
 });
 </script>
 <style lang="scss">
-@import '/assets/scss/global/Global';
-@import '/assets/scss/components/Navigation';
+@use '/assets/scss/global/Global';
+@use '/assets/scss/components/Navigation';
 </style>

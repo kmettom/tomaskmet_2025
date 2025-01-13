@@ -27,5 +27,5 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
-@import '/assets/scss/components/DefaultPageLayout';
+@use '/assets/scss/components/DefaultPageLayout';
 </style>

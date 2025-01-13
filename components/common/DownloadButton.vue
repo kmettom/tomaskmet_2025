@@ -17,7 +17,7 @@
 <!--</script>-->
 
 <!--<style lang="scss" scoped>-->
-<!--@import "global/style";-->
+<!--@use "global/style";-->
 
 <!--.btn {-->
 <!--    display: flex;-->

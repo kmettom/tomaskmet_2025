@@ -104,6 +104,6 @@ const goToProject = (index: number) => {
 </script>
 
 <style lang="scss" scoped>
-@import '/assets/scss/global/Global';
-@import '/assets/scss/pages/index/works/Works';
+@use '/assets/scss/global/Global';
+@use '/assets/scss/pages/index/works/Works';
 </style>
