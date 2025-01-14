@@ -115,11 +115,13 @@ export default class Scroll {
   }
 
   setElementActive(item, status) {
-    if (status) {
-      item.elNode.classList.add('active');
-    } else {
-      item.elNode.classList.remove('active');
-    }
+
+      if (status) {
+        item.elNode.classList.add('active');
+      } else {
+        item.elNode.classList.remove('active');
+      }
+
 
     Canvas.onActiveElCallback(item, status);
 

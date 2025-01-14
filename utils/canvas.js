@@ -166,7 +166,6 @@ const Canvas = {
       // );
     }
     if (_item.options?.includes('navigation') && _active ) {
-      console.log("_itel , _item" , _item.elNode.dataset.navId, _active)
       this.navigationStore = useNavigationStore();
       this.navigationStore.setActiveNavItem(_item.elNode.dataset.navId);
     }
@@ -216,9 +215,11 @@ const Canvas = {
 
   addScrollActiveElement(_settings) {
     _settings.containedMeshId = this.findMeshID(_settings.elNode, true);
-    if (_settings.options?.includes('track')) _settings.trackOnly = true;
     if (_settings.options?.includes('top')) _settings.rangeFromTop = true;
     if (_settings.options?.includes('once')) _settings.aniInOnly = true;
+    if (_settings.options?.includes('track')) {
+      _settings.trackOnly = true
+    }
     _settings.elNode.classList.add('show-on-scroll');
     this.scroll.DOM.scrollactive.push(_settings);
     this.onActiveElCallback(_settings, false);

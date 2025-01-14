@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-scrollActive:track:navigation="1" data-nav-id="hero">
+    <div v-scrollActive:track:navigation="1" data-nav-id="home">
       <SectionHero />
     </div>
     <div v-scrollActive:track:navigation="1" data-nav-id="about">
@@ -9,10 +9,10 @@
     <div v-scrollActive:track:navigation="1" data-nav-id="work">
       <Work />
     </div>
-    <div v-scrollActive:navigation="1" data-nav-id="services">
+    <div v-scrollActive:track:navigation="1" data-nav-id="services">
       <Services />
     </div>
-    <div v-scrollActive:navigation="1" data-nav-id="contact">
+    <div v-scrollActive:track:navigation="1" data-nav-id="contact">
       <SectionContact />
     </div>
     <div>
