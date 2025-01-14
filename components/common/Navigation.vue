@@ -50,6 +50,64 @@ onUnmounted(() => {
 });
 </script>
 <style lang="scss">
-@use '/assets/scss/global/Global';
-@use '/assets/scss/components/Navigation';
+#topNavigation {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  z-index: 9;
+
+  // site navigation
+  & nav {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+
+    & span {
+      cursor: pointer;
+      line-height: 15px;
+
+      &::before {
+        opacity: 0;
+        content: '';
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background: url('public/icons/right-arrow.svg') no-repeat;
+        background-size: cover;
+        margin-right: 4px;
+        position: relative;
+        bottom: -4px;
+        transform: translateX(-10px);
+        transition: ease all 0.3s;
+      }
+
+      &:hover {
+        font-weight: bold;
+      }
+      &.active {
+        font-weight: bold;
+        &::before {
+          transform: translateX(0px);
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  & #location {
+    display: flex;
+
+    @include respond-width($w-xs) {
+      flex-direction: column;
+
+      #splitter {
+        display: none;
+      }
+    }
+  }
+}
 </style>

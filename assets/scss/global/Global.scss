@@ -1,4 +1,224 @@
-@forward 'media_queries';
-@forward 'typography';
-@forward 'common';
-@forward 'animations';
+//@use 'common';
+//@use 'media_queries';
+//@use 'typography';
+//@use 'animations';
+
+//*************************
+// Common
+//*************************
+:root {
+  --light-color: #bfc0b2;
+  --dark-color: #1b1818;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  vertical-align: baseline;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+  font-family: sans-serif;
+
+  background-color: var(--dark-color);
+  color: var(--light-color);
+}
+
+html * {
+  margin: 0;
+  padding: 0;
+
+  text-transform: uppercase;
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+//*************************
+// Media Queries
+//*************************
+
+$w-xl: 1650px; // resolution just under 1920
+$w-l: 1450px; // resolution above 1366
+$w-m: 1280px; // ipad big resolution
+$w-m-s: 1080px; // ipad big resolution
+$w-s: 800px; // ipad small resolution
+$w-xs: 550px; // mobile resolution
+
+@mixin respond-width($media) {
+  $max-width: $media + 1px;
+
+  @media (max-width: #{$max-width}) {
+    @content;
+  }
+}
+
+// Usage:
+// @include respond-width($w-m-s) {
+
+//*************************
+//typography
+//*************************
+
+@font-face {
+  font-family: 'PP Formula Black';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('public/font/PPFormula-CondensedBlack.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal Book';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('public/font/ppneuemontreal-book.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal Bold';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('public/font/ppneuemontreal-bold.otf') format('truetype');
+}
+
+// ================================
+
+@mixin body-font {
+  font-family: 'PP Neue Montreal Book', serif;
+  font-weight: 400;
+}
+
+@mixin body-font-bold {
+  font-family: 'PP Neue Montreal Bold', serif;
+  font-weight: 700;
+}
+
+@mixin header-font {
+  font-family: 'PP Formula Black', serif;
+  font-weight: 900;
+}
+
+.body-l {
+  @include body-font;
+  font-size: 30px;
+  line-height: 120%;
+
+  @include respond-width($w-m) {
+    font-size: 16px;
+    line-height: 137.5%;
+  }
+}
+
+.body-m {
+  @include body-font;
+  font-size: 16px;
+  line-height: 137.5%;
+
+  @include respond-width($w-s) {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+.body-s {
+  @include body-font;
+  font-size: 14px;
+  line-height: 128.5%;
+}
+
+.body-xs {
+  @include body-font;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.body-xs-bold {
+  @include body-font-bold;
+  font-size: 12px;
+  line-height: 166.6%;
+}
+
+.headline {
+  font-size: 100px;
+  font-family: 'PP Formula Black', sans-serif;
+}
+
+.heading-1 {
+  @include header-font;
+  font-size: 298px;
+  line-height: 300px;
+  // background-color: gold;
+
+  @include respond-width($w-m) {
+    font-size: 200px;
+    line-height: 200px;
+  }
+
+  @include respond-width($w-s) {
+    font-size: 100px;
+    line-height: 100px;
+  }
+}
+
+.heading-3 {
+  @include header-font;
+  font-size: 70px;
+  line-height: 120%;
+
+  @include respond-width($w-xs) {
+    font-size: 30px;
+    line-height: 120%;
+  }
+}
+
+.heading-4 {
+  @include header-font;
+  font-size: 30px;
+}
+
+.heading-5 {
+  @include header-font;
+  font-size: 20px;
+  line-height: 110%;
+}
+
+//*************************
+// animations
+//*************************
+
+.show-on-scroll {
+  transition: ease all 0.5s;
+  opacity: 0;
+  $movepx: 45px;
+  &.from-bottom {
+    transform: translate(0px, $movepx);
+  }
+  &.from-top {
+    transform: translate(0px, -$movepx);
+  }
+  &.from-right {
+    transform: translate($movepx, 0);
+  }
+  &.from-left {
+    transform: translate(-$movepx, 0);
+  }
+  &.active {
+    opacity: 1;
+    &.from-bottom,
+    &.from-top,
+    &.from-right,
+    &.from-left {
+      transform: translate(0, 0);
+    }
+  }
+}

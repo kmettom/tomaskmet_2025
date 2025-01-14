@@ -1,3 +1,5 @@
+@use 'media_queries';
+
 @font-face {
   font-family: 'PP Formula Black';
   font-style: normal;
@@ -44,7 +46,7 @@
   font-size: 30px;
   line-height: 120%;
 
-  @include respond-width($w-m) {
+  @include media_queries.respond-width(media_queries.$w-m) {
     font-size: 16px;
     line-height: 137.5%;
   }
@@ -55,7 +57,7 @@
   font-size: 16px;
   line-height: 137.5%;
 
-  @include respond-width($w-s) {
+  @include media_queries.respond-width(media_queries.$w-s) {
     font-size: 14px;
     line-height: 17px;
   }
@@ -90,12 +92,12 @@
   line-height: 300px;
   // background-color: gold;
 
-  @include respond-width($w-m) {
+  @include media_queries.respond-width(media_queries.$w-m) {
     font-size: 200px;
     line-height: 200px;
   }
 
-  @include respond-width($w-s) {
+  @include media_queries.respond-width(media_queries.$w-s) {
     font-size: 100px;
     line-height: 100px;
   }
@@ -106,7 +108,7 @@
   font-size: 70px;
   line-height: 120%;
 
-  @include respond-width($w-xs) {
+  @include media_queries.respond-width(media_queries.$w-xs) {
     font-size: 30px;
     line-height: 120%;
   }
