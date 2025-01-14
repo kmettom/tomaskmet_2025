@@ -9,10 +9,10 @@
     <div v-scrollActive:track:navigation="1" data-nav-id="work">
       <Work />
     </div>
-    <div v-scrollActive:track:navigation="1" data-nav-id="services">
+    <div v-scrollActive:track:navigation:navcontrast="1" data-nav-id="services">
       <Services />
     </div>
-    <div v-scrollActive:track:navigation="1" data-nav-id="contact">
+    <div v-scrollActive:track:navigation:navcontrast="1" data-nav-id="contact">
       <SectionContact />
     </div>
     <div>

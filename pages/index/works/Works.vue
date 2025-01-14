@@ -72,6 +72,7 @@ import projectsData from '~/content/projects.json';
 import Project from '~/pages/index/works/Project.vue';
 import IconsClose from '~/components/common/icons/close.client.vue';
 import { useTemplateRefsList } from '@vueuse/core';
+const navigationStore = useNavigationStore();
 
 const projects = ref(projectsData);
 const activeProjectsIndex = ref(0);
@@ -90,6 +91,7 @@ const prevProjectName = computed(() => {
 const expandProjectView = (index: number | null) => {
   activeProjectsIndex.value = index === null ? 0 : index;
   projectsExpanded.value = index !== null;
+  navigationStore.setNavVisible(!!index);
   setTimeout(() => {
     if (index) goToProject(index);
   }, 1000);

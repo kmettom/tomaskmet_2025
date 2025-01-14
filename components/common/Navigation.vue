@@ -1,6 +1,6 @@
 <template>
   <!-- NAVIGATION -->
-  <div id="topNavigation" class="body-xs" v-if="navVisible">
+  <div v-if="navVisible" id="topNavigation" class="body-xs">
     <div id="location">
       <span>Portugal</span>
       <span id="splitter">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
@@ -10,6 +10,8 @@
     <div>Folio {{ currentYear }}</div>
 
     <nav>
+      {{ navContrastSwitched }}
+      {{ navVisible }}
       <span :class="{ active: activeNav === 'home' }">Home</span>
       <span :class="{ active: activeNav === 'about' }">About</span>
       <span :class="{ active: activeNav === 'work' }">Work</span>
@@ -28,7 +30,8 @@ const timezone = 'Europe/Lisbon';
 
 const activeNav = computed(() => navigationStore.activeNavItem);
 const navVisible = computed(() => navigationStore.navVisible);
-const navItems = computed(() => navigationStore.navItems);
+// const navItems = computed(() => navigationStore.navItems);
+const navContrastSwitched = computed(() => navigationStore.navContrastSwitched);
 
 let intervalId = null;
 function updateLisbonTime() {

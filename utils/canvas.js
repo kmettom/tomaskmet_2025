@@ -165,14 +165,17 @@ const Canvas = {
       //   _active,
       // );
     }
-    if (_item.options?.includes('navigation') && _active ) {
+    if (_item.options?.includes('navigation') && _active) {
       this.navigationStore = useNavigationStore();
       this.navigationStore.setActiveNavItem(_item.elNode.dataset.navId);
+      this.navigationStore.setNavContrast(
+        !!_item.options?.includes('navcontrast'),
+      );
     }
   },
 
   onScrollCallBack() {
-    console.log('onScrollCallBack', _item, _scrollPosition, _scrollSpeed);
+    // console.log('onScrollCallBack', _item, _scrollPosition, _scrollSpeed);
   },
 
   addScrollSpeedElement(_el) {
@@ -218,7 +221,7 @@ const Canvas = {
     if (_settings.options?.includes('top')) _settings.rangeFromTop = true;
     if (_settings.options?.includes('once')) _settings.aniInOnly = true;
     if (_settings.options?.includes('track')) {
-      _settings.trackOnly = true
+      _settings.trackOnly = true;
     }
     _settings.elNode.classList.add('show-on-scroll');
     this.scroll.DOM.scrollactive.push(_settings);
