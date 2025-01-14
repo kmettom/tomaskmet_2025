@@ -1,6 +1,6 @@
 export const useNavigationStore = defineStore('navigationStore', {
   state: () => ({
-    activeNav: '',
+    activeNav: 'xxx',
   }),
   actions: {
     setActiveNav(name) {

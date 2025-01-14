@@ -10,7 +10,7 @@
     <div>Folio {{ currentYear }}</div>
 
     <nav>
-      <!--      {{ activeNav }}-->
+      {{ activeNav }}
       <span>About</span>
       <span>Services</span>
       <span>Work</span>
@@ -23,12 +23,14 @@
 //   sectionActive: Boolean,
 // });
 
+const navigationStore = useNavigationStore();
+
 const currentYear = new Date().getFullYear().toString().slice(-2);
 
 const localTime = ref('');
 const timezone = 'Europe/Lisbon';
 
-// const activeNav = computed(() => navigationStore.activeNav);
+const activeNav = computed(() => navigationStore.activeNav);
 
 let intervalId = null;
 function updateLisbonTime() {

@@ -3,8 +3,6 @@ import * as THREE from 'three';
 
 import { FontLoader } from 'three/addons/loaders/FontLoader.js';
 import { MSDFTextGeometry } from 'three-msdf-text-utils';
-// fix for CommonJS import deployment break
-// const { MSDFTextGeometry } = pkg;
 import Scroll from './scroll.js';
 
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
@@ -25,12 +23,10 @@ import example1Vertex from './shaders/example1Vertex.glsl';
 
 import example2Fragment from './shaders/example2Fragment.glsl';
 import example2Vertex from './shaders/example2Vertex.glsl';
-
 // import MSDFfragment from './shaders/MSDFfragment.glsl';
 import MSDFfragmentBlur from './shaders/MSDFfragmentBlur.glsl';
 import MSDFvertex from './shaders/MSDFvertex.glsl';
-// import { useNavigationStore } from '~/stores/navigation';
-// const navigationStore = useNavigationStore();
+import { useNavigationStore } from '~/stores/navigation';
 
 const CanvasOptions = {
   scroll: {
@@ -52,8 +48,10 @@ const CanvasOptions = {
     vertexShader: example2Vertex,
   },
 };
+// const navigationStore =
+
 const Canvas = {
-  navigation: null,
+  navigationStore: null,
   scrollInProgress: false,
   canvasContainer: null,
   scrollableContent: null,
@@ -109,6 +107,7 @@ const Canvas = {
     this.setResizeListener();
 
     this.render();
+    this.navigationStore = useNavigationStore();
   },
   setResizeListener() {
     window.addEventListener('resize', () => {
@@ -170,8 +169,8 @@ const Canvas = {
       );
     }
     if (_item.options?.includes('navigation')) {
-      console.log(_item);
-      // navigationStore.setActiveNav('some');
+      this.navigationStore = useNavigationStore();
+      this.navigationStore.setActiveNav(_item.elNode.dataset.navId);
     }
   },
 
