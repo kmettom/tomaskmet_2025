@@ -1,19 +1,19 @@
 <template>
   <div>
-    <div v-scrollActive:navigation="1" data-nav-id="hero">
+    <div v-scrollActive:track:navigation="1" data-nav-id="hero">
       <SectionHero />
     </div>
-    <div v-scrollActive:navigation="1" data-nav-id="about">
+    <div v-scrollActive:track:navigation="1" data-nav-id="about">
       <SectionAbout />
     </div>
-    <div v-scrollActive:navigation="1" data-nav-id="work">
+    <div v-scrollActive:track:navigation="1" data-nav-id="work">
       <Work />
     </div>
     <div v-scrollActive:navigation="1" data-nav-id="services">
       <Services />
     </div>
-    <div>
-      <SectionCta />
+    <div v-scrollActive:navigation="1" data-nav-id="contact">
+      <SectionContact />
     </div>
     <div>
       <Footer />
@@ -27,7 +27,7 @@ import Services from '~/pages/index/services/Services.vue';
 import { onMounted, watch } from 'vue';
 import SectionHero from '~/pages/index/SectionHero.vue';
 import SectionAbout from '~/pages/index/SectionAbout.vue';
-import SectionCta from '~/pages/index/SectionCTA.vue';
+import SectionContact from '~/pages/index/SectionContact.vue';
 import Footer from '~/components/common/Footer.vue';
 
 useSeoMeta({

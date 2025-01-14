@@ -10,19 +10,16 @@
     <div>Folio {{ currentYear }}</div>
 
     <nav>
-      {{ activeNav }}
-      <span>About</span>
-      <span>Services</span>
-      <span>Work</span>
-      <span class="active">Contact me</span>
+      {{activeNav}}
+      <span :class="{ active: activeNav === 'home' }">Home</span>
+      <span :class="{ active: activeNav === 'about' }">About</span>
+      <span :class="{ active: activeNav === 'services' }"> >Services</span>
+      <span :class="{ active: activeNav === 'work' }">Work</span>
+      <span :class="{ active: activeNav === 'contact' }">Contact me</span>
     </nav>
   </div>
 </template>
 <script setup>
-// const props = defineProps({
-//   sectionActive: Boolean,
-// });
-
 const navigationStore = useNavigationStore();
 
 const currentYear = new Date().getFullYear().toString().slice(-2);

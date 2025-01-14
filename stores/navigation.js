@@ -1,10 +1,12 @@
 export const useNavigationStore = defineStore('navigationStore', {
   state: () => ({
-    activeNav: 'xxx',
+    activeNavItem: 'home',
+    navVisible: true,
+    // navItems: ['home', 'work', 'contact'],
   }),
   actions: {
-    setActiveNav(name) {
-      this.activeNav = name;
+    setActiveNavItem(name) {
+      this.activeNavItem = name;
     },
   },
 });

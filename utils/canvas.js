@@ -48,8 +48,6 @@ const CanvasOptions = {
     vertexShader: example2Vertex,
   },
 };
-// const navigationStore =
-
 const Canvas = {
   navigationStore: null,
   scrollInProgress: false,
@@ -107,7 +105,6 @@ const Canvas = {
     this.setResizeListener();
 
     this.render();
-    this.navigationStore = useNavigationStore();
   },
   setResizeListener() {
     window.addEventListener('resize', () => {
@@ -163,19 +160,20 @@ const Canvas = {
   onActiveElCallback(_item, _active) {
     if (_item.options?.includes('projectCallback')) {
       // do something when _active is true or false
-      console.log(
-        'Example callback triggered, element active state: ',
-        _active,
-      );
+      // console.log(
+      //   'Example callback triggered, element active state: ',
+      //   _active,
+      // );
     }
-    if (_item.options?.includes('navigation')) {
+    if (_item.options?.includes('navigation') && _active ) {
+      console.log("_itel , _item" , _item.elNode.dataset.navId, _active)
       this.navigationStore = useNavigationStore();
-      this.navigationStore.setActiveNav(_item.elNode.dataset.navId);
+      this.navigationStore.setActiveNavItem(_item.elNode.dataset.navId);
     }
   },
 
   onScrollCallBack() {
-    // console.log('onScrollCallBack', _item, _scrollPosition, _scrollSpeed);
+    console.log('onScrollCallBack', _item, _scrollPosition, _scrollSpeed);
   },
 
   addScrollSpeedElement(_el) {
@@ -218,6 +216,7 @@ const Canvas = {
 
   addScrollActiveElement(_settings) {
     _settings.containedMeshId = this.findMeshID(_settings.elNode, true);
+    if (_settings.options?.includes('track')) _settings.trackOnly = true;
     if (_settings.options?.includes('top')) _settings.rangeFromTop = true;
     if (_settings.options?.includes('once')) _settings.aniInOnly = true;
     _settings.elNode.classList.add('show-on-scroll');
