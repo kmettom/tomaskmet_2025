@@ -4,7 +4,7 @@
 
 Install the dependencies:
 
-NODE VERSION: 18
+NODE VERSION: 22
 
 ```bash
 # yarn
