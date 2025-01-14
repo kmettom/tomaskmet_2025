@@ -29,8 +29,8 @@ import example2Vertex from './shaders/example2Vertex.glsl';
 // import MSDFfragment from './shaders/MSDFfragment.glsl';
 import MSDFfragmentBlur from './shaders/MSDFfragmentBlur.glsl';
 import MSDFvertex from './shaders/MSDFvertex.glsl';
-import { useNavigationStore } from '~/stores/navigation';
-const navigationStore = useNavigationStore();
+// import { useNavigationStore } from '~/stores/navigation';
+// const navigationStore = useNavigationStore();
 
 const CanvasOptions = {
   scroll: {
@@ -171,7 +171,7 @@ const Canvas = {
     }
     if (_item.options?.includes('navigation')) {
       console.log(_item);
-      navigationStore.setActiveNav('some');
+      // navigationStore.setActiveNav('some');
     }
   },
 

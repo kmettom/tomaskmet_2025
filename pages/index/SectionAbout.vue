@@ -30,6 +30,34 @@ import Container from '~/components/common/Container.vue';
 </script>
 
 <style lang="scss" scoped>
-@use 'assets/scss/global/Global';
-@use 'assets/scss/pages/index/About';
+//=======>>>   ABOUT   <<<==========//
+
+.aboutSection {
+  display: grid;
+  grid-template-columns: 10fr 14fr;
+  text-transform: uppercase;
+  padding-bottom: 200px;
+
+  @include respond-width($w-m-s) {
+    padding: 40px;
+  }
+
+  @include respond-width($w-xs) {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  & p {
+    margin-bottom: 30px;
+
+    @include respond-width($w-m) {
+      margin-bottom: 10px;
+    }
+
+    @include respond-width($w-xs) {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+}
 </style>

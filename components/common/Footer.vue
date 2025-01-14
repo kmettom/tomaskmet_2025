@@ -21,5 +21,31 @@
 <script setup lang="ts"></script>
 
 <style lang="scss" scoped>
-@use 'assets/scss/components/Footer';
+#footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+
+  @include respond-width($w-s) {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  & #fontSeparator {
+    display: none;
+  }
+
+  @include respond-width($w-s) {
+    display: block;
+    text-align: center;
+
+    & #rights {
+      display: block;
+    }
+
+    & #fontSeparator {
+      display: inline;
+    }
+  }
+}
 </style>
