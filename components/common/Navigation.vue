@@ -1,6 +1,6 @@
 <template>
   <!-- NAVIGATION -->
-  <div v-if="navVisible" id="topNavigation" class="body-xs">
+  <div v-if="navVisible" id="topNavigation" class="body-xs" :class="{ dark: navContrastSwitched }">
     <div id="location">
       <span>Portugal</span>
       <span id="splitter">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
@@ -10,8 +10,6 @@
     <div>Folio {{ currentYear }}</div>
 
     <nav>
-      {{ navContrastSwitched }}
-      {{ navVisible }}
       <span :class="{ active: activeNav === 'home' }">Home</span>
       <span :class="{ active: activeNav === 'about' }">About</span>
       <span :class="{ active: activeNav === 'work' }">Work</span>
@@ -62,6 +60,10 @@ onUnmounted(() => {
   justify-content: space-between;
   padding: 20px;
   z-index: 9;
+
+  &.dark{
+    color: var(--dark-color);
+  }
 
   // site navigation
   & nav {
