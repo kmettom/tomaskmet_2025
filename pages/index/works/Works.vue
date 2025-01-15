@@ -92,15 +92,20 @@ const expandProjectView = (index: number | null) => {
   activeProjectsIndex.value = index === null ? 0 : index;
   projectsExpanded.value = index !== null;
   navigationStore.setNavVisible(index === null);
-  setTimeout(() => {
-    if (index) goToProject(index);
-  }, 1000);
+  if(index !== null) {
+    setTimeout(() => {
+      if (index) goToProject(index);
+    }, 500);
+  }
 };
 
 const goToProject = (index: number) => {
   activeProjectsIndex.value = index;
   const projectPosition =
     projectItemRefs.value[index].getBoundingClientRect().top + window.scrollY;
+
+  console.log("goToProject", index, projectPosition)
+
   Canvas.scrollTo(projectPosition, 0.5);
 };
 </script>

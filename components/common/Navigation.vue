@@ -1,6 +1,11 @@
 <template>
   <!-- NAVIGATION -->
-  <div v-if="navVisible" id="topNavigation" class="body-xs" :class="{ dark: navContrastSwitched }">
+  <div
+    v-if="navVisible"
+    id="topNavigation"
+    class="body-xs"
+    :class="{ dark: navContrastSwitched }"
+  >
     <div id="location">
       <span>Portugal</span>
       <span id="splitter">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
@@ -61,7 +66,7 @@ onUnmounted(() => {
   padding: 20px;
   z-index: 9;
 
-  &.dark{
+  &.dark {
     color: var(--dark-color);
   }
 
