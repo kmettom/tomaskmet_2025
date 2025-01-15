@@ -32,7 +32,7 @@ const emit = defineEmits(['expandProjects']);
 const expandProject = () => {
   const timeline = gsap.timeline();
 
-  timeline.to('.project-image img', {
+  timeline.to('.project-image .webgl-img', {
     height: '80vh',
     width: '50vw',
     duration: 0.75,
@@ -43,7 +43,7 @@ const expandProject = () => {
 const shrinkProject = () => {
   const timeline = gsap.timeline();
 
-  timeline.to('.project-image img', {
+  timeline.to('.project-image .webgl-img', {
     height: 'auto',
     width: 'auto',
     duration: 0.75,
@@ -110,8 +110,8 @@ watch(
 <style lang="scss" scoped>
 .project {
   display: inline-block;
-  height: 1vh;
-  width: 1vw;
+  //height: 1vh;
+  //width: 1vw;
   transition: ease all 0.5s;
   cursor: pointer;
 }

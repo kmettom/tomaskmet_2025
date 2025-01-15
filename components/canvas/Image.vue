@@ -1,5 +1,5 @@
 <template>
-  <div ref="imageWrapper">
+  <div ref="imageWrapper" class="webgl-img-wrapper">
     <NuxtImg
       class="webgl-img"
       :width="width"
@@ -47,6 +47,14 @@ const generatedMeshId = ref(props.srcLink + meshIdRandom.value);
 const imageWrapper = ref('imageWrapper');
 const imgLoaded = ref(false);
 
+// const imageWidth = computed(() => {
+//   if (imageWrapper.value)
+//     imageWrapper.value.children[0]?.getBoundingClientRect()?.width ?? 0;
+// });
+// const imageHeight = computed(() => {
+//   imageWrapper.value.children[0]?.getBoundingClientRect()?.height
+// })
+
 onMounted(async () => {
   addImageToCanvas(false);
 });
@@ -57,13 +65,13 @@ const addImageToCanvas = (_timeout) => {
     () => {
       if (
         !imageWrapper.value ||
-          imageWrapper.value.children[0]?.getBoundingClientRect()?.width === 0
+        imageWrapper.value.children[0]?.getBoundingClientRect()?.width === 0
       ) {
         addImageToCanvas(true);
         return;
       }
       Canvas.addImageAsMesh(
-          imageWrapper.value.children[0],
+        imageWrapper.value.children[0],
         props.shader,
         generatedMeshId.value,
         false,
