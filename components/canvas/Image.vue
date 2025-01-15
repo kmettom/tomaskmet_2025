@@ -98,5 +98,8 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
-@use 'assets/scss/components/WebGlImage';
+.webgl-img {
+  opacity: 0;
+}
+
 </style>

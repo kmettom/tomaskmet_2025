@@ -27,5 +27,28 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
-@use '/assets/scss/components/DefaultPageLayout';
+#scrollContainer {
+  position: fixed;
+  height: 100%;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+#scrollableContent {
+  will-change: transform;
+}
+
+#animationContainer {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  margin: 0 auto;
+  pointer-events: none;
+  z-index: 0; //-1
+}
+
 </style>

@@ -74,5 +74,33 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@use 'assets/scss/components/Welcome';
+.welcome {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 99;
+  background-color: var(--light-color);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.welcome-txt-wrapper {
+  position: relative;
+  text-align: center;
+}
+
+.welcome-txt-main {
+  font-size: 50px;
+  opacity: 0;
+}
+
+.welcome-by {
+  opacity: 0;
+}
+
 </style>

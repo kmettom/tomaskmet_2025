@@ -16,5 +16,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use 'assets/scss/components/Container';
+.section-container {
+  max-width: 1048px;
+  margin: 0 auto;
+}
+
 </style>

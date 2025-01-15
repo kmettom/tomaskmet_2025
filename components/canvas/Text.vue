@@ -60,5 +60,8 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
-@use 'assets/scss/components/WebGlText';
+span {
+  opacity: 0;
+}
+
 </style>
