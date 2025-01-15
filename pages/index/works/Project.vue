@@ -32,7 +32,7 @@ const emit = defineEmits(['expandProjects']);
 const expandProject = () => {
   const timeline = gsap.timeline();
 
-  timeline.to('.project-image .webgl-img', {
+  timeline.to('.project-image img', {
     height: '80vh',
     width: '50vw',
     duration: 0.75,
@@ -43,7 +43,7 @@ const expandProject = () => {
 const shrinkProject = () => {
   const timeline = gsap.timeline();
 
-  timeline.to('.project-image .webgl-img', {
+  timeline.to('.project-image img', {
     height: 'auto',
     width: 'auto',
     duration: 0.75,
