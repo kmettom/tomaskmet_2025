@@ -116,8 +116,9 @@ const Canvas = {
       this.setSize();
 
       this.resizeImageStore();
-      this.setImageMeshPositions();
-      this.setTextMeshPositions();
+      this.resizeTextStore();
+      // this.setImageMeshPositions();
+      // this.setTextMeshPositions();
     });
   },
   resizeImageStore() {
@@ -127,9 +128,17 @@ const Canvas = {
       this.imageStore[i].width = bounds.width;
       this.imageStore[i].height = bounds.height;
     }
+    this.setImageMeshPositions();
   },
   resizeTextStore() {
     // all text meshes should be resized to new size
+    for (var i = 0; i < this.textStore.length; i++) {
+      let bounds = this.textStore[i].img.getBoundingClientRect();
+      this.textStore[i].mesh.scale.set(bounds.width, bounds.height);
+      this.textStore[i].width = bounds.width;
+      this.textStore[i].height = bounds.height;
+    }
+    this.setTextMeshPositions();
   },
   setImageMeshPositions() {
     if (this.imageStore.length === 0) return;
