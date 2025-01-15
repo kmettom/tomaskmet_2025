@@ -51,6 +51,7 @@ const CanvasOptions = {
 const Canvas = {
   navigationStore: null,
   scrollInProgress: false,
+  animateImageMesh: false,
   canvasContainer: null,
   scrollableContent: null,
   pointer: { cursor: null, intersects: null },
@@ -58,6 +59,7 @@ const Canvas = {
   scene: new THREE.Scene(),
   materials: [],
   imageStore: [],
+  textStore: [],
   trackViewPortElements: [],
   scroll: null,
   currentScroll: 0,
@@ -114,20 +116,23 @@ const Canvas = {
       this.setSize();
 
       this.resizeImageStore();
+      this.setImageMeshPositions();
+      this.setTextMeshPositions();
     });
   },
   resizeImageStore() {
-    // all meshes should be resized to new size
     for (var i = 0; i < this.imageStore.length; i++) {
       let bounds = this.imageStore[i].img.getBoundingClientRect();
       this.imageStore[i].mesh.scale.set(bounds.width, bounds.height);
       this.imageStore[i].width = bounds.width;
       this.imageStore[i].height = bounds.height;
     }
-    this._setMeshPositions();
   },
-  _setMeshPositions() {
-    if (!this.imageStore) return;
+  resizeTextStore() {
+    // all text meshes should be resized to new size
+  },
+  setImageMeshPositions() {
+    if (this.imageStore.length === 0) return;
     for (var i = 0; i < this.imageStore.length; i++) {
       this.imageStore[i].mesh.position.x =
         this.imageStore[i].img.getBoundingClientRect().left -
@@ -137,6 +142,19 @@ const Canvas = {
         -this.imageStore[i].img.getBoundingClientRect().top +
         this.height / 2 -
         this.imageStore[i].height / 2;
+    }
+  },
+  setTextMeshPositions() {
+    if (this.textStore.length === 0) return;
+    for (var i = 0; i < this.textStore.length; i++) {
+      this.textStore[i].mesh.position.x =
+        this.textStore[i].img.getBoundingClientRect().left -
+        this.width / 2 +
+        this.textStore[i].width / 2;
+      this.textStore[i].mesh.position.y =
+        -this.textStore[i].img.getBoundingClientRect().top +
+        this.height / 2 -
+        this.textStore[i].height / 2;
     }
   },
 
@@ -331,9 +349,10 @@ const Canvas = {
         mesh.name = _id;
         _htmlEl.dataset.meshId = _id;
 
-        const scaleCoefY = bounds.width / mesh.geometry._layout._width;
+        const scaleX = bounds.width / mesh.geometry._layout._width;
+        const scaleY = -1 * scaleX;
 
-        mesh.scale.set(scaleCoefY, -1 * scaleCoefY, 1);
+        mesh.scale.set(scaleX, scaleY, 1);
 
         this.scene.add(mesh);
 
@@ -347,9 +366,10 @@ const Canvas = {
           height: bounds.height * 1.43, // bounds.height,
         };
 
-        this.imageStore.push(newMesh);
+        // this.imageStore.push(newMesh);
+        this.textStore.push(newMesh);
 
-        this._setMeshPositions();
+        this.setTextMeshPositions();
 
         setTimeout(() => {
           if (!_htmlEl.dataset.scrollActive) this.activateMesh(_id, true);
@@ -422,7 +442,7 @@ const Canvas = {
       if (!_img.dataset.scrollActive) this.activateMesh(_id, true);
     }, 250);
 
-    this._setMeshPositions();
+    this.setImageMeshPositions();
     if (_mouseListeners) this.meshMouseListeners(newMesh, material);
   },
 
@@ -496,7 +516,12 @@ const Canvas = {
     //animate on scroll
     if (this.scrollInProgress) {
       this.customPass.uniforms.scrollSpeed.value = this.scroll.speedTarget;
-      this._setMeshPositions();
+      this.setImageMeshPositions();
+      this.setTextMeshPositions();
+    }
+
+    if (this.animateImageMesh) {
+      this.resizeImageStore();
     }
 
     //animate on hover

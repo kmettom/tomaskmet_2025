@@ -31,12 +31,18 @@ const emit = defineEmits(['expandProjects']);
 
 const expandProject = () => {
   const timeline = gsap.timeline();
-
+  // Canvas.animateImageMesh = true;
   timeline.to('.project-image img', {
     height: '80vh',
     width: '50vw',
-    duration: 0.75,
+    duration: 1.75,
     ease: 'power2.out',
+    onStart: () => {
+      Canvas.animateImageMesh = true;
+    },
+    onComplete: () => {
+      Canvas.animateImageMesh = false;
+    },
   }); // Overlap slightly using negative delay
 };
 
@@ -48,6 +54,12 @@ const shrinkProject = () => {
     width: 'auto',
     duration: 0.75,
     ease: 'power2.out',
+    onStart: () => {
+      Canvas.animateImageMesh = true;
+    },
+    onComplete: () => {
+      Canvas.animateImageMesh = false;
+    },
   });
 };
 
