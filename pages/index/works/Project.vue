@@ -1,6 +1,7 @@
 <script setup>
-// import { watch } from 'vue';
-// import { gsap } from 'gsap';
+import { watch } from 'vue';
+import { gsap } from 'gsap';
+
 const props = defineProps({
   project: {
     type: Object,
@@ -28,34 +29,38 @@ const hoverImage = ref(false);
 
 const emit = defineEmits(['expandProjects']);
 
-// const expandProject = (status) => {
-//   console.log(status);
+const expandProject = () => {
+  const timeline = gsap.timeline();
 
-// const timeline = gsap.timeline();
-// timeline.from('.project-image img', {
-//   opacity: 0,
-//   y: 0,
-//   height: '80vh',
-//   width: '50vw',
-//   duration: 0.5,
-//   ease: 'power2.out',
-// });
+  timeline.to('.project-image img', {
+    height: '80vh',
+    width: '50vw',
+    duration: 0.75,
+    ease: 'power2.out',
+  }); // Overlap slightly using negative delay
+};
 
-// timeline.from('.client', {
-//   opacity: 0,
-//   x: -20, // Move it slightly from the left
-//   duration: 0.5,
-//   ease: 'power2.out',
-// }, '-=0.3'); // Overlap slightly using negative delay
-// };
+const shrinkProject = () => {
+  const timeline = gsap.timeline();
 
-// watch props.isExpanded
-// watch(
-//   () => props.isExpanded,
-//   (newValue) => {
-//     expandProject(newValue);
-//   },
-// );
+  timeline.to('.project-image img', {
+    height: 'auto',
+    width: 'auto',
+    duration: 0.75,
+    ease: 'power2.out',
+  });
+};
+
+watch(
+  () => props.isExpanded,
+  (newValue) => {
+    if (newValue) {
+      expandProject();
+    } else {
+      shrinkProject();
+    }
+  },
+);
 </script>
 
 <template>
@@ -132,7 +137,7 @@ const emit = defineEmits(['expandProjects']);
 
   @include respond-width($w-s) {
     flex-direction: column-reverse;
-    align-items: center !important;
+    align-items: center;
     padding: 10vh 0;
     gap: 10vh;
   }

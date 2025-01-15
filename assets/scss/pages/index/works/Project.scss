@@ -27,7 +27,7 @@
 
   @include respond-width($w-s) {
     flex-direction: column-reverse;
-    align-items: center !important;
+    align-items: center;
     padding: 10vh 0;
     gap: 10vh;
   }
@@ -95,21 +95,21 @@
   }
 
   .frame {
-    width: 40% !important;
+    width: 40%;
     position: relative;
 
     @include respond-width($w-m-s) {
-      width: 46% !important;
+      width: 46%;
     }
 
     @include respond-width($w-s) {
-      width: auto !important;
-      max-height: 50% !important;
+      width: auto;
+      max-height: 50%;
       object-fit: contain;
     }
 
     // @include respond-width($w-xs) {
-    //     width: 100% !important;
+    //     width: 100% ;
     // }
 
     &:hover {

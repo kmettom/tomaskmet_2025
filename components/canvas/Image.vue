@@ -1,13 +1,15 @@
 <template>
-  <span ref="img" class="webgl-img">
-    <NuxtImg
-      :width="width"
-      :height="height"
-      alt="picture"
-      :src="srcLink"
-      @load="imageLoaded"
-    />
-  </span>
+  <!--  <span  >-->
+  <NuxtImg
+    ref="img"
+    class="webgl-img"
+    :width="width"
+    :height="height"
+    alt="picture"
+    :src="srcLink"
+    @load="imageLoaded"
+  />
+  <!--  </span>-->
 </template>
 
 <script setup>
