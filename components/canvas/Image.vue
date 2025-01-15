@@ -1,15 +1,14 @@
 <template>
-  <!--  <span  >-->
-  <NuxtImg
-    ref="img"
-    class="webgl-img"
-    :width="width"
-    :height="height"
-    alt="picture"
-    :src="srcLink"
-    @load="imageLoaded"
-  />
-  <!--  </span>-->
+  <div ref="imageWrapper">
+    <NuxtImg
+      class="webgl-img"
+      :width="width"
+      :height="height"
+      alt="picture"
+      :src="srcLink"
+      @load="imageLoaded"
+    />
+  </div>
 </template>
 
 <script setup>
@@ -45,7 +44,7 @@ const generateRandomId = () => {
 const meshIdRandom = ref(generateRandomId() + props.srcLink);
 const generatedMeshId = ref(props.srcLink + meshIdRandom.value);
 
-const img = ref('img');
+const imageWrapper = ref('imageWrapper');
 const imgLoaded = ref(false);
 
 onMounted(async () => {
@@ -53,17 +52,18 @@ onMounted(async () => {
 });
 
 const addImageToCanvas = (_timeout) => {
+  console.log('addImageToCanvas');
   setTimeout(
     () => {
       if (
-        !img.value ||
-        img.value.children[0].getBoundingClientRect()?.width === 0
+        !imageWrapper.value ||
+          imageWrapper.value.children[0]?.getBoundingClientRect()?.width === 0
       ) {
         addImageToCanvas(true);
         return;
       }
       Canvas.addImageAsMesh(
-        img.value.children[0],
+          imageWrapper.value.children[0],
         props.shader,
         generatedMeshId.value,
         false,

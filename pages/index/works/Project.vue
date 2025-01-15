@@ -92,7 +92,7 @@ watch(
         {{ project.description }}
       </p>
 
-      <a :href="project.websiteLink" target="_blank">👉 visit site</a>
+      <a :href="project.websiteLink" target="_blank">👉 visit website</a>
     </div>
     <div class="project-image">
       <CanvasImage
@@ -114,6 +114,10 @@ watch(
   width: 1vw;
   transition: ease all 0.5s;
   cursor: pointer;
+}
+
+.project-image {
+  border: 1px solid red;
 }
 
 .description {
@@ -205,48 +209,21 @@ watch(
   }
 
   .frame {
-    width: 40% !important;
+    width: 40%;
     position: relative;
 
     @include respond-width($w-m-s) {
-      width: 46% !important;
+      width: 46%;
     }
 
     @include respond-width($w-s) {
-      width: auto !important;
-      max-height: 50% !important;
+      width: auto;
+      max-height: 50%;
       object-fit: contain;
     }
 
-    // @include respond-width($w-xs) {
-    //     width: 100% !important;
-    // }
-
     &:hover {
       cursor: auto;
-    }
-  }
-
-  .closeIcon {
-    display: block;
-    position: absolute;
-    left: 102%;
-    align-self: flex-start;
-    border: 1px solid aqua;
-
-    @include respond-width($w-m-s) {
-      top: 8%;
-      left: 90%;
-    }
-
-    @include respond-width($w-s) {
-      top: 30px;
-      left: 85%;
-    }
-
-    @include respond-width($w-xs) {
-      top: 3%;
-      right: 5%;
     }
   }
 }
