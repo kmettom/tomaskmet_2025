@@ -113,14 +113,16 @@ const goToProject = (index: number) => {
 <style lang="scss" scoped>
 //=======>>>   WORKS   <<<==========//
 
+$marginRight: 50px;
+
 .works-section {
   padding-top: 200px;
   padding-bottom: 200px;
-  margin: auto 0 auto 150px;
+  margin: auto $marginRight auto 150px;
   position: relative;
 
   @include respond-width($w-s) {
-    margin: auto 0 auto 50px;
+    margin: auto $marginRight auto 50px;
     padding-top: 100px;
     padding-bottom: 100px;
   }
@@ -147,7 +149,7 @@ h2 {
 .gallery-controls {
   position: absolute;
   top: 0;
-  right: 0;
+  right: -$marginRight;
   width: 50%;
   height: 100vh;
   bottom: 0;

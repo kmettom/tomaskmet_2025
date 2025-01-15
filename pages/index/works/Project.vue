@@ -30,28 +30,17 @@ const hoverImage = ref(false);
 const emit = defineEmits(['expandProjects']);
 
 const expandProject = () => {
-  const timeline = gsap.timeline();
-  // Canvas.animateImageMesh = true;
-  timeline.to('.project-image img', {
-    height: '80vh',
-    width: '50vw',
-    duration: 1.75,
-    ease: 'power2.out',
+  const timeline = gsap.timeline({
     onStart: () => {
       Canvas.animateImageMesh = true;
     },
     onComplete: () => {
       Canvas.animateImageMesh = false;
     },
-  }); // Overlap slightly using negative delay
-};
-
-const shrinkProject = () => {
-  const timeline = gsap.timeline();
-
+  });
   timeline.to('.project-image img', {
-    height: 'auto',
-    width: 'auto',
+    height: '80vh',
+    width: '50vw',
     duration: 0.75,
     ease: 'power2.out',
     onStart: () => {
@@ -60,7 +49,43 @@ const shrinkProject = () => {
     onComplete: () => {
       Canvas.animateImageMesh = false;
     },
+  }, 'expandProject');
+  timeline.to('.project-name', {
+    width: '0%',
+    opacity: 0,
+  }, "expandProject");
+  timeline.to('.expand-description', {
+    width: '40%',
+    height: '80vh',
+    opacity: 1,
+  }, "expandProject");
+};
+
+const shrinkProject = () => {
+  const timeline = gsap.timeline({
+    onStart: () => {
+      Canvas.animateImageMesh = true;
+    },
+    onComplete: () => {
+      Canvas.animateImageMesh = false;
+    },
   });
+  timeline.to('.project-image img', {
+    height: '100px',
+    width: '100px',
+    duration: 0.75,
+    ease: 'power2.out',
+
+  }, "shrinkProject");
+  timeline.to('.project-name', {
+    width: '100%',
+    opacity: 0,
+  }, "shrinkProject");
+  timeline.to('.expand-description', {
+    width: '0',
+    height: '0',
+    opacity: 0,
+  }, "shrinkProject");
 };
 
 watch(
@@ -78,25 +103,25 @@ watch(
 <template>
   <div
     v-scrollActive:once:top:projectCallback="0.9"
-    :class="`project ${props.isExpanded ? 'expanded' : ''}`"
+    :class="`project ${isExpanded ? 'expanded' : ''}`"
     @mouseover="hoverImage = true"
     @mouseleave="hoverImage = false"
     @click="emit('expandProjects')"
   >
     <div class="heading-3">{{ projectNumber }}</div>
-    <div class="description">
+    <div class="expand-description">
       <div class="statistics">
-        <div class="infoRow">
+        <div class="info-row">
           <div>client:</div>
-          <div>{{ props.project.client }}</div>
+          <div>{{ project.name }}</div>
         </div>
-        <div class="infoRow">
+        <div class="info-row">
           <div>year:</div>
-          <div>{{ props.project.year }}</div>
+          <div>{{ project.year }}</div>
         </div>
-        <div v-if="props.project.award" class="infoRow">
+        <div v-if="project.award" class="info-row">
           <div>award</div>
-          <div>{{ props.project.award }}</div>
+          <div>{{ project.award }}</div>
         </div>
       </div>
 
@@ -109,12 +134,12 @@ watch(
     <div class="project-image">
       <CanvasImage
         :shader="'example2'"
-        :src-link="props.project.image.src"
+        :src-link="project.image.src"
         :image-hover="hoverImage"
       />
     </div>
-    <div class="info body-m">
-      <span>{{ props.project.name }}</span>
+    <div class="project-name body-m">
+      <span>{{ project.name }}</span>
     </div>
   </div>
 </template>
@@ -122,23 +147,59 @@ watch(
 <style lang="scss" scoped>
 .project {
   display: inline-block;
-  //height: 1vh;
-  //width: 1vw;
   transition: ease all 0.5s;
   cursor: pointer;
 }
 
-.project-image {
-  border: 1px solid red;
+.expand-description {
+  //opacity: 0.5;
+  //border: 1px solid red;
+  //display: none;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+
+  position: relative;
+  display: block;
+  //width: 40%;
+  //height: 60vh;
+
+  @include respond-width($w-m-s) {
+    width: 46%;
+  }
+
+  @include respond-width($w-s) {
+    width: 80%;
+  }
+
+  @include respond-width($w-xs) {
+    width: 100%;
+  }
+
+  .statistics {
+    height: 50%;
+
+    .info-row {
+      height: 20%;
+
+      * {
+        display: inline-block;
+        width: 50%;
+      }
+    }
+  }
+
+  a {
+    display: inline-block;
+    margin-top: 20px;
+  }
 }
 
-.description {
-  display: none;
-}
-
-.info {
-  display: flex;
-  justify-content: space-between;
+.project-name {
+  width: 100%;
+  //display: flex;
+  //justify-content: space-between;
 }
 
 .expanded {
@@ -180,44 +241,9 @@ watch(
   }
 
   .info {
-    display: none;
-  }
-
-  .description {
-    position: relative;
-    display: block;
-    width: 40%;
-    height: 60vh;
-
-    @include respond-width($w-m-s) {
-      width: 46%;
-    }
-
-    @include respond-width($w-s) {
-      width: 80%;
-    }
-
-    @include respond-width($w-xs) {
-      width: 100%;
-    }
-
-    .statistics {
-      height: 50%;
-
-      .infoRow {
-        height: 20%;
-
-        * {
-          display: inline-block;
-          width: 50%;
-        }
-      }
-    }
-
-    a {
-      display: inline-block;
-      margin-top: 20px;
-    }
+    border: 1px solid red;
+    opacity: 0.5;
+    //display: none;
   }
 
   .frame {
