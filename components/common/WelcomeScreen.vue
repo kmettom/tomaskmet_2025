@@ -102,5 +102,4 @@ export default {
 .welcome-by {
   opacity: 0;
 }
-
 </style>

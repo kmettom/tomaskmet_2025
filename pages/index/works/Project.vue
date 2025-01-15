@@ -38,27 +38,39 @@ const expandProject = () => {
       Canvas.animateImageMesh = false;
     },
   });
-  timeline.to('.project-image img', {
-    height: '80vh',
-    width: '50vw',
-    duration: 0.75,
-    ease: 'power2.out',
-    onStart: () => {
-      Canvas.animateImageMesh = true;
+  timeline.to(
+    '.project-image img',
+    {
+      height: '80vh',
+      width: '50vw',
+      duration: 0.75,
+      ease: 'power2.out',
+      onStart: () => {
+        Canvas.animateImageMesh = true;
+      },
+      onComplete: () => {
+        Canvas.animateImageMesh = false;
+      },
     },
-    onComplete: () => {
-      Canvas.animateImageMesh = false;
+    'expandProject',
+  );
+  timeline.to(
+    '.project-name',
+    {
+      width: '0%',
+      opacity: 0,
     },
-  }, 'expandProject');
-  timeline.to('.project-name', {
-    width: '0%',
-    opacity: 0,
-  }, "expandProject");
-  timeline.to('.expand-description', {
-    width: '40%',
-    height: '80vh',
-    opacity: 1,
-  }, "expandProject");
+    'expandProject',
+  );
+  timeline.to(
+    '.expand-description',
+    {
+      width: '40%',
+      height: '80vh',
+      opacity: 1,
+    },
+    'expandProject',
+  );
 };
 
 const shrinkProject = () => {
@@ -70,22 +82,33 @@ const shrinkProject = () => {
       Canvas.animateImageMesh = false;
     },
   });
-  timeline.to('.project-image img', {
-    height: '100px',
-    width: '100px',
-    duration: 0.75,
-    ease: 'power2.out',
-
-  }, "shrinkProject");
-  timeline.to('.project-name', {
-    width: '100%',
-    opacity: 0,
-  }, "shrinkProject");
-  timeline.to('.expand-description', {
-    width: '0',
-    height: '0',
-    opacity: 0,
-  }, "shrinkProject");
+  timeline.to(
+    '.project-image img',
+    {
+      height: '100px',
+      width: '100px',
+      duration: 0.75,
+      ease: 'power2.out',
+    },
+    'shrinkProject',
+  );
+  timeline.to(
+    '.project-name',
+    {
+      width: '100%',
+      opacity: 0,
+    },
+    'shrinkProject',
+  );
+  timeline.to(
+    '.expand-description',
+    {
+      width: '0',
+      height: '0',
+      opacity: 0,
+    },
+    'shrinkProject',
+  );
 };
 
 watch(

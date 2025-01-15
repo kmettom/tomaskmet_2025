@@ -101,5 +101,4 @@ onBeforeUnmount(() => {
 .webgl-img {
   opacity: 0;
 }
-
 </style>

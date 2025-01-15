@@ -20,5 +20,4 @@ export default {
   max-width: 1048px;
   margin: 0 auto;
 }
-
 </style>
