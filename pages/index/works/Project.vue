@@ -40,18 +40,21 @@ const expandProject = () => {
   });
   const aniDuration = 0.75;
   timeline.to(
+      '.project',
+      {
+        height: '80vh',
+        width: '100%',
+        duration: aniDuration,
+        ease: 'power2.out',
+      }
+  );
+  timeline.to(
     '.project-image img',
     {
       height: '80%',
       width: '50vw',
       duration: aniDuration,
       ease: 'power2.out',
-      onStart: () => {
-        Canvas.animateImageMesh = true;
-      },
-      onComplete: () => {
-        Canvas.animateImageMesh = false;
-      },
     },
     'expandProject',
   );
@@ -175,10 +178,10 @@ watch(
   display: inline-block;
   transition: ease all 0.5s;
   cursor: pointer;
+  position: relative;
   border: 1px solid green;
 
   &.expanded{
-    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -226,44 +229,14 @@ watch(
 
 .project-name {
   width: 100%;
-  //display: flex;
-  //justify-content: space-between;
 }
 
 .expanded {
 
-  @include respond-width($w-s) {
-    flex-direction: column-reverse;
-    align-items: center;
-    padding: 10vh 0;
-    gap: 10vh;
-  }
-
-  .heading-3 {
-    position: absolute;
-    right: 105%;
-    align-self: flex-start;
-
-    @include respond-width($w-m-s) {
-      top: 5%;
-      left: 0;
-    }
-
-    @include respond-width($w-s) {
-      top: 0;
-      left: 10%;
-    }
-
-    @include respond-width($w-xs) {
-      top: 2%;
-      left: 5%;
-    }
-  }
 
   .info {
     border: 1px solid red;
     opacity: 0.5;
-    //display: none;
   }
 
   .frame {
