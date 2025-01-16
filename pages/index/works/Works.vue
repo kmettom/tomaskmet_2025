@@ -173,7 +173,7 @@ h2 {
   width: 100%;
   color: var(--light-color);
   border: 1px solid red;
-  &:hover{
+  &:hover {
     border: 1px solid purple;
   }
   &.next-item {

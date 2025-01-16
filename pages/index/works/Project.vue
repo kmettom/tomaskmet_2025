@@ -26,7 +26,7 @@ const projectNumber = computed(() => {
   return '0' + (props.index + 1).toString();
 });
 const hoverImage = ref(false);
-
+const projectEl = ref('projectEl');
 const emit = defineEmits(['expandProjects']);
 
 const expandProject = () => {
@@ -39,16 +39,23 @@ const expandProject = () => {
     },
   });
   const aniDuration = 0.75;
+  let projectOrigin =
   timeline.to(
-      '.project-name',
+      '.project',
       {
-        duration: 0.3,
-        opacity: 0,
-        onComplete: function() {
-          gsap.set(".project-name", { display: "none" });
-        }
-      }
+        height: '80vh',
+        width: '100%',
+        duration: aniDuration,
+        ease: 'power2.out',
+      }, "imgExpand"
   );
+  timeline.to('.project-name', {
+    duration: 0.3,
+    opacity: 0,
+    onComplete: function () {
+      gsap.set('.project-name', { display: 'none' });
+    },
+  });
 
   timeline.to(
     '.project-image img',
@@ -58,28 +65,23 @@ const expandProject = () => {
       duration: aniDuration,
       ease: 'power2.out',
     },
-    'expandProject',
+    'imgExpand',
   );
 
   timeline.to(
     '.expand-description',
     {
       duration: aniDuration,
-      width: '40%',
-      height: '80vh',
+      // width: '40%',
+      // height: '80vh',
       opacity: 1,
+      // onStart:  () => {
+      //     gsap.set('.expand-description', { display: 'block' });
+      // }
     },
-    'expandProject',
+    ''
   );
-  // timeline.to(
-  //     '.project',
-  //     {
-  //       height: '80vh',
-  //       width: '100%',
-  //       duration: aniDuration,
-  //       ease: 'power2.out',
-  //     }
-  // );
+
 };
 
 const shrinkProject = () => {
@@ -109,25 +111,22 @@ const shrinkProject = () => {
     },
     'shrinkProject',
   );
-  timeline.to(
-    '.expand-description',
-    {
-      width: '0',
-      height: '0',
-      opacity: 0,
+  // timeline.to(
+  //   '.expand-description',
+  //   {
+  //     width: '0',
+  //     height: '0',
+  //     opacity: 0,
+  //   },
+  //   'shrinkProject',
+  // );
+  timeline.to('.project-name', {
+    duration: 0.3,
+    opacity: 1,
+    onStart: function () {
+      gsap.set('.project-name', { display: 'block' });
     },
-    'shrinkProject',
-  );
-  timeline.to(
-      '.project-name',
-      {
-        duration: 0.3,
-        opacity: 1,
-        onStart: function() {
-          gsap.set(".project-name", { display: "block" });
-        }
-      }
-  );
+  });
 };
 
 watch(
@@ -193,12 +192,6 @@ watch(
   cursor: pointer;
   position: relative;
   border: 1px solid green;
-
-  &.expanded{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
 }
 
 .expand-description {
@@ -245,8 +238,6 @@ watch(
 }
 
 .expanded {
-
-
   .info {
     border: 1px solid red;
     opacity: 0.5;

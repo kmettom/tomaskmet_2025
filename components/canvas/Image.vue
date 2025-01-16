@@ -98,7 +98,7 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
-.webgl-img-wrapper{
+.webgl-img-wrapper {
   border: 1px solid green;
 }
 .webgl-img {

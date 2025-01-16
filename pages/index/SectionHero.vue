@@ -2,7 +2,7 @@
   <div>
     <Container additional-class="hero-section">
       <div class="hero-content-line">
-        <h2 class="heading-1 ">
+        <h2 class="heading-1">
           <span v-scrollActive="0.85">
             <CanvasText
               :mesh-id="'headline-studio'"
@@ -13,7 +13,7 @@
             </CanvasText>
           </span>
         </h2>
-        <div class="body-m  hero-content-sm hero-summary">
+        <div class="body-m hero-content-sm hero-summary">
           <p>Web Developer with</p>
           <p>managerial background,</p>
           <p>coding and bringing a full</p>
@@ -58,13 +58,12 @@ import Container from '~/components/common/Container.vue';
   display: flex;
   align-content: end;
 
-  &.align-right{
+  &.align-right {
     justify-content: end;
   }
 }
 
-.hero-content-sm{
+.hero-content-sm {
   padding: 0px 20px;
 }
-
 </style>
