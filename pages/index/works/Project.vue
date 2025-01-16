@@ -40,14 +40,16 @@ const expandProject = () => {
   });
   const aniDuration = 0.75;
   timeline.to(
-      '.project',
+      '.project-name',
       {
-        height: '80vh',
-        width: '100%',
-        duration: aniDuration,
-        ease: 'power2.out',
+        duration: 0.3,
+        opacity: 0,
+        onComplete: function() {
+          gsap.set(".project-name", { display: "none" });
+        }
       }
   );
+
   timeline.to(
     '.project-image img',
     {
@@ -58,15 +60,7 @@ const expandProject = () => {
     },
     'expandProject',
   );
-  timeline.to(
-    '.project-name',
-    {
-      duration: aniDuration,
-      width: '0%',
-      opacity: 0,
-    },
-    'expandProject',
-  );
+
   timeline.to(
     '.expand-description',
     {
@@ -77,6 +71,15 @@ const expandProject = () => {
     },
     'expandProject',
   );
+  // timeline.to(
+  //     '.project',
+  //     {
+  //       height: '80vh',
+  //       width: '100%',
+  //       duration: aniDuration,
+  //       ease: 'power2.out',
+  //     }
+  // );
 };
 
 const shrinkProject = () => {
@@ -114,6 +117,16 @@ const shrinkProject = () => {
       opacity: 0,
     },
     'shrinkProject',
+  );
+  timeline.to(
+      '.project-name',
+      {
+        duration: 0.3,
+        opacity: 1,
+        onStart: function() {
+          gsap.set(".project-name", { display: "block" });
+        }
+      }
   );
 };
 
