@@ -26,8 +26,9 @@ const projectNumber = computed(() => {
   return '0' + (props.index + 1).toString();
 });
 const hoverImage = ref(false);
-const projectEl = ref('projectEl');
+// const projectEl = ref('projectEl');
 const emit = defineEmits(['expandProjects']);
+const aniDuration = 1;
 
 const expandProject = () => {
   const timeline = gsap.timeline({
@@ -38,17 +39,15 @@ const expandProject = () => {
       Canvas.animateImageMesh = false;
     },
   });
-  const aniDuration = 0.75;
-  let projectOrigin =
-  timeline.to(
-      '.project',
-      {
-        height: '80vh',
-        width: '100%',
-        duration: aniDuration,
-        ease: 'power2.out',
-      }, "imgExpand"
-  );
+  // timeline.to(
+  //     '.project',
+  //     {
+  //       height: '80vh',
+  //       width: '100%',
+  //       duration: aniDuration,
+  //       ease: 'power2.out',
+  //     }, "imgExpand"
+  // );
   timeline.to('.project-name', {
     duration: 0.3,
     opacity: 0,
@@ -56,32 +55,21 @@ const expandProject = () => {
       gsap.set('.project-name', { display: 'none' });
     },
   });
-
-  timeline.to(
-    '.project-image img',
-    {
-      height: '80%',
-      width: '50vw',
-      duration: aniDuration,
-      ease: 'power2.out',
-    },
-    'imgExpand',
-  );
-
-  timeline.to(
-    '.expand-description',
-    {
-      duration: aniDuration,
-      // width: '40%',
-      // height: '80vh',
-      opacity: 1,
-      // onStart:  () => {
-      //     gsap.set('.expand-description', { display: 'block' });
-      // }
-    },
-    ''
-  );
-
+  timeline.to('.expand-description', {
+    duration: aniDuration,
+    opacity: 1,
+    width: '40%',
+  });
+  timeline.to('.expand-description > * ', {
+    duration: aniDuration,
+    opacity: 1,
+    stagger: 0.1,
+  });
+  timeline.to('.project-image img', {
+    height: '80%',
+    width: '50vw',
+    duration: aniDuration,
+  });
 };
 
 const shrinkProject = () => {
@@ -93,35 +81,25 @@ const shrinkProject = () => {
       Canvas.animateImageMesh = false;
     },
   });
-  timeline.to(
-    '.project-image img',
-    {
-      height: '100px',
-      width: '100px',
-      duration: 0.75,
-      ease: 'power2.out',
-    },
-    'shrinkProject',
-  );
-  timeline.to(
-    '.project-name',
-    {
-      width: '100%',
-      opacity: 0,
-    },
-    'shrinkProject',
-  );
-  // timeline.to(
-  //   '.expand-description',
-  //   {
-  //     width: '0',
-  //     height: '0',
-  //     opacity: 0,
-  //   },
-  //   'shrinkProject',
-  // );
+  timeline.to('.project-image img', {
+    height: '200px',
+    width: '200px',
+    duration: aniDuration,
+  });
+  timeline.to('.expand-description > * ', {
+    duration: aniDuration,
+
+    opacity: 0,
+    stagger: 0.1,
+  });
+  timeline.to('.expand-description', {
+    duration: aniDuration,
+
+    width: '0',
+    opacity: 0,
+  });
   timeline.to('.project-name', {
-    duration: 0.3,
+    duration: aniDuration,
     opacity: 1,
     onStart: function () {
       gsap.set('.project-name', { display: 'block' });
@@ -165,11 +143,9 @@ watch(
           <div>{{ project.award }}</div>
         </div>
       </div>
-
       <p>
         {{ project.description }}
       </p>
-
       <a :href="project.websiteLink" target="_blank">👉 visit website</a>
     </div>
     <div class="project-image">
@@ -197,10 +173,14 @@ watch(
 .expand-description {
   opacity: 0;
   width: 0;
-  height: 0;
+  //height: 10;
   overflow: hidden;
   position: relative;
   display: block;
+
+  & > * {
+    opacity: 0;
+  }
 
   @include respond-width($w-m-s) {
     width: 46%;
