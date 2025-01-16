@@ -38,12 +38,13 @@ const expandProject = () => {
       Canvas.animateImageMesh = false;
     },
   });
+  const aniDuration = 0.75;
   timeline.to(
     '.project-image img',
     {
-      height: '80vh',
+      height: '80%',
       width: '50vw',
-      duration: 0.75,
+      duration: aniDuration,
       ease: 'power2.out',
       onStart: () => {
         Canvas.animateImageMesh = true;
@@ -57,6 +58,7 @@ const expandProject = () => {
   timeline.to(
     '.project-name',
     {
+      duration: aniDuration,
       width: '0%',
       opacity: 0,
     },
@@ -65,6 +67,7 @@ const expandProject = () => {
   timeline.to(
     '.expand-description',
     {
+      duration: aniDuration,
       width: '40%',
       height: '80vh',
       opacity: 1,
@@ -127,7 +130,7 @@ watch(
   <div
     v-scrollActive:once:top:projectCallback="0.9"
     :class="`project ${isExpanded ? 'expanded' : ''}`"
-    @mouseover="hoverImage = true"
+    @mouseover="hoverImage = !isExpanded"
     @mouseleave="hoverImage = false"
     @click="emit('expandProjects')"
   >
@@ -172,21 +175,23 @@ watch(
   display: inline-block;
   transition: ease all 0.5s;
   cursor: pointer;
+  border: 1px solid green;
+
+  &.expanded{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 .expand-description {
-  //opacity: 0.5;
-  //border: 1px solid red;
-  //display: none;
   opacity: 0;
   width: 0;
   height: 0;
   overflow: hidden;
-
   position: relative;
   display: block;
-  //width: 40%;
-  //height: 60vh;
 
   @include respond-width($w-m-s) {
     width: 46%;
@@ -226,14 +231,6 @@ watch(
 }
 
 .expanded {
-  position: relative;
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20vh 0;
-  transition: ease all 0.3s;
 
   @include respond-width($w-s) {
     flex-direction: column-reverse;
