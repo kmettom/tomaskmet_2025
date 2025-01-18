@@ -59,6 +59,7 @@ const expandProject = () => {
     duration: aniDuration,
     opacity: 1,
     width: '40%',
+    height: '100%',
   });
   timeline.to('.expand-description > * ', {
     duration: aniDuration,
@@ -88,13 +89,12 @@ const shrinkProject = () => {
   });
   timeline.to('.expand-description > * ', {
     duration: aniDuration,
-
     opacity: 0,
     stagger: 0.1,
   });
   timeline.to('.expand-description', {
     duration: aniDuration,
-
+height: 0,
     width: '0',
     opacity: 0,
   });
@@ -173,7 +173,7 @@ watch(
 .expand-description {
   opacity: 0;
   width: 0;
-  //height: 10;
+  height: 0;
   overflow: hidden;
   position: relative;
   display: block;
