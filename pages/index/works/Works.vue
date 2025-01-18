@@ -166,6 +166,7 @@ h2 {
 .close-btn {
   top: 25%;
   right: $marginRight;
+  border: 1px solid red;
 }
 .change-project-btn {
   cursor: pointer;

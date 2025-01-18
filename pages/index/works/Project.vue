@@ -43,25 +43,33 @@ const expandProject = () => {
     duration: 0.3,
     opacity: 0,
     onComplete: function () {
-      gsap.set('.project-name', { display: 'none' });
-      gsap.set('.project', {display: 'flex'})
+      // gsap.set('.project-name', { width: 0 });
+      // gsap.set('.project', {display: 'flex'})
     },
   });
-  timeline.to('.expand-description', {
-    duration: aniDuration,
-    opacity: 1,
-    width: '40%',
-    height: '100%',
-  });
+  timeline.to(
+    '.project-image img',
+    {
+      height: '80%',
+      width: '40%',
+      duration: aniDuration,
+    },
+    'expandImg',
+  );
+  timeline.to(
+    '.expand-description',
+    {
+      duration: aniDuration,
+      opacity: 1,
+      width: '50%',
+      height: '100%',
+    },
+    'expandImg',
+  );
   timeline.to('.expand-description > * ', {
     duration: aniDuration,
     opacity: 1,
     stagger: 0.1,
-  });
-  timeline.to('.project-image img', {
-    height: '80%',
-    width: '50vw',
-    duration: aniDuration,
   });
 };
 
@@ -86,7 +94,7 @@ const shrinkProject = () => {
   });
   timeline.to('.expand-description', {
     duration: aniDuration,
-height: 0,
+    height: 0,
     width: '0',
     opacity: 0,
   });
@@ -94,8 +102,8 @@ height: 0,
     duration: aniDuration,
     opacity: 1,
     onStart: function () {
-      gsap.set('.project', {display: 'block'})
-      gsap.set('.project-name', { display: 'block' });
+      // gsap.set('.project-name', { width: auto });
+      // gsap.set('.project', {display: 'block'})
     },
   });
 };
@@ -120,7 +128,7 @@ watch(
     @mouseleave="hoverImage = false"
     @click="emit('expandProjects')"
   >
-    <div class="heading-3">{{ projectNumber }}</div>
+    <div class="heading-3 project-index">{{ projectNumber }}</div>
     <div class="expand-description">
       <div class="statistics">
         <div class="info-row">
@@ -156,11 +164,16 @@ watch(
 
 <style lang="scss" scoped>
 .project {
-  display: inline-block;
+  display: flex;
   transition: ease all 0.5s;
   cursor: pointer;
   position: relative;
   border: 1px solid green;
+}
+
+.project-index {
+  position: absolute;
+  left: -75px;
 }
 
 .expand-description {
@@ -208,6 +221,8 @@ watch(
 
 .project-name {
   width: 100%;
+  position: absolute;
+  bottom: -30px;
 }
 
 .expanded {
