@@ -39,20 +39,12 @@ const expandProject = () => {
       Canvas.animateImageMesh = false;
     },
   });
-  // timeline.to(
-  //     '.project',
-  //     {
-  //       height: '80vh',
-  //       width: '100%',
-  //       duration: aniDuration,
-  //       ease: 'power2.out',
-  //     }, "imgExpand"
-  // );
   timeline.to('.project-name', {
     duration: 0.3,
     opacity: 0,
     onComplete: function () {
       gsap.set('.project-name', { display: 'none' });
+      gsap.set('.project', {display: 'flex'})
     },
   });
   timeline.to('.expand-description', {
@@ -102,6 +94,7 @@ height: 0,
     duration: aniDuration,
     opacity: 1,
     onStart: function () {
+      gsap.set('.project', {display: 'block'})
       gsap.set('.project-name', { display: 'block' });
     },
   });
