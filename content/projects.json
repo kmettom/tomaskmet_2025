@@ -8,9 +8,6 @@
     "image": {
       "src": "images/01ex.png",
       "alt": "image description"
-    },
-    "position": {
-      "inline": true
     }
   },
   {
@@ -24,8 +21,8 @@
       "alt": "image description"
     },
     "position": {
-      "inline": true,
-      "top": "250px"
+      "alignRight": true,
+      "bottom": "150px"
     }
   },
   {
@@ -37,9 +34,6 @@
     "image": {
       "src": "images/03.png",
       "alt": "image description"
-    },
-    "position": {
-      "inline": false
     }
   }
 ]

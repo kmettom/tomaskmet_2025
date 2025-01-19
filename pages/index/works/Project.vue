@@ -119,49 +119,43 @@ watch(
 <template>
   <div
     v-scrollActive:once:top:projectCallback="0.9"
-    :class="`project ${isExpanded ? 'expanded' : ''}`"
-    :style="
-      project?.position?.top && !isExpanded
-        ? {
-            top: project?.position?.top,
-            paddingBottom: project?.position?.top,
-          }
-        : ''
-    "
+    :class="`project ${isExpanded ? ' expanded ' : ''} ${project.position?.alignRight ? ' project-right ' : ''}`"
     @mouseover="hoverImage = !isExpanded"
     @mouseleave="hoverImage = false"
     @click="emit('expandProjects')"
   >
-    <div class="heading-3 project-index">{{ projectNumber }}</div>
-    <div class="expand-description">
-      <div class="statistics">
-        <div class="info-row">
-          <div>client:</div>
-          <div>{{ project.name }}</div>
+    <div class="project-wrapper">
+      <div class="heading-3 project-index">{{ projectNumber }}</div>
+      <div class="expand-description">
+        <div class="statistics">
+          <div class="info-row">
+            <div>client:</div>
+            <div>{{ project.name }}</div>
+          </div>
+          <div class="info-row">
+            <div>year:</div>
+            <div>{{ project.year }}</div>
+          </div>
+          <div v-if="project.award" class="info-row">
+            <div>award</div>
+            <div>{{ project.award }}</div>
+          </div>
         </div>
-        <div class="info-row">
-          <div>year:</div>
-          <div>{{ project.year }}</div>
-        </div>
-        <div v-if="project.award" class="info-row">
-          <div>award</div>
-          <div>{{ project.award }}</div>
-        </div>
+        <p>
+          {{ project.description }}
+        </p>
+        <a :href="project.websiteLink" target="_blank">👉 visit website</a>
       </div>
-      <p>
-        {{ project.description }}
-      </p>
-      <a :href="project.websiteLink" target="_blank">👉 visit website</a>
-    </div>
-    <div class="project-image">
-      <CanvasImage
-        :shader="'example2'"
-        :src-link="project.image.src"
-        :image-hover="hoverImage"
-      />
-    </div>
-    <div class="project-name body-m">
-      <span>{{ project.name }}</span>
+      <div class="project-image">
+        <CanvasImage
+          :shader="'example2'"
+          :src-link="project.image.src"
+          :image-hover="hoverImage"
+        />
+      </div>
+      <div class="project-name body-m">
+        <span>{{ project.name }}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -172,7 +166,14 @@ watch(
   transition: ease all 0.5s;
   cursor: pointer;
   position: relative;
-  border: 1px solid green;
+  justify-content: left;
+  &.project-right {
+    justify-content: right;
+  }
+}
+.project-wrapper {
+  position: relative;
+  display: flex;
 }
 
 .project-index {

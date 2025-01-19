@@ -44,7 +44,6 @@
           :key="project.name"
           :ref="projectItemRefs.set"
           class="project-item"
-          :class="`${project?.position?.inline ? 'project-inline' : ''}`"
         >
           <Project
             :is-expanded="projectsExpanded"
@@ -179,9 +178,5 @@ h2 {
 
 .project-item {
   position: relative;
-}
-.project-inline {
-  display: inline-block;
-  width: 50%;
 }
 </style>
