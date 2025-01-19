@@ -63,7 +63,7 @@ import Container from '~/components/common/Container.vue';
   justify-content: center;
   &.hero-line-studio {
     display: block;
-    margin-bottom: -35px;
+    //margin-bottom: -15px;
   }
 }
 

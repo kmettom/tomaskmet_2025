@@ -171,11 +171,11 @@ $w-xs: 550px; // mobile resolution
 .heading-1 {
   @include header-font;
   font-size: 298px;
-  line-height: 300px;
+  line-height: 241px;
 
   @include respond-width($w-m) {
     font-size: 200px;
-    line-height: 165px;
+    line-height: 145px;
   }
 
   @include respond-width($w-s) {
