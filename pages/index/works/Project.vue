@@ -56,7 +56,6 @@ const expandProject = () => {
     '.expand-description',
     {
       duration: aniDuration,
-      opacity: 1,
       width: '50%',
       height: '100%',
     },
@@ -92,7 +91,6 @@ const shrinkProject = () => {
     duration: aniDuration,
     height: 0,
     width: 0,
-    opacity: 1,
   });
   timeline.to('.project-name', {
     duration: aniDuration,
@@ -118,12 +116,13 @@ watch(
     :class="`project ${isExpanded ? ' expanded ' : ''} ${project.position?.alignRight ? ' project-right ' : ''}`"
   >
     <div
-      class="project-wrapper"
+      :class="`project-wrapper ${project.position?.alignRight ? ' project-right ' : ''}`"
       @mouseover="hoverImage = !isExpanded"
       @mouseleave="hoverImage = false"
       @click="emit('expandProjects')"
     >
       <div class="heading-3 project-index">{{ projectNumber }}</div>
+
       <div class="expand-description">
         <div class="statistics">
           <div class="info-row">
@@ -172,7 +171,10 @@ $nameSize: 30px;
   cursor: pointer;
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: left;
+  &.project-right {
+    justify-content: right;
+  }
 }
 
 .project-index {
@@ -180,13 +182,16 @@ $nameSize: 30px;
   left: -75px;
 }
 
+.project-image {
+  display: inline-block;
+}
+
 .expand-description {
-  opacity: 1;
+  display: inline-block;
   width: 0;
   height: 0;
-  overflow: hidden;
+  //overflow: hidden;
   position: relative;
-  border: 5px solid red;
 
   & > * {
     opacity: 0;
@@ -212,9 +217,10 @@ $nameSize: 30px;
 }
 
 .project-name {
-  width: 100%;
+  display: inline-block;
   position: absolute;
   bottom: -$nameSize;
+  left: 0;
 }
 
 .expanded {
