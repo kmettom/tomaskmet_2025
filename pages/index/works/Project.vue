@@ -50,16 +50,14 @@ const expandProject = () => {
       width: '40vh',
       duration: aniDuration,
     },
-    'expandImg',
   );
   timeline.to(
-    '.expand-description',
+    '.project-info-wrapper',
     {
       duration: aniDuration,
       width: '50%',
       height: '100%',
     },
-    'expandImg',
   );
   timeline.to('.expand-description > * ', {
     duration: aniDuration,
@@ -87,7 +85,7 @@ const shrinkProject = () => {
     opacity: 0,
     stagger: 0.1,
   });
-  timeline.to('.expand-description', {
+  timeline.to('.project-info-wrapper', {
     duration: aniDuration,
     height: 0,
     width: 0,
@@ -121,28 +119,31 @@ watch(
       @mouseleave="hoverImage = false"
       @click="emit('expandProjects')"
     >
-      <div class="heading-3 project-index">{{ projectNumber }}</div>
+      <div class="project-info-wrapper">
+        <div class="heading-3 project-index">{{ projectNumber }}</div>
+        <div class="expand-description">
 
-      <div class="expand-description">
-        <div class="statistics">
-          <div class="info-row">
-            <div>client:</div>
-            <div>{{ project.name }}</div>
+          <div class="statistics">
+            <div class="info-row">
+              <div>client:</div>
+              <div>{{ project.name }}</div>
+            </div>
+            <div class="info-row">
+              <div>year:</div>
+              <div>{{ project.year }}</div>
+            </div>
+            <div v-if="project.award" class="info-row">
+              <div>award</div>
+              <div>{{ project.award }}</div>
+            </div>
           </div>
-          <div class="info-row">
-            <div>year:</div>
-            <div>{{ project.year }}</div>
-          </div>
-          <div v-if="project.award" class="info-row">
-            <div>award</div>
-            <div>{{ project.award }}</div>
-          </div>
+          <p>
+            {{ project.description }}
+          </p>
+          <a :href="project.websiteLink" target="_blank">👉 visit website</a>
         </div>
-        <p>
-          {{ project.description }}
-        </p>
-        <a :href="project.websiteLink" target="_blank">👉 visit website</a>
       </div>
+
       <div class="project-image">
         <CanvasImage
           :shader="'example2'"
@@ -186,11 +187,14 @@ $nameSize: 30px;
   display: inline-block;
 }
 
-.expand-description {
+.project-info-wrapper{
   display: inline-block;
   width: 0;
   height: 0;
-  //overflow: hidden;
+  position: relative;
+}
+
+.expand-description {
   position: relative;
 
   & > * {
