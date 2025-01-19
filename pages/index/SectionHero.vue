@@ -1,8 +1,8 @@
 <template>
   <div>
     <Container additional-class="hero-section">
-      <div class="hero-content-line">
-        <h2 class="heading-1">
+      <div class="hero-content-line hero-line-studio">
+        <h2 class="heading-0">
           <span v-scrollActive="0.85">
             <CanvasText
               :mesh-id="'headline-studio'"
@@ -13,14 +13,8 @@
             </CanvasText>
           </span>
         </h2>
-        <div class="body-m hero-content-sm hero-summary">
-          <p>Web Developer with</p>
-          <p>managerial background,</p>
-          <p>coding and bringing a full</p>
-          <p>team to help your project.</p>
-        </div>
       </div>
-      <div class="hero-content-line align-right">
+      <div class="hero-content-line">
         <div class="body-m hero-content-sm hero-services">
           <p>web3</p>
           <p>creative</p>
@@ -39,6 +33,12 @@
             </CanvasText>
           </span>
         </h2>
+        <div class="body-m hero-content-sm hero-summary">
+          <p>Web Developer with</p>
+          <p>managerial background,</p>
+          <p>coding and bringing a full</p>
+          <p>team to help your project.</p>
+        </div>
       </div>
     </Container>
   </div>
@@ -51,19 +51,35 @@ import Container from '~/components/common/Container.vue';
 <style lang="scss" scoped>
 //=======>>>   HERO   <<<==========//
 .hero-section {
-  padding-top: 100px;
+  padding: 100px 0px;
   position: relative;
+  text-align: center;
 }
 .hero-content-line {
-  display: flex;
-  align-content: end;
-
-  &.align-right {
-    justify-content: end;
+  position: relative;
+  text-align: center;
+  display: inline-block;
+  margin: 0 auto;
+  justify-content: center;
+  &.hero-line-studio {
+    display: block;
+    margin-bottom: -35px;
   }
 }
 
 .hero-content-sm {
-  padding: 0px 20px;
+  position: absolute;
+  padding: 0px 10px;
+  width: 300px;
+  &.hero-services {
+    text-align: right;
+    left: -300px;
+    bottom: 0;
+  }
+  &.hero-summary {
+    text-align: left;
+    right: -300px;
+    top: 0;
+  }
 }
 </style>

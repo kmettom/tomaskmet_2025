@@ -153,20 +153,34 @@ $w-xs: 550px; // mobile resolution
   font-family: 'PP Formula Black', sans-serif;
 }
 
+.heading-0 {
+  @include header-font;
+  font-size: 440px;
+  line-height: 420px;
+
+  @include respond-width($w-m) {
+    font-size: 298px;
+    line-height: 300px;
+  }
+  @include respond-width($w-s) {
+    font-size: 200px;
+    line-height: 200px;
+  }
+}
+
 .heading-1 {
   @include header-font;
   font-size: 298px;
   line-height: 300px;
-  // background-color: gold;
 
   @include respond-width($w-m) {
     font-size: 200px;
-    line-height: 200px;
+    line-height: 165px;
   }
 
   @include respond-width($w-s) {
     font-size: 100px;
-    line-height: 100px;
+    line-height: 95px;
   }
 }
 

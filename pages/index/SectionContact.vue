@@ -92,10 +92,6 @@ import BasketBallIcon from '~/public/icons/basket-ball.png';
   padding-top: 150px;
   padding-bottom: 150px;
 
-  .heading-1 {
-    white-space: nowrap;
-  }
-
   .frame {
     display: flex;
     flex-direction: column;
