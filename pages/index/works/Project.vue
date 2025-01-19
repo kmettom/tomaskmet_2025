@@ -91,16 +91,12 @@ const shrinkProject = () => {
   timeline.to('.expand-description', {
     duration: aniDuration,
     height: 0,
-    width: '0',
-    opacity: 0,
+    width: 0,
+    opacity: 1,
   });
   timeline.to('.project-name', {
     duration: aniDuration,
     opacity: 1,
-    onStart: function () {
-      // gsap.set('.project-name', { width: auto });
-      // gsap.set('.project', {display: 'block'})
-    },
   });
 };
 
@@ -120,11 +116,13 @@ watch(
   <div
     v-scrollActive:once:top:projectCallback="0.9"
     :class="`project ${isExpanded ? ' expanded ' : ''} ${project.position?.alignRight ? ' project-right ' : ''}`"
-    @mouseover="hoverImage = !isExpanded"
-    @mouseleave="hoverImage = false"
-    @click="emit('expandProjects')"
   >
-    <div class="project-wrapper">
+    <div
+      class="project-wrapper"
+      @mouseover="hoverImage = !isExpanded"
+      @mouseleave="hoverImage = false"
+      @click="emit('expandProjects')"
+    >
       <div class="heading-3 project-index">{{ projectNumber }}</div>
       <div class="expand-description">
         <div class="statistics">
@@ -164,9 +162,6 @@ watch(
 $nameSize: 30px;
 .project {
   display: flex;
-  transition: ease all 0.5s;
-  cursor: pointer;
-  position: relative;
   justify-content: left;
   margin-bottom: $nameSize;
   &.project-right {
@@ -174,8 +169,10 @@ $nameSize: 30px;
   }
 }
 .project-wrapper {
+  cursor: pointer;
   position: relative;
   display: flex;
+  justify-content: center;
 }
 
 .project-index {
@@ -184,28 +181,15 @@ $nameSize: 30px;
 }
 
 .expand-description {
-  opacity: 0;
+  opacity: 1;
   width: 0;
   height: 0;
   overflow: hidden;
   position: relative;
-  display: block;
-  border: 1px solid red;
+  border: 5px solid red;
 
   & > * {
     opacity: 0;
-  }
-
-  @include respond-width($w-m-s) {
-    width: 46%;
-  }
-
-  @include respond-width($w-s) {
-    width: 80%;
-  }
-
-  @include respond-width($w-xs) {
-    width: 100%;
   }
 
   .statistics {
@@ -237,25 +221,6 @@ $nameSize: 30px;
   .info {
     border: 1px solid red;
     opacity: 0.5;
-  }
-
-  .frame {
-    width: 40%;
-    position: relative;
-
-    @include respond-width($w-m-s) {
-      width: 46%;
-    }
-
-    @include respond-width($w-s) {
-      width: auto;
-      max-height: 50%;
-      object-fit: contain;
-    }
-
-    &:hover {
-      cursor: auto;
-    }
   }
 }
 </style>

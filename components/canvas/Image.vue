@@ -102,6 +102,8 @@ onBeforeUnmount(() => {
   border: 1px solid green;
 }
 .webgl-img {
+  max-width: 100%;
+  max-height: 100%;
   opacity: 0;
   //border: 1px solid green
 }
