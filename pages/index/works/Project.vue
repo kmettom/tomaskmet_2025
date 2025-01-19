@@ -161,12 +161,14 @@ watch(
 </template>
 
 <style lang="scss" scoped>
+$nameSize: 30px;
 .project {
   display: flex;
   transition: ease all 0.5s;
   cursor: pointer;
   position: relative;
   justify-content: left;
+  margin-bottom: $nameSize;
   &.project-right {
     justify-content: right;
   }
@@ -228,7 +230,7 @@ watch(
 .project-name {
   width: 100%;
   position: absolute;
-  bottom: -30px;
+  bottom: -$nameSize;
 }
 
 .expanded {

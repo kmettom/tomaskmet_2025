@@ -23,14 +23,14 @@
               <IconsClose />
             </button>
             <button
-              v-if="projectsExpanded && nextProjectName"
+              v-if="nextProjectName"
               class="gallery-controls-btn change-project-btn next-item"
               @click="goToProject(activeProjectsIndex + 1)"
             >
               next: {{ nextProjectName }} 👇
             </button>
             <button
-              v-if="projectsExpanded && prevProjectName"
+              v-if="prevProjectName"
               class="gallery-controls-btn change-project-btn prev-item"
               @click="goToProject(activeProjectsIndex - 1)"
             >
@@ -178,5 +178,6 @@ h2 {
 
 .project-item {
   position: relative;
+  border: 1px solid purple;
 }
 </style>
