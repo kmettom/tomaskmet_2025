@@ -43,22 +43,16 @@ const expandProject = () => {
     duration: 0.3,
     opacity: 0,
   });
-  timeline.to(
-    '.project-image img',
-    {
-      height: '80vh',
-      width: '40vh',
-      duration: aniDuration,
-    },
-  );
-  timeline.to(
-    '.project-info-wrapper',
-    {
-      duration: aniDuration,
-      width: '50%',
-      height: '100%',
-    },
-  );
+  timeline.to('.project-image img', {
+    height: '80vh',
+    width: '40vh',
+    duration: aniDuration,
+  });
+  timeline.to('.project-info-wrapper', {
+    duration: aniDuration,
+    width: '50%',
+    height: '100%',
+  });
   timeline.to('.expand-description > * ', {
     duration: aniDuration,
     opacity: 1,
@@ -122,7 +116,6 @@ watch(
       <div class="project-info-wrapper">
         <div class="heading-3 project-index">{{ projectNumber }}</div>
         <div class="expand-description">
-
           <div class="statistics">
             <div class="info-row">
               <div>client:</div>
@@ -187,7 +180,7 @@ $nameSize: 30px;
   display: inline-block;
 }
 
-.project-info-wrapper{
+.project-info-wrapper {
   display: inline-block;
   width: 0;
   height: 0;
@@ -229,7 +222,6 @@ $nameSize: 30px;
 
 .expanded {
   .info {
-    border: 1px solid red;
     opacity: 0.5;
   }
 }

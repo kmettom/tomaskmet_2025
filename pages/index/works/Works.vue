@@ -157,17 +157,13 @@ h2 {
 .close-btn {
   top: 25%;
   right: $marginRight;
-  //border: 1px solid red;
 }
 .change-project-btn {
   cursor: pointer;
   height: 100px;
   width: 100%;
   color: var(--light-color);
-  //border: 1px solid red;
-  &:hover {
-    //border: 1px solid purple;
-  }
+
   &.next-item {
     bottom: 0;
   }
@@ -178,6 +174,5 @@ h2 {
 
 .project-item {
   position: relative;
-  border: 1px solid purple;
 }
 </style>
