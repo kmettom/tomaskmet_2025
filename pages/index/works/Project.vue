@@ -42,16 +42,12 @@ const expandProject = () => {
   timeline.to('.project-name', {
     duration: 0.3,
     opacity: 0,
-    onComplete: function () {
-      // gsap.set('.project-name', { width: 0 });
-      // gsap.set('.project', {display: 'flex'})
-    },
   });
   timeline.to(
     '.project-image img',
     {
-      height: '80%',
-      width: '40%',
+      height: '80vh',
+      width: '40vh',
       duration: aniDuration,
     },
     'expandImg',
@@ -124,6 +120,14 @@ watch(
   <div
     v-scrollActive:once:top:projectCallback="0.9"
     :class="`project ${isExpanded ? 'expanded' : ''}`"
+    :style="
+      project?.position?.top && !isExpanded
+        ? {
+            top: project?.position?.top,
+            paddingBottom: project?.position?.top,
+          }
+        : ''
+    "
     @mouseover="hoverImage = !isExpanded"
     @mouseleave="hoverImage = false"
     @click="emit('expandProjects')"
@@ -183,6 +187,7 @@ watch(
   overflow: hidden;
   position: relative;
   display: block;
+  border: 1px solid red;
 
   & > * {
     opacity: 0;

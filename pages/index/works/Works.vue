@@ -44,15 +44,7 @@
           :key="project.name"
           :ref="projectItemRefs.set"
           class="project-item"
-          :class="`${project?.position?.inline && !projectsExpanded ? 'project-inline' : ''}`"
-          :style="
-            project?.position?.top && !projectsExpanded
-              ? {
-                  top: project?.position?.top,
-                  paddingBottom: project?.position?.top,
-                }
-              : ''
-          "
+          :class="`${project?.position?.inline ? 'project-inline' : ''}`"
         >
           <Project
             :is-expanded="projectsExpanded"
