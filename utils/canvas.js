@@ -178,51 +178,51 @@ const Canvas = {
     });
   },
 
-  activateMesh(_id, _state) {
-    const mesh = this.scene.getObjectByName(_id);
+  activateMesh(id, state) {
+    const mesh = this.scene.getObjectByName(id);
     gsap.to(mesh.material.uniforms.aniIn, {
       duration: 1.25,
-      value: _state ? 1 : 0,
+      value: state ? 1 : 0,
     });
   },
 
-  onActiveElCallback(_item, _active) {
-    if (_item.options?.includes('projectCallback')) {
+  onActiveElCallback(item, active) {
+    if (item.options?.includes('projectCallback')) {
       // do something when _active is true or false
       // console.log(
       //   'Example callback triggered, element active state: ',
       //   _active,
       // );
     }
-    if (_item.options?.includes('navigation') && _active) {
+    if (item.options?.includes('navigation') && active) {
       this.navigationStore = useNavigationStore();
-      this.navigationStore.setActiveNavItem(_item.elNode.dataset.navId);
+      this.navigationStore.setActiveNavItem(item.elNode.dataset.navId);
       this.navigationStore.setNavContrast(
-        !!_item.options?.includes('navcontrast'),
+        !!item.options?.includes('navcontrast'),
       );
     }
   },
 
   onScrollCallBack() {
-    // console.log('onScrollCallBack', _item, _scrollPosition, _scrollSpeed);
+    // console.log('onScrollCallBack');
   },
 
-  addScrollSpeedElement(_el) {
-    if (_el.options?.includes('fixed')) {
+  addScrollSpeedElement(el) {
+    if (el.options?.includes('fixed')) {
       setTimeout(() => {
         // timeout for rendering when page is changed
-        _el.containerId = _el.scrollSpeed;
-        _el.scrollSpeed = 1;
-        _el.bounds = _el.elNode.getBoundingClientRect();
-        _el.containerEl = document.getElementById(_el.containerId);
-        _el.childEl = _el.elNode.children[0];
-        _el.containerBottom = _el.containerEl.getBoundingClientRect().bottom;
-        _el.margin = 0;
-        this.scroll.DOM.scrollspeed.push(_el);
+        el.containerId = el.scrollSpeed;
+        el.scrollSpeed = 1;
+        el.bounds = el.elNode.getBoundingClientRect();
+        el.containerEl = document.getElementById(el.containerId);
+        el.childEl = el.elNode.children[0];
+        el.containerBottom = el.containerEl.getBoundingClientRect().bottom;
+        el.margin = 0;
+        this.scroll.DOM.scrollspeed.push(el);
       }, 750);
       return;
     }
-    this.scroll.DOM.scrollspeed.push(_el);
+    this.scroll.DOM.scrollspeed.push(el);
   },
 
   removeScrollSpeedElement(elNode) {
@@ -360,15 +360,18 @@ const Canvas = {
         mesh.name = id;
         htmlEl.dataset.meshId = id;
 
-        const scaleX = bounds.width / mesh.geometry._layout._width;
-        const scaleY = -1 * scaleX;
+        const widthPositionCoef = 1;
+        const heightPositionCoef = 1.38;
+        const heightSizeCoef = 1;
+
+        const scaleX =
+          (bounds.width / mesh.geometry._layout._width) * heightSizeCoef;
+        // const scaleY = - 1 * bounds.height / mesh.geometry._layout._height;
+        const scaleY = -1 * scaleX * heightSizeCoef;
 
         mesh.scale.set(scaleX, scaleY, 1);
 
         this.scene.add(mesh);
-
-        const widthPositionCoef = 1;
-        const heightPositionCoef = 1.43;
 
         const newMesh = {
           name: id,
@@ -459,18 +462,18 @@ const Canvas = {
     if (mouseListeners) this.meshMouseListeners(newMesh, material);
   },
 
-  meshMouseListeners(_mesh, _material) {
-    _mesh.img.addEventListener('mouseenter', () => {
-      _mesh.mesh.renderOrder = 1;
-      gsap.to(_material.uniforms.hoverState, {
+  meshMouseListeners(mesh, material) {
+    mesh.img.addEventListener('mouseenter', () => {
+      mesh.mesh.renderOrder = 1;
+      gsap.to(material.uniforms.hoverState, {
         duration: 0.5,
         value: 1,
       });
     });
 
-    _mesh.img.addEventListener('mouseout', () => {
-      _mesh.mesh.renderOrder = 0;
-      gsap.to(_material.uniforms.hoverState, {
+    mesh.img.addEventListener('mouseout', () => {
+      mesh.mesh.renderOrder = 0;
+      gsap.to(material.uniforms.hoverState, {
         duration: 0.5,
         value: 0,
       });
@@ -506,16 +509,16 @@ const Canvas = {
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.render(this.scene, this.camera); // -> Also needed
   },
-  scrollToTop(_delay) {
+  scrollToTop(delay) {
     setTimeout(() => {
       this.scroll.render(0, false);
-    }, _delay);
+    }, delay);
   },
 
-  scrollTo(_position, _delay) {
+  scrollTo(position, delay) {
     setTimeout(() => {
-      this.scroll.render(_position, true);
-    }, _delay);
+      this.scroll.render(position, true);
+    }, delay);
   },
 
   render() {
