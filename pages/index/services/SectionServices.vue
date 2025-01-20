@@ -14,15 +14,21 @@
       </h2>
 
       <div class="frame">
-        <Service
-          v-for="(service, index) in services"
-          :key="index"
-          :title="service.title"
-          :icon="service.icon"
-          :text="service.text"
-          :desktop-styles="service.desktopStyles"
-          :tablet-styles="service.tabletStyles"
-        />
+        <div id="servicesList">
+          <div
+            v-scrollSpeed:fixed="'servicesList'"
+            v-for="(service, index) in services"
+            :key="index"
+          >
+            <Service
+              :title="service.title"
+              :icon="service.icon"
+              :text="service.text"
+              :desktop-styles="service.desktopStyles"
+              :tablet-styles="service.tabletStyles"
+            />
+          </div>
+        </div>
       </div>
     </Container>
   </div>

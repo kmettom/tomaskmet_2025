@@ -7,10 +7,10 @@
       <SectionAbout />
     </div>
     <div v-scrollActive:track:navigation="1" data-nav-id="work">
-      <Work />
+      <SectionWorks />
     </div>
     <div v-scrollActive:track:navigation:navcontrast="1" data-nav-id="services">
-      <Services />
+      <SectionServices />
     </div>
     <div v-scrollActive:track:navigation:navcontrast="1" data-nav-id="contact">
       <SectionContact />
@@ -22,8 +22,8 @@
 </template>
 
 <script setup>
-import Work from '~/pages/index/works/Works.vue';
-import Services from '~/pages/index/services/Services.vue';
+import SectionWorks from '~/pages/index/works/SectionWorks.vue';
+import SectionServices from '~/pages/index/services/SectionServices.vue';
 import { onMounted, watch } from 'vue';
 import SectionHero from '~/pages/index/SectionHero.vue';
 import SectionAbout from '~/pages/index/SectionAbout.vue';
