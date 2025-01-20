@@ -1,5 +1,5 @@
 <template>
-  <span ref="html">
+  <span class="text-wrapper" ref="html">
     <slot />
   </span>
 </template>
@@ -43,6 +43,7 @@ onMounted(async () => {
       html.value,
       innerHTML,
       props.theme,
+      false,
     );
   }, 50);
 });
@@ -60,7 +61,8 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
-span {
-  opacity: 0;
+.text-wrapper {
+  //opacity: 0;
+  display: inline-block;
 }
 </style>

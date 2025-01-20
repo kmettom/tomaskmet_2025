@@ -8,7 +8,7 @@
             :shader="'default'"
             :theme="'light'"
           >
-            Work
+            WORK
           </CanvasText>
         </span>
       </h2>

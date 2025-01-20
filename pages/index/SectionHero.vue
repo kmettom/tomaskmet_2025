@@ -2,16 +2,14 @@
   <div>
     <Container additional-class="hero-section">
       <div class="hero-content-line hero-line-studio">
-        <h2 class="heading-0">
-          <span v-scrollActive="0.85">
-            <CanvasText
-              :mesh-id="'headline-studio'"
-              :shader="'default'"
-              :theme="'light'"
-            >
-              STUDIO
-            </CanvasText>
-          </span>
+        <h2 class="heading-0" v-scrollActive="0.85">
+          <CanvasText
+            :mesh-id="'headline-studio'"
+            :shader="'default'"
+            :theme="'light'"
+          >
+            STUDIO
+          </CanvasText>
         </h2>
       </div>
       <div class="hero-content-line">
@@ -22,16 +20,14 @@
           <p>websites</p>
           <p>e-commerce</p>
         </div>
-        <h2 class="heading-1">
-          <span v-scrollActive="0.85">
-            <CanvasText
-              :mesh-id="'headline-783'"
-              :shader="'default'"
-              :theme="'light'"
-            >
-              783
-            </CanvasText>
-          </span>
+        <h2 class="heading-1" v-scrollActive="0.85">
+          <CanvasText
+            :mesh-id="'headline-783'"
+            :shader="'default'"
+            :theme="'light'"
+          >
+            783
+          </CanvasText>
         </h2>
         <div class="body-m hero-content-sm hero-summary">
           <p>Web Developer with</p>
@@ -63,6 +59,7 @@ import Container from '~/components/common/Container.vue';
   justify-content: center;
   &.hero-line-studio {
     display: block;
+    margin-top: 25px;
     //margin-bottom: -15px;
   }
 }
@@ -74,7 +71,7 @@ import Container from '~/components/common/Container.vue';
   &.hero-services {
     text-align: right;
     left: -300px;
-    bottom: 0;
+    bottom: 30px;
   }
   &.hero-summary {
     text-align: left;

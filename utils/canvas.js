@@ -285,7 +285,7 @@ const Canvas = {
     }
   },
 
-  addTextAsMSDF(_shader, _id, _htmlEl, _text, _theme) {
+  addTextAsMSDF(_shader, _id, _htmlEl, _text, _theme, _mouseListeners) {
     let bounds = _htmlEl.getBoundingClientRect();
     let position = { top: bounds.top, left: bounds.left };
     position.top += this.currentScroll;
@@ -383,7 +383,7 @@ const Canvas = {
         setTimeout(() => {
           if (!_htmlEl.dataset.scrollActive) this.activateMesh(_id, true);
         }, 250);
-        this.meshMouseListeners(newMesh, material);
+        if (_mouseListeners) this.meshMouseListeners(newMesh, material);
       },
     );
   },
