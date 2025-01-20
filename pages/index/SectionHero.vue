@@ -61,10 +61,9 @@ import Container from '~/components/common/Container.vue';
     display: block;
     margin: -55px 0px -135px 0;
   }
-  &.hero-line-783{
+  &.hero-line-783 {
     //height: 350px;
   }
-
 }
 
 .hero-content-sm {
