@@ -2,7 +2,7 @@
   <div>
     <Container additional-class="hero-section">
       <div class="hero-content-line hero-line-studio">
-        <h2 class="heading-0" v-scrollActive="0.85">
+        <h2 v-scrollActive="0.85" class="heading-0">
           <CanvasText
             :mesh-id="'headline-studio'"
             :shader="'default'"
@@ -20,7 +20,7 @@
           <p>websites</p>
           <p>e-commerce</p>
         </div>
-        <h2 class="heading-1" v-scrollActive="0.85">
+        <h2 v-scrollActive="0.85" class="heading-1">
           <CanvasText
             :mesh-id="'headline-783'"
             :shader="'default'"

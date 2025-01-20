@@ -1,5 +1,5 @@
 <template>
-  <span class="text-wrapper" ref="html">
+  <span ref="html" class="text-wrapper">
     <slot />
   </span>
 </template>
