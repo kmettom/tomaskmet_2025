@@ -123,7 +123,7 @@ const Canvas = {
   },
   resizeImageStore() {
     for (var i = 0; i < this.imageStore.length; i++) {
-      let bounds = this.imageStore[i].img.getBoundingClientRect();
+      let bounds = this.imageStore[i].htmlEl.getBoundingClientRect();
       this.imageStore[i].mesh.scale.set(bounds.width, bounds.height);
       this.imageStore[i].width = bounds.width;
       this.imageStore[i].height = bounds.height;
@@ -131,16 +131,11 @@ const Canvas = {
     this.setImageMeshPositions();
   },
   resizeTextStore() {
-    const widthCoef = 1;
-    const heightCoef = 1;
-    // all text meshes should be resized to new size
     for (var i = 0; i < this.textStore.length; i++) {
       let bounds = this.textStore[i].htmlEl.getBoundingClientRect();
-      const width = bounds.width * widthCoef;
-      const height = bounds.height * heightCoef;
-      this.textStore[i].mesh.scale.set(width, height);
-      this.textStore[i].width = width;
-      this.textStore[i].height = height;
+      this.textStore[i].mesh.scale.set(bounds.width, bounds.height);
+      this.textStore[i].width = bounds.width;
+      this.textStore[i].height = bounds.height;
     }
     this.setTextMeshPositions();
   },
@@ -148,11 +143,11 @@ const Canvas = {
     if (this.imageStore.length === 0) return;
     for (var i = 0; i < this.imageStore.length; i++) {
       this.imageStore[i].mesh.position.x =
-        this.imageStore[i].img.getBoundingClientRect().left -
+        this.imageStore[i].htmlEl.getBoundingClientRect().left -
         this.width / 2 +
         this.imageStore[i].width / 2;
       this.imageStore[i].mesh.position.y =
-        -this.imageStore[i].img.getBoundingClientRect().top +
+        -this.imageStore[i].htmlEl.getBoundingClientRect().top +
         this.height / 2 -
         this.imageStore[i].height / 2;
     }
@@ -161,9 +156,9 @@ const Canvas = {
     if (this.textStore.length === 0) return;
     for (var i = 0; i < this.textStore.length; i++) {
       this.textStore[i].mesh.position.x =
-        this.textStore[i].img.getBoundingClientRect().left - this.width / 2;
+        this.textStore[i].htmlEl.getBoundingClientRect().left - this.width / 2;
       this.textStore[i].mesh.position.y =
-        -this.textStore[i].img.getBoundingClientRect().top +
+        -this.textStore[i].htmlEl.getBoundingClientRect().top +
         this.height / 2 -
         this.textStore[i].height / 2;
     }
@@ -287,7 +282,7 @@ const Canvas = {
     }
   },
 
-  addTextAsMSDF(shader, id, htmlEl, text, theme, mouseListeners) {
+  addTextAsMSDF(shader, meshId, htmlEl, text, theme, mouseListeners) {
     let bounds = htmlEl.getBoundingClientRect();
     let position = { top: bounds.top, left: bounds.left };
     position.top += this.currentScroll;
@@ -357,8 +352,8 @@ const Canvas = {
         material.uniforms.uMap.value = atlas;
 
         let mesh = new THREE.Mesh(geometry, material);
-        mesh.name = id;
-        htmlEl.dataset.meshId = id;
+        mesh.name = meshId;
+        htmlEl.dataset.meshId = meshId;
 
         const widthPositionCoef = 1;
         const heightPositionCoef = 1.38;
@@ -374,8 +369,8 @@ const Canvas = {
         this.scene.add(mesh);
 
         const newMesh = {
-          name: id,
-          img: htmlEl,
+          name: meshId,
+          htmlEl: htmlEl,
           mesh: mesh,
           top: position.top,
           left: position.left,
@@ -388,13 +383,13 @@ const Canvas = {
         this.setTextMeshPositions();
 
         setTimeout(() => {
-          if (!htmlEl.dataset.scrollActive) this.activateMesh(id, true);
+          if (!htmlEl.dataset.scrollActive) this.activateMesh(meshId, true);
         }, 250);
         if (mouseListeners) this.meshMouseListeners(newMesh, material);
       },
     );
   },
-  addImageAsMesh(img, shader, meshId, mouseListeners) {
+  addImageAsMesh(htmlEl, shader, meshId, mouseListeners) {
     let fragmentShader = this.options.default.fragmentShader;
     let vertexShader = this.options.default.vertexShader;
 
@@ -404,7 +399,7 @@ const Canvas = {
     }
 
     let geometry;
-    let bounds = img.getBoundingClientRect();
+    let bounds = htmlEl.getBoundingClientRect();
     let position = { top: bounds.top, left: bounds.left };
     position.top += this.currentScroll;
 
@@ -413,9 +408,9 @@ const Canvas = {
     let id = meshId
       ? meshId
       : `meshImage_${shader || 'default'}_${this.imageStore.length}`;
-    img.dataset.meshId = id;
+    htmlEl.dataset.meshId = id;
 
-    let texture = new THREE.TextureLoader().load(img.src);
+    let texture = new THREE.TextureLoader().load(htmlEl.src);
     texture.needsUpdate = true;
 
     let material = new THREE.ShaderMaterial({
@@ -443,7 +438,7 @@ const Canvas = {
 
     const newMesh = {
       name: id,
-      img: img,
+      htmlEl: htmlEl,
       mesh: mesh,
       top: position.top,
       left: position.left,
@@ -455,7 +450,7 @@ const Canvas = {
     this.imageStore.push(newMesh);
 
     setTimeout(() => {
-      if (!img.dataset.scrollActive) this.activateMesh(id, true);
+      if (!htmlEl.dataset.scrollActive) this.activateMesh(id, true);
     }, 250);
 
     this.setImageMeshPositions();
@@ -463,7 +458,7 @@ const Canvas = {
   },
 
   meshMouseListeners(mesh, material) {
-    mesh.img.addEventListener('mouseenter', () => {
+    mesh.htmlEl.addEventListener('mouseenter', () => {
       mesh.mesh.renderOrder = 1;
       gsap.to(material.uniforms.hoverState, {
         duration: 0.5,
@@ -471,7 +466,7 @@ const Canvas = {
       });
     });
 
-    mesh.img.addEventListener('mouseout', () => {
+    mesh.htmlEl.addEventListener('mouseout', () => {
       mesh.mesh.renderOrder = 0;
       gsap.to(material.uniforms.hoverState, {
         duration: 0.5,
