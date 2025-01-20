@@ -33,7 +33,6 @@ const timezone = 'Europe/Lisbon';
 
 const activeNav = computed(() => navigationStore.activeNavItem);
 const navVisible = computed(() => navigationStore.navVisible);
-// const navItems = computed(() => navigationStore.navItems);
 const navContrastSwitched = computed(() => navigationStore.navContrastSwitched);
 
 let intervalId = null;

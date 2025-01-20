@@ -48,6 +48,6 @@ onMounted(() => {
   right: 0px;
   margin: 0 auto;
   pointer-events: none;
-  z-index: -1; //-1
+  z-index: 0; //-1
 }
 </style>
