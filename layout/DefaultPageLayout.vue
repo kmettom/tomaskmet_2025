@@ -9,9 +9,9 @@
     </div>
 
     <div
-      :class="{ 'back-layer': !navVisible }"
       id="animationContainer"
       ref="canvas"
+      :class="{ 'back-layer': !navVisible }"
     />
   </div>
 </template>
