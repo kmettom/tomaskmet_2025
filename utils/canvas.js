@@ -158,8 +158,7 @@ const Canvas = {
     for (var i = 0; i < this.textStore.length; i++) {
       this.textStore[i].mesh.position.x =
         this.textStore[i].img.getBoundingClientRect().left -
-        this.width / 2 +
-        this.textStore[i].width / 2;
+        this.width / 2 ;
       this.textStore[i].mesh.position.y =
         -this.textStore[i].img.getBoundingClientRect().top +
         this.height / 2 -
@@ -365,17 +364,19 @@ const Canvas = {
 
         this.scene.add(mesh);
 
+        const widthCoef = 1;
+        const heightCoef = 1.43;
+
         const newMesh = {
           name: _id,
           img: _htmlEl,
           mesh: mesh,
           top: position.top,
           left: position.left,
-          width: 0, //bounds.width,
-          height: bounds.height * 1.43, // bounds.height,
+          width: bounds.width * widthCoef,
+          height: bounds.height * heightCoef,
         };
 
-        // this.imageStore.push(newMesh);
         this.textStore.push(newMesh);
 
         this.setTextMeshPositions();
