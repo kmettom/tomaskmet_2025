@@ -161,8 +161,7 @@ const Canvas = {
     if (this.textStore.length === 0) return;
     for (var i = 0; i < this.textStore.length; i++) {
       this.textStore[i].mesh.position.x =
-        this.textStore[i].img.getBoundingClientRect().left -
-        this.width / 2 ;
+        this.textStore[i].img.getBoundingClientRect().left - this.width / 2;
       this.textStore[i].mesh.position.y =
         -this.textStore[i].img.getBoundingClientRect().top +
         this.height / 2 -
@@ -226,53 +225,53 @@ const Canvas = {
     this.scroll.DOM.scrollspeed.push(_el);
   },
 
-  removeScrollSpeedElement(_elNode) {
-    if (this.scroll.DOM.scrollspeed.length === 0 || !_elNode) return;
+  removeScrollSpeedElement(elNode) {
+    if (this.scroll.DOM.scrollspeed.length === 0 || !elNode) return;
     for (var i = 0; i < this.scroll.DOM.scrollspeed.length; i++) {
-      if (this.scroll.DOM.scrollspeed[i].elNode.isEqualNode(_elNode)) {
+      if (this.scroll.DOM.scrollspeed[i].elNode.isEqualNode(elNode)) {
         this.scroll.DOM.scrollspeed.splice(i, 1);
         break;
       }
     }
   },
 
-  removeScrollActiveElement(_elNode) {
-    if (!_elNode || this.scroll.DOM.scrollactive.length === 0) return;
+  removeScrollActiveElement(elNode) {
+    if (!elNode || this.scroll.DOM.scrollactive.length === 0) return;
     for (var i = 0; i < this.scroll.DOM.scrollactive.length; i++) {
-      if (this.scroll.DOM.scrollactive[i].elNode.isEqualNode(_elNode)) {
+      if (this.scroll.DOM.scrollactive[i].elNode.isEqualNode(elNode)) {
         this.scroll.DOM.scrollactive.splice(i, 1);
         break;
       }
     }
   },
 
-  addScrollActiveElement(_settings) {
-    _settings.containedMeshId = this.findMeshID(_settings.elNode, true);
-    if (_settings.options?.includes('top')) _settings.rangeFromTop = true;
-    if (_settings.options?.includes('once')) _settings.aniInOnly = true;
-    if (_settings.options?.includes('track')) {
-      _settings.trackOnly = true;
+  addScrollActiveElement(settings) {
+    settings.containedMeshId = this.findMeshID(settings.elNode, true);
+    if (settings.options?.includes('top')) settings.rangeFromTop = true;
+    if (settings.options?.includes('once')) settings.aniInOnly = true;
+    if (settings.options?.includes('track')) {
+      settings.trackOnly = true;
     }
-    _settings.elNode.classList.add('show-on-scroll');
-    this.scroll.DOM.scrollactive.push(_settings);
-    this.onActiveElCallback(_settings, false);
+    settings.elNode.classList.add('show-on-scroll');
+    this.scroll.DOM.scrollactive.push(settings);
+    this.onActiveElCallback(settings, false);
   },
 
-  findMeshID(_elParent, _isActiveScroll) {
-    if (_elParent.dataset.meshId) {
-      _elParent.dataset.scrollActive = 'true';
-      return _elParent.dataset.meshId;
+  findMeshID(elParent, isActiveScroll) {
+    if (elParent.dataset.meshId) {
+      elParent.dataset.scrollActive = 'true';
+      return elParent.dataset.meshId;
     }
 
-    let el = _elParent.querySelector('[data-mesh-id]');
+    let el = elParent.querySelector('[data-mesh-id]');
     if (!el) return false;
 
-    el.dataset.scrollActive = _isActiveScroll ? 'true' : undefined;
+    el.dataset.scrollActive = isActiveScroll ? 'true' : undefined;
     return el.dataset.meshId;
   },
 
-  removeMesh(_id) {
-    let toRemove = this.scene.getObjectByName(_id);
+  removeMesh(id) {
+    let toRemove = this.scene.getObjectByName(id);
     if (!toRemove) return;
     this.scene.remove(toRemove);
     toRemove.geometry.dispose();
@@ -280,7 +279,7 @@ const Canvas = {
     toRemove = undefined;
 
     for (var i = 0; i < this.imageStore.length; i++) {
-      if (this.imageStore[i].name === _id) {
+      if (this.imageStore[i].name === id) {
         this.imageStore.splice(i, 1);
         this.materials.splice(i, 1);
         break;
