@@ -131,12 +131,16 @@ const Canvas = {
     this.setImageMeshPositions();
   },
   resizeTextStore() {
+    const widthCoef = 1;
+    const heightCoef = 1;
     // all text meshes should be resized to new size
     for (var i = 0; i < this.textStore.length; i++) {
-      let bounds = this.textStore[i].img.getBoundingClientRect();
-      this.textStore[i].mesh.scale.set(bounds.width, bounds.height);
-      this.textStore[i].width = bounds.width;
-      this.textStore[i].height = bounds.height;
+      let bounds = this.textStore[i].htmlEl.getBoundingClientRect();
+      const width = bounds.width * widthCoef;
+      const height = bounds.height * heightCoef;
+      this.textStore[i].mesh.scale.set(width, height);
+      this.textStore[i].width = width;
+      this.textStore[i].height = height;
     }
     this.setTextMeshPositions();
   },
@@ -284,8 +288,8 @@ const Canvas = {
     }
   },
 
-  addTextAsMSDF(_shader, _id, _htmlEl, _text, _theme, _mouseListeners) {
-    let bounds = _htmlEl.getBoundingClientRect();
+  addTextAsMSDF(shader, id, htmlEl, text, theme, mouseListeners) {
+    let bounds = htmlEl.getBoundingClientRect();
     let position = { top: bounds.top, left: bounds.left };
     position.top += this.currentScroll;
 
@@ -313,7 +317,7 @@ const Canvas = {
     Promise.all([loadFontAtlas(atlasUrl), loadFont(fontUrl)]).then(
       ([atlas, font]) => {
         const geometry = new MSDFTextGeometry({
-          text: _text.replaceAll(' ', ''),
+          text: text.replaceAll(' ', ''),
           font: font.data,
         });
 
@@ -328,7 +332,7 @@ const Canvas = {
           },
           uniforms: {
             uColor: {
-              value: new THREE.Color(_theme === 'dark' ? '#1B1818' : '#BFC0B2'),
+              value: new THREE.Color(theme === 'dark' ? '#1B1818' : '#BFC0B2'),
             },
             // Common
             uOpacity: { value: 1 },
@@ -354,8 +358,8 @@ const Canvas = {
         material.uniforms.uMap.value = atlas;
 
         let mesh = new THREE.Mesh(geometry, material);
-        mesh.name = _id;
-        _htmlEl.dataset.meshId = _id;
+        mesh.name = id;
+        htmlEl.dataset.meshId = id;
 
         const scaleX = bounds.width / mesh.geometry._layout._width;
         const scaleY = -1 * scaleX;
@@ -364,17 +368,17 @@ const Canvas = {
 
         this.scene.add(mesh);
 
-        const widthCoef = 1;
-        const heightCoef = 1.43;
+        const widthPositionCoef = 1;
+        const heightPositionCoef = 1.43;
 
         const newMesh = {
-          name: _id,
-          img: _htmlEl,
+          name: id,
+          img: htmlEl,
           mesh: mesh,
           top: position.top,
           left: position.left,
-          width: bounds.width * widthCoef,
-          height: bounds.height * heightCoef,
+          width: bounds.width * widthPositionCoef,
+          height: bounds.height * heightPositionCoef,
         };
 
         this.textStore.push(newMesh);
@@ -382,34 +386,34 @@ const Canvas = {
         this.setTextMeshPositions();
 
         setTimeout(() => {
-          if (!_htmlEl.dataset.scrollActive) this.activateMesh(_id, true);
+          if (!htmlEl.dataset.scrollActive) this.activateMesh(id, true);
         }, 250);
-        if (_mouseListeners) this.meshMouseListeners(newMesh, material);
+        if (mouseListeners) this.meshMouseListeners(newMesh, material);
       },
     );
   },
-  addImageAsMesh(_img, _shader, _meshId, _mouseListeners) {
+  addImageAsMesh(img, shader, meshId, mouseListeners) {
     let fragmentShader = this.options.default.fragmentShader;
     let vertexShader = this.options.default.vertexShader;
 
-    if (_shader) {
-      fragmentShader = this.options[_shader].fragmentShader;
-      vertexShader = this.options[_shader].vertexShader;
+    if (shader) {
+      fragmentShader = this.options[shader].fragmentShader;
+      vertexShader = this.options[shader].vertexShader;
     }
 
     let geometry;
-    let bounds = _img.getBoundingClientRect();
+    let bounds = img.getBoundingClientRect();
     let position = { top: bounds.top, left: bounds.left };
     position.top += this.currentScroll;
 
     geometry = new THREE.PlaneGeometry(1, 1);
 
-    let _id = _meshId
-      ? _meshId
-      : `meshImage_${_shader || 'default'}_${this.imageStore.length}`;
-    _img.dataset.meshId = _id;
+    let id = meshId
+      ? meshId
+      : `meshImage_${shader || 'default'}_${this.imageStore.length}`;
+    img.dataset.meshId = id;
 
-    let texture = new THREE.TextureLoader().load(_img.src);
+    let texture = new THREE.TextureLoader().load(img.src);
     texture.needsUpdate = true;
 
     let material = new THREE.ShaderMaterial({
@@ -423,21 +427,21 @@ const Canvas = {
       fragmentShader: fragmentShader,
       vertexShader: vertexShader,
       transparent: true,
-      name: _id,
+      name: id,
     });
 
     this.materials.push(material);
 
     let mesh = new THREE.Mesh(geometry, material);
-    mesh.name = _id;
+    mesh.name = id;
 
     mesh.scale.set(bounds.width, bounds.height);
 
     this.scene.add(mesh);
 
     const newMesh = {
-      name: _id,
-      img: _img,
+      name: id,
+      img: img,
       mesh: mesh,
       top: position.top,
       left: position.left,
@@ -449,11 +453,11 @@ const Canvas = {
     this.imageStore.push(newMesh);
 
     setTimeout(() => {
-      if (!_img.dataset.scrollActive) this.activateMesh(_id, true);
+      if (!img.dataset.scrollActive) this.activateMesh(id, true);
     }, 250);
 
     this.setImageMeshPositions();
-    if (_mouseListeners) this.meshMouseListeners(newMesh, material);
+    if (mouseListeners) this.meshMouseListeners(newMesh, material);
   },
 
   meshMouseListeners(_mesh, _material) {

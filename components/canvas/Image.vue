@@ -60,7 +60,6 @@ onMounted(async () => {
 });
 
 const addImageToCanvas = (_timeout) => {
-  console.log('addImageToCanvas');
   setTimeout(
     () => {
       if (
