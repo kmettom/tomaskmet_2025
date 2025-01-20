@@ -62,7 +62,7 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 .text-wrapper {
-  opacity: 0.2;
+  opacity: 0;
   display: inline-block;
 }
 </style>
