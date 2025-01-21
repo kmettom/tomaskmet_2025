@@ -1,5 +1,5 @@
 <template>
-  <div id="services">
+  <div class="services-section">
     <Container>
       <h2 class="heading-1">
         <span v-scrollActive="0.85">
@@ -55,9 +55,9 @@ const serviceBoxStyle = (index: number) => {
 
 <style lang="scss" scoped>
 //=======>>>   SERVICES   <<<==========//
-#services {
+.services-section {
   padding-top: 150px;
-  padding-bottom: 150px;
+  padding-bottom: 275px;
   background-color: var(--light-color);
   color: var(--dark-color);
   text-align: center;
