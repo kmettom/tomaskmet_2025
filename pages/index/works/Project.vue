@@ -105,6 +105,8 @@ watch(
 <template>
   <div
     v-scrollActive:once:top:projectCallback="0.9"
+    v-scrollSpeed="project.scrollSpeed ?? 0"
+    :style="`bottom: ${project.position?.bottom ?? 0}px;}`"
     :class="`project ${isExpanded ? ' expanded ' : ''} ${project.position?.alignRight ? ' project-right ' : ''}`"
   >
     <div
@@ -157,6 +159,7 @@ $nameSize: 30px;
   display: flex;
   justify-content: left;
   margin-bottom: $nameSize;
+  position: relative;
   &.project-right {
     justify-content: right;
   }

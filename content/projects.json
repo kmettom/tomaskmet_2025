@@ -20,9 +20,10 @@
       "src": "images/02.png",
       "alt": "image description"
     },
+    "scrollSpeed": -0.15,
     "position": {
       "alignRight": true,
-      "bottom": "150px"
+      "bottom": 350
     }
   },
   {
