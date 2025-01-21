@@ -27,6 +27,7 @@
             :icon="service.icon"
             :text="service.text"
             :styles="service.styles"
+            :block-size="serviceBlockSize"
           />
         </div>
       </div>
@@ -39,9 +40,15 @@ import Container from '~/components/common/Container.vue';
 import services from '~/content/services.model.json';
 import Service from '~/pages/index/services/Service.vue';
 
+const serviceBlockSize = 340;
+
 const serviceBoxStyle = (index: number) => {
-  let styles = `margin-top:${index * 25}vh; z-index: ${index}; transform: translate(0,0);`;
-  if (index > 2) styles += `padding-top: 100px;`;
+  let indexInRow = index;
+  if (index > 2) {
+    indexInRow = index - 3;
+  }
+  let styles = `margin-top:${indexInRow * serviceBlockSize}px; z-index: ${indexInRow}; transform: translate(0,0);`;
+  if (indexInRow !== index) styles += `padding-top: ${serviceBlockSize / 2}px`;
   return styles;
 };
 </script>

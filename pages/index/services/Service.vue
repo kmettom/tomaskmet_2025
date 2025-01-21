@@ -1,5 +1,6 @@
 <template>
-  <div class="service" :style="styles">
+  <div class="service" :style="`width:${blockSize}px;${styles}`">
+    {{}}
     <div class="header">
       <div class="iconFrame">
         {{ icon }}
@@ -31,6 +32,11 @@ export default {
       type: Object,
       default: () => {},
     },
+    blockSize: {
+      type: Number,
+      default: 340,
+      required: true,
+    },
   },
   setup() {
     const { $viewport } = useNuxtApp();
@@ -45,7 +51,6 @@ export default {
 
 <style lang="scss" scoped>
 .service {
-  width: 340px;
   aspect-ratio: 1/1;
   color: var(--light-color);
   background-color: var(--dark-color);
