@@ -190,7 +190,7 @@ const Canvas = {
       // );
     }
     if (item.options?.includes('navigation') && active) {
-      this.navigationStore = useNavigationStore();
+      if (!this.navigationStore) this.navigationStore = useNavigationStore();
       this.navigationStore.setActiveNavItem(item.elNode.dataset.navId);
       this.navigationStore.setNavContrast(
         !!item.options?.includes('navcontrast'),
@@ -246,7 +246,9 @@ const Canvas = {
     if (settings.options?.includes('once')) settings.aniInOnly = true;
     if (settings.options?.includes('track')) {
       settings.trackOnly = true;
+      settings.elNode.classList.add('active');
     }
+    settings.elNode.dataset.activeScroll = 'false';
     settings.elNode.classList.add('show-on-scroll');
     this.scroll.DOM.scrollactive.push(settings);
     this.onActiveElCallback(settings, false);

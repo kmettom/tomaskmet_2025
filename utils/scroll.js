@@ -115,10 +115,13 @@ export default class Scroll {
   }
 
   setElementActive(item, status) {
+    console.log('item', item);
     if (status) {
+      item.elNode.dataset.activeScroll = 'true';
       item.elNode.classList.add('active');
     } else {
-      item.elNode.classList.remove('active');
+      item.elNode.dataset.activeScroll = 'false';
+      if (!item.trackOnly) item.elNode.classList.remove('active');
     }
 
     Canvas.onActiveElCallback(item, status);
@@ -146,11 +149,11 @@ export default class Scroll {
             this.speed,
           );
 
-        if (!item.elNode.classList.contains('active')) {
+        if (item.elNode.dataset.activeScroll !== 'true') {
           this.setElementActive(item, true);
         }
       } else {
-        if (item.elNode.classList.contains('active') && !item.aniInOnly) {
+        if (item.elNode.dataset.activeScroll === 'true' && !item.aniInOnly) {
           this.setElementActive(item, false);
         }
       }
