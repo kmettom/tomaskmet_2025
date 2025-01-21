@@ -13,21 +13,19 @@
         </span>
       </h2>
 
-      <div class="frame">
-        <div id="servicesList">
-          <div
-            v-scrollSpeed:fixed="'servicesList'"
-            v-for="(service, index) in services"
-            :key="index"
-          >
-            <Service
-              :title="service.title"
-              :icon="service.icon"
-              :text="service.text"
-              :desktop-styles="service.desktopStyles"
-              :tablet-styles="service.tabletStyles"
-            />
-          </div>
+      <div id="servicesList" class="services-wrapper">
+        <div
+          v-scrollSpeed:fixed="'servicesList'"
+          v-for="(service, index) in services"
+          :key="index"
+        >
+          <Service
+            :title="service.title"
+            :icon="service.icon"
+            :text="service.text"
+            :desktop-styles="service.desktopStyles"
+            :tablet-styles="service.tabletStyles"
+          />
         </div>
       </div>
     </Container>
@@ -49,23 +47,6 @@ import Service from '~/pages/index/services/Service.vue';
   color: var(--dark-color);
   text-align: center;
 
-  & h2 {
-    // margin-bottom: 150px;
-  }
-
-  & .frame {
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
-    position: relative;
-
-    height: 700px;
-
-    @include respond-width($w-s) {
-      height: 1400px;
-    }
-  }
-
   @include respond-width($w-xs) {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -74,5 +55,9 @@ import Service from '~/pages/index/services/Service.vue';
       margin-bottom: 50px;
     }
   }
+}
+.services-wrapper {
+  position: relative;
+  padding-bottom: 100px;
 }
 </style>

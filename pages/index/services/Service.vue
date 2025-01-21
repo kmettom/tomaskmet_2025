@@ -1,7 +1,7 @@
 <template>
   <div
     class="main"
-    :style="isTablet ? [desktopStyles, tabletStyles] : desktopStyles"
+    :style="styles"
   >
     <div class="header">
       <div class="iconFrame">
@@ -58,7 +58,7 @@ export default {
   background-color: var(--dark-color);
   padding: 50px 40px;
   text-align: left;
-  position: absolute;
+  //position: absolute;
 }
 
 .header {

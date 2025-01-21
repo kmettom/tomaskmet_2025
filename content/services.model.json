@@ -4,15 +4,9 @@
     "icon": "🌐",
     "text": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id urna auctor donec sed. Sit cursus pretium convallis enim congue dolor. In rhoncus fusce eget diam scelerisque diam est pharetra sem.",
     "blur": "0px ",
-    "desktopStyles": {
-      "bottom": "0",
-      "left": "50%",
-      "filter": "blur(0px)",
-      "transform": "rotate(0) translateX(-50%)",
+    "styles": {
+      "top": "0",
       "z-index": "10"
-    },
-    "tabletStyles": {
-      "bottom": "0%"
     }
   },
   {
@@ -20,16 +14,9 @@
     "icon": "👨‍💻",
     "text": "Dolor risus urna dui venenatis nec tortor tellus. Sapien consequat eget nunc sagittis quam luctus id commodo. Tincidunt sollicitudin nec mattis risus sem mattis ut.",
     "blur": "0px ",
-    "desktopStyles": {
-      "bottom": "15%",
-      "left": "23%",
-      "filter": "blur(1px)",
-      "transform": "rotate(-5deg) translateX(-50%)",
+    "styles": {
+      "top": "15%",
       "z-index": "8"
-    },
-    "tabletStyles": {
-      "left": "37%",
-      "bottom": "15%"
     }
   },
   {
@@ -37,16 +24,9 @@
     "icon": "📱",
     "text": "Ac Euismod vivamus et sem rhoncus non. Rhoncus sed pharetra tincidunt arcu ut vulputate interdum nunc. Diam feugiat condimentum tempor ullamcorper non.",
     "blur": "0px ",
-    "desktopStyles": {
-      "bottom": "22%",
-      "right": "20%",
-      "filter": "blur(2px)",
-      "transform": "rotate(10deg) translateX(50%)",
+    "styles": {
+      "top": "22%",
       "z-index": "6"
-    },
-    "tabletStyles": {
-      "bottom": "30%",
-      "right": "35%"
     }
   },
   {
@@ -54,15 +34,9 @@
     "icon": "🛒",
     "text": "Ac morbi risus massa eget sapien. Aliquet ornare mauris tortor fringilla at. Scelerisque eu habitant placerat proin augue. Donec nunc varius velit aliquam erat nunc. Urna tincidunt suspendisse eleifend est quisque.",
     "blur": "0px ",
-    "desktopStyles": {
-      "bottom": "44%",
-      "left": "52%",
-      "filter": "blur(3px)",
-      "transform": "rotate(5deg) translateX(-50%)",
+    "styles": {
+      "top": "44%",
       "z-index": "4"
-    },
-    "tabletStyles": {
-      "bottom": "40%"
     }
   },
   {
@@ -70,16 +44,9 @@
     "icon": "💻",
     "text": "Ac morbi risus massa eget sapien. Aliquet ornare mauris tortor fringilla at. Scelerisque eu habitant placerat proin augue. Donec nunc varius velit aliquam erat nunc. Urna tincidunt suspendisse eleifend est quisque.",
 
-    "desktopStyles": {
-      "bottom": "55%",
-      "left": "19%",
-      "filter": "blur(4px)",
-      "transform": "rotate(-8deg) translateX(-50%)",
+    "styles": {
+      "top": "55%",
       "z-index": "2"
-    },
-    "tabletStyles": {
-      "bottom": "60%",
-      "left": "30%"
     }
   },
   {
@@ -87,15 +54,9 @@
     "icon": "🔄",
     "text": "Ac morbi risus massa eget sapien. Aliquet ornare mauris tortor fringilla at. Scelerisque eu habitant placerat proin augue. Donec nunc varius velit aliquam erat nunc. Urna tincidunt suspendisse eleifend est quisque.",
     "blur": "0px ",
-    "desktopStyles": {
-      "bottom": "55%",
-      "right": "14%",
-      "filter": "blur(5px)",
-      "transform": "rotate(14deg) translateX(50%)",
+    "styles": {
+      "top": "55%",
       "z-index": "1"
-    },
-    "tabletStyles": {
-      "bottom": "70%"
     }
   }
 ]
