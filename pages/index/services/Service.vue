@@ -1,5 +1,5 @@
 <template>
-  <div class="main" :style="styles">
+  <div class="service" :style="styles">
     <div class="header">
       <div class="iconFrame">
         {{ icon }}
@@ -44,14 +44,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.main {
+.service {
   width: 340px;
   aspect-ratio: 1/1;
   color: var(--light-color);
   background-color: var(--dark-color);
   padding: 50px 40px;
   text-align: left;
-  //position: absolute;
 }
 
 .header {

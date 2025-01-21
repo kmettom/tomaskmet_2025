@@ -18,6 +18,9 @@
           v-for="(service, index) in services"
           :key="index"
           v-scrollSpeed:fixed="'servicesList'"
+          v-scrollActive:top="0.85"
+          class="service-block"
+          :style="serviceBoxStyle(Number(index))"
         >
           <Service
             :title="service.title"
@@ -35,6 +38,12 @@
 import Container from '~/components/common/Container.vue';
 import services from '~/content/services.model.json';
 import Service from '~/pages/index/services/Service.vue';
+
+const serviceBoxStyle = (index: number) => {
+  let styles = `margin-top:${index * 25}vh; z-index: ${index}; transform: translate(0,0);`;
+  if (index > 2) styles += `padding-top: 100px;`;
+  return styles;
+};
 </script>
 
 <style lang="scss" scoped>
@@ -57,6 +66,9 @@ import Service from '~/pages/index/services/Service.vue';
 }
 .services-wrapper {
   position: relative;
-  padding-bottom: 100px;
+}
+.service-block {
+  display: inline-block;
+  vertical-align: top;
 }
 </style>
