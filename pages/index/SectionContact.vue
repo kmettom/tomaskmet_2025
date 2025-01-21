@@ -11,7 +11,7 @@
             >
               Get
             </CanvasText>
-            <span class="canvas-text-spacing" v-scrollActive="0.85">
+            <span v-scrollActive="0.85" class="canvas-text-spacing">
               <CanvasText
                 :mesh-id="'headline-in'"
                 :shader="'default'"

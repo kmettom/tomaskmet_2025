@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="main"
-    :style="styles"
-  >
+  <div class="main" :style="styles">
     <div class="header">
       <div class="iconFrame">
         {{ icon }}
@@ -30,11 +27,7 @@ export default {
       type: String,
       default: null,
     },
-    desktopStyles: {
-      type: Object,
-      default: () => {},
-    },
-    tabletStyles: {
+    styles: {
       type: Object,
       default: () => {},
     },

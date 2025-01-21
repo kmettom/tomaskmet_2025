@@ -15,16 +15,15 @@
 
       <div id="servicesList" class="services-wrapper">
         <div
-          v-scrollSpeed:fixed="'servicesList'"
           v-for="(service, index) in services"
           :key="index"
+          v-scrollSpeed:fixed="'servicesList'"
         >
           <Service
             :title="service.title"
             :icon="service.icon"
             :text="service.text"
-            :desktop-styles="service.desktopStyles"
-            :tablet-styles="service.tabletStyles"
+            :styles="service.styles"
           />
         </div>
       </div>
