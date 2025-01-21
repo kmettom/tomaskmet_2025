@@ -15,22 +15,30 @@
     <div>Folio {{ currentYear }}</div>
 
     <nav>
-      <span :class="{ active: activeNav === 'home' }">Home</span>
-      <span :class="{ active: activeNav === 'about' }">About</span>
-      <span :class="{ active: activeNav === 'work' }">Work</span>
-      <span :class="{ active: activeNav === 'services' }">Services</span>
-      <span :class="{ active: activeNav === 'contact' }">Contact me</span>
+      <span
+        v-for="navItem in navigationItems"
+        :key="navItem.id"
+        :class="{ active: activeNav === navItem.id }"
+        @click="goToSection(navItem.id)"
+      >
+        {{ navItem.name }}
+      </span>
     </nav>
   </div>
 </template>
 <script setup>
 const navigationStore = useNavigationStore();
 
+const goToSection = (sectionId) => {
+  console.log('gotosection', sectionId);
+};
+
 const currentYear = new Date().getFullYear().toString().slice(-2);
 
 const localTime = ref('');
 const timezone = 'Europe/Lisbon';
 
+const navigationItems = computed(() => navigationStore.navigationItems);
 const activeNav = computed(() => navigationStore.activeNavItem);
 const navVisible = computed(() => navigationStore.navVisible);
 const navContrastSwitched = computed(() => navigationStore.navContrastSwitched);
