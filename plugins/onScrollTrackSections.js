@@ -1,12 +1,11 @@
 import { Canvas } from '~/utils/canvas.js';
 export default defineNuxtPlugin((nuxtApp) => {
-  nuxtApp.vueApp.directive('scrollActive', {
+  nuxtApp.vueApp.directive('trackSection', {
     mounted(el, binding) {
       setTimeout(() => {
         console.log('binding', binding);
-        Canvas.addOnScrollActivateElement({
+        Canvas.addOnScrollTrackSection({
           elNode: el,
-          scrollActive: binding.value,
           options: binding.arg,
         });
       }, 150);

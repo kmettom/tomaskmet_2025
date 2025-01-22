@@ -6,9 +6,10 @@ export default class Scroll {
   constructor(options) {
     this.DOM = {
       scrollable: options.dom,
-      scrollspeed: [],
-      scrollactive: [],
-      scrollspeedBackup: [],
+      scrollSpeedElements: [],
+      onScrollActivateElements: [],
+      scrollSpeedResizeBackup: [],
+      onScrollTrackElements: [],
     };
 
     this.activeCallback = options.activeCallback;
@@ -28,47 +29,41 @@ export default class Scroll {
   }
 
   init() {
-    // sets the initial value (no interpolation) - translate the scroll value
-    // for (const _ in this.renderedStyles) {
     this.current = this.scrollToRender = this.getScroll();
-    // }
-    // translate the scrollable element
     this.setPosition();
-    this.shouldRender = true;
   }
 
   getScroll() {
     this.docScroll = this.current =
-      window.pageYOffset || document.documentElement.scrollTop;
+      window.scrollY || document.documentElement.scrollTop;
     return this.docScroll;
   }
 
   resizeMobileBreakEvents() {
     if (window.innerWidth < 768) {
-      for (const item of this.DOM.scrollspeed) {
+      for (const item of this.DOM.scrollSpeedElements) {
         item.elNode.style.transform = `translate3d(0,0px,0)`;
       }
-      for (const item of this.DOM.scrollactive) {
+      for (const item of this.DOM.onScrollActivateElements) {
         item.elNode.style.transform = `translate3d(0,0px,0)`;
       }
-      if (this.DOM.scrollspeed.length > 0) {
-        this.DOM.scrollspeedBackup = this.DOM.scrollspeed;
+      if (this.DOM.scrollSpeedElements.length > 0) {
+        this.DOM.scrollSpeedResizeBackup = this.DOM.scrollSpeedElements;
       }
-      this.DOM.scrollspeed = [];
+      this.DOM.scrollSpeedElements = [];
     } else {
       if (
-        this.DOM.scrollspeed.length == 0 &&
-        this.DOM.scrollspeedBackup.length > 0
+        this.DOM.scrollSpeedElements.length === 0 &&
+        this.DOM.scrollSpeedResizeBackup.length > 0
       ) {
-        this.DOM.scrollspeed = this.DOM.scrollspeedBackup;
+        this.DOM.scrollSpeedElements = this.DOM.scrollSpeedResizeBackup;
       }
     }
   }
 
   initEvents() {
     window.addEventListener('resize', () => {
-      //update fixed elements position in scrollSpeed array
-      for (const item of this.DOM.scrollspeed) {
+      for (const item of this.DOM.scrollSpeedElements) {
         if (item.options?.includes('fixed')) {
           item.bounds = item.elNode.getBoundingClientRect();
           item.containerBottom =
@@ -94,7 +89,7 @@ export default class Scroll {
   }
 
   setSpeedElementsPosition() {
-    for (const item of this.DOM.scrollspeed) {
+    for (const item of this.DOM.scrollSpeedElements) {
       let speed =
         item.scrollSpeed || item.scrollSpeed === 0 ? item.scrollSpeed : false;
       if (item.options?.includes('fixed')) {
@@ -130,8 +125,8 @@ export default class Scroll {
     }
   }
 
-  setActiveElementsPosition() {
-    for (const item of this.DOM.scrollactive) {
+  checkActiveElementsPosition() {
+    for (const item of this.DOM.onScrollActivateElements) {
       const bounds = item.elNode.getBoundingClientRect();
       const activeRange = item.scrollActive
         ? (1 - item.scrollActive) * window.innerHeight
@@ -147,12 +142,28 @@ export default class Scroll {
             window.innerHeight - bounds.top,
             this.speed,
           );
-
         if (item.elNode.dataset.activeScroll !== 'true') {
           this.setElementActive(item, true);
         }
       } else {
         if (item.elNode.dataset.activeScroll === 'true' && !item.aniInOnly) {
+          this.setElementActive(item, false);
+        }
+      }
+    }
+
+    for (const item of this.DOM.onScrollTrackElements) {
+      const bounds = item.elNode.getBoundingClientRect();
+      const activeRange = window.innerHeight;
+      if (
+        bounds.top < activeRange &&
+        (item.rangeFromTop || bounds.bottom > activeRange)
+      ) {
+        if (item.elNode.dataset.activeScroll !== 'true') {
+          this.setElementActive(item, true);
+        }
+      } else {
+        if (item.elNode.dataset.activeScroll === 'true') {
           this.setElementActive(item, false);
         }
       }
@@ -168,11 +179,11 @@ export default class Scroll {
       this.DOM.scrollable.style.transform = `translate3d(0,${-1 * this.scrollToRender}px,0)`;
     }
 
-    if (this.DOM.scrollspeed.length > 0) {
+    if (this.DOM.scrollSpeedElements.length > 0) {
       this.setSpeedElementsPosition();
     }
-    if (this.DOM.scrollactive.length > 0) {
-      this.setActiveElementsPosition();
+    if (this.DOM.scrollSpeedElements.length > 0) {
+      this.checkActiveElementsPosition();
     }
   }
 

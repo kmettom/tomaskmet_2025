@@ -1,18 +1,26 @@
 <template>
   <div>
-    <div v-scrollActive:track:navigation="1" data-nav-id="home">
+    <div v-trackSection:navigation data-nav-id="home">
       <SectionHero />
     </div>
-    <div v-scrollActive:track:navigation="1" data-nav-id="about">
+    <div v-trackSection:navigation data-nav-id="about">
       <SectionAbout />
     </div>
-    <div v-scrollActive:track:navigation="1" data-nav-id="work">
+    <div v-trackSection:navigation data-nav-id="work">
       <SectionWorks />
     </div>
-    <div v-scrollActive:track:navigation:navcontrast="1" data-nav-id="services">
+    <div
+      v-trackSection:navigation
+      data-navcontrast="true"
+      data-nav-id="services"
+    >
       <SectionServices />
     </div>
-    <div v-scrollActive:track:navigation:navcontrast="1" data-nav-id="contact">
+    <div
+      v-trackSection:navigation
+      data-navcontrast="true"
+      data-nav-id="contact"
+    >
       <SectionContact />
     </div>
     <div>

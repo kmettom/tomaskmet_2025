@@ -26,7 +26,7 @@ import example2Vertex from './shaders/example2Vertex.glsl';
 // import MSDFfragment from './shaders/MSDFfragment.glsl';
 import MSDFfragmentBlur from './shaders/MSDFfragmentBlur.glsl';
 import MSDFvertex from './shaders/MSDFvertex.glsl';
-import { useNavigationStore } from '~/stores/navigation';
+// import { useNavigationStore } from '~/stores/navigation';
 
 const CanvasOptions = {
   scroll: {
@@ -117,8 +117,6 @@ const Canvas = {
 
       this.resizeImageStore();
       this.resizeTextStore();
-      // this.setImageMeshPositions();
-      // this.setTextMeshPositions();
     });
   },
   resizeImageStore() {
@@ -184,17 +182,12 @@ const Canvas = {
   onActiveElCallback(item, active) {
     if (item.options?.includes('projectCallback')) {
       // do something when _active is true or false
-      // console.log(
-      //   'Example callback triggered, element active state: ',
-      //   _active,
-      // );
+      console.log('Example callback triggered, element active state: ', active);
     }
     if (item.options?.includes('navigation') && active) {
       if (!this.navigationStore) this.navigationStore = useNavigationStore();
       this.navigationStore.setActiveNavItem(item.elNode.dataset.navId);
-      this.navigationStore.setNavContrast(
-        !!item.options?.includes('navcontrast'),
-      );
+      this.navigationStore.setNavContrast(!!item.elNode.dataset.navcontrast);
     }
   },
 
@@ -213,44 +206,51 @@ const Canvas = {
         el.childEl = el.elNode.children[0];
         el.containerBottom = el.containerEl.getBoundingClientRect().bottom;
         el.margin = 0;
-        this.scroll.DOM.scrollspeed.push(el);
+        this.scroll.DOM.scrollSpeedElements.push(el);
       }, 750);
       return;
     }
-    this.scroll.DOM.scrollspeed.push(el);
+    this.scroll.DOM.scrollSpeedElements.push(el);
   },
 
   removeScrollSpeedElement(elNode) {
-    if (this.scroll.DOM.scrollspeed.length === 0 || !elNode) return;
-    for (var i = 0; i < this.scroll.DOM.scrollspeed.length; i++) {
-      if (this.scroll.DOM.scrollspeed[i].elNode.isEqualNode(elNode)) {
-        this.scroll.DOM.scrollspeed.splice(i, 1);
+    if (this.scroll.DOM.scrollSpeedElements.length === 0 || !elNode) return;
+    for (var i = 0; i < this.scroll.DOM.scrollSpeedElements.length; i++) {
+      if (this.scroll.DOM.scrollSpeedElements[i].elNode.isEqualNode(elNode)) {
+        this.scroll.DOM.scrollSpeedElements.splice(i, 1);
         break;
       }
     }
   },
 
   removeScrollActiveElement(elNode) {
-    if (!elNode || this.scroll.DOM.scrollactive.length === 0) return;
-    for (var i = 0; i < this.scroll.DOM.scrollactive.length; i++) {
-      if (this.scroll.DOM.scrollactive[i].elNode.isEqualNode(elNode)) {
-        this.scroll.DOM.scrollactive.splice(i, 1);
+    if (!elNode || this.scroll.DOM.onScrollActivateElements.length === 0)
+      return;
+    for (var i = 0; i < this.scroll.DOM.onScrollActivateElements.length; i++) {
+      if (
+        this.scroll.DOM.onScrollActivateElements[i].elNode.isEqualNode(elNode)
+      ) {
+        this.scroll.DOM.onScrollActivateElements.splice(i, 1);
         break;
       }
     }
   },
 
-  addScrollActiveElement(settings) {
-    settings.containedMeshId = this.findMeshID(settings.elNode, true);
-    if (settings.options?.includes('top')) settings.rangeFromTop = true;
-    if (settings.options?.includes('once')) settings.aniInOnly = true;
+  addOnScrollTrackSection(settings) {
     if (settings.options?.includes('track')) {
       settings.trackOnly = true;
       settings.elNode.classList.add('active');
     }
+    this.scroll.DOM.onScrollTrackElements.push(settings);
+  },
+
+  addOnScrollActivateElement(settings) {
+    settings.containedMeshId = this.findMeshID(settings.elNode, true);
+    if (settings.options?.includes('top')) settings.rangeFromTop = true;
+    if (settings.options?.includes('once')) settings.aniInOnly = true;
     settings.elNode.dataset.activeScroll = 'false';
     settings.elNode.classList.add('show-on-scroll');
-    this.scroll.DOM.scrollactive.push(settings);
+    this.scroll.DOM.onScrollActivateElements.push(settings);
     this.onActiveElCallback(settings, false);
   },
 
