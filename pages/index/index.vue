@@ -1,16 +1,17 @@
 <template>
   <div>
-    <div v-trackSection:navigation data-nav-id="home">
+    <div v-trackSection:navigation class="page-section" data-nav-id="home">
       <SectionHero />
     </div>
-    <div v-trackSection:navigation data-nav-id="about">
+    <div v-trackSection:navigation class="page-section" data-nav-id="about">
       <SectionAbout />
     </div>
-    <div v-trackSection:navigation data-nav-id="work">
+    <div v-trackSection:navigation class="page-section" data-nav-id="work">
       <SectionWorks />
     </div>
     <div
       v-trackSection:navigation
+      class="page-section"
       data-navcontrast="true"
       data-nav-id="services"
     >
@@ -18,6 +19,7 @@
     </div>
     <div
       v-trackSection:navigation
+      class="page-section"
       data-navcontrast="true"
       data-nav-id="contact"
     >

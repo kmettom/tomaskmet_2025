@@ -518,6 +518,15 @@ const Canvas = {
     }, delay);
   },
 
+  scrollToElBySelector(elQuerySelector, delay) {
+    const element = document.querySelector(elQuerySelector);
+    if (!element) return;
+    const position = element.getBoundingClientRect().top;
+    setTimeout(() => {
+      this.scroll.render(position, true);
+    }, delay);
+  },
+
   render() {
     this.animations.cursorCallBack();
     this.time += 0.05;
