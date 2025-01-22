@@ -1,37 +1,26 @@
 <template>
   <div class="contact-section">
     <Container>
-      <div class="frame">
-        <div class="heading-1">
-          <span v-scrollActive="0.85">
-            <CanvasText
-              :mesh-id="'headline-get'"
-              :shader="'default'"
-              :theme="'dark'"
-            >
-              GET
-            </CanvasText>
-            <span v-scrollActive="0.85" class="canvas-text-spacing">
-              <CanvasText
-                :mesh-id="'headline-in'"
-                :shader="'default'"
-                :theme="'dark'"
-              >
-                IN
-              </CanvasText>
-            </span>
-          </span>
-        </div>
-        <div class="contact-line second-line">
+      <div class="">
+        <div class="contact-line">
           <div class="heading-1">
             <span v-scrollActive="0.85">
               <CanvasText
-                :mesh-id="'headline-touch'"
+                :mesh-id="'headline-get'"
                 :shader="'default'"
                 :theme="'dark'"
               >
-                TOUCH
+                GET
               </CanvasText>
+              <span v-scrollActive="0.85" class="canvas-text-spacing">
+                <CanvasText
+                  :mesh-id="'headline-in'"
+                  :shader="'default'"
+                  :theme="'dark'"
+                >
+                  IN
+                </CanvasText>
+              </span>
             </span>
           </div>
           <div class="action-list body-m">
@@ -50,26 +39,40 @@
               </a>
             </div>
           </div>
-          <div class="social-media-list body-m">
-            <div>
-              <a href="https://www.instagram.com/783.studio" target="_blank"
+        </div>
+        <div class="contact-line second-line">
+          <div class="heading-1">
+            <div class="social-media-list body-m">
+              <div>
+                <a href="https://www.instagram.com/783.studio" target="_blank"
                 >Instagram</a
-              >
-            </div>
-            <!--            <div><a href="" target="_blank">Email</a></div>-->
-            <div>
-              <a
-                href="mailto:hello@783studio.com"
-                data-email="hello@783studio.com"
-                >Email</a
-              >
-            </div>
-            <div>
-              <a href="https://www.linkedin.com/in/tomas-kmet/" target="_blank"
+                >
+              </div>
+              <!--            <div><a href="" target="_blank">Email</a></div>-->
+              <div>
+                <a
+                    href="mailto:hello@783studio.com"
+                    data-email="hello@783studio.com"
+                >Email</a>
+              </div>
+              <div>
+                <a href="https://www.linkedin.com/in/tomas-kmet/" target="_blank"
                 >LinkedIn</a
-              >
+                >
+              </div>
             </div>
+            <span v-scrollActive="0.85">
+              <CanvasText
+                :mesh-id="'headline-touch'"
+                :shader="'default'"
+                :theme="'dark'"
+              >
+                TOUCH
+              </CanvasText>
+            </span>
           </div>
+
+
         </div>
       </div>
     </Container>
@@ -104,10 +107,6 @@ import BasketBallIcon from '~/public/icons/basket-ball.png';
     position: relative;
     display: inline-block;
   }
-}
-.frame {
-  display: flex;
-  flex-direction: column;
 }
 
 .contact-line.second-line {
