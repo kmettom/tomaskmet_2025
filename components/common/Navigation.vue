@@ -29,7 +29,6 @@
 const navigationStore = useNavigationStore();
 
 const goToSection = (sectionId) => {
-  console.log('gotosection', sectionId);
   Canvas.scrollToElBySelector(
     `.page-section[data-nav-id="${sectionId}"]`,
     0.75,

@@ -521,7 +521,7 @@ const Canvas = {
   scrollToElBySelector(elQuerySelector, delay) {
     const element = document.querySelector(elQuerySelector);
     if (!element) return;
-    const position = element.getBoundingClientRect().top;
+    const position = element.offsetTop;
     setTimeout(() => {
       this.scroll.render(position, true);
     }, delay);
