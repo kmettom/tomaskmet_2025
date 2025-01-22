@@ -17,7 +17,6 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.activeNavItem = id;
     },
     setNavVisible(visible) {
-      console.log('setNavVisible', visible);
       this.navVisible = visible;
     },
     setNavContrast(contrastSwitched) {

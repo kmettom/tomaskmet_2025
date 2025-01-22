@@ -125,7 +125,7 @@ export default class Scroll {
     }
   }
 
-  checkActiveElementsPosition() {
+  checkElementsToActivate() {
     for (const item of this.DOM.onScrollActivateElements) {
       const bounds = item.elNode.getBoundingClientRect();
       const activeRange = item.scrollActive
@@ -151,13 +151,15 @@ export default class Scroll {
         }
       }
     }
+  }
 
+  checkElementsToTrack() {
     for (const item of this.DOM.onScrollTrackElements) {
       const bounds = item.elNode.getBoundingClientRect();
-      const activeRange = window.innerHeight;
+      const navigationMargin = 100;
       if (
-        bounds.top < activeRange &&
-        (item.rangeFromTop || bounds.bottom > activeRange)
+        bounds.top - navigationMargin <= 0 &&
+        bounds.bottom - navigationMargin >= 0
       ) {
         if (item.elNode.dataset.activeScroll !== 'true') {
           this.setElementActive(item, true);
@@ -168,6 +170,11 @@ export default class Scroll {
         }
       }
     }
+  }
+
+  checkElementsPosition() {
+    this.checkElementsToActivate();
+    this.checkElementsToTrack();
   }
 
   setPosition() {
@@ -183,7 +190,7 @@ export default class Scroll {
       this.setSpeedElementsPosition();
     }
     if (this.DOM.scrollSpeedElements.length > 0) {
-      this.checkActiveElementsPosition();
+      this.checkElementsPosition();
     }
   }
 

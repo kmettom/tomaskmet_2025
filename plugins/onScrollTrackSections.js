@@ -3,7 +3,6 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.directive('trackSection', {
     mounted(el, binding) {
       setTimeout(() => {
-        console.log('binding', binding);
         Canvas.addOnScrollTrackSection({
           elNode: el,
           options: binding.arg,
