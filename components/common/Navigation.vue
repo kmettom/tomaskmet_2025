@@ -1,12 +1,10 @@
 <template>
-  <!-- NAVIGATION -->
   <div
     v-if="navVisible"
-    id="topNavigation"
-    class="body-xs"
+    class="body-xs navigation-bar"
     :class="{ dark: navContrastSwitched }"
   >
-    <div id="location">
+    <div class="location">
       <span>Portugal</span>
       <span id="splitter">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
       <span>{{ localTime }}</span>
@@ -14,10 +12,11 @@
 
     <div>Folio {{ currentYear }}</div>
 
-    <nav>
+    <nav class="navigation-items">
       <span
         v-for="navItem in navigationItems"
         :key="navItem.id"
+        class="navigation-item"
         :class="{ active: activeNav === navItem.id }"
         @click="goToSection(navItem.id)"
       >
@@ -63,7 +62,7 @@ onUnmounted(() => {
 });
 </script>
 <style lang="scss">
-#topNavigation {
+.navigation-bar {
   position: fixed;
   top: 0;
   right: 0;
@@ -75,55 +74,52 @@ onUnmounted(() => {
 
   &.dark {
     color: var(--dark-color);
-  }
 
-  // site navigation
-  & nav {
-    display: flex;
-    flex-direction: column;
-    text-align: right;
-
-    & span {
-      cursor: pointer;
-      line-height: 15px;
-
-      &::before {
-        opacity: 0;
-        content: '';
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        background: url('public/icons/right-arrow.svg') no-repeat;
-        background-size: cover;
-        margin-right: 4px;
-        position: relative;
-        bottom: -4px;
-        transform: translateX(-10px);
-        transition: ease all 0.3s;
-      }
-
-      &:hover {
-        font-weight: bold;
-      }
-      &.active {
-        font-weight: bold;
-        &::before {
-          transform: translateX(0px);
-          opacity: 1;
-        }
+    .navigation-item {
+      &:after {
+        color: var(--dark-color);
       }
     }
   }
+}
 
-  & #location {
-    display: flex;
+.navigation-items {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+.navigation-item {
+  cursor: pointer;
+  line-height: 15px;
+  &:before {
+    opacity: 0;
+    content: '👉';
+    display: inline-block;
+    margin-right: 4px;
+    position: relative;
+    transform: translateX(-10px);
+    transition: ease all 0.3s;
+  }
 
-    @include respond-width($w-xs) {
-      flex-direction: column;
+  &:hover {
+    font-weight: bold;
+  }
 
-      #splitter {
-        display: none;
-      }
+  &.active {
+    font-weight: bold;
+    &::before {
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
+}
+
+.location {
+  display: flex;
+  @include respond-width($w-xs) {
+    flex-direction: column;
+    #splitter {
+      display: none;
     }
   }
 }
