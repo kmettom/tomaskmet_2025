@@ -73,9 +73,13 @@
         </div>
       </div>
     </Container>
-    <div id="bottomElement">
-      <div class="iconFrame">
-        <img :src="BasketBallIcon" alt="Basket ball icon" />
+    <div class="basketball-game">
+      <div class="basketball-icon-wrapper">
+        <img
+          class="basketball-icon"
+          :src="BasketBallIcon"
+          alt="Basket ball icon"
+        />
       </div>
     </div>
   </div>
@@ -95,32 +99,6 @@ import BasketBallIcon from '~/public/icons/basket-ball.png';
 
   padding-top: 150px;
   padding-bottom: 150px;
-
-  & #bottomElement {
-    width: 150px;
-    height: 25px;
-    background-color: var(--dark-color);
-    position: absolute;
-    left: 30%;
-    bottom: 0;
-
-    @include respond-width($w-s) {
-      width: 100px;
-    }
-
-    & .iconFrame {
-      position: absolute;
-      left: 75%;
-      bottom: 100%;
-      transform: translateX(-50%);
-
-      & img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-  }
   .canvas-text-spacing {
     padding-left: 20px;
     position: relative;
@@ -130,17 +108,6 @@ import BasketBallIcon from '~/public/icons/basket-ball.png';
 .frame {
   display: flex;
   flex-direction: column;
-
-  @include respond-width($w-m) {
-    margin: 0 auto;
-    max-width: 598px;
-    height: 420px;
-  }
-
-  @include respond-width($w-s) {
-    max-width: 300px;
-    height: 188px;
-  }
 }
 
 .contact-line.second-line {
@@ -150,8 +117,8 @@ import BasketBallIcon from '~/public/icons/basket-ball.png';
 .social-media-list {
   position: absolute;
   text-align: right;
-  bottom: 50px;
-  right: 100%;
+  //bottom: 50px;
+  //right: 100%;
   padding-bottom: 5px;
   padding-right: 10px;
 
@@ -187,21 +154,31 @@ import BasketBallIcon from '~/public/icons/basket-ball.png';
     height: 100%;
     padding: 0;
   }
+}
 
-  // single action item
-  //&  > div {
-  //  display: flex;
-  //  @include respond-width($w-s) {
-  //    text-align: right;
-  //  }
-  //
-  //}
+.basketball-game {
+  width: 150px;
+  height: 25px;
+  background-color: var(--dark-color);
+  position: absolute;
+  left: 30%;
+  bottom: 0;
 
-  .iconFrame {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 4px;
+  @include respond-width($w-s) {
+    width: 100px;
+  }
+
+  .basketball-icon-wrapper {
+    position: absolute;
+    left: 75%;
+    bottom: 100%;
+    transform: translateX(-50%);
+
+    .basketball-icon {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 }
 </style>
