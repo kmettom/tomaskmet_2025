@@ -98,8 +98,7 @@ import BasketBallIcon from '~/public/icons/basket-ball.png';
   position: relative;
   color: var(--dark-color);
   background-color: var(--light-color);
-
-  padding-top: 150px;
+  padding-top: 50px;
   padding-bottom: 150px;
 }
 .canvas-text-spacing {

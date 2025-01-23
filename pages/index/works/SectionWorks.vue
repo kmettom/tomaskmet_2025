@@ -1,7 +1,7 @@
 <template>
   <div class="works-section">
     <Container>
-      <h2 class="heading-1">
+      <h2 class="heading-1 heading-1-spacing text-align-right">
         <span v-scrollActive="0.65">
           <CanvasText
             :mesh-id="'headline-work'"
@@ -121,14 +121,6 @@ $marginRight: 50px;
   }
 }
 
-h2 {
-  text-align: right;
-  padding-bottom: 100px;
-
-  @include respond-width($w-s) {
-    padding-bottom: 50px;
-  }
-}
 #gallery {
   position: relative;
   //position: absolute;

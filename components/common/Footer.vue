@@ -12,7 +12,7 @@
     <span id="design"
       >Design:
       <a href="https://jagodakondratiuk.com" target="_blank"
-        >Jagoda Kodnratiuk</a
+        >Jagoda Kondratiuk</a
       ></span
     >
   </div>
