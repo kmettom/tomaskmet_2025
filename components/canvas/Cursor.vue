@@ -7,7 +7,11 @@ import { Canvas } from '~/utils/canvas';
 
 export default {
   name: 'AppCursor',
-  props: ['cursorEnabled'],
+  props: {
+    cursorEnabled: {
+      type: Boolean,
+    },
+  },
   data: () => {
     return {
       baseSize: 12,
@@ -58,19 +62,17 @@ export default {
       this.curNewY = _event.clientY;
       this.curNewColor =
         _event.target.dataset.cursorcolor &&
-        _event.target.dataset.cursorcolor == 'light'
-          ? '#fff'
-          : '#172d4a';
+        _event.target.dataset.cursorcolor == 'dark'
+          ? '#1B1818FF'
+          : '#bfc0b2';
       if (!this.cursorInited) {
         this.currentSize = this.baseSize;
         this.cursorX = _event.clientX;
         this.cursorY = _event.clientY;
         this.cursorInited = true;
       }
-      // this.$store.state.cursorPosition = { clientX: _event.clientX , clientY: _event.clientY };
     },
     draw() {
-      console.log('cursor draw callback');
       const dX = this.curNewX - this.cursorX;
       const dY = this.curNewY - this.cursorY;
       this.cursorX += dX / this.easingPosition;
@@ -108,7 +110,7 @@ body {
   position: fixed;
   text-align: center;
   z-index: 99;
-  background: var(--blue-secondary);
+  background: var(--dark-color);
   border-radius: 50%;
   z-index: 99;
   top: 0px;
