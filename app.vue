@@ -13,6 +13,7 @@
   >
     <NuxtPage :page-active="contentActive" />
   </DefaultPageLayout>
+  <CanvasCursor v-if="contentActive" />
 </template>
 <script setup>
 import { Canvas } from '~/utils/canvas';
