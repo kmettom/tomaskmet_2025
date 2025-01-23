@@ -47,17 +47,20 @@
                 >Instagram</a
               >
             </div>
-            <!--            <div><a href="" target="_blank">Email</a></div>-->
+
+            <div>
+              <a href="https://x.com/KmetTom" target="_blank">Twitter</a>
+            </div>
+            <div>
+              <a href="https://www.linkedin.com/in/tomas-kmet/" target="_blank"
+                >LinkedIn</a
+              >
+            </div>
             <div>
               <a
                 href="mailto:hello@783studio.com"
                 data-email="hello@783studio.com"
                 >Email</a
-              >
-            </div>
-            <div>
-              <a href="https://www.linkedin.com/in/tomas-kmet/" target="_blank"
-                >LinkedIn</a
               >
             </div>
           </div>
