@@ -23,7 +23,7 @@
               </span>
             </span>
           </div>
-          <div class="action-list body-m">
+          <div class="side-list action-list body-m">
             <div>
               <span>📞 Book a call</span>
             </div>
@@ -40,27 +40,28 @@
             </div>
           </div>
         </div>
-        <div class="contact-line second-line">
-          <div class="heading-1">
-            <div class="social-media-list body-m">
-              <div>
-                <a href="https://www.instagram.com/783.studio" target="_blank"
+        <div class="contact-line align-right">
+          <div class="side-list social-media-list body-m">
+            <div>
+              <a href="https://www.instagram.com/783.studio" target="_blank"
                 >Instagram</a
-                >
-              </div>
-              <!--            <div><a href="" target="_blank">Email</a></div>-->
-              <div>
-                <a
-                    href="mailto:hello@783studio.com"
-                    data-email="hello@783studio.com"
-                >Email</a>
-              </div>
-              <div>
-                <a href="https://www.linkedin.com/in/tomas-kmet/" target="_blank"
-                >LinkedIn</a
-                >
-              </div>
+              >
             </div>
+            <!--            <div><a href="" target="_blank">Email</a></div>-->
+            <div>
+              <a
+                href="mailto:hello@783studio.com"
+                data-email="hello@783studio.com"
+                >Email</a
+              >
+            </div>
+            <div>
+              <a href="https://www.linkedin.com/in/tomas-kmet/" target="_blank"
+                >LinkedIn</a
+              >
+            </div>
+          </div>
+          <div class="heading-1">
             <span v-scrollActive="0.85">
               <CanvasText
                 :mesh-id="'headline-touch'"
@@ -71,8 +72,6 @@
               </CanvasText>
             </span>
           </div>
-
-
         </div>
       </div>
     </Container>
@@ -102,57 +101,28 @@ import BasketBallIcon from '~/public/icons/basket-ball.png';
 
   padding-top: 150px;
   padding-bottom: 150px;
-  .canvas-text-spacing {
-    padding-left: 20px;
-    position: relative;
-    display: inline-block;
-  }
+}
+.canvas-text-spacing {
+  padding-left: 20px;
+  position: relative;
+  display: inline-block;
 }
 
-.contact-line.second-line {
-  position: relative;
+.contact-line {
+  display: flex;
+  justify-content: start;
+  &.align-right {
+    justify-content: end;
+  }
 }
 
 .social-media-list {
-  position: absolute;
-  text-align: right;
-  //bottom: 50px;
-  //right: 100%;
-  padding-bottom: 5px;
-  padding-right: 10px;
-
-  @include respond-width($w-m) {
-    bottom: 36px;
-    padding-bottom: 0px;
-    padding-right: 10px;
-  }
-
-  @include respond-width($w-s) {
-    text-align: left;
-    left: 5px;
-    top: calc(100% - 10px);
-  }
 }
 
-.action-list {
-  position: absolute;
-  right: 0;
-  bottom: 100%;
-  padding-right: 240px;
-  padding-bottom: 18px;
-
-  @include respond-width($w-m) {
-    padding-right: 0px;
-    padding-bottom: 14px;
-  }
-
-  @include respond-width($w-s) {
-    right: calc(100% + 4px);
-    width: 100px;
-    bottom: 0;
-    height: 100%;
-    padding: 0;
-  }
+.side-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
 }
 
 .basketball-game {

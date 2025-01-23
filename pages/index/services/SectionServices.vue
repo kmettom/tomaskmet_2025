@@ -47,8 +47,8 @@ const serviceBoxStyle = (index: number) => {
   if (index > 2) {
     indexInRow = index - 3;
   }
-  let styles = `margin-top:${indexInRow * serviceBlockSize}px; z-index: ${indexInRow}; transform: translate(0,0);`;
-  if (indexInRow !== index) styles += `padding-top: ${serviceBlockSize / 2}px`;
+  let styles = `margin-top:${(indexInRow * serviceBlockSize) / 3}px; z-index: ${indexInRow}; transform: translate(0,0);`;
+  if (indexInRow !== index) styles += `padding-top: ${serviceBlockSize / 4}px`;
   return styles;
 };
 </script>
