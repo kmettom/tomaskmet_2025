@@ -12,14 +12,17 @@
           </CanvasText>
         </h2>
       </div>
+
       <div class="hero-content-line hero-line-783">
-        <div class="body-m hero-content-sm hero-services">
-          <p>web3</p>
-          <p>creative</p>
-          <p>apps</p>
-          <p>websites</p>
-          <p>e-commerce</p>
-        </div>
+        <transition name="text" mode="out-in">
+          <div v-if="showTexts" class="body-m hero-content-sm hero-services">
+            <p>web3</p>
+            <p>creative</p>
+            <p>apps</p>
+            <p>websites</p>
+            <p>e-commerce</p>
+          </div>
+        </transition>
         <h2 v-scrollActive="0.85" class="heading-1">
           <CanvasText
             :mesh-id="'headline-783'"
@@ -42,6 +45,27 @@
 
 <script setup lang="ts">
 import Container from '~/components/common/Container.vue';
+
+definePageMeta({
+  layoutTransition: {
+    name: 'text',
+    mode: 'out-in',
+    onBeforeEnter: (el) => {
+      console.log('onBeforeEnter enter...', el);
+    },
+    onEnter: (el, done) => {
+      console.log('onEnter enter...', el, done);
+    },
+    onAfterEnter: (el) => {
+      console.log('onAfterEnter enter...', el);
+    },
+  },
+});
+
+const showTexts = ref(false);
+onMounted(() => {
+  showTexts.value = true;
+});
 </script>
 
 <style lang="scss" scoped>
