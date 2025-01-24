@@ -14,15 +14,15 @@
       </div>
 
       <div class="hero-content-line hero-line-783">
-        <transition name="text" mode="out-in">
-          <div v-if="showTexts" class="body-m hero-content-sm hero-services">
+<!--        <transition name="text" mode="out-in">-->
+          <div v-scrollActive:textaniin="1" class="body-m hero-content-sm hero-services">
             <p>web3</p>
             <p>creative</p>
             <p>apps</p>
             <p>websites</p>
             <p>e-commerce</p>
           </div>
-        </transition>
+<!--        </transition>-->
         <h2 v-scrollActive="0.85" class="heading-1">
           <CanvasText
             :mesh-id="'headline-783'"
@@ -47,7 +47,7 @@
 import Container from '~/components/common/Container.vue';
 
 definePageMeta({
-  layoutTransition: {
+  pageTransition: {
     name: 'text',
     mode: 'out-in',
     onBeforeEnter: (el) => {
@@ -64,7 +64,9 @@ definePageMeta({
 
 const showTexts = ref(false);
 onMounted(() => {
-  showTexts.value = true;
+  setTimeout(() => {
+    showTexts.value = true;
+  }, 2000);
 });
 </script>
 

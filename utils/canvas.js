@@ -189,6 +189,9 @@ const Canvas = {
       this.navigationStore.setActiveNavItem(item.elNode.dataset.navId);
       this.navigationStore.setNavContrast(!!item.elNode.dataset.navcontrast);
     }
+    if (item.options?.includes('textaniin') && active) {
+      gsap.to(item.elNode, {opacity: 0.5, duration: 2});
+    }
   },
 
   onScrollCallBack() {
