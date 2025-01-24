@@ -190,7 +190,7 @@ const Canvas = {
       this.navigationStore.setNavContrast(!!item.elNode.dataset.navcontrast);
     }
     if (item.options?.includes('textaniin') && active) {
-      gsap.to(item.elNode, {opacity: 0.5, duration: 2});
+      gsap.to(item.elNode, { opacity: 0.5, duration: 2 });
     }
   },
 

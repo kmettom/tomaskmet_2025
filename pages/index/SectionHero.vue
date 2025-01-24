@@ -14,15 +14,18 @@
       </div>
 
       <div class="hero-content-line hero-line-783">
-<!--        <transition name="text" mode="out-in">-->
-          <div v-scrollActive:textaniin="1" class="body-m hero-content-sm hero-services">
-            <p>web3</p>
-            <p>creative</p>
-            <p>apps</p>
-            <p>websites</p>
-            <p>e-commerce</p>
-          </div>
-<!--        </transition>-->
+        <!--        <transition name="text" mode="out-in">-->
+        <div
+          v-scrollActive:textaniin="1"
+          class="body-m hero-content-sm hero-services"
+        >
+          <p>web3</p>
+          <p>creative</p>
+          <p>apps</p>
+          <p>websites</p>
+          <p>e-commerce</p>
+        </div>
+        <!--        </transition>-->
         <h2 v-scrollActive="0.85" class="heading-1">
           <CanvasText
             :mesh-id="'headline-783'"
