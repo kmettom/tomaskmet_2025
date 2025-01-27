@@ -180,16 +180,16 @@ const Canvas = {
   },
 
   onActiveElCallback(item, active) {
-    if (item.options.callback === 'exampleCallback') {
+    if (item.options.activateCallback === 'exampleCallback') {
       // do something when _active is true or false
       console.log('Example callback triggered, element active state: ', active);
     }
-    if (item.options.callback === 'navigation' && active) {
+    if (item.options.activateCallback === 'navigation' && active) {
       if (!this.navigationStore) this.navigationStore = useNavigationStore();
       this.navigationStore.setActiveNavItem(item.elNode.dataset.navId);
       this.navigationStore.setNavContrast(!!item.elNode.dataset.navcontrast);
     }
-    if (item.options.callback === 'textAnimation' && active) {
+    if (item.options.activateCallback === 'textAnimation' && active) {
       gsap.to(item.elNode, { opacity: 0.5, duration: 2 });
     }
   },
@@ -199,10 +199,10 @@ const Canvas = {
   },
 
   addScrollSpeedElement(binding) {
-    if (binding.options.fixedParentId) {
+    if (binding.options.fixToParentId) {
       setTimeout(() => {
         // timeout for rendering when page is changed
-        binding.containerId = binding.options.fixedParentId;
+        binding.containerId = binding.options.fixToParentId;
         binding.options.scrollSpeed = 1;
         binding.bounds = binding.elNode.getBoundingClientRect();
         binding.containerEl = document.getElementById(binding.containerId);

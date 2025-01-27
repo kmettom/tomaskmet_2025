@@ -16,9 +16,9 @@ export default defineNuxtPlugin((nuxtApp) => {
   });
 });
 
-const onScrollActivateOptions = {
-  activeRange: Number,
-  activateFromTop: Boolean,
-  activateOnce: Boolean,
-
-}
+// const onScrollActivateOptions = {
+//   activeRange: Number,
+//   activateFromTop: Boolean,
+//   activateOnce: Boolean,
+//   activateCallback: String,
+// }

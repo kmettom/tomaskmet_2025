@@ -5,7 +5,8 @@ export default defineNuxtPlugin((nuxtApp) => {
       setTimeout(() => {
         Canvas.addOnScrollTrackSection({
           elNode: el,
-          options: binding.arg,
+          options: binding.value,
+          arg: binding.arg,
         });
       }, 150);
     },
@@ -14,3 +15,10 @@ export default defineNuxtPlugin((nuxtApp) => {
     },
   });
 });
+
+// const trackSectionOptions = {
+//   navigation: Number,
+//   activateFromTop: Boolean,
+//   activateOnce: Boolean,
+//   activateCallback: String,
+// }

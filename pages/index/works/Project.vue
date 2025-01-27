@@ -108,7 +108,7 @@ watch(
       activeRange: 0.85,
       activateFromTop: false,
       activateOnce: false,
-      onActivateCallBack: 'exampleCallback',
+      activateCallback: 'exampleCallback',
     }"
     v-scrollSpeed="{ scrollSpeed: project.scrollSpeed ?? 0 }"
     :style="`bottom: ${project.position?.bottom ?? 0}px;}`"
