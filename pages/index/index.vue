@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-trackSection:navigation class="page-section" data-nav-id="home">
-      <SectionHero :page-active="pageActive" />
+      <SectionHero :sectionActivate="pageActive" />
     </div>
     <div v-trackSection:navigation class="page-section" data-nav-id="about">
       <SectionAbout />
@@ -51,24 +51,6 @@ const props = defineProps({
   pageActive: Boolean,
 });
 
-const pageAniIn = () => {
-  console.log('Example method - animate page transition');
-};
-
-onMounted(() => {
-  if (props.pageActive) {
-    pageAniIn();
-  }
-});
-
-watch(
-  () => props.pageActive,
-  (newValue) => {
-    if (newValue) {
-      pageAniIn();
-    }
-  },
-);
 </script>
 
 <style lang="scss"></style>

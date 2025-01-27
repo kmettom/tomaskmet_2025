@@ -56,6 +56,21 @@
 
 <script setup lang="ts">
 import Container from '~/components/common/Container.vue';
+
+const props = defineProps({
+  sectionActivate: Boolean,
+});
+
+const heroSectionAnimation = () => {
+
+}
+
+watch(() => props.sectionActivate, (newValue) => {
+  if (newValue) {
+    heroSectionAnimation();
+  }
+});
+
 </script>
 
 <style lang="scss" scoped>
