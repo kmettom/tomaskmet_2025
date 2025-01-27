@@ -2,7 +2,17 @@
   <div>
     <Container additional-class="hero-section">
       <div class="hero-content-line hero-line-studio">
-        <h2 v-scrollActive="0.85" class="heading-0">
+        <h2
+          v-onScrollActivate="{
+            activeRange: 0.85,
+            activateFromTop: false,
+            activateOnce: false,
+            aniInOnly: false,
+            onActivateCallBack: 'textAnimation',
+            onScrollCallBack: false,
+          }"
+          class="heading-0"
+        >
           <CanvasText
             :mesh-id="'headline-studio'"
             :shader="'default'"
@@ -14,9 +24,8 @@
       </div>
 
       <div class="hero-content-line hero-line-783">
-        <!--        <transition name="text" mode="out-in">-->
         <div
-          v-scrollActive:textaniin="1"
+          v-onScrollActivate="{ activeRange: 0.85 }"
           class="body-m hero-content-sm hero-services"
         >
           <p>web3</p>
@@ -25,8 +34,7 @@
           <p>websites</p>
           <p>e-commerce</p>
         </div>
-        <!--        </transition>-->
-        <h2 v-scrollActive="0.85" class="heading-1">
+        <h2 v-onScrollActivate="{ activeRange: 0.85 }" class="heading-1">
           <CanvasText
             :mesh-id="'headline-783'"
             :shader="'default'"
@@ -48,35 +56,12 @@
 
 <script setup lang="ts">
 import Container from '~/components/common/Container.vue';
-
-definePageMeta({
-  pageTransition: {
-    name: 'text',
-    mode: 'out-in',
-    onBeforeEnter: (el) => {
-      console.log('onBeforeEnter enter...', el);
-    },
-    onEnter: (el, done) => {
-      console.log('onEnter enter...', el, done);
-    },
-    onAfterEnter: (el) => {
-      console.log('onAfterEnter enter...', el);
-    },
-  },
-});
-
-const showTexts = ref(false);
-onMounted(() => {
-  setTimeout(() => {
-    showTexts.value = true;
-  }, 2000);
-});
 </script>
 
 <style lang="scss" scoped>
 //=======>>>   HERO   <<<==========//
 .hero-section {
-  padding: 100px 0px;
+  padding: 100px 0;
   position: relative;
   text-align: center;
 }
@@ -97,7 +82,7 @@ onMounted(() => {
 
 .hero-content-sm {
   position: absolute;
-  padding: 0px 20px;
+  padding: 0 20px;
   width: 300px;
   &.hero-services {
     text-align: right;

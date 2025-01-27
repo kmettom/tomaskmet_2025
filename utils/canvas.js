@@ -180,16 +180,16 @@ const Canvas = {
   },
 
   onActiveElCallback(item, active) {
-    if (item.options?.includes('projectCallback')) {
+    if (item.options.callback === 'exampleCallback') {
       // do something when _active is true or false
       console.log('Example callback triggered, element active state: ', active);
     }
-    if (item.options?.includes('navigation') && active) {
+    if (item.options.callback === 'navigation' && active) {
       if (!this.navigationStore) this.navigationStore = useNavigationStore();
       this.navigationStore.setActiveNavItem(item.elNode.dataset.navId);
       this.navigationStore.setNavContrast(!!item.elNode.dataset.navcontrast);
     }
-    if (item.options?.includes('textaniin') && active) {
+    if (item.options.callback === 'textAnimation' && active) {
       gsap.to(item.elNode, { opacity: 0.5, duration: 2 });
     }
   },
@@ -247,14 +247,14 @@ const Canvas = {
     this.scroll.DOM.onScrollTrackElements.push(settings);
   },
 
-  addOnScrollActivateElement(settings) {
-    settings.containedMeshId = this.findMeshID(settings.elNode, true);
-    if (settings.options?.includes('top')) settings.rangeFromTop = true;
-    if (settings.options?.includes('once')) settings.aniInOnly = true;
-    settings.elNode.dataset.activeScroll = 'false';
-    settings.elNode.classList.add('show-on-scroll');
-    this.scroll.DOM.onScrollActivateElements.push(settings);
-    this.onActiveElCallback(settings, false);
+  addOnScrollActivateElement(binding) {
+    binding.containedMeshId = this.findMeshID(binding.elNode, true);
+    // if (binding.value.activateFromTop )
+    // if (binding.options?.includes('once')) settings.aniInOnly = true;
+    binding.elNode.dataset.activeScroll = 'false';
+    binding.elNode.classList.add('show-on-scroll');
+    this.scroll.DOM.onScrollActivateElements.push(binding);
+    this.onActiveElCallback(binding, false);
   },
 
   findMeshID(elParent, isActiveScroll) {

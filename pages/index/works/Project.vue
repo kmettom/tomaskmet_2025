@@ -104,7 +104,12 @@ watch(
 
 <template>
   <div
-    v-scrollActive:once:top:projectCallback="0.9"
+    v-onScrollActivate="{
+      activeRange: 0.85,
+      activateFromTop: false,
+      activateOnce: false,
+      onActivateCallBack: 'exampleCallback',
+    }"
     v-scrollSpeed="project.scrollSpeed ?? 0"
     :style="`bottom: ${project.position?.bottom ?? 0}px;}`"
     :class="`project ${isExpanded ? ' expanded ' : ''} ${project.position?.alignRight ? ' project-right ' : ''}`"

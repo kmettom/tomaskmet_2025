@@ -4,7 +4,7 @@
       <div class="">
         <div class="contact-line">
           <div class="heading-1">
-            <span v-scrollActive="0.85">
+            <span v-onScrollActivate="{ activeRange: 0.85 }">
               <CanvasText
                 :mesh-id="'headline-get'"
                 :shader="'default'"
@@ -12,7 +12,10 @@
               >
                 GET
               </CanvasText>
-              <span v-scrollActive="0.85" class="canvas-text-spacing">
+              <span
+                v-onScrollActivate="{ activeRange: 0.85 }"
+                class="canvas-text-spacing"
+              >
                 <CanvasText
                   :mesh-id="'headline-in'"
                   :shader="'default'"
@@ -65,7 +68,7 @@
             </div>
           </div>
           <div class="heading-1">
-            <span v-scrollActive="0.85">
+            <span v-onScrollActivate="{ activeRange: 0.85 }">
               <CanvasText
                 :mesh-id="'headline-touch'"
                 :shader="'default'"

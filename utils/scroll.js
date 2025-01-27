@@ -64,7 +64,7 @@ export default class Scroll {
   initEvents() {
     window.addEventListener('resize', () => {
       for (const item of this.DOM.scrollSpeedElements) {
-        if (item.options?.includes('fixed')) {
+        if (item.options.fixed) {
           item.bounds = item.elNode.getBoundingClientRect();
           item.containerBottom =
             item.containerEl.getBoundingClientRect().bottom;
@@ -129,14 +129,14 @@ export default class Scroll {
     for (const item of this.DOM.onScrollActivateElements) {
       const bounds = item.elNode.getBoundingClientRect();
       const activeRange = item.scrollActive
-        ? (1 - item.scrollActive) * window.innerHeight
+        ? (1 - item.options.activeRange) * window.innerHeight
         : 0;
 
       if (
         bounds.top < window.innerHeight - activeRange &&
-        (item.rangeFromTop || bounds.bottom > activeRange)
+        (item.options.activateFromTop || bounds.bottom > activeRange)
       ) {
-        if (item.options?.includes('scroll'))
+        if (item.options.scrollCallBack)
           Canvas.onScrollCallBack(
             item,
             window.innerHeight - bounds.top,
@@ -146,7 +146,10 @@ export default class Scroll {
           this.setElementActive(item, true);
         }
       } else {
-        if (item.elNode.dataset.activeScroll === 'true' && !item.aniInOnly) {
+        if (
+          item.elNode.dataset.activeScroll === 'true' &&
+          !item.options.activateOnce
+        ) {
           this.setElementActive(item, false);
         }
       }
