@@ -3,14 +3,6 @@
     <Container additional-class="hero-section">
       <div class="hero-content-line hero-line-studio">
         <h2
-          v-onScrollActivate="{
-            activeRange: 0.85,
-            activateFromTop: false,
-            activateOnce: false,
-            aniInOnly: false,
-            onActivateCallBack: 'textAnimation',
-            onScrollCallBack: false,
-          }"
           class="heading-0"
         >
           <CanvasText
@@ -25,7 +17,6 @@
 
       <div class="hero-content-line hero-line-783">
         <div
-          v-onScrollActivate="{ activeRange: 0.85 }"
           class="body-m hero-content-sm hero-services"
         >
           <p>web3</p>
@@ -34,7 +25,7 @@
           <p>websites</p>
           <p>e-commerce</p>
         </div>
-        <h2 v-onScrollActivate="{ activeRange: 0.85 }" class="heading-1">
+        <h2 class="heading-1">
           <CanvasText
             :mesh-id="'headline-783'"
             :shader="'default'"
@@ -56,13 +47,14 @@
 
 <script setup lang="ts">
 import Container from '~/components/common/Container.vue';
+import gsap from 'gsap';
 
 const props = defineProps({
   sectionActivate: Boolean,
 });
 
 const heroSectionAnimation = () => {
-
+ gsap.to('.hero-content-sm' , {opacity:1, duration: 0.5, stagger: 0.5})
 }
 
 watch(() => props.sectionActivate, (newValue) => {
@@ -99,6 +91,7 @@ watch(() => props.sectionActivate, (newValue) => {
   position: absolute;
   padding: 0 20px;
   width: 300px;
+  opacity: 0;
   &.hero-services {
     text-align: right;
     left: -300px;
