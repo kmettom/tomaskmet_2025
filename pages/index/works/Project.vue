@@ -110,7 +110,7 @@ watch(
       activateOnce: false,
       onActivateCallBack: 'exampleCallback',
     }"
-    v-scrollSpeed="project.scrollSpeed ?? 0"
+    v-scrollSpeed="{ scrollSpeed: project.scrollSpeed ?? 0 }"
     :style="`bottom: ${project.position?.bottom ?? 0}px;}`"
     :class="`project ${isExpanded ? ' expanded ' : ''} ${project.position?.alignRight ? ' project-right ' : ''}`"
   >

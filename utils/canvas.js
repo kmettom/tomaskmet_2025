@@ -198,22 +198,23 @@ const Canvas = {
     // console.log('onScrollCallBack');
   },
 
-  addScrollSpeedElement(el) {
-    if (el.options?.includes('fixed')) {
+  addScrollSpeedElement(binding) {
+    if (binding.options.fixedParentId) {
       setTimeout(() => {
         // timeout for rendering when page is changed
-        el.containerId = el.scrollSpeed;
-        el.scrollSpeed = 1;
-        el.bounds = el.elNode.getBoundingClientRect();
-        el.containerEl = document.getElementById(el.containerId);
-        el.childEl = el.elNode.children[0];
-        el.containerBottom = el.containerEl.getBoundingClientRect().bottom;
-        el.margin = 0;
-        this.scroll.DOM.scrollSpeedElements.push(el);
+        binding.containerId = binding.options.fixedParentId;
+        binding.options.scrollSpeed = 1;
+        binding.bounds = binding.elNode.getBoundingClientRect();
+        binding.containerEl = document.getElementById(binding.containerId);
+        binding.childEl = binding.elNode.children[0];
+        binding.containerBottom =
+          binding.containerEl.getBoundingClientRect().bottom;
+        binding.margin = 0;
+        this.scroll.DOM.scrollSpeedElements.push(binding);
       }, 750);
       return;
     }
-    this.scroll.DOM.scrollSpeedElements.push(el);
+    this.scroll.DOM.scrollSpeedElements.push(binding);
   },
 
   removeScrollSpeedElement(elNode) {

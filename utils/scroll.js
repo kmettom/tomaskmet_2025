@@ -64,7 +64,7 @@ export default class Scroll {
   initEvents() {
     window.addEventListener('resize', () => {
       for (const item of this.DOM.scrollSpeedElements) {
-        if (item.options.fixed) {
+        if (item.options.fixedParentId) {
           item.bounds = item.elNode.getBoundingClientRect();
           item.containerBottom =
             item.containerEl.getBoundingClientRect().bottom;
@@ -92,7 +92,7 @@ export default class Scroll {
     for (const item of this.DOM.scrollSpeedElements) {
       let speed =
         item.scrollSpeed || item.scrollSpeed === 0 ? item.scrollSpeed : false;
-      if (item.options?.includes('fixed')) {
+      if (item.options.fixedParentId) {
         const bounds = item.elNode.getBoundingClientRect();
         const containerBottom = item.containerEl.getBoundingClientRect().bottom;
         if (bounds.top < item.margin && containerBottom > item.margin + 250) {

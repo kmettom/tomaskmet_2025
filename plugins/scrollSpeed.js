@@ -5,8 +5,8 @@ export default defineNuxtPlugin((nuxtApp) => {
       setTimeout(() => {
         Canvas.addScrollSpeedElement({
           elNode: el,
-          scrollSpeed: binding.value,
-          options: binding.arg,
+          options: binding.value,
+          arg: binding.arg,
         });
       }, 150);
     },

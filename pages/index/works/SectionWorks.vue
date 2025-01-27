@@ -14,7 +14,10 @@
       </h2>
 
       <div id="gallery" ref="projectGalleryRef">
-        <div v-if="projectsExpanded" v-scrollSpeed:fixed="'gallery'">
+        <div
+          v-if="projectsExpanded"
+          v-scrollSpeed="{ fixedParentId: 'gallery' }"
+        >
           <div class="gallery-controls">
             <button
               class="gallery-controls-btn close-btn"

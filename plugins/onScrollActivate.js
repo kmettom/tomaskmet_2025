@@ -15,3 +15,10 @@ export default defineNuxtPlugin((nuxtApp) => {
     },
   });
 });
+
+const onScrollActivateOptions = {
+  activeRange: Number,
+  activateFromTop: Boolean,
+  activateOnce: Boolean,
+
+}
