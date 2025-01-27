@@ -18,7 +18,7 @@
           v-for="(service, index) in services"
           :key="index"
           v-scrollSpeed:fixed="'servicesList'"
-          v-scrollActive:top="0.85"
+          v-onScrollActivate="{activeRange: 0.85}"
           class="service-block"
           :style="serviceBoxStyle(Number(index))"
         >
