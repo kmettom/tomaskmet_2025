@@ -2,9 +2,7 @@
   <div>
     <Container additional-class="hero-section">
       <div class="hero-content-line hero-line-studio">
-        <h2
-          class="heading-0"
-        >
+        <h2 class="heading-0">
           <CanvasText
             :mesh-id="'headline-studio'"
             :shader="'default'"
@@ -16,9 +14,7 @@
       </div>
 
       <div class="hero-content-line hero-line-783">
-        <div
-          class="body-m hero-content-sm hero-services"
-        >
+        <div class="body-m hero-content-sm hero-services">
           <p>web3</p>
           <p>creative</p>
           <p>apps</p>
@@ -54,15 +50,17 @@ const props = defineProps({
 });
 
 const heroSectionAnimation = () => {
- gsap.to('.hero-content-sm' , {opacity:1, duration: 0.5, stagger: 0.5})
-}
+  gsap.to('.hero-content-sm', { opacity: 1, duration: 0.5, stagger: 0.5 });
+};
 
-watch(() => props.sectionActivate, (newValue) => {
-  if (newValue) {
-    heroSectionAnimation();
-  }
-});
-
+watch(
+  () => props.sectionActivate,
+  (newValue) => {
+    if (newValue) {
+      heroSectionAnimation();
+    }
+  },
+);
 </script>
 
 <style lang="scss" scoped>

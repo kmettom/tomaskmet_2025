@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-trackSection:navigation class="page-section" data-nav-id="home">
-      <SectionHero :sectionActivate="pageActive" />
+      <SectionHero :section-activate="props.pageActive" />
     </div>
     <div v-trackSection:navigation class="page-section" data-nav-id="about">
       <SectionAbout />
@@ -34,7 +34,6 @@
 <script setup>
 import SectionWorks from '~/pages/index/works/SectionWorks.vue';
 import SectionServices from '~/pages/index/services/SectionServices.vue';
-import { onMounted, watch } from 'vue';
 import SectionHero from '~/pages/index/SectionHero.vue';
 import SectionAbout from '~/pages/index/SectionAbout.vue';
 import SectionContact from '~/pages/index/SectionContact.vue';
@@ -50,7 +49,6 @@ useSeoMeta({
 const props = defineProps({
   pageActive: Boolean,
 });
-
 </script>
 
 <style lang="scss"></style>
