@@ -21,4 +21,6 @@ export default defineNuxtPlugin((nuxtApp) => {
 //   activateFromTop: Boolean,
 //   activateOnce: Boolean,
 //   activateCallback: String,
+
+// trackOnly: Boolean,
 // }

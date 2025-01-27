@@ -136,8 +136,8 @@ export default class Scroll {
         bounds.top < window.innerHeight - activeRange &&
         (item.options.activateFromTop || bounds.bottom > activeRange)
       ) {
-        if (item.options.scrollCallBack)
-          Canvas.onScrollCallBack(
+        if (item.options.scrollCallback)
+          Canvas.onScrollCallback(
             item,
             window.innerHeight - bounds.top,
             this.speed,

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-trackSection:navigation class="page-section" data-nav-id="home">
+    <div v-onScrollActivate="{ activeRange:1, trackOnly:true, activateCallback:'pageSection' }" class="page-section" data-nav-id="home">
       <SectionHero :section-activate="props.pageActive" />
     </div>
     <div v-trackSection:navigation class="page-section" data-nav-id="about">

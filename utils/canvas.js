@@ -66,7 +66,7 @@ const Canvas = {
   options: CanvasOptions,
   animations: {
     welcome: {},
-    cursorCallBack: () => {},
+    cursorCallback: () => {},
   },
   initScroll() {
     this.scroll = new Scroll({
@@ -184,7 +184,7 @@ const Canvas = {
       // do something when _active is true or false
       console.log('Example callback triggered, element active state: ', active);
     }
-    if (item.options.activateCallback === 'navigation' && active) {
+    if (item.options.activateCallback === 'pageSection' && active) {
       if (!this.navigationStore) this.navigationStore = useNavigationStore();
       this.navigationStore.setActiveNavItem(item.elNode.dataset.navId);
       this.navigationStore.setNavContrast(!!item.elNode.dataset.navcontrast);
@@ -194,8 +194,8 @@ const Canvas = {
     }
   },
 
-  onScrollCallBack() {
-    // console.log('onScrollCallBack');
+  onScrollCallback() {
+    // console.log('onScrollCallback');
   },
 
   addScrollSpeedElement(binding) {
@@ -532,7 +532,7 @@ const Canvas = {
   },
 
   render() {
-    this.animations.cursorCallBack();
+    this.animations.cursorCallback();
     this.time += 0.05;
 
     this.scroll.render();

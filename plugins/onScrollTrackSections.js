@@ -18,7 +18,4 @@ export default defineNuxtPlugin((nuxtApp) => {
 
 // const trackSectionOptions = {
 //   navigation: Number,
-//   activateFromTop: Boolean,
-//   activateOnce: Boolean,
-//   activateCallback: String,
 // }

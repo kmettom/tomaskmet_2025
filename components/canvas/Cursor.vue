@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     cursorInit() {
-      Canvas.animations.cursorCallBack = this.draw;
+      Canvas.animations.cursorCallback = this.draw;
       // this.draw();
       window.onmousemove = (event) => {
         const _event = event;

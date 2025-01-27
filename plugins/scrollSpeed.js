@@ -19,4 +19,5 @@ export default defineNuxtPlugin((nuxtApp) => {
 // const scrollSpeedOptions = {
 //   scrollSpeed: Number,
 //   fixToParentId: Boolean,
+//   scrollCallback: string
 // }
