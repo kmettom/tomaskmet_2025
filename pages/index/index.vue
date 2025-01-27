@@ -1,24 +1,28 @@
 <template>
   <div>
     <div
-      v-onScrollActivate="{
-        activeRange: 1,
-        trackOnly: true,
-        activateCallback: 'pageSection',
-      }"
+      v-onScrollActivate="sectionActivationOptions"
       class="page-section"
       data-nav-id="home"
     >
       <SectionHero :section-activate="props.pageActive" />
     </div>
-    <div v-trackSection:navigation class="page-section" data-nav-id="about">
+    <div
+      v-onScrollActivate="sectionActivationOptions"
+      class="page-section"
+      data-nav-id="about"
+    >
       <SectionAbout />
     </div>
-    <div v-trackSection:navigation class="page-section" data-nav-id="work">
+    <div
+      v-onScrollActivate="sectionActivationOptions"
+      class="page-section"
+      data-nav-id="work"
+    >
       <SectionWorks />
     </div>
     <div
-      v-trackSection:navigation
+      v-onScrollActivate="sectionActivationOptions"
       class="page-section"
       data-navcontrast="true"
       data-nav-id="services"
@@ -26,7 +30,7 @@
       <SectionServices />
     </div>
     <div
-      v-trackSection:navigation
+      v-onScrollActivate="sectionActivationOptions"
       class="page-section"
       data-navcontrast="true"
       data-nav-id="contact"
@@ -57,6 +61,13 @@ useSeoMeta({
 const props = defineProps({
   pageActive: Boolean,
 });
+
+const sectionActivationOptions = {
+  activeRange: 1,
+  trackOnly: true,
+  activateCallback: 'pageSection',
+  activationArea: 'top',
+};
 </script>
 
 <style lang="scss"></style>

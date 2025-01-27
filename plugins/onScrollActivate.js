@@ -22,5 +22,13 @@ export default defineNuxtPlugin((nuxtApp) => {
 //   activateOnce: Boolean,
 //   activateCallback: String,
 
-// trackOnly: Boolean,
+//TODO:
+//  trackOnly: Boolean,
+//  activationArea: 'top' | 'middle' (Default)
+
+// TODO:
+//   scrollSpeed: Number,
+//   fixToParentId: Boolean,
+//   scrollCallback: string
+
 // }
