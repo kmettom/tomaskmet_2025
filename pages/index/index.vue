@@ -66,7 +66,7 @@ const sectionActivationOptions = {
   trackOnly: true,
   activateCallback: 'pageSection',
   activeRangeOrigin: 'top',
-  activeRangeMargin: 100,
+  // activeRangeMargin: 0,
 };
 </script>
 
