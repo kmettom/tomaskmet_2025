@@ -18,14 +18,12 @@ export default defineNuxtPlugin((nuxtApp) => {
 
 // const onScrollActivateOptions = {
 //   activeRange: Number,
-//   activateFromTop: Boolean,
 //   activateOnce: Boolean,
 //   activateCallback: String,
 //   trackOnly: Boolean,
 //   bidirectionalActivation: Boolean (default: false),
 //   activeRangeOrigin: 'top' | 'middle' (Default)
 //   activeRangeMargin: Number
-
 
 // TODO:
 //   scrollSpeed: Number,

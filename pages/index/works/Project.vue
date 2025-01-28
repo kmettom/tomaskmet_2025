@@ -106,7 +106,6 @@ watch(
   <div
     v-onScrollActivate="{
       activeRange: 0.85,
-      activateFromTop: false,
       activateOnce: false,
       activateCallback: 'exampleCallback',
     }"
