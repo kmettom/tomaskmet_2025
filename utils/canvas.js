@@ -240,13 +240,13 @@ const Canvas = {
     }
   },
 
-  addOnScrollTrackSection(settings) {
-    if (settings.options?.includes('track')) {
-      settings.trackOnly = true;
-      settings.elNode.classList.add('active');
-    }
-    this.scroll.DOM.onScrollTrackElements.push(settings);
-  },
+  // addOnScrollTrackSection(settings) {
+  //   if (settings.options?.includes('track')) {
+  //     settings.trackOnly = true;
+  //     settings.elNode.classList.add('active');
+  //   }
+  //   this.scroll.DOM.onScrollTrackElements.push(settings);
+  // },
 
   addOnScrollActivateElement(binding) {
     binding.containedMeshId = this.findMeshID(binding.elNode, true);

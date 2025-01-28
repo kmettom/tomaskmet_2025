@@ -63,10 +63,10 @@ const props = defineProps({
 });
 
 const sectionActivationOptions = {
-  activeRange: 1,
   trackOnly: true,
   activateCallback: 'pageSection',
-  activationArea: 'top',
+  activeRangeOrigin: 0,
+  activeRangeMargin: 100,
 };
 </script>
 

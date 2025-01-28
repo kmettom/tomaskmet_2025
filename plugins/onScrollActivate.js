@@ -21,10 +21,11 @@ export default defineNuxtPlugin((nuxtApp) => {
 //   activateFromTop: Boolean,
 //   activateOnce: Boolean,
 //   activateCallback: String,
+//   trackOnly: Boolean,
 
-//TODO:
-//  trackOnly: Boolean,
-//  activationArea: 'top' | 'middle' (Default)
+// TODO:
+//  activeRangeOrigin: 'top' | 'middle' (Default) || 0 , 50 ||  0 , 0.5
+//  activeRangeMargin: Number
 
 // TODO:
 //   scrollSpeed: Number,

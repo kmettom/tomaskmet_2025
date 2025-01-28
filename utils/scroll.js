@@ -9,7 +9,6 @@ export default class Scroll {
       scrollSpeedElements: [],
       onScrollActivateElements: [],
       scrollSpeedResizeBackup: [],
-      onScrollTrackElements: [],
     };
 
     this.activeCallback = options.activeCallback;
@@ -125,16 +124,25 @@ export default class Scroll {
     }
   }
 
-  checkElementsToActivate() {
+  checkElementsToUpdate() {
     for (const item of this.DOM.onScrollActivateElements) {
       const bounds = item.elNode.getBoundingClientRect();
-      const activeRange = item.scrollActive
+
+      const activeRangeInPx = item.options.activeRange
         ? (1 - item.options.activeRange) * window.innerHeight
         : 0;
+      const activeRangeInPxTop = window.innerHeight - activeRangeInPx;
+      const activeRangeInPxBottom = activeRangeInPx;
+
+      // ? (1 - item.options.activeRange) * window.innerHeight
+      // : 0;
+
+      // bounds.top - navigationMargin <= 0 &&
+      //     bounds.bottom - navigationMargin >= 0
 
       if (
-        bounds.top < window.innerHeight - activeRange &&
-        (item.options.activateFromTop || bounds.bottom > activeRange)
+        bounds.top < activeRangeInPxTop &&
+        (item.options.activateFromTop || bounds.bottom > activeRangeInPxBottom)
       ) {
         if (item.options.scrollCallback)
           Canvas.onScrollCallback(
@@ -156,30 +164,6 @@ export default class Scroll {
     }
   }
 
-  checkElementsToTrack() {
-    for (const item of this.DOM.onScrollTrackElements) {
-      const bounds = item.elNode.getBoundingClientRect();
-      const navigationMargin = 100;
-      if (
-        bounds.top - navigationMargin <= 0 &&
-        bounds.bottom - navigationMargin >= 0
-      ) {
-        if (item.elNode.dataset.activeScroll !== 'true') {
-          this.setElementActive(item, true);
-        }
-      } else {
-        if (item.elNode.dataset.activeScroll === 'true') {
-          this.setElementActive(item, false);
-        }
-      }
-    }
-  }
-
-  checkElementsPosition() {
-    this.checkElementsToActivate();
-    this.checkElementsToTrack();
-  }
-
   setPosition() {
     if (
       Math.round(this.scrollToRender) !== Math.round(this.current) ||
@@ -193,7 +177,7 @@ export default class Scroll {
       this.setSpeedElementsPosition();
     }
     if (this.DOM.scrollSpeedElements.length > 0) {
-      this.checkElementsPosition();
+      this.checkElementsToUpdate();
     }
   }
 
