@@ -23,8 +23,10 @@ export default defineNuxtPlugin((nuxtApp) => {
 //   activateCallback: String,
 //   trackOnly: Boolean,
 
+// TODO: rename activateFromTop: Boolean,
+
 // TODO:
-//  activeRangeOrigin: 'top' | 'middle' (Default) || 0 , 50 ||  0 , 0.5
+//  activeRangeOrigin: 'top' | 'middle' (Default)
 //  activeRangeMargin: Number
 
 // TODO:

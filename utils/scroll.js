@@ -128,22 +128,22 @@ export default class Scroll {
     for (const item of this.DOM.onScrollActivateElements) {
       const bounds = item.elNode.getBoundingClientRect();
 
-      const activeRangeInPx = item.options.activeRange
-        ? (1 - item.options.activeRange) * window.innerHeight
-        : 0;
-      const activeRangeInPxTop = window.innerHeight - activeRangeInPx;
-      const activeRangeInPxBottom = activeRangeInPx;
-
-      // ? (1 - item.options.activeRange) * window.innerHeight
-      // : 0;
-
-      // bounds.top - navigationMargin <= 0 &&
-      //     bounds.bottom - navigationMargin >= 0
-
+      let activeRangeInPx = 0;
       if (
-        bounds.top < activeRangeInPxTop &&
-        (item.options.activateFromTop || bounds.bottom > activeRangeInPxBottom)
+        item.options.activeRange &&
+        item.options.activeRangeOrigin !== 'top'
       ) {
+        activeRangeInPx = (1 - item.options.activeRange) * window.innerHeight;
+      }
+
+      const itemRangeMargin = item.options.activeRangeMargin ?? 0;
+      const activeFromTop =
+        bounds.top - itemRangeMargin <= window.innerHeight - activeRangeInPx;
+      const activeFromBottom =
+        item.options.activateFromTop ||
+        bounds.bottom - itemRangeMargin >= activeRangeInPx;
+
+      if (activeFromTop && activeFromBottom) {
         if (item.options.scrollCallback)
           Canvas.onScrollCallback(
             item,

@@ -240,20 +240,12 @@ const Canvas = {
     }
   },
 
-  // addOnScrollTrackSection(settings) {
-  //   if (settings.options?.includes('track')) {
-  //     settings.trackOnly = true;
-  //     settings.elNode.classList.add('active');
-  //   }
-  //   this.scroll.DOM.onScrollTrackElements.push(settings);
-  // },
-
   addOnScrollActivateElement(binding) {
     binding.containedMeshId = this.findMeshID(binding.elNode, true);
-    // if (binding.value.activateFromTop )
-    // if (binding.options?.includes('once')) settings.aniInOnly = true;
     binding.elNode.dataset.activeScroll = 'false';
-    binding.elNode.classList.add('show-on-scroll');
+    if (!binding.options.trackOnly) {
+      binding.elNode.classList.add('show-on-scroll');
+    }
     this.scroll.DOM.onScrollActivateElements.push(binding);
     this.onActiveElCallback(binding, false);
   },
