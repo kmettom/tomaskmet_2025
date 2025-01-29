@@ -39,13 +39,13 @@ export default class Scroll {
   resizeMobileBreakEvents() {
     if (window.innerWidth < 768) {
       for (const item of this.DOM.onScrollActivateElements) {
-          if (item.options.fixToParentId) {
-            item.bounds = item.elNode.getBoundingClientRect();
-            item.containerBottom =
-              item.containerEl.getBoundingClientRect().bottom;
-          }else{
-            item.elNode.style.transform = `translate3d(0,0px,0)`;
-          }
+        if (item.options.fixToParentId) {
+          item.bounds = item.elNode.getBoundingClientRect();
+          item.containerBottom =
+            item.containerEl.getBoundingClientRect().bottom;
+        } else {
+          item.elNode.style.transform = `translate3d(0,0px,0)`;
+        }
       }
       // TODO: check the logic and responsiveness
       // if (this.DOM.scrollSpeedElements.length > 0) {
@@ -65,7 +65,6 @@ export default class Scroll {
 
   initEvents() {
     window.addEventListener('resize', () => {
-
       this.resizeMobileBreakEvents();
 
       this.setSize();
@@ -100,7 +99,6 @@ export default class Scroll {
   }
 
   checkElementsToUpdate() {
-
     for (const item of this.DOM.onScrollActivateElements) {
       const bounds = item.elNode.getBoundingClientRect();
 

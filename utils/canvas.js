@@ -198,7 +198,6 @@ const Canvas = {
     // console.log('onScrollCallback');
   },
 
-
   removeScrollActiveElement(elNode) {
     if (!elNode || this.scroll.DOM.onScrollActivateElements.length === 0)
       return;
