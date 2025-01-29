@@ -47,20 +47,7 @@ export default class Scroll {
           item.elNode.style.transform = `translate3d(0,0px,0)`;
         }
       }
-      // TODO: check the logic and responsiveness
-      // if (this.DOM.scrollSpeedElements.length > 0) {
-      //   this.DOM.scrollSpeedResizeBackup = this.DOM.scrollSpeedElements;
-      // }
-      // this.DOM.scrollSpeedElements = [];
     }
-    // else {
-    // if (
-    // this.DOM.scrollSpeedElements.length === 0 &&
-    // this.DOM.scrollSpeedResizeBackup.length > 0
-    // ) {
-    // this.DOM.scrollSpeedElements = this.DOM.scrollSpeedResizeBackup;
-    // }
-    // }
   }
 
   initEvents() {
