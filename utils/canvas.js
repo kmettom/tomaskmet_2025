@@ -198,34 +198,6 @@ const Canvas = {
     // console.log('onScrollCallback');
   },
 
-  addScrollSpeedElement(binding) {
-    if (binding.options.fixToParentId) {
-      setTimeout(() => {
-        // timeout for rendering when page is changed
-        binding.containerId = binding.options.fixToParentId;
-        binding.options.scrollSpeed = 1;
-        binding.bounds = binding.elNode.getBoundingClientRect();
-        binding.containerEl = document.getElementById(binding.containerId);
-        binding.childEl = binding.elNode.children[0];
-        binding.containerBottom =
-          binding.containerEl.getBoundingClientRect().bottom;
-        binding.margin = 0;
-        this.scroll.DOM.scrollSpeedElements.push(binding);
-      }, 750);
-      return;
-    }
-    this.scroll.DOM.scrollSpeedElements.push(binding);
-  },
-
-  removeScrollSpeedElement(elNode) {
-    if (this.scroll.DOM.scrollSpeedElements.length === 0 || !elNode) return;
-    for (var i = 0; i < this.scroll.DOM.scrollSpeedElements.length; i++) {
-      if (this.scroll.DOM.scrollSpeedElements[i].elNode.isEqualNode(elNode)) {
-        this.scroll.DOM.scrollSpeedElements.splice(i, 1);
-        break;
-      }
-    }
-  },
 
   removeScrollActiveElement(elNode) {
     if (!elNode || this.scroll.DOM.onScrollActivateElements.length === 0)
@@ -246,7 +218,25 @@ const Canvas = {
     if (!binding.options.trackOnly) {
       binding.elNode.classList.add('show-on-scroll');
     }
+    // this.scroll.DOM.onScrollActivateElements.push(binding);
+
+    if (binding.options.fixToParentId) {
+      setTimeout(() => {
+        // timeout for rendering when page is changed
+        binding.containerId = binding.options.fixToParentId;
+        binding.options.scrollSpeed = 1;
+        binding.bounds = binding.elNode.getBoundingClientRect();
+        binding.containerEl = document.getElementById(binding.containerId);
+        binding.childEl = binding.elNode.children[0];
+        binding.containerBottom =
+          binding.containerEl.getBoundingClientRect().bottom;
+        binding.margin = 0;
+        this.scroll.DOM.onScrollActivateElements.push(binding);
+      }, 750);
+      return;
+    }
     this.scroll.DOM.onScrollActivateElements.push(binding);
+
     this.onActiveElCallback(binding, false);
   },
 

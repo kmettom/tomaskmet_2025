@@ -16,7 +16,7 @@
       <div id="gallery" ref="projectGalleryRef">
         <div
           v-if="projectsExpanded"
-          v-scrollSpeed="{ fixToParentId: 'gallery' }"
+          v-onScrollActivate="{ fixToParentId: 'gallery' }"
         >
           <div class="gallery-controls">
             <button
