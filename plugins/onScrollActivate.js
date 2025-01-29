@@ -24,10 +24,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 //   bidirectionalActivation: Boolean (default: false),
 //   activeRangeOrigin: 'top' | 'middle' (Default)
 //   activeRangeMargin: Number
-
-// TODO:
 //   scrollSpeed: Number,
 //   fixToParentId: Boolean,
 //   scrollCallback: string
-
 // }
