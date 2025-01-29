@@ -98,11 +98,13 @@ export default class Scroll {
         activeRangeInPx = (1 - item.options.activeRange) * window.innerHeight;
       }
 
+      let activeRangeOriginPx =
+        item.options.activeRangeOrigin === 'top' ? 0 : window.innerHeight;
       const itemRangeMargin = item.options.activeRangeMargin ?? 0;
       const activeFromTop =
-        bounds.top - itemRangeMargin <= window.innerHeight - activeRangeInPx;
+        bounds.top - itemRangeMargin <= activeRangeOriginPx - activeRangeInPx;
       const activeFromBottom =
-        !item.options.bidirectionalActivation ||
+        !item.options.bidirectionalActivation &&
         bounds.bottom - itemRangeMargin >= activeRangeInPx;
 
       if (activeFromTop && activeFromBottom) {
