@@ -27,7 +27,7 @@ export default class Scroll {
 
   init() {
     this.current = this.scrollToRender = this.getScroll();
-    this.setPosition();
+    this.setScrollPosition();
   }
 
   getScroll() {
@@ -85,7 +85,9 @@ export default class Scroll {
     }
   }
 
-  checkElementsToUpdate() {
+  updateHTMLElements() {
+    if (this.DOM.onScrollActivateElements.length === 0) return;
+
     for (const item of this.DOM.onScrollActivateElements) {
       const bounds = item.elNode.getBoundingClientRect();
 
@@ -124,40 +126,32 @@ export default class Scroll {
       }
 
       //SCROLL SPEED
-      if (item.options.scrollSpeed) {
-        let speed =
-          item.scrollSpeed || item.scrollSpeed === 0 ? item.scrollSpeed : false;
+      if (!item.options.scrollSpeed) return;
+      let speed =
+        item.scrollSpeed || item.scrollSpeed === 0 ? item.scrollSpeed : false;
 
-        if (item.options.fixToParentId) {
-          const bounds = item.elNode.getBoundingClientRect();
-          const containerBottom =
-            item.containerEl.getBoundingClientRect().bottom;
-          if (bounds.top < item.margin && containerBottom > item.margin + 250) {
-            const fixedPosition =
-              window.innerWidth > 992 ? -bounds.top + item.margin : 0;
-            item.childEl.style.transform = `translate3d(0,${fixedPosition}px,0)`;
-          }
-        } else {
-          const bounds = item.elNode.getBoundingClientRect();
-          if (bounds.top < window.innerHeight && bounds.bottom > 0) {
-            item.elNode.style.transform = `translate3d(0,${-1 * (this.scrollToRender - bounds.top) * speed}px,0)`;
-          }
+      if (item.options.fixToParentId) {
+        const containerBottom = item.containerEl.getBoundingClientRect().bottom;
+        if (bounds.top < item.margin && containerBottom > item.margin + 250) {
+          const fixedPosition =
+            window.innerWidth > 992 ? -bounds.top + item.margin : 0;
+          item.childEl.style.transform = `translate3d(0,${fixedPosition}px,0)`;
+        }
+      } else {
+        if (bounds.top < window.innerHeight && bounds.bottom > 0) {
+          item.elNode.style.transform = `translate3d(0,${-1 * (this.scrollToRender - bounds.top) * speed}px,0)`;
         }
       }
     }
   }
 
-  setPosition() {
+  setScrollPosition() {
     if (
       Math.round(this.scrollToRender) !== Math.round(this.current) ||
       this.scrollToRender < 10 ||
       !this.scrollTo.executed
     ) {
       this.DOM.scrollable.style.transform = `translate3d(0,${-1 * this.scrollToRender}px,0)`;
-    }
-
-    if (this.DOM.onScrollActivateElements.length > 0) {
-      this.checkElementsToUpdate();
     }
   }
 
@@ -199,6 +193,7 @@ export default class Scroll {
     this.speed =
       Math.min(Math.abs(this.current - this.scrollToRender), 200) / 200;
     this.speedTarget += (this.speed - this.speedTarget) * 0.2;
-    this.setPosition();
+    this.setScrollPosition();
+    this.updateHTMLElements();
   }
 }
