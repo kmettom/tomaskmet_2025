@@ -67,7 +67,7 @@ const sectionActivationOptions = {
   activateCallback: 'pageSection',
   activeRangeOrigin: 'top',
   bidirectionalActivation: true,
-  // activeRangeMargin: 0,
+  activeRangeMargin: 100,
 };
 </script>
 
