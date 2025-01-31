@@ -108,7 +108,7 @@ watch(
       activeRange: 0.85,
       activateOnce: false,
       activateCallback: 'exampleCallback',
-      scrollSpeed: isExpanded ? 0: project.scrollSpeed
+      scrollSpeed: isExpanded ? 0 : project.scrollSpeed,
     }"
     :style="`bottom: ${project.position?.bottom ?? 0}px;}`"
     :class="`project ${isExpanded ? ' expanded ' : ''} ${project.position?.alignRight ? ' project-right ' : ''}`"
