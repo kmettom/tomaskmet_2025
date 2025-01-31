@@ -48,7 +48,7 @@ const hoverImage = ref(false);
 // const textHover = ref(false);
 
 const pageAnimateIn = () => {
-  console.log('Example method - animate page transition');
+  // console.log('Example method - animate page transition');
 };
 
 onMounted(() => {

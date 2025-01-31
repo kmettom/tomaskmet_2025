@@ -210,29 +210,11 @@ $w-xs: 550px; // mobile resolution
 //*************************
 
 .show-on-scroll {
-  transition: ease all 0.5s;
+  transition: ease opacity 0.3s;
   opacity: 0;
   $movepx: 45px;
-  &.from-bottom {
-    transform: translate(0px, $movepx);
-  }
-  &.from-top {
-    transform: translate(0px, -$movepx);
-  }
-  &.from-right {
-    transform: translate($movepx, 0);
-  }
-  &.from-left {
-    transform: translate(-$movepx, 0);
-  }
   &.active {
     opacity: 1;
-    &.from-bottom,
-    &.from-top,
-    &.from-right,
-    &.from-left {
-      transform: translate(0, 0);
-    }
   }
 }
 

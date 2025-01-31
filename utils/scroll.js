@@ -18,6 +18,7 @@ export default class Scroll {
     this.speed = 0;
     this.speedTarget = 0;
     this.scrollTo = { target: 0, executed: true };
+    this.scrollSpeedBottomMargin = 250;
 
     this.setSize();
     this.getScroll();
@@ -128,15 +129,21 @@ export default class Scroll {
 
       //SCROLL SPEED
       if (item.options.scrollSpeed) {
+        item.elNode.style.transition = `linear translate3d 0s`;
+
         let speed =
-          item.scrollSpeed || item.scrollSpeed === 0 ? item.scrollSpeed : false;
+          item.options.scrollSpeed || item.options.scrollSpeed === 0
+            ? item.options.scrollSpeed
+            : false;
 
         if (item.options.fixToParentId) {
           const containerBottom =
             item.containerEl.getBoundingClientRect().bottom;
-          if (bounds.top < item.margin && containerBottom > item.margin + 250) {
-            const fixedPosition =
-              window.innerWidth > 992 ? -bounds.top + item.margin : 0;
+          if (
+            bounds.top < item.margin &&
+            containerBottom > item.margin + this.scrollSpeedBottomMargin
+          ) {
+            const fixedPosition = item.margin - bounds.top;
             item.childEl.style.transform = `translate3d(0,${fixedPosition}px,0)`;
           }
         } else {

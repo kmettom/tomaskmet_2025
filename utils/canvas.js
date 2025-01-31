@@ -182,7 +182,7 @@ const Canvas = {
   onActiveElCallback(item, active) {
     if (item.options.activateCallback === 'exampleCallback') {
       // do something when _active is true or false
-      console.log('Example callback triggered, element active state: ', active);
+      // console.log('Example callback triggered, element active state: ', active);
     }
     if (item.options.activateCallback === 'pageSection' && active) {
       if (!this.navigationStore) this.navigationStore = useNavigationStore();
