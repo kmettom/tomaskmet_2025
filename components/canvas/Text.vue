@@ -20,6 +20,9 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  show: {
+    type: Boolean,
+  },
   theme: {
     type: String,
     default: 'dark',
@@ -52,6 +55,14 @@ watch(
   () => props.textHover,
   (_status) => {
     Canvas.hoverMesh(props.meshId, _status);
+  },
+);
+
+watch(
+  () => props.show,
+  (_status) => {
+    console.log('xx', _status);
+    Canvas.activateMesh(props.meshId, _status);
   },
 );
 

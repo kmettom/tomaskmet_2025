@@ -7,6 +7,7 @@
             :mesh-id="'headline-studio'"
             :shader="'default'"
             :theme="'light'"
+            :show="mainTextIn"
           >
             STUDIO
           </CanvasText>
@@ -44,13 +45,32 @@
 <script setup lang="ts">
 import Container from '~/components/common/Container.vue';
 import gsap from 'gsap';
+import { SplitText } from 'gsap/SplitText';
 
 const props = defineProps({
   sectionActivate: Boolean,
 });
 
+const mainTextIn = ref(false);
+
 const heroSectionAnimation = () => {
-  gsap.to('.hero-content-sm', { opacity: 1, duration: 0.5, stagger: 0.5 });
+  gsap.registerPlugin(SplitText);
+
+  const split = new SplitText('.hero-content-sm', { type: 'words,chars' });
+  gsap.from(split.chars, {
+    opacity: 0,
+    y: 10,
+    duration: 0.2,
+    stagger: 0.005,
+    onStart: () => {
+      gsap.to('.hero-content-sm', { opacity: 1, duration: 0 });
+    },
+    // onComplete:()=>{
+    //   split.revert();
+    // }
+  });
+
+  mainTextIn.value = true;
 };
 
 watch(
@@ -90,6 +110,9 @@ watch(
   padding: 0 20px;
   width: 300px;
   opacity: 0;
+  span {
+    opacity: 0;
+  }
   &.hero-services {
     text-align: right;
     left: -300px;
