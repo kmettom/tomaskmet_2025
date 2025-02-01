@@ -13,14 +13,11 @@ export default defineNuxtPlugin((nuxtApp) => {
       }, 150);
     },
     updated(el, binding) {
-      Canvas.updateOnScrollActiveElement(
-          {
-            elNode: el,
-            options: binding.value,
-            arg: binding.arg,
-          }
-      )
-
+      Canvas.updateOnScrollActiveElement({
+        elNode: el,
+        options: binding.value,
+        arg: binding.arg,
+      });
     },
     unmounted(el) {
       Canvas.removeScrollActiveElement(el);

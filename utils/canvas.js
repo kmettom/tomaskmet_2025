@@ -212,8 +212,11 @@ const Canvas = {
   },
 
   updateOnScrollActiveElement(updatedBinding) {
-    const itemIndex = this.scroll.DOM.onScrollActivateElements.findIndex(item => item.elNode === updatedBinding.elNode)
-    if(itemIndex > -1) this.scroll.DOM.onScrollActivateElements[itemIndex] = updatedBinding;
+    const itemIndex = this.scroll.DOM.onScrollActivateElements.findIndex(
+      (item) => item.elNode === updatedBinding.elNode,
+    );
+    if (itemIndex > -1)
+      this.scroll.DOM.onScrollActivateElements[itemIndex] = updatedBinding;
   },
 
   addOnScrollActivateElement(binding) {
