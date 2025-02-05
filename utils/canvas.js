@@ -192,6 +192,9 @@ const Canvas = {
     if (item.options.activateCallback === 'textAnimation' && active) {
       gsap.to(item.elNode, { opacity: 0.5, duration: 2 });
     }
+    if (item.options.scrollTriggerSectionsClass && active) {
+      console.log('active trigger section');
+    }
   },
 
   onScrollCallback() {
@@ -217,6 +220,10 @@ const Canvas = {
     );
     if (itemIndex > -1)
       this.scroll.DOM.onScrollActivateElements[itemIndex] = updatedBinding;
+  },
+
+  sectionTriggerMove() {
+    console.log('sectionTriggerMove');
   },
 
   addOnScrollActivateElement(binding) {

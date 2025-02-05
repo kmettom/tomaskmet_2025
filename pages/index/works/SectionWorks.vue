@@ -13,7 +13,14 @@
         </span>
       </h2>
 
-      <div id="gallery" ref="projectGalleryRef">
+      <div
+        id="gallery"
+        ref="projectGalleryRef"
+        v-onScrollActivate="{
+          trackOnly: true,
+          scrollTriggerSectionsClass: projectsExpanded ? 'project-item' : null,
+        }"
+      >
         <div
           v-if="projectsExpanded"
           v-onScrollActivate="{ fixToParentId: 'gallery' }"
@@ -43,21 +50,17 @@
         </div>
 
         <div
-          v-onScrollActivate="{ scrollTriggerSectionsClass: 'project-item' }"
+          v-for="(project, index) in projectsData"
+          :key="project.name"
+          :ref="projectItemRefs.set"
+          class="project-item"
         >
-          <div
-            v-for="(project, index) in projectsData"
-            :key="project.name"
-            :ref="projectItemRefs.set"
-            class="project-item"
-          >
-            <Project
-              :is-expanded="projectsExpanded"
-              :project="project"
-              :index="index"
-              @expand-projects="expandProjectView(index)"
-            />
-          </div>
+          <Project
+            :is-expanded="projectsExpanded"
+            :project="project"
+            :index="index"
+            @expand-projects="expandProjectView(index)"
+          />
         </div>
       </div>
     </Container>
@@ -101,7 +104,8 @@ const goToProject = (index: number) => {
   activeProjectsIndex.value = index;
   const projectPosition =
     projectItemRefs.value[index].getBoundingClientRect().top + window.scrollY;
-  Canvas.scrollTo(projectPosition, 0.5);
+  // Canvas.scrollTo(projectPosition, 0.5);
+  Canvas.sectionTriggerMove();
 };
 </script>
 
