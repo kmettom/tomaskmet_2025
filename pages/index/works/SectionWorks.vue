@@ -104,7 +104,7 @@ const goToProject = (index: number) => {
   activeProjectsIndex.value = index;
   const projectPosition =
     projectItemRefs.value[index].getBoundingClientRect().top + window.scrollY;
-  // Canvas.scrollTo(projectPosition, 0.5);
+  Canvas.scrollTo(projectPosition, 0.5);
   Canvas.sectionTriggerMove();
 };
 </script>
