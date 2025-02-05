@@ -22,6 +22,7 @@ const props = defineProps({
   },
   show: {
     type: Boolean,
+    default: null,
   },
   theme: {
     type: String,
@@ -48,6 +49,11 @@ onMounted(async () => {
       props.theme,
       false,
     );
+    setTimeout(() => {
+      if (props.show === null) {
+        Canvas.activateMesh(props.meshId, true);
+      }
+    }, 50);
   }, 50);
 });
 
@@ -61,8 +67,7 @@ watch(
 watch(
   () => props.show,
   (_status) => {
-    console.log('xx', _status);
-    Canvas.activateMesh(props.meshId, _status);
+    Canvas.activateMesh(props.meshId, _status === null ? true : _status);
   },
 );
 

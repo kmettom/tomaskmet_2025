@@ -71,7 +71,7 @@ const Canvas = {
   initScroll() {
     this.scroll = new Scroll({
       dom: this.scrollableContent,
-      activeCallback: this.activateMesh,
+      // activeCallback: this.activateMesh,
     });
   },
   setCanvasAndCamera() {
@@ -220,9 +220,9 @@ const Canvas = {
   },
 
   addOnScrollActivateElement(binding) {
-    binding.containedMeshId = this.findMeshID(binding.elNode, true);
     binding.elNode.dataset.activeScroll = 'false';
     if (!binding.options.trackOnly) {
+      binding.containedMeshId = this.findMeshID(binding.elNode, true);
       binding.elNode.classList.add('show-on-scroll');
     }
     // this.scroll.DOM.onScrollActivateElements.push(binding);
@@ -377,9 +377,9 @@ const Canvas = {
 
         this.setTextMeshPositions();
 
-        setTimeout(() => {
-          if (!htmlEl.dataset.scrollActive) this.activateMesh(meshId, true);
-        }, 250);
+        // setTimeout(() => {
+        // if (!htmlEl.dataset.scrollActive) this.activateMesh(meshId, true, 'ADDMSDF');
+        // }, 250);
         if (mouseListeners) this.meshMouseListeners(newMesh, material);
       },
     );

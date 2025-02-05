@@ -27,6 +27,7 @@
             :mesh-id="'headline-783'"
             :shader="'default'"
             :theme="'light'"
+            :show="mainTextIn"
           >
             783
           </CanvasText>
