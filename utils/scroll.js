@@ -19,6 +19,7 @@ export default class Scroll {
     this.speedTarget = 0;
     this.scrollTo = { target: 0, executed: true };
     this.scrollSpeedBottomMargin = 250;
+    this.scrollOnTrigger = false;
 
     this.setSize();
     this.getScroll();
@@ -58,6 +59,7 @@ export default class Scroll {
       this.setSize();
     });
     window.addEventListener('scroll', () => {
+      if (this.scrollOnTrigger) return;
       this.getScroll();
     });
   }
