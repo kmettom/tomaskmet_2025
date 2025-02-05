@@ -110,7 +110,7 @@ watch(
       activateCallback: 'exampleCallback',
       scrollSpeed: isExpanded ? 0 : project.scrollSpeed,
     }"
-    :style="`bottom: ${project.position?.bottom ?? 0}px;}`"
+    :style="`bottom: ${!isExpanded ? project.position?.bottom ?? 0 : 0 }px;}`"
     :class="`project ${isExpanded ? ' expanded ' : ''} ${project.position?.alignRight ? ' project-right ' : ''}`"
   >
     <div
@@ -164,6 +164,7 @@ $nameSize: 30px;
   justify-content: left;
   margin-bottom: $nameSize;
   position: relative;
+  //transition: bottom 0.3s linear;
   &.project-right {
     justify-content: right;
   }
