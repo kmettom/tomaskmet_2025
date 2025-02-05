@@ -141,14 +141,16 @@ $marginRight: 50px;
 
 .gallery-controls-btn {
   position: absolute;
-  background: transparent;
+  //background: transparent;
+  background: var(--dark-color);
+  border: 1px solid red;
   outline: none;
-  border: none;
+  //border: none;
   cursor: pointer;
 }
 .close-btn {
-  top: 25%;
-  right: $marginRight;
+  top: 0;
+  right: 0;
 }
 .change-project-btn {
   cursor: pointer;

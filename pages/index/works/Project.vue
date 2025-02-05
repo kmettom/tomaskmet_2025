@@ -45,12 +45,12 @@ const expandProject = () => {
   });
   timeline.to('.project-image img', {
     height: '80vh',
-    width: '40vh',
+    width: '50vw',
     duration: aniDuration,
   });
   timeline.to('.project-info-wrapper', {
     duration: aniDuration,
-    width: '50%',
+    width: '50vw',
     height: '100%',
   });
   timeline.to('.expand-description > * ', {
@@ -164,7 +164,6 @@ $nameSize: 30px;
   justify-content: left;
   margin-bottom: $nameSize;
   position: relative;
-  //transition: bottom 0.3s linear;
   &.project-right {
     justify-content: right;
   }

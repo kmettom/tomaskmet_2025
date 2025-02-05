@@ -61,6 +61,7 @@ const heroSectionAnimation = () => {
   gsap.from(split.chars, {
     opacity: 0,
     y: 10,
+    delay: 0.5,
     duration: 0.2,
     stagger: 0.005,
     onStart: () => {
