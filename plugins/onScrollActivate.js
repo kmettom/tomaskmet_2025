@@ -1,9 +1,7 @@
 import { Canvas } from '~/utils/canvas.js';
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.directive('onScrollActivate', {
-    // dirId: 'xxx,',
     mounted(el, binding) {
-      // console.log(this.dirId)
       setTimeout(() => {
         Canvas.addOnScrollActivateElement({
           elNode: el,
@@ -36,4 +34,6 @@ export default defineNuxtPlugin((nuxtApp) => {
 //   scrollSpeed: Number,
 //   fixToParentId: Boolean,
 //   scrollCallback: string
+// TODO:
+// scrollTriggerSectionsClass: string | null
 // }

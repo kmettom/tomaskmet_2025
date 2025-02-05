@@ -43,17 +43,21 @@
         </div>
 
         <div
-          v-for="(project, index) in projectsData"
-          :key="project.name"
-          :ref="projectItemRefs.set"
-          class="project-item"
+          v-onScrollActivate="{ scrollTriggerSectionsClass: 'project-item' }"
         >
-          <Project
-            :is-expanded="projectsExpanded"
-            :project="project"
-            :index="index"
-            @expand-projects="expandProjectView(index)"
-          />
+          <div
+            v-for="(project, index) in projectsData"
+            :key="project.name"
+            :ref="projectItemRefs.set"
+            class="project-item"
+          >
+            <Project
+              :is-expanded="projectsExpanded"
+              :project="project"
+              :index="index"
+              @expand-projects="expandProjectView(index)"
+            />
+          </div>
         </div>
       </div>
     </Container>

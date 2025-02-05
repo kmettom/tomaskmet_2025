@@ -220,6 +220,13 @@ const Canvas = {
   },
 
   addOnScrollActivateElement(binding) {
+    if (binding.options.scrollTriggerSectionsClass) {
+      binding.options.scrollTriggerSections = document.querySelectorAll(
+        binding.options.scrollTriggerSectionsClass,
+      );
+      //if this section active, block scroll and use it as a trigger to move to next section
+    }
+
     binding.elNode.dataset.activeScroll = 'false';
     if (!binding.options.trackOnly) {
       binding.containedMeshId = this.findMeshID(binding.elNode, true);
