@@ -34,6 +34,4 @@ export default defineNuxtPlugin((nuxtApp) => {
 //   scrollSpeed: Number,
 //   fixToParentId: Boolean,
 //   scrollCallback: string
-// TODO:
-// scrollTriggerSectionsClass: string | null
 // }
