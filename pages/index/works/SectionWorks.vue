@@ -16,8 +16,7 @@
       <div
         id="gallery"
         ref="projectGalleryRef"
-        v-onScrollActivate="{
-          trackOnly: true,
+        v-onTriggerSectionSlide="{
           scrollTriggerSectionsClass: projectsExpanded ? 'project-item' : null,
         }"
       >
