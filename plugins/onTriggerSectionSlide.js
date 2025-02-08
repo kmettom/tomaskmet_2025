@@ -11,6 +11,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       }, 150);
     },
     updated(el, binding) {
+      console.log(el, binding);
       // Canvas.updateOnTriggerSectionSlide({
       //   elNode: el,
       //   options: binding.value,
@@ -18,6 +19,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       // });
     },
     unmounted(el) {
+      console.log(el);
       // Canvas.removeOnTriggerSectionSlide(el);
     },
   });

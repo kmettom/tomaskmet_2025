@@ -227,12 +227,11 @@ const Canvas = {
     console.log('sectionTriggerMove');
   },
 
-  addOnTriggerSectionSlide(binding){
+  addOnTriggerSectionSlide(binding) {
     console.log('addOnTriggerSectionSlide', binding);
   },
 
   addOnScrollActivateElement(binding) {
-
     binding.elNode.dataset.activeScroll = 'false';
     if (!binding.options.trackOnly) {
       binding.containedMeshId = this.findMeshID(binding.elNode, true);
