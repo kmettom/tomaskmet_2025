@@ -192,10 +192,10 @@ const Canvas = {
     if (item.options.activateCallback === 'textAnimation' && active) {
       gsap.to(item.elNode, { opacity: 0.5, duration: 2 });
     }
-    // if (item.options.scrollTriggerSectionsClass) {
-    //   console.log('', item.options.scrollTriggerSectionsClass);
-    //   this.scroll.scrollOnTrigger = active;
-    // }
+    if (item.options.scrollTriggerSectionsClass) {
+      console.log('', item.options.scrollTriggerSectionsClass);
+      this.scroll.scrollOnTrigger = active;
+    }
   },
 
   onScrollCallback() {
@@ -232,6 +232,13 @@ const Canvas = {
   },
 
   addOnScrollActivateElement(binding) {
+    if (binding.options.scrollTriggerSectionsClass) {
+      binding.options.scrollTriggerSections = document.querySelectorAll(
+        binding.options.scrollTriggerSectionsClass,
+      );
+      //if this section active, block scroll and use it as a trigger to move to next section
+    }
+
     binding.elNode.dataset.activeScroll = 'false';
     if (!binding.options.trackOnly) {
       binding.containedMeshId = this.findMeshID(binding.elNode, true);

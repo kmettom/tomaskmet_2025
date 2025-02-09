@@ -16,10 +16,14 @@
       <div
         id="gallery"
         ref="projectGalleryRef"
-        v-onTriggerSectionSlide="{
+        v-onScrollActivate="{
+          trackOnly: true,
           scrollTriggerSectionsClass: projectsExpanded ? 'project-item' : null,
         }"
       >
+        <!--        v-onTriggerSectionSlide="{-->
+        <!--        scrollTriggerSectionsClass: projectsExpanded ? 'project-item' : null,-->
+        <!--        }"-->
         <div
           v-if="projectsExpanded"
           v-onScrollActivate="{ fixToParentId: 'gallery' }"
