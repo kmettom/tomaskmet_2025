@@ -18,6 +18,8 @@
         ref="projectGalleryRef"
         v-onScrollActivate="{
           trackOnly: true,
+          // bidirectionalActivation:true,
+          activeRangeOrigin: 'top',
           scrollTriggerSectionsClass: projectsExpanded ? 'project-item' : null,
         }"
       >

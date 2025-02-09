@@ -48,6 +48,7 @@ const CanvasOptions = {
     vertexShader: example2Vertex,
   },
 };
+
 const Canvas = {
   navigationStore: null,
   scrollInProgress: false,
@@ -68,6 +69,7 @@ const Canvas = {
     welcome: {},
     cursorCallback: () => {},
   },
+  triggerSectionPositions: {},
   initScroll() {
     this.scroll = new Scroll({
       dom: this.scrollableContent,
@@ -180,6 +182,10 @@ const Canvas = {
   },
 
   onActiveElCallback(item, active) {
+    if (item.options.scrollTriggerSectionsClass) {
+      console.log('', item.options.scrollTriggerSectionsClass);
+      this.scroll.scrollOnTrigger = active;
+    }
     if (item.options.activateCallback === 'exampleCallback') {
       // do something when _active is true or false
       // console.log('Example callback triggered, element active state: ', active);
@@ -191,10 +197,6 @@ const Canvas = {
     }
     if (item.options.activateCallback === 'textAnimation' && active) {
       gsap.to(item.elNode, { opacity: 0.5, duration: 2 });
-    }
-    if (item.options.scrollTriggerSectionsClass) {
-      console.log('', item.options.scrollTriggerSectionsClass);
-      this.scroll.scrollOnTrigger = active;
     }
   },
 
@@ -231,11 +233,17 @@ const Canvas = {
     console.log('addOnTriggerSectionSlide', binding);
   },
 
+  createTriggerSectionPositions(binding) {
+    binding.options.scrollTriggerSections = document.querySelectorAll(
+      binding.options.scrollTriggerSectionsClass,
+    );
+    this.triggerSectionPositions[binding.options.scrollTriggerSectionsClass] =
+      [];
+  },
+
   addOnScrollActivateElement(binding) {
     if (binding.options.scrollTriggerSectionsClass) {
-      binding.options.scrollTriggerSections = document.querySelectorAll(
-        binding.options.scrollTriggerSectionsClass,
-      );
+      this.createTriggerSectionPositions();
       //if this section active, block scroll and use it as a trigger to move to next section
     }
 
