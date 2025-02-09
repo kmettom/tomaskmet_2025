@@ -20,14 +20,16 @@
           trackOnly: true,
           // bidirectionalActivation:true,
           activeRangeOrigin: 'top',
-          scrollTriggerSectionsClass: projectsExpanded ? 'project-item' : null,
+          scrollTriggerSectionsClass: navigationStore.projects.expanded
+            ? 'project-item'
+            : null,
         }"
       >
         <!--        v-onTriggerSectionSlide="{-->
         <!--        scrollTriggerSectionsClass: projectsExpanded ? 'project-item' : null,-->
         <!--        }"-->
         <div
-          v-if="projectsExpanded"
+          v-if="navigationStore.projects.expanded"
           v-onScrollActivate="{ fixToParentId: 'gallery' }"
         >
           <div class="gallery-controls">
@@ -61,7 +63,6 @@
           class="project-item"
         >
           <Project
-            :is-expanded="projectsExpanded"
             :project="project"
             :index="index"
             @expand-projects="expandProjectView(index)"
@@ -75,14 +76,14 @@
 <script setup lang="ts">
 import Container from '~/components/common/Container.vue';
 import projectsData from '~/content/projects.json';
-import Project from '~/pages/index/works/Project.vue';
+import Project from '~/pages/index/projects/Project.vue';
 import IconsClose from '~/components/common/icons/close.client.vue';
 import { useTemplateRefsList } from '@vueuse/core';
 const navigationStore = useNavigationStore();
 
 const projects = ref(projectsData);
 const activeProjectsIndex = ref(0);
-const projectsExpanded = ref(false);
+// const projectsExpanded = ref(false);
 
 const projectItemRefs = useTemplateRefsList<HTMLDivElement>();
 const projectGalleryRef = ref();
@@ -96,7 +97,7 @@ const prevProjectName = computed(() => {
 
 const expandProjectView = (index: number | null) => {
   activeProjectsIndex.value = index === null ? 0 : index;
-  projectsExpanded.value = index !== null;
+  navigationStore.projects.expanded = index !== null;
   navigationStore.setNavVisible(index === null);
   if (index !== null) {
     setTimeout(() => {

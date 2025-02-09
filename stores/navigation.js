@@ -10,6 +10,9 @@ export const useNavigationStore = defineStore('navigationStore', {
       { name: 'Services', id: 'services' },
       { name: 'Contact us', id: 'contact' },
     ],
+    projects: {
+      expanded: false,
+    },
     // navItems: ['home', 'about', 'work', 'services' , 'contact'],
   }),
   actions: {

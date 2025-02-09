@@ -1,6 +1,7 @@
 <script setup>
 import { watch } from 'vue';
 import { gsap } from 'gsap';
+const navigationStore = useNavigationStore();
 
 const props = defineProps({
   project: {
@@ -91,7 +92,7 @@ const shrinkProject = () => {
 };
 
 watch(
-  () => props.isExpanded,
+  () => navigationStore.projects.expanded,
   (newValue) => {
     if (newValue) {
       expandProject();

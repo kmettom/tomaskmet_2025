@@ -19,7 +19,7 @@
       class="page-section"
       data-nav-id="work"
     >
-      <SectionWorks />
+      <SectionProjects />
     </div>
     <div
       v-onScrollActivate="sectionActivationOptions"
@@ -44,7 +44,7 @@
 </template>
 
 <script setup>
-import SectionWorks from '~/pages/index/works/SectionWorks.vue';
+import SectionProjects from '~/pages/index/projects/SectionProjects.vue';
 import SectionServices from '~/pages/index/services/SectionServices.vue';
 import SectionHero from '~/pages/index/SectionHero.vue';
 import SectionAbout from '~/pages/index/SectionAbout.vue';

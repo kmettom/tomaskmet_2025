@@ -26,7 +26,6 @@ import example2Vertex from './shaders/example2Vertex.glsl';
 // import MSDFfragment from './shaders/MSDFfragment.glsl';
 import MSDFfragmentBlur from './shaders/MSDFfragmentBlur.glsl';
 import MSDFvertex from './shaders/MSDFvertex.glsl';
-// import { useNavigationStore } from '~/stores/navigation';
 
 const CanvasOptions = {
   scroll: {
@@ -183,7 +182,7 @@ const Canvas = {
 
   onActiveElCallback(item, active) {
     if (item.options.scrollTriggerSectionsClass) {
-      console.log('', item.options.scrollTriggerSectionsClass);
+      console.log('x', item.options.scrollTriggerSectionsClass, active);
       this.scroll.scrollOnTrigger = active;
     }
     if (item.options.activateCallback === 'exampleCallback') {

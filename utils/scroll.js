@@ -59,7 +59,6 @@ export default class Scroll {
       this.setSize();
     });
     window.addEventListener('scroll', () => {
-      if (this.scrollOnTrigger) return;
       this.getScroll();
     });
   }
@@ -207,6 +206,11 @@ export default class Scroll {
       this.scrollRenderTo(_scrollTo);
     } else if (!this.scrollTo.executed) {
       this.scrollRender();
+    } else if (this.scrollOnTrigger) {
+      console.log(this.speed);
+      this.scrollToRender = Math.round(
+        lerp(this.scrollToRender, this.current, this.ease),
+      );
     } else {
       this.scrollToRender = Math.round(
         lerp(this.scrollToRender, this.current, this.ease),
