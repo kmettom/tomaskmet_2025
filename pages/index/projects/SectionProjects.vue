@@ -18,7 +18,7 @@
         ref="projectGalleryRef"
         v-onScrollActivate="{
           trackOnly: true,
-          // bidirectionalActivation:true,
+          bidirectionalActivation: true,
           activeRangeOrigin: 'top',
           scrollTriggerSectionsClass: navigationStore.projects.expanded
             ? 'project-item'
@@ -30,7 +30,7 @@
         <!--        }"-->
         <div
           v-if="navigationStore.projects.expanded"
-          v-onScrollActivate="{ fixToParentId: 'gallery' }"
+          v-onScrollActivate="{ fixToParentId: 'gallery', scrollSpeed: 1 }"
         >
           <div class="gallery-controls">
             <button
@@ -110,7 +110,6 @@ const goToProject = (index: number) => {
   const projectPosition =
     projectItemRefs.value[index].getBoundingClientRect().top + window.scrollY;
   Canvas.scrollTo(projectPosition, 0.5);
-  Canvas.sectionTriggerMove();
 };
 </script>
 

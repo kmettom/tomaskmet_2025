@@ -167,8 +167,11 @@ export default class Scroll {
   }
 
   scrollRenderToFluid(_scrollTo) {
+    // this.scrollTo.executed = false;
     window.scrollBy(0, _scrollTo.toString());
     document.documentElement.scrollTop = _scrollTo;
+    // this.getScroll();
+    // this.scrollTo.target = Number(_scrollTo);
   }
 
   scrollRenderTo(_scrollTo) {
