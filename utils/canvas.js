@@ -26,6 +26,7 @@ import example2Vertex from './shaders/example2Vertex.glsl';
 // import MSDFfragment from './shaders/MSDFfragment.glsl';
 import MSDFfragmentBlur from './shaders/MSDFfragmentBlur.glsl';
 import MSDFvertex from './shaders/MSDFvertex.glsl';
+import { generateBindingLogic } from '~/utils/canvasHelpers';
 
 const CanvasOptions = {
   scroll: {
@@ -206,27 +207,6 @@ const Canvas = {
     // console.log('onScrollCallback');
   },
 
-  removeScrollActiveElement(elNode) {
-    if (!elNode || this.scroll.DOM.onScrollActivateElements.length === 0)
-      return;
-    for (var i = 0; i < this.scroll.DOM.onScrollActivateElements.length; i++) {
-      if (
-        this.scroll.DOM.onScrollActivateElements[i].elNode.isEqualNode(elNode)
-      ) {
-        this.scroll.DOM.onScrollActivateElements.splice(i, 1);
-        break;
-      }
-    }
-  },
-
-  updateOnScrollActiveElement(updatedBinding) {
-    const itemIndex = this.scroll.DOM.onScrollActivateElements.findIndex(
-      (item) => item.elNode === updatedBinding.elNode,
-    );
-    if (itemIndex > -1)
-      this.scroll.DOM.onScrollActivateElements[itemIndex] = updatedBinding;
-  },
-
   sectionTriggerMove() {
     console.log('sectionTriggerMove');
   },
@@ -246,47 +226,59 @@ const Canvas = {
   addOnScrollActivateElement(binding) {
     if (binding.options.scrollTriggerSectionsClass) {
       this.createTriggerSectionPositions();
+      // TODO: create trigger section logic
       //if this section active, block scroll and use it as a trigger to move to next section
     }
 
-    binding.elNode.dataset.activeScroll = 'false';
-    if (!binding.options.trackOnly) {
-      binding.containedMeshId = this.findMeshID(binding.elNode, true);
-      binding.elNode.classList.add('show-on-scroll');
-    }
-    // this.scroll.DOM.onScrollActivateElements.push(binding);
+    generateBindingLogic(binding);
 
-    if (binding.options.fixToParentId) {
-      setTimeout(() => {
-        // timeout for rendering when page is changed
-        binding.containerId = binding.options.fixToParentId;
-        binding.options.scrollSpeed = 1;
-        binding.bounds = binding.elNode.getBoundingClientRect();
-        binding.containerEl = document.getElementById(binding.containerId);
-        binding.childEl = binding.elNode.children[0];
-        binding.containerBottom =
-          binding.containerEl.getBoundingClientRect().bottom;
-        binding.margin = 0;
-        this.scroll.DOM.onScrollActivateElements.push(binding);
-      }, 750);
-      return;
-    }
     this.scroll.DOM.onScrollActivateElements.push(binding);
-
     this.onActiveElCallback(binding, false);
   },
 
-  findMeshID(elParent, isActiveScroll) {
-    if (elParent.dataset.meshId) {
-      elParent.dataset.scrollActive = 'true';
-      return elParent.dataset.meshId;
+  updateOnScrollActiveElement(updatedBinding) {
+    let itemToUpdate = null;
+
+    console.log(
+      'this.scroll.DOM.onScrollActivateElements',
+      this.scroll.DOM.onScrollActivateElements,
+    );
+    for (const item of this.scroll.DOM.onScrollActivateElements) {
+      if (
+        item.elNode.dataset.scrollActivateId ===
+        updatedBinding.elNode.dataset.scrollActivateId
+      )
+        itemToUpdate = item;
     }
 
-    let el = elParent.querySelector('[data-mesh-id]');
-    if (!el) return false;
+    console.log(itemToUpdate.elNode.dataset.scrollActivateId,"1 itemToUpdate", itemToUpdate)
+    if (itemToUpdate) {
+      generateBindingLogic(itemToUpdate);
+    }
 
-    el.dataset.scrollActive = isActiveScroll ? 'true' : undefined;
-    return el.dataset.meshId;
+    console.log(itemToUpdate.elNode.dataset.scrollActivateId,"2 itemToUpdate", itemToUpdate)
+
+    // if(itemToUpdate){
+    //   this.scroll.DOM.onScrollActivateElements[itemIndex] = updatedBinding;
+    // }
+    // const itemIndex = this.scroll.DOM.onScrollActivateElements.findIndex(
+    //   (item) => item.elNode === updatedBinding.elNode,
+    // );
+    // if (itemIndex > -1)
+    //   this.scroll.DOM.onScrollActivateElements[itemIndex] = updatedBinding;
+  },
+
+  removeScrollActiveElement(elNode) {
+    if (!elNode || this.scroll.DOM.onScrollActivateElements.length === 0)
+      return;
+    for (var i = 0; i < this.scroll.DOM.onScrollActivateElements.length; i++) {
+      if (
+        this.scroll.DOM.onScrollActivateElements[i].elNode.isEqualNode(elNode)
+      ) {
+        this.scroll.DOM.onScrollActivateElements.splice(i, 1);
+        break;
+      }
+    }
   },
 
   removeMesh(id) {
