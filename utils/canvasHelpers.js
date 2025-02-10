@@ -6,14 +6,14 @@ export function generateBindingLogic(binding) {
   }
 
   if (binding.options.fixToParentId) {
-      binding.containerId = binding.options.fixToParentId;
-      binding.options.scrollSpeed = 1;
-      binding.bounds = binding.elNode.getBoundingClientRect();
-      binding.containerEl = document.getElementById(binding.containerId);
-      binding.childEl = binding.elNode.children[0];
-      binding.containerBottom =
-        binding.containerEl.getBoundingClientRect().bottom;
-      binding.margin = 0;
+    binding.containerId = binding.options.fixToParentId;
+    binding.options.scrollSpeed = 1;
+    binding.bounds = binding.elNode.getBoundingClientRect();
+    binding.containerEl = document.getElementById(binding.containerId);
+    binding.childEl = binding.elNode.children[0];
+    binding.containerBottom =
+      binding.containerEl.getBoundingClientRect().bottom;
+    binding.margin = 0;
   }
   return binding;
 }

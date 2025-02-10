@@ -242,7 +242,7 @@ const Canvas = {
         item.elNode.dataset.scrollActivateId ===
         updatedBinding.elNode.dataset.scrollActivateId
       )
-       generateBindingLogic(item);
+        generateBindingLogic(item);
     }
   },
 
