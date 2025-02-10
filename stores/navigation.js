@@ -25,5 +25,8 @@ export const useNavigationStore = defineStore('navigationStore', {
     setNavContrast(contrastSwitched) {
       this.navContrastSwitched = contrastSwitched;
     },
+    setProjectsExpanded(expanded) {
+      this.projects.expanded = expanded;
+    },
   },
 });

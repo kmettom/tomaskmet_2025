@@ -8,11 +8,6 @@ const props = defineProps({
     type: Object,
     required: true,
   },
-  isExpanded: {
-    type: Boolean,
-    default: false,
-    required: true,
-  },
   isActive: {
     type: Boolean,
     default: false,
@@ -27,7 +22,6 @@ const projectNumber = computed(() => {
   return '0' + (props.index + 1).toString();
 });
 const hoverImage = ref(false);
-// const projectEl = ref('projectEl');
 const emit = defineEmits(['expandProjects']);
 const aniDuration = 1;
 
@@ -109,14 +103,14 @@ watch(
       activeRange: 0.85,
       activateOnce: false,
       activateCallback: 'exampleCallback',
-      scrollSpeed: isExpanded ? 0 : project.scrollSpeed,
+      scrollSpeed: navigationStore.projects.expanded ? 0 : project.scrollSpeed,
     }"
-    :style="`bottom: ${!isExpanded ? (project.position?.bottom ?? 0) : 0}px;}`"
-    :class="`project ${isExpanded ? ' expanded ' : ''} ${project.position?.alignRight ? ' project-right ' : ''}`"
+    :style="`bottom: ${!navigationStore.projects.expanded ? (project.position?.bottom ?? 0) : 0}px;}`"
+    :class="`project ${navigationStore.projects.expanded ? ' expanded ' : ''} ${project.position?.alignRight ? ' project-right ' : ''}`"
   >
     <div
       :class="`project-wrapper ${project.position?.alignRight ? ' project-right ' : ''}`"
-      @mouseover="hoverImage = !isExpanded"
+      @mouseover="hoverImage = !navigationStore.projects.expanded"
       @mouseleave="hoverImage = false"
       @click="emit('expandProjects')"
     >

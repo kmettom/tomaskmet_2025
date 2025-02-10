@@ -26,7 +26,7 @@
         }"
       >
         <!--        v-onTriggerSectionSlide="{-->
-        <!--        scrollTriggerSectionsClass: projectsExpanded ? 'project-item' : null,-->
+        <!--        scrollTriggerSectionsClass: navigationStore.projects.expanded ? 'project-item' : null,-->
         <!--        }"-->
         <div
           v-if="navigationStore.projects.expanded"
@@ -83,7 +83,6 @@ const navigationStore = useNavigationStore();
 
 const projects = ref(projectsData);
 const activeProjectsIndex = ref(0);
-// const projectsExpanded = ref(false);
 
 const projectItemRefs = useTemplateRefsList<HTMLDivElement>();
 const projectGalleryRef = ref();
@@ -97,7 +96,7 @@ const prevProjectName = computed(() => {
 
 const expandProjectView = (index: number | null) => {
   activeProjectsIndex.value = index === null ? 0 : index;
-  navigationStore.projects.expanded = index !== null;
+  navigationStore.setProjectsExpanded(index !== null);
   navigationStore.setNavVisible(index === null);
   if (index !== null) {
     setTimeout(() => {
