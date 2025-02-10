@@ -210,7 +210,6 @@ export default class Scroll {
     } else if (!this.scrollTo.executed) {
       this.scrollRender();
     } else if (this.scrollOnTrigger) {
-      // console.log(this.speed);
       //TODO: finish logic of scroll on trigger sections
       this.scrollToRender = Math.round(
         lerp(this.scrollToRender, this.current, this.ease),

@@ -237,35 +237,13 @@ const Canvas = {
   },
 
   updateOnScrollActiveElement(updatedBinding) {
-    let itemToUpdate = null;
-
-    console.log(
-      'this.scroll.DOM.onScrollActivateElements',
-      this.scroll.DOM.onScrollActivateElements,
-    );
-    for (const item of this.scroll.DOM.onScrollActivateElements) {
+    for (let item of this.scroll.DOM.onScrollActivateElements) {
       if (
         item.elNode.dataset.scrollActivateId ===
         updatedBinding.elNode.dataset.scrollActivateId
       )
-        itemToUpdate = item;
+       generateBindingLogic(item);
     }
-
-    console.log(itemToUpdate.elNode.dataset.scrollActivateId,"1 itemToUpdate", itemToUpdate)
-    if (itemToUpdate) {
-      generateBindingLogic(itemToUpdate);
-    }
-
-    console.log(itemToUpdate.elNode.dataset.scrollActivateId,"2 itemToUpdate", itemToUpdate)
-
-    // if(itemToUpdate){
-    //   this.scroll.DOM.onScrollActivateElements[itemIndex] = updatedBinding;
-    // }
-    // const itemIndex = this.scroll.DOM.onScrollActivateElements.findIndex(
-    //   (item) => item.elNode === updatedBinding.elNode,
-    // );
-    // if (itemIndex > -1)
-    //   this.scroll.DOM.onScrollActivateElements[itemIndex] = updatedBinding;
   },
 
   removeScrollActiveElement(elNode) {

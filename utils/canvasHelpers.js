@@ -15,6 +15,7 @@ export function generateBindingLogic(binding) {
         binding.containerEl.getBoundingClientRect().bottom;
       binding.margin = 0;
   }
+  return binding;
 }
 
 export function findMeshID(elParent, isActiveScroll) {
