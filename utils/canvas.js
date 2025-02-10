@@ -183,15 +183,11 @@ const Canvas = {
 
   onActiveElCallback(item, active) {
     if (item.options.scrollTriggerSectionsClass) {
-      // console.log( item.options, active);
+      //TODO: finish scrollTriggerSectionsClass logic
       this.scroll.scrollOnTrigger = active;
       // if (!active) {
       // this.navigationStore.setProjectsExpanded(false);
       // }
-    }
-    if (item.options.activateCallback === 'exampleCallback') {
-      // do something when _active is true or false
-      // console.log('Example callback triggered, element active state: ', active);
     }
     if (item.options.activateCallback === 'pageSection' && active) {
       if (!this.navigationStore) this.navigationStore = useNavigationStore();
@@ -236,12 +232,16 @@ const Canvas = {
   },
 
   updateOnScrollActiveElement(updatedBinding) {
-    for (let item of this.scroll.DOM.onScrollActivateElements) {
+    for (let [
+      index,
+      item,
+    ] of this.scroll.DOM.onScrollActivateElements.entries()) {
       if (
         item.elNode.dataset.scrollActivateId ===
         updatedBinding.elNode.dataset.scrollActivateId
       ) {
-        item = generateBindingLogic(updatedBinding);
+        this.scroll.DOM.onScrollActivateElements[index] =
+          generateBindingLogic(updatedBinding);
       }
     }
   },

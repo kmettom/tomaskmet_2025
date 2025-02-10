@@ -137,10 +137,6 @@ export default class Scroll {
             ? item.options.scrollSpeed
             : false;
 
-        if (item.options.id === 'kkt') {
-          console.log(speed);
-        }
-
         if (item.options.fixToParentId) {
           const containerBottom =
             item.containerEl.getBoundingClientRect().bottom;

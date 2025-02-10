@@ -104,7 +104,6 @@ watch(
 <template>
   <div
     v-onScrollActivate="{
-      id: 'kkt',
       activeRange: 0.85,
       activateOnce: false,
       scrollSpeed: navigationStore.projects.expanded ? 0 : project.scrollSpeed,
