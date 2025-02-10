@@ -224,16 +224,15 @@ const Canvas = {
   },
 
   addOnScrollActivateElement(binding) {
-    if (binding.options.scrollTriggerSectionsClass) {
+    const newBinding = generateBindingLogic(binding);
+    if (newBinding.options.scrollTriggerSectionsClass) {
       this.createTriggerSectionPositions();
       // TODO: create trigger section logic
       //if this section active, block scroll and use it as a trigger to move to next section
     }
 
-    generateBindingLogic(binding);
-
-    this.scroll.DOM.onScrollActivateElements.push(binding);
-    this.onActiveElCallback(binding, false);
+    this.scroll.DOM.onScrollActivateElements.push(newBinding);
+    this.onActiveElCallback(newBinding, false);
   },
 
   updateOnScrollActiveElement(updatedBinding) {
@@ -241,8 +240,9 @@ const Canvas = {
       if (
         item.elNode.dataset.scrollActivateId ===
         updatedBinding.elNode.dataset.scrollActivateId
-      )
-        generateBindingLogic(item);
+      ) {
+        item = generateBindingLogic(updatedBinding);
+      }
     }
   },
 

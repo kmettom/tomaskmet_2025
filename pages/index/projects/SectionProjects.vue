@@ -30,7 +30,7 @@
         <!--        }"-->
         <div
           v-if="navigationStore.projects.expanded"
-          v-onScrollActivate="{ fixToParentId: 'gallery', scrollSpeed: 1 }"
+          v-onScrollActivate="{ fixToParentId: 'gallery' }"
         >
           <div class="gallery-controls">
             <button

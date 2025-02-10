@@ -104,9 +104,9 @@ watch(
 <template>
   <div
     v-onScrollActivate="{
+      id: 'kkt',
       activeRange: 0.85,
       activateOnce: false,
-      activateCallback: 'exampleCallback',
       scrollSpeed: navigationStore.projects.expanded ? 0 : project.scrollSpeed,
     }"
     :style="`bottom: ${!navigationStore.projects.expanded ? (project.position?.bottom ?? 0) : 0}px;}`"
