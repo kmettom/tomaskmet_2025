@@ -184,6 +184,9 @@ const Canvas = {
     if (item.options.scrollTriggerSectionsClass) {
       console.log('x', item.options.scrollTriggerSectionsClass, active);
       this.scroll.scrollOnTrigger = active;
+      if(!active) {
+        this.navigationStore.setProjectsExpanded(false);
+      }
     }
     if (item.options.activateCallback === 'exampleCallback') {
       // do something when _active is true or false

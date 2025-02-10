@@ -163,7 +163,7 @@ $marginRight: 50px;
 }
 .close-btn {
   top: 0;
-  right: 0;
+  right: -35px;
 }
 .change-project-btn {
   cursor: pointer;

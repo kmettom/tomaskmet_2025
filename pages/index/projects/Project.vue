@@ -32,6 +32,7 @@ const expandProject = () => {
     },
     onComplete: () => {
       Canvas.animateImageMesh = false;
+      navigationStore.setProjectsInTransition(false);
     },
   });
   timeline.to('.project-name', {
@@ -62,6 +63,7 @@ const shrinkProject = () => {
     },
     onComplete: () => {
       Canvas.animateImageMesh = false;
+      navigationStore.setProjectsInTransition(false);
     },
   });
   timeline.to('.project-image img', {
@@ -89,8 +91,10 @@ watch(
   () => navigationStore.projects.expanded,
   (newValue) => {
     if (newValue) {
+      navigationStore.setProjectsInTransition(true);
       expandProject();
     } else {
+      navigationStore.setProjectsInTransition(true);
       shrinkProject();
     }
   },
