@@ -182,7 +182,7 @@ const Canvas = {
 
   onActiveElCallback(item, active) {
     if (item.options.scrollTriggerSectionsClass) {
-      console.log(item.options, active);
+      // console.log( item.options, active);
       this.scroll.scrollOnTrigger = active;
       // if (!active) {
       // this.navigationStore.setProjectsExpanded(false);
