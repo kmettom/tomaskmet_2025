@@ -24,7 +24,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.directive('onScrollActivate', {
     mounted(el, binding) {
       setTimeout(() => {
-        const bindingObject = generateBindingObject(binding);
+        // const bindingObject = generateBindingObject(binding);
         Canvas.addOnScrollActivateElement({
           elNode: el,
           options: binding.value,
