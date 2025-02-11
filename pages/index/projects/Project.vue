@@ -107,9 +107,11 @@ watch(
       activeRange: 0.85,
       activateOnce: false,
       activateCallback: (activeState) => {
-        if (activeState) navigationStore.setActiveProjectName(project.name);
+        if (activeState) navigationStore.setActiveProject(props.project.name);
       },
-      scrollSpeed: navigationStore.projects.expanded ? 0 : project.scrollSpeed,
+      scrollSpeed: navigationStore.projects.expanded
+        ? 0
+        : props.project.scrollSpeed,
     }"
     :style="`bottom: ${!navigationStore.projects.expanded ? (project.position?.bottom ?? 0) : 0}px;}`"
     :class="`project ${navigationStore.projects.expanded ? ' expanded ' : ''} ${project.position?.alignRight ? ' project-right ' : ''}`"

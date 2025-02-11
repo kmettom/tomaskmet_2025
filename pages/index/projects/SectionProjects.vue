@@ -82,25 +82,27 @@ import { useTemplateRefsList } from '@vueuse/core';
 const navigationStore = useNavigationStore();
 
 const projects = ref(projectsData);
-const activeProjectsIndex = ref(0);
+const activeProjectsIndex = computed(() => {
+  return projects.value.findIndex(
+    (project) => project.name === navigationStore.projects.activeProject,
+  );
+});
 
 const projectItemRefs = useTemplateRefsList<HTMLDivElement>();
 const projectGalleryRef = ref();
 
-const getProjectByName = (projectName) => {
-  let project = null;
-  for (let i = 0; i < projects.value.length; i++) {
-    if (projects.value[i].name === projectName) {
-      project = projects.value[i];
-      break; // Exit the loop once the project is found
-    }
-  }
-  return project;
-}
-
+// const getProjectByName = (projectName) => {
+//   let project = null;
+//   for (let i = 0; i < projects.value.length; i++) {
+//     if (projects.value[i].name === projectName) {
+//       project = projects.value[i];
+//       break; // Exit the loop once the project is found
+//     }
+//   }
+//   return project;
+// };
 
 const nextProjectName = computed(() => {
-
   return projects.value[activeProjectsIndex.value + 1]?.name ?? null;
 });
 const prevProjectName = computed(() => {
@@ -108,7 +110,6 @@ const prevProjectName = computed(() => {
 });
 
 const expandProjectView = (index: number | null) => {
-  activeProjectsIndex.value = index === null ? 0 : index;
   navigationStore.setProjectsExpanded(index !== null);
   navigationStore.setNavVisible(index === null);
   if (index !== null) {
@@ -119,7 +120,6 @@ const expandProjectView = (index: number | null) => {
 };
 
 const goToProject = (index: number) => {
-  activeProjectsIndex.value = index;
   const projectPosition =
     projectItemRefs.value[index].getBoundingClientRect().top + window.scrollY;
   Canvas.scrollTo(projectPosition, 0.5);
