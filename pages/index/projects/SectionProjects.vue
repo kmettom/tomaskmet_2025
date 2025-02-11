@@ -19,7 +19,6 @@
         v-onScrollActivate="{
           trackOnly: true,
           bidirectionalActivation: true,
-          activeRangeOrigin: 'top',
           scrollTriggerSectionsClass: navigationStore.projects.expanded
             ? 'project-item'
             : null,
