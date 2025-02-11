@@ -23,7 +23,7 @@ const projectNumber = computed(() => {
 });
 const hoverImage = ref(false);
 const emit = defineEmits(['expandProjects']);
-const aniDuration = 1;
+const aniDuration = 0.3;
 
 const expandProject = () => {
   const timeline = gsap.timeline({
