@@ -106,7 +106,8 @@ watch(
     v-onScrollActivate="{
       activeRange: 0.85,
       activateOnce: false,
-      bidirectionalActivation: true,
+      bidirectionalActivation: navigationStore.projects.expanded,
+      activeRangeOrigin: navigationStore.projects.expanded ? 'top' : 'middle',
       activateCallback: (activeState) => {
         if (activeState) navigationStore.setActiveProject(props.project.name);
       },
