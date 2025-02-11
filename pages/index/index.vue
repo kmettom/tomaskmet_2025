@@ -1,38 +1,36 @@
 <template>
   <div>
     <div
-      v-onScrollActivate="sectionActivationOptions"
+      v-onScrollActivate="setSectionActivationOptions('home', false)"
       class="page-section"
       data-nav-id="home"
     >
       <SectionHero :section-activate="props.pageActive" />
     </div>
     <div
-      v-onScrollActivate="sectionActivationOptions"
+      v-onScrollActivate="setSectionActivationOptions('about', false)"
       class="page-section"
       data-nav-id="about"
     >
       <SectionAbout />
     </div>
     <div
-      v-onScrollActivate="sectionActivationOptions"
+      v-onScrollActivate="setSectionActivationOptions('work', false)"
       class="page-section"
       data-nav-id="work"
     >
       <SectionProjects />
     </div>
     <div
-      v-onScrollActivate="sectionActivationOptions"
+      v-onScrollActivate="setSectionActivationOptions('services', true)"
       class="page-section"
-      data-navcontrast="true"
       data-nav-id="services"
     >
       <SectionServices />
     </div>
     <div
-      v-onScrollActivate="sectionActivationOptions"
+      v-onScrollActivate="setSectionActivationOptions('contact', true)"
       class="page-section"
-      data-navcontrast="true"
       data-nav-id="contact"
     >
       <SectionContact />
@@ -58,16 +56,25 @@ useSeoMeta({
   ogDescription: '783Studio - Web design & development',
 });
 
+const navigationStore = useNavigationStore();
+
 const props = defineProps({
   pageActive: Boolean,
 });
 
-const sectionActivationOptions = {
-  trackOnly: true,
-  activateCallback: 'pageSection',
-  activeRangeOrigin: 'top',
-  bidirectionalActivation: true,
-  activeRangeMargin: 100,
+const setSectionActivationOptions = (sectionId, sectionContrast) => {
+  return {
+    trackOnly: true,
+    activateCallback: (activeState) => {
+      if (activeState) {
+        navigationStore.setActiveNavItem(sectionId);
+        navigationStore.setNavContrast(sectionContrast);
+      }
+    },
+    activeRangeOrigin: 'top',
+    bidirectionalActivation: true,
+    activeRangeMargin: 100,
+  };
 };
 </script>
 

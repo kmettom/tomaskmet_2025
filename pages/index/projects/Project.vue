@@ -106,6 +106,9 @@ watch(
     v-onScrollActivate="{
       activeRange: 0.85,
       activateOnce: false,
+      activateCallback: (activeState) => {
+        if (activeState) navigationStore.setActiveProjectId(project.name);
+      },
       scrollSpeed: navigationStore.projects.expanded ? 0 : project.scrollSpeed,
     }"
     :style="`bottom: ${!navigationStore.projects.expanded ? (project.position?.bottom ?? 0) : 0}px;}`"

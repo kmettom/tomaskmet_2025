@@ -181,22 +181,17 @@ const Canvas = {
     });
   },
 
-  onActiveElCallback(item, active) {
-    if (item.options.scrollTriggerSectionsClass) {
-      //TODO: finish scrollTriggerSectionsClass logic
-      this.scroll.scrollOnTrigger = active;
-      // if (!active) {
-      // this.navigationStore.setProjectsExpanded(false);
-      // }
+  onActiveElCallback(item, activeState) {
+    if (item.options.activateCallback) {
+      item.options.activateCallback(activeState);
     }
-    if (item.options.activateCallback === 'pageSection' && active) {
-      if (!this.navigationStore) this.navigationStore = useNavigationStore();
-      this.navigationStore.setActiveNavItem(item.elNode.dataset.navId);
-      this.navigationStore.setNavContrast(!!item.elNode.dataset.navcontrast);
-    }
-    if (item.options.activateCallback === 'textAnimation' && active) {
-      gsap.to(item.elNode, { opacity: 0.5, duration: 2 });
-    }
+    //TODO: finish scrollTriggerSectionsClass logic
+    // if (item.options.scrollTriggerSectionsClass) {
+    // this.scroll.scrollOnTrigger = active;
+    // if (!active) {
+    // this.navigationStore.setProjectsExpanded(false);
+    // }
+    // }
   },
 
   onScrollCallback() {

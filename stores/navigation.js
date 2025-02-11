@@ -13,7 +13,7 @@ export const useNavigationStore = defineStore('navigationStore', {
     projects: {
       expanded: false,
       inTransition: false,
-      // activeSectionIndex: 0,
+      activeProjectId: null,
     },
     // navItems: ['home', 'about', 'work', 'services' , 'contact'],
   }),
@@ -32,6 +32,9 @@ export const useNavigationStore = defineStore('navigationStore', {
     },
     setProjectsInTransition(inTransition) {
       this.projects.inTransition = inTransition;
+    },
+    setActiveProjectId(id) {
+      this.projects.activeProjectId = id;
     },
   },
 });

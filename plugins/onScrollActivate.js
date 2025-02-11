@@ -4,7 +4,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.directive('onScrollActivate', {
     mounted(el, binding) {
       setTimeout(() => {
-        el.dataset.scrollActivateId = `binding_${crypto.randomUUID()}`;
+        el.dataset.scrollActivateId = crypto.randomUUID();
         Canvas.addOnScrollActivateElement({
           elNode: el,
           options: binding.value,
