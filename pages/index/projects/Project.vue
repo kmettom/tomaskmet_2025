@@ -107,7 +107,7 @@ watch(
       activeRange: 0.85,
       activateOnce: false,
       activateCallback: (activeState) => {
-        if (activeState) navigationStore.setActiveProjectId(project.name);
+        if (activeState) navigationStore.setActiveProjectName(project.name);
       },
       scrollSpeed: navigationStore.projects.expanded ? 0 : project.scrollSpeed,
     }"

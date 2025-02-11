@@ -87,7 +87,20 @@ const activeProjectsIndex = ref(0);
 const projectItemRefs = useTemplateRefsList<HTMLDivElement>();
 const projectGalleryRef = ref();
 
+const getProjectByName = (projectName) => {
+  let project = null;
+  for (let i = 0; i < projects.value.length; i++) {
+    if (projects.value[i].name === projectName) {
+      project = projects.value[i];
+      break; // Exit the loop once the project is found
+    }
+  }
+  return project;
+}
+
+
 const nextProjectName = computed(() => {
+
   return projects.value[activeProjectsIndex.value + 1]?.name ?? null;
 });
 const prevProjectName = computed(() => {
