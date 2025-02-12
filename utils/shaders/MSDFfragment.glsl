@@ -13,7 +13,11 @@ uniform vec3 uStrokeColor;
 uniform float uStrokeOutsetWidth;
 uniform float uStrokeInsetWidth;
 
-//generic unifiorms
+// Uniforms: Blur
+uniform float uBlurIntensity;
+uniform vec2 uResolution;
+
+// Generic uniforms
 uniform float time;
 uniform float hoverState;
 uniform float aniIn;
@@ -23,14 +27,29 @@ float median(float r, float g, float b) {
     return max(min(r, g), min(max(r, g), b));
 }
 
+// Utils: Blur
+vec3 blur(sampler2D image, vec2 uv, vec2 resolution, float radius) {
+    const int samples = 10;
+    vec3 color = vec3(0.0);
+    vec2 step = radius / resolution;
+
+    for (int i = -samples; i <= samples; ++i) {
+        for (int j = -samples; j <= samples; ++j) {
+            vec2 offset = vec2(float(i), float(j)) * step;
+            color += texture2D(image, uv + offset).rgb;
+        }
+    }
+
+    return color / float((samples * 2 + 1) * (samples * 2 + 1));
+}
+
 void main() {
     // Common
     // Texture sample
     vec3 s = texture2D(uMap, vUv).rgb;
 
     // Signed distance
-    float sigDist = median(s.r, s.g, s.b) - 0.51;
-
+    float sigDist = median(s.r, s.g, s.b) - 0.51 - (0.25 * hoverState) - (0.51 * (1.0 - aniIn));
     float afwidth = 1.4142135623730951 / 2.0;
 
     #ifdef IS_SMALL
@@ -61,7 +80,8 @@ void main() {
     if (alpha < uAlphaTest) discard;
 
     // Some animation
-    alpha *= sin(time);
+    //    alpha *= sin(time);
+    //        alpha *= sin(1.0);
 
     // Output: Common
 

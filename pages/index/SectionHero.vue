@@ -2,12 +2,17 @@
   <div>
     <Container additional-class="hero-section">
       <div class="hero-content-line hero-line-studio">
-        <h2 class="heading-0">
+        <h2
+          class="heading-0"
+          @mouseenter="hoverActive = true"
+          @mouseleave="hoverActive = false"
+        >
           <CanvasText
             :mesh-id="'headline-studio'"
             :shader="'default'"
             :theme="'light'"
             :show="mainTextIn"
+            :text-hover="hoverActive"
           >
             STUDIO
           </CanvasText>
@@ -51,6 +56,8 @@ import { SplitText } from 'gsap/SplitText';
 const props = defineProps({
   sectionActivate: Boolean,
 });
+
+const hoverActive = ref(false);
 
 const mainTextIn = ref(false);
 

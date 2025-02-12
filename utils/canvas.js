@@ -23,8 +23,8 @@ import example1Vertex from './shaders/example1Vertex.glsl';
 
 import example2Fragment from './shaders/example2Fragment.glsl';
 import example2Vertex from './shaders/example2Vertex.glsl';
-// import MSDFfragment from './shaders/MSDFfragment.glsl';
-import MSDFfragmentBlur from './shaders/MSDFfragmentBlur.glsl';
+import MSDFfragment from './shaders/MSDFfragment.glsl';
+// import MSDFfragmentBlur from './shaders/MSDFfragmentBackup.glsl';
 import MSDFvertex from './shaders/MSDFvertex.glsl';
 import { generateBindingLogic } from '~/utils/canvasHelpers';
 
@@ -335,7 +335,7 @@ const Canvas = {
             aniIn: { value: 0 },
           },
           vertexShader: MSDFvertex,
-          fragmentShader: MSDFfragmentBlur,
+          fragmentShader: MSDFfragment,
         });
 
         material.uniforms.uMap.value = atlas;
