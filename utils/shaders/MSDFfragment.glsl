@@ -49,44 +49,22 @@ void main() {
     vec3 s = texture2D(uMap, vUv).rgb;
 
     // Signed distance
-    float sigDist = median(s.r, s.g, s.b) - 0.51 - (0.25 * hoverState) - (0.51 * (1.0 - aniIn));
-    float afwidth = 1.4142135623730951 / 2.0;
+    float normalizedX = vUv.x;
+    const float DISTANCE_COEF = 0.5;
 
-    #ifdef IS_SMALL
-    float alpha = smoothstep(uThreshold - afwidth, uThreshold + afwidth, sigDist);
-    #else
-    float alpha = clamp(sigDist / fwidth(sigDist) + 0.5, 0.0, 1.0);
-    #endif
+    // Variable to represent the normalized position across the screen (0 on the left, 1 on the right)
 
-    // Strokes
-    // Outset
-    float sigDistOutset = sigDist + uStrokeOutsetWidth * 0.5;
-
-    // Inset
-    float sigDistInset = sigDist - uStrokeInsetWidth * 0.5;
-
-    #ifdef IS_SMALL
-    float outset = smoothstep(uThreshold - afwidth, uThreshold + afwidth, sigDistOutset);
-    float inset = 1.0 - smoothstep(uThreshold - afwidth, uThreshold + afwidth, sigDistInset);
-    #else
-    float outset = clamp(sigDistOutset / fwidth(sigDistOutset) + 0.5, 0.0, 1.0);
-    float inset = 1.0 - clamp(sigDistInset / fwidth(sigDistInset) + 0.5, 0.0, 1.0);
-    #endif
-
-    // Border
-    float border = outset * inset;
+    float sigDist = median(s.r, s.g, s.b) - DISTANCE_COEF - (0.25 * hoverState) - (DISTANCE_COEF * (1.0 - aniIn));
+    float alpha = clamp(sigDist / fwidth(sigDist) , 0.0, 1.0);
 
     // Alpha Test
     if (alpha < uAlphaTest) discard;
 
     // Some animation
-    //    alpha *= sin(time);
-    //        alpha *= sin(1.0);
+    alpha *= normalizedX  * aniIn;
 
     // Output: Common
-
     vec4 filledFragColor = vec4(uColor, uOpacity*alpha*aniIn);
-
     gl_FragColor = filledFragColor;
 
 }
