@@ -37,26 +37,26 @@ uniform float hoverState;
 uniform float aniIn;
 
 void main() {
-    // Output
-    vec4 mvPosition = vec4(position, 1.0);
-    mvPosition = modelViewMatrix * mvPosition;
-    gl_Position = projectionMatrix * mvPosition * aniIn;
+  // Output
+  vec4 mvPosition = vec4(position, 1.0);
+  mvPosition = modelViewMatrix * mvPosition;
+  gl_Position = projectionMatrix * mvPosition * aniIn;
 
-    // Varyings
-    vUv = uv;
-    vLayoutUv = layoutUv;
-    vViewPosition = -mvPosition.xyz;
-    vNormal = normal;
+  // Varyings
+  vUv = uv;
+  vLayoutUv = layoutUv;
+  vViewPosition = -mvPosition.xyz;
+  vNormal = normal;
 
-    vLineIndex = lineIndex;
+  vLineIndex = lineIndex;
 
-    vLineLettersTotal = lineLettersTotal;
-    vLineLetterIndex = lineLetterIndex;
+  vLineLettersTotal = lineLettersTotal;
+  vLineLetterIndex = lineLetterIndex;
 
-    vLineWordsTotal = lineWordsTotal;
-    vLineWordIndex = lineWordIndex;
+  vLineWordsTotal = lineWordsTotal;
+  vLineWordIndex = lineWordIndex;
 
-    vWordIndex = wordIndex;
+  vWordIndex = wordIndex;
 
-    vLetterIndex = letterIndex;
+  vLetterIndex = letterIndex;
 }
