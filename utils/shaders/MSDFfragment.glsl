@@ -8,14 +8,7 @@ uniform float uAlphaTest;
 uniform vec3 uColor;
 uniform sampler2D uMap;
 
-// Uniforms: Strokes
-uniform vec3 uStrokeColor;
-uniform float uStrokeOutsetWidth;
-uniform float uStrokeInsetWidth;
-
-// Uniforms: Blur
-uniform float uBlurIntensity;
-uniform vec2 uResolution;
+varying float vNoise;
 
 // Generic uniforms
 uniform float time;
@@ -39,7 +32,7 @@ void main() {
   // Variable to represent the normalized position across the screen (0 on the left, 1 on the right)
 
   float sigDist = median(s.r, s.g, s.b) - DISTANCE_COEF;
-  float alpha = clamp(sigDist / fwidth(sigDist), 0.0, 1.0) * (1.0-hoverState);
+  float alpha = clamp(sigDist / fwidth(sigDist), 0.0, 1.0) * aniIn;
 
   // Alpha Test
   if (alpha < uAlphaTest) discard;
@@ -48,7 +41,20 @@ void main() {
   //   alpha = alpha * normalizedX;
 
   // Output: Common
-  vec4 filledFragColor = vec4(uColor, uOpacity * alpha * aniIn);
-  gl_FragColor = filledFragColor;
+  //  vec4 filledFragColor = vec4(uColor, uOpacity * alpha);
+  //  gl_FragColor = filledFragColor;
 
+  vec2 newUV = vUv;
+
+  vec2 p = newUV;
+  float x = hoverState + 1.0 - aniIn;
+  x = smoothstep(0.0, 1.0, x * 2.0 + p.y - 1.0);
+  //  vec4 f = mix(
+  //  uColor, (p - 0.5) * (1.0 - x) + 0.5,
+  //  uColor, (p - 0.5) * x + 0.5,
+  //  x
+  //  );
+
+  gl_FragColor = vec4(uColor, aniIn);
+  //  gl_FragColor.rgb += 0.05 * vec3(vNoise);
 }
