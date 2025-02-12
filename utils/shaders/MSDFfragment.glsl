@@ -39,8 +39,7 @@ void main() {
   // Variable to represent the normalized position across the screen (0 on the left, 1 on the right)
 
   float sigDist = median(s.r, s.g, s.b) - DISTANCE_COEF;
-  //    0.25 * hoverState -   DISTANCE_COEF * (1.0 - aniIn);
-  float alpha = clamp(sigDist / fwidth(sigDist), 0.0, 1.0);
+  float alpha = clamp(sigDist / fwidth(sigDist), 0.0, 1.0) * (1.0-hoverState);
 
   // Alpha Test
   if (alpha < uAlphaTest) discard;

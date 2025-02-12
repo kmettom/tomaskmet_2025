@@ -1,35 +1,6 @@
-// Attribute
-attribute vec2 layoutUv;
-
-attribute float lineIndex;
-
-attribute float lineLettersTotal;
-attribute float lineLetterIndex;
-
-attribute float lineWordsTotal;
-attribute float lineWordIndex;
-
-attribute float wordIndex;
-
-attribute float letterIndex;
 
 // Varyings
 varying vec2 vUv;
-varying vec2 vLayoutUv;
-varying vec3 vViewPosition;
-varying vec3 vNormal;
-
-varying float vLineIndex;
-
-varying float vLineLettersTotal;
-varying float vLineLetterIndex;
-
-varying float vLineWordsTotal;
-varying float vLineWordIndex;
-
-varying float vWordIndex;
-
-varying float vLetterIndex;
 
 //generic unifiorms
 uniform float time;
@@ -37,24 +8,17 @@ uniform float hoverState;
 uniform float aniIn;
 
 void main() {
+  float normalizedX = vUv.x;
+
   // Output
   vec4 mvPosition = vec4(position, 1.0);
   mvPosition = modelViewMatrix * mvPosition;
-  gl_Position = projectionMatrix * mvPosition * aniIn;
+  //  gl_Position = projectionMatrix * mvPosition;
+
+  vec3 newposition = position;
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(newposition, 1.0);
 
   // Varyings
-  vUv = uv;
-
-  //  vLayoutUv = layoutUv;
-  //  vViewPosition = -mvPosition.xyz;
-
-  //  vNormal = normal;
-  //  vLineIndex = lineIndex;
-  //  vLineLettersTotal = lineLettersTotal;
-  //  vLineLetterIndex = lineLetterIndex;
-  //  vLineWordsTotal = lineWordsTotal;
-  //  vLineWordIndex = lineWordIndex;
-  //  vWordIndex = wordIndex;
-  //  vLetterIndex = letterIndex;
-
+  vUv.x = uv.x * (1.0-hoverState/100.0);
+  vUv.y = uv.y;
 }
