@@ -44,19 +44,17 @@ void main() {
 
   // Varyings
   vUv = uv;
-  vLayoutUv = layoutUv;
-  vViewPosition = -mvPosition.xyz;
-  vNormal = normal;
 
-  vLineIndex = lineIndex;
+  //  vLayoutUv = layoutUv;
+  //  vViewPosition = -mvPosition.xyz;
 
-  vLineLettersTotal = lineLettersTotal;
-  vLineLetterIndex = lineLetterIndex;
+  //  vNormal = normal;
+  //  vLineIndex = lineIndex;
+  //  vLineLettersTotal = lineLettersTotal;
+  //  vLineLetterIndex = lineLetterIndex;
+  //  vLineWordsTotal = lineWordsTotal;
+  //  vLineWordIndex = lineWordIndex;
+  //  vWordIndex = wordIndex;
+  //  vLetterIndex = letterIndex;
 
-  vLineWordsTotal = lineWordsTotal;
-  vLineWordIndex = lineWordIndex;
-
-  vWordIndex = wordIndex;
-
-  vLetterIndex = letterIndex;
 }
