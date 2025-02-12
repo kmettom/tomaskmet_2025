@@ -25,7 +25,7 @@ import example2Fragment from './shaders/example2Fragment.glsl';
 import example2Vertex from './shaders/example2Vertex.glsl';
 import MSDFfragment from './shaders/MSDFfragment.glsl';
 // import MSDFfragmentBlur from './shaders/MSDFfragmentBackup.glsl';
-import MSDFvertex from './shaders/MSDFvertexBackup.glsl';
+import MSDFvertex from './shaders/MSDFvertex.glsl';
 import { generateBindingLogic } from '~/utils/canvasHelpers';
 
 const CanvasOptions = {
