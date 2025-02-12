@@ -55,6 +55,6 @@ void main() {
   //  x
   //  );
 
-  gl_FragColor = vec4(uColor, aniIn);
+  gl_FragColor = vec4(uColor.r, uColor.g, uColor.b * (1.0 - hoverState), aniIn);
   //  gl_FragColor.rgb += 0.05 * vec3(vNoise);
 }
