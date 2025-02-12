@@ -20,41 +20,64 @@ float median(float r, float g, float b) {
   return max(min(r, g), min(max(r, g), b));
 }
 
+
 void main() {
   // Common
   // Texture sample
   vec3 s = texture2D(uMap, vUv).rgb;
 
   // Signed distance
-  float normalizedX = vUv.x;
   const float DISTANCE_COEF = 0.5;
-
-  // Variable to represent the normalized position across the screen (0 on the left, 1 on the right)
-
   float sigDist = median(s.r, s.g, s.b) - DISTANCE_COEF;
-  float alpha = clamp(sigDist / fwidth(sigDist), 0.0, 1.0) * aniIn;
+
+  // Calculate alpha based on signed distance and aniIn
+  float baseAlpha = clamp(sigDist / fwidth(sigDist), 0.0, 1.0);
+
+  // Calculate normalized position across the screen (0 on the left, 1 on the right)
+  float normalizedX = vUv.x;
+
+  // Apply left-to-right transition using smoothstep
+  float transitionAlpha = smoothstep(0.0, 1.0, normalizedX + aniIn - 1.0);
+
+  // Combine base alpha with transition alpha
+  float alpha = baseAlpha * transitionAlpha;
 
   // Alpha Test
   if (alpha < uAlphaTest) discard;
 
-  // Some animation
-  //   alpha = alpha * normalizedX;
-
-  // Output: Common
-  //  vec4 filledFragColor = vec4(uColor, uOpacity * alpha);
-  //  gl_FragColor = filledFragColor;
-
-  vec2 newUV = vUv;
-
-  vec2 p = newUV;
-  float x = hoverState + 1.0 - aniIn;
-  x = smoothstep(0.0, 1.0, x * 2.0 + p.y - 1.0);
-  //  vec4 f = mix(
-  //  uColor, (p - 0.5) * (1.0 - x) + 0.5,
-  //  uColor, (p - 0.5) * x + 0.5,
-  //  x
-  //  );
-
-  gl_FragColor = vec4(uColor.r, uColor.g, uColor.b * (1.0 - hoverState), aniIn);
-  //  gl_FragColor.rgb += 0.05 * vec3(vNoise);
+  // Output: Final color with transition effect
+  gl_FragColor = vec4(uColor.r, uColor.g, uColor.b, alpha);
 }
+
+
+//void main() {
+//  // Common
+//  // Texture sample
+//  vec3 s = texture2D(uMap, vUv).rgb;
+//
+//  // Signed distance
+//  float normalizedX = vUv.x;
+//  const float DISTANCE_COEF = 0.5;
+//
+//  // Variable to represent the normalized position across the screen (0 on the left, 1 on the right)
+//
+//  float sigDist = median(s.r, s.g, s.b) - DISTANCE_COEF;
+//  float alpha = clamp(sigDist / fwidth(sigDist), 0.0, 1.0) * aniIn;
+//
+//  // Alpha Test
+//  if (alpha < uAlphaTest) discard;
+//
+//  // Some animation
+//  //   alpha = alpha * normalizedX;
+//
+//  // Output: Common
+//
+//  vec2 newUV = vUv;
+//
+//  vec2 p = newUV;
+//  float x = hoverState + 1.0 - aniIn;
+//  x = smoothstep(0.0, 1.0, x * 2.0 + p.y - 1.0);
+//
+//
+//  gl_FragColor = vec4(uColor.r, uColor.g, uColor.b, aniIn);
+//}
