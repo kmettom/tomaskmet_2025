@@ -40,16 +40,17 @@ float median(float r, float g, float b) {
 void main() {
   vec3 s = texture2D(uMap, vUv).rgb;
 
+  float normalizedX = vUv.x;
   float circle = createCircle();
 
   const float DISTANCE_COEF = 0.5;
   float sigDist = median(s.r, s.g, s.b) - DISTANCE_COEF;
   float fill = clamp(sigDist / fwidth(sigDist), 0.0, 1.0);
 
-  float finalAlpha = fill * circle;
+  float finalAlpha = fill * circle * aniIn;
 
   // Alpha Test
-  gl_FragColor = vec4(uColor, fill * aniIn);
+  //  gl_FragColor = vec4(uColor, fill );
   gl_FragColor = vec4(uColor, finalAlpha);
   if (finalAlpha < uAlphaTest) discard;
 }
