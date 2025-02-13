@@ -46,7 +46,7 @@ void main() {
   float sigDist = median(s.r, s.g, s.b) - DISTANCE_COEF;
   float fill = clamp(sigDist / fwidth(sigDist), 0.0, 1.0);
 
-  float finalAlpha = fill * circle ;
+  float finalAlpha = fill * circle;
 
   // Alpha Test
   gl_FragColor = vec4(uColor, fill * aniIn);

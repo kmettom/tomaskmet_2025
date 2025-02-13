@@ -117,10 +117,10 @@ const Canvas = {
 
     this.render();
 
-    window.onmousemove = (event) => {
+    window.addEventListener('mousemove', (event) => {
       this.mouse.x = event.clientX / this.width;
       this.mouse.y = event.clientY / this.height;
-    };
+    });
   },
   setResizeListener() {
     window.addEventListener('resize', () => {
