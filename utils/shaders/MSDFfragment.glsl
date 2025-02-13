@@ -20,12 +20,27 @@ uniform float devicePixelRatio;
 
 uniform sampler2D gradientMap;
 
+float DISTANCE_COEF = 0.5;
+
+float WAVE_INTERVAL = 0.1;
+float WEVA_APLITUDE = 10.0;
+
+float createWave(vec2 viewportUv) {
+  return sin(viewportUv.y * WEVA_APLITUDE + time) * WAVE_INTERVAL;
+}
+
+float median(float r, float g, float b) {
+  return max(min(r, g), min(max(r, g), b));
+}
+
 float createCircle() {
   vec2 viewportUv = gl_FragCoord.xy / viewport / devicePixelRatio;
   float viewportAspect = viewport.x / viewport.y;
 
   vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);
-  float circleRadius = max(0.0, 10.0 / viewport.x);
+  //  float wave = createWave(viewportUv);
+
+  float circleRadius = max(0.0, 20.0 / viewport.x);
 
   vec2 shapeUv = viewportUv - mousePoint;
   shapeUv /= vec2(1.0, viewportAspect);
@@ -38,15 +53,16 @@ float createCircle() {
 
 float createOverlay() {
   vec2 viewportUv = gl_FragCoord.xy / viewport / devicePixelRatio;
-  float progress = smoothstep(aniIn - 0.3, aniIn, viewportUv.x);
-  return progress;
+  float wave = createWave(viewportUv);
+  float progress = smoothstep(
+    aniIn - 1.0 * (1.0 - aniIn),
+    aniIn,
+    viewportUv.x + wave
+  );
+  return aniIn == 1.0
+    ? 0.0
+    : progress;
 }
-
-float median(float r, float g, float b) {
-  return max(min(r, g), min(max(r, g), b));
-}
-
-float DISTANCE_COEF = 0.5;
 
 void main() {
   float circle = createCircle();
@@ -59,19 +75,16 @@ void main() {
   float sigDist = median(mySample.r, mySample.g, mySample.b) - DISTANCE_COEF;
   float fill = clamp(sigDist / fwidth(sigDist) + DISTANCE_COEF, 0.0, 1.0);
 
-   //stroke
+  //stroke
   float border = fwidth(sigDist);
   float outline = smoothstep(0.0, border, sigDist);
   outline *= smoothstep(width - border, width, sigDist);
 
-
-  float finalAlpha = fill * (1.0-overlay) * circle ;
+  float finalAlpha = fill * (1.0 - overlay) * circle;
 
   gl_FragColor = vec4(uColor, finalAlpha);
   if (finalAlpha < uAlphaTest) discard;
 }
-
-
 
 //  //gradient
 //  float grgr = fract(3.0 * gr + time / 5.0);

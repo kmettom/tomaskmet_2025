@@ -325,7 +325,7 @@ const Canvas = {
           derivatives: false, //true,
         },
         uniforms: {
-          devicePixelRatio: { value: window.devicePixelRatio},
+          devicePixelRatio: { value: window.devicePixelRatio },
           uColor: {
             value: new THREE.Color(theme === 'dark' ? '#1B1818' : '#BFC0B2'),
           },
