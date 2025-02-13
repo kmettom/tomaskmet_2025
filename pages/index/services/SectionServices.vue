@@ -8,7 +8,7 @@
             :shader="'default'"
             :theme="'dark'"
           >
-            Services
+            SERVICES
           </CanvasText>
         </span>
       </h2>
