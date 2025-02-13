@@ -27,17 +27,15 @@ void main() {
   //TODO: finish mouse interaction with destortion
   vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);
   float distMouse = distance(vUv, uMouse);
-  vec2 viewportUv = gl_Position.xy / gl_Position.w ;
+  vec2 viewportUv = gl_Position.xy / gl_Position.w;
   float viewportAspect = viewport.x / viewport.y;
   vec2 shapeUv = viewportUv - mousePoint;
   shapeUv /= vec2(1.0, viewportAspect);
   shapeUv += mousePoint;
-  float circleRadius = max(0.0, 20.0 / viewport.x) ;
+  float circleRadius = max(0.0, 20.0 / viewport.x);
   float distDestortion = distance(shapeUv, mousePoint);
   distDestortion = smoothstep(circleRadius, circleRadius + 0.05, dist);
-  newposition.z -= distDestortion * 1.;
-
-
+  newposition.z -= distDestortion * 1.0;
 
   vUv = uv;
   gl_Position = projectionMatrix * modelViewMatrix * vec4(newposition, 1.0);

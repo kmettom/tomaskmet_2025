@@ -38,9 +38,10 @@ float createCircle() {
   float viewportAspect = viewport.x / viewport.y;
 
   vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);
-//  float wave = sin(viewportUv.y * 10.0 + time) * 2.0;
+  //  float wave = sin(viewportUv.y * 10.0 + time) * 2.0;
 
-  float circleRadius = max(0.0, 20.0 / viewport.x) ;
+  //TODO: add mouse speed to grow radius
+  float circleRadius = max(0.0, 20.0 / viewport.x);
 
   vec2 shapeUv = viewportUv - mousePoint;
   shapeUv /= vec2(1.0, viewportAspect);
