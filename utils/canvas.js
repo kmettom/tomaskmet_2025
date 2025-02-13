@@ -29,6 +29,12 @@ import MSDFvertex from './shaders/MSDFvertex.glsl';
 import { generateBindingLogic } from '~/utils/canvasHelpers';
 
 const CanvasOptions = {
+  fonts: {
+    PPFormula: {
+      fnt: '/font/PPFormula-CondensedBlack.fnt',
+      atlas: '/font/PPFormula-CondensedBlack.png',
+    },
+  },
   scroll: {
     fragmentShader: scrollFragment,
     vertexShader: scrollVertex,
@@ -69,6 +75,7 @@ const Canvas = {
     welcome: {},
     cursorCallback: () => {},
   },
+  mouse: { x: 0, y: 0 },
   triggerSectionPositions: {},
   initScroll() {
     this.scroll = new Scroll({
@@ -109,6 +116,11 @@ const Canvas = {
     this.setResizeListener();
 
     this.render();
+
+    window.onmousemove = (event) => {
+      this.mouse.x = event.clientX / this.width;
+      this.mouse.y = event.clientY / this.height;
+    };
   },
   setResizeListener() {
     window.addEventListener('resize', () => {
@@ -280,9 +292,6 @@ const Canvas = {
     // MSDF
     //*****************************
 
-    const fontUrl = '/font/PPFormula-CondensedBlack.fnt';
-    const atlasUrl = '/font/PPFormula-CondensedBlack.png';
-
     const loadFontAtlas = (path) => {
       return new Promise((resolve) => {
         const loader = new THREE.TextureLoader();
@@ -297,86 +306,94 @@ const Canvas = {
       });
     };
 
-    Promise.all([loadFontAtlas(atlasUrl), loadFont(fontUrl)]).then(
-      ([atlas, font]) => {
-        const geometry = new MSDFTextGeometry({
-          text: text.replaceAll(' ', ''),
-          font: font.data,
-        });
+    Promise.all([
+      loadFontAtlas(CanvasOptions.fonts.PPFormula.atlas),
+      loadFont(CanvasOptions.fonts.PPFormula.fnt),
+    ]).then(([atlas, font]) => {
+      const geometry = new MSDFTextGeometry({
+        text: text.trim(),
+        font: font.data,
+      });
 
-        const material = new THREE.ShaderMaterial({
-          side: THREE.DoubleSide,
-          transparent: true,
-          defines: {
-            IS_SMALL: false, //false,
+      const material = new THREE.ShaderMaterial({
+        side: THREE.DoubleSide,
+        transparent: true,
+        defines: {
+          IS_SMALL: false, //false,
+        },
+        extensions: {
+          derivatives: false, //true,
+        },
+        uniforms: {
+          uColor: {
+            value: new THREE.Color(theme === 'dark' ? '#1B1818' : '#BFC0B2'),
           },
-          extensions: {
-            derivatives: false, //true,
+          viewport: {
+            type: 'v2',
+            value: new THREE.Vector2(this.width, this.height),
           },
-          uniforms: {
-            uColor: {
-              value: new THREE.Color(theme === 'dark' ? '#1B1818' : '#BFC0B2'),
-            },
-            // Common
-            uOpacity: { value: 1 },
-            uMap: { value: null },
-            // Rendering
-            uThreshold: { value: 0.05 },
-            uAlphaTest: { value: 0.01 },
-            // Strokes
-            // uStrokeColor: { value: new THREE.Color("#ff0000") },
-            uStrokeOutsetWidth: { value: 0.0 },
-            uStrokeInsetWidth: { value: 0.3 }, //0.3
-            // new generic
-            time: { value: 0 },
-            // uImage: {value: texture},
-            vectorVNoise: { value: new THREE.Vector2(1.5, 1.5) }, // 1.5
-            hoverState: { value: 0 },
-            aniIn: { value: 0 },
-          },
-          vertexShader: MSDFvertex,
-          fragmentShader: MSDFfragment,
-        });
+          // Common
+          uMouse: { value: new THREE.Vector2(0, 0) },
+          uOpacity: { value: 1 },
+          uMap: { value: null },
+          // Rendering
+          uThreshold: { value: 0.05 },
+          uAlphaTest: { value: 0.01 },
+          // Strokes
+          // uStrokeColor: { value: new THREE.Color("#ff0000") },
+          uStrokeOutsetWidth: { value: 0.0 },
+          uStrokeInsetWidth: { value: 0.3 }, //0.3
+          // new generic
+          time: { value: 0 },
+          // uImage: {value: texture},
+          vectorVNoise: { value: new THREE.Vector2(1.5, 1.5) }, // 1.5
+          hoverState: { value: 0 },
+          aniIn: { value: 0 },
+        },
+        vertexShader: MSDFvertex,
+        fragmentShader: MSDFfragment,
+      });
 
-        material.uniforms.uMap.value = atlas;
+      material.uniforms.uMap.value = atlas;
 
-        let mesh = new THREE.Mesh(geometry, material);
-        mesh.name = meshId;
-        htmlEl.dataset.meshId = meshId;
+      this.materials.push(material);
 
-        const widthPositionCoef = 1;
-        const heightPositionCoef = 1.38;
-        const heightSizeCoef = 1;
+      let mesh = new THREE.Mesh(geometry, material);
+      mesh.name = meshId;
+      htmlEl.dataset.meshId = meshId;
 
-        const scaleX =
-          (bounds.width / mesh.geometry._layout._width) * heightSizeCoef;
-        // const scaleY = - 1 * bounds.height / mesh.geometry._layout._height;
-        const scaleY = -1 * scaleX * heightSizeCoef;
+      const widthPositionCoef = 1;
+      const heightPositionCoef = 1.38;
+      const heightSizeCoef = 1;
 
-        mesh.scale.set(scaleX, scaleY, 1);
+      const scaleX =
+        (bounds.width / mesh.geometry._layout._width) * heightSizeCoef;
+      // const scaleY = - 1 * bounds.height / mesh.geometry._layout._height;
+      const scaleY = -1 * scaleX * heightSizeCoef;
 
-        this.scene.add(mesh);
+      mesh.scale.set(scaleX, scaleY, 1);
 
-        const newMesh = {
-          name: meshId,
-          htmlEl: htmlEl,
-          mesh: mesh,
-          top: position.top,
-          left: position.left,
-          width: bounds.width * widthPositionCoef,
-          height: bounds.height * heightPositionCoef,
-        };
+      this.scene.add(mesh);
 
-        this.textStore.push(newMesh);
+      const newMesh = {
+        name: meshId,
+        htmlEl: htmlEl,
+        mesh: mesh,
+        top: position.top,
+        left: position.left,
+        width: bounds.width * widthPositionCoef,
+        height: bounds.height * heightPositionCoef,
+      };
 
-        this.setTextMeshPositions();
+      this.textStore.push(newMesh);
 
-        // setTimeout(() => {
-        // if (!htmlEl.dataset.scrollActive) this.activateMesh(meshId, true, 'ADDMSDF');
-        // }, 250);
-        if (mouseListeners) this.meshMouseListeners(newMesh, material);
-      },
-    );
+      this.setTextMeshPositions();
+
+      // setTimeout(() => {
+      // if (!htmlEl.dataset.scrollActive) this.activateMesh(meshId, true, 'ADDMSDF');
+      // }, 250);
+      if (mouseListeners) this.meshMouseListeners(newMesh, material);
+    });
   },
   addImageAsMesh(htmlEl, shader, meshId, mouseListeners) {
     let fragmentShader = this.options.default.fragmentShader;
@@ -409,6 +426,7 @@ const Canvas = {
         vectorVNoise: { value: new THREE.Vector2(1.5, 1.5) }, // 1.5
         hoverState: { value: 0 },
         aniIn: { value: 0 },
+        uMouse: { value: new THREE.Vector2(0, 0) },
       },
       fragmentShader: fragmentShader,
       vertexShader: vertexShader,
@@ -536,6 +554,10 @@ const Canvas = {
     //animate on hover
     for (var i = 0; i < this.materials.length; i++) {
       this.materials[i].uniforms.time.value = this.time;
+      this.materials[i].uniforms.uMouse.value = new THREE.Vector2(
+        this.mouse.x,
+        this.mouse.y,
+      );
     }
 
     this.composer.render();
