@@ -36,6 +36,12 @@ float createCircle() {
   return dist;
 }
 
+float createOverlay() {
+  vec2 viewportUv = gl_FragCoord.xy / viewport / devicePixelRatio;
+  float progress = smoothstep(aniIn - 0.01, aniIn, viewportUv.x);
+  return progress;
+}
+
 float median(float r, float g, float b) {
   return max(min(r, g), min(max(r, g), b));
 }
@@ -44,6 +50,7 @@ float DISTANCE_COEF = 0.5;
 
 void main() {
   float circle = createCircle();
+  float overlay = createOverlay();
   float width = 0.2;
   float lineProgress = 0.3;
   vec3 mySample = texture2D(uMap, vUv).rgb;
@@ -51,6 +58,12 @@ void main() {
 
   float sigDist = median(mySample.r, mySample.g, mySample.b) - DISTANCE_COEF;
   float fill = clamp(sigDist / fwidth(sigDist) + DISTANCE_COEF, 0.0, 1.0);
+//  float finalAlpha =  fill*circle*overlay;
+  float finalAlpha =  fill * (1.0-overlay) * circle ;
+
+  gl_FragColor = vec4(uColor, finalAlpha);
+  if (finalAlpha < uAlphaTest) discard;
+}
 
 //  //stroke
 //  float border = fwidth(sigDist);
@@ -64,11 +77,3 @@ void main() {
 //  float mask = start * end;
 //  mask = max(0.2, mask);
 
-  float finalAlpha =  fill*circle;
-//  float finalAlpha = mask * outline + fill * circle;
-
-  // Alpha Test
-//  gl_FragColor = vec4(uColor, fill);
-  gl_FragColor = vec4(uColor, finalAlpha);
-  if (finalAlpha < uAlphaTest) discard;
-}
