@@ -16,12 +16,12 @@ uniform float hoverState;
 uniform float aniIn;
 uniform vec2 viewport;
 uniform vec2 uMouse;
-uniform float pixelDensity;
+uniform float devicePixelRatio;
 
 uniform sampler2D gradientMap;
 
 float createCircle() {
-  vec2 viewportUv = gl_FragCoord.xy / viewport /2.0;
+  vec2 viewportUv = gl_FragCoord.xy / viewport / devicePixelRatio;
   float viewportAspect = viewport.x / viewport.y;
 
   vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);

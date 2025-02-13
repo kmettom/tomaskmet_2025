@@ -315,10 +315,6 @@ const Canvas = {
         font: font.data,
       });
 
-      const isHighDPI = window.devicePixelRatio;
-
-      console.log("isHighDPI", isHighDPI)
-
       const material = new THREE.ShaderMaterial({
         side: THREE.DoubleSide,
         transparent: true,
@@ -329,6 +325,7 @@ const Canvas = {
           derivatives: false, //true,
         },
         uniforms: {
+          devicePixelRatio: { value: window.devicePixelRatio},
           uColor: {
             value: new THREE.Color(theme === 'dark' ? '#1B1818' : '#BFC0B2'),
           },
