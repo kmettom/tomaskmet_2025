@@ -38,7 +38,7 @@ float createCircle() {
 
 float createOverlay() {
   vec2 viewportUv = gl_FragCoord.xy / viewport / devicePixelRatio;
-  float progress = smoothstep(aniIn - 0.01, aniIn, viewportUv.x);
+  float progress = smoothstep(aniIn - 0.3, aniIn, viewportUv.x);
   return progress;
 }
 
@@ -58,17 +58,20 @@ void main() {
 
   float sigDist = median(mySample.r, mySample.g, mySample.b) - DISTANCE_COEF;
   float fill = clamp(sigDist / fwidth(sigDist) + DISTANCE_COEF, 0.0, 1.0);
-//  float finalAlpha =  fill*circle*overlay;
-  float finalAlpha =  fill * (1.0-overlay) * circle ;
+
+   //stroke
+  float border = fwidth(sigDist);
+  float outline = smoothstep(0.0, border, sigDist);
+  outline *= smoothstep(width - border, width, sigDist);
+
+
+  float finalAlpha = fill * (1.0-overlay) * circle ;
 
   gl_FragColor = vec4(uColor, finalAlpha);
   if (finalAlpha < uAlphaTest) discard;
 }
 
-//  //stroke
-//  float border = fwidth(sigDist);
-//  float outline = smoothstep(0.0, border, sigDist);
-//  outline *= smoothstep(width - border, width, sigDist);
+
 
 //  //gradient
 //  float grgr = fract(3.0 * gr + time / 5.0);
