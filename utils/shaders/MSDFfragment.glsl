@@ -16,6 +16,7 @@ uniform float hoverState;
 uniform float aniIn;
 uniform vec2 viewport;
 uniform vec2 uMouse;
+uniform vec2 uMouseMovement;
 uniform float devicePixelRatio;
 
 uniform sampler2D gradientMap;
@@ -40,11 +41,10 @@ float createCircle() {
   vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);
   //  float wave = sin(viewportUv.y * 10.0 + time) * 2.0;
 
-  //TODO: add mouse speed to grow radius
   float circleRadius = max(0.0, 20.0 / viewport.x);
 
   vec2 shapeUv = viewportUv - mousePoint;
-  shapeUv /= vec2(1.0, viewportAspect);
+  shapeUv /= vec2( 1.0 , viewportAspect);
   shapeUv += mousePoint;
 
   float dist = distance(shapeUv, mousePoint);
@@ -81,7 +81,8 @@ void main() {
   float outline = smoothstep(0.0, border, sigDist);
   outline *= smoothstep(width - border, width, sigDist);
 
-  float finalAlpha = fill * (1.0 - overlay) * circle;
+//  float finalAlpha = fill * (1.0 - overlay) * circle;
+  float finalAlpha = fill * (1.0 - overlay) ;
 
   gl_FragColor = vec4(uColor, finalAlpha);
   if (finalAlpha < uAlphaTest) discard;

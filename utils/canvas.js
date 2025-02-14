@@ -77,7 +77,7 @@ const Canvas = {
     welcome: {},
     cursorCallback: () => {},
   },
-  mouse: { x: 0, y: 0 },
+  mouse: { x: 0, y: 0, movementX: 0, movementY: 0 },
   triggerSectionPositions: {},
   initScroll() {
     this.scroll = new Scroll({
@@ -122,6 +122,8 @@ const Canvas = {
     window.addEventListener('mousemove', (event) => {
       this.mouse.x = event.clientX / this.width;
       this.mouse.y = event.clientY / this.height;
+      this.mouse.movementX = Math.abs(event.movementX);
+      this.mouse.movementY = Math.abs(event.movementY);
     });
   },
   setResizeListener() {
@@ -337,6 +339,7 @@ const Canvas = {
           },
           // Common
           uMouse: { value: new THREE.Vector2(0, 0) },
+          uMouseMovement: { value: new THREE.Vector2(0, 0) },
           uOpacity: { value: 1 },
           uMap: { value: null },
           // Rendering
@@ -430,6 +433,7 @@ const Canvas = {
         hoverState: { value: 0 },
         aniIn: { value: 0 },
         uMouse: { value: new THREE.Vector2(0, 0) },
+        uMouseMovement: { value: new THREE.Vector2(0, 0) },
       },
       fragmentShader: fragmentShader,
       vertexShader: vertexShader,
@@ -560,6 +564,10 @@ const Canvas = {
       this.materials[i].uniforms.uMouse.value = new THREE.Vector2(
         this.mouse.x,
         this.mouse.y,
+      );
+      this.materials[i].uniforms.uMouseMovement.value = new THREE.Vector2(
+        this.mouse.movementX,
+        this.mouse.movementY,
       );
     }
 
