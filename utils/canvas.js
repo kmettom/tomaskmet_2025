@@ -2,9 +2,7 @@ import { gsap } from 'gsap';
 import * as THREE from 'three';
 
 import { FontLoader } from 'three/addons/loaders/FontLoader.js';
-// import { MSDFTextGeometry } from 'three-msdf-text-utils';
-import tmtu from 'three-msdf-text-utils';
-const { MSDFTextGeometry } = tmtu;
+import { MSDFTextGeometry } from 'three-msdf-text-utils';
 
 import Scroll from './scroll.js';
 
