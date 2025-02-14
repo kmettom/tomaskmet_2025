@@ -44,6 +44,7 @@ float createCircle() {
   float circleRadius = max(0.0, 20.0 / viewport.x);
 
   vec2 shapeUv = viewportUv - mousePoint;
+  //TODO: add uMouseMovement
   shapeUv /= vec2( 1.0 , viewportAspect);
   shapeUv += mousePoint;
 
@@ -81,17 +82,9 @@ void main() {
   float outline = smoothstep(0.0, border, sigDist);
   outline *= smoothstep(width - border, width, sigDist);
 
-//  float finalAlpha = fill * (1.0 - overlay) * circle;
-  float finalAlpha = fill * (1.0 - overlay) ;
+  float finalAlpha = fill * (1.0 - overlay) * circle;
 
   gl_FragColor = vec4(uColor, finalAlpha);
   if (finalAlpha < uAlphaTest) discard;
 }
-
-//  //gradient
-//  float grgr = fract(3.0 * gr + time / 5.0);
-//  float start = smoothstep(0.0, 0.01, grgr);
-//  float end = smoothstep(lineProgress, lineProgress - 0.01, grgr);
-//  float mask = start * end;
-//  mask = max(0.2, mask);
 
