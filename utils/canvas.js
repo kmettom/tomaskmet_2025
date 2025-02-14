@@ -2,8 +2,7 @@ import { gsap } from 'gsap';
 import * as THREE from 'three';
 
 import { FontLoader } from 'three/addons/loaders/FontLoader.js';
-import pkg from 'three-msdf-text-utils';
-const { MSDFTextGeometry } = pkg;
+import * as pkg from 'three-msdf-text-utils/build/bundle';
 
 import Scroll from './scroll.js';
 
@@ -26,9 +25,10 @@ import example1Vertex from './shaders/example1Vertex.glsl';
 import example2Fragment from './shaders/example2Fragment.glsl';
 import example2Vertex from './shaders/example2Vertex.glsl';
 import MSDFfragment from './shaders/MSDFfragment.glsl';
-// import MSDFfragmentBlur from './shaders/MSDFfragmentBackup.glsl';
 import MSDFvertex from './shaders/MSDFvertex.glsl';
 import { generateBindingLogic } from '~/utils/canvasHelpers';
+
+const { MSDFTextGeometry } = pkg;
 
 const CanvasOptions = {
   fonts: {
