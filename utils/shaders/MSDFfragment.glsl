@@ -23,8 +23,8 @@ uniform sampler2D gradientMap;
 
 float DISTANCE_COEF = 0.5;
 
-float WAVE_INTERVAL = 0.05;
-float WEVA_APLITUDE = 30.0;
+float WAVE_INTERVAL = 0.1;
+float WEVA_APLITUDE = 10.0;
 
 float createWave(vec2 viewportUv) {
   return sin(viewportUv.y * WEVA_APLITUDE + time) * WAVE_INTERVAL;
@@ -55,11 +55,12 @@ float createCircle() {
 
 float createOverlay() {
   vec2 viewportUv = gl_FragCoord.xy / viewport / devicePixelRatio;
-  float wave = createWave(vUv);
+  float wave = createWave(viewportUv);
+  float leftPadding = 0.1;
   float progress = smoothstep(
     aniIn - 1.0 * (1.0 - aniIn),
     aniIn,
-    viewportUv.x - vUv.x + wave
+    viewportUv.x - vUv.x + leftPadding + wave
   );
   return progress;
 }
