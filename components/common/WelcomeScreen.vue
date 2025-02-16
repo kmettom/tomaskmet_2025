@@ -1,7 +1,9 @@
 <template>
   <div class="welcome">
     <div class="welcome-txt-wrapper">
-      <div class="welcome-txt-main">Studio 783</div>
+      <div class="welcome-txt-main">
+<!--        Studio 783-->
+      </div>
 <!--      <div class="welcome-by">Developed by tomaskmet.com</div>-->
     </div>
   </div>
@@ -82,7 +84,7 @@ export default {
   width: 100%;
   height: 100vh;
   z-index: 99;
-  background-color: var(--light-color);
+  background-color: var(--dark-color);
   overflow: hidden;
   display: flex;
   justify-content: center;
