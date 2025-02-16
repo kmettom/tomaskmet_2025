@@ -22,11 +22,7 @@ float createCircle() {
 
   float circleRadius = max(0.0, 20.0 / viewport.x);
   float dist = distance(shapeUv, mousePoint);
-  dist = smoothstep(
-    circleRadius,
-    circleRadius + 0.05,
-    dist
-  );
+  dist = smoothstep(circleRadius, circleRadius + 0.05, dist);
   return dist;
 }
 
@@ -38,7 +34,7 @@ void main() {
   vec3 newposition = position;
   float dist = distance(uv, hover);
 
-  newposition.z += (1.0 - aniIn) * 20.0 * sin(dist * 20.0 + time);
+  newposition.z += (1.0 - aniIn) * 20.0 * sin(dist * 20.0 + time / 2.0);
 
   newposition.z += circle * hoverState;
 

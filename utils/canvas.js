@@ -192,7 +192,7 @@ const Canvas = {
   activateMesh(id, state) {
     const mesh = this.scene.getObjectByName(id);
     gsap.to(mesh.material.uniforms.aniIn, {
-      duration: 5.25, //1.25
+      duration: 1.25, //1.25
       value: state ? 1 : 0,
     });
   },

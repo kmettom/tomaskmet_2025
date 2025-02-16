@@ -2,9 +2,9 @@
   <div class="welcome">
     <div class="welcome-txt-wrapper">
       <div class="welcome-txt-main">
-<!--        Studio 783-->
+        <!--        Studio 783-->
       </div>
-<!--      <div class="welcome-by">Developed by tomaskmet.com</div>-->
+      <!--      <div class="welcome-by">Developed by tomaskmet.com</div>-->
     </div>
   </div>
 </template>
