@@ -1,8 +1,8 @@
 <template>
   <div class="welcome">
     <div class="welcome-txt-wrapper">
-      <div class="welcome-txt-main">Nuxt ThreeJS Starter Pack</div>
-      <div class="welcome-by">Developed by tomaskmet.com</div>
+      <div class="welcome-txt-main">Studio 783</div>
+<!--      <div class="welcome-by">Developed by tomaskmet.com</div>-->
     </div>
   </div>
 </template>
@@ -24,7 +24,7 @@ export default {
   data() {
     return {
       show: false,
-      welcomeAniDuration: 0.5, //0.5
+      welcomeAniDuration: 0.0, //0.5
       welcomeAniDelay: 0.25, //0.25
       welcomeHideDuration: 0.5, //0.5
       welcomeHideDelay: 0.5, //0.5
@@ -51,16 +51,17 @@ export default {
           duration: this.welcomeAniDuration,
           opacity: 1,
           y: '0px',
-          stagger: 0.02,
+          stagger: 0.0,
         },
       );
       gsap.to('.welcome-txt-main', { duration: 0.3, opacity: 1 });
-      gsap.to('.welcome-by', { duration: 0.3, opacity: 1 });
+      // gsap.to('.welcome-by', { duration: 0.3, opacity: 1 });
 
       gsap.to('.welcome', {
         duration: this.welcomeHideDuration,
         delay: this.welcomeAniDuration + this.welcomeHideDelay,
-        height: 0,
+        // height: 0,
+        opacity: 0,
         ease: 'power4.in',
         onComplete: () => {
           this.welcomeComplete();
