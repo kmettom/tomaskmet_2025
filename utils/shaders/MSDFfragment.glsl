@@ -37,18 +37,27 @@ float median(float r, float g, float b) {
 float createCircle() {
   vec2 viewportUv = gl_FragCoord.xy / viewport / devicePixelRatio;
   float viewportAspect = viewport.x / viewport.y;
-
   vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);
-  //  float wave = sin(viewportUv.y * 10.0 + time) * 2.0;
-
-  float circleRadius = max(0.0, 0.01 / viewport.x);
 
   vec2 shapeUv = viewportUv - mousePoint;
   //TODO: add uMouseMovement
   shapeUv /= vec2(1.0, viewportAspect);
   shapeUv += mousePoint;
-
   float dist = distance(shapeUv, mousePoint);
+
+
+//  vec2 randomCoefficients = vec2(13.0, 80.);
+//  float randomMultiplier = 100.;
+//  float wave = createWave(vUv);
+//  float randomValue = fract(sin(dot(gl_FragCoord.xy + time + wave, randomCoefficients)) * randomMultiplier);
+//  float randomSmooth = smoothstep(randomValue , randomValue * wave , dist);
+
+//  float circleRadius = max(0.0, 10/ viewport.x);
+  float circleRadius = max(0.0, 20.0 / viewport.x);
+
+//  circleRadius = smoothstep(circleRadius, circleRadius, 0.1);
+
+
   dist = smoothstep(circleRadius, circleRadius + 0.05, dist);
   return dist;
 }
