@@ -59,29 +59,29 @@ float createOverlay() {
   float progress = smoothstep(
     aniIn - 1.0 * (1.0 - aniIn),
     aniIn,
-    viewportUv.x + wave
+    (1. - vUv.x) + wave
   );
   return aniIn == 1.0
     ? 0.0
     : progress;
 }
 
-float createOverlayO() {
-  vec2 meshUv = vUv;
-
-  float WAVE_INTERVAL_O = 0.015;
-  float WEVA_APLITUDE_O = 20.0;
-
-  float wave = sin(meshUv.y * WEVA_APLITUDE_O + time) * WAVE_INTERVAL_O;
-  float progress = smoothstep(
-  aniIn - 1.0 * (1.0 - aniIn),
-  aniIn,
-  meshUv.x + wave
-  );
-  return aniIn == 1.0
-  ? 0.0
-  : progress;
-}
+//float createOverlayO() {
+//  vec2 meshUv = vUv;
+//
+//  float WAVE_INTERVAL_O = 0.015;
+//  float WEVA_APLITUDE_O = 20.0;
+//
+//  float wave = sin(meshUv.y * WEVA_APLITUDE_O + time) * WAVE_INTERVAL_O;
+//  float progress = smoothstep(
+//  aniIn - 1.0 * (1.0 - aniIn),
+//  aniIn,
+//  meshUv.x + wave
+//  );
+//  return aniIn == 1.0
+//  ? 0.0
+//  : progress;
+//}
 
 void main() {
   float circle = createCircle();
