@@ -45,7 +45,7 @@ float createCircle() {
 
   vec2 shapeUv = viewportUv - mousePoint;
   //TODO: add uMouseMovement
-  shapeUv /= vec2( 1.0 , viewportAspect);
+  shapeUv /= vec2(1.0, viewportAspect);
   shapeUv += mousePoint;
 
   float dist = distance(shapeUv, mousePoint);

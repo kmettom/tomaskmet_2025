@@ -10,7 +10,6 @@ uniform vec2 viewport;
 uniform vec2 uMouse;
 uniform vec2 uMouseMovement;
 
-
 //float mouseDeformation(vec2 coords, vec2 mouse, float intensity, float time) {
 //  float dist = distance(coords, mouse);
 //  float wave = sin(dist * 15.0 - time * 5.0) * intensity;
@@ -29,7 +28,11 @@ float createCircle() {
   shapeUv += mousePoint;
   float circleRadius = max(0.0, 20.0 / viewport.x);
   float distDestortion = distance(shapeUv, mousePoint);
-  distDestortion = smoothstep(circleRadius, circleRadius + 0.05, distDestortion);
+  distDestortion = smoothstep(
+    circleRadius,
+    circleRadius + 0.05,
+    distDestortion
+  );
   return distDestortion;
 }
 
