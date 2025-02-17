@@ -1,5 +1,3 @@
-import { log } from 'three/tsl';
-
 export function generateBindingLogic(binding) {
   binding.elNode.dataset.activeScroll = 'false';
   if (!binding.options.trackOnly) {

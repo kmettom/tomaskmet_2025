@@ -84,7 +84,11 @@ export default class Scroll {
       Canvas.onActiveElCallback(item, isActive);
     }
 
-    if (item.containedMeshIds && item.containedMeshIds.length > 0 && !item.trackOnly) {
+    if (
+      item.containedMeshIds &&
+      item.containedMeshIds.length > 0 &&
+      !item.trackOnly
+    ) {
       for (const meshId of item.containedMeshIds) {
         Canvas.activateMesh(meshId, isActive);
       }

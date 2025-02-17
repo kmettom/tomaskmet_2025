@@ -180,26 +180,27 @@ const Canvas = {
     }
   },
 
-  hoverMesh(id, state) {
+  hoverMesh(id, isHovered) {
     const mesh = this.scene.getObjectByName(id);
     if (!mesh) return;
     gsap.to(mesh.material.uniforms.hoverState, {
       duration: 0.5,
-      value: state ? 1 : 0,
+      value: isHovered ? 1 : 0,
     });
   },
 
-  activateMesh(id, state) {
+  activateMesh(id, isActive) {
+    console.log('activateMesh', id, isActive);
     const mesh = this.scene.getObjectByName(id);
     gsap.to(mesh.material.uniforms.aniIn, {
       duration: 1.25, //1.25
-      value: state ? 1 : 0,
+      value: isActive ? 1 : 0,
     });
   },
 
-  onActiveElCallback(item, activeState) {
-    if (item.options.activateCallback && activeState) {
-      item.options.activateCallback(activeState, item);
+  onActiveElCallback(item, isActive) {
+    if (item.options.activateCallback && isActive) {
+      item.options.activateCallback(isActive, item);
     }
     //TODO: finish scrollTriggerSectionsClass logic
     // if (item.options.scrollTriggerSectionsClass) {
