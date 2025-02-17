@@ -66,10 +66,10 @@ const setSectionActivationOptions = (sectionId, sectionContrast) => {
   return {
     trackOnly: true,
     activateCallback: (activeState) => {
-      if (activeState) {
+      // if (activeState) {
         navigationStore.setActiveNavItem(sectionId);
         navigationStore.setNavContrast(sectionContrast);
-      }
+      // }
     },
     activeRangeOrigin: 'top',
     bidirectionalActivation: true,

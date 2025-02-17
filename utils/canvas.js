@@ -198,7 +198,7 @@ const Canvas = {
   },
 
   onActiveElCallback(item, activeState) {
-    if (item.options.activateCallback) {
+    if (item.options.activateCallback && activeState) {
       item.options.activateCallback(activeState, item);
     }
     //TODO: finish scrollTriggerSectionsClass logic
@@ -239,7 +239,7 @@ const Canvas = {
     }
 
     this.scroll.DOM.onScrollActivateElements.push(newBinding);
-    this.onActiveElCallback(newBinding, false);
+    // this.onActiveElCallback(newBinding, false);
   },
 
   updateOnScrollActiveElement(updatedBinding) {

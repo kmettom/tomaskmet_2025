@@ -106,12 +106,12 @@ watch(
     v-onScrollActivate="{
       activeRange: 0.85,
       activateOnce: false,
-      activateCallback: (activeState) => {
-        if (activeState) navigationStore.setActiveProject(props.project.name);
+      activateCallback: () => {
+         navigationStore.setActiveProject(props.project.name);
       },
       scrollSpeed: navigationStore.projects.expanded
         ? 0
-        : props.project.scrollSpeed,
+        : props.project.scrollSpeed
     }"
     :style="`bottom: ${!navigationStore.projects.expanded ? (project.position?.bottom ?? 0) : 0}px;}`"
     :class="`project ${navigationStore.projects.expanded ? ' expanded ' : ''} ${project.position?.alignRight ? ' project-right ' : ''}`"
@@ -202,7 +202,7 @@ $nameSize: 30px;
 }
 
 .expand-description {
-  padding: 0px 50px 50px 50px;
+  padding: 0 50px 50px 50px;
   position: relative;
 
   & > * {

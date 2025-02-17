@@ -63,7 +63,6 @@ gsap.registerPlugin(SplitText);
 
 function textAniCallback(activeState: string, item: any) {
   if (!activeState) return;
-  console.log('textAniCallback', item.elNode.dataset.aboutId);
   const tl = gsap.timeline();
   const chars = new SplitText(`.${item.elNode.dataset.aboutId}`, {
     type: 'words,chars',

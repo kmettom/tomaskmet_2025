@@ -59,15 +59,15 @@ onMounted(async () => {
 
 watch(
   () => props.textHover,
-  (_status) => {
-    Canvas.hoverMesh(props.meshId, _status);
+  (isHovered) => {
+    Canvas.hoverMesh(props.meshId, isHovered);
   },
 );
 
 watch(
   () => props.show,
-  (_status) => {
-    Canvas.activateMesh(props.meshId, _status === null ? true : _status);
+  (show) => {
+    Canvas.activateMesh(props.meshId, show === null ? true : show);
   },
 );
 

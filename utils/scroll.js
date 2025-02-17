@@ -71,8 +71,8 @@ export default class Scroll {
         : `${window.innerHeight}px`;
   }
 
-  setElementActive(item, status) {
-    if (status) {
+  setElementActive(item, isActive) {
+    if (isActive) {
       item.elNode.dataset.activeScroll = 'true';
       item.elNode.classList.add('active');
     } else {
@@ -80,10 +80,12 @@ export default class Scroll {
       if (!item.trackOnly) item.elNode.classList.remove('active');
     }
 
-    Canvas.onActiveElCallback(item, status);
+    if(isActive){
+      Canvas.onActiveElCallback(item, isActive);
+    }
 
     if (item.containedMeshId && !item.trackOnly) {
-      Canvas.activateMesh(item.containedMeshId, status);
+      Canvas.activateMesh(item.containedMeshId, isActive);
     }
   }
 

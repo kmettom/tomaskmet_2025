@@ -86,8 +86,8 @@ const imageLoaded = () => {
 
 watch(
   () => props.imageHover,
-  (_status) => {
-    Canvas.hoverMesh(generatedMeshId.value, _status);
+  (isHovered) => {
+    Canvas.hoverMesh(generatedMeshId.value, isHovered);
   },
 );
 
