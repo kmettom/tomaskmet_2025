@@ -80,7 +80,7 @@ export default class Scroll {
       if (!item.trackOnly) item.elNode.classList.remove('active');
     }
 
-    if(isActive){
+    if (isActive) {
       Canvas.onActiveElCallback(item, isActive);
     }
 

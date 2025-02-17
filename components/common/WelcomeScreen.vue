@@ -42,21 +42,22 @@ export default {
   mounted() {},
   methods: {
     welcomeAnimation() {
-      const tl = gsap.timeline();
-      const chars = new SplitText('.welcome-txt-main', { type: 'words,chars' })
-        .chars;
-      gsap.set('.welcome-txt-main', { perspective: 400 });
-      tl.fromTo(
-        chars,
-        { y: '10px', opacity: 0 },
-        {
-          duration: this.welcomeAniDuration,
-          opacity: 1,
-          y: '0px',
-          stagger: 0.0,
-        },
-      );
-      gsap.to('.welcome-txt-main', { duration: 0.3, opacity: 1 });
+      // const tl = gsap.timeline();
+      // const chars = new SplitText('.welcome-txt-main', { type: 'words,chars' })
+      //   .chars;
+      // gsap.set('.welcome-txt-main', { perspective: 400 });
+      // tl.fromTo(
+      //   chars,
+      //   { y: '10px', opacity: 0 },
+      //   {
+      //     duration: this.welcomeAniDuration,
+      //     opacity: 1,
+      //     y: '0px',
+      //     stagger: 0.0,
+      //   },
+      // );
+      // gsap.to('.welco
+      // me-txt-main', { duration: 0.3, opacity: 1 });
       // gsap.to('.welcome-by', { duration: 0.3, opacity: 1 });
 
       gsap.to('.welcome', {

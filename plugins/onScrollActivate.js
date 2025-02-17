@@ -27,7 +27,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 
 // const onScrollActivateOptions = {
 //   activeRange: Number,
-//   activateOnce: Boolean, // default true
+//   activateOnce: Boolean, // default false
 //   activateCallback: String,
 //   trackOnly: Boolean,
 //   bidirectionalActivation: Boolean (default: false),
