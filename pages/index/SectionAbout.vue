@@ -3,6 +3,7 @@
     <h2 class="body-xs">About</h2>
     <div class="body-l">
       <p
+          class="about-1"
         v-onScrollActivate="{
           activeRange: 0.85,
           activateCallback: textAniCallback,
@@ -13,6 +14,7 @@
         on coding experience.
       </p>
       <p
+          class="about-2"
         v-onScrollActivate="{
           activeRange: 0.85,
           activateCallback: textAniCallback,
@@ -23,6 +25,7 @@
         frameworks and backend API's.
       </p>
       <p
+          class="about-3"
         v-onScrollActivate="{
           activeRange: 0.85,
           activateCallback: textAniCallback,
@@ -35,6 +38,7 @@
         wide range of projects.
       </p>
       <p
+          class="about-4"
         v-onScrollActivate="{
           activeRange: 0.85,
           activateCallback: textAniCallback,
@@ -61,7 +65,7 @@ function textAniCallback(activeState: string, item: any) {
   if (!activeState) return;
   console.log('textAniCallback', item.elNode.dataset.aboutId);
   const tl = gsap.timeline();
-  const chars = new SplitText(item.elNode.dataset.aboutId, {
+  const chars = new SplitText(`.${item.elNode.dataset.aboutId}`, {
     type: 'words,chars',
   }).chars;
   // gsap.set('.welcome-txt-main', { perspective: 400 });
@@ -69,10 +73,10 @@ function textAniCallback(activeState: string, item: any) {
     chars,
     { y: '10px', opacity: 0 },
     {
-      duration: 1,
+      duration: 0.5,
       opacity: 1,
       y: '0px',
-      stagger: 0.1,
+      stagger: 0.01,
     },
   );
 }
