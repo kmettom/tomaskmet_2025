@@ -45,18 +45,16 @@ float createCircle() {
   shapeUv += mousePoint;
   float dist = distance(shapeUv, mousePoint);
 
+  //  vec2 randomCoefficients = vec2(13.0, 80.);
+  //  float randomMultiplier = 100.;
+  //  float wave = createWave(vUv);
+  //  float randomValue = fract(sin(dot(gl_FragCoord.xy + time + wave, randomCoefficients)) * randomMultiplier);
+  //  float randomSmooth = smoothstep(randomValue , randomValue * wave , dist);
 
-//  vec2 randomCoefficients = vec2(13.0, 80.);
-//  float randomMultiplier = 100.;
-//  float wave = createWave(vUv);
-//  float randomValue = fract(sin(dot(gl_FragCoord.xy + time + wave, randomCoefficients)) * randomMultiplier);
-//  float randomSmooth = smoothstep(randomValue , randomValue * wave , dist);
+  //  float circleRadius = max(0.0, 10/ viewport.x);
+  float circleRadius = max(0.0, 10.0 / viewport.x);
 
-//  float circleRadius = max(0.0, 10/ viewport.x);
-  float circleRadius = max(0.0, 20.0 / viewport.x);
-
-//  circleRadius = smoothstep(circleRadius, circleRadius, 0.1);
-
+  //  circleRadius = smoothstep(circleRadius, circleRadius, 0.1);
 
   dist = smoothstep(circleRadius, circleRadius + 0.05, dist);
   return dist;
@@ -75,7 +73,7 @@ float createOverlay() {
 }
 
 void main() {
-  float circle = createCircle();
+  //  float circle = createCircle();
   float overlay = createOverlay();
   float width = 0.2;
   float lineProgress = 0.3;
@@ -90,7 +88,8 @@ void main() {
   float outline = smoothstep(0.0, border, sigDist);
   outline *= smoothstep(width - border, width, sigDist);
 
-  float finalAlpha = fill * (1.0 - overlay) * circle;
+  float finalAlpha = fill * (1.0 - overlay);
+  //  float finalAlpha = fill * (1.0 - overlay) * circle;
 
   gl_FragColor = vec4(uColor, finalAlpha);
   if (finalAlpha < uAlphaTest) discard;
