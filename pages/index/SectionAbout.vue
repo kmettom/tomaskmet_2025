@@ -57,13 +57,13 @@ import { SplitText } from 'gsap/SplitText';
 
 gsap.registerPlugin(SplitText);
 
-const textAniCallback = (activeState: boolean) => {};
-
-const textAniCallback = (textSelector: string, activeState: boolean) => {
+function textAniCallback(activeState: string, item: any) {
   if (!activeState) return;
-  console.log('textAniCallback', textSelector);
+  console.log('textAniCallback', item.elNode.dataset.aboutId);
   const tl = gsap.timeline();
-  const chars = new SplitText(textSelector, { type: 'words,chars' }).chars;
+  const chars = new SplitText(item.elNode.dataset.aboutId, {
+    type: 'words,chars',
+  }).chars;
   // gsap.set('.welcome-txt-main', { perspective: 400 });
   tl.fromTo(
     chars,
@@ -75,7 +75,9 @@ const textAniCallback = (textSelector: string, activeState: boolean) => {
       stagger: 0.1,
     },
   );
-};
+}
+// const textAniCallback = (textSelector: string, activeState: boolean) => {
+// };
 </script>
 
 <style lang="scss" scoped>
