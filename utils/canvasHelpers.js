@@ -1,3 +1,5 @@
+import { log } from 'three/tsl';
+
 export function generateBindingLogic(binding) {
   binding.elNode.dataset.activeScroll = 'false';
   if (!binding.options.trackOnly) {
@@ -27,11 +29,11 @@ export function findMeshIDs(elParent, isActiveScroll) {
     return meshIds;
   }
 
-  let el = elParent.querySelectorAll('[data-mesh-id]');
-  if (!el && el.length === 0) return false;
-  for (const elKey in el) {
-    elKey.dataset.scrollActive = isActiveScroll ? 'true' : undefined;
-    meshIds.push(elKey.dataset.meshId);
+  let elementsWithMesh = elParent.querySelectorAll('[data-mesh-id]');
+  if (!elementsWithMesh || elementsWithMesh.length === 0) return false;
+  for (const el of elementsWithMesh) {
+    el.dataset.scrollActive = isActiveScroll ? 'true' : undefined;
+    meshIds.push(el.dataset.meshId);
   }
   return meshIds;
 }
