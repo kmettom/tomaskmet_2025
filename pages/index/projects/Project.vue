@@ -23,7 +23,7 @@ const projectNumber = computed(() => {
 });
 const hoverImage = ref(false);
 const emit = defineEmits(['expandProjects']);
-const aniDuration = 0.3;
+const aniDuration = 5.3; // 0.3
 
 const expandProject = () => {
   const timeline = gsap.timeline({
@@ -150,6 +150,13 @@ watch(
         <CanvasImage
           :shader="'example2'"
           :src-link="project.image.src"
+          :image-hover="hoverImage"
+        />
+      </div>
+      <div class="project-image-expanded">
+        <CanvasImage
+          :shader="'example1'"
+          :src-link="project.image_expanded.src"
           :image-hover="hoverImage"
         />
       </div>

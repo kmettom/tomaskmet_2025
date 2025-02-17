@@ -65,11 +65,9 @@ const props = defineProps({
 const setSectionActivationOptions = (sectionId, sectionContrast) => {
   return {
     trackOnly: true,
-    activateCallback: (activeState) => {
-      // if (activeState) {
+    activateCallback: () => {
       navigationStore.setActiveNavItem(sectionId);
       navigationStore.setNavContrast(sectionContrast);
-      // }
     },
     activeRangeOrigin: 'top',
     bidirectionalActivation: true,

@@ -3,12 +3,12 @@
     <h2 class="body-xs">About</h2>
     <div class="body-l">
       <p
-        class="about-1"
         v-onScrollActivate="{
           activeRange: 0.85,
           activateOnce: true,
           activateCallback: textAniCallback,
         }"
+        class="about-1"
         data-about-id="about-1"
       >
         A Self taught developer with managerial background and 8 years of hands
@@ -18,12 +18,12 @@
         frameworks and backend API's.
       </p>
       <p
-        class="about-2"
         v-onScrollActivate="{
           activeRange: 0.85,
           activateOnce: true,
           activateCallback: textAniCallback,
         }"
+        class="about-2"
         data-about-id="about-2"
       >
         Interested in developing web apps, dapps, websites and e-commerce,
