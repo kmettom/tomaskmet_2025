@@ -1,8 +1,3 @@
-//@use 'common';
-//@use 'media_queries';
-//@use 'typography';
-//@use 'animations';
-
 //*************************
 // Common
 //*************************
@@ -20,7 +15,7 @@ html {
   scroll-behavior: smooth;
   font-family: sans-serif;
 
-  background-color: var(--dark-color);
+  //background-color: var(--dark-color);
   color: var(--light-color);
 }
 
