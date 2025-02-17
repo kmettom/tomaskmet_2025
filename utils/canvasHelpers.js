@@ -1,7 +1,7 @@
 export function generateBindingLogic(binding) {
   binding.elNode.dataset.activeScroll = 'false';
   if (!binding.options.trackOnly) {
-    binding.containedMeshId = findMeshID(binding.elNode, true);
+    binding.containedMeshIds = findMeshIDs(binding.elNode, true);
     binding.elNode.classList.add('show-on-scroll');
   }
 
@@ -18,15 +18,20 @@ export function generateBindingLogic(binding) {
   return binding;
 }
 
-export function findMeshID(elParent, isActiveScroll) {
+export function findMeshIDs(elParent, isActiveScroll) {
+  let meshIds = [];
+
   if (elParent.dataset.meshId) {
     elParent.dataset.scrollActive = 'true';
-    return elParent.dataset.meshId;
+    meshIds.push(elParent.dataset.meshId);
+    return meshIds;
   }
 
-  let el = elParent.querySelector('[data-mesh-id]');
-  if (!el) return false;
-
-  el.dataset.scrollActive = isActiveScroll ? 'true' : undefined;
-  return el.dataset.meshId;
+  let el = elParent.querySelectorAll('[data-mesh-id]');
+  if (!el && el.length === 0) return false;
+  for (const elKey in el) {
+    elKey.dataset.scrollActive = isActiveScroll ? 'true' : undefined;
+    meshIds.push(elKey.dataset.meshId);
+  }
+  return meshIds;
 }

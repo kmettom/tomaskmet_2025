@@ -27,6 +27,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  imageShow: {
+    type: Boolean,
+    default: true,
+  },
   width: {
     type: String,
     default: '100%',
@@ -37,11 +41,7 @@ const props = defineProps({
   },
 });
 
-const generateRandomId = () => {
-  return Math.floor(Math.random() * 100000);
-};
-
-const meshIdRandom = ref(generateRandomId() + props.srcLink);
+const meshIdRandom = ref(crypto.randomUUID() + props.srcLink);
 const generatedMeshId = ref(props.srcLink + meshIdRandom.value);
 
 const imageWrapper = ref('imageWrapper');
@@ -88,6 +88,13 @@ watch(
   () => props.imageHover,
   (isHovered) => {
     Canvas.hoverMesh(generatedMeshId.value, isHovered);
+  },
+);
+
+watch(
+  () => props.imageShow,
+  (isVisible) => {
+    Canvas.activateMesh(generatedMeshId.value, isVisible);
   },
 );
 
