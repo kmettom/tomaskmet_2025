@@ -139,7 +139,7 @@ watch(
               <div>{{ project.award }}</div>
             </div>
           </div>
-          <p>
+          <p class="project-description body-m">
             {{ project.description }}
           </p>
           <a :href="project.websiteLink" target="_blank">👉 visit website</a>
@@ -197,7 +197,12 @@ $nameSize: 30px;
   position: relative;
 }
 
+.project-description {
+  margin-top: 75px;
+}
+
 .expand-description {
+  padding: 0px 50px 50px 50px;
   position: relative;
 
   & > * {
@@ -208,8 +213,6 @@ $nameSize: 30px;
     height: 50%;
 
     .info-row {
-      height: 20%;
-
       * {
         display: inline-block;
         width: 50%;

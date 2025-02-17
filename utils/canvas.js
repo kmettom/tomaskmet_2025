@@ -199,7 +199,7 @@ const Canvas = {
 
   onActiveElCallback(item, activeState) {
     if (item.options.activateCallback) {
-      item.options.activateCallback(activeState);
+      item.options.activateCallback(activeState, item);
     }
     //TODO: finish scrollTriggerSectionsClass logic
     // if (item.options.scrollTriggerSectionsClass) {

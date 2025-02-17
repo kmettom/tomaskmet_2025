@@ -2,21 +2,45 @@
   <Container id="about" additional-class="aboutSection">
     <h2 class="body-xs">About</h2>
     <div class="body-l">
-      <p>
+      <p
+        v-onScrollActivate="{
+          activeRange: 0.85,
+          activateCallback: textAniCallback,
+        }"
+        data-about-id="about-1"
+      >
         A Self taught developer with managerial background and 8 years of hands
         on coding experience.
       </p>
-      <p>
+      <p
+        v-onScrollActivate="{
+          activeRange: 0.85,
+          activateCallback: textAniCallback,
+        }"
+        data-about-id="about-2"
+      >
         WORKING WITH AGENCIES, COMPANIES and freelancers using broad spectrum
         frameworks and backend API's.
       </p>
-      <p>
+      <p
+        v-onScrollActivate="{
+          activeRange: 0.85,
+          activateCallback: textAniCallback,
+        }"
+        data-about-id="about-3"
+      >
         Interested in developing web apps, dapps, websites and e-commerce,
         happily spending time with Web3 or animating with WebGl. Looking forward
         to learning more. Connected with a broad network to fit the needs of a
         wide range of projects.
       </p>
-      <p>
+      <p
+        v-onScrollActivate="{
+          activeRange: 0.85,
+          activateCallback: textAniCallback,
+        }"
+        data-about-id="about-4"
+      >
         Collaborate with other developers, designers and marketers to shape and
         create brands, experiences and products together.
       </p>
@@ -27,6 +51,31 @@
 
 <script setup lang="ts">
 import Container from '~/components/common/Container.vue';
+
+import { gsap } from 'gsap';
+import { SplitText } from 'gsap/SplitText';
+
+gsap.registerPlugin(SplitText);
+
+const textAniCallback = (activeState: boolean) => {};
+
+const textAniCallback = (textSelector: string, activeState: boolean) => {
+  if (!activeState) return;
+  console.log('textAniCallback', textSelector);
+  const tl = gsap.timeline();
+  const chars = new SplitText(textSelector, { type: 'words,chars' }).chars;
+  // gsap.set('.welcome-txt-main', { perspective: 400 });
+  tl.fromTo(
+    chars,
+    { y: '10px', opacity: 0 },
+    {
+      duration: 1,
+      opacity: 1,
+      y: '0px',
+      stagger: 0.1,
+    },
+  );
+};
 </script>
 
 <style lang="scss" scoped>

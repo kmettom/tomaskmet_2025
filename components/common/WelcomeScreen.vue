@@ -62,8 +62,8 @@ export default {
       gsap.to('.welcome', {
         duration: this.welcomeHideDuration,
         delay: this.welcomeAniDuration + this.welcomeHideDelay,
-        // height: 0,
         opacity: 0,
+        height: 0,
         ease: 'power4.in',
         onComplete: () => {
           this.welcomeComplete();

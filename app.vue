@@ -25,15 +25,15 @@ useHead({
   htmlAttrs: {
     lang: 'en',
   },
-  style:[
+  style: [
     {
       children: `
       html {
               background-color: #1b1818;
             }
-      `
-    }
-  ]
+      `,
+    },
+  ],
 });
 
 onMounted(() => {
