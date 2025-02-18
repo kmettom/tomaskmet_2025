@@ -8,7 +8,7 @@
           activateOnce: true,
           activateCallback: textAniCallback,
         }"
-        class="about-1"
+        class="about-1 about-txt"
         data-about-id="about-1"
       >
         A Self taught developer with managerial background and 8 years of hands
@@ -23,7 +23,7 @@
           activateOnce: true,
           activateCallback: textAniCallback,
         }"
-        class="about-2"
+        class="about-2 about-txt"
         data-about-id="about-2"
       >
         Interested in developing web apps, dapps, websites and e-commerce,
@@ -57,12 +57,12 @@ function textAniCallback(activeState: string, item: any) {
   // gsap.set('.welcome-txt-main', { perspective: 400 });
   tl.fromTo(
     chars,
-    { y: '10px', opacity: 0 },
+    { y: '15px', opacity: 0 },
     {
-      duration: 0.15,
+      duration: 0.1,
       opacity: 1,
       y: '0px',
-      stagger: 0.005,
+      stagger: 0.01,
     },
   );
 }
@@ -87,18 +87,18 @@ function textAniCallback(activeState: string, item: any) {
     grid-template-columns: 1fr;
     padding: 20px;
   }
-
-  & p {
-    margin-bottom: 30px;
-
-    @include respond-width($w-m) {
-      margin-bottom: 10px;
-    }
-
-    @include respond-width($w-xs) {
-      margin-top: 10px;
-      margin-bottom: 10px;
-    }
+}
+.about-txt {
+  //span{
+  //opacity: 0;
+  //}
+  margin-bottom: 30px;
+  @include respond-width($w-m) {
+    margin-bottom: 10px;
+  }
+  @include respond-width($w-xs) {
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 }
 </style>

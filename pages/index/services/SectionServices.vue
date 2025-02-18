@@ -17,16 +17,20 @@
             activeRange: 0.85,
             fixToParentId: 'servicesList',
           }"
-          class="service-block"
+          class="service-item"
           :style="serviceBoxStyle(Number(index))"
         >
-          <Service
-            :title="service.title"
-            :icon="service.icon"
-            :text="service.text"
-            :styles="service.styles"
-            :block-size="serviceBlockSize"
-          />
+          <div class="">
+            <div class="service-item-inner">
+              <Service
+                :title="service.title"
+                :icon="service.icon"
+                :text="service.text"
+                :styles="service.styles"
+                :block-size="serviceBlockSize"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </Container>
@@ -72,8 +76,16 @@ const serviceBoxStyle = (index: number) => {
 .services-wrapper {
   position: relative;
 }
-.service-block {
+.service-item {
   display: inline-block;
   vertical-align: top;
+  &.active .service-item-inner {
+    //transition: all 0.5s ease;
+    opacity: 1;
+  }
+}
+.service-item-inner {
+  transition: all 0.5s ease;
+  opacity: 0;
 }
 </style>
