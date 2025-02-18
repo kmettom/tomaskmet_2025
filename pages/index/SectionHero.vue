@@ -8,7 +8,6 @@
           @mouseleave="hoverActive = false"
         >
           <CanvasText
-            :shader="'default'"
             :theme="'light'"
             :show="mainTextIn"
             :text-hover="hoverActive"
@@ -27,9 +26,7 @@
           <p>e-commerce</p>
         </div>
         <h2 class="heading-1">
-          <CanvasText :shader="'default'" :theme="'light'" :show="mainTextIn">
-            783
-          </CanvasText>
+          <CanvasText :theme="'light'" :show="mainTextIn"> 783 </CanvasText>
         </h2>
         <div class="body-m hero-content-sm hero-summary">
           <p>Web Developer with</p>

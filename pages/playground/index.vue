@@ -2,7 +2,7 @@
   <div class="page-container">
     <NuxtLink aria-label="Go To Showcase" to="/public"> Go home </NuxtLink>
     <h1 class="headline">
-      <CanvasText :shader="'default'"> Playground </CanvasText>
+      <CanvasText> Playground </CanvasText>
     </h1>
     <p class="">
       This is a showcase of examples and usage of NuxtThreeJSStarterPack, Nuxt

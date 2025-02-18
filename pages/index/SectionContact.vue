@@ -5,14 +5,12 @@
         <div class="contact-line">
           <div class="heading-1">
             <span v-onScrollActivate="{ activeRange: 0.85 }">
-              <CanvasText :shader="'default'" :theme="'dark'"> GET </CanvasText>
+              <CanvasText :theme="'dark'"> GET </CanvasText>
               <span
                 v-onScrollActivate="{ activeRange: 0.85 }"
                 class="canvas-text-spacing"
               >
-                <CanvasText :shader="'default'" :theme="'dark'">
-                  IN
-                </CanvasText>
+                <CanvasText :theme="'dark'"> IN </CanvasText>
               </span>
             </span>
           </div>
@@ -59,9 +57,7 @@
           </div>
           <div class="heading-1">
             <span v-onScrollActivate="{ activeRange: 0.85 }">
-              <CanvasText :shader="'default'" :theme="'dark'">
-                TOUCH
-              </CanvasText>
+              <CanvasText :theme="'dark'"> TOUCH </CanvasText>
             </span>
           </div>
         </div>

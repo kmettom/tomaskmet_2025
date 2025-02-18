@@ -148,7 +148,6 @@ watch(
 
       <div class="project-image">
         <CanvasImage
-          :shader="'example2'"
           :src-link="project.image.src"
           :image-hover="hoverImage"
           :image-show="!navigationStore.projects.expanded"

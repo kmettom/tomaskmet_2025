@@ -10,7 +10,7 @@ import { Canvas } from '~/utils/canvas';
 const props = defineProps({
   shader: {
     type: String,
-    required: true,
+    default: null,
   },
   textHover: {
     type: Boolean,

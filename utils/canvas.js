@@ -13,19 +13,11 @@ import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import scrollFragment from './shaders/scrollFragment.glsl';
 import scrollVertex from './shaders/scrollVertex.glsl';
 
-import defaultFragment from './shaders/defaultFragment.glsl';
-import defaultVertex from './shaders/defaultVertex.glsl';
+import projectFragment from './shaders/projectFragment.glsl';
+import projectVertex from './shaders/projectVertex.glsl';
 
-import textFragment from './shaders/textFragment.glsl';
-import textVertex from './shaders/textVertex.glsl';
-
-import example1Fragment from './shaders/example1Fragment.glsl';
-import example1Vertex from './shaders/example1Vertex.glsl';
-
-import example2Fragment from './shaders/example2Fragment.glsl';
-import example2Vertex from './shaders/example2Vertex.glsl';
-import MSDFfragment from './shaders/MSDFfragment.glsl';
-import MSDFvertex from './shaders/MSDFvertex.glsl';
+import MSDFFragment from './shaders/MSDFfragment.glsl';
+import MSDFVertex from './shaders/MSDFvertex.glsl';
 import { generateBindingLogic } from '~/utils/canvasHelpers';
 
 const { MSDFTextGeometry } = pkg;
@@ -42,19 +34,15 @@ const CanvasOptions = {
     vertexShader: scrollVertex,
   },
   default: {
-    fragmentShader: defaultFragment,
-    vertexShader: defaultVertex,
-    textShader: textFragment,
-    textVertex: textVertex,
+    fragmentShader: projectFragment,
+    vertexShader: projectVertex,
+    textFragment: MSDFFragment,
+    textVertex: MSDFVertex,
   },
-  example1: {
-    fragmentShader: example1Fragment,
-    vertexShader: example1Vertex,
-  },
-  example2: {
-    fragmentShader: example2Fragment,
-    vertexShader: example2Vertex,
-  },
+  // projectImage: {
+  //   fragmentShader: projectFragment,
+  //   vertexShader: projectVertex,
+  // },
 };
 
 const Canvas = {
@@ -288,6 +276,14 @@ const Canvas = {
   },
 
   addTextAsMSDF(shader, meshId, htmlEl, text, theme, mouseListeners) {
+    let vertexShader = this.options.default.textVertex;
+    let fragmentShader = this.options.default.textFragment;
+
+    if (shader) {
+      vertexShader = this.options[shader].vertexShader;
+      fragmentShader = this.options[shader].fragmentShader;
+    }
+
     let bounds = htmlEl.getBoundingClientRect();
     let position = { top: bounds.top, left: bounds.left };
     position.top += this.currentScroll;
@@ -356,8 +352,8 @@ const Canvas = {
           hoverState: { value: 0 },
           aniIn: { value: 0 },
         },
-        vertexShader: MSDFvertex,
-        fragmentShader: MSDFfragment,
+        vertexShader: vertexShader,
+        fragmentShader: fragmentShader,
       });
 
       material.uniforms.uMap.value = atlas;
@@ -402,12 +398,12 @@ const Canvas = {
     });
   },
   addImageAsMesh(htmlEl, shader, meshId, mouseListeners) {
-    let fragmentShader = this.options.default.fragmentShader;
     let vertexShader = this.options.default.vertexShader;
+    let fragmentShader = this.options.default.fragmentShader;
 
     if (shader) {
-      fragmentShader = this.options[shader].fragmentShader;
       vertexShader = this.options[shader].vertexShader;
+      fragmentShader = this.options[shader].fragmentShader;
     }
 
     let geometry;

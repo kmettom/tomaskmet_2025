@@ -3,9 +3,7 @@
     <Container>
       <h2 class="heading-1 heading-1-spacing">
         <span v-onScrollActivate="{ activeRange: 0.85 }">
-          <CanvasText :shader="'default'" :theme="'dark'">
-            SERVICES
-          </CanvasText>
+          <CanvasText :theme="'dark'"> SERVICES </CanvasText>
         </span>
       </h2>
 
