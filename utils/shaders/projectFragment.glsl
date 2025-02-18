@@ -12,6 +12,11 @@ uniform float scale; // = 4.0
 uniform float smoothness; // = 0.01
 uniform float seed; // = 12.9898
 
+
+//TODO: xxxyyy new tests for center and overflow of image
+uniform vec2 uMeshSize; // The size of the mesh (width, height)
+uniform vec2 uTextureSize; // The size of the texture (width, height)
+
 float random(vec2 co) {
   highp float a = 12.9;
   highp float b = 78.233;
@@ -59,8 +64,33 @@ vec4 transition(vec2 uv) {
   return mix(from, to, 1.0 - q);
 }
 
-void main() {
-  gl_FragColor = transition(vUv);
-  gl_FragColor.rgb += 0.01 * vec3(vNoise);
+//void main() {
+//  gl_FragColor = transition(vUv);
+//  gl_FragColor.rgb += 0.01 * vec3(vNoise);
+//
+//}
 
+
+void main() {
+  // Calculate the aspect ratios
+  float meshAspect = uMeshSize.x / uMeshSize.y;
+  float textureAspect = uTextureSize.x / uTextureSize.y;
+
+  // Adjust UV coordinates to maintain aspect ratio
+  vec2 uv = vUv;
+  if (meshAspect > textureAspect) {
+    // Mesh is wider than the texture
+    float scale = textureAspect / meshAspect;
+    uv.y = uv.y * scale + (1.0 - scale) / 2.0; // Center the texture vertically
+  } else {
+    // Mesh is taller than the texture
+    float scale = meshAspect / textureAspect;
+    uv.x = uv.x * scale + (1.0 - scale) / 2.0; // Center the texture horizontally
+  }
+
+  // Sample the texture
+  vec4 color = texture2D(uImage, uv);
+
+  // Output the final color
+  gl_FragColor = color;
 }

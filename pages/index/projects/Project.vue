@@ -99,6 +99,27 @@ watch(
     }
   },
 );
+
+onMounted(() => {
+  //TODO: xxxyyy
+  const testAniDuration = 5;
+  const timeline = gsap.timeline({
+    repeat: -1, // Infinite repetition
+    repeatDelay: 0.5, // (Optional) delay
+    yoyo: true,
+    transition: 'linear',
+  });
+  timeline.to('.project-image img', {
+    height: '10px',
+    width: '10px',
+    duration: testAniDuration,
+  });
+  timeline.to('.project-image img', {
+    height: '100px',
+    width: '100px',
+    duration: testAniDuration,
+  });
+})
 </script>
 
 <template>
