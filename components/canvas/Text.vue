@@ -12,10 +12,6 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  meshId: {
-    type: String,
-    required: true,
-  },
   textHover: {
     type: Boolean,
     default: false,
@@ -32,7 +28,7 @@ const props = defineProps({
 
 const html = ref('html');
 
-const generatedMeshId = crypto.randomUUID();
+const meshId = crypto.randomUUID();
 
 onMounted(async () => {
   let innerHTML = html.value?.innerHTML;
@@ -45,7 +41,7 @@ onMounted(async () => {
   setTimeout(() => {
     Canvas.addTextAsMSDF(
       props.shader,
-      props.meshId,
+      meshId,
       html.value,
       innerHTML,
       props.theme,
@@ -57,19 +53,19 @@ onMounted(async () => {
 watch(
   () => props.textHover,
   (isHovered) => {
-    Canvas.hoverMesh(props.meshId, isHovered);
+    Canvas.hoverMesh(meshId, isHovered);
   },
 );
 
 watch(
   () => props.show,
   (show) => {
-    Canvas.activateMesh(props.meshId, show === null ? true : show);
+    Canvas.activateMesh(meshId, show === null ? true : show);
   },
 );
 
 onBeforeUnmount(() => {
-  Canvas.removeMesh(props.meshId);
+  Canvas.removeMesh(meshId);
 });
 </script>
 

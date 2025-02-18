@@ -8,7 +8,6 @@
           @mouseleave="hoverActive = false"
         >
           <CanvasText
-            :mesh-id="'headline-studio'"
             :shader="'default'"
             :theme="'light'"
             :show="mainTextIn"
@@ -23,17 +22,12 @@
         <div class="body-m hero-content-sm hero-services">
           <p>web3</p>
           <p>creative</p>
-          <p>apps</p>
+          <p>web apps</p>
           <p>websites</p>
           <p>e-commerce</p>
         </div>
         <h2 class="heading-1">
-          <CanvasText
-            :mesh-id="'headline-783'"
-            :shader="'default'"
-            :theme="'light'"
-            :show="mainTextIn"
-          >
+          <CanvasText :shader="'default'" :theme="'light'" :show="mainTextIn">
             783
           </CanvasText>
         </h2>

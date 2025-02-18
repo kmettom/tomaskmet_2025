@@ -3,11 +3,7 @@
     <Container>
       <h2 class="heading-1 heading-1-spacing">
         <span v-onScrollActivate="{ activeRange: 0.85 }">
-          <CanvasText
-            :mesh-id="'headline-services'"
-            :shader="'default'"
-            :theme="'dark'"
-          >
+          <CanvasText :shader="'default'" :theme="'dark'">
             SERVICES
           </CanvasText>
         </span>
