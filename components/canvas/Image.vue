@@ -41,8 +41,7 @@ const props = defineProps({
   },
 });
 
-const meshIdRandom = ref(crypto.randomUUID() + props.srcLink);
-const generatedMeshId = ref(props.srcLink + meshIdRandom.value);
+const generatedMeshId = props.srcLink + crypto.randomUUID();
 
 const imageWrapper = ref('imageWrapper');
 const imgLoaded = ref(false);
@@ -72,7 +71,7 @@ const addImageToCanvas = (_timeout) => {
       Canvas.addImageAsMesh(
         imageWrapper.value.children[0],
         props.shader,
-        generatedMeshId.value,
+        generatedMeshId,
         false,
       );
     },
@@ -87,7 +86,7 @@ const imageLoaded = () => {
 watch(
   () => props.imageHover,
   (isHovered) => {
-    Canvas.hoverMesh(generatedMeshId.value, isHovered);
+    Canvas.hoverMesh(generatedMeshId, isHovered);
   },
 );
 
@@ -95,12 +94,12 @@ watch(
   () => props.imageShow,
   (isVisible) => {
     console.log(isVisible);
-    Canvas.activateMesh(generatedMeshId.value, isVisible);
+    Canvas.activateMesh(generatedMeshId, isVisible);
   },
 );
 
 onBeforeUnmount(() => {
-  Canvas.removeMesh(generatedMeshId.value);
+  Canvas.removeMesh(generatedMeshId);
 });
 </script>
 

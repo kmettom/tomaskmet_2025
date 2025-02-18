@@ -32,6 +32,8 @@ const props = defineProps({
 
 const html = ref('html');
 
+const generatedMeshId = crypto.randomUUID();
+
 onMounted(async () => {
   let innerHTML = html.value?.innerHTML;
   //remove nuxt slot comment from innerHTML, only once
@@ -49,11 +51,6 @@ onMounted(async () => {
       props.theme,
       false,
     );
-    setTimeout(() => {
-      if (props.show === null) {
-        Canvas.activateMesh(props.meshId, true);
-      }
-    }, 50);
   }, 50);
 });
 
