@@ -50,12 +50,12 @@ gsap.registerPlugin(SplitText);
 
 function textAniCallback(activeState: string, item: any) {
   if (!activeState) return;
-  const selector = `.${item.elNode.dataset.aboutId}`
+  const selector = `.${item.elNode.dataset.aboutId}`;
   const tl = gsap.timeline();
   const chars = new SplitText(selector, {
     type: 'words,chars',
   }).chars;
-  tl.set(selector, {opacity:1} )
+  tl.set(selector, { opacity: 1 });
   // gsap.set('.welcome-txt-main', { perspective: 400 });
   tl.fromTo(
     chars,
@@ -100,7 +100,7 @@ function textAniCallback(activeState: string, item: any) {
     margin-top: 10px;
     margin-bottom: 10px;
   }
-  span{
+  span {
     opacity: 0;
   }
 }

@@ -153,14 +153,13 @@ watch(
           :image-show="!navigationStore.projects.expanded"
         />
       </div>
-      <!--      <div class="project-image-expanded">-->
-      <!--        <CanvasImage-->
-      <!--          :shader="'example1'"-->
-      <!--          :src-link="project.image_expanded.src"-->
-      <!--          :image-hover="false"-->
-      <!--          :image-show="navigationStore.projects.expanded"-->
-      <!--        />-->
-      <!--      </div>-->
+      <div class="project-image-expanded">
+        <CanvasImage
+          :src-link="project.image_expanded.src"
+          :image-hover="false"
+          :image-show="navigationStore.projects.expanded"
+        />
+      </div>
       <div class="project-name body-m">
         <span>{{ project.name }}</span>
       </div>
