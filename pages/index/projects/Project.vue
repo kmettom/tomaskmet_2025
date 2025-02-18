@@ -23,7 +23,7 @@ const projectNumber = computed(() => {
 });
 const hoverImage = ref(false);
 const emit = defineEmits(['expandProjects']);
-const aniDuration = 5.3; // 0.3
+const aniDuration = 0.5; // 0.3
 
 const expandProject = () => {
   const timeline = gsap.timeline({
@@ -153,13 +153,13 @@ watch(
           :image-show="!navigationStore.projects.expanded"
         />
       </div>
-      <div class="project-image-expanded">
-        <CanvasImage
-          :src-link="project.image_expanded.src"
-          :image-hover="false"
-          :image-show="navigationStore.projects.expanded"
-        />
-      </div>
+      <!--      <div class="project-image-expanded">-->
+      <!--        <CanvasImage-->
+      <!--          :src-link="project.image_expanded.src"-->
+      <!--          :image-hover="false"-->
+      <!--          :image-show="navigationStore.projects.expanded"-->
+      <!--        />-->
+      <!--      </div>-->
       <div class="project-name body-m">
         <span>{{ project.name }}</span>
       </div>
