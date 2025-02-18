@@ -12,7 +12,6 @@ uniform float scale; // = 4.0
 uniform float smoothness; // = 0.01
 uniform float seed; // = 12.9898
 
-
 //TODO: xxxyyy new tests for center and overflow of image
 uniform vec2 uMeshSize; // The size of the mesh (width, height)
 uniform vec2 uTextureSize; // The size of the texture (width, height)
@@ -69,7 +68,6 @@ vec4 transition(vec2 uv) {
 //  gl_FragColor.rgb += 0.01 * vec3(vNoise);
 //
 //}
-
 
 void main() {
   // Calculate the aspect ratios

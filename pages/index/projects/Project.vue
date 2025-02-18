@@ -119,7 +119,7 @@ onMounted(() => {
     width: '100px',
     duration: testAniDuration,
   });
-})
+});
 </script>
 
 <template>
