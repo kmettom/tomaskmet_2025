@@ -262,9 +262,9 @@ $nameSize: 30px;
 }
 
 .expanded {
-  border-bottom: 2px solid red;
+  border: 2px solid red;
   &.active-project {
-    border-bottom: 2px solid green;
+    border: 2px solid green;
   }
   .info {
     opacity: 0.5;
