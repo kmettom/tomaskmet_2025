@@ -58,6 +58,7 @@
           <Project
             :project="project"
             :index="index"
+            :is-active="navigationStore.projects.activeProject === project.name"
             @expand-projects="expandProjectView(index)"
           />
         </div>
@@ -72,6 +73,7 @@ import projectsData from '~/content/projects.json';
 import Project from '~/pages/index/projects/Project.vue';
 import IconsClose from '~/components/common/icons/close.client.vue';
 import { useTemplateRefsList } from '@vueuse/core';
+
 const navigationStore = useNavigationStore();
 
 const projects = ref(projectsData);
@@ -83,17 +85,6 @@ const activeProjectsIndex = computed(() => {
 
 const projectItemRefs = useTemplateRefsList<HTMLDivElement>();
 const projectGalleryRef = ref();
-
-// const getProjectByName = (projectName) => {
-//   let project = null;
-//   for (let i = 0; i < projects.value.length; i++) {
-//     if (projects.value[i].name === projectName) {
-//       project = projects.value[i];
-//       break; // Exit the loop once the project is found
-//     }
-//   }
-//   return project;
-// };
 
 const nextProjectName = computed(() => {
   return projects.value[activeProjectsIndex.value + 1]?.name ?? null;
@@ -172,8 +163,8 @@ $marginRight: 50px;
   background: none;
   outline: none;
   border: none;
-  top: 35px;
-  right: 0px;
+  top: 115px;
+  right: -35px;
 }
 
 .change-project-btn {

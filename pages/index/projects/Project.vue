@@ -18,6 +18,10 @@ const props = defineProps({
   },
 });
 
+const projectElClasses = computed(() => {
+  return `project ${props.isActive ? ' active-project ' : ''}  ${navigationStore.projects.expanded ? ' expanded ' : ''} ${props.project.position?.alignRight ? ' project-right ' : ''}`;
+});
+
 const projectNumber = computed(() => {
   return '0' + (props.index + 1).toString();
 });
@@ -87,6 +91,16 @@ const shrinkProject = () => {
   });
 };
 
+const activateExpandedProject = (isActive) => {
+  const tl = gsap.timeline();
+  tl.to('.project-info-wrapper', { opacity: 1, duration: 0.3 });
+  if (isActive) {
+    tl.play();
+  } else {
+    tl.play().reverse();
+  }
+};
+
 watch(
   () => navigationStore.projects.expanded,
   (newValue) => {
@@ -97,6 +111,13 @@ watch(
       navigationStore.setProjectsInTransition(true);
       shrinkProject();
     }
+  },
+);
+
+watch(
+  () => props.isActive,
+  (newValue) => {
+    activateExpandedProject(newValue);
   },
 );
 </script>
@@ -114,7 +135,7 @@ watch(
         : props.project.scrollSpeed,
     }"
     :style="`bottom: ${!navigationStore.projects.expanded ? (project.position?.bottom ?? 0) : 0}px;}`"
-    :class="`project ${navigationStore.projects.expanded ? ' expanded ' : ''} ${project.position?.alignRight ? ' project-right ' : ''}`"
+    :class="projectElClasses"
   >
     <div
       :class="`project-wrapper ${project.position?.alignRight ? ' project-right ' : ''}`"
@@ -241,6 +262,10 @@ $nameSize: 30px;
 }
 
 .expanded {
+  border-bottom: 2px solid red;
+  &.active-project {
+    border-bottom: 2px solid green;
+  }
   .info {
     opacity: 0.5;
   }
