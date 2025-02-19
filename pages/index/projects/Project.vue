@@ -23,7 +23,7 @@ const projectNumber = computed(() => {
 });
 const hoverImage = ref(false);
 const emit = defineEmits(['expandProjects']);
-const aniDuration = 0.5; // 0.3
+const aniDuration = 0.3; // 0.3
 
 const expandProject = () => {
   const timeline = gsap.timeline({
@@ -40,14 +40,14 @@ const expandProject = () => {
     opacity: 0,
   });
   timeline.to('.project-image img', {
-    height: '80vh',
+    height: '70vh',
     width: '50vw',
     duration: aniDuration,
   });
   timeline.to('.project-info-wrapper', {
     duration: aniDuration,
     width: '50vw',
-    height: '100%',
+    height: '70vh',
   });
   timeline.to('.expand-description > * ', {
     duration: aniDuration,
@@ -194,7 +194,8 @@ $nameSize: 30px;
 .project {
   display: flex;
   justify-content: left;
-  margin-bottom: $nameSize;
+  margin-top: $nameSize;
+  padding-top: $nameSize;
   position: relative;
   &.project-right {
     justify-content: right;

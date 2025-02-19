@@ -125,7 +125,6 @@ const goToProject = (index: number) => {
 $marginRight: 50px;
 
 .works-section {
-  padding-top: 200px;
   padding-bottom: 200px;
   margin: auto $marginRight auto 150px;
   position: relative;

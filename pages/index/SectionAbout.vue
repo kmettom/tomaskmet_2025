@@ -64,7 +64,7 @@ function textAniCallback(activeState: string, item: any) {
       duration: 0.1,
       opacity: 1,
       y: '0px',
-      stagger: 0.01,
+      stagger: 0.003,
     },
   );
 }
