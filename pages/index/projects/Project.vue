@@ -67,8 +67,8 @@ const shrinkProject = () => {
     },
   });
   timeline.to('.project-image', {
-    height: '200px',
-    width: '200px',
+    height: '150px',
+    width: '400px',
     duration: aniDuration,
   });
   timeline.to('.expand-description > * ', {

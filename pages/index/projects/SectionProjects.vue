@@ -150,7 +150,7 @@ $marginRight: 50px;
   position: absolute;
   top: 0;
   right: 0;
-  width: 50vw;
+  width: 50%;
   height: 100vh;
   bottom: 0;
   z-index: 10;
