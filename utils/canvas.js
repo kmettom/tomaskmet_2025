@@ -129,9 +129,10 @@ const Canvas = {
     for (var i = 0; i < this.imageStore.length; i++) {
       let bounds = this.imageStore[i].htmlEl.getBoundingClientRect();
       this.imageStore[i].mesh.scale.set(bounds.width, bounds.height);
+      //TODO: xxxyyy meshSize remove and access in fragment?
       this.imageStore[i].mesh.material.uniforms.uMeshSize.value.set(
-        width,
-        height,
+        bounds.width,
+        bounds.height,
       );
       this.imageStore[i].width = bounds.width;
       this.imageStore[i].height = bounds.height;
@@ -423,7 +424,7 @@ const Canvas = {
     htmlEl.dataset.meshId = id;
 
     let texture = new THREE.TextureLoader().load(htmlEl.src, () => {
-      //TODO: xxxyyy
+      //TODO: xxxyyy change to async for Image loading
       material.uniforms.uTextureSize.value.set(
         texture.image.width,
         texture.image.height,
