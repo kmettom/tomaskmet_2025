@@ -149,8 +149,8 @@ $marginRight: 50px;
 .gallery-controls {
   position: absolute;
   top: 0;
-  right: -$marginRight;
-  width: 50%;
+  right: 0;
+  width: 50vw;
   height: 100vh;
   bottom: 0;
   z-index: 10;
@@ -158,23 +158,29 @@ $marginRight: 50px;
 
 .gallery-controls-btn {
   position: absolute;
-  //background: transparent;
-  background: var(--dark-color);
-  border: 1px solid red;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
   outline: none;
-  //border: none;
+  border: none;
   cursor: pointer;
 }
+
 .close-btn {
-  top: 0;
-  right: -35px;
+  width: 35px;
+  height: 35px;
+  background: none;
+  outline: none;
+  border: none;
+  top: 35px;
+  right: 0px;
 }
+
 .change-project-btn {
   cursor: pointer;
   height: 100px;
   width: 100%;
   color: var(--light-color);
-
   &.next-item {
     bottom: 0;
   }

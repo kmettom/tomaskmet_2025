@@ -53,18 +53,17 @@ function textAniCallback(activeState: string, item: any) {
   const selector = `.${item.elNode.dataset.aboutId}`;
   const tl = gsap.timeline();
   const chars = new SplitText(selector, {
-    type: 'words,chars',
-  }).chars;
+    type: 'lines',
+  }).lines;
   tl.set(selector, { opacity: 1 });
-  // gsap.set('.welcome-txt-main', { perspective: 400 });
   tl.fromTo(
     chars,
     { y: '15px', opacity: 0 },
     {
-      duration: 0.1,
+      duration: 0.2,
       opacity: 1,
       y: '0px',
-      stagger: 0.003,
+      stagger: 0.1,
     },
   );
 }
@@ -100,7 +99,7 @@ function textAniCallback(activeState: string, item: any) {
     margin-top: 10px;
     margin-bottom: 10px;
   }
-  span {
+  div {
     opacity: 0;
   }
 }

@@ -39,14 +39,14 @@ const expandProject = () => {
     duration: 0.3,
     opacity: 0,
   });
-  timeline.to('.project-image img', {
+  timeline.to('.project-image', {
     height: '70vh',
-    width: '50vw',
+    width: '50%',
     duration: aniDuration,
   });
   timeline.to('.project-info-wrapper', {
     duration: aniDuration,
-    width: '50vw',
+    width: '50%',
     height: '70vh',
   });
   timeline.to('.expand-description > * ', {
@@ -66,7 +66,7 @@ const shrinkProject = () => {
       navigationStore.setProjectsInTransition(false);
     },
   });
-  timeline.to('.project-image img', {
+  timeline.to('.project-image', {
     height: '200px',
     width: '200px',
     duration: aniDuration,
@@ -99,28 +99,6 @@ watch(
     }
   },
 );
-
-// onMounted(() => {
-//   //TODO: xxxyyy remove test
-//   Canvas.animateImageMesh = true;
-//   const testAniDuration = 1;
-//   const timeline = gsap.timeline({
-//     repeat: -1, // Infinite repetition
-//     repeatDelay: 0.5, // (Optional) delay
-//     yoyo: true,
-//     transition: 'linear',
-//   });
-//   timeline.to('.project-image img', {
-//     height: '100px',
-//     width: '400px',
-//     duration: testAniDuration,
-//   });
-//   timeline.to('.project-image img', {
-//     height: '400px',
-//     width: '100px',
-//     duration: testAniDuration,
-//   });
-// });
 </script>
 
 <template>
@@ -175,13 +153,6 @@ watch(
           :image-show="!navigationStore.projects.expanded"
         />
       </div>
-      <!--      <div class="project-image-expanded">-->
-      <!--        <CanvasImage-->
-      <!--          :src-link="project.image_expanded.src"-->
-      <!--          :image-hover="false"-->
-      <!--          :image-show="navigationStore.projects.expanded"-->
-      <!--        />-->
-      <!--      </div>-->
       <div class="project-name body-m">
         <span>{{ project.name }}</span>
       </div>
@@ -218,6 +189,12 @@ $nameSize: 30px;
 
 .project-image {
   display: inline-block;
+  position: relative;
+  * {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .project-info-wrapper {

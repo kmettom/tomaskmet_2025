@@ -8,10 +8,6 @@
     "image": {
       "src": "images/03.png",
       "alt": "image description"
-    },
-    "image_expanded": {
-      "src": "images/01ex.png",
-      "alt": "image description"
     }
   },
   {
@@ -22,10 +18,6 @@
     "websiteLink": "",
     "image": {
       "src": "images/03.png",
-      "alt": "image description"
-    },
-    "image_expanded": {
-      "src": "images/02ex.png",
       "alt": "image description"
     },
     "scrollSpeed": -0.15,
@@ -42,10 +34,6 @@
     "websiteLink": "",
     "image": {
       "src": "images/03.png",
-      "alt": "image description"
-    },
-    "image_expanded": {
-      "src": "images/03ex.png",
       "alt": "image description"
     }
   }
