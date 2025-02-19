@@ -104,8 +104,11 @@ const expandProjectView = (index: number | null) => {
 };
 
 const goToProject = (index: number) => {
+  const projectMargin = 100;
   const projectPosition =
-    projectItemRefs.value[index].getBoundingClientRect().top + window.scrollY;
+    projectItemRefs.value[index].getBoundingClientRect().top +
+    window.scrollY -
+    projectMargin;
   Canvas.scrollTo(projectPosition, 0.5);
 };
 </script>
