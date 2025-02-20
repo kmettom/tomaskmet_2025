@@ -49,15 +49,15 @@ const Canvas = {
   navigationStore: null,
   scrollInProgress: false,
   animateImageMesh: false,
+  fixScrollOnEl: null,
   canvasContainer: null,
   scrollableContent: null,
-  pointer: { cursor: null, intersects: null },
+  // pointer: { cursor: null, intersects: null },
   time: 0,
   scene: new THREE.Scene(),
   materials: [],
   imageStore: [],
   textStore: [],
-  trackViewPortElements: [],
   scroll: null,
   currentScroll: 0,
   options: CanvasOptions,
@@ -527,6 +527,17 @@ const Canvas = {
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.render(this.scene, this.camera); // -> Also needed
   },
+
+  setFixedScrollOnEl(el, margin) {
+    if (!el) {
+      this.fixScrollOnEl = null;
+      return;
+    }
+    this.fixScrollOnEl = { el: el, margin: margin };
+    // el.getBoundingClientRect().top + margin;
+    // scrollTo
+  },
+
   scrollToTop(delay) {
     setTimeout(() => {
       this.scroll.render(0, false);

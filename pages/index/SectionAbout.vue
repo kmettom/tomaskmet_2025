@@ -52,12 +52,12 @@ function textAniCallback(activeState: string, item: any) {
   if (!activeState) return;
   const selector = `.${item.elNode.dataset.aboutId}`;
   const tl = gsap.timeline();
-  const chars = new SplitText(selector, {
+  const lines = new SplitText(selector, {
     type: 'lines',
   }).lines;
   tl.set(selector, { opacity: 1 });
   tl.fromTo(
-    chars,
+    lines,
     { y: '15px', opacity: 0 },
     {
       duration: 0.2,
@@ -67,8 +67,6 @@ function textAniCallback(activeState: string, item: any) {
     },
   );
 }
-// const textAniCallback = (textSelector: string, activeState: boolean) => {
-// };
 </script>
 
 <style lang="scss" scoped>

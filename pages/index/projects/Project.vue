@@ -1,7 +1,10 @@
 <script setup>
 import { watch } from 'vue';
-import { gsap } from 'gsap';
 const navigationStore = useNavigationStore();
+import { gsap } from 'gsap';
+import { SplitText } from 'gsap/SplitText';
+
+gsap.registerPlugin(SplitText);
 
 const props = defineProps({
   project: {
@@ -27,37 +30,66 @@ const projectNumber = computed(() => {
 });
 const hoverImage = ref(false);
 const emit = defineEmits(['expandProjects']);
-const aniDuration = 0.3; // 0.3
+const aniDuration = 1.3; // 0.3
 
 const expandProject = () => {
   const timeline = gsap.timeline({
     onStart: () => {
       Canvas.animateImageMesh = true;
+      // Canvas.setFixedScrollOnEl(el, margin)
     },
     onComplete: () => {
       Canvas.animateImageMesh = false;
-      navigationStore.setProjectsInTransition(false);
+      // Canvas.setFixedScrollOnEl(el, margin)
     },
   });
   timeline.to('.project-name', {
     duration: aniDuration,
     opacity: 0,
   });
-  timeline.to('.project-image', {
-    height: '70vh',
-    width: '50%',
-    duration: aniDuration,
-  });
-  timeline.to('.project-info-wrapper', {
-    duration: aniDuration,
-    width: '50%',
-    height: '70vh',
-  });
-  timeline.to('.expand-description > * ', {
-    duration: aniDuration,
+  timeline.add([
+    gsap.to('.project-image', {
+      height: '70vh',
+      width: '50%',
+      duration: aniDuration,
+    }),
+    gsap.to('.project-info-wrapper', {
+      duration: aniDuration,
+      width: '50%',
+      height: '70vh',
+    }),
+  ]);
+  const linesStatistics = new SplitText('.expand-description .statistics ', {
+    type: 'lines',
+  }).lines;
+  const wordsDescription = new SplitText('.project-description', {
+    type: 'words',
+  }).words;
+
+  timeline.set('.expand-description > * ', {
     opacity: 1,
-    stagger: 0.1,
   });
+
+  timeline.fromTo(
+    linesStatistics,
+    { y: '15px', opacity: 0 },
+    {
+      duration: 0.2,
+      opacity: 1,
+      y: '0px',
+      stagger: 0.1,
+    },
+  );
+  timeline.fromTo(
+    wordsDescription,
+    { y: '15px', opacity: 0 },
+    {
+      duration: 0.1,
+      opacity: 1,
+      y: '0px',
+      stagger: 0.01,
+    },
+  );
 };
 
 const shrinkProject = () => {
@@ -67,7 +99,6 @@ const shrinkProject = () => {
     },
     onComplete: () => {
       Canvas.animateImageMesh = false;
-      navigationStore.setProjectsInTransition(false);
     },
   });
   timeline.to('.project-image', {
@@ -105,10 +136,8 @@ watch(
   () => navigationStore.projects.expanded,
   (newValue) => {
     if (newValue) {
-      navigationStore.setProjectsInTransition(true);
       expandProject();
     } else {
-      navigationStore.setProjectsInTransition(true);
       shrinkProject();
     }
   },

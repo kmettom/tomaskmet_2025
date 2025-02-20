@@ -97,6 +97,11 @@ const prevProjectName = computed(() => {
 const expandProjectView = (index: number | null) => {
   navigationStore.setProjectsExpanded(index !== null);
   navigationStore.setNavVisible(index === null);
+  if (index !== null) {
+    setTimeout(() => {
+      if (index) goToProject(index);
+    }, 500);
+  }
 };
 
 const goToProject = (index: number) => {
