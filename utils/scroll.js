@@ -101,21 +101,19 @@ export default class Scroll {
       const bounds = item.elNode.getBoundingClientRect();
 
       let activeRange = item.options.activeRange ?? 1;
+      let activeRangeOrigin = item.options.activeRangeOrigin ?? 1;
 
-      let activeRangeInPx = (1 - activeRange) * window.innerHeight;
+      let activeRangeOriginPx = activeRangeOrigin * window.innerHeight;
 
-      if (item.options.activeRangeOrigin === 0) {
-        activeRangeInPx = 0;
-      }
+      let activeRangeInPx =
+        (1 - activeRange) * activeRangeOriginPx;
 
-      let activeRangeOriginPx =
-        item.options.activeRangeOrigin === 0 ? 0 : window.innerHeight;
       const itemRangeMargin = item.options.activeRangeMargin ?? 0;
       const activeFromTop =
         bounds.top - itemRangeMargin <= activeRangeOriginPx - activeRangeInPx;
       const activeFromBottom =
         !item.options.bidirectionalActivation ||
-        bounds.bottom - itemRangeMargin >= activeRangeInPx;
+        bounds.bottom - itemRangeMargin >= activeRangeInPx + activeRangeOriginPx;
 
       if (activeFromTop && activeFromBottom) {
         if (item.options.scrollCallback)
