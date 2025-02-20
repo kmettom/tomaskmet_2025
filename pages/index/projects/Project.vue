@@ -1,8 +1,8 @@
 <script setup>
 import { watch } from 'vue';
-const navigationStore = useNavigationStore();
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
+const navigationStore = useNavigationStore();
 
 gsap.registerPlugin(SplitText);
 
