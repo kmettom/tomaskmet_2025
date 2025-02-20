@@ -93,7 +93,6 @@ watch(
 watch(
   () => props.imageShow,
   (isVisible) => {
-    console.log(isVisible);
     Canvas.activateMesh(generatedMeshId, isVisible);
   },
 );

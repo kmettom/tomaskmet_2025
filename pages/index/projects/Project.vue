@@ -40,7 +40,7 @@ const expandProject = () => {
     },
   });
   timeline.to('.project-name', {
-    duration: 0.3,
+    duration: aniDuration,
     opacity: 0,
   });
   timeline.to('.project-image', {
