@@ -264,9 +264,7 @@ $nameSize: 30px;
 }
 
 .expanded {
-  border: 2px solid red;
   &.active-project {
-    border: 2px solid green;
   }
   .info {
     opacity: 0.5;

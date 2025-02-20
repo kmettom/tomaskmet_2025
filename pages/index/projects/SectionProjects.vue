@@ -15,7 +15,7 @@
           bidirectionalActivation: true,
           scrollTriggerSectionsClass: navigationStore.projects.expanded
             ? 'project-item'
-            : null
+            : null,
         }"
       >
         <!--        v-onTriggerSectionSlide="{-->
@@ -73,7 +73,7 @@ import Container from '~/components/common/Container.vue';
 import projectsData from '~/content/projects.json';
 import Project from '~/pages/index/projects/Project.vue';
 import IconsClose from '~/components/common/icons/close.client.vue';
-import {useTemplateRefsList} from '@vueuse/core';
+import { useTemplateRefsList } from '@vueuse/core';
 
 const navigationStore = useNavigationStore();
 
@@ -97,11 +97,6 @@ const prevProjectName = computed(() => {
 const expandProjectView = (index: number | null) => {
   navigationStore.setProjectsExpanded(index !== null);
   navigationStore.setNavVisible(index === null);
-  if (index !== null) {
-    setTimeout(() => {
-      if (index) goToProject(index);
-    }, 500);
-  }
 };
 
 const goToProject = (index: number) => {
@@ -172,7 +167,7 @@ $marginRight: 50px;
 
 .change-project-btn {
   cursor: pointer;
-  height: 100px;
+  height: 75px;
   width: 100%;
   color: var(--light-color);
   &.next-item {
