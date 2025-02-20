@@ -69,7 +69,7 @@ const setSectionActivationOptions = (sectionId, sectionContrast) => {
       navigationStore.setActiveNavItem(sectionId);
       navigationStore.setNavContrast(sectionContrast);
     },
-    activeRangeOrigin: 'top',
+    activeRangeOrigin: 0, // top
     bidirectionalActivation: true,
     activeRangeMargin: 100,
   };

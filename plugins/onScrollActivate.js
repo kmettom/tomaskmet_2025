@@ -31,7 +31,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 //   activateCallback: String,
 //   trackOnly: Boolean,
 //   bidirectionalActivation: Boolean (default: false),
-//   activeRangeOrigin: 'top' | 'middle' (Default)
+//   activeRangeOrigin: Number (0-1, 0 from top of screen, 1 bottom of the screen)
 //   activeRangeMargin: Number
 //   scrollSpeed: Number,
 //   fixToParentId: Boolean,

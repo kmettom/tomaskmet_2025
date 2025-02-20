@@ -205,12 +205,12 @@ $w-xs: 550px; // mobile resolution
 //*************************
 
 .show-on-scroll {
-  //transition: ease opacity 0.3s;
-  //opacity: 0;
+  transition: ease opacity 0.3s;
+  opacity: 0;
   //$movepx: 45px;
-  //&.active {
-  //  opacity: 1;
-  //}
+  &.active {
+    opacity: 1;
+  }
 }
 
 //*************************

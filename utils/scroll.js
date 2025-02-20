@@ -100,16 +100,16 @@ export default class Scroll {
     for (const item of this.DOM.onScrollActivateElements) {
       const bounds = item.elNode.getBoundingClientRect();
 
-      let activeRangeInPx = 0;
-      if (
-        item.options.activeRange &&
-        item.options.activeRangeOrigin !== 'top'
-      ) {
-        activeRangeInPx = (1 - item.options.activeRange) * window.innerHeight;
+      let activeRange = item.options.activeRange ?? 1;
+
+      let activeRangeInPx = (1 - activeRange) * window.innerHeight;
+
+      if (item.options.activeRangeOrigin === 0) {
+        activeRangeInPx = 0;
       }
 
       let activeRangeOriginPx =
-        item.options.activeRangeOrigin === 'top' ? 0 : window.innerHeight;
+        item.options.activeRangeOrigin === 0 ? 0 : window.innerHeight;
       const itemRangeMargin = item.options.activeRangeMargin ?? 0;
       const activeFromTop =
         bounds.top - itemRangeMargin <= activeRangeOriginPx - activeRangeInPx;
