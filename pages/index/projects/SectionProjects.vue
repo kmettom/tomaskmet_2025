@@ -15,7 +15,7 @@
           bidirectionalActivation: true,
           scrollTriggerSectionsClass: navigationStore.projects.expanded
             ? 'project-item'
-            : null,
+            : null
         }"
       >
         <!--        v-onTriggerSectionSlide="{-->
@@ -54,6 +54,7 @@
           :key="project.name"
           :ref="projectItemRefs.set"
           class="project-item"
+          :class="{ first: index === 0 }"
         >
           <Project
             :project="project"
@@ -72,7 +73,7 @@ import Container from '~/components/common/Container.vue';
 import projectsData from '~/content/projects.json';
 import Project from '~/pages/index/projects/Project.vue';
 import IconsClose from '~/components/common/icons/close.client.vue';
-import { useTemplateRefsList } from '@vueuse/core';
+import {useTemplateRefsList} from '@vueuse/core';
 
 const navigationStore = useNavigationStore();
 
@@ -104,7 +105,7 @@ const expandProjectView = (index: number | null) => {
 };
 
 const goToProject = (index: number) => {
-  const projectMargin = 100;
+  const projectMargin = index === 0 ? 0 : 100;
   const projectPosition =
     projectItemRefs.value[index].getBoundingClientRect().top +
     window.scrollY -
@@ -137,7 +138,6 @@ $marginRight: 50px;
 
 #gallery {
   position: relative;
-  //position: absolute;
 }
 
 .gallery-controls {
@@ -185,5 +185,8 @@ $marginRight: 50px;
 
 .project-item {
   position: relative;
+  &.first {
+    padding-top: 75px;
+  }
 }
 </style>
