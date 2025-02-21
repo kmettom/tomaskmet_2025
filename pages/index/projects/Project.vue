@@ -2,6 +2,7 @@
 import { watch } from 'vue';
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
+import { activeProjectTransition } from '~/utils/animations/projects';
 const navigationStore = useNavigationStore();
 
 gsap.registerPlugin(SplitText);
@@ -11,10 +12,6 @@ const props = defineProps({
     type: Object,
     required: true,
   },
-  isActive: {
-    type: Boolean,
-    default: false,
-  },
   index: {
     type: Number,
     required: true,
@@ -22,131 +19,25 @@ const props = defineProps({
 });
 
 const projectElClasses = computed(() => {
-  return `project ${props.isActive ? ' active-project ' : ''}  ${navigationStore.projects.expanded ? ' expanded ' : ''} ${props.project.position?.alignRight ? ' project-right ' : ''}`;
+  return `project ${isActive.value ? ' active-project ' : ''}  ${navigationStore.projects.galleryOpen ? ' expanded ' : ''} ${props.project.position?.alignRight ? ' project-right ' : ''}`;
+});
+const isActive = computed(() => {
+  return (
+    navigationStore.projects.galleryOpen &&
+    navigationStore.projects.activeProject === props.project.name
+  );
 });
 
 const projectNumber = computed(() => {
   return '0' + (props.index + 1).toString();
 });
 const hoverImage = ref(false);
-const emit = defineEmits(['expandProjects']);
-const aniDuration = 1.3; // 0.3
-
-const expandProject = () => {
-  const timeline = gsap.timeline({
-    onStart: () => {
-      Canvas.animateImageMesh = true;
-      // Canvas.setFixedScrollOnEl(el, margin)
-    },
-    onComplete: () => {
-      Canvas.animateImageMesh = false;
-      // Canvas.setFixedScrollOnEl(el, margin)
-    },
-  });
-  timeline.to('.project-name', {
-    duration: aniDuration,
-    opacity: 0,
-  });
-  timeline.add([
-    gsap.to('.project-image', {
-      height: '70vh',
-      width: '50%',
-      duration: aniDuration,
-    }),
-    gsap.to('.project-info-wrapper', {
-      duration: aniDuration,
-      width: '50%',
-      height: '70vh',
-    }),
-  ]);
-  const linesStatistics = new SplitText('.expand-description .statistics ', {
-    type: 'lines',
-  }).lines;
-  const wordsDescription = new SplitText('.project-description', {
-    type: 'words',
-  }).words;
-
-  timeline.set('.expand-description > * ', {
-    opacity: 1,
-  });
-
-  timeline.fromTo(
-    linesStatistics,
-    { y: '15px', opacity: 0 },
-    {
-      duration: 0.2,
-      opacity: 1,
-      y: '0px',
-      stagger: 0.1,
-    },
-  );
-  timeline.fromTo(
-    wordsDescription,
-    { y: '15px', opacity: 0 },
-    {
-      duration: 0.1,
-      opacity: 1,
-      y: '0px',
-      stagger: 0.01,
-    },
-  );
-};
-
-const shrinkProject = () => {
-  const timeline = gsap.timeline({
-    onStart: () => {
-      Canvas.animateImageMesh = true;
-    },
-    onComplete: () => {
-      Canvas.animateImageMesh = false;
-    },
-  });
-  timeline.to('.project-image', {
-    height: '150px',
-    width: '400px',
-    duration: aniDuration,
-  });
-  timeline.to('.expand-description > * ', {
-    duration: aniDuration,
-    opacity: 0,
-    stagger: 0.1,
-  });
-  timeline.to('.project-info-wrapper', {
-    duration: aniDuration,
-    height: 0,
-    width: 0,
-  });
-  timeline.to('.project-name', {
-    duration: aniDuration,
-    opacity: 1,
-  });
-};
-
-const activateExpandedProject = (isActive) => {
-  const tl = gsap.timeline();
-  tl.to('.project-info-wrapper', { opacity: 1, duration: 0.3 });
-  if (isActive) {
-    tl.play();
-  } else {
-    tl.play().reverse();
-  }
-};
+const emit = defineEmits(['openGallery']);
 
 watch(
-  () => navigationStore.projects.expanded,
+  () => isActive,
   (newValue) => {
-    if (newValue) {
-      expandProject();
-    } else {
-      shrinkProject();
-    }
-  },
-);
-
-watch(
-  () => props.isActive,
-  (newValue) => {
-    activateExpandedProject(newValue);
+    activeProjectTransition(newValue);
   },
 );
 </script>
@@ -154,25 +45,26 @@ watch(
 <template>
   <div
     v-onScrollActivate="{
-      activeRange: navigationStore.projects.expanded ? 1 : 0.85,
+      activeRange: navigationStore.projects.galleryOpen ? 1 : 0.85,
       activateOnce: false,
-      activeRangeOrigin: navigationStore.projects.expanded ? 0.5 : 1,
-      bidirectionalActivation: navigationStore.projects.expanded,
+      activeRangeOrigin: navigationStore.projects.galleryOpen ? 0.5 : 1,
+      bidirectionalActivation: navigationStore.projects.galleryOpen,
       activateCallback: () => {
-        navigationStore.setActiveProject(props.project.name);
+        if (navigationStore.projects.galleryOpen)
+          navigationStore.setActiveProject(props.project.name);
       },
-      scrollSpeed: navigationStore.projects.expanded
+      scrollSpeed: navigationStore.projects.galleryOpen
         ? 0
         : props.project.scrollSpeed,
     }"
-    :style="`bottom: ${!navigationStore.projects.expanded ? (project.position?.bottom ?? 0) : 0}px;}`"
+    :style="`bottom: ${!navigationStore.projects.galleryOpen ? (project.position?.bottom ?? 0) : 0}px;}`"
     :class="projectElClasses"
   >
     <div
       :class="`project-wrapper ${project.position?.alignRight ? ' project-right ' : ''}`"
-      @mouseover="hoverImage = !navigationStore.projects.expanded"
+      @mouseover="hoverImage = !navigationStore.projects.galleryOpen"
       @mouseleave="hoverImage = false"
-      @click="emit('expandProjects')"
+      @click="emit('openGallery')"
     >
       <div class="project-info-wrapper">
         <div class="heading-3 project-index">{{ projectNumber }}</div>
@@ -202,7 +94,7 @@ watch(
         <CanvasImage
           :src-link="project.image.src"
           :image-hover="hoverImage"
-          :image-show="!navigationStore.projects.expanded"
+          :image-show="!navigationStore.projects.galleryOpen"
         />
       </div>
       <div class="project-name body-m">
@@ -290,13 +182,5 @@ $nameSize: 30px;
   position: absolute;
   bottom: -$nameSize;
   left: 0;
-}
-
-.expanded {
-  &.active-project {
-  }
-  .info {
-    opacity: 0.5;
-  }
 }
 </style>

@@ -42,5 +42,21 @@
       "width": 100,
       "height": 30
     }
+  },
+  {
+    "name": "Client 4",
+    "year": "2022",
+    "award": "sotd",
+    "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur. isus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
+    "websiteLink": "",
+    "image": {
+      "src": "images/03.png",
+      "alt": "image description",
+      "width": 100,
+      "height": 30
+    },
+    "position": {
+      "alignRight": true
+    }
   }
 ]

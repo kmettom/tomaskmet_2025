@@ -11,9 +11,8 @@ export const useNavigationStore = defineStore('navigationStore', {
       { name: 'Contact us', id: 'contact' },
     ],
     projects: {
-      expanded: false,
-      // inTransition: false,
-      activeProject: null,
+      galleryOpen: false,
+      activeProjectName: null,
     },
     // navItems: ['home', 'about', 'work', 'services' , 'contact'],
   }),
@@ -27,11 +26,11 @@ export const useNavigationStore = defineStore('navigationStore', {
     setNavContrast(contrastSwitched) {
       this.navContrastSwitched = contrastSwitched;
     },
-    setProjectsExpanded(expanded) {
-      this.projects.expanded = expanded;
+    setGalleryOpen(open) {
+      this.projects.galleryOpen = open;
     },
     setActiveProject(name) {
-      this.projects.activeProject = name;
+      this.projects.activeProjectName = name;
     },
   },
 });

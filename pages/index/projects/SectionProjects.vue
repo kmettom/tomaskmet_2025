@@ -13,22 +13,19 @@
         v-onScrollActivate="{
           trackOnly: true,
           bidirectionalActivation: true,
-          scrollTriggerSectionsClass: navigationStore.projects.expanded
+          scrollTriggerSectionsClass: navigationStore.projects.galleryOpen
             ? 'project-item'
             : null,
         }"
       >
-        <!--        v-onTriggerSectionSlide="{-->
-        <!--        scrollTriggerSectionsClass: navigationStore.projects.expanded ? 'project-item' : null,-->
-        <!--        }"-->
         <div
-          v-if="navigationStore.projects.expanded"
+          v-if="navigationStore.projects.galleryOpen"
           v-onScrollActivate="{ fixToParentId: 'gallery' }"
         >
           <div class="gallery-controls">
             <button
               class="gallery-controls-btn close-btn"
-              @click="expandProjectView(null)"
+              @click="openGallery(null)"
             >
               <IconsClose />
             </button>
@@ -59,8 +56,7 @@
           <Project
             :project="project"
             :index="index"
-            :is-active="navigationStore.projects.activeProject === project.name"
-            @expand-projects="expandProjectView(index)"
+            @open-gallery="openGallery(index)"
           />
         </div>
       </div>
@@ -74,13 +70,15 @@ import projectsData from '~/content/projects.json';
 import Project from '~/pages/index/projects/Project.vue';
 import IconsClose from '~/components/common/icons/close.client.vue';
 import { useTemplateRefsList } from '@vueuse/core';
+import { watch } from 'vue';
+import { openGalleryTransition } from '~/utils/animations/projects';
 
 const navigationStore = useNavigationStore();
 
 const projects = ref(projectsData);
 const activeProjectsIndex = computed(() => {
   return projects.value.findIndex(
-    (project) => project.name === navigationStore.projects.activeProject,
+    (project) => project.name === navigationStore.projects.activeProjectName,
   );
 });
 
@@ -94,8 +92,9 @@ const prevProjectName = computed(() => {
   return projects.value[activeProjectsIndex.value - 1]?.name ?? null;
 });
 
-const expandProjectView = (index: number | null) => {
-  navigationStore.setProjectsExpanded(index !== null);
+const openGallery = (index: number | null) => {
+  console.log('openGallery', index);
+  navigationStore.setGalleryOpen(index !== null);
   navigationStore.setNavVisible(index === null);
   if (index !== null) {
     setTimeout(() => {
@@ -112,6 +111,13 @@ const goToProject = (index: number) => {
     projectMargin;
   Canvas.scrollTo(projectPosition, 0.5);
 };
+
+watch(
+  () => navigationStore.projects.galleryOpen,
+  (newValue) => {
+    openGalleryTransition(newValue);
+  },
+);
 </script>
 
 <style lang="scss" scoped>
