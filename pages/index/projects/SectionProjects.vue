@@ -95,7 +95,9 @@ const prevProjectName = computed(() => {
 });
 
 const openGallery = (index: number | null) => {
-  if (index !== null) {
+  if (index === null) {
+    navigationStore.setActiveProject(index, null);
+  } else {
     goToProject(index);
     navigationStore.setActiveProject(index, projectItemRefs.value[index]);
   }

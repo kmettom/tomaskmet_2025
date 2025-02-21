@@ -50,9 +50,15 @@ export const useNavigationStore = defineStore('navigationStore', {
     },
     setActiveProject(index, ref) {
       this.projects.pastActiveProject = { ...this.projects.activeProject };
-      this.projects.activeProject.index = index;
-      this.projects.activeProject.ref = ref;
-      activeProjectTransition(ref);
+      if (index === null) {
+        this.projects.activeProject.index = 0;
+        this.projects.activeProject.ref = null;
+        this.setGalleryOpen(false);
+      } else {
+        this.projects.activeProject.index = index;
+        this.projects.activeProject.ref = ref;
+        activeProjectTransition(ref);
+      }
       if (this.projects.pastActiveProject.ref)
         nonActiveProjectTransition(this.projects.pastActiveProject.ref);
     },

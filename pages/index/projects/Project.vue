@@ -140,7 +140,7 @@ $nameSize: 30px;
   width: 0;
   height: 0;
   position: relative;
-  overflow: hidden;
+  //overflow: hidden;
 }
 
 .project-description {
