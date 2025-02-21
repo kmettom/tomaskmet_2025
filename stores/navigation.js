@@ -1,7 +1,7 @@
 // import { Canvas } from '~/utils/canvas';
 
 import {
-  activeProjectTransition,
+  activeProjectTransition, nonActiveProjectTransition,
   openGalleryTransition,
   showGalleryControls,
 } from '~/utils/animations/projects';
@@ -46,7 +46,10 @@ export const useNavigationStore = defineStore('navigationStore', {
     },
     setActiveProjectIndex(index) {
       this.projects.activeProjectIndex = index;
-      activeProjectTransition();
+      setTimeout(() => {
+        activeProjectTransition();
+        nonActiveProjectTransition();
+      },10)
     },
   },
 });

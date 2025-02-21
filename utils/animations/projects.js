@@ -20,14 +20,14 @@ export function openGalleryTransition(open) {
         opacity: 0,
       });
       timeline.to('.project-image', {
-        // height: '30vh',
+        height: '70vh',
         width: '50%',
         duration: aniDuration,
       });
       timeline.to('.project-info-wrapper', {
         duration: aniDuration,
         width: '50%',
-        // height: '30vh',
+        height: '30vh',
       });
     } else {
       timeline.to('.project-image', {
@@ -57,14 +57,67 @@ export function showGalleryControls(show) {
       Canvas.animateImageMesh = false;
     },
   });
-  timeline.to('.gallery-controls', {
+
+  const nonActiveProjectSelector = ' .project.expanded-project ';
+
+  timeline.to(nonActiveProjectSelector + '.project-image', {
     duration: 0.5,
     opacity: show ? 1 : 0,
   });
 }
 
+export function nonActiveProjectTransition() {
+  const timelineNonActive = gsap.timeline({
+    onStart: () => {
+      Canvas.animateImageMesh = true;
+    },
+    onComplete: () => {
+      Canvas.animateImageMesh = false;
+    },
+  });
+  const nonActiveProjectSelector = ' .project.expand-project ';
+
+  const linesStatistics = new SplitText(
+      nonActiveProjectSelector + ' .expand-description .statistics ',
+    {
+      type: 'lines',
+    },
+  ).lines;
+
+  const wordsDescription = new SplitText(
+      nonActiveProjectSelector + '.project-description',
+    {
+      type: 'words',
+    },
+  ).words;
+
+  timelineNonActive.set(nonActiveProjectSelector + ' .expand-description', {
+    opacity: 1,
+  });
+
+  timelineNonActive.to(
+    linesStatistics,
+    // { y: '15px', opacity: 0 },
+    {
+      duration: 0.2,
+      opacity: 0,
+      y: '15px',
+      stagger: 0.1,
+    },
+  );
+  timelineNonActive.to(
+    wordsDescription,
+    // { y: '15px', opacity: 0 },
+    {
+      duration: 0.1,
+      opacity: 0,
+      y: '15px',
+      stagger: 0.01,
+    },
+  );
+}
 export function activeProjectTransition() {
-  const timeline = gsap.timeline({
+  const timelineActive = gsap.timeline({
     onStart: () => {
       Canvas.animateImageMesh = true;
     },
@@ -73,11 +126,10 @@ export function activeProjectTransition() {
     },
   });
 
-  const activeProjectSelector = ' .project .active-project ';
-  // const nonActiveProjectSelector = ' .project .expanded-project ';
+  const activeProjectSelector = ' .project.active-project ';
 
   const linesStatistics = new SplitText(
-    activeProjectSelector + '.expand-description .statistics ',
+    activeProjectSelector + ' .expand-description .statistics ',
     {
       type: 'lines',
     },
@@ -90,11 +142,11 @@ export function activeProjectTransition() {
     },
   ).words;
 
-  timeline.set(activeProjectSelector + '.expand-description > * ', {
+  timelineActive.set(activeProjectSelector + ' .expand-description', {
     opacity: 1,
   });
 
-  timeline.fromTo(
+  timelineActive.fromTo(
     linesStatistics,
     { y: '15px', opacity: 0 },
     {
@@ -104,7 +156,7 @@ export function activeProjectTransition() {
       stagger: 0.1,
     },
   );
-  timeline.fromTo(
+  timelineActive.fromTo(
     wordsDescription,
     { y: '15px', opacity: 0 },
     {

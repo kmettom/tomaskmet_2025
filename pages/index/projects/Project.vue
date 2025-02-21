@@ -17,14 +17,11 @@ const props = defineProps({
 });
 
 const projectElClasses = computed(() => {
-  return `project ${isActive.value ? ' active-project ' : ''}  ${props.project.position?.alignRight ? ' project-right ' : ''}`;
+  return `project ${navigationStore.projects.galleryOpen ? (isActive.value ? ' active-project ' : ' expanded-project ') : ''}  ${props.project.position?.alignRight ? ' project-right ' : ''}`;
 });
 
 const isActive = computed(() => {
-  return (
-    navigationStore.projects.galleryOpen &&
-    navigationStore.projects.activeProjectIndex === props.index
-  );
+  return navigationStore.projects.activeProjectIndex === props.index;
 });
 
 const projectNumber = computed(() => {
@@ -52,6 +49,7 @@ const emit = defineEmits(['openGallery']);
     :style="`bottom: ${!navigationStore.projects.galleryOpen ? (project.position?.bottom ?? 0) : 0}px;}`"
     :class="projectElClasses"
   >
+    {{projectElClasses}}
     <div
       :class="`project-wrapper ${project.position?.alignRight ? ' project-right ' : ''}`"
       @mouseover="hoverImage = !navigationStore.projects.galleryOpen"
@@ -78,7 +76,9 @@ const emit = defineEmits(['openGallery']);
           <p class="project-description body-m">
             {{ project.description }}
           </p>
-          <a :href="project.websiteLink" target="_blank">👉 visit website</a>
+          <a class="project-link" :href="project.websiteLink" target="_blank"
+            >👉 visit website</a
+          >
         </div>
       </div>
 
@@ -145,12 +145,13 @@ $nameSize: 30px;
 }
 
 .expand-description {
+  opacity: 0;
   padding: 0 50px 50px 50px;
   position: relative;
 
-  & > * {
-    opacity: 0;
-  }
+  //& > * {
+  //  opacity: 0;
+  //}
 
   .statistics {
     height: 50%;
