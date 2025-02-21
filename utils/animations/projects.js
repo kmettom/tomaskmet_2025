@@ -10,7 +10,7 @@ export function openGalleryTransition(open) {
         Canvas.animateImageMesh = true;
       },
       onComplete: () => {
-        Canvas.animateImageMesh = false;
+        // Canvas.animateImageMesh = false;
         resolve();
       },
     });
@@ -54,7 +54,7 @@ export function showGalleryControls(show) {
       Canvas.animateImageMesh = true;
     },
     onComplete: () => {
-      Canvas.animateImageMesh = false;
+      // Canvas.animateImageMesh = false;
     },
   });
 
@@ -74,7 +74,7 @@ export function activeProjectTransition(ref) {
       Canvas.animateImageMesh = true;
     },
     onComplete: () => {
-      Canvas.animateImageMesh = false;
+      // Canvas.animateImageMesh = false;
     },
   });
 

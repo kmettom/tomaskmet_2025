@@ -99,10 +99,18 @@ const openGallery = (index: number | null) => {
     navigationStore.setActiveProject(index, null);
   } else {
     goToProject(index);
-    navigationStore.setActiveProject(index, projectItemRefs.value[index]);
   }
+
   navigationStore.setNavVisible(index === null);
   navigationStore.setGalleryOpen(index !== null);
+
+  if (index !== null) {
+    setTimeout(() => {
+      navigationStore.setActiveProject(index, projectItemRefs.value[index]);
+    },2000)
+  }
+
+
 };
 
 const goToProject = (index: number) => {
