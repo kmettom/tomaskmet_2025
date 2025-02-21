@@ -78,14 +78,14 @@ export function nonActiveProjectTransition() {
   const nonActiveProjectSelector = ' .project.expand-project ';
 
   const linesStatistics = new SplitText(
-      nonActiveProjectSelector + ' .expand-description .statistics ',
+    nonActiveProjectSelector + ' .expand-description .statistics ',
     {
       type: 'lines',
     },
   ).lines;
 
   const wordsDescription = new SplitText(
-      nonActiveProjectSelector + '.project-description',
+    nonActiveProjectSelector + '.project-description',
     {
       type: 'words',
     },

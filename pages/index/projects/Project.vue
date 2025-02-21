@@ -49,7 +49,7 @@ const emit = defineEmits(['openGallery']);
     :style="`bottom: ${!navigationStore.projects.galleryOpen ? (project.position?.bottom ?? 0) : 0}px;}`"
     :class="projectElClasses"
   >
-    {{projectElClasses}}
+    {{ projectElClasses }}
     <div
       :class="`project-wrapper ${project.position?.alignRight ? ' project-right ' : ''}`"
       @mouseover="hoverImage = !navigationStore.projects.galleryOpen"
