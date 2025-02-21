@@ -225,7 +225,7 @@ const Canvas = {
   addOnScrollActivateElement(binding) {
     const newBinding = generateBindingLogic(binding);
     if (newBinding.options.scrollTriggerSectionsClass) {
-      this.createTriggerSectionPositions();
+      // this.createTriggerSectionPositions();
       // TODO: create trigger section logic
       //if this section active, block scroll and use it as a trigger to move to next section
     }

@@ -42,9 +42,9 @@ const emit = defineEmits(['openGallery']);
         if (navigationStore.projects.galleryOpen)
           navigationStore.setActiveProjectIndex(props.index);
       },
-      scrollSpeed: navigationStore.projects.galleryOpen
-        ? 0
-        : props.project.scrollSpeed,
+      // scrollSpeed: navigationStore.projects.galleryOpen
+      //   ? 0
+      //   : props.project.scrollSpeed,
     }"
     :style="`bottom: ${!navigationStore.projects.galleryOpen ? (project.position?.bottom ?? 0) : 0}px;}`"
     :class="projectElClasses"

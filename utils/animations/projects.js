@@ -58,9 +58,7 @@ export function showGalleryControls(show) {
     },
   });
 
-  const nonActiveProjectSelector = ' .project.expanded-project ';
-
-  timeline.to(nonActiveProjectSelector + '.project-image', {
+  timeline.to('.gallery-controls', {
     duration: 0.5,
     opacity: show ? 1 : 0,
   });
@@ -75,7 +73,7 @@ export function nonActiveProjectTransition() {
       Canvas.animateImageMesh = false;
     },
   });
-  const nonActiveProjectSelector = ' .project.expand-project ';
+  const nonActiveProjectSelector = ' .project.expanded-project ';
 
   const linesStatistics = new SplitText(
     nonActiveProjectSelector + ' .expand-description .statistics ',
@@ -91,10 +89,6 @@ export function nonActiveProjectTransition() {
     },
   ).words;
 
-  timelineNonActive.set(nonActiveProjectSelector + ' .expand-description', {
-    opacity: 1,
-  });
-
   timelineNonActive.to(
     linesStatistics,
     // { y: '15px', opacity: 0 },
@@ -115,6 +109,9 @@ export function nonActiveProjectTransition() {
       stagger: 0.01,
     },
   );
+  timelineNonActive.set(nonActiveProjectSelector + ' .expand-description', {
+    opacity: 0,
+  });
 }
 export function activeProjectTransition() {
   const timelineActive = gsap.timeline({
@@ -127,6 +124,10 @@ export function activeProjectTransition() {
   });
 
   const activeProjectSelector = ' .project.active-project ';
+
+  timelineActive.set(activeProjectSelector + ' .expand-description', {
+    opacity: 1,
+  });
 
   const linesStatistics = new SplitText(
     activeProjectSelector + ' .expand-description .statistics ',
@@ -142,10 +143,6 @@ export function activeProjectTransition() {
     },
   ).words;
 
-  timelineActive.set(activeProjectSelector + ' .expand-description', {
-    opacity: 1,
-  });
-
   timelineActive.fromTo(
     linesStatistics,
     { y: '15px', opacity: 0 },
@@ -167,15 +164,3 @@ export function activeProjectTransition() {
     },
   );
 }
-
-// const tl = gsap.timeline();
-// tl.fromTo(
-//     '.project-info-wrapper .statistics',
-//     { y: '15px', opacity: 0 },
-//     { y: 0, opacity: 1, duration: 1.3 },
-// );
-// if (isActive) {
-//   tl.play();
-// } else {
-//   tl.play().reverse();
-// }

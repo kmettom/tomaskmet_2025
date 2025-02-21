@@ -13,9 +13,9 @@
         v-onScrollActivate="{
           trackOnly: true,
           bidirectionalActivation: true,
-          scrollTriggerSectionsClass: navigationStore.projects.galleryOpen
-            ? 'project-item'
-            : null,
+          // scrollTriggerSectionsClass: navigationStore.projects.galleryOpen
+          //   ? 'project-item'
+          //   : null,
         }"
       >
         <div v-onScrollActivate="{ fixToParentId: 'gallery' }">
