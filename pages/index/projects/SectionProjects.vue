@@ -77,6 +77,8 @@ const navigationStore = useNavigationStore();
 const projects = ref(projectsData);
 
 const projectItemRefs = useTemplateRefsList<HTMLDivElement>();
+navigationStore.setProjectRefs(projectItemRefs);
+
 const projectGalleryRef = ref();
 
 const nextProjectName = computed(() => {
@@ -93,14 +95,12 @@ const prevProjectName = computed(() => {
 });
 
 const openGallery = (index: number | null) => {
-  navigationStore.setGalleryOpen(index !== null);
-  navigationStore.setNavVisible(index === null);
-  navigationStore.setActiveProjectIndex(index);
   if (index !== null) {
-    setTimeout(() => {
-      if (index) goToProject(index);
-    }, 500);
+    goToProject(index);
+    navigationStore.setActiveProject(index, projectItemRefs.value[index]);
   }
+  navigationStore.setNavVisible(index === null);
+  navigationStore.setGalleryOpen(index !== null);
 };
 
 const goToProject = (index: number) => {
@@ -111,6 +111,13 @@ const goToProject = (index: number) => {
     projectMargin;
   Canvas.scrollTo(projectPosition, 0.5);
 };
+
+watch(
+  () => projectItemRefs,
+  (refs) => {
+    console.log('refs', refs);
+  },
+);
 </script>
 
 <style lang="scss" scoped>

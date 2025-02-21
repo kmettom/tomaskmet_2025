@@ -64,57 +64,12 @@ export function showGalleryControls(show) {
   });
 }
 
-export function nonActiveProjectTransition() {
-  const timelineNonActive = gsap.timeline({
-    onStart: () => {
-      Canvas.animateImageMesh = true;
-    },
-    onComplete: () => {
-      Canvas.animateImageMesh = false;
-    },
-  });
-  const nonActiveProjectSelector = ' .project.expanded-project ';
-
-  const linesStatistics = new SplitText(
-    nonActiveProjectSelector + ' .expand-description .statistics ',
-    {
-      type: 'lines',
-    },
-  ).lines;
-
-  const wordsDescription = new SplitText(
-    nonActiveProjectSelector + '.project-description',
-    {
-      type: 'words',
-    },
-  ).words;
-
-  timelineNonActive.to(
-    linesStatistics,
-    // { y: '15px', opacity: 0 },
-    {
-      duration: 0.2,
-      opacity: 0,
-      y: '15px',
-      stagger: 0.1,
-    },
-  );
-  timelineNonActive.to(
-    wordsDescription,
-    // { y: '15px', opacity: 0 },
-    {
-      duration: 0.1,
-      opacity: 0,
-      y: '15px',
-      stagger: 0.01,
-    },
-  );
-  timelineNonActive.set(nonActiveProjectSelector + ' .expand-description', {
-    opacity: 0,
-  });
+export function nonActiveProjectTransition(ref) {
+  gsap.set(ref.querySelector('.expand-description'), { y: 0, opacity: 0 });
 }
-export function activeProjectTransition() {
-  const timelineActive = gsap.timeline({
+
+export function activeProjectTransition(ref) {
+  const timeline = gsap.timeline({
     onStart: () => {
       Canvas.animateImageMesh = true;
     },
@@ -123,27 +78,15 @@ export function activeProjectTransition() {
     },
   });
 
-  const activeProjectSelector = ' .project.active-project ';
-
-  timelineActive.set(activeProjectSelector + ' .expand-description', {
+  timeline.set(ref.querySelector('.expand-description'), {
     opacity: 1,
   });
 
-  const linesStatistics = new SplitText(
-    activeProjectSelector + ' .expand-description .statistics ',
-    {
-      type: 'lines',
-    },
-  ).lines;
+  const linesStatistics = new SplitText(ref.querySelector('.statistics'), {
+    type: 'lines',
+  }).lines;
 
-  const wordsDescription = new SplitText(
-    activeProjectSelector + '.project-description',
-    {
-      type: 'words',
-    },
-  ).words;
-
-  timelineActive.fromTo(
+  timeline.fromTo(
     linesStatistics,
     { y: '15px', opacity: 0 },
     {
@@ -153,7 +96,15 @@ export function activeProjectTransition() {
       stagger: 0.1,
     },
   );
-  timelineActive.fromTo(
+
+  const wordsDescription = new SplitText(
+    ref.querySelector('.project-description'),
+    {
+      type: 'words',
+    },
+  ).words;
+
+  timeline.fromTo(
     wordsDescription,
     { y: '15px', opacity: 0 },
     {
@@ -162,5 +113,16 @@ export function activeProjectTransition() {
       y: '0px',
       stagger: 0.01,
     },
+    '<',
+  );
+
+  timeline.fromTo(
+    ref.querySelector('.project-link'),
+    { y: '15px', opacity: 0 },
+    {
+      duration: 0.25,
+      opacity: 1,
+      y: '0px',
+    }
   );
 }

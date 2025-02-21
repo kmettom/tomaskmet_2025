@@ -40,7 +40,10 @@ const emit = defineEmits(['openGallery']);
       bidirectionalActivation: navigationStore.projects.galleryOpen,
       activateCallback: () => {
         if (navigationStore.projects.galleryOpen)
-          navigationStore.setActiveProjectIndex(props.index);
+          navigationStore.setActiveProject(
+            props.index,
+            navigationStore.projects.projectItemRefs[index],
+          );
       },
       // scrollSpeed: navigationStore.projects.galleryOpen
       //   ? 0
@@ -49,7 +52,6 @@ const emit = defineEmits(['openGallery']);
     :style="`bottom: ${!navigationStore.projects.galleryOpen ? (project.position?.bottom ?? 0) : 0}px;}`"
     :class="projectElClasses"
   >
-    {{ projectElClasses }}
     <div
       :class="`project-wrapper ${project.position?.alignRight ? ' project-right ' : ''}`"
       @mouseover="hoverImage = !navigationStore.projects.galleryOpen"
@@ -112,10 +114,10 @@ $nameSize: 30px;
   cursor: pointer;
   position: relative;
   display: flex;
-  justify-content: left;
-  &.project-right {
-    justify-content: right;
-  }
+  //justify-content: left;
+  //&.project-right {
+  //  justify-content: right;
+  //}
 }
 
 .project-index {

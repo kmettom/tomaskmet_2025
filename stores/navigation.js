@@ -1,5 +1,3 @@
-// import { Canvas } from '~/utils/canvas';
-
 import {
   activeProjectTransition,
   nonActiveProjectTransition,
@@ -22,7 +20,12 @@ export const useNavigationStore = defineStore('navigationStore', {
     projects: {
       galleryOpen: false,
       navigationVisible: false,
+      activeProject: { index: 0, ref: null },
+      pastActiveProject: { index: 0, ref: null },
       activeProjectIndex: 0,
+      activeProjectRef: null,
+      pastActiveProjectRef: null,
+      projectItemRefs: undefined,
     },
     // navItems: ['home', 'about', 'work', 'services' , 'contact'],
   }),
@@ -45,12 +48,16 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.projects.navigationVisible = visible;
       showGalleryControls(visible);
     },
-    setActiveProjectIndex(index) {
-      this.projects.activeProjectIndex = index;
-      setTimeout(() => {
-        activeProjectTransition();
-        nonActiveProjectTransition();
-      }, 10);
+    setProjectRefs(refs) {
+      this.projects.projectItemRefs = refs;
+    },
+    setActiveProject(index, ref) {
+      this.projects.pastActiveProject = { ...this.projects.activeProject };
+      this.projects.activeProject.index = index;
+      this.projects.activeProject.ref = ref;
+      activeProjectTransition(ref);
+      if (this.projects.pastActiveProject.ref)
+        nonActiveProjectTransition(this.projects.pastActiveProject.ref);
     },
   },
 });
