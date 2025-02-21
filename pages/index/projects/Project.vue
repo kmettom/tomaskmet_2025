@@ -17,13 +17,13 @@ const props = defineProps({
 });
 
 const projectElClasses = computed(() => {
-  return `project ${isActive.value ? ' active-project ' : ''}  ${navigationStore.projects.galleryOpen ? ' expanded ' : ''} ${props.project.position?.alignRight ? ' project-right ' : ''}`;
+  return `project ${isActive.value ? ' active-project ' : ''}  ${props.project.position?.alignRight ? ' project-right ' : ''}`;
 });
 
 const isActive = computed(() => {
   return (
     navigationStore.projects.galleryOpen &&
-    navigationStore.projects.activeProject === props.project.name
+    navigationStore.projects.activeProjectIndex === props.index
   );
 });
 
@@ -43,7 +43,7 @@ const emit = defineEmits(['openGallery']);
       bidirectionalActivation: navigationStore.projects.galleryOpen,
       activateCallback: () => {
         if (navigationStore.projects.galleryOpen)
-          navigationStore.setActiveProject(props.project.name);
+          navigationStore.setActiveProjectIndex(props.index);
       },
       scrollSpeed: navigationStore.projects.galleryOpen
         ? 0

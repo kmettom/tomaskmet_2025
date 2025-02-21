@@ -35,11 +35,6 @@ export function openGalleryTransition(open) {
         width: '400px',
         duration: aniDuration,
       });
-      timeline.to('.expand-description > * ', {
-        duration: aniDuration,
-        opacity: 0,
-        stagger: 0.1,
-      });
       timeline.to('.project-info-wrapper', {
         duration: aniDuration,
         height: 0,
@@ -78,22 +73,24 @@ export function activeProjectTransition() {
     },
   });
 
-  const baseSelector = ' .project .active-project .expanded ';
+  const activeProjectSelector = ' .project .active-project ';
+  // const nonActiveProjectSelector = ' .project .expanded-project ';
 
   const linesStatistics = new SplitText(
-    baseSelector + '.expand-description .statistics ',
+    activeProjectSelector + '.expand-description .statistics ',
     {
       type: 'lines',
     },
   ).lines;
+
   const wordsDescription = new SplitText(
-    baseSelector + '.project-description',
+    activeProjectSelector + '.project-description',
     {
       type: 'words',
     },
   ).words;
 
-  timeline.set(baseSelector + '.expand-description > * ', {
+  timeline.set(activeProjectSelector + '.expand-description > * ', {
     opacity: 1,
   });
 

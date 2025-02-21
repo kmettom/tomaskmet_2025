@@ -21,7 +21,7 @@ export const useNavigationStore = defineStore('navigationStore', {
     projects: {
       galleryOpen: false,
       navigationVisible: false,
-      activeProjectName: null,
+      activeProjectIndex: 0,
     },
     // navItems: ['home', 'about', 'work', 'services' , 'contact'],
   }),
@@ -44,9 +44,8 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.projects.navigationVisible = visible;
       showGalleryControls(visible);
     },
-    setActiveProject(name) {
-      console.log('setActiveProject', name);
-      this.projects.activeProjectName = name;
+    setActiveProjectIndex(index) {
+      this.projects.activeProjectIndex = index;
       activeProjectTransition();
     },
   },

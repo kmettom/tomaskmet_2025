@@ -29,14 +29,18 @@
             <button
               v-if="nextProjectName"
               class="gallery-controls-btn change-project-btn next-item"
-              @click="goToProject(activeProjectsIndex + 1)"
+              @click="
+                goToProject(navigationStore.projects.activeProjectIndex + 1)
+              "
             >
               next: {{ nextProjectName }} 👇
             </button>
             <button
               v-if="prevProjectName"
               class="gallery-controls-btn change-project-btn prev-item"
-              @click="goToProject(activeProjectsIndex - 1)"
+              @click="
+                goToProject(navigationStore.projects.activeProjectIndex - 1)
+              "
             >
               previous: {{ prevProjectName }} 👆
             </button>
@@ -72,25 +76,26 @@ const navigationStore = useNavigationStore();
 
 const projects = ref(projectsData);
 
-const activeProjectsIndex = computed(() => {
-  return projects.value.findIndex(
-    (project) => project.name === navigationStore.projects.activeProjectName,
-  );
-});
-
 const projectItemRefs = useTemplateRefsList<HTMLDivElement>();
 const projectGalleryRef = ref();
 
 const nextProjectName = computed(() => {
-  return projects.value[activeProjectsIndex.value + 1]?.name ?? null;
+  return (
+    projects.value[navigationStore.projects.activeProjectIndex + 1]?.name ??
+    null
+  );
 });
 const prevProjectName = computed(() => {
-  return projects.value[activeProjectsIndex.value - 1]?.name ?? null;
+  return (
+    projects.value[navigationStore.projects.activeProjectIndex - 1]?.name ??
+    null
+  );
 });
 
 const openGallery = (index: number | null) => {
   navigationStore.setGalleryOpen(index !== null);
   navigationStore.setNavVisible(index === null);
+  navigationStore.setActiveProjectIndex(index);
   if (index !== null) {
     setTimeout(() => {
       if (index) goToProject(index);
