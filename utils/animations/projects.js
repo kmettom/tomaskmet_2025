@@ -123,6 +123,6 @@ export function activeProjectTransition(ref) {
       duration: 0.25,
       opacity: 1,
       y: '0px',
-    }
+    },
   );
 }

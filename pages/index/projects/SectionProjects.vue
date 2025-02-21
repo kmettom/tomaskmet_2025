@@ -30,7 +30,7 @@
               v-if="nextProjectName"
               class="gallery-controls-btn change-project-btn next-item"
               @click="
-                goToProject(navigationStore.projects.activeProjectIndex + 1)
+                goToProject(navigationStore.projects.activeProject.index + 1)
               "
             >
               next: {{ nextProjectName }} 👇
@@ -39,7 +39,7 @@
               v-if="prevProjectName"
               class="gallery-controls-btn change-project-btn prev-item"
               @click="
-                goToProject(navigationStore.projects.activeProjectIndex - 1)
+                goToProject(navigationStore.projects.activeProject.index - 1)
               "
             >
               previous: {{ prevProjectName }} 👆
@@ -83,13 +83,13 @@ const projectGalleryRef = ref();
 
 const nextProjectName = computed(() => {
   return (
-    projects.value[navigationStore.projects.activeProjectIndex + 1]?.name ??
+    projects.value[navigationStore.projects.activeProject.index + 1]?.name ??
     null
   );
 });
 const prevProjectName = computed(() => {
   return (
-    projects.value[navigationStore.projects.activeProjectIndex - 1]?.name ??
+    projects.value[navigationStore.projects.activeProject.index - 1]?.name ??
     null
   );
 });

@@ -21,7 +21,7 @@ const projectElClasses = computed(() => {
 });
 
 const isActive = computed(() => {
-  return navigationStore.projects.activeProjectIndex === props.index;
+  return navigationStore.projects.activeProject.index === props.index;
 });
 
 const projectNumber = computed(() => {
@@ -140,6 +140,7 @@ $nameSize: 30px;
   width: 0;
   height: 0;
   position: relative;
+  overflow: hidden;
 }
 
 .project-description {
@@ -150,10 +151,6 @@ $nameSize: 30px;
   opacity: 0;
   padding: 0 50px 50px 50px;
   position: relative;
-
-  //& > * {
-  //  opacity: 0;
-  //}
 
   .statistics {
     height: 50%;
