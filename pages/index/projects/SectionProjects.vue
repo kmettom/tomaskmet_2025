@@ -18,10 +18,7 @@
             : null,
         }"
       >
-        <div
-          v-if="navigationStore.projects.galleryOpen"
-          v-onScrollActivate="{ fixToParentId: 'gallery' }"
-        >
+        <div v-onScrollActivate="{ fixToParentId: 'gallery' }">
           <div class="gallery-controls">
             <button
               class="gallery-controls-btn close-btn"
@@ -70,12 +67,11 @@ import projectsData from '~/content/projects.json';
 import Project from '~/pages/index/projects/Project.vue';
 import IconsClose from '~/components/common/icons/close.client.vue';
 import { useTemplateRefsList } from '@vueuse/core';
-import { watch } from 'vue';
-import { openGalleryTransition } from '~/utils/animations/projects';
 
 const navigationStore = useNavigationStore();
 
 const projects = ref(projectsData);
+
 const activeProjectsIndex = computed(() => {
   return projects.value.findIndex(
     (project) => project.name === navigationStore.projects.activeProjectName,
@@ -93,7 +89,6 @@ const prevProjectName = computed(() => {
 });
 
 const openGallery = (index: number | null) => {
-  console.log('openGallery', index);
   navigationStore.setGalleryOpen(index !== null);
   navigationStore.setNavVisible(index === null);
   if (index !== null) {
@@ -111,13 +106,6 @@ const goToProject = (index: number) => {
     projectMargin;
   Canvas.scrollTo(projectPosition, 0.5);
 };
-
-watch(
-  () => navigationStore.projects.galleryOpen,
-  (newValue) => {
-    openGalleryTransition(newValue);
-  },
-);
 </script>
 
 <style lang="scss" scoped>
@@ -147,6 +135,7 @@ $marginRight: 50px;
 }
 
 .gallery-controls {
+  opacity: 0;
   position: absolute;
   top: 0;
   right: 0;

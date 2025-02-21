@@ -1,3 +1,11 @@
+// import { Canvas } from '~/utils/canvas';
+
+import {
+  activeProjectTransition,
+  openGalleryTransition,
+  showGalleryControls,
+} from '~/utils/animations/projects';
+
 export const useNavigationStore = defineStore('navigationStore', {
   state: () => ({
     activeNavItem: 'home',
@@ -12,6 +20,7 @@ export const useNavigationStore = defineStore('navigationStore', {
     ],
     projects: {
       galleryOpen: false,
+      navigationVisible: false,
       activeProjectName: null,
     },
     // navItems: ['home', 'about', 'work', 'services' , 'contact'],
@@ -26,11 +35,19 @@ export const useNavigationStore = defineStore('navigationStore', {
     setNavContrast(contrastSwitched) {
       this.navContrastSwitched = contrastSwitched;
     },
-    setGalleryOpen(open) {
+    async setGalleryOpen(open) {
       this.projects.galleryOpen = open;
+      await openGalleryTransition(open);
+      this.setGalleryNavigationVisible(open);
+    },
+    setGalleryNavigationVisible(visible) {
+      this.projects.navigationVisible = visible;
+      showGalleryControls(visible);
     },
     setActiveProject(name) {
+      console.log('setActiveProject', name);
       this.projects.activeProjectName = name;
+      activeProjectTransition();
     },
   },
 });

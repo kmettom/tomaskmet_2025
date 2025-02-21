@@ -49,7 +49,6 @@ const Canvas = {
   navigationStore: null,
   scrollInProgress: false,
   animateImageMesh: false,
-  fixScrollOnEl: null,
   canvasContainer: null,
   scrollableContent: null,
   // pointer: { cursor: null, intersects: null },
@@ -526,16 +525,6 @@ const Canvas = {
     this.renderer.setSize(this.width, this.height);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.render(this.scene, this.camera); // -> Also needed
-  },
-
-  setFixedScrollOnEl(el, margin) {
-    if (!el) {
-      this.fixScrollOnEl = null;
-      return;
-    }
-    this.fixScrollOnEl = { el: el, margin: margin };
-    // el.getBoundingClientRect().top + margin;
-    // scrollTo
   },
 
   scrollToTop(delay) {

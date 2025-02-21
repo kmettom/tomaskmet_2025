@@ -1,9 +1,59 @@
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 gsap.registerPlugin(SplitText);
-const aniDuration = 1.5;
+const aniDuration = 0.5;
 
 export function openGalleryTransition(open) {
+  return new Promise((resolve) => {
+    const timeline = gsap.timeline({
+      onStart: () => {
+        Canvas.animateImageMesh = true;
+      },
+      onComplete: () => {
+        Canvas.animateImageMesh = false;
+        resolve();
+      },
+    });
+    if (open) {
+      timeline.to('.project-name', {
+        duration: aniDuration,
+        opacity: 0,
+      });
+      timeline.to('.project-image', {
+        // height: '30vh',
+        width: '50%',
+        duration: aniDuration,
+      });
+      timeline.to('.project-info-wrapper', {
+        duration: aniDuration,
+        width: '50%',
+        // height: '30vh',
+      });
+    } else {
+      timeline.to('.project-image', {
+        height: '150px',
+        width: '400px',
+        duration: aniDuration,
+      });
+      timeline.to('.expand-description > * ', {
+        duration: aniDuration,
+        opacity: 0,
+        stagger: 0.1,
+      });
+      timeline.to('.project-info-wrapper', {
+        duration: aniDuration,
+        height: 0,
+        width: 0,
+      });
+      timeline.to('.project-name', {
+        duration: aniDuration,
+        opacity: 1,
+      });
+    }
+  });
+}
+
+export function showGalleryControls(show) {
   const timeline = gsap.timeline({
     onStart: () => {
       Canvas.animateImageMesh = true;
@@ -12,42 +62,10 @@ export function openGalleryTransition(open) {
       Canvas.animateImageMesh = false;
     },
   });
-  if (open) {
-    timeline.to('.project-name', {
-      duration: aniDuration,
-      opacity: 0,
-    });
-    timeline.to('.project-image', {
-      // height: '30vh',
-      width: '50%',
-      duration: aniDuration,
-    });
-    timeline.to('.project-info-wrapper', {
-      duration: aniDuration,
-      width: '50%',
-      // height: '30vh',
-    });
-  } else {
-    timeline.to('.project-image', {
-      height: '150px',
-      width: '400px',
-      duration: aniDuration,
-    });
-    timeline.to('.expand-description > * ', {
-      duration: aniDuration,
-      opacity: 0,
-      stagger: 0.1,
-    });
-    timeline.to('.project-info-wrapper', {
-      duration: aniDuration,
-      height: 0,
-      width: 0,
-    });
-    timeline.to('.project-name', {
-      duration: aniDuration,
-      opacity: 1,
-    });
-  }
+  timeline.to('.gallery-controls', {
+    duration: 0.5,
+    opacity: show ? 1 : 0,
+  });
 }
 
 export function activeProjectTransition() {

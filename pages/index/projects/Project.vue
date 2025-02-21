@@ -1,8 +1,6 @@
 <script setup>
-import { watch } from 'vue';
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
-import { activeProjectTransition } from '~/utils/animations/projects';
 const navigationStore = useNavigationStore();
 
 gsap.registerPlugin(SplitText);
@@ -21,6 +19,7 @@ const props = defineProps({
 const projectElClasses = computed(() => {
   return `project ${isActive.value ? ' active-project ' : ''}  ${navigationStore.projects.galleryOpen ? ' expanded ' : ''} ${props.project.position?.alignRight ? ' project-right ' : ''}`;
 });
+
 const isActive = computed(() => {
   return (
     navigationStore.projects.galleryOpen &&
@@ -33,13 +32,6 @@ const projectNumber = computed(() => {
 });
 const hoverImage = ref(false);
 const emit = defineEmits(['openGallery']);
-
-watch(
-  () => isActive,
-  (newValue) => {
-    activeProjectTransition(newValue);
-  },
-);
 </script>
 
 <template>
