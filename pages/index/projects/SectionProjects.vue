@@ -22,7 +22,7 @@
           <div class="gallery-controls">
             <button
               class="gallery-controls-btn close-btn"
-              @click="openGallery(null)"
+              @click="closeGallery()"
             >
               <IconsClose />
             </button>
@@ -53,7 +53,7 @@
           <Project
             :project="project"
             :index="index"
-            @open-gallery="openGallery(index)"
+            @open-gallery="openProject(index)"
           />
         </div>
       </div>
@@ -90,8 +90,12 @@ const prevProjectName = computed(() => {
   );
 });
 
-const openGallery = (index: number | null) => {
-  navigationStore.setGalleryOpen(index);
+const openProject = (index: number) => {
+  navigationStore.openGalleryProject(index);
+};
+
+const closeGallery = () => {
+  navigationStore.closeGallery();
 };
 
 watch(

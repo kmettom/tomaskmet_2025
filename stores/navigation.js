@@ -22,7 +22,7 @@ export const useNavigationStore = defineStore('navigationStore', {
       navigationVisible: false,
       activeProject: { index: 0, ref: null },
       pastActiveProject: { index: 0, ref: null },
-      projectItemRefs: undefined,
+      htmlRefs: undefined,
     },
     // navItems: ['home', 'about', 'work', 'services' , 'contact'],
   }),
@@ -37,16 +37,15 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.navContrastSwitched = contrastSwitched;
     },
     setProjectRefs(refs) {
-      this.projects.projectItemRefs = refs;
+      this.projects.htmlRefs = refs;
     },
-    async setGalleryOpen(index) {
-      if (index === null) {
-      } else {
-      }
+    async openGalleryProject(index) {
+      this.setActiveProject(index);
       this.projects.galleryOpen = open;
       await openGalleryTransition(open);
       this.setGalleryNavigationVisible(open);
     },
+    closeGallery() {},
     setGalleryNavigationVisible(visible) {
       this.projects.navigationVisible = visible;
       showGalleryControls(visible);
@@ -56,21 +55,20 @@ export const useNavigationStore = defineStore('navigationStore', {
       const projectMargin = index === 0 ? 0 : 100;
       const index = this.projects.activeProject.index + vector;
       const projectPosition =
-        this.projects.projectItemRefs[index].getBoundingClientRect().top +
+        this.projects.htmlRefs[index].getBoundingClientRect().top +
         window.scrollY -
         projectMargin;
       Canvas.scrollTo(projectPosition, scrollDuration);
     },
-    setActiveProject(index, ref) {
+    setActiveProject(index) {
       this.projects.pastActiveProject = { ...this.projects.activeProject };
       if (index === null) {
         this.projects.activeProject.index = 0;
         this.projects.activeProject.ref = null;
-        // this.setGalleryOpen(false);
       } else {
         this.projects.activeProject.index = index;
-        this.projects.activeProject.ref = ref;
-        activeProjectTransition(ref);
+        this.projects.activeProject.ref = this.projects.htmlRefs[index];
+        activeProjectTransition(this.projects.activeProject.ref);
       }
       if (this.projects.pastActiveProject.ref)
         nonActiveProjectTransition(this.projects.pastActiveProject.ref);
