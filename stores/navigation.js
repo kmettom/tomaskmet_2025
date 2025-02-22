@@ -36,7 +36,15 @@ export const useNavigationStore = defineStore('navigationStore', {
     setNavContrast(contrastSwitched) {
       this.navContrastSwitched = contrastSwitched;
     },
-    async setGalleryOpen(open) {
+    setProjectRefs(refs) {
+      this.projects.projectItemRefs = refs;
+    },
+    async setGalleryOpen(index) {
+      if(index === null){
+
+      }else{
+
+      }
       this.projects.galleryOpen = open;
       await openGalleryTransition(open);
       this.setGalleryNavigationVisible(open);
@@ -45,15 +53,22 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.projects.navigationVisible = visible;
       showGalleryControls(visible);
     },
-    setProjectRefs(refs) {
-      this.projects.projectItemRefs = refs;
+    goToProject (vector) {
+      const scrollDuration = 0.5;
+      const projectMargin = index === 0 ? 0 : 100;
+      const index = this.projects.activeProject.index + vector;
+      const projectPosition =
+          this.projects.projectItemRefs[index].getBoundingClientRect().top +
+          window.scrollY -
+          projectMargin;
+      Canvas.scrollTo(projectPosition, scrollDuration);
     },
     setActiveProject(index, ref) {
       this.projects.pastActiveProject = { ...this.projects.activeProject };
       if (index === null) {
         this.projects.activeProject.index = 0;
         this.projects.activeProject.ref = null;
-        this.setGalleryOpen(false);
+        // this.setGalleryOpen(false);
       } else {
         this.projects.activeProject.index = index;
         this.projects.activeProject.ref = ref;

@@ -30,7 +30,7 @@
               v-if="nextProjectName"
               class="gallery-controls-btn change-project-btn next-item"
               @click="
-                goToProject(navigationStore.projects.activeProject.index + 1)
+                navigationStore.goToProject( 1)
               "
             >
               next: {{ nextProjectName }} 👇
@@ -39,7 +39,7 @@
               v-if="prevProjectName"
               class="gallery-controls-btn change-project-btn prev-item"
               @click="
-                goToProject(navigationStore.projects.activeProject.index - 1)
+                navigationStore.goToProject(- 1)
               "
             >
               previous: {{ prevProjectName }} 👆
@@ -95,31 +95,7 @@ const prevProjectName = computed(() => {
 });
 
 const openGallery = (index: number | null) => {
-  if (index === null) {
-    navigationStore.setActiveProject(index, null);
-  } else {
-    goToProject(index);
-  }
-
-  navigationStore.setNavVisible(index === null);
-  navigationStore.setGalleryOpen(index !== null);
-
-  if (index !== null) {
-    setTimeout(() => {
-      navigationStore.setActiveProject(index, projectItemRefs.value[index]);
-    },2000)
-  }
-
-
-};
-
-const goToProject = (index: number) => {
-  const projectMargin = index === 0 ? 0 : 100;
-  const projectPosition =
-    projectItemRefs.value[index].getBoundingClientRect().top +
-    window.scrollY -
-    projectMargin;
-  Canvas.scrollTo(projectPosition, 0.5);
+  navigationStore.setGalleryOpen(index );
 };
 
 watch(
