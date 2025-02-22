@@ -40,12 +40,16 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.projects.htmlRefs = refs;
     },
     async openGalleryProject(index) {
-      this.setActiveProject(index);
       this.projects.galleryOpen = open;
       await openGalleryTransition(open);
       this.setGalleryNavigationVisible(open);
+      this.setActiveProject(index);
     },
-    closeGallery() {},
+    closeGallery() {
+      this.projects.galleryOpen = false;
+      this.setGalleryNavigationVisible(false);
+      this.setActiveProject(null);
+    },
     setGalleryNavigationVisible(visible) {
       this.projects.navigationVisible = visible;
       showGalleryControls(visible);
