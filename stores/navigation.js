@@ -40,10 +40,8 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.projects.projectItemRefs = refs;
     },
     async setGalleryOpen(index) {
-      if(index === null){
-
-      }else{
-
+      if (index === null) {
+      } else {
       }
       this.projects.galleryOpen = open;
       await openGalleryTransition(open);
@@ -53,14 +51,14 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.projects.navigationVisible = visible;
       showGalleryControls(visible);
     },
-    goToProject (vector) {
+    goToProject(vector) {
       const scrollDuration = 0.5;
       const projectMargin = index === 0 ? 0 : 100;
       const index = this.projects.activeProject.index + vector;
       const projectPosition =
-          this.projects.projectItemRefs[index].getBoundingClientRect().top +
-          window.scrollY -
-          projectMargin;
+        this.projects.projectItemRefs[index].getBoundingClientRect().top +
+        window.scrollY -
+        projectMargin;
       Canvas.scrollTo(projectPosition, scrollDuration);
     },
     setActiveProject(index, ref) {

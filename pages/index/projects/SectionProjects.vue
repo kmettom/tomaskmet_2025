@@ -29,18 +29,14 @@
             <button
               v-if="nextProjectName"
               class="gallery-controls-btn change-project-btn next-item"
-              @click="
-                navigationStore.goToProject( 1)
-              "
+              @click="navigationStore.goToProject(1)"
             >
               next: {{ nextProjectName }} 👇
             </button>
             <button
               v-if="prevProjectName"
               class="gallery-controls-btn change-project-btn prev-item"
-              @click="
-                navigationStore.goToProject(- 1)
-              "
+              @click="navigationStore.goToProject(-1)"
             >
               previous: {{ prevProjectName }} 👆
             </button>
@@ -95,7 +91,7 @@ const prevProjectName = computed(() => {
 });
 
 const openGallery = (index: number | null) => {
-  navigationStore.setGalleryOpen(index );
+  navigationStore.setGalleryOpen(index);
 };
 
 watch(
