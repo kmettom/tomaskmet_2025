@@ -75,7 +75,7 @@ export function activeProjectTransition(ref) {
       Canvas.animateImageMesh = true;
     },
     onComplete: () => {
-      resolve();
+      // resolve();
       // Canvas.animateImageMesh = false;
     },
   });

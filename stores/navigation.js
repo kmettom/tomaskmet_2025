@@ -45,9 +45,10 @@ export const useNavigationStore = defineStore('navigationStore', {
         this.setNavVisible(false);
         await openGalleryTransition(true);
         this.setGalleryNavigationVisible(true);
+        this.setActiveProject(index);
       }
-      if (this.project.activeProject.index !== index) {
-        await this.setActiveProject(index);
+      if (this.projects.activeProject.index !== index) {
+        this.goToProject(index);
       }
     },
     async closeGallery() {
@@ -61,11 +62,11 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.projects.navigationVisible = visible;
       showGalleryControls(visible);
     },
-    goToProject(index, ref) {
+    goToProject(index) {
       const scrollDuration = 0.5;
       const projectMargin = index === 0 ? 0 : 100;
       const projectPosition =
-          ref.getBoundingClientRect().top +
+        this.projects.htmlRefs[index].getBoundingClientRect().top +
         window.scrollY -
         projectMargin;
       Canvas.scrollTo(projectPosition, scrollDuration);
@@ -75,7 +76,6 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.projects.pastActiveProject = { ...this.projects.activeProject };
       this.projects.activeProject.index = index;
       this.projects.activeProject.ref = this.projects.htmlRefs[index];
-      this.goToProject( index, this.projects.activeProject.ref);
       activeProjectTransition(this.projects.activeProject.ref);
     },
     closeActiveProject() {
