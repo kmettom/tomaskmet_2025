@@ -40,13 +40,15 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.projects.htmlRefs = refs;
     },
     async openGalleryProject(index) {
-      this.setNavVisible(false);
       if (!this.projects.galleryOpen) {
-        await openGalleryTransition(true);
         this.projects.galleryOpen = true;
+        this.setNavVisible(false);
+        await openGalleryTransition(true);
+        this.setGalleryNavigationVisible(true);
       }
-      await this.setActiveProject(index);
-      this.setGalleryNavigationVisible(true);
+      if (this.project.activeProject.index !== index) {
+        await this.setActiveProject(index);
+      }
     },
     async closeGallery() {
       this.projects.galleryOpen = false;
@@ -59,21 +61,22 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.projects.navigationVisible = visible;
       showGalleryControls(visible);
     },
-    goToProject(vector) {
+    goToProject(index, ref) {
       const scrollDuration = 0.5;
       const projectMargin = index === 0 ? 0 : 100;
-      const index = this.projects.activeProject.index + vector;
       const projectPosition =
-        this.projects.htmlRefs[index].getBoundingClientRect().top +
+          ref.getBoundingClientRect().top +
         window.scrollY -
         projectMargin;
       Canvas.scrollTo(projectPosition, scrollDuration);
     },
-    async setActiveProject(index) {
+    setActiveProject(index) {
+      if (!this.projects.galleryOpen) return;
       this.projects.pastActiveProject = { ...this.projects.activeProject };
       this.projects.activeProject.index = index;
       this.projects.activeProject.ref = this.projects.htmlRefs[index];
-      await activeProjectTransition(this.projects.activeProject.ref);
+      this.goToProject( index, this.projects.activeProject.ref);
+      activeProjectTransition(this.projects.activeProject.ref);
     },
     closeActiveProject() {
       this.projects.pastActiveProject = { ...this.projects.activeProject };

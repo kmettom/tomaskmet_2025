@@ -35,8 +35,8 @@ const emit = defineEmits(['openGallery']);
       activeRangeOrigin: navigationStore.projects.galleryOpen ? 0.5 : 1,
       bidirectionalActivation: navigationStore.projects.galleryOpen,
       activateCallback: () => {
-        if (navigationStore.projects.galleryOpen)
-          navigationStore.openGalleryProject(props.index);
+        // if (navigationStore.projects.galleryOpen)
+        navigationStore.setActiveProject(props.index);
       },
       // scrollSpeed: navigationStore.projects.galleryOpen
       //   ? 0
