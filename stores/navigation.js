@@ -75,7 +75,7 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.projects.activeProject.index = index;
       this.projects.activeProject.ref = this.projects.htmlRefs[index];
       activeProjectTransition(this.projects.activeProject.ref);
-      if(this.projects.pastActiveProject.ref){
+      if (this.projects.pastActiveProject.ref) {
         nonActiveProjectTransition(this.projects.pastActiveProject.ref);
       }
     },
