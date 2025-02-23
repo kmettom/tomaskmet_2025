@@ -40,18 +40,20 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.projects.htmlRefs = refs;
     },
     async openGalleryProject(index) {
+      this.setNavVisible(false);
       if (!this.projects.galleryOpen) {
         await openGalleryTransition(true);
         this.projects.galleryOpen = true;
       }
-      this.setActiveProject(index);
+      await this.setActiveProject(index);
       this.setGalleryNavigationVisible(true);
     },
     async closeGallery() {
       this.projects.galleryOpen = false;
       this.setGalleryNavigationVisible(false);
-      this.setActiveProject(null);
+      this.closeActiveProject();
       await openGalleryTransition(false);
+      this.setNavVisible(true);
     },
     setGalleryNavigationVisible(visible) {
       this.projects.navigationVisible = visible;
@@ -69,16 +71,15 @@ export const useNavigationStore = defineStore('navigationStore', {
     },
     async setActiveProject(index) {
       this.projects.pastActiveProject = { ...this.projects.activeProject };
-      if (index === null) {
-        this.projects.activeProject.index = 0;
-        this.projects.activeProject.ref = null;
-      } else {
-        this.projects.activeProject.index = index;
-        this.projects.activeProject.ref = this.projects.htmlRefs[index];
-        activeProjectTransition(this.projects.activeProject.ref);
-      }
-      if (this.projects.pastActiveProject.ref)
-        nonActiveProjectTransition(this.projects.pastActiveProject.ref);
+      this.projects.activeProject.index = index;
+      this.projects.activeProject.ref = this.projects.htmlRefs[index];
+      await activeProjectTransition(this.projects.activeProject.ref);
+    },
+    closeActiveProject() {
+      this.projects.pastActiveProject = { ...this.projects.activeProject };
+      this.projects.activeProject.index = 0;
+      this.projects.activeProject.ref = null;
+      nonActiveProjectTransition(this.projects.pastActiveProject.ref);
     },
   },
 });
