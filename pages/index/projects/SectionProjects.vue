@@ -30,7 +30,7 @@
               v-if="nextProjectName"
               class="gallery-controls-btn change-project-btn next-item"
               @click="
-                navigationStore.openGalleryProject(
+                navigationStore.scrollToProject(
                   navigationStore.projects.activeProject.index + 1,
                 )
               "
@@ -41,7 +41,7 @@
               v-if="prevProjectName"
               class="gallery-controls-btn change-project-btn prev-item"
               @click="
-                navigationStore.openGalleryProject(
+                navigationStore.scrollToProject(
                   navigationStore.projects.activeProject.index - 1,
                 )
               "

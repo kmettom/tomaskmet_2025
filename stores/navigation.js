@@ -41,14 +41,12 @@ export const useNavigationStore = defineStore('navigationStore', {
     },
     async openGalleryProject(index) {
       if (!this.projects.galleryOpen) {
-        this.projects.galleryOpen = true;
         this.setNavVisible(false);
         await openGalleryTransition(true);
         this.setGalleryNavigationVisible(true);
+        this.projects.galleryOpen = true;
         this.setActiveProject(index);
-      }
-      if (this.projects.activeProject.index !== index) {
-        this.goToProject(index);
+        this.scrollToProject(index);
       }
     },
     async closeGallery() {
@@ -62,7 +60,7 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.projects.navigationVisible = visible;
       showGalleryControls(visible);
     },
-    goToProject(index) {
+    scrollToProject(index) {
       const scrollDuration = 0.5;
       const projectMargin = index === 0 ? 0 : 100;
       const projectPosition =
@@ -77,6 +75,9 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.projects.activeProject.index = index;
       this.projects.activeProject.ref = this.projects.htmlRefs[index];
       activeProjectTransition(this.projects.activeProject.ref);
+      if(this.projects.pastActiveProject.ref){
+        nonActiveProjectTransition(this.projects.pastActiveProject.ref);
+      }
     },
     closeActiveProject() {
       this.projects.pastActiveProject = { ...this.projects.activeProject };
