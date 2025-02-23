@@ -20,9 +20,9 @@ export const useNavigationStore = defineStore('navigationStore', {
     projects: {
       galleryOpen: false,
       navigationVisible: false,
+      htmlRefs: undefined,
       activeProject: { index: 0, ref: null },
       pastActiveProject: { index: 0, ref: null },
-      htmlRefs: undefined,
     },
     // navItems: ['home', 'about', 'work', 'services' , 'contact'],
   }),
@@ -40,15 +40,18 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.projects.htmlRefs = refs;
     },
     async openGalleryProject(index) {
-      this.projects.galleryOpen = open;
-      await openGalleryTransition(open);
-      this.setGalleryNavigationVisible(open);
+      if (!this.projects.galleryOpen) {
+        await openGalleryTransition(true);
+        this.projects.galleryOpen = true;
+      }
       this.setActiveProject(index);
+      this.setGalleryNavigationVisible(true);
     },
-    closeGallery() {
+    async closeGallery() {
       this.projects.galleryOpen = false;
       this.setGalleryNavigationVisible(false);
       this.setActiveProject(null);
+      await openGalleryTransition(false);
     },
     setGalleryNavigationVisible(visible) {
       this.projects.navigationVisible = visible;
@@ -64,7 +67,7 @@ export const useNavigationStore = defineStore('navigationStore', {
         projectMargin;
       Canvas.scrollTo(projectPosition, scrollDuration);
     },
-    setActiveProject(index) {
+    async setActiveProject(index) {
       this.projects.pastActiveProject = { ...this.projects.activeProject };
       if (index === null) {
         this.projects.activeProject.index = 0;

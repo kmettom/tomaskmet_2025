@@ -17,11 +17,7 @@ const props = defineProps({
 });
 
 const projectElClasses = computed(() => {
-  return `project ${navigationStore.projects.galleryOpen ? (isActive.value ? ' active-project ' : ' expanded-project ') : ''}  ${props.project.position?.alignRight ? ' project-right ' : ''}`;
-});
-
-const isActive = computed(() => {
-  return navigationStore.projects.activeProject.index === props.index;
+  return `project ${props.project.position?.alignRight ? ' project-right ' : ''}`;
 });
 
 const projectNumber = computed(() => {

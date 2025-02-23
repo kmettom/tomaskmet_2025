@@ -69,60 +69,63 @@ export function nonActiveProjectTransition(ref) {
 }
 
 export function activeProjectTransition(ref) {
-  const timeline = gsap.timeline({
-    onStart: () => {
-      Canvas.animateImageMesh = true;
-    },
-    onComplete: () => {
-      // Canvas.animateImageMesh = false;
-    },
+  return new Promise((resolve) => {
+    const timeline = gsap.timeline({
+      onStart: () => {
+        Canvas.animateImageMesh = true;
+      },
+      onComplete: () => {
+        resolve();
+        // Canvas.animateImageMesh = false;
+      },
+    });
+
+    timeline.set(ref.querySelector('.expand-description'), {
+      opacity: 1,
+    });
+
+    const linesStatistics = new SplitText(ref.querySelector('.statistics'), {
+      type: 'lines',
+    }).lines;
+
+    timeline.fromTo(
+      linesStatistics,
+      { y: '15px', opacity: 0 },
+      {
+        duration: 0.2,
+        opacity: 1,
+        y: '0px',
+        stagger: 0.1,
+      },
+    );
+
+    const wordsDescription = new SplitText(
+      ref.querySelector('.project-description'),
+      {
+        type: 'words',
+      },
+    ).words;
+
+    timeline.fromTo(
+      wordsDescription,
+      { y: '15px', opacity: 0 },
+      {
+        duration: 0.1,
+        opacity: 1,
+        y: '0px',
+        stagger: 0.01,
+      },
+      '<',
+    );
+
+    timeline.fromTo(
+      ref.querySelector('.project-link'),
+      { y: '15px', opacity: 0 },
+      {
+        duration: 0.25,
+        opacity: 1,
+        y: '0px',
+      },
+    );
   });
-
-  timeline.set(ref.querySelector('.expand-description'), {
-    opacity: 1,
-  });
-
-  const linesStatistics = new SplitText(ref.querySelector('.statistics'), {
-    type: 'lines',
-  }).lines;
-
-  timeline.fromTo(
-    linesStatistics,
-    { y: '15px', opacity: 0 },
-    {
-      duration: 0.2,
-      opacity: 1,
-      y: '0px',
-      stagger: 0.1,
-    },
-  );
-
-  const wordsDescription = new SplitText(
-    ref.querySelector('.project-description'),
-    {
-      type: 'words',
-    },
-  ).words;
-
-  timeline.fromTo(
-    wordsDescription,
-    { y: '15px', opacity: 0 },
-    {
-      duration: 0.1,
-      opacity: 1,
-      y: '0px',
-      stagger: 0.01,
-    },
-    '<',
-  );
-
-  timeline.fromTo(
-    ref.querySelector('.project-link'),
-    { y: '15px', opacity: 0 },
-    {
-      duration: 0.25,
-      opacity: 1,
-      y: '0px',
-    },
-  );
 }
