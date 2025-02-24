@@ -45,14 +45,13 @@ export const useNavigationStore = defineStore('navigationStore', {
       if (!this.projects.galleryOpen) {
         console.log('openGalleryProject');
         const htmlRef = this.projects.htmlRefs[index];
-        // await this.scrollToProject(index);
+        await this.scrollToProject(index);
         Canvas.setFixedScrollToElement(htmlRef);
         this.setNavVisible(false);
         this.setProjectOriginSizes();
         await openGalleryTransition();
         this.setGalleryNavigationVisible(true);
         this.projects.galleryOpen = true;
-        // console.log('openGalleryProject setActive', index);
         this.setActiveProject(index);
         Canvas.setFixedScrollToElement(null);
       }
@@ -70,6 +69,7 @@ export const useNavigationStore = defineStore('navigationStore', {
       }
     },
     async closeGallery() {
+      Canvas.setFixedScrollToElement(this.projects.activeProject.ref);
       this.projects.galleryOpen = false;
       this.setGalleryNavigationVisible(false);
       this.closeActiveProject();
@@ -78,6 +78,7 @@ export const useNavigationStore = defineStore('navigationStore', {
         this.projects.htmlSizeOrigins,
       );
       this.setNavVisible(true);
+      Canvas.setFixedScrollToElement(null);
     },
     setGalleryNavigationVisible(visible) {
       this.projects.navigationVisible = visible;

@@ -42,6 +42,8 @@ export function closeGalleryTransition(refs, sizeOrigins) {
       },
     });
     for (const [index, ref] of refs.entries()) {
+      //TODO: check the cause of Refs array having more items
+      if (!sizeOrigins[index]) return;
       timeline.to(
         ref.querySelector('.project-image'),
         {
