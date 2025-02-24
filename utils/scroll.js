@@ -9,6 +9,9 @@ export default class Scroll {
       onScrollActivateElements: [],
     };
 
+    // this.windowScrollY = window.scrollY;
+    // this.documentScrollHeight = window.innerHeight;
+    // this.keepScrollHeightRelativeToChange = true;
     this.activeCallback = options.activeCallback;
 
     this.docScroll = 0;
@@ -55,7 +58,6 @@ export default class Scroll {
   initEvents() {
     window.addEventListener('resize', () => {
       this.resizeMobileBreakEvents();
-
       this.setSize();
     });
     window.addEventListener('scroll', () => {
@@ -75,13 +77,10 @@ export default class Scroll {
     if (isActive) {
       item.elNode.dataset.activeScroll = 'true';
       item.elNode.classList.add('active');
+      Canvas.onActiveElCallback(item, isActive);
     } else {
       item.elNode.dataset.activeScroll = 'false';
       if (!item.trackOnly) item.elNode.classList.remove('active');
-    }
-
-    if (isActive) {
-      Canvas.onActiveElCallback(item, isActive);
     }
 
     if (
@@ -209,6 +208,31 @@ export default class Scroll {
 
   render(_scrollTo, _fluid) {
     this.setSize();
+
+    // fixed scroll logic for changes in Inner Scroll Height
+    // if (this.keepScrollHeightRelativeToChange) {
+    //   // this.windowScrollY = window.scrollY;
+    //   // console.log("window.innerHeight", window.document.documentElement.scrollHeight)
+    //   if (
+    //     this.documentScrollHeight !==
+    //     window.document.documentElement.scrollHeight
+    //   ) {
+    //     console.log(
+    //       'CHANGE REGISTERED LOGIC',
+    //       this.documentScrollHeight,
+    //       window.document.documentElement.scrollHeight,
+    //     );
+    //     const scrollToDiff =
+    //       window.scrollY +
+    //       this.documentScrollHeight -
+    //       window.document.documentElement.scrollHeight;
+    //     console.log('scrollToDiff', scrollToDiff);
+    //     // this.scrollRenderTo(scrollToDiff);
+    //   }
+    //   this.documentScrollHeight = window.document.documentElement.scrollHeight;
+    //   console.log(window.innerHeight);
+    // }
+
     if (_scrollTo !== undefined && _fluid) {
       this.scrollRenderToFluid(_scrollTo);
     } else if (_scrollTo !== undefined && _fluid === false) {
