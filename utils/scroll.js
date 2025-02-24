@@ -9,9 +9,6 @@ export default class Scroll {
       onScrollActivateElements: [],
     };
 
-    // this.windowScrollY = window.scrollY;
-    // this.documentScrollHeight = window.innerHeight;
-    // this.keepScrollHeightRelativeToChange = true;
     this.activeCallback = options.activeCallback;
 
     this.docScroll = 0;
@@ -208,30 +205,6 @@ export default class Scroll {
 
   render(_scrollTo, _fluid) {
     this.setSize();
-
-    // fixed scroll logic for changes in Inner Scroll Height
-    // if (this.keepScrollHeightRelativeToChange) {
-    //   // this.windowScrollY = window.scrollY;
-    //   // console.log("window.innerHeight", window.document.documentElement.scrollHeight)
-    //   if (
-    //     this.documentScrollHeight !==
-    //     window.document.documentElement.scrollHeight
-    //   ) {
-    //     console.log(
-    //       'CHANGE REGISTERED LOGIC',
-    //       this.documentScrollHeight,
-    //       window.document.documentElement.scrollHeight,
-    //     );
-    //     const scrollToDiff =
-    //       window.scrollY +
-    //       this.documentScrollHeight -
-    //       window.document.documentElement.scrollHeight;
-    //     console.log('scrollToDiff', scrollToDiff);
-    //     // this.scrollRenderTo(scrollToDiff);
-    //   }
-    //   this.documentScrollHeight = window.document.documentElement.scrollHeight;
-    //   console.log(window.innerHeight);
-    // }
 
     if (_scrollTo !== undefined && _fluid) {
       this.scrollRenderToFluid(_scrollTo);
