@@ -12,13 +12,13 @@ export default class Scroll {
     this.activeCallback = options.activeCallback;
 
     this.fixScrollTo = { htmlRef: null, margin: 0 }; //null | {ref: HtmlRef, margin: Number}
+    this.blockGetScroll = false;
     this.docScroll = 0;
     this.scrollToRender = 0;
     this.current = 0;
     this.ease = 0.1;
     this.speed = 0;
     this.speedTarget = 0;
-    this.scrollTo = { target: 0, executed: true };
     this.scrollSpeedBottomMargin = 250;
     this.scrollOnTrigger = false;
 
@@ -34,6 +34,7 @@ export default class Scroll {
   }
 
   getScroll() {
+    if (this.blockGetScroll) return;
     this.docScroll = this.current =
       window.scrollY || document.documentElement.scrollTop;
     return this.docScroll;
@@ -162,35 +163,21 @@ export default class Scroll {
   setScrollPosition() {
     if (
       Math.round(this.scrollToRender) !== Math.round(this.current) ||
-      this.scrollToRender < 10 ||
-      !this.scrollTo.executed
+      this.scrollToRender < 10
     ) {
       this.DOM.scrollable.style.transform = `translate3d(0,${-1 * this.scrollToRender}px,0)`;
     }
   }
 
-  scrollRenderToFluid(_scrollTo) {
-    // this.scrollTo.executed = false;
-    window.scrollBy(0, _scrollTo.toString());
-    document.documentElement.scrollTop = _scrollTo;
-    // this.getScroll();
-    // this.scrollTo.target = Number(_scrollTo);
+  scrollRenderToFluid(scrollTo) {
+    window.scrollBy(0, scrollTo.toString());
+    document.documentElement.scrollTop = scrollTo;
   }
 
-  scrollRenderTo(_scrollTo) {
-    this.scrollTo.executed = false;
-    this.scrollTo.target = Number(_scrollTo);
-    window.scrollBy(0, _scrollTo.toString());
-    document.documentElement.scrollTop = _scrollTo;
-  }
-
-  scrollRender() {
-    this.scrollToRender = this.scrollTo.target;
-    const margin = 10;
-    this.docScroll = 0;
-    if (this.current <= this.scrollToRender + margin) {
-      this.scrollTo.executed = true;
-    }
+  scrollRenderTo(scrollTo) {
+    this.blockGetScroll = true;
+    this.scrollToRender = scrollTo;
+    window.scrollTo(0, scrollTo);
   }
 
   calculateScrollSpeed() {
@@ -206,25 +193,17 @@ export default class Scroll {
 
   render(scrollTo, fluid) {
     this.setSize();
-
+    this.blockGetScroll = false;
     if (this.fixScrollTo.htmlRef) {
+      this.blockGetScroll = true;
+      const refPosition = this.fixScrollTo.htmlRef.getBoundingClientRect().top;
       const fixScrollToPosition =
-        window.scrollY -
-        this.fixScrollTo.htmlRef.getBoundingClientRect().top +
-        this.fixScrollTo.margin;
-      console.log(
-        'fixScrollTo',
-        fixScrollToPosition,
-        window.scrollY,
-        this.fixScrollTo.htmlRef.getBoundingClientRect().top,
-      );
+        this.scrollToRender + refPosition - this.fixScrollTo.margin;
       this.scrollRenderTo(fixScrollToPosition);
     } else if (scrollTo !== undefined && fluid) {
       this.scrollRenderToFluid(scrollTo);
     } else if (scrollTo !== undefined && fluid === false) {
       this.scrollRenderTo(scrollTo);
-    } else if (!this.scrollTo.executed) {
-      this.scrollRender();
     } else if (this.scrollOnTrigger) {
       //TODO: finish logic of scroll on trigger sections
       this.scrollToRender = Math.round(
