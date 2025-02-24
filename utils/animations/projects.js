@@ -14,24 +14,24 @@ export function openGalleryTransition() {
         resolve();
       },
     });
-      timeline.to('.project-name', {
-        duration: aniDuration,
-        opacity: 0,
-      });
-      timeline.to('.project-image', {
-        height: '70vh',
-        width: '50%',
-        duration: aniDuration,
-      });
-      timeline.to('.project-info-wrapper', {
-        duration: aniDuration,
-        width: '50%',
-        height: '30vh',
-      });
+    timeline.to('.project-name', {
+      duration: aniDuration,
+      opacity: 0,
+    });
+    timeline.to('.project-image', {
+      height: '70vh',
+      width: '50%',
+      duration: aniDuration,
+    });
+    timeline.to('.project-info-wrapper', {
+      duration: aniDuration,
+      width: '50%',
+      height: '30vh',
+    });
   });
 }
 
-export function closeGalleryTransition(refs, sizeOrigins){
+export function closeGalleryTransition(refs, sizeOrigins) {
   return new Promise((resolve) => {
     const timeline = gsap.timeline({
       onStart: () => {
@@ -41,8 +41,8 @@ export function closeGalleryTransition(refs, sizeOrigins){
         resolve();
       },
     });
-    console.log("closeGalleryTransition" , refs, sizeOrigins)
-    for (const [index,ref] of refs.entries()) {
+    console.log('closeGalleryTransition', refs, sizeOrigins);
+    for (const [index, ref] of refs.entries()) {
       console.log(index, ref);
       timeline.to(ref.querySelector('.project-image'), {
         height: sizeOrigins[index].height + 'px',
@@ -59,7 +59,7 @@ export function closeGalleryTransition(refs, sizeOrigins){
         opacity: 1,
       });
     }
-  })
+  });
 }
 
 export function showGalleryControls(show) {

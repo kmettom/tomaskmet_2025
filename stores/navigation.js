@@ -68,7 +68,10 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.projects.galleryOpen = false;
       this.setGalleryNavigationVisible(false);
       this.closeActiveProject();
-      await closeGalleryTransition(this.projects.htmlRefs, this.projects.htmlSizeOrigins);
+      await closeGalleryTransition(
+        this.projects.htmlRefs,
+        this.projects.htmlSizeOrigins,
+      );
       this.setNavVisible(true);
     },
     setGalleryNavigationVisible(visible) {
