@@ -41,23 +41,33 @@ export function closeGalleryTransition(refs, sizeOrigins) {
         resolve();
       },
     });
-    console.log('closeGalleryTransition', refs, sizeOrigins);
     for (const [index, ref] of refs.entries()) {
-      console.log(index, ref);
-      timeline.to(ref.querySelector('.project-image'), {
-        height: sizeOrigins[index].height + 'px',
-        width: sizeOrigins[index].width + 'px',
-        duration: aniDuration,
-      });
-      timeline.to(ref.querySelector('.project-info-wrapper'), {
-        duration: aniDuration,
-        height: 0,
-        width: 0,
-      });
-      timeline.to(ref.querySelector('.project-name'), {
-        duration: aniDuration,
-        opacity: 1,
-      });
+      timeline.to(
+        ref.querySelector('.project-image'),
+        {
+          height: sizeOrigins[index].height + 'px',
+          width: sizeOrigins[index].width + 'px',
+          duration: aniDuration,
+        },
+        '<',
+      );
+      timeline.to(
+        ref.querySelector('.project-info-wrapper'),
+        {
+          duration: aniDuration,
+          height: 0,
+          width: 0,
+        },
+        '<',
+      );
+      timeline.to(
+        ref.querySelector('.project-name'),
+        {
+          duration: aniDuration,
+          opacity: 1,
+        },
+        '<',
+      );
     }
   });
 }
