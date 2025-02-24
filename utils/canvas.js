@@ -189,9 +189,9 @@ const Canvas = {
     });
   },
 
-  onActiveElCallback(item, isActive) {
-    if (item.options.activateCallback && isActive) {
-      item.options.activateCallback(isActive, item);
+  onActiveElCallback(item) {
+    if (item.options.activateCallback) {
+      item.options.activateCallback(item);
     }
     //TODO: finish scrollTriggerSectionsClass logic
     // if (item.options.scrollTriggerSectionsClass) {

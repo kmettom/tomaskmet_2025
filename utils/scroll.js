@@ -77,7 +77,7 @@ export default class Scroll {
     if (isActive) {
       item.elNode.dataset.activeScroll = 'true';
       item.elNode.classList.add('active');
-      Canvas.onActiveElCallback(item, isActive);
+      Canvas.onActiveElCallback(item);
     } else {
       item.elNode.dataset.activeScroll = 'false';
       if (!item.trackOnly) item.elNode.classList.remove('active');
