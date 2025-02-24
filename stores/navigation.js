@@ -3,6 +3,7 @@ import {
   nonActiveProjectTransition,
   openGalleryTransition,
   showGalleryControls,
+  closeGalleryTransition,
 } from '~/utils/animations/projects';
 
 export const useNavigationStore = defineStore('navigationStore', {
@@ -21,6 +22,7 @@ export const useNavigationStore = defineStore('navigationStore', {
       galleryOpen: false,
       navigationVisible: false,
       htmlRefs: undefined,
+      htmlSizeOrigins: null,
       activeProject: { index: 0, ref: null },
       pastActiveProject: { index: 0, ref: null },
     },
@@ -42,18 +44,31 @@ export const useNavigationStore = defineStore('navigationStore', {
     async openGalleryProject(index) {
       if (!this.projects.galleryOpen) {
         this.setNavVisible(false);
-        await openGalleryTransition(true);
+        this.setProjectOriginSizes();
+        await openGalleryTransition();
+        this.scrollToProject(index);
         this.setGalleryNavigationVisible(true);
         this.projects.galleryOpen = true;
         this.setActiveProject(index);
-        this.scrollToProject(index);
+      }
+    },
+    setProjectOriginSizes() {
+      if (this.projects.htmlSizeOrigins !== null) return;
+      this.projects.htmlSizeOrigins = [];
+      for (const ref of this.projects.htmlRefs) {
+        const imageRef = ref.querySelector('.webgl-img');
+        const imageBounds = imageRef.getBoundingClientRect();
+        this.projects.htmlSizeOrigins.push({
+          width: imageBounds.width,
+          height: imageBounds.height,
+        });
       }
     },
     async closeGallery() {
       this.projects.galleryOpen = false;
       this.setGalleryNavigationVisible(false);
       this.closeActiveProject();
-      await openGalleryTransition(false);
+      await closeGalleryTransition(this.projects.htmlRefs, this.projects.htmlSizeOrigins);
       this.setNavVisible(true);
     },
     setGalleryNavigationVisible(visible) {

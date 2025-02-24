@@ -3,7 +3,7 @@ import { SplitText } from 'gsap/SplitText';
 gsap.registerPlugin(SplitText);
 const aniDuration = 0.5;
 
-export function openGalleryTransition(open) {
+export function openGalleryTransition() {
   return new Promise((resolve) => {
     const timeline = gsap.timeline({
       onStart: () => {
@@ -14,7 +14,6 @@ export function openGalleryTransition(open) {
         resolve();
       },
     });
-    if (open) {
       timeline.to('.project-name', {
         duration: aniDuration,
         opacity: 0,
@@ -29,23 +28,38 @@ export function openGalleryTransition(open) {
         width: '50%',
         height: '30vh',
       });
-    } else {
-      timeline.to('.project-image', {
-        height: '150px',
-        width: '400px',
+  });
+}
+
+export function closeGalleryTransition(refs, sizeOrigins){
+  return new Promise((resolve) => {
+    const timeline = gsap.timeline({
+      onStart: () => {
+        Canvas.animateImageMesh = true;
+      },
+      onComplete: () => {
+        resolve();
+      },
+    });
+    console.log("closeGalleryTransition" , refs, sizeOrigins)
+    for (const [index,ref] of refs.entries()) {
+      console.log(index, ref);
+      timeline.to(ref.querySelector('.project-image'), {
+        height: sizeOrigins[index].height + 'px',
+        width: sizeOrigins[index].width + 'px',
         duration: aniDuration,
       });
-      timeline.to('.project-info-wrapper', {
+      timeline.to(ref.querySelector('.project-info-wrapper'), {
         duration: aniDuration,
         height: 0,
         width: 0,
       });
-      timeline.to('.project-name', {
+      timeline.to(ref.querySelector('.project-name'), {
         duration: aniDuration,
         opacity: 1,
       });
     }
-  });
+  })
 }
 
 export function showGalleryControls(show) {
@@ -60,12 +74,17 @@ export function showGalleryControls(show) {
 
   timeline.to('.gallery-controls', {
     duration: 0.5,
+    zIndex: show ? 10 : -1,
     opacity: show ? 1 : 0,
   });
 }
 
 export function nonActiveProjectTransition(ref) {
-  gsap.set(ref.querySelector('.expand-description'), { y: 0, opacity: 0 });
+  gsap.to(ref.querySelector('.expand-description'), {
+    y: 0,
+    opacity: 0,
+    duration: 0.3,
+  });
 }
 
 export function activeProjectTransition(ref) {

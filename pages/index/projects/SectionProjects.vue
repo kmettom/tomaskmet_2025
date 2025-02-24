@@ -148,7 +148,8 @@ $marginRight: 50px;
   width: 50%;
   height: 100vh;
   bottom: 0;
-  z-index: 10;
+  z-index: -1;
+  //pointer-events: none;
 }
 
 .gallery-controls-btn {
