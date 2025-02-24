@@ -222,6 +222,10 @@ const Canvas = {
       [];
   },
 
+  setFixedScrollToElement(elNode, margin = 0) {
+    this.scroll.fixScrollTo = { htmlRef: elNode ?? null, margin: margin };
+  },
+
   addOnScrollActivateElement(binding) {
     const newBinding = generateBindingLogic(binding);
     if (newBinding.options.scrollTriggerSectionsClass) {
@@ -231,7 +235,6 @@ const Canvas = {
     }
 
     this.scroll.DOM.onScrollActivateElements.push(newBinding);
-    // this.onActiveElCallback(newBinding, false);
   },
 
   updateOnScrollActiveElement(updatedBinding) {

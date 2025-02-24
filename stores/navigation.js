@@ -43,14 +43,17 @@ export const useNavigationStore = defineStore('navigationStore', {
     },
     async openGalleryProject(index) {
       if (!this.projects.galleryOpen) {
-        this.scrollToProject(index);
+        const htmlRef = this.projects.htmlRefs[index];
+        await this.scrollToProject(index);
+        Canvas.setFixedScrollToElement(htmlRef);
         this.setNavVisible(false);
         this.setProjectOriginSizes();
         await openGalleryTransition();
         this.setGalleryNavigationVisible(true);
         this.projects.galleryOpen = true;
-        console.log('openGalleryProject setActive', index);
+        // console.log('openGalleryProject setActive', index);
         this.setActiveProject(index);
+        Canvas.setFixedScrollToElement(null);
       }
     },
     setProjectOriginSizes() {
@@ -81,16 +84,19 @@ export const useNavigationStore = defineStore('navigationStore', {
     },
     scrollToProject(index) {
       const scrollDuration = 0.5;
+      const htmlRef = this.projects.htmlRefs[index];
       const projectMargin = index === 0 ? 0 : 100;
       const projectPosition =
-        this.projects.htmlRefs[index].getBoundingClientRect().top +
-        window.scrollY -
-        projectMargin;
+        htmlRef.getBoundingClientRect().top + window.scrollY - projectMargin;
       Canvas.scrollTo(projectPosition, scrollDuration);
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve();
+        }, scrollDuration);
+      });
     },
     setActiveProject(index) {
       if (!this.projects.galleryOpen) return;
-      console.log('setActiveProject XXX');
       this.projects.pastActiveProject = { ...this.projects.activeProject };
       this.projects.activeProject.index = index;
       this.projects.activeProject.ref = this.projects.htmlRefs[index];

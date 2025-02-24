@@ -48,7 +48,7 @@ import { SplitText } from 'gsap/SplitText';
 
 gsap.registerPlugin(SplitText);
 
-function textAniCallback( item: any) {
+function textAniCallback(item: any) {
   const selector = `.${item.elNode.dataset.aboutId}`;
   const tl = gsap.timeline();
   const lines = new SplitText(selector, {

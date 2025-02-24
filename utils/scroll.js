@@ -11,6 +11,7 @@ export default class Scroll {
 
     this.activeCallback = options.activeCallback;
 
+    this.fixScrollTo = { htmlRef: null, margin: 0 }; //null | {ref: HtmlRef, margin: Number}
     this.docScroll = 0;
     this.scrollToRender = 0;
     this.current = 0;
@@ -203,13 +204,25 @@ export default class Scroll {
     this.setElementsScrollPositions();
   }
 
-  render(_scrollTo, _fluid) {
+  render(scrollTo, fluid) {
     this.setSize();
 
-    if (_scrollTo !== undefined && _fluid) {
-      this.scrollRenderToFluid(_scrollTo);
-    } else if (_scrollTo !== undefined && _fluid === false) {
-      this.scrollRenderTo(_scrollTo);
+    if (this.fixScrollTo.htmlRef) {
+      const fixScrollToPosition =
+        window.scrollY -
+        this.fixScrollTo.htmlRef.getBoundingClientRect().top +
+        this.fixScrollTo.margin;
+      console.log(
+        'fixScrollTo',
+        fixScrollToPosition,
+        window.scrollY,
+        this.fixScrollTo.htmlRef.getBoundingClientRect().top,
+      );
+      this.scrollRenderTo(fixScrollToPosition);
+    } else if (scrollTo !== undefined && fluid) {
+      this.scrollRenderToFluid(scrollTo);
+    } else if (scrollTo !== undefined && fluid === false) {
+      this.scrollRenderTo(scrollTo);
     } else if (!this.scrollTo.executed) {
       this.scrollRender();
     } else if (this.scrollOnTrigger) {
