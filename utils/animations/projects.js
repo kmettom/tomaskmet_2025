@@ -13,9 +13,16 @@ export function openGalleryTransition(galleryRef, refs, sizeOrigins) {
         resolve();
       },
     });
+    const galleryWidthHalfPx =
+      galleryRef.getBoundingClientRect().width / 2 + 'px';
     timeline.to('.project-name', {
       duration: aniDuration,
       opacity: 0,
+    });
+    timeline.to('.project-info-wrapper', {
+      duration: aniDuration,
+      width: galleryWidthHalfPx,
+      height: '30vh',
     });
     for (const [index, ref] of refs.entries()) {
       if (!sizeOrigins[index]) return;
@@ -28,30 +35,12 @@ export function openGalleryTransition(galleryRef, refs, sizeOrigins) {
         },
         {
           height: '70vh',
-          width: galleryRef.getBoundingClientRect().width / 2 + 'px',
+          width: galleryWidthHalfPx,
           duration: aniDuration,
         },
         '<',
       );
     }
-
-    // timeline.fromTo('.project-image', {
-    //   width:
-    // },{
-    //   height: '70vh',
-    //   width: '50%',
-    //   duration: aniDuration,
-    // },"<");
-
-    timeline.to(
-      '.project-info-wrapper',
-      {
-        duration: aniDuration,
-        width: '50%',
-        height: '30vh',
-      },
-      '<',
-    );
   });
 }
 
