@@ -92,7 +92,7 @@ export const useNavigationStore = defineStore('navigationStore', {
     },
 
     scrollToProject(index) {
-      Canvas.setFixedScrollToElement(null);
+      // Canvas.setFixedScrollToElement(null);
       const scrollDuration = 0.5; // 0.3
       const htmlRef = this.projects.htmlRefs[index];
       const projectPosition =
@@ -103,10 +103,11 @@ export const useNavigationStore = defineStore('navigationStore', {
       const scrollDurationEnd = scrollDuration;
       return new Promise((resolve) => {
         setTimeout(() => {
-          Canvas.setFixedScrollToElement(
-            this.projects.htmlRefs[index],
-            this.projects.margin,
-          );
+          //TODO: add just a scroll disable feature, no element fix
+          // Canvas.setFixedScrollToElement(
+          //   this.projects.htmlRefs[index],
+          //   this.projects.margin,
+          // );
           resolve();
         }, scrollDurationEnd * 1000);
       });
