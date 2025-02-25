@@ -11,7 +11,7 @@ export default class Scroll {
 
     this.activeCallback = options.activeCallback;
 
-    this.fixScrollTo = { htmlRef: null, margin: 0 }; //null | {ref: HtmlRef, margin: Number}
+    this.fixScrollTo = { htmlRef: null, margin: 0 }; //null | {ref: htmlRef, margin: Number}
     this.blockGetScroll = false;
     this.docScroll = 0;
     this.scrollToRender = 0;

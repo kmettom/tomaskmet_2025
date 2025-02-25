@@ -50,7 +50,7 @@
             </button>
           </div>
         </div>
-
+        <div class="project-item pseudo-project"></div>
         <div
           v-for="(project, index) in projectsData"
           :key="project.name"
@@ -180,8 +180,8 @@ $marginRight: 50px;
 
 .project-item {
   position: relative;
-  &.first {
-    padding-top: 75px;
+  &.pseudo-project {
+    padding-top: 100px;
   }
 }
 </style>

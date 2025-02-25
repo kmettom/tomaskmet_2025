@@ -86,12 +86,14 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.projects.navigationVisible = visible;
       showGalleryControls(visible);
     },
+
     scrollToProject(index) {
       const scrollDuration = 0.5;
       const htmlRef = this.projects.htmlRefs[index];
-      const projectMargin = index === 0 ? 0 : this.projects.margin;
       const projectPosition =
-        htmlRef.getBoundingClientRect().top + window.scrollY - projectMargin;
+        htmlRef.getBoundingClientRect().top +
+        window.scrollY -
+        this.projects.margin;
       Canvas.scrollTo(projectPosition, scrollDuration);
       return new Promise((resolve) => {
         setTimeout(() => {
