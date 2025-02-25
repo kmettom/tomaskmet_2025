@@ -1,7 +1,7 @@
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 gsap.registerPlugin(SplitText);
-const aniDuration = 1.5; //0.5
+const aniDuration = 0.5; // 0.5
 
 export function openGalleryTransition(galleryRef, refs, sizeOrigins) {
   return new Promise((resolve) => {
@@ -75,14 +75,10 @@ export function closeGalleryTransition(refs, sizeOrigins) {
         },
         '<',
       );
-      timeline.to(
-        ref.querySelector('.project-name'),
-        {
-          duration: aniDuration,
-          opacity: 1,
-        },
-        '<',
-      );
+      timeline.to(ref.querySelector('.project-name'), {
+        duration: aniDuration,
+        opacity: 1,
+      });
     }
   });
 }
