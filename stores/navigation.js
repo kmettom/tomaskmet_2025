@@ -86,13 +86,14 @@ export const useNavigationStore = defineStore('navigationStore', {
 
     scrollToProject(index) {
       Canvas.setFixedScrollToElement(null);
-      const scrollDuration = 0.5;
+      const scrollDuration = 1.3;
       const htmlRef = this.projects.htmlRefs[index];
       const projectPosition =
         htmlRef.getBoundingClientRect().top +
         window.scrollY -
         this.projects.margin;
       Canvas.scrollTo(projectPosition, scrollDuration);
+      const scrollDurationEnd = scrollDuration ;
       return new Promise((resolve) => {
         setTimeout(() => {
           Canvas.setFixedScrollToElement(
@@ -100,7 +101,7 @@ export const useNavigationStore = defineStore('navigationStore', {
             this.projects.margin,
           );
           resolve();
-        }, scrollDuration * 1000);
+        }, scrollDurationEnd * 1000);
       });
     },
     setActiveProject(index) {
