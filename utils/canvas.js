@@ -203,16 +203,15 @@ const Canvas = {
   },
 
   onScrollCallback() {
-    // console.log('onScrollCallback');
+    // can be used for rotating and moving elements based on scroll speed and position
+    // options: item, position, scrollSpeed
   },
 
-  sectionTriggerMove() {
-    console.log('sectionTriggerMove');
-  },
-
-  addOnTriggerSectionSlide(binding) {
-    console.log('addOnTriggerSectionSlide', binding);
-  },
+  //TODO: finish or remove scrollTriggerSectionsClass logic
+  // sectionTriggerMove() {
+  // },
+  // addOnTriggerSectionSlide(binding) {
+  // },
 
   createTriggerSectionPositions(binding) {
     binding.options.scrollTriggerSections = document.querySelectorAll(

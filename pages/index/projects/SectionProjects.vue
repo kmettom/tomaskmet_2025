@@ -105,13 +105,6 @@ const openProject = (index: number) => {
 const closeGallery = () => {
   navigationStore.closeGallery();
 };
-
-watch(
-  () => projectItemRefs,
-  (refs) => {
-    console.log('refs', refs);
-  },
-);
 </script>
 
 <style lang="scss" scoped>

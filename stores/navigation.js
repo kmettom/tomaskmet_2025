@@ -25,8 +25,8 @@ export const useNavigationStore = defineStore('navigationStore', {
       htmlSizeOrigins: null,
       activeProject: { index: 0, ref: null },
       pastActiveProject: { index: 0, ref: null },
+      margin: 100,
     },
-    // navItems: ['home', 'about', 'work', 'services' , 'contact'],
   }),
   actions: {
     setActiveNavItem(id) {
@@ -43,10 +43,9 @@ export const useNavigationStore = defineStore('navigationStore', {
     },
     async openGalleryProject(index) {
       if (!this.projects.galleryOpen) {
-        console.log('openGalleryProject');
         const htmlRef = this.projects.htmlRefs[index];
         await this.scrollToProject(index);
-        Canvas.setFixedScrollToElement(htmlRef);
+        Canvas.setFixedScrollToElement(htmlRef, this.projects.margin);
         this.setNavVisible(false);
         this.setProjectOriginSizes();
         await openGalleryTransition();
@@ -69,7 +68,10 @@ export const useNavigationStore = defineStore('navigationStore', {
       }
     },
     async closeGallery() {
-      Canvas.setFixedScrollToElement(this.projects.activeProject.ref);
+      Canvas.setFixedScrollToElement(
+        this.projects.activeProject.ref,
+        this.projects.margin,
+      );
       this.projects.galleryOpen = false;
       this.setGalleryNavigationVisible(false);
       this.closeActiveProject();
@@ -87,14 +89,14 @@ export const useNavigationStore = defineStore('navigationStore', {
     scrollToProject(index) {
       const scrollDuration = 0.5;
       const htmlRef = this.projects.htmlRefs[index];
-      const projectMargin = index === 0 ? 0 : 100;
+      const projectMargin = index === 0 ? 0 : this.projects.margin;
       const projectPosition =
         htmlRef.getBoundingClientRect().top + window.scrollY - projectMargin;
       Canvas.scrollTo(projectPosition, scrollDuration);
       return new Promise((resolve) => {
         setTimeout(() => {
           resolve();
-        }, scrollDuration);
+        }, scrollDuration * 1000);
       });
     },
     setActiveProject(index) {
