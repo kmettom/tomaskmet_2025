@@ -68,18 +68,22 @@ export function closeGalleryTransition(refs, sizeOrigins) {
     for (const [index, ref] of refs.entries()) {
       //TODO: check the cause of Refs array having more items
       if (!sizeOrigins[index]) return;
-      timeline.to(ref.querySelector('.project-image'), {
-        height: sizeOrigins[index].height + 'px',
-        width: sizeOrigins[index].width + 'px',
-        duration: aniDuration,
-      });
+      timeline.to(
+        ref.querySelector('.project-image'),
+        {
+          height: sizeOrigins[index].height + 'px',
+          width: sizeOrigins[index].width + 'px',
+          duration: aniDuration,
+        },
+        '<',
+      );
     }
     timeline.to(
       '.project-info-wrapper',
       {
         duration: aniDuration,
-        height: 0,
-        width: 0,
+        height: '0px',
+        width: '0px',
       },
       '<',
     );
