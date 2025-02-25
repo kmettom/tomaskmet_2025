@@ -50,7 +50,7 @@
             </button>
           </div>
         </div>
-        <div class="project-item pseudo-project"></div>
+        <div class="project-item pseudo-project" />
         <div
           v-for="(project, index) in projectsData"
           :key="project.name"
@@ -84,6 +84,7 @@ const projectItemRefs = useTemplateRefsList<HTMLDivElement>();
 navigationStore.setProjectRefs(projectItemRefs);
 
 const projectGalleryRef = ref();
+navigationStore.setGalleryRef(projectGalleryRef);
 
 const nextProjectName = computed(() => {
   return (

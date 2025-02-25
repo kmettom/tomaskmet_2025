@@ -1,16 +1,15 @@
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 gsap.registerPlugin(SplitText);
-const aniDuration = 0.5;
+const aniDuration = 1.5; //0.5
 
-export function openGalleryTransition() {
+export function openGalleryTransition(galleryRef, refs, sizeOrigins) {
   return new Promise((resolve) => {
     const timeline = gsap.timeline({
       onStart: () => {
         Canvas.animateImageMesh = true;
       },
       onComplete: () => {
-        // Canvas.animateImageMesh = false;
         resolve();
       },
     });
@@ -18,16 +17,41 @@ export function openGalleryTransition() {
       duration: aniDuration,
       opacity: 0,
     });
-    timeline.to('.project-image', {
-      height: '70vh',
-      width: '50%',
-      duration: aniDuration,
-    });
-    timeline.to('.project-info-wrapper', {
-      duration: aniDuration,
-      width: '50%',
-      height: '30vh',
-    });
+    for (const [index, ref] of refs.entries()) {
+      if (!sizeOrigins[index]) return;
+      timeline.fromTo(
+        ref.querySelector('.project-image'),
+        {
+          height: sizeOrigins[index].height + 'px',
+          width: sizeOrigins[index].width + 'px',
+          immediateRender: true,
+        },
+        {
+          height: '70vh',
+          width: galleryRef.getBoundingClientRect().width / 2 + 'px',
+          duration: aniDuration,
+        },
+        '<',
+      );
+    }
+
+    // timeline.fromTo('.project-image', {
+    //   width:
+    // },{
+    //   height: '70vh',
+    //   width: '50%',
+    //   duration: aniDuration,
+    // },"<");
+
+    timeline.to(
+      '.project-info-wrapper',
+      {
+        duration: aniDuration,
+        width: '50%',
+        height: '30vh',
+      },
+      '<',
+    );
   });
 }
 

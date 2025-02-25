@@ -41,12 +41,19 @@ export const useNavigationStore = defineStore('navigationStore', {
     setProjectRefs(refs) {
       this.projects.htmlRefs = refs;
     },
+    setGalleryRef(ref) {
+      this.projects.htmlGalleryRef = ref;
+    },
     async openGalleryProject(index) {
       if (!this.projects.galleryOpen) {
         await this.scrollToProject(index);
         this.setNavVisible(false);
         this.setProjectOriginSizes();
-        await openGalleryTransition();
+        await openGalleryTransition(
+          this.projects.htmlGalleryRef,
+          this.projects.htmlRefs,
+          this.projects.htmlSizeOrigins,
+        );
         this.setGalleryNavigationVisible(true);
         this.projects.galleryOpen = true;
         this.setActiveProject(index);
@@ -85,8 +92,8 @@ export const useNavigationStore = defineStore('navigationStore', {
     },
 
     scrollToProject(index) {
-      Canvas.setFixedScrollToElement(null);
-      const scrollDuration = 1.3;
+      // Canvas.setFixedScrollToElement(null);
+      const scrollDuration = 1.3; // 0.3
       const htmlRef = this.projects.htmlRefs[index];
       const projectPosition =
         htmlRef.getBoundingClientRect().top +
@@ -96,10 +103,10 @@ export const useNavigationStore = defineStore('navigationStore', {
       const scrollDurationEnd = scrollDuration;
       return new Promise((resolve) => {
         setTimeout(() => {
-          Canvas.setFixedScrollToElement(
-            this.projects.htmlRefs[index],
-            this.projects.margin,
-          );
+          // Canvas.setFixedScrollToElement(
+          //   this.projects.htmlRefs[index],
+          //   this.projects.margin,
+          // );
           resolve();
         }, scrollDurationEnd * 1000);
       });
