@@ -93,7 +93,7 @@ export const useNavigationStore = defineStore('navigationStore', {
         window.scrollY -
         this.projects.margin;
       Canvas.scrollTo(projectPosition, scrollDuration);
-      const scrollDurationEnd = scrollDuration ;
+      const scrollDurationEnd = scrollDuration;
       return new Promise((resolve) => {
         setTimeout(() => {
           Canvas.setFixedScrollToElement(
