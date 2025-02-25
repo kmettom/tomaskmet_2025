@@ -43,16 +43,13 @@ export const useNavigationStore = defineStore('navigationStore', {
     },
     async openGalleryProject(index) {
       if (!this.projects.galleryOpen) {
-        const htmlRef = this.projects.htmlRefs[index];
         await this.scrollToProject(index);
-        Canvas.setFixedScrollToElement(htmlRef, this.projects.margin);
         this.setNavVisible(false);
         this.setProjectOriginSizes();
         await openGalleryTransition();
         this.setGalleryNavigationVisible(true);
         this.projects.galleryOpen = true;
         this.setActiveProject(index);
-        Canvas.setFixedScrollToElement(null);
       }
     },
     setProjectOriginSizes() {
@@ -88,6 +85,7 @@ export const useNavigationStore = defineStore('navigationStore', {
     },
 
     scrollToProject(index) {
+      Canvas.setFixedScrollToElement(null);
       const scrollDuration = 0.5;
       const htmlRef = this.projects.htmlRefs[index];
       const projectPosition =
@@ -97,6 +95,10 @@ export const useNavigationStore = defineStore('navigationStore', {
       Canvas.scrollTo(projectPosition, scrollDuration);
       return new Promise((resolve) => {
         setTimeout(() => {
+          Canvas.setFixedScrollToElement(
+            this.projects.htmlRefs[index],
+            this.projects.margin,
+          );
           resolve();
         }, scrollDuration * 1000);
       });
