@@ -66,6 +66,11 @@ const Canvas = {
   },
   mouse: { x: 0, y: 0, movementX: 0, movementY: 0 },
   triggerSectionPositions: {},
+
+  widthPositionCoef: 1,
+  heightPositionCoef: 1.38,
+  heightSizeCoef: 1,
+
   initScroll() {
     this.scroll = new Scroll({
       dom: this.scrollableContent,
@@ -141,9 +146,15 @@ const Canvas = {
   resizeTextStore() {
     for (var i = 0; i < this.textStore.length; i++) {
       let bounds = this.textStore[i].htmlEl.getBoundingClientRect();
-      this.textStore[i].mesh.scale.set(bounds.width, bounds.height);
-      this.textStore[i].width = bounds.width;
-      this.textStore[i].height = bounds.height;
+      //TODO: make the ScaleX and heightSizeCoef generic and better organized
+      const scaleX =
+        (bounds.width / this.textStore[i].mesh.geometry._layout._width) *
+        this.heightSizeCoef;
+      const scaleY = -1 * scaleX * this.heightSizeCoef;
+
+      this.textStore[i].mesh.scale.set(scaleX, scaleY, 1);
+      this.textStore[i].width = bounds.width * this.widthPositionCoef;
+      this.textStore[i].height = bounds.height * this.heightPositionCoef;
     }
     this.setTextMeshPositions();
   },
@@ -370,14 +381,9 @@ const Canvas = {
       mesh.name = meshId;
       htmlEl.dataset.meshId = meshId;
 
-      const widthPositionCoef = 1;
-      const heightPositionCoef = 1.38;
-      const heightSizeCoef = 1;
-
       const scaleX =
-        (bounds.width / mesh.geometry._layout._width) * heightSizeCoef;
-      // const scaleY = - 1 * bounds.height / mesh.geometry._layout._height;
-      const scaleY = -1 * scaleX * heightSizeCoef;
+        (bounds.width / mesh.geometry._layout._width) * this.heightSizeCoef;
+      const scaleY = -1 * scaleX * this.heightSizeCoef;
 
       mesh.scale.set(scaleX, scaleY, 1);
 
@@ -389,8 +395,8 @@ const Canvas = {
         mesh: mesh,
         top: position.top,
         left: position.left,
-        width: bounds.width * widthPositionCoef,
-        height: bounds.height * heightPositionCoef,
+        width: bounds.width * this.widthPositionCoef,
+        height: bounds.height * this.heightPositionCoef,
       };
 
       this.textStore.push(newMesh);
