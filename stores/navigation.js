@@ -76,14 +76,14 @@ export const useNavigationStore = defineStore('navigationStore', {
         this.projects.activeProject.ref,
         this.projects.margin,
       );
-      this.projects.galleryOpen = false;
       this.setGalleryNavigationVisible(false);
-      this.closeActiveProject();
+      await this.closeActiveProject();
       await closeGalleryTransition(
         this.projects.htmlRefs,
         this.projects.htmlSizeOrigins,
       );
       this.setNavVisible(true);
+      this.projects.galleryOpen = false;
       Canvas.setFixedScrollToElement(null);
     },
     setGalleryNavigationVisible(visible) {
@@ -118,14 +118,14 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.projects.activeProject.ref = this.projects.htmlRefs[index];
       activeProjectTransition(this.projects.activeProject.ref);
       if (this.projects.pastActiveProject.ref) {
-        nonActiveProjectTransition(this.projects.pastActiveProject.ref);
+        nonActiveProjectTransition(this.projects.pastActiveProject.ref, 0.3);
       }
     },
-    closeActiveProject() {
+    async closeActiveProject() {
       this.projects.pastActiveProject = { ...this.projects.activeProject };
       this.projects.activeProject.index = 0;
       this.projects.activeProject.ref = null;
-      nonActiveProjectTransition(this.projects.pastActiveProject.ref);
+      await nonActiveProjectTransition(this.projects.pastActiveProject.ref);
     },
   },
 });

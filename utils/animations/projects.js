@@ -1,9 +1,9 @@
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 gsap.registerPlugin(SplitText);
-const aniDuration = 0.5; // 0.5
 
 export function openGalleryTransition(galleryRef, refs, sizeOrigins) {
+  const aniDuration = 0.5; // 0.5
   return new Promise((resolve) => {
     const timeline = gsap.timeline({
       onStart: () => {
@@ -15,10 +15,20 @@ export function openGalleryTransition(galleryRef, refs, sizeOrigins) {
     });
     const galleryWidthHalfPx =
       galleryRef.getBoundingClientRect().width / 2 + 'px';
-    timeline.to('.project-name', {
-      duration: aniDuration,
-      opacity: 0,
+
+    const nameChars = new SplitText('.project-name', {
+      type: 'words,chars',
     });
+    timeline.to(nameChars.chars, {
+      duration: 0.1,
+      y: -10,
+      opacity: 0,
+      stagger: 0.02,
+      onComplete: () => {
+        nameChars.revert();
+      },
+    });
+    timeline.set('.project-name', { opacity: 0 });
     timeline.to('.project-info-wrapper', {
       duration: aniDuration,
       width: galleryWidthHalfPx,
@@ -45,6 +55,7 @@ export function openGalleryTransition(galleryRef, refs, sizeOrigins) {
 }
 
 export function closeGalleryTransition(refs, sizeOrigins) {
+  const aniDuration = 0.3; // 0.5
   return new Promise((resolve) => {
     const timeline = gsap.timeline({
       onStart: () => {
@@ -57,29 +68,43 @@ export function closeGalleryTransition(refs, sizeOrigins) {
     for (const [index, ref] of refs.entries()) {
       //TODO: check the cause of Refs array having more items
       if (!sizeOrigins[index]) return;
-      timeline.to(
-        ref.querySelector('.project-image'),
-        {
-          height: sizeOrigins[index].height + 'px',
-          width: sizeOrigins[index].width + 'px',
-          duration: aniDuration,
-        },
-        '<',
-      );
-      timeline.to(
-        ref.querySelector('.project-info-wrapper'),
-        {
-          duration: aniDuration,
-          height: 0,
-          width: 0,
-        },
-        '<',
-      );
-      timeline.to(ref.querySelector('.project-name'), {
+      timeline.to(ref.querySelector('.project-image'), {
+        height: sizeOrigins[index].height + 'px',
+        width: sizeOrigins[index].width + 'px',
         duration: aniDuration,
-        opacity: 1,
       });
     }
+    timeline.to(
+      '.project-info-wrapper',
+      {
+        duration: aniDuration,
+        height: 0,
+        width: 0,
+      },
+      '<',
+    );
+    const nameChars = new SplitText('.project-name', {
+      type: 'words,chars',
+    });
+    timeline.set('.project-name', { opacity: 1 });
+    timeline.fromTo(
+      nameChars.chars,
+      {
+        y: -10,
+        opacity: 0,
+      },
+      {
+        duration: 0.1,
+        y: 0,
+        opacity: 1,
+        stagger: 0.02,
+        onComplete: () => {
+          nameChars.revert();
+        },
+      },
+      '<',
+    );
+    timeline.set('.project-name', { opacity: 1 });
   });
 }
 
@@ -100,11 +125,16 @@ export function showGalleryControls(show) {
   });
 }
 
-export function nonActiveProjectTransition(ref) {
-  gsap.to(ref.querySelector('.expand-description'), {
-    y: 0,
-    opacity: 0,
-    duration: 0.3,
+export function nonActiveProjectTransition(ref, duration = 0) {
+  return new Promise((resolve) => {
+    gsap.to(ref.querySelector('.expand-description'), {
+      y: 0,
+      opacity: 0,
+      duration: duration,
+      onComplete: () => {
+        resolve();
+      },
+    });
   });
 }
 
