@@ -23,14 +23,14 @@ const projectElClasses = computed(() => {
 const projectNumber = computed(() => {
   return '0' + (props.index + 1).toString();
 });
-const hoverImage = ref(false);
+const projectHover = ref(false);
 const emit = defineEmits(['openGallery']);
 </script>
 
 <template>
   <div
     v-onScrollActivate="{
-      activeRange: navigationStore.projects.galleryOpen ? 1 : 0.85,
+      activeRange: navigationStore.projects.galleryOpen ? 1 : 0.95,
       activateOnce: false,
       activeRangeOrigin: navigationStore.projects.galleryOpen ? 0.5 : 1,
       bidirectionalActivation: navigationStore.projects.galleryOpen,
@@ -45,13 +45,13 @@ const emit = defineEmits(['openGallery']);
   >
     <div
       :class="`project-wrapper ${project.position?.alignRight ? ' project-right ' : ''}`"
-      @mouseover="hoverImage = !navigationStore.projects.galleryOpen"
-      @mouseleave="hoverImage = false"
+      @mouseover="projectHover = !navigationStore.projects.galleryOpen"
+      @mouseleave="projectHover = false"
       @click="emit('openGallery')"
     >
       <div class="project-info-wrapper">
         <div class="heading-3 project-index">
-          <CanvasText :theme="'light'">
+          <CanvasText :theme="'light'" :hover="projectHover">
             {{ projectNumber }}
           </CanvasText>
         </div>
@@ -80,7 +80,7 @@ const emit = defineEmits(['openGallery']);
       </div>
 
       <div class="project-image">
-        <CanvasImage :src-link="project.image.src" :image-hover="hoverImage" />
+        <CanvasImage :src-link="project.image.src" :hover="projectHover" />
       </div>
       <div class="project-name body-m">
         <span>{{ project.name }}</span>

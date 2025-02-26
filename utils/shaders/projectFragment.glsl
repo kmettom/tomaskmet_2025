@@ -86,9 +86,7 @@ void main() {
     uv.x = uv.x * scale + (1.0 - scale) / 2.0; // Center the texture horizontally
   }
 
-  // Sample the texture
-  vec4 color = texture2D(uImage, uv);
+  gl_FragColor = transition(uv);
+  gl_FragColor.rgb += 0.01 * vec3(vNoise);
 
-  // Output the final color
-  gl_FragColor = color;
 }

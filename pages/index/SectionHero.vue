@@ -2,18 +2,8 @@
   <div>
     <Container additional-class="hero-section">
       <div class="hero-content-line hero-line-studio">
-        <h2
-          class="heading-0"
-          @mouseenter="hoverActive = true"
-          @mouseleave="hoverActive = false"
-        >
-          <CanvasText
-            :theme="'light'"
-            :show="mainTextIn"
-            :text-hover="hoverActive"
-          >
-            STUDIO
-          </CanvasText>
+        <h2 class="heading-0">
+          <CanvasText :theme="'light'" :show="mainTextIn"> STUDIO </CanvasText>
         </h2>
       </div>
 

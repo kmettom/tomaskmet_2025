@@ -12,7 +12,7 @@ const props = defineProps({
     type: String,
     default: null,
   },
-  textHover: {
+  hover: {
     type: Boolean,
     default: false,
   },
@@ -52,7 +52,7 @@ onMounted(async () => {
 });
 
 watch(
-  () => props.textHover,
+  () => props.hover,
   (isHovered) => {
     Canvas.hoverMesh(meshId, isHovered);
   },

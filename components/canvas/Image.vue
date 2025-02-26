@@ -23,11 +23,11 @@ const props = defineProps({
     type: String,
     default: 'default',
   },
-  imageHover: {
+  hover: {
     type: Boolean,
     default: false,
   },
-  imageShow: {
+  show: {
     type: Boolean,
     default: true,
   },
@@ -46,13 +46,6 @@ const generatedMeshId = props.srcLink + crypto.randomUUID();
 const imageWrapper = ref('imageWrapper');
 const imgLoaded = ref(false);
 
-// const imageWidth = computed(() => {
-//   if (imageWrapper.value)
-//     imageWrapper.value.children[0]?.getBoundingClientRect()?.width ?? 0;
-// });
-// const imageHeight = computed(() => {
-//   imageWrapper.value.children[0]?.getBoundingClientRect()?.height
-// })
 
 onMounted(async () => {
   addImageToCanvas(false);
@@ -84,14 +77,14 @@ const imageLoaded = () => {
 };
 
 watch(
-  () => props.imageHover,
+  () => props.hover,
   (isHovered) => {
     Canvas.hoverMesh(generatedMeshId, isHovered);
   },
 );
 
 watch(
-  () => props.imageShow,
+  () => props.show,
   (isVisible) => {
     Canvas.activateMesh(generatedMeshId, isVisible);
   },

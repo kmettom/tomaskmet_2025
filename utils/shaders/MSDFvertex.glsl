@@ -34,8 +34,8 @@ void main() {
   vec3 newposition = position;
   float dist = distance(uv, hover);
 
-//  newposition.z += (1.0 - aniIn) * 20.0 * sin(dist * 20.0 + time / 2.0);
-//  newposition.z += circle * hoverState;
+  //  newposition.z += (1.0 - aniIn) * 20.0 * sin(dist * 20.0 + time / 2.0);
+  //  newposition.z += circle * hoverState;
 
   vUv = uv;
   gl_Position = projectionMatrix * modelViewMatrix * vec4(newposition, 1.0);
