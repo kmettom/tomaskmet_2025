@@ -5,6 +5,7 @@ import {
   showGalleryControls,
   closeGalleryTransition,
 } from '~/utils/animations/projects';
+import { gsap } from 'gsap';
 
 export const useNavigationStore = defineStore('navigationStore', {
   state: () => ({
@@ -92,6 +93,8 @@ export const useNavigationStore = defineStore('navigationStore', {
     },
 
     scrollToProject(index) {
+      gsap.set('body', { overflow: 'auto' });
+
       // Canvas.setFixedScrollToElement(null);
       const scrollDuration = 0.5; // 0.3
       const htmlRef = this.projects.htmlRefs[index];
@@ -108,6 +111,8 @@ export const useNavigationStore = defineStore('navigationStore', {
           //   this.projects.htmlRefs[index],
           //   this.projects.margin,
           // );
+          gsap.set('body', { overflow: 'hidden' });
+
           resolve();
         }, scrollDurationEnd * 1000);
       });
