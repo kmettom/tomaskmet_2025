@@ -26,7 +26,8 @@
     },
     "scrollSpeed": -0.15,
     "position": {
-      "alignRight": true
+      "alignRight": true,
+      "bottom": 300
     }
   },
   {
