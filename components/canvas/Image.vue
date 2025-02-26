@@ -46,7 +46,6 @@ const generatedMeshId = props.srcLink + crypto.randomUUID();
 const imageWrapper = ref('imageWrapper');
 const imgLoaded = ref(false);
 
-
 onMounted(async () => {
   addImageToCanvas(false);
 });

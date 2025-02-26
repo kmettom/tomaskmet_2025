@@ -182,7 +182,7 @@ $marginRight: 50px;
 .project-item {
   position: relative;
   &.pseudo-project {
-    padding-top: 10vh;
+    padding-top: 15vh;
   }
 }
 </style>

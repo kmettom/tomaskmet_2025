@@ -2,7 +2,12 @@ import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 gsap.registerPlugin(SplitText);
 
-export function openGalleryTransition(galleryRef, refs, sizeOrigins) {
+export function openGalleryTransition(
+  galleryRef,
+  refs,
+  sizeOrigins,
+  slideHeight,
+) {
   const aniDuration = 0.3; // 0.5
   return new Promise((resolve) => {
     const timeline = gsap.timeline({
@@ -49,7 +54,7 @@ export function openGalleryTransition(galleryRef, refs, sizeOrigins) {
           immediateRender: true,
         },
         {
-          height: '80vh',
+          height: `${slideHeight * 100}vh`,
           width: galleryWidthHalfPx,
           duration: aniDuration,
         },
