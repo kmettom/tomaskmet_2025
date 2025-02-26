@@ -176,9 +176,9 @@ export default class Scroll {
   }
 
   scrollRenderTo(scrollTo) {
-    this.blockGetScroll = true;
     this.scrollToRender = scrollTo;
     window.scrollTo(0, scrollTo);
+    window.scrollY = scrollTo;
     document.documentElement.scrollTop = scrollTo;
   }
 
@@ -199,8 +199,10 @@ export default class Scroll {
     if (this.fixScrollTo.htmlRef) {
       this.blockGetScroll = true;
       const refPosition = this.fixScrollTo.htmlRef.getBoundingClientRect().top;
-      const fixScrollToPosition =
-        this.scrollToRender + refPosition - this.fixScrollTo.margin;
+      const fixScrollToPosition = Math.round(
+        this.scrollToRender + refPosition - this.fixScrollTo.margin,
+      );
+
       this.scrollRenderTo(fixScrollToPosition);
     } else if (scrollTo !== undefined && fluid) {
       this.scrollRenderToFluid(scrollTo);
