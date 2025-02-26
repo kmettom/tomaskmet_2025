@@ -54,7 +54,8 @@ vec4 transition(vec2 uv) {
 
   float smoothness = 0.01;
 
-  float p = mix(-smoothness, 1.0 + smoothness, aniIn - hoverState);
+  //  float p = mix(-smoothness, 1.0 + smoothness, aniIn - hoverState);
+  float p = mix(-smoothness, 1.0 + smoothness, 1.0 - hoverState);
   float lower = p - smoothness;
   float higher = p + smoothness;
 

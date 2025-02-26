@@ -6,6 +6,7 @@ import {
   closeGalleryTransition,
 } from '~/utils/animations/projects';
 import { gsap } from 'gsap';
+import { projectDefaults } from '~/constants/projectDefaults.js';
 
 export const useNavigationStore = defineStore('navigationStore', {
   state: () => ({
@@ -26,8 +27,6 @@ export const useNavigationStore = defineStore('navigationStore', {
       htmlSizeOrigins: null,
       activeProject: { index: 0, ref: null },
       pastActiveProject: { index: 0, ref: null },
-      activeImageHeightVH: 0.7,
-      margin: 1 - this.projects.activeImageHeightVH,
     },
   }),
   actions: {
@@ -53,13 +52,13 @@ export const useNavigationStore = defineStore('navigationStore', {
         this.setProjectOriginSizes();
         Canvas.setFixedScrollToElement(
           this.projects.htmlRefs[index],
-          this.projects.margin,
+          projectDefaults.margin,
         );
         await openGalleryTransition(
           this.projects.htmlGalleryRef,
           this.projects.htmlRefs,
           this.projects.htmlSizeOrigins,
-          this.projects.activeImageHeightVH,
+          projectDefaults.activeImageHeightVH,
         );
         Canvas.setFixedScrollToElement(null);
         this.setGalleryNavigationVisible(true);
@@ -82,7 +81,7 @@ export const useNavigationStore = defineStore('navigationStore', {
     async closeGallery() {
       Canvas.setFixedScrollToElement(
         this.projects.activeProject.ref,
-        this.projects.margin,
+        projectDefaults.margin,
       );
       this.setGalleryNavigationVisible(false);
       await this.closeActiveProject();
@@ -102,12 +101,12 @@ export const useNavigationStore = defineStore('navigationStore', {
 
     scrollToProject(index) {
       gsap.set('body', { overflow: 'auto' });
-      const scrollDuration = 1.35;
+      const scrollDuration = 0.75;
       const htmlRef = this.projects.htmlRefs[index];
       const projectPosition =
         htmlRef.getBoundingClientRect().top +
         window.scrollY -
-        this.projects.margin;
+        projectDefaults.margin;
       Canvas.scrollTo(projectPosition, scrollDuration);
       const scrollDurationEnd = scrollDuration + 0.15;
       return new Promise((resolve) => {

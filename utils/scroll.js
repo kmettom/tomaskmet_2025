@@ -13,7 +13,6 @@ export default class Scroll {
 
     this.fixScrollTo = { htmlRef: null, margin: 0 }; //null | {ref: htmlRef, margin: Number}
     this.blockGetScroll = false;
-    this.docScroll = 0;
     this.scrollToRender = 0;
     this.current = 0;
     this.ease = 0.1;
@@ -29,15 +28,14 @@ export default class Scroll {
   }
 
   init() {
-    this.current = this.scrollToRender = this.getScroll();
+    this.getScroll();
+    this.scrollToRender = this.current;
     this.move();
   }
 
   getScroll() {
     if (this.blockGetScroll) return;
-    this.docScroll = this.current =
-      window.scrollY || document.documentElement.scrollTop;
-    return this.docScroll;
+    this.current = window.scrollY || document.documentElement.scrollTop;
   }
 
   resizeMobileBreakEvents() {
@@ -181,6 +179,7 @@ export default class Scroll {
     this.blockGetScroll = true;
     this.scrollToRender = scrollTo;
     window.scrollTo(0, scrollTo);
+    document.documentElement.scrollTop = scrollTo;
   }
 
   calculateScrollSpeed() {
@@ -198,7 +197,6 @@ export default class Scroll {
     this.setSize();
     this.blockGetScroll = false;
     if (this.fixScrollTo.htmlRef) {
-      console.log('fix scroll to');
       this.blockGetScroll = true;
       const refPosition = this.fixScrollTo.htmlRef.getBoundingClientRect().top;
       const fixScrollToPosition =
@@ -214,7 +212,6 @@ export default class Scroll {
         lerp(this.scrollToRender, this.current, this.ease),
       );
     } else {
-      console.log('default scroll');
       this.scrollToRender = Math.round(
         lerp(this.scrollToRender, this.current, this.ease),
       );

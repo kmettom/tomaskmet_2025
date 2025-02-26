@@ -73,6 +73,7 @@ import projectsData from '~/content/projects.json';
 import Project from '~/pages/index/projects/Project.vue';
 import IconsClose from '~/components/common/icons/close.client.vue';
 import { useTemplateRefsList } from '@vueuse/core';
+import { projectDefaults } from '~/constants/projectDefaults.js';
 
 const navigationStore = useNavigationStore();
 
@@ -97,6 +98,10 @@ const prevProjectName = computed(() => {
   );
 });
 
+const projectMargin = computed(() => {
+  return projectDefaults.margin * 100;
+});
+
 const openProject = (index: number) => {
   navigationStore.openGalleryProject(index);
 };
@@ -104,10 +109,6 @@ const openProject = (index: number) => {
 const closeGallery = () => {
   navigationStore.closeGallery();
 };
-
-const projectMargin = computed(() => {
-  return navigationStore.projects.margin * 100;
-});
 </script>
 
 <style lang="scss" scoped>
