@@ -7,9 +7,7 @@
     "websiteLink": "",
     "image": {
       "src": "images/01.png",
-      "alt": "image description",
-      "width": 20,
-      "height": 20
+      "alt": "image description"
     }
   },
   {
@@ -20,14 +18,11 @@
     "websiteLink": "",
     "image": {
       "src": "images/02.png",
-      "alt": "image description",
-      "width": 15,
-      "height": 20
+      "alt": "image description"
     },
-    "scrollSpeed": -0.15,
+    "scrollSpeed": -0.05,
     "position": {
-      "alignRight": true,
-      "bottom": 300
+      "alignRight": true
     }
   },
   {
@@ -38,9 +33,7 @@
     "websiteLink": "",
     "image": {
       "src": "images/03.png",
-      "alt": "image description",
-      "width": 100,
-      "height": 30
+      "alt": "image description"
     }
   },
   {
@@ -51,9 +44,7 @@
     "websiteLink": "",
     "image": {
       "src": "images/01.png",
-      "alt": "image description",
-      "width": 100,
-      "height": 30
+      "alt": "image description"
     },
     "position": {
       "alignRight": true

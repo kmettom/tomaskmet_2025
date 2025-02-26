@@ -156,6 +156,9 @@ export default class Scroll {
             item.elNode.style.transform = `translate3d(0,${-1 * (this.scrollToRender - bounds.top) * speed}px,0)`;
           }
         }
+      } else {
+        item.elNode.style.transition = `linear translate3d 0.3s`;
+        item.elNode.style.transform = `translate3d(0,0,0)`;
       }
     }
   }

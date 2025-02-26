@@ -41,7 +41,6 @@ const emit = defineEmits(['openGallery']);
         ? 0
         : props.project.scrollSpeed,
     }"
-    :style="`bottom: ${!navigationStore.projects.galleryOpen ? (project.position?.bottom ?? 0) : 0}px;}`"
     :class="projectElClasses"
   >
     <div
@@ -77,11 +76,7 @@ const emit = defineEmits(['openGallery']);
       </div>
 
       <div class="project-image">
-        <CanvasImage
-          :src-link="project.image.src"
-          :image-hover="hoverImage"
-          :image-show="!navigationStore.projects.galleryOpen"
-        />
+        <CanvasImage :src-link="project.image.src" :image-hover="hoverImage" />
       </div>
       <div class="project-name body-m">
         <span>{{ project.name }}</span>

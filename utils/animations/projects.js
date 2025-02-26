@@ -3,9 +3,10 @@ import { SplitText } from 'gsap/SplitText';
 gsap.registerPlugin(SplitText);
 
 export function openGalleryTransition(galleryRef, refs, sizeOrigins) {
-  const aniDuration = 0.5; // 0.5
+  const aniDuration = 0.3; // 0.5
   return new Promise((resolve) => {
     const timeline = gsap.timeline({
+      ease: 'linear',
       onStart: () => {
         Canvas.animateImageMesh = true;
       },
@@ -26,14 +27,18 @@ export function openGalleryTransition(galleryRef, refs, sizeOrigins) {
       stagger: 0.02,
       onComplete: () => {
         nameChars.revert();
+        gsap.set('.project-name', { opacity: 0 });
       },
     });
-    timeline.set('.project-name', { opacity: 0 });
-    timeline.to('.project-info-wrapper', {
-      duration: aniDuration,
-      width: galleryWidthHalfPx,
-      height: '30vh',
-    });
+    timeline.to(
+      '.project-info-wrapper',
+      {
+        duration: aniDuration,
+        width: galleryWidthHalfPx,
+        height: '30vh',
+      },
+      '<+=0.15',
+    );
     for (const [index, ref] of refs.entries()) {
       if (!sizeOrigins[index]) return;
       timeline.fromTo(
@@ -44,7 +49,7 @@ export function openGalleryTransition(galleryRef, refs, sizeOrigins) {
           immediateRender: true,
         },
         {
-          height: '70vh',
+          height: '75vh',
           width: galleryWidthHalfPx,
           duration: aniDuration,
         },
@@ -58,6 +63,7 @@ export function closeGalleryTransition(refs, sizeOrigins) {
   const aniDuration = 0.3; // 0.5
   return new Promise((resolve) => {
     const timeline = gsap.timeline({
+      ease: 'linear',
       onStart: () => {
         Canvas.animateImageMesh = true;
       },
@@ -65,6 +71,15 @@ export function closeGalleryTransition(refs, sizeOrigins) {
         resolve();
       },
     });
+    timeline.to(
+      '.project-info-wrapper',
+      {
+        duration: aniDuration,
+        height: '0',
+        width: '0',
+      },
+      '<',
+    );
     for (const [index, ref] of refs.entries()) {
       //TODO: check the cause of Refs array having more items
       if (!sizeOrigins[index]) return;
@@ -78,15 +93,7 @@ export function closeGalleryTransition(refs, sizeOrigins) {
         '<',
       );
     }
-    timeline.to(
-      '.project-info-wrapper',
-      {
-        duration: aniDuration,
-        height: '0px',
-        width: '0px',
-      },
-      '<',
-    );
+
     const nameChars = new SplitText('.project-name', {
       type: 'words,chars',
     });
@@ -114,6 +121,7 @@ export function closeGalleryTransition(refs, sizeOrigins) {
 
 export function showGalleryControls(show) {
   const timeline = gsap.timeline({
+    ease: 'linear',
     onStart: () => {
       Canvas.animateImageMesh = true;
     },
@@ -145,6 +153,7 @@ export function nonActiveProjectTransition(ref, duration = 0) {
 export function activeProjectTransition(ref) {
   // return new Promise((resolve) => {
   const timeline = gsap.timeline({
+    ease: 'linear',
     onStart: () => {
       Canvas.animateImageMesh = true;
     },
