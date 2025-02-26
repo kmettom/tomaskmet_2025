@@ -49,7 +49,7 @@ export function openGalleryTransition(galleryRef, refs, sizeOrigins) {
           immediateRender: true,
         },
         {
-          height: '75vh',
+          height: '80vh',
           width: galleryWidthHalfPx,
           duration: aniDuration,
         },

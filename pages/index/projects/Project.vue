@@ -50,7 +50,13 @@ const emit = defineEmits(['openGallery']);
       @click="emit('openGallery')"
     >
       <div class="project-info-wrapper">
-        <div class="heading-3 project-index">{{ projectNumber }}</div>
+        <div class="heading-3 project-index">
+          <CanvasText
+              :theme="'light'"
+          >
+            {{ projectNumber }}
+          </CanvasText>
+          </div>
         <div class="expand-description">
           <div class="statistics">
             <div class="info-row">

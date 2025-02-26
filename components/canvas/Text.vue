@@ -33,10 +33,11 @@ const meshId = crypto.randomUUID();
 onMounted(async () => {
   let innerHTML = html.value?.innerHTML;
   //remove nuxt slot comment from innerHTML, only once
-  if (innerHTML.includes('<!--]-->'))
-    innerHTML = innerHTML
-      .slice(0, innerHTML.indexOf('<!--]-->'))
-      .slice(innerHTML.indexOf('<!--[-->') + 9);
+  if (innerHTML.includes('<!--]-->')) {
+    const start = innerHTML.indexOf('<!--[-->') + 8; // Start after '<!--[-->'
+    const end = innerHTML.indexOf('<!--]-->'); // End just before '<!--]-->'
+    innerHTML = innerHTML.slice(start, end);
+  }
   // delay canvas initialization to wait for font loaded
   setTimeout(() => {
     Canvas.addTextAsMSDF(
