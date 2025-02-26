@@ -106,7 +106,7 @@ watch(
   &.hero-services {
     text-align: right;
     left: -300px;
-    bottom: 100px;
+    bottom: 130px;
   }
   &.hero-summary {
     text-align: left;
