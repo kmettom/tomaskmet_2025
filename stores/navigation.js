@@ -46,7 +46,8 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.projects.htmlGalleryRef = ref;
     },
     async openGalleryProject(index) {
-      if(!this.projects.margin) this.projects.margin = window.innerHeight * 0.05;
+      if (!this.projects.margin)
+        this.projects.margin = window.innerHeight * 0.05;
       if (!this.projects.galleryOpen) {
         await this.scrollToProject(index);
         this.setNavVisible(false);

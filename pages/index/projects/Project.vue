@@ -51,12 +51,10 @@ const emit = defineEmits(['openGallery']);
     >
       <div class="project-info-wrapper">
         <div class="heading-3 project-index">
-          <CanvasText
-              :theme="'light'"
-          >
+          <CanvasText :theme="'light'">
             {{ projectNumber }}
           </CanvasText>
-          </div>
+        </div>
         <div class="expand-description">
           <div class="statistics">
             <div class="info-row">
