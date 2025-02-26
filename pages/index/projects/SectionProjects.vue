@@ -13,9 +13,6 @@
         v-onScrollActivate="{
           trackOnly: true,
           bidirectionalActivation: true,
-          // scrollTriggerSectionsClass: navigationStore.projects.galleryOpen
-          //   ? 'project-item'
-          //   : null,
         }"
       >
         <div v-onScrollActivate="{ fixToParentId: 'gallery' }">
@@ -50,12 +47,13 @@
             </button>
           </div>
         </div>
-        <div class="project-item pseudo-project" />
+        <div :style="`height: ${projectMargin}vh`" />
         <div
           v-for="(project, index) in projectsData"
           :key="project.name"
           :ref="projectItemRefs.set"
           class="project-item"
+          :style="`padding-top: ${projectMargin}vh`"
           :class="{ first: index === 0 }"
         >
           <Project
@@ -106,6 +104,10 @@ const openProject = (index: number) => {
 const closeGallery = () => {
   navigationStore.closeGallery();
 };
+
+const projectMargin = computed(() => {
+  return navigationStore.projects.margin * 100;
+});
 </script>
 
 <style lang="scss" scoped>
@@ -181,8 +183,5 @@ $marginRight: 50px;
 
 .project-item {
   position: relative;
-  &.pseudo-project {
-    padding-top: 15vh;
-  }
 }
 </style>

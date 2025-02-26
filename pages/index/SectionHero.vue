@@ -38,8 +38,6 @@ const props = defineProps({
   sectionActivate: Boolean,
 });
 
-const hoverActive = ref(false);
-
 const mainTextIn = ref(false);
 
 const heroSectionAnimation = () => {

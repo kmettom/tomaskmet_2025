@@ -94,8 +94,8 @@ $nameSize: 30px;
 .project {
   display: flex;
   justify-content: left;
-  margin-top: $nameSize;
-  padding-top: $nameSize;
+  //margin-top: $nameSize;
+  //padding-top: $nameSize;
   position: relative;
   &.project-right {
     justify-content: right;
@@ -105,10 +105,6 @@ $nameSize: 30px;
   cursor: pointer;
   position: relative;
   display: flex;
-  //justify-content: left;
-  //&.project-right {
-  //  justify-content: right;
-  //}
 }
 
 .project-index {

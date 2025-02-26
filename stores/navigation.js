@@ -26,8 +26,8 @@ export const useNavigationStore = defineStore('navigationStore', {
       htmlSizeOrigins: null,
       activeProject: { index: 0, ref: null },
       pastActiveProject: { index: 0, ref: null },
-      margin: null,
       activeImageHeightVH: 0.7,
+      margin: 1 - this.projects.activeImageHeightVH,
     },
   }),
   actions: {
@@ -47,10 +47,6 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.projects.htmlGalleryRef = ref;
     },
     async openGalleryProject(index) {
-      if (!this.projects.margin) {
-        this.projects.margin =
-          window.innerHeight * ((1 - this.projects.activeImageHeightVH) / 2);
-      }
       if (!this.projects.galleryOpen) {
         await this.scrollToProject(index);
         this.setNavVisible(false);
@@ -106,7 +102,7 @@ export const useNavigationStore = defineStore('navigationStore', {
 
     scrollToProject(index) {
       gsap.set('body', { overflow: 'auto' });
-      const scrollDuration = 0.2;
+      const scrollDuration = 1.35;
       const htmlRef = this.projects.htmlRefs[index];
       const projectPosition =
         htmlRef.getBoundingClientRect().top +

@@ -198,6 +198,7 @@ export default class Scroll {
     this.setSize();
     this.blockGetScroll = false;
     if (this.fixScrollTo.htmlRef) {
+      console.log('fix scroll to');
       this.blockGetScroll = true;
       const refPosition = this.fixScrollTo.htmlRef.getBoundingClientRect().top;
       const fixScrollToPosition =
@@ -213,6 +214,7 @@ export default class Scroll {
         lerp(this.scrollToRender, this.current, this.ease),
       );
     } else {
+      console.log('default scroll');
       this.scrollToRender = Math.round(
         lerp(this.scrollToRender, this.current, this.ease),
       );
