@@ -50,11 +50,16 @@ export const useNavigationStore = defineStore('navigationStore', {
         await this.scrollToProject(index);
         this.setNavVisible(false);
         this.setProjectOriginSizes();
+        Canvas.setFixedScrollToElement(
+          this.projects.activeProject.ref,
+          this.projects.margin,
+        );
         await openGalleryTransition(
           this.projects.htmlGalleryRef,
           this.projects.htmlRefs,
           this.projects.htmlSizeOrigins,
         );
+        Canvas.setFixedScrollToElement(null);
         this.setGalleryNavigationVisible(true);
         this.projects.galleryOpen = true;
         this.setActiveProject(index);
@@ -86,6 +91,7 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.setNavVisible(true);
       this.projects.galleryOpen = false;
       Canvas.setFixedScrollToElement(null);
+      gsap.set('body', { overflow: 'auto' });
     },
     setGalleryNavigationVisible(visible) {
       this.projects.navigationVisible = visible;
@@ -94,25 +100,17 @@ export const useNavigationStore = defineStore('navigationStore', {
 
     scrollToProject(index) {
       gsap.set('body', { overflow: 'auto' });
-
-      // Canvas.setFixedScrollToElement(null);
-      const scrollDuration = 0.5; // 0.3
+      const scrollDuration = 0.35;
       const htmlRef = this.projects.htmlRefs[index];
       const projectPosition =
         htmlRef.getBoundingClientRect().top +
         window.scrollY -
         this.projects.margin;
       Canvas.scrollTo(projectPosition, scrollDuration);
-      const scrollDurationEnd = scrollDuration;
+      const scrollDurationEnd = scrollDuration + 0.15;
       return new Promise((resolve) => {
         setTimeout(() => {
-          //TODO: add just a scroll disable feature, no element fix
-          // Canvas.setFixedScrollToElement(
-          //   this.projects.htmlRefs[index],
-          //   this.projects.margin,
-          // );
           gsap.set('body', { overflow: 'hidden' });
-
           resolve();
         }, scrollDurationEnd * 1000);
       });
