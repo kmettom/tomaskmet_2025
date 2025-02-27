@@ -25,14 +25,6 @@ const props = defineProps({
     type: Object,
     default: () => {},
   },
-  // hover: {
-  //   type: Boolean,
-  //   default: false,
-  // },
-  // show: {
-  //   type: Boolean,
-  //   default: true,
-  // },
 });
 
 const generatedMeshId = props.srcLink + crypto.randomUUID();
@@ -88,20 +80,6 @@ watch(
   },
   { deep: true },
 );
-
-// watch(
-//   () => props.hover,
-//   (isHovered) => {
-//     Canvas.hoverMesh(generatedMeshId, isHovered);
-//   },
-// );
-//
-// watch(
-//   () => props.show,
-//   (isVisible) => {
-//     Canvas.activateMesh(generatedMeshId, isVisible);
-//   },
-// );
 
 onBeforeUnmount(() => {
   Canvas.removeMesh(generatedMeshId);

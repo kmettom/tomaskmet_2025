@@ -454,7 +454,6 @@ const Canvas = {
         time: { value: 0 },
         uImage: { value: texture },
         vectorVNoise: { value: new THREE.Vector2(1.5, 1.5) }, // 1.5
-        // uHover: { value: 0 },
         uAniIn: { value: 0 },
         uMouse: { value: new THREE.Vector2(0, 0) },
         uMouseMovement: { value: new THREE.Vector2(0, 0) },
