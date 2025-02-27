@@ -53,7 +53,7 @@ onMounted(async () => {
       innerHTML,
       props.theme,
       false,
-      meshUniforms,
+      meshUniforms.value,
     );
   }, 50);
 });
