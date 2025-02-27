@@ -5,8 +5,8 @@ uniform sampler2D uImage;
 // https://gl-transitions.com/editor/perlin
 
 uniform float time;
-uniform float hoverState;
-uniform float aniIn;
+uniform float uHover;
+uniform float uAniIn;
 
 uniform float scale; // = 4.0
 uniform float smoothness; // = 0.01
@@ -48,14 +48,14 @@ float noise(vec2 st) {
 }
 
 vec4 transition(vec2 uv) {
-  vec4 from = texture2D(uImage, uv) * vec4(1.0, 1.0, 1.0, 1.0 * hoverState);
+  vec4 from = texture2D(uImage, uv) * vec4(1.0, 1.0, 1.0, 1.0 * uHover);
   vec4 to = texture2D(uImage, uv) * vec4(1.0, 1.0, 1.0, 1.0);
   float n = noise(uv * 4.0);
 
   float smoothness = 0.01;
 
-  //  float p = mix(-smoothness, 1.0 + smoothness, aniIn - hoverState);
-  float p = mix(-smoothness, 1.0 + smoothness, 1.0 - hoverState);
+  float p = mix(-smoothness, 1.0 + smoothness, uAniIn - uHover);
+  //  float p = mix(-smoothness, 1.0 + smoothness, 1.0 - uHover);
   float lower = p - smoothness;
   float higher = p + smoothness;
 

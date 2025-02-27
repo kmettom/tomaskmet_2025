@@ -1,7 +1,6 @@
 uniform float time;
-uniform vec2 hover;
-uniform float hoverState;
-uniform float aniIn;
+uniform float uHover;
+uniform float uAniIn;
 varying float vNoise;
 varying vec2 vUv;
 

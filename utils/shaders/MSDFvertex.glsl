@@ -4,8 +4,8 @@ uniform vec2 hover;
 
 //generic unifiorms
 uniform float time;
-uniform float hoverState;
-uniform float aniIn;
+uniform float uHover;
+uniform float uAniIn;
 uniform vec2 viewport;
 uniform vec2 uMouse;
 uniform vec2 uMouseMovement;
@@ -35,7 +35,7 @@ void main() {
   float dist = distance(uv, hover);
 
   //  newposition.z += (1.0 - aniIn) * 20.0 * sin(dist * 20.0 + time / 2.0);
-  //  newposition.z += circle * hoverState;
+  //  newposition.z += circle * uHoverState;
 
   vUv = uv;
   gl_Position = projectionMatrix * modelViewMatrix * vec4(newposition, 1.0);

@@ -12,8 +12,8 @@ varying float vNoise;
 
 // Generic uniforms
 uniform float time;
-uniform float hoverState;
-uniform float aniIn;
+uniform float uHover;
+uniform float uAniIn;
 uniform vec2 viewport;
 uniform vec2 uMouse;
 uniform vec2 uMouseMovement;
@@ -65,8 +65,8 @@ float createOverlay() {
   float wave = createWave(viewportUv);
   float leftPadding = 0.1;
   float progress = smoothstep(
-    aniIn - 1.0 * (1.0 - aniIn),
-    aniIn,
+    uAniIn - 1.0 * (1.0 - uAniIn),
+    uAniIn,
     viewportUv.x - vUv.x + leftPadding + wave
   );
   return progress;

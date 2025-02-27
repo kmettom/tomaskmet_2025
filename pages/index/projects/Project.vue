@@ -23,7 +23,12 @@ const projectElClasses = computed(() => {
 const projectNumber = computed(() => {
   return '0' + (props.index + 1).toString();
 });
-const projectHover = ref(false);
+
+const projectImageUniforms = ref({
+  uHover: { state: false, duration: 0.35 },
+  uAniIn: { state: false, duration: 0.75 },
+});
+
 const emit = defineEmits(['openGallery']);
 </script>
 
@@ -45,13 +50,20 @@ const emit = defineEmits(['openGallery']);
   >
     <div
       :class="`project-wrapper ${project.position?.alignRight ? ' project-right ' : ''}`"
-      @mouseover="projectHover = !navigationStore.projects.galleryOpen"
-      @mouseleave="projectHover = false"
+      @mouseover="
+        projectImageUniforms.uHover.active =
+          !navigationStore.projects.galleryOpen
+      "
+      @mouseleave="projectImageUniforms.uHover.active = false"
       @click="emit('openGallery')"
     >
       <div class="project-info-wrapper">
         <div class="heading-3 project-index">
-          <CanvasText :theme="'light'" :hover="projectHover">
+          <CanvasText
+            :theme="'light'"
+            :hover="projectImageUniforms.uHover.active"
+            :uniforms="projectImageUniforms"
+          >
             {{ projectNumber }}
           </CanvasText>
         </div>
@@ -80,8 +92,12 @@ const emit = defineEmits(['openGallery']);
       </div>
 
       <div class="project-image">
-        <CanvasImage :src-link="project.image.src" :hover="projectHover" />
+        <CanvasImage
+          :src-link="project.image.src"
+          :uniforms="projectImageUniforms"
+        />
       </div>
+
       <div class="project-name body-m">
         <span>{{ project.name }}</span>
       </div>
@@ -94,8 +110,6 @@ $nameSize: 30px;
 .project {
   display: flex;
   justify-content: left;
-  //margin-top: $nameSize;
-  //padding-top: $nameSize;
   position: relative;
   &.project-right {
     justify-content: right;

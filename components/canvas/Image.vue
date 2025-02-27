@@ -2,8 +2,6 @@
   <div ref="imageWrapper" class="webgl-img-wrapper">
     <NuxtImg
       class="webgl-img"
-      :width="width"
-      :height="height"
       alt="picture"
       :src="srcLink"
       @load="imageLoaded"
@@ -23,22 +21,17 @@ const props = defineProps({
     type: String,
     default: 'default',
   },
-  hover: {
-    type: Boolean,
-    default: false,
+  uniforms: {
+    type: Object,
   },
-  show: {
-    type: Boolean,
-    default: true,
-  },
-  width: {
-    type: String,
-    default: '100%',
-  },
-  height: {
-    type: String,
-    default: '100%',
-  },
+  // hover: {
+  //   type: Boolean,
+  //   default: false,
+  // },
+  // show: {
+  //   type: Boolean,
+  //   default: true,
+  // },
 });
 
 const generatedMeshId = props.srcLink + crypto.randomUUID();
@@ -76,18 +69,26 @@ const imageLoaded = () => {
 };
 
 watch(
-  () => props.hover,
-  (isHovered) => {
-    Canvas.hoverMesh(generatedMeshId, isHovered);
+  () => props.uniforms,
+  (uniforms) => {
+    Canvas.meshUniformsUpdate(generatedMeshId, uniforms.value);
   },
+  { deep: true },
 );
 
-watch(
-  () => props.show,
-  (isVisible) => {
-    Canvas.activateMesh(generatedMeshId, isVisible);
-  },
-);
+// watch(
+//   () => props.hover,
+//   (isHovered) => {
+//     Canvas.hoverMesh(generatedMeshId, isHovered);
+//   },
+// );
+//
+// watch(
+//   () => props.show,
+//   (isVisible) => {
+//     Canvas.activateMesh(generatedMeshId, isVisible);
+//   },
+// );
 
 onBeforeUnmount(() => {
   Canvas.removeMesh(generatedMeshId);
