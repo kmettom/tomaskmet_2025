@@ -16,14 +16,6 @@ const props = defineProps({
     type: Object,
     default: () => {},
   },
-  hover: {
-    type: Boolean,
-    default: false,
-  },
-  show: {
-    type: Boolean,
-    default: null,
-  },
   theme: {
     type: String,
     default: 'dark',
@@ -33,6 +25,16 @@ const props = defineProps({
 const html = ref('html');
 
 const meshId = crypto.randomUUID();
+
+const meshUniforms = computed(() => {
+  const uni = {};
+  for (const key in props.uniforms) {
+    uni[key] = {
+      value: 0,
+    };
+  }
+  return uni;
+});
 
 onMounted(async () => {
   let innerHTML = html.value?.innerHTML;
@@ -51,6 +53,7 @@ onMounted(async () => {
       innerHTML,
       props.theme,
       false,
+      meshUniforms,
     );
   }, 50);
 });

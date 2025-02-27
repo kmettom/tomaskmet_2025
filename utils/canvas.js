@@ -266,7 +266,15 @@ const Canvas = {
     }
   },
 
-  addTextAsMSDF(shader, meshId, htmlEl, text, theme, mouseListeners) {
+  addTextAsMSDF(
+    shader,
+    meshId,
+    htmlEl,
+    text,
+    theme,
+    mouseListeners,
+    meshUniforms,
+  ) {
     let vertexShader = this.options.default.textVertex;
     let fragmentShader = this.options.default.textFragment;
 
@@ -342,6 +350,7 @@ const Canvas = {
           vectorVNoise: { value: new THREE.Vector2(1.5, 1.5) }, // 1.5
           uHover: { value: 0 },
           uAniIn: { value: 0 },
+          ...meshUniforms,
         },
         vertexShader: vertexShader,
         fragmentShader: fragmentShader,
@@ -453,9 +462,9 @@ const Canvas = {
 
     this.imageStore.push(newMesh);
 
-    setTimeout(() => {
-      if (!htmlEl.dataset.scrollActive) this.activateMesh(id, true);
-    }, 250);
+    // setTimeout(() => {
+    //   if (!htmlEl.dataset.scrollActive) this.activateMesh(id, true);
+    // }, 250);
 
     this.setImageMeshPositions();
     if (mouseListeners) this.meshMouseListeners(newMesh, material);
