@@ -195,7 +195,6 @@ const Canvas = {
   meshUniformsUpdate(id, uniforms) {
     const mesh = this.scene.getObjectByName(id);
     for (const uniKey in uniforms) {
-      console.log(uniKey, uniforms[uniKey]);
       gsap.to(mesh.material.uniforms[uniKey], {
         duration: uniforms[uniKey].duration,
         value: uniforms[uniKey].active ? 1 : 0,
@@ -420,7 +419,7 @@ const Canvas = {
       if (mouseListeners) this.meshMouseListeners(newMesh, material);
     });
   },
-  addImageAsMesh(htmlEl, shader, meshId, mouseListeners) {
+  addImageAsMesh(htmlEl, shader, meshId, mouseListeners, meshUniforms) {
     let vertexShader = this.options.default.vertexShader;
     let fragmentShader = this.options.default.fragmentShader;
 
@@ -455,12 +454,13 @@ const Canvas = {
         time: { value: 0 },
         uImage: { value: texture },
         vectorVNoise: { value: new THREE.Vector2(1.5, 1.5) }, // 1.5
-        uHover: { value: 0 },
+        // uHover: { value: 0 },
         uAniIn: { value: 0 },
         uMouse: { value: new THREE.Vector2(0, 0) },
         uMouseMovement: { value: new THREE.Vector2(0, 0) },
         uMeshSize: { value: new THREE.Vector2(bounds.width, bounds.height) },
         uTextureSize: { value: new THREE.Vector2(500, 500) },
+        ...meshUniforms
       },
       fragmentShader: fragmentShader,
       vertexShader: vertexShader,

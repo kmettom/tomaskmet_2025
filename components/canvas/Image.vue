@@ -23,6 +23,7 @@ const props = defineProps({
   },
   uniforms: {
     type: Object,
+    default: () => {},
   },
   // hover: {
   //   type: Boolean,
@@ -38,6 +39,16 @@ const generatedMeshId = props.srcLink + crypto.randomUUID();
 
 const imageWrapper = ref('imageWrapper');
 const imgLoaded = ref(false);
+
+const meshUniforms = computed(() => {
+  const uni = {};
+  for (const key in props.uniforms) {
+    uni[key] = {
+      value: 0,
+    };
+  }
+  return uni;
+});
 
 onMounted(async () => {
   addImageToCanvas(false);
@@ -58,6 +69,7 @@ const addImageToCanvas = (_timeout) => {
         props.shader,
         generatedMeshId,
         false,
+        meshUniforms.value,
       );
     },
     _timeout ? 200 : 0,
@@ -71,7 +83,8 @@ const imageLoaded = () => {
 watch(
   () => props.uniforms,
   (uniforms) => {
-    Canvas.meshUniformsUpdate(generatedMeshId, uniforms.value);
+    Canvas.meshUniformsUpdate(generatedMeshId, uniforms);
+    // Canvas.hoverMesh(generatedMeshId, uniforms.uHover.active);
   },
   { deep: true },
 );

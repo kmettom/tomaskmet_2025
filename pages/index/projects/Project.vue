@@ -26,7 +26,7 @@ const projectNumber = computed(() => {
 
 const projectImageUniforms = ref({
   uHover: { state: false, duration: 0.35 },
-  uAniIn: { state: false, duration: 0.75 },
+  // uAniIn: { state: false, duration: 0.75 },
 });
 
 const emit = defineEmits(['openGallery']);
