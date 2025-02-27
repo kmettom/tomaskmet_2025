@@ -76,7 +76,6 @@ watch(
   () => props.uniforms,
   (uniforms) => {
     Canvas.meshUniformsUpdate(generatedMeshId, uniforms);
-    // Canvas.hoverMesh(generatedMeshId, uniforms.uHover.active);
   },
   { deep: true },
 );

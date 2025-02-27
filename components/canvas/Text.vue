@@ -12,6 +12,10 @@ const props = defineProps({
     type: String,
     default: null,
   },
+  uniforms: {
+    type: Object,
+    default: () => {},
+  },
   hover: {
     type: Boolean,
     default: false,
@@ -52,17 +56,11 @@ onMounted(async () => {
 });
 
 watch(
-  () => props.hover,
-  (isHovered) => {
-    Canvas.hoverMesh(meshId, isHovered);
+  () => props.uniforms,
+  (uniforms) => {
+    Canvas.meshUniformsUpdate(meshId, uniforms);
   },
-);
-
-watch(
-  () => props.show,
-  (show) => {
-    Canvas.activateMesh(meshId, show === null ? true : show);
-  },
+  { deep: true },
 );
 
 onBeforeUnmount(() => {

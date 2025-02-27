@@ -183,15 +183,6 @@ const Canvas = {
     }
   },
 
-  hoverMesh(id, isHovered) {
-    const mesh = this.scene.getObjectByName(id);
-    if (!mesh) return;
-    gsap.to(mesh.material.uniforms.uHover, {
-      duration: 0.5,
-      value: isHovered ? 1 : 0,
-    });
-  },
-
   meshUniformsUpdate(id, uniforms) {
     const mesh = this.scene.getObjectByName(id);
     for (const uniKey in uniforms) {
@@ -205,7 +196,7 @@ const Canvas = {
   activateMesh(id, isActive) {
     const mesh = this.scene.getObjectByName(id);
     gsap.to(mesh.material.uniforms.uAniIn, {
-      duration: 1.25, //1.25
+      duration: 0.5,
       value: isActive ? 1 : 0,
     });
   },
@@ -214,32 +205,11 @@ const Canvas = {
     if (item.options.activateCallback) {
       item.options.activateCallback(item);
     }
-    //TODO: finish scrollTriggerSectionsClass logic
-    // if (item.options.scrollTriggerSectionsClass) {
-    // this.scroll.scrollOnTrigger = active;
-    // if (!active) {
-    // this.navigationStore.setProjectsExpanded(false);
-    // }
-    // }
   },
 
   onScrollCallback() {
     // can be used for rotating and moving elements based on scroll speed and position
     // options: item, position, scrollSpeed
-  },
-
-  //TODO: finish or remove scrollTriggerSectionsClass logic
-  // sectionTriggerMove() {
-  // },
-  // addOnTriggerSectionSlide(binding) {
-  // },
-
-  createTriggerSectionPositions(binding) {
-    binding.options.scrollTriggerSections = document.querySelectorAll(
-      binding.options.scrollTriggerSectionsClass,
-    );
-    this.triggerSectionPositions[binding.options.scrollTriggerSectionsClass] =
-      [];
   },
 
   setFixedScrollToElement(elNode, margin = 0) {
@@ -248,12 +218,6 @@ const Canvas = {
 
   addOnScrollActivateElement(binding) {
     const newBinding = generateBindingLogic(binding);
-    if (newBinding.options.scrollTriggerSectionsClass) {
-      // this.createTriggerSectionPositions();
-      // TODO: create trigger section logic
-      //if this section active, block scroll and use it as a trigger to move to next section
-    }
-
     this.scroll.DOM.onScrollActivateElements.push(newBinding);
   },
 
@@ -459,7 +423,7 @@ const Canvas = {
         uMouseMovement: { value: new THREE.Vector2(0, 0) },
         uMeshSize: { value: new THREE.Vector2(bounds.width, bounds.height) },
         uTextureSize: { value: new THREE.Vector2(500, 500) },
-        ...meshUniforms
+        ...meshUniforms,
       },
       fragmentShader: fragmentShader,
       vertexShader: vertexShader,

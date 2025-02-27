@@ -3,7 +3,12 @@
     <Container additional-class="hero-section">
       <div class="hero-content-line hero-line-studio">
         <h2 class="heading-0">
-          <CanvasText :theme="'light'" :show="mainTextIn"> STUDIO </CanvasText>
+          <CanvasText
+            :theme="'light'"
+            :uniforms="{ uAniIn: { active: mainTextIn, duration: 0.5 } }"
+          >
+            STUDIO
+          </CanvasText>
         </h2>
       </div>
 
@@ -16,7 +21,12 @@
           <p>e-commerce</p>
         </div>
         <h2 class="heading-1">
-          <CanvasText :theme="'light'" :show="mainTextIn"> 783 </CanvasText>
+          <CanvasText
+            :theme="'light'"
+            :uniforms="{ uAniIn: { active: mainTextIn, duration: 0.5 } }"
+          >
+            783
+          </CanvasText>
         </h2>
         <div class="body-m hero-content-sm hero-summary">
           <p>Web Developer with</p>

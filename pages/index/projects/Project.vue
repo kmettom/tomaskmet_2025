@@ -60,11 +60,7 @@ const emit = defineEmits(['openGallery']);
     >
       <div class="project-info-wrapper">
         <div class="heading-3 project-index">
-          <CanvasText
-            :theme="'light'"
-            :hover="projectImageUniforms.uHover.active"
-            :uniforms="projectImageUniforms"
-          >
+          <CanvasText :theme="'light'" :uniforms="projectImageUniforms">
             {{ projectNumber }}
           </CanvasText>
         </div>
