@@ -1,9 +1,5 @@
 <template>
-  <div
-    v-if="navVisible"
-    class="body-xs navigation-bar"
-    :class="{ dark: navContrastSwitched }"
-  >
+  <div class="body-xs navigation-bar" :class="{ dark: navContrastSwitched }">
     <div class="location">
       <span>Portugal</span>
       <span id="splitter">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
@@ -26,6 +22,11 @@
   </div>
 </template>
 <script setup>
+import {
+  navigationFirstEnter,
+  navigationShow,
+} from '~/utils/animations/navigation';
+
 const navigationStore = useNavigationStore();
 
 const goToSection = (sectionId) => {
@@ -42,7 +43,6 @@ const timezone = 'Europe/Lisbon';
 
 const navigationItems = computed(() => navigationStore.navigationItems);
 const activeNav = computed(() => navigationStore.activeNavItem);
-const navVisible = computed(() => navigationStore.navVisible);
 const navContrastSwitched = computed(() => navigationStore.navContrastSwitched);
 
 let intervalId = null;
@@ -58,11 +58,19 @@ function updateLisbonTime() {
 onMounted(() => {
   updateLisbonTime();
   intervalId = setInterval(updateLisbonTime, 60000);
+  navigationFirstEnter();
 });
 
 onUnmounted(() => {
   clearInterval(intervalId);
 });
+
+watch(
+  () => navigationStore.navVisible,
+  (isVisible) => {
+    navigationShow(isVisible);
+  },
+);
 </script>
 <style lang="scss">
 .navigation-bar {
@@ -74,6 +82,7 @@ onUnmounted(() => {
   justify-content: space-between;
   padding: 20px;
   z-index: 9;
+  opacity: 0;
 
   &.dark {
     color: var(--dark-color);
