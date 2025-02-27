@@ -25,12 +25,27 @@ const projectNumber = computed(() => {
 });
 
 const projectImageUniforms = ref({
-  uHover: { state: false, duration: 0.5 },
-  uImageGallery: { state: false, duration: 0.5 },
-  uImageGalleryActive: { state: false, duration: 0.5 },
+  uHover: { active: false, duration: 0.5 },
+  uImageGallery: { active: false, duration: 0.5 },
+  uImageGalleryActive: { active: false, duration: 0.5 },
 });
 
 const emit = defineEmits(['openGallery']);
+
+watch(
+  () => navigationStore.projects.galleryOpen,
+  (galleryOpen) => {
+    projectImageUniforms.value.uImageGallery.active = galleryOpen;
+  },
+);
+
+watch(
+  () => navigationStore.projects.activeProject.index,
+  (activeProjectIndex) => {
+    projectImageUniforms.value.uImageGalleryActive.active =
+      activeProjectIndex === props.index;
+  },
+);
 </script>
 
 <template>

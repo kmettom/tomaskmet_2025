@@ -74,7 +74,6 @@ const Canvas = {
   initScroll() {
     this.scroll = new Scroll({
       dom: this.scrollableContent,
-      // activeCallback: this.activateMesh,
     });
   },
   setCanvasAndCamera() {
@@ -386,9 +385,6 @@ const Canvas = {
 
       this.setTextMeshPositions();
 
-      // setTimeout(() => {
-      // if (!htmlEl.dataset.scrollActive) this.activateMesh(meshId, true, 'ADDMSDF');
-      // }, 250);
       if (mouseListeners) this.meshMouseListeners(newMesh, material);
     });
   },
@@ -461,10 +457,6 @@ const Canvas = {
     };
 
     this.imageStore.push(newMesh);
-
-    // setTimeout(() => {
-    //   if (!htmlEl.dataset.scrollActive) this.activateMesh(id, true);
-    // }, 250);
 
     this.setImageMeshPositions();
     if (mouseListeners) this.meshMouseListeners(newMesh, material);
