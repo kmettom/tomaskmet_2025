@@ -2,8 +2,6 @@ varying float vNoise;
 varying vec2 vUv;
 uniform sampler2D uImage;
 
-// https://gl-transitions.com/editor/perlin
-
 uniform float time;
 uniform float uHover;
 uniform float uAniIn;
@@ -14,7 +12,6 @@ uniform float scale; // = 4.0
 uniform float smoothness; // = 0.01
 uniform float seed; // = 12.9898
 
-//TODO: xxxyyy new tests for center and overflow of image
 uniform vec2 uMeshSize; // The size of the mesh (width, height)
 uniform vec2 uTextureSize; // The size of the texture (width, height)
 
@@ -89,7 +86,23 @@ void main() {
     uv.x = uv.x * scale + (1.0 - scale) / 2.0; // Center the texture horizontally
   }
 
-  gl_FragColor = transition(uv);
-  gl_FragColor.rgb += 0.01 * vec3(vNoise);
+  vec2 newUV = vUv;
+
+  vec2 p = newUV;
+  float x = uHover + 1.0 - uAniIn;
+  x = smoothstep(0.0, 1.0, x * 2.0 + p.y - 1.0);
+  vec4 f = mix(
+  texture2D(uImage, (p - 0.5) * (1.0 - x) + 0.5),
+  texture2D(uImage, (p - 0.5) * x + 0.5),
+  x
+  );
+
+  gl_FragColor = f * vec4(1.0, 1.0, 1.0, uAniIn);
+  gl_FragColor.rgb += 0.05 * vec3(vNoise);
+
+
+//  gl_FragColor = transition(uv);
+//  gl_FragColor = f * vec4(1.0, 1.0, 1.0, uAniIn);
+//  gl_FragColor.rgb += 0.01 * vec3(vNoise);
 
 }
