@@ -3,10 +3,7 @@
     <Container additional-class="hero-section">
       <div class="hero-content-line hero-line-studio">
         <h2 class="heading-0">
-          <CanvasText
-            :theme="'light'"
-            :uniforms="{ uAniIn: { active: mainTextIn, duration: 0.5 } }"
-          >
+          <CanvasText :theme="'light'" :uniforms="mainTextInUniforms">
             STUDIO
           </CanvasText>
         </h2>
@@ -21,10 +18,7 @@
           <p>e-commerce</p>
         </div>
         <h2 class="heading-1">
-          <CanvasText
-            :theme="'light'"
-            :uniforms="{ uAniIn: { active: mainTextIn, duration: 0.5 } }"
-          >
+          <CanvasText :theme="'light'" :uniforms="mainTextInUniforms">
             783
           </CanvasText>
         </h2>
@@ -49,6 +43,9 @@ const props = defineProps({
 });
 
 const mainTextIn = ref(false);
+const mainTextInUniforms = computed(() => {
+  return { uAniIn: { active: mainTextIn.value, duration: 1 } };
+});
 
 const heroSectionAnimation = () => {
   gsap.registerPlugin(SplitText);

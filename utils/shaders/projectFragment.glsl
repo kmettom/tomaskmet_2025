@@ -47,7 +47,9 @@ float noise(vec2 st) {
 }
 
 vec4 transition(vec2 uv) {
-  vec4 from = texture2D(uImage, uv) * vec4(1.0, 1.0, 1.0, min( uAniIn + uImageGallery, 1.0));
+  vec4 from =
+    texture2D(uImage, uv) *
+    vec4(1.0, 1.0, 1.0, min(uAniIn + uImageGallery, 1.0));
   vec4 to = texture2D(uImage, uv) * vec4(1.0, 1.0, 1.0, 1.0);
   float n = noise(uv * 4.0);
 
@@ -92,17 +94,16 @@ void main() {
   float x = uHover + 1.0 - uAniIn;
   x = smoothstep(0.0, 1.0, x * 2.0 + p.y - 1.0);
   vec4 f = mix(
-  texture2D(uImage, (p - 0.5) * (1.0 - x) + 0.5),
-  texture2D(uImage, (p - 0.5) * x + 0.5),
-  x
+    texture2D(uImage, (p - 0.5) * (1.0 - x) + 0.5),
+    texture2D(uImage, (p - 0.5) * x + 0.5),
+    x
   );
 
   gl_FragColor = f * vec4(1.0, 1.0, 1.0, uAniIn);
   gl_FragColor.rgb += 0.05 * vec3(vNoise);
 
-
-//  gl_FragColor = transition(uv);
-//  gl_FragColor = f * vec4(1.0, 1.0, 1.0, uAniIn);
-//  gl_FragColor.rgb += 0.01 * vec3(vNoise);
+  //  gl_FragColor = transition(uv);
+  //  gl_FragColor = f * vec4(1.0, 1.0, 1.0, uAniIn);
+  //  gl_FragColor.rgb += 0.01 * vec3(vNoise);
 
 }
