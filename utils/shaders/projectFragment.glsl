@@ -50,7 +50,7 @@ float noise(vec2 st) {
 }
 
 vec4 transition(vec2 uv) {
-  vec4 from = texture2D(uImage, uv) * vec4(1.0, 1.0, 1.0, 1.0 * uAniIn);
+  vec4 from = texture2D(uImage, uv) * vec4(1.0, 1.0, 1.0, min( uAniIn + uImageGallery, 1.0));
   vec4 to = texture2D(uImage, uv) * vec4(1.0, 1.0, 1.0, 1.0);
   float n = noise(uv * 4.0);
 
