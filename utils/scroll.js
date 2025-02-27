@@ -12,7 +12,6 @@ export default class Scroll {
     this.activeCallback = options.activeCallback;
 
     this.fixScrollTo = { htmlRef: null, margin: 0 }; //null | {ref: htmlRef, margin: Number}
-    this.blockGetScroll = false;
     this.scrollToRender = 0;
     this.current = 0;
     this.ease = 0.1;
@@ -34,7 +33,6 @@ export default class Scroll {
   }
 
   getScroll() {
-    if (this.blockGetScroll) return;
     this.current = window.scrollY || document.documentElement.scrollTop;
   }
 
@@ -57,8 +55,8 @@ export default class Scroll {
       this.resizeMobileBreakEvents();
       this.setSize();
     });
-    window.addEventListener('scroll', () => {
-      this.getScroll();
+    window.addEventListener('scroll', (event) => {
+        this.getScroll();
     });
   }
 
@@ -177,8 +175,11 @@ export default class Scroll {
 
   scrollRenderTo(scrollTo) {
     this.scrollToRender = scrollTo;
-    window.scrollTo(0, scrollTo);
-    window.scrollY = scrollTo;
+    window.scrollTo({
+      left: 0,
+      top: scrollTo,
+      behavior: 'instant',
+    });
     document.documentElement.scrollTop = scrollTo;
   }
 
@@ -195,9 +196,7 @@ export default class Scroll {
 
   render(scrollTo, fluid) {
     this.setSize();
-    this.blockGetScroll = false;
     if (this.fixScrollTo.htmlRef) {
-      this.blockGetScroll = true;
       const refPosition = this.fixScrollTo.htmlRef.getBoundingClientRect().top;
       const fixScrollToPosition = Math.round(
         this.scrollToRender + refPosition - this.fixScrollTo.margin,
