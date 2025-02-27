@@ -55,8 +55,8 @@ export default class Scroll {
       this.resizeMobileBreakEvents();
       this.setSize();
     });
-    window.addEventListener('scroll', (event) => {
-        this.getScroll();
+    window.addEventListener('scroll', () => {
+      this.getScroll();
     });
   }
 
