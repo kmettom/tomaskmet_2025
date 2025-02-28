@@ -13,11 +13,11 @@ import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import scrollFragment from './shaders/scrollFragment.glsl';
 import scrollVertex from './shaders/scrollVertex.glsl';
 
-import projectFragment from './shaders/projectFragment.glsl';
-import projectVertex from './shaders/projectVertex.glsl';
+import projectBlurFragment from './shaders/projectBlurFragment.glsl';
+import projectBlurVertex from './shaders/projectBlurVertex.glsl';
 
-import MSDFFragment from './shaders/MSDFfragment.glsl';
-import MSDFVertex from './shaders/MSDFvertex.glsl';
+import TextBlurFragment from './shaders/TextBlurFragment.glsl';
+import TextBlurVertex from './shaders/TextBlurVertex.glsl';
 import { generateBindingLogic } from '~/utils/canvasHelpers';
 
 const { MSDFTextGeometry } = pkg;
@@ -34,15 +34,11 @@ const CanvasOptions = {
     vertexShader: scrollVertex,
   },
   default: {
-    fragmentShader: projectFragment,
-    vertexShader: projectVertex,
-    textFragment: MSDFFragment,
-    textVertex: MSDFVertex,
+    fragmentShader: projectBlurFragment,
+    vertexShader: projectBlurVertex,
+    textFragment: TextBlurFragment,
+    textVertex: TextBlurVertex,
   },
-  // projectImage: {
-  //   fragmentShader: projectFragment,
-  //   vertexShader: projectVertex,
-  // },
 };
 
 const Canvas = {
@@ -51,7 +47,6 @@ const Canvas = {
   animateImageMesh: false,
   canvasContainer: null,
   scrollableContent: null,
-  // pointer: { cursor: null, intersects: null },
   time: 0,
   scene: new THREE.Scene(),
   materials: [],
