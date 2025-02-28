@@ -14,7 +14,9 @@
           v-onScrollActivate="{
             activeRange: 0.85,
             fixToParentId: 'servicesList',
-            onScrollCallback: () => {},
+            // onScrollCallback: (item: any, speed: any) => {
+            //   console.log('onScrollCallback', item, speed);
+            // },
           }"
           class="service-item"
           :style="serviceBoxStyle(Number(index))"

@@ -35,5 +35,5 @@ export default defineNuxtPlugin((nuxtApp) => {
 //   activeRangeMargin: Number
 //   scrollSpeed: Number,
 //   fixToParentId: Boolean,
-//   scrollCallback: string
+//   onScrollCallback: (item, speed) => {},
 // }

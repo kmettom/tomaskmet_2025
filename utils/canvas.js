@@ -201,11 +201,6 @@ const Canvas = {
     }
   },
 
-  onScrollCallback() {
-    // can be used for rotating and moving elements based on scroll speed and position
-    // options: item, position, scrollSpeed
-  },
-
   setFixedScrollToElement(elNode, margin = 0) {
     this.scroll.fixScrollTo = { htmlRef: elNode ?? null, margin: margin };
   },
