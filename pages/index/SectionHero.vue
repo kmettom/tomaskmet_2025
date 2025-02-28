@@ -4,7 +4,7 @@
       <div class="hero-content-line hero-line-studio">
         <h2 class="heading-0">
           <CanvasText :theme="'light'" :uniforms="mainTextInUniforms">
-            STUDIO
+            TOMAS
           </CanvasText>
         </h2>
       </div>
@@ -19,7 +19,7 @@
         </div>
         <h2 class="heading-1">
           <CanvasText :theme="'light'" :uniforms="mainTextInUniforms">
-            783
+            KMET
           </CanvasText>
         </h2>
         <div class="body-m hero-content-sm hero-summary">

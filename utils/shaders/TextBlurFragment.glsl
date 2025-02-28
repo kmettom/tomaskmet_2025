@@ -74,7 +74,7 @@ float createOverlay() {
 
 void main() {
   //  float circle = createCircle();
-//  float overlay = createOverlay();
+  //  float overlay = createOverlay();
   float width = 0.2;
   float lineProgress = 0.3;
   vec3 mySample = texture2D(uMap, vUv).rgb;
@@ -88,7 +88,7 @@ void main() {
   float outline = smoothstep(0.0, border, sigDist);
   outline *= smoothstep(width - border, width, sigDist);
 
-  float finalAlpha = fill * (1.0);
+  float finalAlpha = fill * 1.0;
   //  float finalAlpha = fill * (1.0 - overlay) * circle;
 
   gl_FragColor = vec4(uColor, finalAlpha);

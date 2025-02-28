@@ -14,6 +14,7 @@
           v-onScrollActivate="{
             activeRange: 0.85,
             fixToParentId: 'servicesList',
+            onScrollCallback: () => {},
           }"
           class="service-item"
           :style="serviceBoxStyle(Number(index))"
@@ -42,12 +43,16 @@ import Service from '~/pages/index/services/Service.vue';
 
 const serviceBlockSize = 340;
 
+const serviceMarginTop = (indexInRow: number, serviceBlockSize: number) => {
+  return `margin-top:${(indexInRow * serviceBlockSize) / 2}px;`;
+};
+
 const serviceBoxStyle = (index: number) => {
   let indexInRow = index;
   if (index > 2) {
     indexInRow = index - 3;
   }
-  let styles = `margin-top:${(indexInRow * serviceBlockSize) / 3}px; z-index: ${indexInRow}; transform: translate(0,0);`;
+  let styles = `${serviceMarginTop(indexInRow, serviceBlockSize)} z-index: ${indexInRow}; transform: translate(0,0);`;
   if (indexInRow !== index) styles += `padding-top: ${serviceBlockSize / 4}px`;
   return styles;
 };
