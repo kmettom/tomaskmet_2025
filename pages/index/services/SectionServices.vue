@@ -14,9 +14,12 @@
           v-onScrollActivate="{
             activeRange: 0.75,
             fixToParentId: 'servicesList',
-            // onScrollCallback: (item: any, speed: any) => {
-            //   console.log('onScrollCallback', item, speed);
+            //  activateCallback: (item:any) => {
+            //   setServiceBlockBlur(item.elNode,service.styles);
             // },
+            onScrollCallback: (item: any, speed: any) => {
+              setServiceBlockBlur(item.elNode,service.styles);
+            },
           }"
           class="service-item"
           :style="serviceBoxStyle(Number(index))"
@@ -42,12 +45,19 @@
 import Container from '~/components/common/Container.vue';
 import services from '~/content/services.model.json';
 import Service from '~/pages/index/services/Service.vue';
+import gsap from 'gsap';
 
 const serviceBlockSize = 340;
 
 const serviceMarginTop = (indexInRow: number, serviceBlockSize: number) => {
   return `margin-top:${(indexInRow * serviceBlockSize) }px;`;
 };
+
+const setServiceBlockBlur = (elNode:any,styles:any) => {
+  // console.log(elNode.getBoundingClientRect().top)
+  // const blur = 10 * (100 - elNode.getBoundingClientRect().top);
+  // gsap.to(elNode,{duration: 0.01, filter: `blur(${blur}px)`, rotation: styles.rotation})
+}
 
 const serviceBoxStyle = (index: number) => {
   let indexInRow = index;
