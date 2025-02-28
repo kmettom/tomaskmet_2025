@@ -110,7 +110,8 @@ export default class Scroll {
           activeRangeInPx + activeRangeOriginPx;
 
       if (activeFromTop && activeFromBottom) {
-        if (item.options.onScrollCallback) item.options.onScrollCallback (item, this.speed)
+        if (item.options.onScrollCallback)
+          item.options.onScrollCallback(item, this.speed);
         if (item.elNode.dataset.activeScroll !== 'true') {
           this.setElementActive(item, true);
         }
