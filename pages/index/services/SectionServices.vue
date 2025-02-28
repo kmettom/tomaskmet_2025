@@ -12,7 +12,7 @@
           v-for="(service, index) in services"
           :key="index"
           v-onScrollActivate="{
-            activeRange: 0.85,
+            activeRange: 0.75,
             fixToParentId: 'servicesList',
             // onScrollCallback: (item: any, speed: any) => {
             //   console.log('onScrollCallback', item, speed);
@@ -46,7 +46,7 @@ import Service from '~/pages/index/services/Service.vue';
 const serviceBlockSize = 340;
 
 const serviceMarginTop = (indexInRow: number, serviceBlockSize: number) => {
-  return `margin-top:${(indexInRow * serviceBlockSize) / 2}px;`;
+  return `margin-top:${(indexInRow * serviceBlockSize) }px;`;
 };
 
 const serviceBoxStyle = (index: number) => {
