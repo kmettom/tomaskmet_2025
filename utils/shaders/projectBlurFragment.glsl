@@ -88,8 +88,11 @@ void main() {
     uv.x = uv.x * scale + (1.0 - scale) / 2.0; // Center the texture horizontally
   }
 
-  gl_FragColor = transition(uv);
-  //  gl_FragColor = f * vec4(1.0, 1.0, 1.0, uAniIn);
+  vec4 texColor = texture2D(uImage, uv);
+
+  gl_FragColor = texColor;
+//  gl_FragColor = uv;
+//    gl_FragColor = f * vec4(1.0, 1.0, 1.0, uAniIn);
   gl_FragColor.rgb += 0.01 * vec3(vNoise);
 
 }
