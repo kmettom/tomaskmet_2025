@@ -15,11 +15,13 @@
             activeRange: 0.75,
             fixToParentId: 'servicesList',
             onScrollCallback: (item: any, speed: any) => {
-              setServiceBlockBlur(item.elNode, service.styles);
+              setServiceBlockBlur(index, item.elNode, service.styles);
             },
           }"
           class="service-item"
           :style="serviceBoxStyle(Number(index))"
+          @mouseover="setItemActive(index, true)"
+          @mouseleave="setItemActive(index, false)"
         >
           <div class="" style="transform-origin: 0% 0%">
             <div class="service-item-inner">
@@ -47,17 +49,34 @@ import gsap from 'gsap';
 const serviceBlockSize = 340;
 const serviceTopPadding = 50;
 
-const setServiceBlockBlur = (elNode: any, styles: any) => {
-  const animationCoef = Math.min(
+const activeItemIndex = ref();
+const setItemActive = (index: number, isActive: boolean) => {
+  activeItemIndex.value = isActive ? index : null;
+};
+
+const setServiceBlockBlur = (
+  index: number | null,
+  elNode: any,
+  styles: any,
+) => {
+  const aniInCoef = Math.min(
     1,
     1 -
       (elNode.getBoundingClientRect().top - serviceTopPadding) /
         window.innerHeight,
   );
-  const rotateDeg = styles.rotate * animationCoef;
-  const opacity = animationCoef;
-  const blur = 10 * (1 - animationCoef);
-  console.log(animationCoef, styles.rotate);
+  const aniOutCoef = Math.abs(Math.min(
+      1,
+      -1*elNode.getBoundingClientRect().top / window.innerHeight,
+  ));
+  if(index === 0){
+    console.log('I ', aniOutCoef, 'O ', aniInCoef);
+  }
+  const rotateDeg = styles.rotate * aniInCoef;
+  const opacity = aniInCoef;
+  const isActiveItem = index === activeItemIndex.value;
+  const blur = isActiveItem ? 0 : 20 * (1 - aniInCoef);
+  // console.log(aniInCoef, styles.rotate);
   gsap.set(elNode, {
     filter: `blur(${blur}px)`,
     opacity: opacity,
