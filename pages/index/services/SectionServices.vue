@@ -21,7 +21,7 @@
           class="service-item"
           :style="serviceBoxStyle(Number(index))"
         >
-          <div class="">
+          <div class="" style="transform-origin: 0% 0%">
             <div class="service-item-inner">
               <Service
                 :title="service.title"
@@ -45,32 +45,41 @@ import Service from '~/pages/index/services/Service.vue';
 import gsap from 'gsap';
 
 const serviceBlockSize = 340;
-const serviceTopPadding = 50
+const serviceTopPadding = 50;
 
 const setServiceBlockBlur = (elNode: any, styles: any) => {
-  const animationCoef = Math.min(1, 1 - ( (elNode.getBoundingClientRect().top - serviceTopPadding) / window.innerHeight));
-  const rotateDeg = styles.rotate * animationCoef
-  const opacity =  animationCoef;
-  const blur = 10 *(1-animationCoef)
-  console.log(  animationCoef, styles.rotate);
-  gsap.set(elNode,{ filter: `blur(${blur}px)`, opacity: opacity , rotation:rotateDeg})
+  const animationCoef = Math.min(
+    1,
+    1 -
+      (elNode.getBoundingClientRect().top - serviceTopPadding) /
+        window.innerHeight,
+  );
+  const rotateDeg = styles.rotate * animationCoef;
+  const opacity = animationCoef;
+  const blur = 10 * (1 - animationCoef);
+  console.log(animationCoef, styles.rotate);
+  gsap.set(elNode, {
+    filter: `blur(${blur}px)`,
+    opacity: opacity,
+    rotation: rotateDeg,
+  });
 };
 
 const serviceMarginTop = (indexInRow: number) => {
-  return ` margin-top:${ indexInRow * serviceBlockSize}px; `;
+  return ` margin-top:${indexInRow * serviceBlockSize}px; `;
 };
 
-const servicePaddingTop = (index:number) => {
-  let rowIndex = Math.floor(index / 3);
-  return ` padding-top: ${ serviceTopPadding  + (rowIndex * serviceBlockSize) / 2}px; `;
-}
+const servicePaddingTop = (index: number) => {
+  const rowIndex = Math.floor(index / 3);
+  return ` padding-top: ${serviceTopPadding + (rowIndex * serviceBlockSize) / 2}px; `;
+};
 
 const serviceBoxStyle = (index: number) => {
   let indexInRow = index;
   if (index > 2) {
     indexInRow = index - 3;
   }
-  return `${serviceMarginTop(indexInRow)} ${servicePaddingTop(index)} z-index: ${indexInRow}; translate(0,0);`;
+  return `${serviceMarginTop(indexInRow)} ${servicePaddingTop(index)} z-index: ${indexInRow}; translate(0,0); transform-origin: 50% 50%;`;
 };
 </script>
 
