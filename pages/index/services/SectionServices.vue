@@ -65,11 +65,10 @@ const setServiceBlockBlur = (
       (elNode.getBoundingClientRect().top - serviceTopPadding) /
         window.innerHeight,
   );
-  const aniOutCoef = Math.abs(Math.min(
-      1,
-      -1*elNode.getBoundingClientRect().top / window.innerHeight,
-  ));
-  if(index === 0){
+  const aniOutCoef = Math.abs(
+    Math.min(1, (-1 * elNode.getBoundingClientRect().top) / window.innerHeight),
+  );
+  if (index === 0) {
     console.log('I ', aniOutCoef, 'O ', aniInCoef);
   }
   const rotateDeg = styles.rotate * aniInCoef;
@@ -81,6 +80,7 @@ const setServiceBlockBlur = (
     filter: `blur(${blur}px)`,
     opacity: opacity,
     rotation: rotateDeg,
+    zIndex: isActiveItem ? (index ?? 0) * 10 : 0,
   });
 };
 
