@@ -30,7 +30,22 @@ void main() {
 
   vec4 texColor = texture2D(uImage, uv);
 
-  gl_FragColor = texColor;
+  gl_FragColor = texColor * uAniIn;
   gl_FragColor.rgb += 0.01 * vec3(vNoise);
 
 }
+
+//vec2 onePixel = vec2(1.0, 1.0) / u_textureSize;
+//gl_FragColor = (
+//texture2D(u_image, textCoord + onePixel * vec2(-1.0, -1.0)) +
+//texture2D(u_image, textCoord + onePixel * vec2(0.0, -1.0)) +
+//texture2D(u_image, textCoord + onePixel * vec2(1.0, -1.0)) +
+//texture2D(u_image, textCoord + onePixel * vec2(-1.0, 0.0)) +
+//texture2D(u_image, textCoord + onePixel * vec2(0.0, 0.0)) +
+//texture2D(u_image, textCoord + onePixel * vec2(1.0, 0.0)) +
+//texture2D(u_image, textCoord + onePixel * vec2(-1.0, 1.0)) +
+//texture2D(u_image, textCoord + onePixel * vec2(0.0, 1.0)) +
+//texture2D(u_image, textCoord + onePixel * vec2(1.0, 1.0))) / 9.0;
+//}
+//https://search.brave.com/search?q=webgl+blur+fragment&source=desktop&summary=1&conversation=0d68d9ddb392621c1e7dee
+

@@ -14,11 +14,8 @@
           v-onScrollActivate="{
             activeRange: 0.75,
             fixToParentId: 'servicesList',
-            //  activateCallback: (item:any) => {
-            //   setServiceBlockBlur(item.elNode,service.styles);
-            // },
             onScrollCallback: (item: any, speed: any) => {
-              setServiceBlockBlur(item.elNode,service.styles);
+              setServiceBlockBlur(item.elNode, service.styles);
             },
           }"
           class="service-item"
@@ -48,15 +45,24 @@ import Service from '~/pages/index/services/Service.vue';
 import gsap from 'gsap';
 
 const serviceBlockSize = 340;
+const serviceTopPadding = 50
 
-const serviceMarginTop = (indexInRow: number, serviceBlockSize: number) => {
-  return `margin-top:${(indexInRow * serviceBlockSize) }px;`;
+const setServiceBlockBlur = (elNode: any, styles: any) => {
+  const animationCoef = Math.min(1, 1 - ( (elNode.getBoundingClientRect().top - serviceTopPadding) / window.innerHeight));
+  const rotateDeg = styles.rotate * animationCoef
+  const opacity = 1 * animationCoef;
+  const blur = 10 *(1-animationCoef)
+  console.log(  animationCoef, styles.rotate);
+  gsap.set(elNode,{ filter: `blur(${blur}px)`, opacity: opacity , rotation:rotateDeg})
 };
 
-const setServiceBlockBlur = (elNode:any,styles:any) => {
-  // console.log(elNode.getBoundingClientRect().top)
-  // const blur = 10 * (100 - elNode.getBoundingClientRect().top);
-  // gsap.to(elNode,{duration: 0.01, filter: `blur(${blur}px)`, rotation: styles.rotation})
+const serviceMarginTop = (indexInRow: number) => {
+  return ` margin-top:${ indexInRow * serviceBlockSize}px; `;
+};
+
+const servicePaddingTop = (index:number) => {
+  let rowIndex = Math.floor(index / 3);
+  return ` padding-top: ${ serviceTopPadding  + (rowIndex * serviceBlockSize) / 2}px; `;
 }
 
 const serviceBoxStyle = (index: number) => {
@@ -64,9 +70,7 @@ const serviceBoxStyle = (index: number) => {
   if (index > 2) {
     indexInRow = index - 3;
   }
-  let styles = `${serviceMarginTop(indexInRow, serviceBlockSize)} z-index: ${indexInRow}; transform: translate(0,0);`;
-  if (indexInRow !== index) styles += `padding-top: ${serviceBlockSize / 4}px`;
-  return styles;
+  return `${serviceMarginTop(indexInRow)} ${servicePaddingTop(index)} z-index: ${indexInRow}; translate(0,0);`;
 };
 </script>
 

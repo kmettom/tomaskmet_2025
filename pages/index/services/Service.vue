@@ -1,6 +1,5 @@
 <template>
-  <div class="service" :style="`width:${blockSize}px;${styles}`">
-    {{}}
+  <div class="service" :style="`width:${blockSize}px;`">
     <div class="header">
       <div class="iconFrame">
         {{ icon }}

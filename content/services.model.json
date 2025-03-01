@@ -5,7 +5,7 @@
     "text": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id urna auctor donec sed. Sit cursus pretium convallis enim congue dolor. In rhoncus fusce eget diam scelerisque diam est pharetra sem.",
     "blur": "0px ",
     "styles": {
-      "rotate": "-5"
+      "rotate": -5
     }
   },
   {
@@ -14,7 +14,7 @@
     "text": "Dolor risus urna dui venenatis nec tortor tellus. Sapien consequat eget nunc sagittis quam luctus id commodo. Tincidunt sollicitudin nec mattis risus sem mattis ut.",
     "blur": "0px ",
     "styles": {
-      "rotate": "10"
+      "rotate": 10
     }
   },
   {
@@ -23,7 +23,7 @@
     "text": "Ac Euismod vivamus et sem rhoncus non. Rhoncus sed pharetra tincidunt arcu ut vulputate interdum nunc. Diam feugiat condimentum tempor ullamcorper non.",
     "blur": "0px ",
     "styles": {
-      "rotate": "13"
+      "rotate": 14
     }
   },
   {
@@ -32,7 +32,7 @@
     "text": "Ac morbi risus massa eget sapien. Aliquet ornare mauris tortor fringilla at. Scelerisque eu habitant placerat proin augue. Donec nunc varius velit aliquam erat nunc. Urna tincidunt suspendisse eleifend est quisque.",
     "blur": "0px ",
     "styles": {
-      "rotate": "-12"
+      "rotate": -12
     }
   },
   {
@@ -40,7 +40,7 @@
     "icon": "💻",
     "text": "Ac morbi risus massa eget sapien. Aliquet ornare mauris tortor fringilla at. Scelerisque eu habitant placerat proin augue. Donec nunc varius velit aliquam erat nunc. Urna tincidunt suspendisse eleifend est quisque.",
     "styles": {
-      "rotate": "3"
+      "rotate": 3
     }
   },
   {
@@ -49,7 +49,7 @@
     "text": "Ac morbi risus massa eget sapien. Aliquet ornare mauris tortor fringilla at. Scelerisque eu habitant placerat proin augue. Donec nunc varius velit aliquam erat nunc. Urna tincidunt suspendisse eleifend est quisque.",
     "blur": "0px ",
     "styles": {
-      "rotate": "3"
+      "rotate": -5
     }
   }
 ]
