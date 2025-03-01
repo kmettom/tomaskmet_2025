@@ -50,7 +50,7 @@ const serviceTopPadding = 50
 const setServiceBlockBlur = (elNode: any, styles: any) => {
   const animationCoef = Math.min(1, 1 - ( (elNode.getBoundingClientRect().top - serviceTopPadding) / window.innerHeight));
   const rotateDeg = styles.rotate * animationCoef
-  const opacity = 1 * animationCoef;
+  const opacity =  animationCoef;
   const blur = 10 *(1-animationCoef)
   console.log(  animationCoef, styles.rotate);
   gsap.set(elNode,{ filter: `blur(${blur}px)`, opacity: opacity , rotation:rotateDeg})
