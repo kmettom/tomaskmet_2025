@@ -65,20 +65,21 @@ const setServiceBlockBlur = (
       (elNode.getBoundingClientRect().top - serviceTopPadding) /
         window.innerHeight,
   );
-  const aniOutCoef =
-    Math.max(0, (-1 * elNode.getBoundingClientRect().top) / window.innerHeight);
-  if (index === 0) {
-    console.log( 'O ', aniOutCoef);
-  }
-  const rotateDeg = styles.rotate * aniInCoef;
-  const opacity = aniInCoef;
-  // const isActiveItem = index === activeItemIndex.value;
-  const blur =  20 * (1 - aniInCoef) + 5 * aniOutCoef;
-  // console.log(aniInCoef, styles.rotate);
+  const aniOutCoef = Math.min(
+    1,
+    Math.max(
+      0,
+      -(elNode.getBoundingClientRect().top + serviceBlockSize / 3) /
+        window.innerHeight,
+    ),
+  );
+  const rotateDeg = styles.rotate * aniInCoef - styles.rotate * aniOutCoef;
+  // const opacity = aniInCoef;
+  const blur = 25 * (1 - aniInCoef) + 5 * aniOutCoef;
   gsap.set(elNode, {
     filter: `blur(${blur}px)`,
-    opacity: opacity,
-    // rotation: rotateDeg,
+    // opacity: opacity,
+    rotation: rotateDeg,
     // zIndex: isActiveItem ? (index ?? 0) * 10 : 0,
   });
 };
