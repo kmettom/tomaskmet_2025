@@ -51,8 +51,10 @@ const props = defineProps({
 
 const mainTextIn = ref(false);
 const mainTextInUniforms = computed(() => {
-  return { uAniIn: { active: mainTextIn.value, duration: 1 },
-    uBlurAmount: { active:true , duration: 0 }};
+  return {
+    uAniIn: { active: mainTextIn.value, duration: 1 },
+    uBlurAmount: { active: true, duration: 0 },
+  };
 });
 
 const heroSectionAnimation = () => {

@@ -2,7 +2,7 @@
 varying vec2 vUv;
 
 // Uniforms: Common
- float uOpacity = 0.5;
+float uOpacity = 0.5;
 uniform float uThreshold;
 uniform float uAlphaTest;
 uniform vec3 uColor;
@@ -26,12 +26,14 @@ float uBlurAmount = 1.0; // New uniform for controlling blur strength
 
 // Pre-computed Gaussian weights for a 5-tap kernel
 float weights[5] = float[](
-0.20755374, 0.18915723, 0.14689464, 0.09754491, 0.05540637
+  0.20755374,
+  0.18915723,
+  0.14689464,
+  0.09754491,
+  0.05540637
 );
 
-
 float DISTANCE_COEF = 0.5;
-
 
 float median(float r, float g, float b) {
   return max(min(r, g), min(max(r, g), b));
@@ -56,7 +58,6 @@ void main() {
   gl_FragColor = vec4(uColor, finalAlpha);
   if (finalAlpha < uAlphaTest) discard;
 }
-
 
 // Function to apply Gaussian blur in a given direction
 vec4 applyGaussianBlur(sampler2D tex, vec2 uv, vec2 direction) {
