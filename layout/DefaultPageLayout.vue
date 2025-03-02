@@ -11,7 +11,7 @@
     <div
       id="animationContainer"
       ref="canvas"
-      :class="{ 'back-layer': !navVisible }"
+      :class="{ 'back-layer': backLayerCanvas }"
     />
   </div>
 </template>
@@ -22,7 +22,11 @@ import { Canvas } from '~/utils/canvas';
 
 const navigationStore = useNavigationStore();
 
-const navVisible = computed(() => navigationStore.navVisible);
+const backLayerCanvas = computed(() => {
+  return (
+    navigationStore.activeNavItem === 'home' || !navigationStore.navVisible
+  );
+});
 
 const canvas = ref('canvas');
 
