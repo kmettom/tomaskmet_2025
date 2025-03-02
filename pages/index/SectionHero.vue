@@ -31,7 +31,7 @@
     <div class="hero-bg-image">
       <CanvasImage
         :src-link="'images/hero.png'"
-        :uniforms="{ uHover: { active: false, duration: 0.1 } }"
+        :uniforms="mainTextInUniforms"
       />
     </div>
   </Container>
@@ -135,5 +135,9 @@ watch(
   height: 100vh;
   width: 50%;
   border: 1px solid red;
+  * {
+   width: 100%;
+   height: 100%;
+  }
 }
 </style>
