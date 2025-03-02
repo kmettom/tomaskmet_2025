@@ -106,7 +106,7 @@ const serviceBoxStyle = (index: number) => {
 //=======>>>   SERVICES   <<<==========//
 .services-section {
   padding-top: 100px;
-  padding-bottom: 275px;
+  padding-bottom: 325px;
   background-color: var(--light-color);
   color: var(--dark-color);
   text-align: center;
