@@ -2,7 +2,7 @@
 varying vec2 vUv;
 
 // Uniforms: Common
-uniform float uOpacity;
+ float uOpacity = 0.5;
 uniform float uThreshold;
 uniform float uAlphaTest;
 uniform vec3 uColor;
@@ -21,60 +21,23 @@ uniform float devicePixelRatio;
 
 uniform sampler2D gradientMap;
 
+////**********************************
+float uBlurAmount = 1.0; // New uniform for controlling blur strength
+
+// Pre-computed Gaussian weights for a 5-tap kernel
+float weights[5] = float[](
+0.20755374, 0.18915723, 0.14689464, 0.09754491, 0.05540637
+);
+
+
 float DISTANCE_COEF = 0.5;
 
-float WAVE_INTERVAL = 0.1;
-float WEVA_APLITUDE = 10.0;
-
-float createWave(vec2 viewportUv) {
-  return sin(viewportUv.y * WEVA_APLITUDE + time) * WAVE_INTERVAL;
-}
 
 float median(float r, float g, float b) {
   return max(min(r, g), min(max(r, g), b));
 }
 
-float createCircle() {
-  vec2 viewportUv = gl_FragCoord.xy / viewport / devicePixelRatio;
-  float viewportAspect = viewport.x / viewport.y;
-  vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);
-
-  vec2 shapeUv = viewportUv - mousePoint;
-  //TODO: add uMouseMovement
-  shapeUv /= vec2(1.0, viewportAspect);
-  shapeUv += mousePoint;
-  float dist = distance(shapeUv, mousePoint);
-
-  //  vec2 randomCoefficients = vec2(13.0, 80.);
-  //  float randomMultiplier = 100.;
-  //  float wave = createWave(vUv);
-  //  float randomValue = fract(sin(dot(gl_FragCoord.xy + time + wave, randomCoefficients)) * randomMultiplier);
-  //  float randomSmooth = smoothstep(randomValue , randomValue * wave , dist);
-
-  //  float circleRadius = max(0.0, 10/ viewport.x);
-  float circleRadius = max(0.0, 10.0 / viewport.x);
-
-  //  circleRadius = smoothstep(circleRadius, circleRadius, 0.1);
-
-  dist = smoothstep(circleRadius, circleRadius + 0.05, dist);
-  return dist;
-}
-
-float createOverlay() {
-  vec2 viewportUv = gl_FragCoord.xy / viewport / devicePixelRatio;
-  float wave = createWave(viewportUv);
-  float leftPadding = 0.1;
-  float progress = smoothstep(
-    uAniIn - 1.0 * (1.0 - uAniIn),
-    uAniIn,
-    viewportUv.x - vUv.x + leftPadding + wave
-  );
-  return progress;
-}
-
 void main() {
-  //  float circle = createCircle();
-  //  float overlay = createOverlay();
   float width = 0.2;
   float lineProgress = 0.3;
   vec3 mySample = texture2D(uMap, vUv).rgb;
@@ -88,10 +51,49 @@ void main() {
   float outline = smoothstep(0.0, border, sigDist);
   outline *= smoothstep(width - border, width, sigDist);
 
-  float finalAlpha = fill * 1.0;
-  //  float finalAlpha = fill * (1.0 - overlay) * circle;
+  float finalAlpha = fill * uAniIn;
 
   gl_FragColor = vec4(uColor, finalAlpha);
   if (finalAlpha < uAlphaTest) discard;
 }
+
+
+// Function to apply Gaussian blur in a given direction
+vec4 applyGaussianBlur(sampler2D tex, vec2 uv, vec2 direction) {
+  vec4 color = texture(tex, uv) * weights[0];
+
+  // Blur radius scales with uBlurAmount
+  float pixelStep = uBlurAmount / 100.0;
+
+  // Two-sided blur using weights
+  for (int i = 1; i < 5; i++) {
+    vec2 offset = direction * float(i) * pixelStep;
+    color += texture(tex, uv + offset) * weights[i];
+    color += texture(tex, uv - offset) * weights[i];
+  }
+
+  return color;
+}
+
+//void main() {
+//  // Apply horizontal and vertical blur
+//  vec4 blurredH = applyGaussianBlur(uMap, vUv, vec2(1.0, 0.0));
+//  vec4 blurredV = applyGaussianBlur(uMap, vUv, vec2(0.0, 1.0));
+//
+//  // Combine horizontal and vertical blur
+//  vec4 blurred = (blurredH + blurredV) * 0.5;
+//
+//  // Calculate signed distance using the blurred texture
+//  float sigDist = median(blurred.r, blurred.g, blurred.b) - 0.5;
+//  float fill = clamp(sigDist / fwidth(sigDist) + 0.5, 0.0, 1.0);
+//
+//  // Apply threshold and alpha test
+//  float finalAlpha = fill * uOpacity;
+//  if (finalAlpha < uAlphaTest) discard;
+//
+//
+//    gl_FragColor = vec4(uColor, finalAlpha);
+////    if (finalAlpha < uAlphaTest) discard;
+////  outColor = vec4(uColor, finalAlpha);
+//}
 

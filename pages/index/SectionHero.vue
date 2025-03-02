@@ -51,7 +51,8 @@ const props = defineProps({
 
 const mainTextIn = ref(false);
 const mainTextInUniforms = computed(() => {
-  return { uAniIn: { active: mainTextIn.value, duration: 1 } };
+  return { uAniIn: { active: mainTextIn.value, duration: 1 },
+    uBlurAmount: { active:true , duration: 0 }};
 });
 
 const heroSectionAnimation = () => {
@@ -86,7 +87,7 @@ watch(
 <style lang="scss" scoped>
 //=======>>>   HERO   <<<==========//
 .hero-section {
-  padding: 20vh;
+  padding: 16vh;
   position: relative;
   text-align: center;
 }
@@ -99,7 +100,6 @@ watch(
   justify-content: center;
   .heading-1 {
     line-height: 100%;
-    //height: 20vw;
   }
   &.hero-line-tomas {
     right: 20%;

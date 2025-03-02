@@ -74,7 +74,7 @@ float createOverlay() {
 
 void main() {
   //  float circle = createCircle();
-  float overlay = createOverlay();
+  //  float overlay = createOverlay();
   float width = 0.2;
   float lineProgress = 0.3;
   vec3 mySample = texture2D(uMap, vUv).rgb;
@@ -88,10 +88,26 @@ void main() {
   float outline = smoothstep(0.0, border, sigDist);
   outline *= smoothstep(width - border, width, sigDist);
 
-  float finalAlpha = fill * (1.0 - overlay);
+  vec4 texColor = texture2D(uMap, vUv);
+  float uBackgroundBlur = 0.5;
+  vec4 blur =
+    (texture2D(uMap, vUv + vec2(-uBackgroundBlur, -uBackgroundBlur)) +
+      texture2D(uMap, vUv + vec2(uBackgroundBlur, -uBackgroundBlur)) +
+      texture2D(uMap, vUv + vec2(-uBackgroundBlur, uBackgroundBlur)) +
+      texture2D(uMap, vUv + vec2(uBackgroundBlur, uBackgroundBlur))) *
+    0.25;
+
+  // Final color combining texture with overlay color
+  vec4 finalColor = mix(texColor, uColor, uColor.a);
+
+  gl_FragColor = vec4(finalColor.rgb, texColor.a * uColor.a); // Texture alpha preserved
+
+  //  float finalAlpha = fill;
+  //  float finalAlpha = fill * (1.0 - overlay);
   //  float finalAlpha = fill * (1.0 - overlay) * circle;
 
-  gl_FragColor = vec4(uColor, finalAlpha);
-  if (finalAlpha < uAlphaTest) discard;
+  //  gl_FragColor = vec4(uColor, finalAlpha);
+  //  if (finalAlpha < uAlphaTest) discard;
+
 }
 

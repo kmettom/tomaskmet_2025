@@ -315,8 +315,15 @@ const Canvas = {
         uniforms: {
           devicePixelRatio: { value: window.devicePixelRatio },
           uColor: {
-            value: new THREE.Color(theme === 'dark' ? '#1B1818' : '#BFC0B2'),
+            value: new THREE.Vector4(
+              theme === 'dark' ? 27 / 255 : 191 / 255, // R
+              theme === 'dark' ? 24 / 255 : 192 / 255, // G
+              theme === 'dark' ? 24 / 255 : 178 / 255, // B
+            ),
           },
+          // uColor: {
+          //   value: new THREE.Color(theme === 'dark' ? '#1B1818' : '#BFC0B2'),
+          // },
           viewport: {
             type: 'v2',
             value: new THREE.Vector2(this.width, this.height),
@@ -397,7 +404,7 @@ const Canvas = {
     htmlEl.dataset.meshId = id;
 
     let texture = new THREE.TextureLoader().load(htmlEl.src, () => {
-      //TODO: xxxyyy change to async for Image loading
+      //TODO: change to async for Image loading
       material.uniforms.uTextureSize.value.set(
         texture.image.width,
         texture.image.height,
@@ -445,11 +452,11 @@ const Canvas = {
 
     this.imageStore.push(newMesh);
 
-    if (meshUniforms.uAniIn?.active === true) {
-      setTimeout(() => {
-        this.activateMesh(id, true);
-      }, 250);
-    }
+    // if (meshUniforms.uAniIn) {
+    //   setTimeout(() => {
+    //     this.activateMesh(id, true);
+    //   }, 250);
+    // }
 
     this.setImageMeshPositions();
     if (mouseListeners) this.meshMouseListeners(newMesh, material);
