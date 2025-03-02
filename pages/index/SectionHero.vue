@@ -1,40 +1,40 @@
 <template>
-    <Container additional-class="hero-section">
+  <Container additional-class="hero-section">
+    <div class="hero-content-line hero-line-tomas">
+      <h2 class="heading-1">
+        <CanvasText :theme="'light'" :uniforms="mainTextInUniforms">
+          TOMAS
+        </CanvasText>
+      </h2>
+    </div>
 
-      <div class="hero-content-line hero-line-tomas">
-        <h2 class="heading-1">
-          <CanvasText :theme="'light'" :uniforms="mainTextInUniforms">
-            TOMAS
-          </CanvasText>
-        </h2>
+    <div class="hero-content-line hero-line-kmet">
+      <div class="body-m hero-content-sm hero-services">
+        <p>web3</p>
+        <p>creative</p>
+        <p>web apps</p>
+        <p>websites</p>
+        <p>e-commerce</p>
       </div>
-
-      <div class="hero-content-line hero-line-kmet">
-        <div class="body-m hero-content-sm hero-services">
-          <p>web3</p>
-          <p>creative</p>
-          <p>web apps</p>
-          <p>websites</p>
-          <p>e-commerce</p>
-        </div>
-        <h2 class="heading-1">
-          <CanvasText :theme="'light'" :uniforms="mainTextInUniforms">
-            KMET
-          </CanvasText>
-        </h2>
-        <div class="body-m hero-content-sm hero-summary">
-          <p>Web Developer with</p>
-          <p>managerial background,</p>
-          <p>coding and bringing a full</p>
-          <p>team to help your project.</p>
-        </div>
+      <h2 class="heading-1">
+        <CanvasText :theme="'light'" :uniforms="mainTextInUniforms">
+          KMET
+        </CanvasText>
+      </h2>
+      <div class="body-m hero-content-sm hero-summary">
+        <p>Web Developer with</p>
+        <p>managerial background,</p>
+        <p>coding and bringing a full</p>
+        <p>team to help your project.</p>
       </div>
-      <div class="hero-bg-image">
-        <CanvasImage
-            :src-link="'images/hero.png'" :uniforms="{uHover: { active: false, duration: 0.1 }}"
-        />
-      </div>
-    </Container>
+    </div>
+    <div class="hero-bg-image">
+      <CanvasImage
+        :src-link="'images/hero.png'"
+        :uniforms="{ uHover: { active: false, duration: 0.1 } }"
+      />
+    </div>
+  </Container>
 </template>
 
 <script setup lang="ts">
@@ -125,7 +125,7 @@ watch(
     top: 50px;
   }
 }
-.hero-bg-image{
+.hero-bg-image {
   position: absolute;
   top: 0;
   left: 0;
