@@ -166,16 +166,16 @@ $w-xs: 550px; // mobile resolution
 .heading-1 {
   @include header-font;
   font-size: 298px;
-  height: 290px;
+  //height: 290px;
 
   @include respond-width($w-m) {
-    font-size: 200px;
-    height: 200px;
+    //font-size: 200px;
+    //height: 200px;
   }
 
   @include respond-width($w-s) {
-    font-size: 100px;
-    height: 100px;
+    //font-size: 100px;
+    //height: 100px;
   }
 }
 

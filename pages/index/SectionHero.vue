@@ -6,6 +6,12 @@
           TOMAS
         </CanvasText>
       </h2>
+      <div class="body-m hero-content-sm hero-summary">
+        <p>Web Developer with</p>
+        <p>managerial background,</p>
+        <p>coding and bringing a full</p>
+        <p>team to help your project.</p>
+      </div>
     </div>
 
     <div class="hero-content-line hero-line-kmet">
@@ -21,12 +27,6 @@
           KMET
         </CanvasText>
       </h2>
-      <div class="body-m hero-content-sm hero-summary">
-        <p>Web Developer with</p>
-        <p>managerial background,</p>
-        <p>coding and bringing a full</p>
-        <p>team to help your project.</p>
-      </div>
     </div>
     <div class="hero-bg-image">
       <CanvasImage
@@ -85,7 +85,8 @@ watch(
 <style lang="scss" scoped>
 //=======>>>   HERO   <<<==========//
 .hero-section {
-  padding: 100px 0;
+  //border: 1px solid green;
+  padding: 20vh;
   position: relative;
   text-align: center;
 }
@@ -96,13 +97,15 @@ watch(
   display: inline-block;
   margin: 0 auto;
   justify-content: center;
+  .heading-1{
+    line-height: 100%;
+    //height: 20vw;
+  }
   &.hero-line-tomas {
     right: 20%;
-    //display: block;
   }
   &.hero-line-kmet {
     left: 20%;
-    //height: 350px;
   }
 }
 
@@ -117,12 +120,12 @@ watch(
   &.hero-services {
     text-align: right;
     left: -300px;
-    bottom: 130px;
+    bottom: 25%;
   }
   &.hero-summary {
     text-align: left;
     right: -300px;
-    top: 50px;
+    bottom: 25%;
   }
 }
 .hero-bg-image {
