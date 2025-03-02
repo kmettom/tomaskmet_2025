@@ -324,7 +324,6 @@ const Canvas = {
           // Common
           uMouse: { value: new THREE.Vector2(0, 0) },
           uMouseMovement: { value: new THREE.Vector2(0, 0) },
-          uOpacity: { value: 1 },
           uMap: { value: null },
           // Rendering
           uThreshold: { value: 0.05 },
@@ -335,10 +334,8 @@ const Canvas = {
           uStrokeInsetWidth: { value: 0.3 }, //0.3
           // new generic
           time: { value: 0 },
-          // uImage: {value: texture},
           vectorVNoise: { value: new THREE.Vector2(1.5, 1.5) }, // 1.5
-          uHover: { value: 0 },
-          uAniIn: { value: 0 },
+          uAniIn: { value: meshUniforms.uAniIn?.value ?? 0 },
           ...meshUniforms,
         },
         vertexShader: vertexShader,
@@ -413,7 +410,7 @@ const Canvas = {
         time: { value: 0 },
         uImage: { value: texture },
         vectorVNoise: { value: new THREE.Vector2(1.5, 1.5) }, // 1.5
-        uAniIn: { value: 0 },
+        uAniIn: { value: meshUniforms.uAniIn?.value ?? 0 },
         uMouse: { value: new THREE.Vector2(0, 0) },
         uMouseMovement: { value: new THREE.Vector2(0, 0) },
         uMeshSize: { value: new THREE.Vector2(bounds.width, bounds.height) },

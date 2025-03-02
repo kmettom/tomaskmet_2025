@@ -1,15 +1,15 @@
 <template>
-  <div>
     <Container additional-class="hero-section">
-      <div class="hero-content-line hero-line-studio">
-        <h2 class="heading-0">
+
+      <div class="hero-content-line hero-line-tomas">
+        <h2 class="heading-1">
           <CanvasText :theme="'light'" :uniforms="mainTextInUniforms">
             TOMAS
           </CanvasText>
         </h2>
       </div>
 
-      <div class="hero-content-line hero-line-783">
+      <div class="hero-content-line hero-line-kmet">
         <div class="body-m hero-content-sm hero-services">
           <p>web3</p>
           <p>creative</p>
@@ -29,8 +29,12 @@
           <p>team to help your project.</p>
         </div>
       </div>
+      <div class="hero-bg-image">
+        <CanvasImage
+            :src-link="'images/hero.png'" :uniforms="{uHover: { active: false, duration: 0.1 }}"
+        />
+      </div>
     </Container>
-  </div>
 </template>
 
 <script setup lang="ts">
@@ -85,17 +89,19 @@ watch(
   position: relative;
   text-align: center;
 }
+
 .hero-content-line {
   position: relative;
   text-align: center;
   display: inline-block;
   margin: 0 auto;
   justify-content: center;
-  &.hero-line-studio {
-    display: block;
-    margin: -55px 0px -135px 0;
+  &.hero-line-tomas {
+    right: 20%;
+    //display: block;
   }
-  &.hero-line-783 {
+  &.hero-line-kmet {
+    left: 20%;
     //height: 350px;
   }
 }
@@ -118,5 +124,13 @@ watch(
     right: -300px;
     top: 50px;
   }
+}
+.hero-bg-image{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 50%;
+  border: 1px solid red;
 }
 </style>
