@@ -445,13 +445,11 @@ const Canvas = {
 
     this.imageStore.push(newMesh);
 
-    if(meshUniforms.uAniIn?.active === true){
-
-    setTimeout(() => {
-      this.activateMesh(id, true);
-    },250)
+    if (meshUniforms.uAniIn?.active === true) {
+      setTimeout(() => {
+        this.activateMesh(id, true);
+      }, 250);
     }
-
 
     this.setImageMeshPositions();
     if (mouseListeners) this.meshMouseListeners(newMesh, material);
