@@ -1,5 +1,5 @@
 <template>
-  <div class="welcome"></div>
+  <div class="welcome" />
 </template>
 <script>
 import { gsap } from 'gsap';
