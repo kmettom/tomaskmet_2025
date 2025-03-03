@@ -59,7 +59,7 @@ vec3 blur(vec2 uv, sampler2D image, float blurAmount) {
 }
 
 void main() {
-  uImageSize = uTextureSize;
+  uImageSize = uMeshSize;
   uPlaneSize = uViewport;
   uBlurStrength = 1.0;
 
@@ -86,7 +86,7 @@ void main() {
   float tb = t * (ta * 0.123456);
   vec4 noise = vec4(1.0 - tvNoise(uv, ta, tb));
 
-  vec4 final = vec4(blur(uv, uImage, 0.08), 1.0);
+  vec4 final = vec4(blur(uv, uImage, 0.08), uAniIn);
 
   final = final - noise * 0.05;
 
