@@ -61,7 +61,7 @@ vec3 blur(vec2 uv, sampler2D image, float blurAmount) {
 void main() {
   uImageSize = uMeshSize;
   uPlaneSize = uViewport;
-  uBlurStrength = 1.0 - uHover - uImageGalleryActive;
+  uBlurStrength = 1.0 - uImageGalleryActive;
 
   // Calculate the aspect ratios
   float meshAspect = uMeshSize.x / uMeshSize.y;

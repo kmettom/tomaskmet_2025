@@ -25,7 +25,7 @@ export const useNavigationStore = defineStore('navigationStore', {
       navigationVisible: false,
       htmlRefs: undefined,
       htmlSizeOrigins: null,
-      activeProject: { index: 0, ref: null },
+      activeProject: { index: null, ref: null },
       pastActiveProject: { index: 0, ref: null },
     },
   }),
@@ -128,7 +128,7 @@ export const useNavigationStore = defineStore('navigationStore', {
     },
     async closeActiveProject() {
       this.projects.pastActiveProject = { ...this.projects.activeProject };
-      this.projects.activeProject.index = 0;
+      this.projects.activeProject.index = null;
       this.projects.activeProject.ref = null;
       await nonActiveProjectTransition(this.projects.pastActiveProject.ref);
     },
