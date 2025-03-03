@@ -87,7 +87,7 @@ watch(
 </script>
 
 <style lang="scss" scoped>
-.hero-section-wrapper{
+.hero-section-wrapper {
   position: relative;
 }
 .hero-section {

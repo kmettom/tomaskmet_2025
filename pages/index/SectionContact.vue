@@ -23,8 +23,8 @@
                 <img :src="LetterIcon" alt="Letter icon">
               </div> -->
               <a
-                href="mailto:hello@783studio.com"
-                data-email="hello@783studio.com"
+                href="mailto:hello@tomaskmet.com"
+                data-email="hello@tomaskmet.com"
               >
                 <span>✉️ Send a request</span>
               </a>
@@ -34,7 +34,7 @@
         <div class="contact-line align-right">
           <div class="side-list social-media-list body-m">
             <div>
-              <a href="https://www.instagram.com/783.studio" target="_blank"
+              <a href="https://www.instagram.com/kmettom" target="_blank"
                 >Instagram</a
               >
             </div>
@@ -49,8 +49,8 @@
             </div>
             <div>
               <a
-                href="mailto:hello@783studio.com"
-                data-email="hello@783studio.com"
+                href="mailto:hello@tomaskmet.com"
+                data-email="hello@tomaskmet.com"
                 >Email</a
               >
             </div>

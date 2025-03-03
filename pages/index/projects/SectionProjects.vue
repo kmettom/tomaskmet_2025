@@ -128,6 +128,7 @@ $marginRight: 50px;
   }
 
   @include respond-width($w-xs) {
+    margin: auto 25px auto 25px;
     padding-top: 50px;
     padding-bottom: 50px;
   }

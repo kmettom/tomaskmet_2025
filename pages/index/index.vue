@@ -50,10 +50,10 @@ import SectionContact from '~/pages/index/SectionContact.vue';
 import Footer from '~/components/common/Footer.vue';
 
 useSeoMeta({
-  title: '783Studio - Web design & development',
-  ogTitle: '783Studio - Web design & development',
-  description: '783Studio - Web design & development',
-  ogDescription: '783Studio - Web design & development',
+  title: 'Tomas Kmet - Web developer',
+  ogTitle: 'Tomas Kmet - Web developer',
+  description: 'web3 | creative | web apps | websites | e-commerce',
+  ogDescription: 'web3 | creative | web apps | websites | e-commerce',
 });
 
 const navigationStore = useNavigationStore();
