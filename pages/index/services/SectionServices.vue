@@ -15,7 +15,7 @@
             activeRange: 0.75,
             fixToParentId: 'servicesList',
             onScrollCallback: (item: any, speed: any) => {
-              setServiceBlockBlur(index, item.elNode, service.styles);
+              setServiceBlockBlur(item.elNode, service.styles);
             },
           }"
           class="service-item"
@@ -55,14 +55,13 @@ const setItemActive = (index: number, isActive: boolean) => {
 };
 
 const setServiceBlockBlur = (
-  index: number | null,
   elNode: any,
   styles: any,
 ) => {
   const aniInCoef = Math.min(
     1,
     1 -
-      (elNode.getBoundingClientRect().top - serviceBlockSize) /
+      (elNode.getBoundingClientRect().top - serviceBlockSize / 2) /
         window.innerHeight,
   );
   const aniOutCoef = Math.min(
@@ -74,13 +73,10 @@ const setServiceBlockBlur = (
     ),
   );
   const rotateDeg = styles.rotate * aniInCoef;
-  const opacity = aniInCoef;
-  const blur = 5 * (1 - aniInCoef) + 5 * aniOutCoef;
-  gsap.set(elNode, {
+  const blur = 5 * (1 - aniInCoef) + 15 * aniOutCoef;
+  gsap.set(elNode.querySelector('.service-item-inner'), {
     filter: `blur(${blur}px)`,
-    opacity: opacity,
     rotation: rotateDeg,
-    // zIndex: isActiveItem ? (index ?? 0) * 10 : 0,
   });
 };
 
@@ -105,8 +101,8 @@ const serviceBoxStyle = (index: number) => {
 <style lang="scss" scoped>
 //=======>>>   SERVICES   <<<==========//
 .services-section {
-  padding-top: 100px;
-  padding-bottom: 325px;
+  padding-top: 50px;
+  padding-bottom: 375px;
   background-color: var(--light-color);
   color: var(--dark-color);
   text-align: center;
@@ -114,7 +110,6 @@ const serviceBoxStyle = (index: number) => {
   @include respond-width($w-xs) {
     padding-top: 50px;
     padding-bottom: 50px;
-
     & h2 {
       margin-bottom: 50px;
     }

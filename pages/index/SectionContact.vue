@@ -63,15 +63,15 @@
         </div>
       </div>
     </Container>
-    <div class="basketball-game">
-      <div class="basketball-icon-wrapper">
-        <img
-          class="basketball-icon"
-          :src="BasketBallIcon"
-          alt="Basket ball icon"
-        />
-      </div>
-    </div>
+<!--    <div class="basketball-game">-->
+<!--      <div class="basketball-icon-wrapper">-->
+<!--        <img-->
+<!--          class="basketball-icon"-->
+<!--          :src="BasketBallIcon"-->
+<!--          alt="Basket ball icon"-->
+<!--        />-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
 </template>
 

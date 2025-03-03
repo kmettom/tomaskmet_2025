@@ -216,7 +216,8 @@ $w-xs: 550px; // mobile resolution
 //*************************
 
 .heading-1-spacing {
-  margin-bottom: 125px;
+  //margin-bottom: 125px;
+  margin-bottom: 75px;
   @include respond-width($w-xs) {
     margin-bottom: 50px;
   }
