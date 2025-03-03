@@ -14,17 +14,19 @@
               </span>
             </span>
           </div>
-          <div class="side-list action-list body-m" v-onScrollActivate="{ activeRange: 0.85, activateCallback: (item:any)=> {
-            splitLineAnimation(item.elNode)
-          } }">
+          <div
+            class="side-list action-list body-m"
+            v-onScrollActivate="{
+              activeRange: 0.85,
+              activateCallback: (item: any) => {
+                splitLineAnimation(item.elNode);
+              },
+            }"
+          >
             <div>
-              <a
-                  href="https://calendly.com/tomaskmet/meeting"
-                  target="_blank"
-              >
+              <a href="https://calendly.com/tomaskmet/meeting" target="_blank">
                 <span>📞 Book a call</span>
               </a>
-
             </div>
             <div>
               <a
@@ -95,16 +97,16 @@ const splitLineAnimation = (item: any) => {
   }).lines;
   tl.set(item, { opacity: 1 });
   tl.fromTo(
-      lines,
-      { y: '15px', opacity: 0 },
-      {
-        duration: 0.2,
-        opacity: 1,
-        y: '0px',
-        stagger: 0.1,
-      },
+    lines,
+    { y: '15px', opacity: 0 },
+    {
+      duration: 0.2,
+      opacity: 1,
+      y: '0px',
+      stagger: 0.1,
+    },
   );
-}
+};
 </script>
 
 <style lang="scss" scoped>
