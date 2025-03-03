@@ -39,7 +39,15 @@
           </div>
         </div>
         <div class="contact-line align-right">
-          <div class="side-list social-media-list body-m">
+          <div
+            class="side-list social-media-list body-m"
+            v-onScrollActivate="{
+              activeRange: 0.85,
+              activateCallback: (item: any) => {
+                splitLineAnimation(item.elNode);
+              },
+            }"
+          >
             <div>
               <a href="https://www.instagram.com/kmettom" target="_blank"
                 >Instagram</a
@@ -91,16 +99,16 @@ gsap.registerPlugin(SplitText);
 // import BasketBallIcon from '~/public/icons/basket-ball.png';
 
 const splitLineAnimation = (item: any) => {
-  const tl = gsap.timeline();
+  const tl = gsap.timeline({ delay: 0.5 });
   const lines = new SplitText(item, {
     type: 'lines',
   }).lines;
   tl.set(item, { opacity: 1 });
   tl.fromTo(
     lines,
-    { y: '15px', opacity: 0 },
+    { y: '10px', opacity: 0 },
     {
-      duration: 0.2,
+      duration: 0.3,
       opacity: 1,
       y: '0px',
       stagger: 0.1,
