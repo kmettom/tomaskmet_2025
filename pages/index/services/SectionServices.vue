@@ -62,7 +62,7 @@ const setServiceBlockBlur = (
   const aniInCoef = Math.min(
     1,
     1 -
-      (elNode.getBoundingClientRect().top - serviceTopPadding) /
+      (elNode.getBoundingClientRect().top - serviceBlockSize) /
         window.innerHeight,
   );
   const aniOutCoef = Math.min(
@@ -73,12 +73,12 @@ const setServiceBlockBlur = (
         window.innerHeight,
     ),
   );
-  const rotateDeg = styles.rotate * aniInCoef - styles.rotate * aniOutCoef;
-  // const opacity = aniInCoef;
-  const blur = 25 * (1 - aniInCoef) + 5 * aniOutCoef;
+  const rotateDeg = styles.rotate * aniInCoef;
+  const opacity = aniInCoef;
+  const blur = 5 * (1 - aniInCoef) + 5 * aniOutCoef;
   gsap.set(elNode, {
     filter: `blur(${blur}px)`,
-    // opacity: opacity,
+    opacity: opacity,
     rotation: rotateDeg,
     // zIndex: isActiveItem ? (index ?? 0) * 10 : 0,
   });
