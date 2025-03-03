@@ -141,9 +141,10 @@ $marginRight: 50px;
 
 .gallery-controls-btn {
   position: absolute;
-  background: rgba(255, 255, 255, 0);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
+  background: none;
+  //background: rgba(255, 255, 255, 0);
+  //backdrop-filter: blur(15px);
+  //-webkit-backdrop-filter: blur(15px);
   outline: none;
   border: none;
   cursor: pointer;
