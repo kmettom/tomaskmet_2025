@@ -2,7 +2,7 @@ varying float vNoise;
 varying vec2 vUv;
 uniform sampler2D uImage;
 
-uniform float time;
+uniform float uTime;
 uniform float uHover;
 uniform float uAniIn;
 uniform float uImageGallery;

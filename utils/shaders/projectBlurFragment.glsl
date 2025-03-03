@@ -4,7 +4,7 @@ varying float vNoise;
 varying vec2 vUv;
 uniform sampler2D uImage;
 
-uniform float time;
+uniform float uTime;
 uniform float uHover;
 uniform float uAniIn;
 uniform float uImageGallery;
@@ -12,12 +12,11 @@ uniform float uImageGalleryActive;
 
 uniform vec2 uMeshSize; // The size of the mesh (width, height)
 uniform vec2 uTextureSize; // The size of the texture (width, height)
+uniform vec2 uViewport;
 
 vec2 uImageSize;
 vec2 uPlaneSize;
-vec2 uViewportSize;
 float uBlurStrength;
-float uTime;
 //sampler2D tMap;
 
 float tvNoise(vec2 p, float ta, float tb) {
@@ -33,13 +32,9 @@ float rand(vec2 co) {
 vec3 blur(vec2 uv, sampler2D image, float blurAmount) {
   vec3 blurredImage = vec3(0.0);
   float gradient =
-    smoothstep(
-      0.8,
-      0.0,
-      3.4 - gl_FragCoord.y / uViewportSize.y / uViewportSize.y
-    ) *
+    smoothstep(0.8, 0.0, 3.4 - gl_FragCoord.y / uViewport.y / uViewport.y) *
       uBlurStrength +
-    smoothstep(0.8, 0.0, gl_FragCoord.y / uViewportSize.y / uViewportSize.y) *
+    smoothstep(0.8, 0.0, gl_FragCoord.y / uViewport.y / uViewport.y) *
       uBlurStrength;
   #define repeats (40.0)
   for (float i = 0.0; i < repeats; i++) {
@@ -64,12 +59,9 @@ vec3 blur(vec2 uv, sampler2D image, float blurAmount) {
 }
 
 void main() {
-   uImageSize = uMeshSize;
-   uPlaneSize = uMeshSize;
-   uViewportSize = uMeshSize;
-   uBlurStrength = 1.0;
-   uTime = time;
-//   tMap = uImage;
+  uImageSize = uTextureSize;
+  uPlaneSize = uMeshSize;
+  uBlurStrength = 1.0 - uAniIn;
 
   // Calculate the aspect ratios
   float meshAspect = uMeshSize.x / uMeshSize.y;
@@ -87,19 +79,23 @@ void main() {
     uv.x = uv.x * scale + (1.0 - scale) / 2.0; // Center the texture horizontally
   }
 
-  vec4 texColor = texture2D(uImage, uv);
+  //  vec4 texColor = texture2D(uImage, uv);
 
-    vec4 final = vec4(blur(uv, uImage, 0.08), 1.0);
+  float t = uTime + 123.0;
+  float ta = t * 0.654321;
+  float tb = t * (ta * 0.123456);
+  vec4 noise = vec4(1.0 - tvNoise(uv, ta, tb));
 
-  gl_FragColor = final ;
+  vec4 final = vec4(blur(uv, uImage, 0.08), 1.0);
 
+  final = final - noise * 0.08;
 
-//  gl_FragColor = texColor * uAniIn;
-//  gl_FragColor.rgb += 0.01 * vec3(vNoise);
+  gl_FragColor = final;
+
+  //  gl_FragColor = texColor * uAniIn;
+  //  gl_FragColor.rgb += 0.01 * vec3(vNoise);
 
 }
-
-
 
 //void main() {
 //  vec2 ratio = vec2(
@@ -123,7 +119,6 @@ void main() {
 //
 //  gl_FragColor = final;
 //}
-
 
 //vec2 onePixel = vec2(1.0, 1.0) / u_textureSize;
 //gl_FragColor = (

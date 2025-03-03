@@ -321,10 +321,7 @@ const Canvas = {
               theme === 'dark' ? 24 / 255 : 178 / 255, // B
             ),
           },
-          // uColor: {
-          //   value: new THREE.Color(theme === 'dark' ? '#1B1818' : '#BFC0B2'),
-          // },
-          viewport: {
+          uViewport: {
             type: 'v2',
             value: new THREE.Vector2(this.width, this.height),
           },
@@ -340,7 +337,7 @@ const Canvas = {
           uStrokeOutsetWidth: { value: 0.0 },
           uStrokeInsetWidth: { value: 0.3 }, //0.3
           // new generic
-          time: { value: 0 },
+          uTime: { value: 0 },
           vectorVNoise: { value: new THREE.Vector2(1.5, 1.5) }, // 1.5
           uAniIn: { value: meshUniforms.uAniIn?.value ?? 0 },
           ...meshUniforms,
@@ -414,7 +411,7 @@ const Canvas = {
 
     let material = new THREE.ShaderMaterial({
       uniforms: {
-        time: { value: 0 },
+        uTime: { value: 0 },
         uImage: { value: texture },
         vectorVNoise: { value: new THREE.Vector2(1.5, 1.5) }, // 1.5
         uAniIn: { value: meshUniforms.uAniIn?.value ?? 0 },
@@ -422,6 +419,10 @@ const Canvas = {
         uMouseMovement: { value: new THREE.Vector2(0, 0) },
         uMeshSize: { value: new THREE.Vector2(bounds.width, bounds.height) },
         uTextureSize: { value: new THREE.Vector2(500, 500) },
+        uViewport: {
+          type: 'v2',
+          value: new THREE.Vector2(this.width, this.height),
+        },
         ...meshUniforms,
       },
       fragmentShader: fragmentShader,
@@ -552,7 +553,7 @@ const Canvas = {
 
     //animate on hover
     for (var i = 0; i < this.materials.length; i++) {
-      this.materials[i].uniforms.time.value = this.time;
+      this.materials[i].uniforms.uTime.value = this.time;
       this.materials[i].uniforms.uMouse.value = new THREE.Vector2(
         this.mouse.x,
         this.mouse.y,

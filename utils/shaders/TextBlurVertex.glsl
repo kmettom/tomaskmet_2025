@@ -3,10 +3,10 @@ varying vec2 vUv;
 uniform vec2 hover;
 
 //generic unifiorms
-uniform float time;
+uniform float uTime;
 uniform float uHover;
 uniform float uAniIn;
-uniform vec2 viewport;
+uniform vec2 uViewport;
 uniform vec2 uMouse;
 uniform vec2 uMouseMovement;
 
@@ -15,19 +15,19 @@ float createCircle() {
   vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);
 
   vec2 viewportUv = gl_Position.xy / gl_Position.w;
-  float viewportAspect = viewport.x / viewport.y;
+  float viewportAspect = uViewport.x / uViewport.y;
   vec2 shapeUv = viewportUv - mousePoint;
   shapeUv /= vec2(1.0, viewportAspect);
   shapeUv += mousePoint;
 
-  float circleRadius = max(0.0, 20.0 / viewport.x);
+  float circleRadius = max(0.0, 20.0 / uViewport.x);
   float dist = distance(shapeUv, mousePoint);
   dist = smoothstep(circleRadius, circleRadius + 0.05, dist);
   return dist;
 }
 
 void main() {
-  float circle = createCircle();
+  //  float circle = createCircle();
 
   float normalizedX = vUv.x;
   vec4 mvPosition = vec4(position, 1.0);

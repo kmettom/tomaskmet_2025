@@ -10,7 +10,7 @@ uniform sampler2D uMap;
 varying float vNoise;
 
 // Generic uniforms
-uniform float time;
+uniform float uTime;
 uniform float uHover;
 uniform float uAniIn;
 uniform vec2 viewport;

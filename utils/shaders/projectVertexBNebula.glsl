@@ -1,4 +1,4 @@
-uniform float time;
+uniform float uTime;
 uniform float uHover;
 uniform float uAniIn;
 varying float vNoise;
