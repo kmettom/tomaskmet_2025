@@ -14,14 +14,19 @@
               </span>
             </span>
           </div>
-          <div class="side-list action-list body-m">
+          <div class="side-list action-list body-m" v-onScrollActivate="{ activeRange: 0.85, activateCallback: (item:any)=> {
+            splitLineAnimation(item.elNode)
+          } }">
             <div>
-              <span>📞 Book a call</span>
+              <a
+                  href="https://calendly.com/tomaskmet/meeting"
+                  target="_blank"
+              >
+                <span>📞 Book a call</span>
+              </a>
+
             </div>
             <div>
-              <!-- <div class="iconFrame">
-                <img :src="LetterIcon" alt="Letter icon">
-              </div> -->
               <a
                 href="mailto:hello@tomaskmet.com"
                 data-email="hello@tomaskmet.com"
@@ -77,17 +82,37 @@
 
 <script setup lang="ts">
 import Container from '~/components/common/Container.vue';
-import BasketBallIcon from '~/public/icons/basket-ball.png';
+import { gsap } from 'gsap';
+import { SplitText } from 'gsap/SplitText';
+
+gsap.registerPlugin(SplitText);
+// import BasketBallIcon from '~/public/icons/basket-ball.png';
+
+const splitLineAnimation = (item: any) => {
+  const tl = gsap.timeline();
+  const lines = new SplitText(item, {
+    type: 'lines',
+  }).lines;
+  tl.set(item, { opacity: 1 });
+  tl.fromTo(
+      lines,
+      { y: '15px', opacity: 0 },
+      {
+        duration: 0.2,
+        opacity: 1,
+        y: '0px',
+        stagger: 0.1,
+      },
+  );
+}
 </script>
 
 <style lang="scss" scoped>
-//=======>>>   CTA   <<<==========//
 .contact-section {
   position: relative;
   color: var(--dark-color);
   background-color: var(--light-color);
-  padding-top: 50px;
-  padding-bottom: 150px;
+  padding: 25vh 0 10vh;
 }
 .canvas-text-spacing {
   padding-left: 20px;
@@ -103,38 +128,37 @@ import BasketBallIcon from '~/public/icons/basket-ball.png';
   }
 }
 
-.social-media-list {
-}
-
 .side-list {
   display: flex;
   flex-direction: column;
   justify-content: end;
+  position: relative;
+  bottom: 75px;
 }
 
-.basketball-game {
-  width: 150px;
-  height: 25px;
-  background-color: var(--dark-color);
-  position: absolute;
-  left: 30%;
-  bottom: 0;
-
-  @include respond-width($w-s) {
-    width: 100px;
-  }
-
-  .basketball-icon-wrapper {
-    position: absolute;
-    left: 75%;
-    bottom: 100%;
-    transform: translateX(-50%);
-
-    .basketball-icon {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-}
+//.basketball-game {
+//  width: 150px;
+//  height: 25px;
+//  background-color: var(--dark-color);
+//  position: absolute;
+//  left: 30%;
+//  bottom: 0;
+//
+//  @include respond-width($w-s) {
+//    width: 100px;
+//  }
+//}
+//
+//.basketball-icon-wrapper {
+//  position: absolute;
+//  left: 75%;
+//  bottom: 100%;
+//  transform: translateX(-50%);
+//
+//  .basketball-icon {
+//    width: 100%;
+//    height: 100%;
+//    object-fit: cover;
+//  }
+//}
 </style>

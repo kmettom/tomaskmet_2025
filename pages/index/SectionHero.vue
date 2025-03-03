@@ -105,9 +105,6 @@ watch(
   display: inline-block;
   margin: 0 auto;
   justify-content: center;
-  .heading-1 {
-    line-height: 100%;
-  }
   &.hero-line-tomas {
     right: 15%;
   }

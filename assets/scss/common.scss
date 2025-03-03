@@ -166,6 +166,7 @@ $w-xs: 550px; // mobile resolution
 .heading-1 {
   @include header-font;
   font-size: 298px;
+  line-height: 100%;
   @include respond-width($w-m-s) {
     font-size: 200px;
   }
