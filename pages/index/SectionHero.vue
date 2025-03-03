@@ -94,6 +94,9 @@ watch(
   padding: 16vh;
   position: relative;
   text-align: center;
+  @include respond-width($w-m-s) {
+    padding-top: 150px;
+  }
 }
 
 .hero-content-line {
@@ -127,6 +130,9 @@ watch(
     text-align: left;
     right: -300px;
     bottom: 25%;
+    @include respond-width($w-m-s) {
+      display: none;
+    }
   }
 }
 .hero-bg-image {

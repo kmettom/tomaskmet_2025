@@ -168,6 +168,9 @@ $w-xs: 550px; // mobile resolution
   @include respond-width($w-s) {
     font-size: 175px;
   }
+  @include respond-width($w-xs) {
+    font-size: 140px;
+  }
 }
 
 .heading-3 {
