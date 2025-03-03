@@ -26,22 +26,14 @@
             <button
               v-if="nextProjectName"
               class="gallery-controls-btn change-project-btn next-item"
-              @click="
-                navigationStore.scrollToProject(
-                  navigationStore.projects.activeProject.index + 1,
-                )
-              "
+              @click="navigationStore.scrollToProject(activeProjectIndex + 1)"
             >
               next: {{ nextProjectName }} 👇
             </button>
             <button
               v-if="prevProjectName"
               class="gallery-controls-btn change-project-btn prev-item"
-              @click="
-                navigationStore.scrollToProject(
-                  navigationStore.projects.activeProject.index - 1,
-                )
-              "
+              @click="navigationStore.scrollToProject(activeProjectIndex - 1)"
             >
               previous: {{ prevProjectName }} 👆
             </button>
@@ -84,18 +76,15 @@ navigationStore.setProjectRefs(projectItemRefs);
 
 const projectGalleryRef = ref();
 navigationStore.setGalleryRef(projectGalleryRef);
+const activeProjectIndex = computed(() => {
+  return navigationStore.projects.activeProject.index ?? 0;
+});
 
 const nextProjectName = computed(() => {
-  return (
-    projects.value[navigationStore.projects.activeProject.index + 1]?.name ??
-    null
-  );
+  return projects.value[activeProjectIndex.value + 1]?.name ?? null;
 });
 const prevProjectName = computed(() => {
-  return (
-    projects.value[navigationStore.projects.activeProject.index - 1]?.name ??
-    null
-  );
+  return projects.value[activeProjectIndex.value - 1]?.name ?? null;
 });
 
 const projectMargin = computed(() => {

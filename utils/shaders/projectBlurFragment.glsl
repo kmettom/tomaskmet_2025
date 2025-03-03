@@ -86,7 +86,7 @@ void main() {
   float tb = t * (ta * 0.123456);
   vec4 noise = vec4(1.0 - tvNoise(uv, ta, tb));
 
-  vec4 final = vec4(blur(uv, uImage, 0.08), uAniIn);
+  vec4 final = vec4(blur(uv, uImage, 0.08), uAniIn + uImageGallery);
 
   final = final - noise * 0.05;
 
