@@ -44,7 +44,7 @@ $w-xl: 1650px; // resolution just under 1920
 $w-l: 1450px; // resolution above 1366
 $w-m: 1280px; // ipad big resolution
 $w-m-s: 1080px; // ipad big resolution
-$w-s: 800px; // ipad small resolution
+$w-s: 768px; // ipad small resolution
 $w-xs: 550px; // mobile resolution
 
 @mixin respond-width($media) {
@@ -151,31 +151,22 @@ $w-xs: 550px; // mobile resolution
 .heading-0 {
   @include header-font;
   font-size: 440px;
-  //line-height: 420px;
-
   @include respond-width($w-m) {
     font-size: 298px;
-    //line-height: 300px;
   }
   @include respond-width($w-s) {
     font-size: 200px;
-    //line-height: 200px;
   }
 }
 
 .heading-1 {
   @include header-font;
   font-size: 298px;
-  //height: 290px;
-
-  @include respond-width($w-m) {
-    //font-size: 200px;
-    //height: 200px;
+  @include respond-width($w-m-s) {
+    font-size: 200px;
   }
-
   @include respond-width($w-s) {
-    //font-size: 100px;
-    //height: 100px;
+    font-size: 175px;
   }
 }
 

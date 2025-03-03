@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="hero-section-wrapper">
     <Container additional-class="hero-section">
       <div class="hero-content-line hero-line-tomas">
         <h2 class="heading-1">
@@ -87,7 +87,9 @@ watch(
 </script>
 
 <style lang="scss" scoped>
-//=======>>>   HERO   <<<==========//
+.hero-section-wrapper{
+  position: relative;
+}
 .hero-section {
   padding: 16vh;
   position: relative;
@@ -104,7 +106,7 @@ watch(
     line-height: 100%;
   }
   &.hero-line-tomas {
-    right: 20%;
+    right: 15%;
   }
   &.hero-line-kmet {
     left: 20%;
@@ -131,7 +133,7 @@ watch(
   position: absolute;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 100%;
   width: 50%;
   * {
     width: 100%;
