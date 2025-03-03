@@ -107,10 +107,14 @@ $w-xs: 550px; // mobile resolution
   @include body-font;
   font-size: 30px;
   line-height: 120%;
-
-  @include respond-width($w-m) {
+  @include respond-width($w-m-s) {
+    font-size: 22px;
+  }
+  @include respond-width($w-s) {
+    font-size: 18px;
+  }
+  @include respond-width($w-xs) {
     font-size: 16px;
-    line-height: 137.5%;
   }
 }
 

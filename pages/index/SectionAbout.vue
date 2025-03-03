@@ -1,5 +1,5 @@
 <template>
-  <Container id="about" additional-class="aboutSection">
+  <Container id="about" additional-class="about-section">
     <h2 class="body-xs">About</h2>
     <div class="body-l">
       <p
@@ -69,13 +69,12 @@ function textAniCallback(item: any) {
 </script>
 
 <style lang="scss" scoped>
-//=======>>>   ABOUT   <<<==========//
-
-.aboutSection {
+.about-section {
   display: grid;
   grid-template-columns: 10fr 14fr;
   text-transform: uppercase;
   padding-bottom: 200px;
+  padding-top: 50px;
 
   @include respond-width($w-m-s) {
     padding: 40px;
