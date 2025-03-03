@@ -133,8 +133,20 @@ const splitLineAnimation = (item: any) => {
 .contact-line {
   display: flex;
   justify-content: start;
+  padding-left: 20px;
+  @include respond-width($w-m-s) {
+    justify-content: center;
+  }
+  @include respond-width($w-xs) {
+    //bottom: 0;
+    //display: block;
+  }
   &.align-right {
+    padding-right: 20px;
     justify-content: end;
+    @include respond-width($w-m-s) {
+      justify-content: center;
+    }
   }
 }
 
@@ -144,6 +156,13 @@ const splitLineAnimation = (item: any) => {
   justify-content: end;
   position: relative;
   bottom: 75px;
+  @include respond-width($w-m-s) {
+    bottom: 50px;
+  }
+  @include respond-width($w-xs) {
+    bottom: 0;
+    display: block;
+  }
 }
 
 //.basketball-game {
