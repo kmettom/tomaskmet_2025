@@ -60,8 +60,8 @@ vec3 blur(vec2 uv, sampler2D image, float blurAmount) {
 
 void main() {
   uImageSize = uTextureSize;
-  uPlaneSize = uMeshSize;
-  uBlurStrength = 1.0 - uAniIn;
+  uPlaneSize = uViewport;
+  uBlurStrength = 1.0;
 
   // Calculate the aspect ratios
   float meshAspect = uMeshSize.x / uMeshSize.y;
@@ -88,7 +88,7 @@ void main() {
 
   vec4 final = vec4(blur(uv, uImage, 0.08), 1.0);
 
-  final = final - noise * 0.08;
+  final = final - noise * 0.05;
 
   gl_FragColor = final;
 
