@@ -54,10 +54,7 @@ const setItemActive = (index: number, isActive: boolean) => {
   activeItemIndex.value = isActive ? index : null;
 };
 
-const setServiceBlockBlur = (
-  elNode: any,
-  styles: any,
-) => {
+const setServiceBlockBlur = (elNode: any, styles: any) => {
   const aniInCoef = Math.min(
     1,
     1 -
