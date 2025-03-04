@@ -2,7 +2,7 @@
   <div class="hero-section-wrapper">
     <Container additional-class="hero-section">
       <div class="hero-content-line hero-line-tomas">
-        <h2 class="heading-1">
+        <h2 class="heading-1" v-set-data-attrs="{ cursorcolor:'dark' }">
           <CanvasText :theme="'light'" :uniforms="mainTextInUniforms">
             TOMAS
           </CanvasText>
@@ -23,7 +23,7 @@
           <p>websites</p>
           <p>e-commerce</p>
         </div>
-        <h2 class="heading-1">
+        <h2 class="heading-1" v-set-data-attrs="{ cursorcolor:'dark' }">
           <CanvasText :theme="'light'" :uniforms="mainTextInUniforms">
             KMET
           </CanvasText>
@@ -138,6 +138,7 @@ watch(
   left: 0;
   height: 100%;
   width: 50%;
+  z-index: -1;
   * {
     width: 100%;
     height: 100%;

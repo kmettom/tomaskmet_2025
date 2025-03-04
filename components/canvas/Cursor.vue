@@ -52,6 +52,7 @@ export default {
       });
     },
     cursorTrack(_event) {
+
       this.curNewSize = _event.target.dataset.cursorsize
         ? _event.target.dataset.cursorsize
         : this.baseSize;
