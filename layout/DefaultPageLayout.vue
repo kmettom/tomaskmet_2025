@@ -20,8 +20,7 @@
 <script setup lang="ts">
 import { Display } from '~/utils/display';
 import { Canvas } from '~/utils/canvas';
-import { SpeedInsights } from '@vercel/speed-insights/next';
-
+import { SpeedInsights } from "@vercel/speed-insights/nuxt"
 
 const navigationStore = useNavigationStore();
 
