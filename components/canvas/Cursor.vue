@@ -10,14 +10,10 @@
 import { ref, reactive, onMounted } from 'vue';
 import { Canvas } from '~/utils/canvas';
 
-// const props = defineProps({
-//   cursorEnabled: Boolean,
-// });
-
-const baseSize = ref(12);
+const baseSize = 12;
 const baseOpacity = 1;
-const easingPosition = ref(2);
-const easing = ref(5);
+const easingPosition = 2;
+const easing = 5;
 const cursorEl = ref('cursorEl');
 
 const cursorIcons = [
@@ -85,7 +81,7 @@ const cursorTrack = (event) => {
   // Update cursor size, opacity, and position
   state.curNewSize = event.target.dataset.cursorsize
     ? Number(event.target.dataset.cursorsize)
-    : baseSize.value;
+    : baseSize;
 
   state.curNewOpacity = event.target.dataset.cursoropacity
     ? Number(event.target.dataset.cursoropacity)
@@ -115,7 +111,7 @@ const cursorTrack = (event) => {
 
   // Initialize cursor if not already initialized
   if (!state.cursorInitialized) {
-    state.currentSize = baseSize.value;
+    state.currentSize = baseSize;
     state.cursorX = event.clientX;
     state.cursorY = event.clientY;
     state.cursorInitialized = true;
@@ -127,8 +123,8 @@ const draw = () => {
   // Smoothly update position
   const dX = state.curNewX - state.cursorX;
   const dY = state.curNewY - state.cursorY;
-  state.cursorX += dX / easingPosition.value;
-  state.cursorY += dY / easingPosition.value;
+  state.cursorX += dX / easingPosition;
+  state.cursorY += dY / easingPosition;
 
   // Apply styles to the cursor element
   const t3d = `translate3d(${state.cursorX - state.currentSize / 2}px, ${
@@ -138,14 +134,9 @@ const draw = () => {
     cursorEl.value.style.webkitTransform = t3d;
     cursorEl.value.style.transform = t3d;
 
-    // Smoothly update opacity
-    // const dO = state.curNewOpacity - state.currentOpacity;
-    // state.currentOpacity += dO / easing.value;
-    // cursorEl.value.style.opacity = state.currentOpacity;
-
     // Smoothly update size
     const dD = state.curNewSize - state.currentSize;
-    state.currentSize += dD / easing.value;
+    state.currentSize += dD / easing;
     cursorEl.value.style.height = `${state.currentSize}px`;
     cursorEl.value.style.width = `${state.currentSize}px`;
 
@@ -164,16 +155,14 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 #uniqueCursor {
-  //display: block;
   pointer-events: none;
   position: fixed;
   text-align: center;
   z-index: 99;
   background: var(--dark-color);
   border-radius: 50%;
-  top: 0px;
-  left: 0px;
-
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
