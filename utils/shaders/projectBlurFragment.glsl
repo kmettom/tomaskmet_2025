@@ -6,6 +6,7 @@ uniform sampler2D uImage;
 
 uniform float uTime;
 uniform float uHover;
+uniform vec2 uMouse;
 uniform float uAniIn;
 uniform float uImageGallery;
 uniform float uImageGalleryActive;
@@ -57,6 +58,15 @@ vec3 blur(vec2 uv, sampler2D image, float blurAmount) {
   return blurredImage / repeats;
 }
 
+float DISTANCE_COEF = 0.5;
+
+float WAVE_INTERVAL = 0.1;
+float WEVA_APLITUDE = 10.0;
+
+float createWave(vec2 viewportUv) {
+  return sin(viewportUv.y * WEVA_APLITUDE + uTime) * WAVE_INTERVAL;
+}
+
 float createCircle() {
   vec2 viewportUv = gl_FragCoord.xy / uViewport / uDevicePixelRatio;
   float viewportAspect = uViewport.x / uViewport.y;
@@ -84,7 +94,7 @@ float createCircle() {
 }
 
 float createOverlay() {
-  vec2 viewportUv = gl_FragCoord.xy / uViewport / devicePixelRatio;
+  vec2 viewportUv = gl_FragCoord.xy / uViewport / uDevicePixelRatio;
   float wave = createWave(viewportUv);
   float leftPadding = 0.1;
   float progress = smoothstep(
