@@ -16,6 +16,9 @@ import scrollVertex from './shaders/scrollVertex.glsl';
 import projectBlurFragment from './shaders/projectBlurFragment.glsl';
 import projectBlurVertex from './shaders/projectBlurVertex.glsl';
 
+import test1Frag from './shaders/projectFragmentBNebula.glsl';
+import test1Vertex from './shaders/projectVertexBNebula.glsl';
+
 import TextBlurFragment from './shaders/TextBlurFragment.glsl';
 import TextBlurVertex from './shaders/TextBlurVertex.glsl';
 import { generateBindingLogic } from '~/utils/canvasHelpers';
@@ -38,6 +41,10 @@ const CanvasOptions = {
     vertexShader: projectBlurVertex,
     textFragment: TextBlurFragment,
     textVertex: TextBlurVertex,
+  },
+  test1: {
+    fragmentShader: test1Frag,
+    vertexShader: test1Vertex,
   },
 };
 

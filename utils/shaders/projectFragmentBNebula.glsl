@@ -102,7 +102,7 @@ void main() {
     uv.x = uv.x * scale + (1.0 - scale) / 2.0; // Center the texture horizontally
   }
 
-  float t = time * 0.12;
+  float t = uTime * 0.12;
   // Convert to polar coordinates
   float angle = atan(uv.y, uv.x);
   float radius = length(uv);
