@@ -10,6 +10,7 @@ uniform vec2 uMouse;
 uniform float uAniIn;
 uniform float uImageGallery;
 uniform float uImageGalleryActive;
+uniform float uIsHeroSection;
 
 uniform vec2 uMeshSize; // The size of the mesh (width, height)
 uniform vec2 uTextureSize; // The size of the texture (width, height)
