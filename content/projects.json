@@ -6,8 +6,12 @@
     "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur. isus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
     "websiteLink": "",
     "image": {
-      "src": "images/01.png",
-      "alt": "image description"
+      "src": "images/04.png",
+      "alt": "image description",
+      "size": {
+        "width": "300px",
+        "height": "200px"
+      }
     }
   },
   {
@@ -17,7 +21,7 @@
     "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur. isus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
     "websiteLink": "",
     "image": {
-      "src": "images/02.png",
+      "src": "images/05.png",
       "alt": "image description"
     },
     "position": {

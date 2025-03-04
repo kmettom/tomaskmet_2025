@@ -96,7 +96,6 @@ const serviceBoxStyle = (index: number) => {
 </script>
 
 <style lang="scss" scoped>
-//=======>>>   SERVICES   <<<==========//
 .services-section {
   padding-top: 50px;
   padding-bottom: 375px;
@@ -110,6 +109,12 @@ const serviceBoxStyle = (index: number) => {
     & h2 {
       margin-bottom: 50px;
     }
+  }
+}
+.heading-1 {
+  margin-top: 75px;
+  @include respond-width($w-xs) {
+    margin-top: 35px;
   }
 }
 .services-wrapper {

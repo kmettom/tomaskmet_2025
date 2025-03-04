@@ -15,13 +15,13 @@
             </span>
           </div>
           <div
-            class="side-list action-list body-m"
             v-onScrollActivate="{
               activeRange: 0.85,
               activateCallback: (item: any) => {
                 splitLineAnimation(item.elNode);
               },
             }"
+            class="side-list action-list body-m"
           >
             <div>
               <a href="https://calendly.com/tomaskmet/meeting" target="_blank">
@@ -40,13 +40,13 @@
         </div>
         <div class="contact-line align-right">
           <div
-            class="side-list social-media-list body-m"
             v-onScrollActivate="{
               activeRange: 0.85,
               activateCallback: (item: any) => {
                 splitLineAnimation(item.elNode);
               },
             }"
+            class="side-list social-media-list body-m"
           >
             <div>
               <a href="https://www.instagram.com/kmettom" target="_blank"

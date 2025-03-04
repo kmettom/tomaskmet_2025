@@ -103,7 +103,10 @@ watch(
         </div>
       </div>
 
-      <div class="project-image">
+      <div
+        class="project-image"
+        :style="`width:${project.image.size?.width ?? 'auto'};height:${project.image.size?.height ?? 'auto'};`"
+      >
         <CanvasImage
           :src-link="project.image.src"
           :uniforms="projectImageUniforms"
