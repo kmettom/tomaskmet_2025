@@ -15,6 +15,7 @@
             activeRange: 0.75,
             fixToParentId: 'servicesList',
             onScrollCallback: (item: any, speed: any) => {
+              if (speed < 0.03) return;
               setServiceBlockBlur(item.elNode, service.styles);
             },
           }"
@@ -124,12 +125,11 @@ const serviceBoxStyle = (index: number) => {
   display: inline-block;
   vertical-align: top;
   &.active .service-item-inner {
-    //transition: all 0.5s ease;
     opacity: 1;
   }
 }
 .service-item-inner {
-  transition: all 0.5s ease;
+  transition: opacity 0.5s ease;
   opacity: 0;
 }
 </style>
