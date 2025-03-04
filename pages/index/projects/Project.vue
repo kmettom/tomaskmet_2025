@@ -144,6 +144,8 @@ $nameSize: 30px;
 .project-image {
   display: inline-block;
   position: relative;
+  max-width: 100%;
+  max-height: 100%;
   * {
     position: relative;
     width: 100%;

@@ -35,8 +35,12 @@
     "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur. isus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
     "websiteLink": "",
     "image": {
-      "src": "images/03.png",
-      "alt": "image description"
+      "src": "images/06.jpeg",
+      "alt": "image description",
+      "size": {
+        "width": "700px",
+        "height": "300px"
+      }
     }
   },
   {
