@@ -15,6 +15,7 @@
         class="navigation-item"
         :class="{ active: activeNav === navItem.id }"
         @click="goToSection(navItem.id)"
+        v-set-data-attrs="{ cursorsize: 30, cursoropacity: 0.7 }"
       >
         {{ navItem.name }}
       </span>
@@ -102,7 +103,7 @@ watch(
 }
 .navigation-item {
   cursor: pointer;
-  line-height: 15px;
+  line-height: 20px;
   &:before {
     opacity: 0;
     content: '👉';

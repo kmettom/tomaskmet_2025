@@ -73,9 +73,9 @@ watch(
       @mouseleave="projectImageUniforms.uHover.active = false"
       @click="emit('openGallery')"
       v-set-data-attrs="{
-        cursorsize: 75,
-        cursoropacity: 0.7,
-        cursoricon: 'true',
+        cursorsize: navigationStore.projects.galleryOpen ? 15 : 75,
+        cursoropacity: navigationStore.projects.galleryOpen ? 1 : 0.7,
+        cursoricon: navigationStore.projects.galleryOpen ? 'false' : 'true',
       }"
     >
       <div class="project-info-wrapper">
