@@ -13,6 +13,7 @@ uniform float uImageGalleryActive;
 uniform vec2 uMeshSize; // The size of the mesh (width, height)
 uniform vec2 uTextureSize; // The size of the texture (width, height)
 uniform vec2 uViewport;
+uniform float uDevicePixelRatio;
 
 float uBlurStrength;
 //sampler2D tMap;
@@ -57,8 +58,8 @@ vec3 blur(vec2 uv, sampler2D image, float blurAmount) {
 }
 
 float createCircle() {
-  vec2 viewportUv = gl_FragCoord.xy / viewport / devicePixelRatio;
-  float viewportAspect = viewport.x / viewport.y;
+  vec2 viewportUv = gl_FragCoord.xy / uViewport / uDevicePixelRatio;
+  float viewportAspect = uViewport.x / uViewport.y;
   vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);
 
   vec2 shapeUv = viewportUv - mousePoint;
@@ -74,7 +75,7 @@ float createCircle() {
   //  float randomSmooth = smoothstep(randomValue , randomValue * wave , dist);
 
   //  float circleRadius = max(0.0, 10/ viewport.x);
-  float circleRadius = max(0.0, 10.0 / viewport.x);
+  float circleRadius = max(0.0, 10.0 / uViewport.x);
 
   //  circleRadius = smoothstep(circleRadius, circleRadius, 0.1);
 
@@ -83,7 +84,7 @@ float createCircle() {
 }
 
 float createOverlay() {
-  vec2 viewportUv = gl_FragCoord.xy / viewport / devicePixelRatio;
+  vec2 viewportUv = gl_FragCoord.xy / uViewport / devicePixelRatio;
   float wave = createWave(viewportUv);
   float leftPadding = 0.1;
   float progress = smoothstep(

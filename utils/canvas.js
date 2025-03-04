@@ -320,7 +320,7 @@ const Canvas = {
           derivatives: false, //true,
         },
         uniforms: {
-          devicePixelRatio: { value: window.devicePixelRatio },
+          uDevicePixelRatio: { value: window.devicePixelRatio },
           uColor: {
             value: new THREE.Vector4(
               theme === 'dark' ? 27 / 255 : 191 / 255, // R
@@ -418,6 +418,7 @@ const Canvas = {
 
     let material = new THREE.ShaderMaterial({
       uniforms: {
+        uDevicePixelRatio: { value: window.devicePixelRatio },
         uTime: { value: 0 },
         uImage: { value: texture },
         vectorVNoise: { value: new THREE.Vector2(1.5, 1.5) }, // 1.5
