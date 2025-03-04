@@ -123,11 +123,20 @@ const splitLineAnimation = (item: any) => {
   color: var(--dark-color);
   background-color: var(--light-color);
   padding: 25vh 0 10vh;
+  @include respond-width($w-xs) {
+    padding: 75px 0 25px;
+  }
 }
 .canvas-text-spacing {
   padding-left: 20px;
   position: relative;
   display: inline-block;
+}
+
+.heading-1 {
+  @include respond-width($w-xs) {
+    font-size: 100px;
+  }
 }
 
 .contact-line {
@@ -138,14 +147,16 @@ const splitLineAnimation = (item: any) => {
     justify-content: center;
   }
   @include respond-width($w-xs) {
-    //bottom: 0;
-    //display: block;
+    padding-left: 0;
   }
   &.align-right {
     padding-right: 20px;
     justify-content: end;
     @include respond-width($w-m-s) {
       justify-content: center;
+    }
+    @include respond-width($w-xs) {
+      padding-right: 0;
     }
   }
 }
@@ -162,6 +173,7 @@ const splitLineAnimation = (item: any) => {
   @include respond-width($w-xs) {
     bottom: 0;
     display: block;
+    padding: 0 10px;
   }
 }
 
