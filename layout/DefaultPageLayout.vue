@@ -1,5 +1,6 @@
 <template>
   <div id="appContainer">
+    <SpeedInsights />
     <CommonNavigation :page-active="null" />
 
     <div id="scrollContainer">
