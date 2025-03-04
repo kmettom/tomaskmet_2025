@@ -10,12 +10,12 @@
 import { ref, reactive, onMounted } from 'vue';
 import { Canvas } from '~/utils/canvas';
 
-const props = defineProps({
-  cursorEnabled: Boolean,
-});
+// const props = defineProps({
+//   cursorEnabled: Boolean,
+// });
 
 const baseSize = ref(12);
-const baseOpacity = ref(0.95);
+const baseOpacity = 1;
 const easingPosition = ref(2);
 const easing = ref(5);
 const cursorEl = ref('cursorEl');
@@ -50,14 +50,14 @@ const getCursorIcon = () => {
 
 const state = reactive({
   curNewSize: null,
-  curNewOpacity: baseOpacity.value,
+  curNewOpacity: baseOpacity,
   currentSize: null,
   currentOpacity: null,
   cursorX: null,
   cursorY: null,
   curNewX: null,
   curNewY: null,
-  curNewColor: '#bfc0b2', // Default color
+  curNewColor: `rgba(191, 192, 178, ${baseOpacity})`, // Default color
   cursorInitialized: false,
   cursorIcon: null,
 });
@@ -89,7 +89,7 @@ const cursorTrack = (event) => {
 
   state.curNewOpacity = event.target.dataset.cursoropacity
     ? Number(event.target.dataset.cursoropacity)
-    : baseOpacity.value;
+    : baseOpacity;
 
   state.curNewX = event.clientX;
   state.curNewY = event.clientY;
@@ -97,8 +97,8 @@ const cursorTrack = (event) => {
   state.curNewColor =
     event.target.dataset.cursorcolor &&
     event.target.dataset.cursorcolor === 'dark'
-      ? '#1B1818FF'
-      : '#bfc0b2';
+      ? `rgba(27, 24, 24, ${state.curNewOpacity})` //27,24,24
+      : `rgba(191, 192, 178, ${state.curNewOpacity})`; //191,192,178
 
   if (event.target.dataset.cursoricon && !state.cursorIcon) {
     state.cursorIcon =
@@ -130,14 +130,14 @@ const draw = () => {
   const t3d = `translate3d(${state.cursorX - state.currentSize / 2}px, ${
     state.cursorY - state.currentSize / 2
   }px, 0)`;
-  if (cursorEl) {
+  if (cursorEl.value) {
     cursorEl.value.style.webkitTransform = t3d;
     cursorEl.value.style.transform = t3d;
 
     // Smoothly update opacity
-    const dO = state.curNewOpacity - state.currentOpacity;
-    state.currentOpacity += dO / easing.value;
-    cursorEl.value.style.opacity = state.currentOpacity;
+    // const dO = state.curNewOpacity - state.currentOpacity;
+    // state.currentOpacity += dO / easing.value;
+    // cursorEl.value.style.opacity = state.currentOpacity;
 
     // Smoothly update size
     const dD = state.curNewSize - state.currentSize;

@@ -21,37 +21,37 @@
         <div v-onScrollActivate="{ fixToParentId: 'gallery' }">
           <div class="gallery-controls">
             <button
-              class="gallery-controls-btn close-btn"
-              @click="closeGallery()"
               v-set-data-attrs="{
                 cursoropacity: 0.7,
                 cursorsize: 70,
                 cursoricon: '🤏',
               }"
+              class="gallery-controls-btn close-btn"
+              @click="closeGallery()"
             >
               <IconsClose />
             </button>
             <button
               v-if="nextProjectName"
-              class="gallery-controls-btn change-project-btn next-item"
-              @click="navigationStore.scrollToProject(activeProjectIndex + 1)"
               v-set-data-attrs="{
                 cursoropacity: 0.7,
                 cursorsize: 70,
                 cursoricon: '👇',
               }"
+              class="gallery-controls-btn change-project-btn next-item"
+              @click="navigationStore.scrollToProject(activeProjectIndex + 1)"
             >
               next: {{ nextProjectName }} 👇
             </button>
             <button
               v-if="prevProjectName"
-              class="gallery-controls-btn change-project-btn prev-item"
-              @click="navigationStore.scrollToProject(activeProjectIndex - 1)"
               v-set-data-attrs="{
                 cursoropacity: 0.7,
                 cursorsize: 70,
                 cursoricon: '👆',
               }"
+              class="gallery-controls-btn change-project-btn prev-item"
+              @click="navigationStore.scrollToProject(activeProjectIndex - 1)"
             >
               previous: {{ prevProjectName }} 👆
             </button>

@@ -12,10 +12,10 @@
       <span
         v-for="navItem in navigationItems"
         :key="navItem.id"
+        v-set-data-attrs="{ cursorsize: 30, cursoropacity: 0.7 }"
         class="navigation-item"
         :class="{ active: activeNav === navItem.id }"
         @click="goToSection(navItem.id)"
-        v-set-data-attrs="{ cursorsize: 30, cursoropacity: 0.7 }"
       >
         {{ navItem.name }}
       </span>

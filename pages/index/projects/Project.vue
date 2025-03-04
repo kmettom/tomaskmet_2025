@@ -65,6 +65,11 @@ watch(
     :class="projectElClasses"
   >
     <div
+      v-set-data-attrs="{
+        cursorsize: navigationStore.projects.galleryOpen ? 15 : 75,
+        cursoropacity: navigationStore.projects.galleryOpen ? 1 : 0.7,
+        cursoricon: navigationStore.projects.galleryOpen ? 'false' : 'true',
+      }"
       :class="`project-wrapper ${project.position?.alignRight ? ' project-right ' : ''}`"
       @mouseover="
         projectImageUniforms.uHover.active =
@@ -72,11 +77,6 @@ watch(
       "
       @mouseleave="projectImageUniforms.uHover.active = false"
       @click="emit('openGallery')"
-      v-set-data-attrs="{
-        cursorsize: navigationStore.projects.galleryOpen ? 15 : 75,
-        cursoropacity: navigationStore.projects.galleryOpen ? 1 : 0.7,
-        cursoricon: navigationStore.projects.galleryOpen ? 'false' : 'true',
-      }"
     >
       <div class="project-info-wrapper">
         <div class="heading-3 project-index">

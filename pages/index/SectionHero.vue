@@ -2,7 +2,7 @@
   <div class="hero-section-wrapper">
     <Container additional-class="hero-section">
       <div class="hero-content-line hero-line-tomas">
-        <h2 class="heading-1" v-set-data-attrs="{ cursorcolor: 'dark' }">
+        <h2 v-set-data-attrs="{ cursorcolor: 'dark' }" class="heading-1">
           <CanvasText :theme="'light'" :uniforms="mainTextInUniforms">
             TOMAS
           </CanvasText>
@@ -23,7 +23,7 @@
           <p>websites</p>
           <p>e-commerce</p>
         </div>
-        <h2 class="heading-1" v-set-data-attrs="{ cursorcolor: 'dark' }">
+        <h2 v-set-data-attrs="{ cursorcolor: 'dark' }" class="heading-1">
           <CanvasText :theme="'light'" :uniforms="mainTextInUniforms">
             KMET
           </CanvasText>
