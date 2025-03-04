@@ -1,119 +1,175 @@
 <template>
-  <div id="uniqueCursor" />
+  <div id="uniqueCursor" ref="cursorEl">
+    <span v-if="!!state.cursorIcon" class="cursor-icon">
+      {{ state.cursorIcon }}
+    </span>
+  </div>
 </template>
 
-<script type="text/babel">
+<script setup>
+import { ref, reactive, onMounted } from 'vue';
 import { Canvas } from '~/utils/canvas';
 
-export default {
-  name: 'AppCursor',
-  props: {
-    cursorEnabled: {
-      type: Boolean,
-    },
-  },
-  data: () => {
-    return {
-      baseSize: 12,
-      baseOpacity: 0.95,
-      curNewSize: null,
-      curNewOpacity: 0.95,
-      currentSize: null,
-      currentOpacity: null,
-      windowMargin: 40,
-      cursorX: null,
-      cursorY: null,
-      curNewX: null,
-      curNewY: null,
-      cursorInited: false,
-      easingPosition: 2,
-      easing: 5,
-    };
-  },
-  mounted() {
-    if (window.innerWidth > 768) {
-      this.cursorInit();
-    }
-  },
-  methods: {
-    cursorInit() {
-      Canvas.animations.cursorCallback = this.draw;
-      // this.draw();
-      window.onmousemove = (event) => {
-        const _event = event;
-        this.cursorTrack(_event);
-      };
-      document.addEventListener('mouseout', (e) => {
-        e = e ? e : window.event;
-        const from = e.relatedTarget || e.toElement;
-        if (!from || from.nodeName === 'HTML') {
-          this.curNewSize = 1;
-        }
-      });
-    },
-    cursorTrack(_event) {
-      this.curNewSize = _event.target.dataset.cursorsize
-        ? _event.target.dataset.cursorsize
-        : this.baseSize;
-      this.curNewOpacity = _event.target.dataset.cursoropacity
-        ? _event.target.dataset.cursoropacity
-        : this.baseOpacity;
-      this.curNewX = _event.clientX;
-      this.curNewY = _event.clientY;
-      this.curNewColor =
-        _event.target.dataset.cursorcolor &&
-        _event.target.dataset.cursorcolor == 'dark'
-          ? '#1B1818FF'
-          : '#bfc0b2';
-      if (!this.cursorInited) {
-        this.currentSize = this.baseSize;
-        this.cursorX = _event.clientX;
-        this.cursorY = _event.clientY;
-        this.cursorInited = true;
-      }
-    },
-    draw() {
-      const dX = this.curNewX - this.cursorX;
-      const dY = this.curNewY - this.cursorY;
-      this.cursorX += dX / this.easingPosition;
-      this.cursorY += dY / this.easingPosition;
-      const t3d = `translate3d(${this.cursorX - this.currentSize / 2}px,${this.cursorY - this.currentSize / 2}px,0)`;
-      this.$el.style.webkitTransform = t3d;
-      this.$el.style.transform = t3d;
+const props = defineProps({
+  cursorEnabled: Boolean,
+});
 
-      const dO = this.curNewOpacity - this.currentOpacity;
-      this.currentOpacity += dO / this.easing;
-      this.$el.style.opacity = this.currentOpacity;
+const baseSize = ref(12);
+const baseOpacity = ref(0.95);
+const easingPosition = ref(2);
+const easing = ref(5);
+const cursorEl = ref('cursorEl');
 
-      const dD = this.curNewSize - this.currentSize;
-      this.currentSize += dD / this.easing;
-      this.$el.style.height = this.currentSize + 'px';
-      this.$el.style.width = this.currentSize + 'px';
+const cursorIcons = [
+  '🤌',
+  '☝',
+  '🙃',
+  '🚀',
+  '😜',
+  '😎',
+  '🖖',
+  '👌',
+  '🤘',
+  '🏀',
+  '🎾',
+  '🥊',
+  '🌴',
+  '☕',
+];
 
-      this.$el.style.background = this.curNewColor;
-    },
-  },
+const randomIndex = () => {
+  setInterval(() => {});
+  return Math.floor(Math.random() * cursorIcons.length);
 };
+
+const getCursorIcon = () => {
+  return cursorIcons[randomIndex()];
+};
+
+const state = reactive({
+  curNewSize: null,
+  curNewOpacity: baseOpacity.value,
+  currentSize: null,
+  currentOpacity: null,
+  cursorX: null,
+  cursorY: null,
+  curNewX: null,
+  curNewY: null,
+  curNewColor: '#bfc0b2', // Default color
+  cursorInitialized: false,
+  cursorIcon: null,
+});
+
+const cursorInit = () => {
+  // Set up draw callback
+  Canvas.animations.cursorCallback = draw;
+
+  // Track mouse movements
+  window.onmousemove = (event) => {
+    cursorTrack(event);
+  };
+
+  // Handle mouse out of window
+  document.addEventListener('mouseout', (e) => {
+    const from = e.relatedTarget || e.toElement;
+    if (!from || from.nodeName === 'HTML') {
+      state.curNewSize = 1;
+    }
+  });
+};
+
+// Track mouse movement
+const cursorTrack = (event) => {
+  // Update cursor size, opacity, and position
+  state.curNewSize = event.target.dataset.cursorsize
+    ? Number(event.target.dataset.cursorsize)
+    : baseSize.value;
+
+  state.curNewOpacity = event.target.dataset.cursoropacity
+    ? Number(event.target.dataset.cursoropacity)
+    : baseOpacity.value;
+
+  state.curNewX = event.clientX;
+  state.curNewY = event.clientY;
+
+  state.curNewColor =
+    event.target.dataset.cursorcolor &&
+    event.target.dataset.cursorcolor === 'dark'
+      ? '#1B1818FF'
+      : '#bfc0b2';
+
+  if (event.target.dataset.cursoricon && !state.cursorIcon) {
+    state.cursorIcon = getCursorIcon();
+  } else if (!event.target.dataset.cursoricon && state.cursorIcon) {
+    state.cursorIcon = null;
+  }
+
+  // Initialize cursor if not already initialized
+  if (!state.cursorInitialized) {
+    state.currentSize = baseSize.value;
+    state.cursorX = event.clientX;
+    state.cursorY = event.clientY;
+    state.cursorInitialized = true;
+  }
+};
+
+// Draw the cursor with easing
+const draw = () => {
+  // Smoothly update position
+  const dX = state.curNewX - state.cursorX;
+  const dY = state.curNewY - state.cursorY;
+  state.cursorX += dX / easingPosition.value;
+  state.cursorY += dY / easingPosition.value;
+
+  // Apply styles to the cursor element
+  const t3d = `translate3d(${state.cursorX - state.currentSize / 2}px, ${
+    state.cursorY - state.currentSize / 2
+  }px, 0)`;
+  if (cursorEl) {
+    cursorEl.value.style.webkitTransform = t3d;
+    cursorEl.value.style.transform = t3d;
+
+    // Smoothly update opacity
+    const dO = state.curNewOpacity - state.currentOpacity;
+    state.currentOpacity += dO / easing.value;
+    cursorEl.value.style.opacity = state.currentOpacity;
+
+    // Smoothly update size
+    const dD = state.curNewSize - state.currentSize;
+    state.currentSize += dD / easing.value;
+    cursorEl.value.style.height = `${state.currentSize}px`;
+    cursorEl.value.style.width = `${state.currentSize}px`;
+
+    // Update color
+    cursorEl.value.style.background = state.curNewColor;
+  }
+};
+
+// Lifecycle hook: Mounted
+onMounted(() => {
+  if (window.innerWidth > 768) {
+    cursorInit();
+  }
+});
 </script>
 
-<style lang="scss">
-body {
-  cursor: none;
-  * {
-    cursor: none;
-  }
-}
-
+<style lang="scss" scoped>
 #uniqueCursor {
-  display: block;
+  //display: block;
   pointer-events: none;
   position: fixed;
   text-align: center;
   z-index: 99;
   background: var(--dark-color);
   border-radius: 50%;
-  z-index: 99;
   top: 0px;
   left: 0px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cursor-icon {
+  font-size: 31px;
 }
 </style>
