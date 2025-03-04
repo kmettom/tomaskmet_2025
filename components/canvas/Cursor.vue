@@ -100,7 +100,11 @@ const cursorTrack = (event) => {
       ? `rgba(27, 24, 24, ${state.curNewOpacity})` //27,24,24
       : `rgba(191, 192, 178, ${state.curNewOpacity})`; //191,192,178
 
-  if (event.target.dataset.cursoricon && !state.cursorIcon) {
+  if (
+    event.target.dataset.cursoricon &&
+    event.target.dataset.cursoricon !== 'false' &&
+    !state.cursorIcon
+  ) {
     state.cursorIcon =
       event.target.dataset.cursoricon === 'true'
         ? getCursorIcon()
