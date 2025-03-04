@@ -21,6 +21,8 @@ const easing = ref(5);
 const cursorEl = ref('cursorEl');
 
 const cursorIcons = [
+  '🔥',
+  '🕶',
   '🤌',
   '☝',
   '🙃',
@@ -99,7 +101,10 @@ const cursorTrack = (event) => {
       : '#bfc0b2';
 
   if (event.target.dataset.cursoricon && !state.cursorIcon) {
-    state.cursorIcon = getCursorIcon();
+    state.cursorIcon =
+      event.target.dataset.cursoricon === 'true'
+        ? getCursorIcon()
+        : event.target.dataset.cursoricon;
   } else if (!event.target.dataset.cursoricon && state.cursorIcon) {
     state.cursorIcon = null;
   }
