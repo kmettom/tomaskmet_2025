@@ -2,7 +2,10 @@
   <div class="works-section">
     <Container>
       <h2 class="heading-1 heading-1-spacing text-align-right">
-        <span v-onScrollActivate="{ activeRange: 0.85 }" v-set-data-attrs="{ cursorcolor:'dark' }">
+        <span
+          v-onScrollActivate="{ activeRange: 0.85 }"
+          v-set-data-attrs="{ cursorcolor: 'dark' }"
+        >
           <CanvasText :theme="'light'"> WORK </CanvasText>
         </span>
       </h2>
