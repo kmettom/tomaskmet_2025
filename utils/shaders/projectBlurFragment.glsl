@@ -56,6 +56,44 @@ vec3 blur(vec2 uv, sampler2D image, float blurAmount) {
   return blurredImage / repeats;
 }
 
+float createCircle() {
+  vec2 viewportUv = gl_FragCoord.xy / viewport / devicePixelRatio;
+  float viewportAspect = viewport.x / viewport.y;
+  vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);
+
+  vec2 shapeUv = viewportUv - mousePoint;
+  //TODO: add uMouseMovement
+  shapeUv /= vec2(1.0, viewportAspect);
+  shapeUv += mousePoint;
+  float dist = distance(shapeUv, mousePoint);
+
+  //  vec2 randomCoefficients = vec2(13.0, 80.);
+  //  float randomMultiplier = 100.;
+  //  float wave = createWave(vUv);
+  //  float randomValue = fract(sin(dot(gl_FragCoord.xy + time + wave, randomCoefficients)) * randomMultiplier);
+  //  float randomSmooth = smoothstep(randomValue , randomValue * wave , dist);
+
+  //  float circleRadius = max(0.0, 10/ viewport.x);
+  float circleRadius = max(0.0, 10.0 / viewport.x);
+
+  //  circleRadius = smoothstep(circleRadius, circleRadius, 0.1);
+
+  dist = smoothstep(circleRadius, circleRadius + 0.05, dist);
+  return dist;
+}
+
+float createOverlay() {
+  vec2 viewportUv = gl_FragCoord.xy / viewport / devicePixelRatio;
+  float wave = createWave(viewportUv);
+  float leftPadding = 0.1;
+  float progress = smoothstep(
+    uAniIn - 1.0 * (1.0 - uAniIn),
+    uAniIn,
+    viewportUv.x - vUv.x + leftPadding + wave
+  );
+  return progress;
+}
+
 void main() {
   uBlurStrength = 1.0 - uHover - uImageGalleryActive;
 
