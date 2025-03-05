@@ -7,6 +7,7 @@ uniform sampler2D uImage;
 uniform float uTime;
 uniform float uHover;
 uniform vec2 uMouse;
+uniform vec2 uMouseMovement;
 uniform float uAniIn;
 uniform float uImageGallery;
 uniform float uImageGalleryActive;
@@ -68,46 +69,41 @@ float createWave(vec2 viewportUv) {
   return sin(viewportUv.y * WEVA_APLITUDE + uTime) * WAVE_INTERVAL;
 }
 
-float createCircle() {
+float createCircle(float radius) {
   vec2 viewportUv = gl_FragCoord.xy / uViewport / uDevicePixelRatio;
   float viewportAspect = uViewport.x / uViewport.y;
+
   vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);
 
   vec2 shapeUv = viewportUv - mousePoint;
-  //TODO: add uMouseMovement
   shapeUv /= vec2(1.0, viewportAspect);
   shapeUv += mousePoint;
   float dist = distance(shapeUv, mousePoint);
 
-  //  vec2 randomCoefficients = vec2(13.0, 80.);
-  //  float randomMultiplier = 100.;
-  //  float wave = createWave(vUv);
-  //  float randomValue = fract(sin(dot(gl_FragCoord.xy + time + wave, randomCoefficients)) * randomMultiplier);
-  //  float randomSmooth = smoothstep(randomValue , randomValue * wave , dist);
-
-  //  float circleRadius = max(0.0, 10/ viewport.x);
-  float circleRadius = max(0.0, 10.0 / uViewport.x);
-
-  //  circleRadius = smoothstep(circleRadius, circleRadius, 0.1);
+  float circleRadius = max(0.0, radius / uViewport.x);
 
   dist = smoothstep(circleRadius, circleRadius + 0.05, dist);
   return dist;
 }
 
-float createOverlay() {
+float createOverlay(float activeOverlay) {
   vec2 viewportUv = gl_FragCoord.xy / uViewport / uDevicePixelRatio;
   float wave = createWave(viewportUv);
   float leftPadding = 0.1;
   float progress = smoothstep(
-    uAniIn - 1.0 * (1.0 - uAniIn),
-    uAniIn,
-    viewportUv.x - vUv.x + leftPadding + wave
+  activeOverlay - 1.0 * (1.0 - activeOverlay),
+  activeOverlay,
+    viewportUv.y - vUv.y + leftPadding + wave
   );
   return progress;
 }
 
 void main() {
-  uBlurStrength = 1.0 - uHover - uImageGalleryActive;
+    float overlay = createOverlay(uHover);
+    float circle = createCircle(70.0);
+
+//  uBlurStrength = 1.0 - uHover - uImageGalleryActive;
+  uBlurStrength = 1.0 * circle * overlay;
 
   // Calculate the aspect ratios
   float meshAspect = uMeshSize.x / uMeshSize.y;
