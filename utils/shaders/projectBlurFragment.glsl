@@ -91,18 +91,18 @@ float createOverlay(float activeOverlay) {
   float wave = createWave(viewportUv);
   float leftPadding = 0.1;
   float progress = smoothstep(
-  activeOverlay - 1.0 * (1.0 - activeOverlay),
-  activeOverlay,
+    activeOverlay - 1.0 * (1.0 - activeOverlay),
+    activeOverlay,
     viewportUv.y - vUv.y + leftPadding + wave
   );
   return progress;
 }
 
 void main() {
-    float overlay = createOverlay(uHover);
-    float circle = createCircle(70.0);
+  float overlay = createOverlay(uHover);
+  float circle = createCircle(70.0);
 
-//  uBlurStrength = 1.0 - uHover - uImageGalleryActive;
+  //  uBlurStrength = 1.0 - uHover - uImageGalleryActive;
   uBlurStrength = 1.0 * circle * overlay;
 
   // Calculate the aspect ratios
