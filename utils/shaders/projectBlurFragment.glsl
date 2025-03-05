@@ -81,18 +81,18 @@ float createCircle(float radius) {
 
 float createOverlayBlur(float activeOverlay) {
   vec2 viewportUv = gl_FragCoord.xy / uViewport / uDevicePixelRatio;
+  float padding = 10.0;
   float progress = smoothstep(
-//  activeOverlay - 1.0 * (1.0 - activeOverlay),
-  activeOverlay - 1.0,
-  activeOverlay,
-  viewportUv.y - vUv.y
+  activeOverlay - 1.0, // -1 0
+  activeOverlay, // 0 1
+  viewportUv.y - vUv.y + padding
   );
   return progress;
 }
 
 float createOverlayOpacity(float activeOverlay) {
   vec2 viewportUv = uMeshSize.xy / uViewport / uDevicePixelRatio;
-  float progress = smoothstep(activeOverlay - 1.0, activeOverlay, viewportUv.y);
+  float progress = smoothstep(activeOverlay - 1.0 , activeOverlay, viewportUv.y-vUv.y );
   return progress;
 }
 
@@ -126,9 +126,9 @@ void main() {
   //  vec4 noise = vec4(1.0 - tvNoise(uv, ta, tb));
   //  final = final - noise * 0.05;
 
-  float overlayOpacity = createOverlayOpacity(uAniIn);
+  float overlayOpacity = createOverlayOpacity(1.-uAniIn);
 
-  vec4 final = vec4(blur(uv, uImage, 0.08), 1.0 - overlayOpacity);
+  vec4 final = vec4(blur(uv, uImage, 0.08),  overlayOpacity);
 
   gl_FragColor = final;
 
