@@ -79,20 +79,25 @@ float createCircle(float radius) {
   return dist;
 }
 
-float createOverlay(float activeOverlay) {
+float createOverlayBlur(float activeOverlay) {
+  vec2 viewportUv = gl_FragCoord.xy / uViewport / uDevicePixelRatio;
+  float progress = smoothstep(
+//  activeOverlay - 1.0 * (1.0 - activeOverlay),
+  activeOverlay - 1.0,
+  activeOverlay,
+  viewportUv.y - vUv.y
+  );
+  return progress;
+}
+
+float createOverlayOpacity(float activeOverlay) {
   vec2 viewportUv = uMeshSize.xy / uViewport / uDevicePixelRatio;
   float progress = smoothstep(activeOverlay - 1.0, activeOverlay, viewportUv.y);
   return progress;
 }
 
-//float createOverlayBottom(float activeOverlay) {
-//  vec2 viewportUv = uMeshSize.xy / uViewport / uDevicePixelRatio;
-//  float progress = smoothstep(activeOverlay - 1.0, activeOverlay, viewportUv.y);
-//  return progress;
-//}
-
 void main() {
-  float overlayBlur = createOverlay(uHover);
+  float overlayBlur = createOverlayBlur(uHover);
   float circle = createCircle(70.0);
 
   //  uBlurStrength = 1.0 - uHover - uImageGalleryActive;
@@ -121,7 +126,7 @@ void main() {
   //  vec4 noise = vec4(1.0 - tvNoise(uv, ta, tb));
   //  final = final - noise * 0.05;
 
-  float overlayOpacity = createOverlay(uAniIn);
+  float overlayOpacity = createOverlayOpacity(uAniIn);
 
   vec4 final = vec4(blur(uv, uImage, 0.08), 1.0 - overlayOpacity);
 

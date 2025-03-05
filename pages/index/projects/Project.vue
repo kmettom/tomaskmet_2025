@@ -25,7 +25,7 @@ const projectNumber = computed(() => {
 });
 
 const projectImageUniforms = ref({
-  uHover: { active: false, duration: 0.5 },
+  uHover: { active: false, duration: 0.75 },
   uImageGallery: { active: false, duration: 0.5 },
   uImageGalleryActive: { active: false, duration: 0.5 },
   uIsHeroSection: { active: false, duration: 0 },
