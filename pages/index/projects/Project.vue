@@ -81,9 +81,10 @@ watch(
     >
       <div class="project-info-wrapper">
         <div class="heading-3 project-index">
-          <CanvasText :theme="'light'" :uniforms="projectImageUniforms">
-            {{ projectNumber }}
-          </CanvasText>
+          {{ projectNumber }}
+          <!--          <CanvasText :theme="'light'" :uniforms="projectImageUniforms">-->
+          <!--            {{ projectNumber }}-->
+          <!--          </CanvasText>-->
         </div>
         <div class="expand-description">
           <div class="statistics">

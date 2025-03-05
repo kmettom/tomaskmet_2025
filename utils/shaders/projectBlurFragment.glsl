@@ -81,7 +81,7 @@ float createCircle(float radius) {
 
 float createOverlay(float activeOverlay) {
   vec2 viewportUv = uMeshSize.xy / uViewport / uDevicePixelRatio;
-  float progress = smoothstep(activeOverlay - 1.0, activeOverlay, viewportUv.y / vUv.y);
+  float progress = smoothstep(activeOverlay - 1.0, activeOverlay, viewportUv.y);
   return progress;
 }
 
