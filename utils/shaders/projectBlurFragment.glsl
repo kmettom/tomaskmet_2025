@@ -62,13 +62,6 @@ vec3 blur(vec2 uv, sampler2D image, float blurAmount) {
 
 float DISTANCE_COEF = 0.5;
 
-float WAVE_INTERVAL = 0.1;
-float WEVA_APLITUDE = 10.0;
-
-float createWave(vec2 viewportUv) {
-  return sin(viewportUv.y * WEVA_APLITUDE + uTime) * WAVE_INTERVAL;
-}
-
 float createCircle(float radius) {
   vec2 viewportUv = gl_FragCoord.xy / uViewport / uDevicePixelRatio;
   float viewportAspect = uViewport.x / uViewport.y;
@@ -87,24 +80,23 @@ float createCircle(float radius) {
 }
 
 float createOverlay(float activeOverlay) {
-  vec2 viewportUv = gl_FragCoord.xy / uViewport / uDevicePixelRatio;
-  //  float wave = createWave(viewportUv);
-  float wave = createWave(viewportUv);
-  float leftPadding = 0.1;
-  float progress = smoothstep(
-    activeOverlay - 1.0 * (1.0 - activeOverlay),
-    activeOverlay,
-    viewportUv.y - vUv.y
-  );
+  vec2 viewportUv = uMeshSize.xy / uViewport / uDevicePixelRatio;
+  float progress = smoothstep(activeOverlay - 1.0, activeOverlay, viewportUv.y / vUv.y);
   return progress;
 }
 
+//float createOverlayBottom(float activeOverlay) {
+//  vec2 viewportUv = uMeshSize.xy / uViewport / uDevicePixelRatio;
+//  float progress = smoothstep(activeOverlay - 1.0, activeOverlay, viewportUv.y);
+//  return progress;
+//}
+
 void main() {
-  float overlay = createOverlay(uHover);
+  float overlayBlur = createOverlay(uHover);
   float circle = createCircle(70.0);
 
   //  uBlurStrength = 1.0 - uHover - uImageGalleryActive;
-  uBlurStrength = 1.0 * circle * overlay;
+  uBlurStrength = 1.0 * circle * overlayBlur;
 
   // Calculate the aspect ratios
   float meshAspect = uMeshSize.x / uMeshSize.y;
@@ -122,16 +114,16 @@ void main() {
     uv.x = uv.x * scale + (1.0 - scale) / 2.0; // Center the texture horizontally
   }
 
-  //  vec4 texColor = texture2D(uImage, uv);
+  //NOISE
+  //  float t = uTime + 123.0;
+  //  float ta = t * 0.654321;
+  //  float tb = t * (ta * 0.123456);
+  //  vec4 noise = vec4(1.0 - tvNoise(uv, ta, tb));
+  //  final = final - noise * 0.05;
 
-  float t = uTime + 123.0;
-  float ta = t * 0.654321;
-  float tb = t * (ta * 0.123456);
-  vec4 noise = vec4(1.0 - tvNoise(uv, ta, tb));
+  float overlayOpacity = createOverlay(uAniIn);
 
-  vec4 final = vec4(blur(uv, uImage, 0.08), uAniIn + uImageGallery);
-
-  final = final - noise * 0.05;
+  vec4 final = vec4(blur(uv, uImage, 0.08), 1.0 - overlayOpacity);
 
   gl_FragColor = final;
 
