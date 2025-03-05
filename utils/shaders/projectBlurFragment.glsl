@@ -88,12 +88,13 @@ float createCircle(float radius) {
 
 float createOverlay(float activeOverlay) {
   vec2 viewportUv = gl_FragCoord.xy / uViewport / uDevicePixelRatio;
+  //  float wave = createWave(viewportUv);
   float wave = createWave(viewportUv);
   float leftPadding = 0.1;
   float progress = smoothstep(
     activeOverlay - 1.0 * (1.0 - activeOverlay),
     activeOverlay,
-    viewportUv.y - vUv.y + leftPadding + wave
+    viewportUv.y - vUv.y
   );
   return progress;
 }
