@@ -36,15 +36,32 @@ float createCircleTail(float radius) {
 
   vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);
 
+  float tailOffset = 10.0;
+
+  vec2 tailPoint = mousePoint - vec2(0.0, tailOffset); // Offset for the trail effect
+
   vec2 shapeUv = viewportUv - mousePoint;
   shapeUv /= vec2(1.0, viewportAspect);
   shapeUv += mousePoint;
   float dist = distance(shapeUv, mousePoint);
 
+  float distHead = distance(shapeUv, mousePoint);
+
+  // Calculate distance for the tail separately
+  vec2 shapeUvTail = viewportUv - tailPoint;
+  shapeUvTail /= vec2(1.0, viewportAspect);
+  shapeUvTail += tailPoint;
+  float distTail = distance(shapeUvTail, tailPoint);
+
   float circleRadius = max(0.0, radius / uViewport.x);
 
-  dist = smoothstep(circleRadius, circleRadius + 0.05, dist);
-  return dist;
+  // Smooth interpolation for both head and the trail
+  float circleHead = smoothstep(circleRadius, circleRadius + 0.05, distHead);
+  float circleTail = smoothstep(circleRadius, circleRadius + 0.1, distTail);
+
+  return max(circleHead, circleTail * 0.5);
+  //  dist = smoothstep(circleRadius, circleRadius + 0.05, dist);
+  //  return dist;
 }
 
 float createOverlay(float activeOverlay) {
