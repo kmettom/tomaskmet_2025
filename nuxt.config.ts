@@ -16,6 +16,9 @@ export default defineNuxtConfig({
   image: {
     provider: 'ipx',
     dir: 'public/',
+    ipx: {
+      // baseURL: 'https://your-ipx-instance-url',
+    },
   },
 
   build: {

@@ -33,6 +33,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "gsap": "npm:@gsap/business@^3.12.5",
+    "ipx": "^3.0.1",
     "nuxt": "^3.15.1",
     "nuxt-purgecss": "^2.0.0",
     "nuxt-viewport": "^2.1.4",
