@@ -2,6 +2,29 @@ import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 gsap.registerPlugin(SplitText);
 
+export function projectNumberAni(ref) {
+  const numbers = new SplitText(ref.querySelector('.project-index'), {
+    type: 'words,chars',
+  }).chars;
+  const tl = gsap.timeline();
+  tl.to(numbers, {
+    duration: 0.25,
+    opacity: 0,
+    y: 10,
+    stagger: 0.05,
+  });
+  tl.set(numbers, {
+    opacity: 0,
+    y: -10,
+  });
+  tl.to(numbers, {
+    duration: 0.35,
+    opacity: 1,
+    y: 0,
+    stagger: 0.05,
+  });
+}
+
 export function openGalleryTransition(
   galleryRef,
   refs,

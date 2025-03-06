@@ -1,6 +1,7 @@
 <script setup>
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
+import { projectNumberAni } from '~/utils/animations/projects';
 const navigationStore = useNavigationStore();
 
 gsap.registerPlugin(SplitText);
@@ -23,6 +24,15 @@ const projectElClasses = computed(() => {
 const projectNumber = computed(() => {
   return '0' + (props.index + 1).toString();
 });
+
+const hoverProject = (status) => {
+  if (status) {
+    projectImageUniforms.value.uHover.active =
+      !navigationStore.projects.galleryOpen;
+  } else {
+    projectImageUniforms.value.uHover.active = false;
+  }
+};
 
 const projectImageUniforms = ref({
   uHover: { active: false, duration: 0.35 },
@@ -72,11 +82,8 @@ watch(
         cursoricon: navigationStore.projects.galleryOpen ? 'false' : 'true',
       }"
       :class="`project-wrapper ${project.position?.alignRight ? ' project-right ' : ''}`"
-      @mouseover="
-        projectImageUniforms.uHover.active =
-          !navigationStore.projects.galleryOpen
-      "
-      @mouseleave="projectImageUniforms.uHover.active = false"
+      @mouseover="hoverProject(true)"
+      @mouseleave="hoverProject(false)"
       @click="emit('openGallery')"
     >
       <div class="project-info-wrapper">
