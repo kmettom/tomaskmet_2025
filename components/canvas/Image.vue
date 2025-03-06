@@ -1,11 +1,6 @@
 <template>
   <div ref="imageWrapper" class="webgl-img-wrapper">
-    <NuxtImg
-      class="webgl-img"
-      alt="picture"
-      :src="srcLink"
-      @load="imageLoaded"
-    />
+    <img class="webgl-img" alt="picture" :src="srcLink" @load="imageLoaded" />
   </div>
 </template>
 
