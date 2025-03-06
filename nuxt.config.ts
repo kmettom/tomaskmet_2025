@@ -3,7 +3,6 @@ import glsl from 'vite-plugin-glsl';
 export default defineNuxtConfig({
   devtools: { enabled: true },
   routeRules: {},
-
   modules: [
     '@nuxt-modules/compression',
     '@nuxt/eslint',
@@ -12,8 +11,8 @@ export default defineNuxtConfig({
     'nuxt-viewport',
     '@pinia/nuxt',
   ],
-
   image: {
+    target: 'static',
     provider: 'ipx',
     dir: 'public/',
     ipx: {
