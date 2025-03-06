@@ -185,6 +185,7 @@ const Canvas = {
   },
 
   meshUniformsUpdate(id, uniforms) {
+    console.log("meshUniformsUpdate")
     const mesh = this.scene.getObjectByName(id);
     for (const uniKey in uniforms) {
       gsap.to(mesh.material.uniforms[uniKey], {
@@ -344,13 +345,11 @@ const Canvas = {
           // Rendering
           uThreshold: { value: 0.05 },
           uAlphaTest: { value: 0.01 },
-          // Strokes
-          // uStrokeColor: { value: new THREE.Color("#ff0000") },
           uStrokeOutsetWidth: { value: 0.0 },
           uStrokeInsetWidth: { value: 0.3 }, //0.3
           // new generic
           uTime: { value: 0 },
-          vectorVNoise: { value: new THREE.Vector2(1.5, 1.5) }, // 1.5
+          uMeshSize: { value: new THREE.Vector2(bounds.width, bounds.height) },
           uAniIn: { value: meshUniforms.uAniIn?.value ?? 0 },
           uAniInBlur: { value: meshUniforms.uAniInBlur?.value ?? 0 },
           ...meshUniforms,

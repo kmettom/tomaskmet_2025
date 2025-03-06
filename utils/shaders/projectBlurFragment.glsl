@@ -96,7 +96,7 @@ float createOverlayOpacity(float activeOverlay) {
   float progress = smoothstep(
     activeOverlay,
     activeOverlay - 1.0,
-    -vUv.y + viewportUv.y
+    viewportUv.y - vUv.y
   );
   return progress;
 }
