@@ -26,12 +26,11 @@ uniform sampler2D gradientMap;
 float DISTANCE_COEF = 0.5;
 float uBlurStrength;
 
-
 float median(float r, float g, float b) {
   return max(min(r, g), min(max(r, g), b));
 }
 
-float createCircle(float radius) {
+float createCircleTail(float radius) {
   vec2 viewportUv = gl_FragCoord.xy / uViewport / uDevicePixelRatio;
   float viewportAspect = uViewport.x / uViewport.y;
 
@@ -48,33 +47,14 @@ float createCircle(float radius) {
   return dist;
 }
 
-float createOverlayBlur(float activeOverlay) {
-  vec2 viewportUv = gl_FragCoord.xy / uViewport / uDevicePixelRatio;
-  float progress = smoothstep(
-    activeOverlay - 1.0, // -1 0
-    activeOverlay, // 0 1
-    viewportUv.y - vUv.y
-  );
-  return progress;
-}
-
 float createOverlayOpacity(float activeOverlay) {
-//  vec2 viewportUv =
-//     uViewport * uDevicePixelRatio * (1.0 - activeOverlay);
-  float progress = smoothstep(
-    activeOverlay,
-    activeOverlay - 1.0,
-    -uViewport.y
-  );
+  float progress = smoothstep(activeOverlay, activeOverlay - 1.0, -uViewport.y);
   return progress;
 }
 
 void main() {
-  float overlayOpacity = createOverlayOpacity(uHover);
-  float circle = createCircle(20.0);
-
-//  uBlurStrength =
-//  1.0 * circle * (overlayOpacity * uAniInBlur) ;
+  float overlayOpacity = createOverlayOpacity(uAniIn);
+  float circle = createCircleTail(10.0);
 
   vec3 mySample = texture2D(uMap, vUv).rgb;
 
