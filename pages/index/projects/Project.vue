@@ -35,7 +35,7 @@ const hoverProject = (status) => {
 };
 
 const projectImageUniforms = ref({
-  uHover: { active: false, duration: 0.35 },
+  uHover: { active: false, duration: 0.55 },
   uImageGallery: { active: false, duration: 0.5 },
   uImageGalleryActive: { active: false, duration: 0.5 },
   uIsHeroSection: { active: false, duration: 0 },
@@ -62,7 +62,7 @@ watch(
 <template>
   <div
     v-onScrollActivate="{
-      activeRange: navigationStore.projects.galleryOpen ? 1 : 0.95,
+      activeRange: navigationStore.projects.galleryOpen ? 1 : 0.85,
       activateOnce: false,
       activeRangeOrigin: navigationStore.projects.galleryOpen ? 0.5 : 1,
       bidirectionalActivation: navigationStore.projects.galleryOpen,

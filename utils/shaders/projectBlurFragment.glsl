@@ -91,8 +91,13 @@ float createOverlayBlur(float activeOverlay) {
 }
 
 float createOverlayOpacity(float activeOverlay) {
-  vec2 viewportUv = uTextureSize.xy / uViewport / uDevicePixelRatio;
-  float progress = smoothstep(activeOverlay, activeOverlay - 1.0, -vUv.y);
+  vec2 viewportUv =
+    uMeshSize.y / uViewport * uDevicePixelRatio * (1.0 - activeOverlay);
+  float progress = smoothstep(
+    activeOverlay,
+    activeOverlay - 1.0,
+    -vUv.y + viewportUv.y
+  );
   return progress;
 }
 
@@ -120,7 +125,7 @@ void main() {
     uv.x = uv.x * scale + (1.0 - scale) / 2.0; // Center the texture horizontally
   }
 
-  float overlayOpacity = createOverlayOpacity(uHover);
+  float overlayOpacity = createOverlayOpacity(uAniIn);
 
   vec4 final = vec4(blur(uv, uImage, 0.08), overlayOpacity);
 
