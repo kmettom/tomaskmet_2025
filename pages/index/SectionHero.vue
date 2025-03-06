@@ -2,9 +2,11 @@
   <div class="hero-section-wrapper">
     <Container additional-class="hero-section">
       <div class="hero-content-line hero-line-tomas">
-        <h2 v-set-data-attrs="{ cursorcolor: 'dark' }" class="heading-1"
-        @mouseenter="testTextHover = true"
-        @mouseleave="testTextHover = false"
+        <h2
+          v-set-data-attrs="{ cursorcolor: 'dark' }"
+          class="heading-1"
+          @mouseenter="testTextHover = true"
+          @mouseleave="testTextHover = false"
         >
           <CanvasText :theme="'light'" :uniforms="mainTextInUniforms">
             TOMAS
@@ -65,7 +67,6 @@ const mainTextInUniforms = computed(() => {
     uIsHeroSection: { active: true, duration: 0 },
   };
 });
-
 
 const heroSectionAnimation = () => {
   mainTextIn.value = true;

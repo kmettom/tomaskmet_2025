@@ -185,7 +185,7 @@ const Canvas = {
   },
 
   meshUniformsUpdate(id, uniforms) {
-    console.log("meshUniformsUpdate")
+    console.log('meshUniformsUpdate');
     const mesh = this.scene.getObjectByName(id);
     for (const uniKey in uniforms) {
       gsap.to(mesh.material.uniforms[uniKey], {

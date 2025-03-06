@@ -48,21 +48,20 @@ float createCircleTail(float radius) {
 }
 
 float createOverlay(float activeOverlay) {
-//  vec2 viewportUv = gl_FragCoord.xy / uViewport / uDevicePixelRatio;
+  //  vec2 viewportUv = gl_FragCoord.xy / uViewport / uDevicePixelRatio;
   vec2 viewportUv = uMeshSize.xy / uViewport / uDevicePixelRatio;
   float progress = smoothstep(
-  activeOverlay  , // 0 1
-  activeOverlay - 1.0, // 0 1
-  viewportUv.x - vUv.x
+    activeOverlay, // 0 1
+    activeOverlay - 1.0, // 0 1
+    viewportUv.x - vUv.x
   );
   return progress;
 }
 
-
 void main() {
   float overlayOpacity = createOverlay(uAniIn);
-//  float overlayOpacity = createOverlayOpacity(uHover);
-//  float circle = createCircleTail(10.0);
+  //  float overlayOpacity = createOverlayOpacity(uHover);
+  //  float circle = createCircleTail(10.0);
 
   vec3 mySample = texture2D(uMap, vUv).rgb;
 
