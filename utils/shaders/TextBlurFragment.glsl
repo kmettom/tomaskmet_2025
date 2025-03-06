@@ -24,6 +24,8 @@ uniform float devicePixelRatio;
 uniform sampler2D gradientMap;
 
 float DISTANCE_COEF = 0.5;
+float uBlurStrength;
+
 
 float median(float r, float g, float b) {
   return max(min(r, g), min(max(r, g), b));
@@ -57,23 +59,29 @@ float createOverlayBlur(float activeOverlay) {
 }
 
 float createOverlayOpacity(float activeOverlay) {
-  vec2 viewportUv =
-    uMeshSize.y / uViewport * uDevicePixelRatio * (1.0 - activeOverlay);
+//  vec2 viewportUv =
+//     uViewport * uDevicePixelRatio * (1.0 - activeOverlay);
   float progress = smoothstep(
     activeOverlay,
     activeOverlay - 1.0,
-    -vUv.y + viewportUv.y
+    -uViewport.y
   );
   return progress;
 }
 
 void main() {
+  float overlayOpacity = createOverlayOpacity(uHover);
+  float circle = createCircle(20.0);
+
+//  uBlurStrength =
+//  1.0 * circle * (overlayOpacity * uAniInBlur) ;
+
   vec3 mySample = texture2D(uMap, vUv).rgb;
 
   float sigDist = median(mySample.r, mySample.g, mySample.b) - DISTANCE_COEF;
   float fill = clamp(sigDist / fwidth(sigDist) + DISTANCE_COEF, 0.0, 1.0);
 
-  float finalAlpha = fill * uAniIn;
+  float finalAlpha = fill * uAniIn * overlayOpacity * circle;
 
   gl_FragColor = vec4(uColor, finalAlpha);
   if (finalAlpha < uAlphaTest) discard;
