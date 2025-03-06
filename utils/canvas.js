@@ -197,8 +197,12 @@ const Canvas = {
   activateMesh(id, isActive) {
     const mesh = this.scene.getObjectByName(id);
     gsap.to(mesh.material.uniforms.uAniIn, {
-      // delay: 1, // 0
-      duration: 0.75, // 0.5,
+      duration: 0.5, // 0.5,
+      value: isActive ? 1 : 0,
+    });
+    gsap.to(mesh.material.uniforms.uAniInBlur, {
+      delay: 0.75,
+      duration: 0.5, // 0.5,
       value: isActive ? 1 : 0,
     });
   },
@@ -348,6 +352,7 @@ const Canvas = {
           uTime: { value: 0 },
           vectorVNoise: { value: new THREE.Vector2(1.5, 1.5) }, // 1.5
           uAniIn: { value: meshUniforms.uAniIn?.value ?? 0 },
+          uAniInBlur: { value: meshUniforms.uAniInBlur?.value ?? 0 },
           ...meshUniforms,
         },
         vertexShader: vertexShader,
@@ -424,6 +429,7 @@ const Canvas = {
         uImage: { value: texture },
         vectorVNoise: { value: new THREE.Vector2(1.5, 1.5) }, // 1.5
         uAniIn: { value: meshUniforms.uAniIn?.value ?? 0 },
+        uAniInBlur: { value: meshUniforms.uAniInBlur?.value ?? 0 },
         uMouse: { value: new THREE.Vector2(0, 0) },
         uMouseMovement: { value: new THREE.Vector2(0, 0) },
         uMeshSize: { value: new THREE.Vector2(bounds.width, bounds.height) },

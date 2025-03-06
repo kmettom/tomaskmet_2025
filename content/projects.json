@@ -1,10 +1,9 @@
 [
   {
-    "name": "Client 1",
-    "year": "2020",
-    "award": "sotd",
+    "name": "OVP",
+    "year": "2024",
     "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur. isus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
-    "websiteLink": "",
+    "websiteLink": "https://www.ovpartners.net/",
     "image": {
       "src": "images/04.png",
       "alt": "image description",
@@ -15,11 +14,10 @@
     }
   },
   {
-    "name": "Client 2",
-    "year": "2021",
-    "award": "sotd",
+    "name": "Ease DeFi",
+    "year": "2023",
     "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur. isus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
-    "websiteLink": "",
+    "websiteLink": "https://app.inediblex.com/",
     "image": {
       "src": "images/05.png",
       "alt": "image description",
@@ -33,13 +31,13 @@
     }
   },
   {
-    "name": "Client 3",
-    "year": "2022",
-    "award": "sotd",
+    "name": "Jagoda",
+    "year": "2023",
+    "award": "sotd awwwards",
     "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur. isus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
-    "websiteLink": "",
+    "websiteLink": "https://jagodakondratiuk.com/",
     "image": {
-      "src": "images/06.jpeg",
+      "src": "images/jk.jpeg",
       "alt": "image description",
       "size": {
         "width": "700px",
@@ -48,9 +46,35 @@
     }
   },
   {
-    "name": "Client 4",
+    "name": "Bright Union",
     "year": "2022",
-    "award": "sotd",
+    "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur. isus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
+    "websiteLink": "https://app.brightunion.io/",
+    "image": {
+      "src": "images/bu.png",
+      "alt": "image description"
+    },
+    "position": {
+      "alignRight": true
+    }
+  },
+  {
+    "name": "Neosephiri",
+    "year": "2021",
+    "award": "sotd awwwards",
+    "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur. isus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
+    "websiteLink": "",
+    "image": {
+      "src": "images/neo.png",
+      "alt": "image description"
+    },
+    "position": {
+      "alignRight": true
+    }
+  },
+  {
+    "name": "Goat Trading",
+    "year": "2023",
     "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur. isus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
     "websiteLink": "",
     "image": {

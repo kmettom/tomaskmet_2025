@@ -9,6 +9,7 @@ uniform float uHover;
 uniform vec2 uMouse;
 uniform vec2 uMouseMovement;
 uniform float uAniIn;
+uniform float uAniInBlur;
 uniform float uImageGallery;
 uniform float uImageGalleryActive;
 uniform float uIsHeroSection;
@@ -104,7 +105,7 @@ void main() {
   float circle = createCircle(70.0);
 
   //  uBlurStrength = 1.0 - uHover - uImageGalleryActive;
-  uBlurStrength = 1.0 * circle * overlayBlur;
+  uBlurStrength = 1.0 * circle * (overlayBlur * uAniInBlur);
 
   // Calculate the aspect ratios
   float meshAspect = uMeshSize.x / uMeshSize.y;
