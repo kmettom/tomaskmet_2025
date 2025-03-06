@@ -13,11 +13,11 @@ export default defineNuxtConfig({
   ],
   image: {
     target: 'static',
-    provider: 'ipx',
+    // provider: 'ipx',
     dir: 'public/',
-    ipx: {
-      // baseURL: 'https://your-ipx-instance-url',
-    },
+    // ipx: {
+    // baseURL: 'https://your-ipx-instance-url',
+    // },
   },
 
   build: {
