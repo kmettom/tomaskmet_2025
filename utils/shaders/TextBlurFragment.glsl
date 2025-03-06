@@ -48,8 +48,7 @@ float createCircleTail(float radius) {
 }
 
 float createOverlay(float activeOverlay) {
-  //  vec2 viewportUv = gl_FragCoord.xy / uViewport / uDevicePixelRatio;
-  vec2 viewportUv = uMeshSize.xy / uViewport / uDevicePixelRatio;
+  vec2 viewportUv = gl_FragCoord.xy / uViewport * uDevicePixelRatio * (1.0 - activeOverlay);
   float progress = smoothstep(
     activeOverlay, // 0 1
     activeOverlay - 1.0, // 0 1
@@ -60,7 +59,6 @@ float createOverlay(float activeOverlay) {
 
 void main() {
   float overlayOpacity = createOverlay(uAniIn);
-  //  float overlayOpacity = createOverlayOpacity(uHover);
   //  float circle = createCircleTail(10.0);
 
   vec3 mySample = texture2D(uMap, vUv).rgb;
@@ -68,7 +66,7 @@ void main() {
   float sigDist = median(mySample.r, mySample.g, mySample.b) - DISTANCE_COEF;
   float fill = clamp(sigDist / fwidth(sigDist) + DISTANCE_COEF, 0.0, 1.0);
 
-  float finalAlpha = fill * uAniIn * overlayOpacity;
+  float finalAlpha = fill * overlayOpacity;
 
   gl_FragColor = vec4(uColor, finalAlpha);
   if (finalAlpha < uAlphaTest) discard;
