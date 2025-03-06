@@ -2,12 +2,7 @@
   <div class="hero-section-wrapper">
     <Container additional-class="hero-section">
       <div class="hero-content-line hero-line-tomas">
-        <h2
-          v-set-data-attrs="{ cursorcolor: 'dark' }"
-          class="heading-1"
-          @mouseenter="testTextHover = true"
-          @mouseleave="testTextHover = false"
-        >
+        <h2 v-set-data-attrs="{ cursorcolor: 'dark' }" class="heading-1">
           <CanvasText :theme="'light'" :uniforms="mainTextInUniforms">
             TOMAS
           </CanvasText>
@@ -54,13 +49,9 @@ const props = defineProps({
   sectionActivate: Boolean,
 });
 
-const testTextHover = ref(false);
-
 const mainTextIn = ref(false);
 const mainTextInUniforms = computed(() => {
-  // console.log("testTextHover", testTextHover.value);
   return {
-    // uHover: { active: testTextHover.value, duration: 1.0 }, // test for text
     uAniIn: { active: mainTextIn.value, duration: 0.75 },
     uAniInBlur: { active: mainTextIn.value, duration: 0.75 },
     uBlurAmount: { active: true, duration: 0 },

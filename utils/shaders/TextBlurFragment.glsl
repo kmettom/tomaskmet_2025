@@ -60,14 +60,14 @@ float createOverlay(float activeOverlay) {
 
 void main() {
   float overlayOpacity = createOverlay(uAniIn);
-  //  float circle = createCircleTail(10.0);
+  float circle = createCircleTail(10.0);
 
   vec3 mySample = texture2D(uMap, vUv).rgb;
 
   float sigDist = median(mySample.r, mySample.g, mySample.b) - DISTANCE_COEF;
   float fill = clamp(sigDist / fwidth(sigDist) + DISTANCE_COEF, 0.0, 1.0);
 
-  float finalAlpha = fill * overlayOpacity;
+  float finalAlpha = fill * overlayOpacity * circle;
 
   gl_FragColor = vec4(uColor, finalAlpha);
   if (finalAlpha < uAlphaTest) discard;
