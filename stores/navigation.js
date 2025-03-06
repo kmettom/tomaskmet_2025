@@ -4,7 +4,7 @@ import {
   openGalleryTransition,
   showGalleryControls,
   closeGalleryTransition,
-  projectNumberAni,
+  // projectNumberAni,
 } from '~/utils/animations/projects';
 import { gsap } from 'gsap';
 import { projectDefaults } from '~/constants/projectDefaults.js';

@@ -1,7 +1,7 @@
 <script setup>
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
-import { projectNumberAni } from '~/utils/animations/projects';
+// import { projectNumberAni } from '~/utils/animations/projects';
 const navigationStore = useNavigationStore();
 
 gsap.registerPlugin(SplitText);
