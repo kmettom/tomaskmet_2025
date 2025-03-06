@@ -91,12 +91,8 @@ float createOverlayBlur(float activeOverlay) {
 }
 
 float createOverlayOpacity(float activeOverlay) {
-  vec2 viewportUv = uMeshSize.xy / uViewport / uDevicePixelRatio;
-  float progress = smoothstep(
-    activeOverlay - 1.0,
-    activeOverlay,
-    viewportUv.y - vUv.y
-  );
+  vec2 viewportUv = uTextureSize.xy / uViewport / uDevicePixelRatio;
+  float progress = smoothstep(activeOverlay, activeOverlay - 1.0, -vUv.y);
   return progress;
 }
 
@@ -105,7 +101,8 @@ void main() {
   float circle = createCircle(70.0);
 
   //  uBlurStrength = 1.0 - uHover - uImageGalleryActive;
-  uBlurStrength = 1.0 * circle * (overlayBlur * uAniInBlur);
+  uBlurStrength =
+    1.0 * circle * (overlayBlur * uAniInBlur) * (1.0 - uImageGallery);
 
   // Calculate the aspect ratios
   float meshAspect = uMeshSize.x / uMeshSize.y;
@@ -123,14 +120,7 @@ void main() {
     uv.x = uv.x * scale + (1.0 - scale) / 2.0; // Center the texture horizontally
   }
 
-  //NOISE
-  //  float t = uTime + 123.0;
-  //  float ta = t * 0.654321;
-  //  float tb = t * (ta * 0.123456);
-  //  vec4 noise = vec4(1.0 - tvNoise(uv, ta, tb));
-  //  final = final - noise * 0.05;
-
-  float overlayOpacity = createOverlayOpacity(1.0 - uAniIn);
+  float overlayOpacity = createOverlayOpacity(uHover);
 
   vec4 final = vec4(blur(uv, uImage, 0.08), overlayOpacity);
 

@@ -78,7 +78,7 @@ watch(
     <div
       v-set-data-attrs="{
         cursorsize: navigationStore.projects.galleryOpen ? 15 : 75,
-        cursoropacity: navigationStore.projects.galleryOpen ? 1 : 0.7,
+        cursoropacity: navigationStore.projects.galleryOpen ? 1 : 0.9,
         cursoricon: navigationStore.projects.galleryOpen ? 'false' : 'true',
       }"
       :class="`project-wrapper ${project.position?.alignRight ? ' project-right ' : ''}`"
