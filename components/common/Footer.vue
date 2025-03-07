@@ -11,7 +11,14 @@
     >
     <span id="design"
       >Design:
-      <a href="https://jagodakondratiuk.com" target="_blank"
+      <a
+        href="https://jagodakondratiuk.com"
+        target="_blank"
+        v-set-data-attrs="{
+          cursoropacity: 0.7,
+          cursorsize: 70,
+          cursoricon: '🔥',
+        }"
         >Jagoda Kondratiuk</a
       ></span
     >
