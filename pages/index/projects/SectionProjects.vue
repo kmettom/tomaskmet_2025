@@ -60,7 +60,7 @@
             </button>
           </div>
         </div>
-        <div :style="`height: ${projectMargin}vh`" />
+        <div class="gallery-controls-margin" />
         <div
           v-for="(project, index) in projectsData"
           :key="project.name"

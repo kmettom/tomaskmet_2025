@@ -30,6 +30,7 @@ export function openGalleryTransition(
   refs,
   sizeOrigins,
   slideHeight,
+  projectMargin,
 ) {
   const aniDuration = 0.3; // 0.5
   return new Promise((resolve) => {
@@ -41,6 +42,10 @@ export function openGalleryTransition(
       onComplete: () => {
         resolve();
       },
+    });
+    timeline.to('.gallery-controls-margin', {
+      duration: aniDuration,
+      height: `${projectMargin * 100}vh`,
     });
     const galleryWidthHalfPx =
       galleryRef.getBoundingClientRect().width / 2 + 'px';

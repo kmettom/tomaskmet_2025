@@ -60,6 +60,7 @@ export const useNavigationStore = defineStore('navigationStore', {
           this.projects.htmlRefs,
           this.projects.htmlSizeOrigins,
           projectDefaults.activeImageHeightVH,
+          projectDefaults.margin,
         );
         Canvas.setFixedScrollToElement(null);
         this.setGalleryNavigationVisible(true);
