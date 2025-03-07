@@ -129,6 +129,7 @@ void main() {
   float overlayOpacity = createOverlayOpacity(uAniIn);
 
   vec4 final = vec4(blur(uv, uImage, 0.08), overlayOpacity);
+  //  vec4 final = vec4(blur(uv, uImage, 0.08), 1.0);
 
   gl_FragColor = final;
 

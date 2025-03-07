@@ -1,4 +1,6 @@
+const projectImageH = 0.7;
+const projectMargin = 0.1;
 export const projectDefaults = {
-  activeImageHeightVH: 0.7,
-  margin: (1 - 0.7) / 2,
+  activeImageHeightVH: projectImageH,
+  margin: projectMargin,
 };

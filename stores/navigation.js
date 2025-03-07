@@ -53,14 +53,14 @@ export const useNavigationStore = defineStore('navigationStore', {
         await this.scrollToProject(index);
         Canvas.setFixedScrollToElement(
           this.projects.htmlRefs[index],
-          projectDefaults.margin,
+          projectDefaults.margin / 2,
         );
         await openGalleryTransition(
           this.projects.htmlGalleryRef,
           this.projects.htmlRefs,
           this.projects.htmlSizeOrigins,
           projectDefaults.activeImageHeightVH,
-          projectDefaults.margin,
+          projectDefaults.margin / 2,
         );
         Canvas.setFixedScrollToElement(null);
         this.setGalleryNavigationVisible(true);
@@ -108,7 +108,7 @@ export const useNavigationStore = defineStore('navigationStore', {
       const projectPosition =
         htmlRef.getBoundingClientRect().top +
         window.scrollY -
-        projectDefaults.margin;
+        window.innerHeight * projectDefaults.margin;
       Canvas.scrollTo(projectPosition, scrollDelay);
       const scrollDurationEnd = scrollDelay + 0.5;
       return new Promise((resolve) => {

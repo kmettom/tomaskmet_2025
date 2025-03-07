@@ -109,7 +109,7 @@ const prevProjectName = computed(() => {
 });
 
 const projectMargin = computed(() => {
-  return projectDefaults.margin * 100;
+  return (projectDefaults.margin * 100) / 2; // 100 for %, /2 for top & bottom
 });
 
 const openProject = (index: number) => {
