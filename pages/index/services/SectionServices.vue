@@ -1,7 +1,7 @@
 <template>
   <div class="services-section">
     <Container>
-      <h2 class="heading-1 heading-1-spacing">
+      <h2 class="heading-1">
         <span v-onScrollActivate="{ activeRange: 0.85 }">
           <CanvasText :theme="'dark'"> SERVICES </CanvasText>
         </span>
