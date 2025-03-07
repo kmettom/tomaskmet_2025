@@ -59,10 +59,10 @@ function textAniCallback(item: any) {
     lines,
     { y: '15px', opacity: 0, filter: 'blur(15px)' },
     {
-      duration: 0.2,
+      duration: 0.25,
       opacity: 1,
       y: '0px',
-      stagger: 0.1,
+      stagger: 0.05,
       filter: 'blur(0px)',
     },
   );

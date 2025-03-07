@@ -24,7 +24,15 @@
             class="side-list action-list body-m"
           >
             <div>
-              <a href="https://calendly.com/tomaskmet/meeting" target="_blank">
+              <a
+                href="https://calendly.com/tomaskmet/meeting"
+                target="_blank"
+                v-set-data-attrs="{
+                  cursoropacity: 0.7,
+                  cursorsize: 70,
+                  cursoricon: '📞',
+                }"
+              >
                 <span>📞 Book a call</span>
               </a>
             </div>
@@ -32,6 +40,11 @@
               <a
                 href="mailto:hello@tomaskmet.com"
                 data-email="hello@tomaskmet.com"
+                v-set-data-attrs="{
+                  cursoropacity: 0.7,
+                  cursorsize: 70,
+                  cursoricon: '📮',
+                }"
               >
                 <span>✉️ Send a request</span>
               </a>
@@ -49,16 +62,39 @@
             class="side-list social-media-list body-m"
           >
             <div>
-              <a href="https://www.instagram.com/kmettom" target="_blank"
+              <a
+                href="https://www.instagram.com/kmettom"
+                target="_blank"
+                v-set-data-attrs="{
+                  cursoropacity: 0.7,
+                  cursorsize: 70,
+                  cursoricon: '📷',
+                }"
                 >Instagram</a
               >
             </div>
 
             <div>
-              <a href="https://x.com/KmetTom" target="_blank">Twitter</a>
+              <a
+                href="https://x.com/KmetTom"
+                target="_blank"
+                v-set-data-attrs="{
+                  cursoropacity: 0.7,
+                  cursorsize: 70,
+                  cursoricon: '𝕏',
+                }"
+                >X (Twitter)</a
+              >
             </div>
             <div>
-              <a href="https://www.linkedin.com/in/tomas-kmet/" target="_blank"
+              <a
+                href="https://www.linkedin.com/in/tomas-kmet/"
+                target="_blank"
+                v-set-data-attrs="{
+                  cursoropacity: 0.7,
+                  cursorsize: 70,
+                  cursoricon: '👀',
+                }"
                 >LinkedIn</a
               >
             </div>
@@ -66,6 +102,11 @@
               <a
                 href="mailto:hello@tomaskmet.com"
                 data-email="hello@tomaskmet.com"
+                v-set-data-attrs="{
+                  cursoropacity: 0.7,
+                  cursorsize: 70,
+                  cursoricon: '📮',
+                }"
                 >Email</a
               >
             </div>
