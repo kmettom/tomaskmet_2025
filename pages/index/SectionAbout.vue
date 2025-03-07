@@ -75,7 +75,7 @@ function textAniCallback(item: any) {
   grid-template-columns: 10fr 14fr;
   text-transform: uppercase;
   padding-bottom: 200px;
-  padding-top: 50px;
+  padding-top: 10vh;
 
   @include respond-width($w-m-s) {
     padding: 40px;

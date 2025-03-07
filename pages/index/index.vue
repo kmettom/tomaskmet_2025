@@ -15,13 +15,6 @@
       <SectionAbout />
     </div>
     <div
-      v-onScrollActivate="setSectionActivationOptions('work', false)"
-      class="page-section"
-      data-nav-id="work"
-    >
-      <SectionProjects />
-    </div>
-    <div
       v-onScrollActivate="setSectionActivationOptions('services', true)"
       v-set-data-attrs="{ cursorcolor: 'dark' }"
       class="page-section"
@@ -29,6 +22,14 @@
     >
       <SectionServices />
     </div>
+    <div
+      v-onScrollActivate="setSectionActivationOptions('work', false)"
+      class="page-section"
+      data-nav-id="work"
+    >
+      <SectionProjects />
+    </div>
+
     <div
       v-onScrollActivate="setSectionActivationOptions('contact', true)"
       v-set-data-attrs="{ cursorcolor: 'dark' }"

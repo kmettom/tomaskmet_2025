@@ -127,8 +127,9 @@ const closeGallery = () => {
 $marginRight: 50px;
 
 .works-section {
-  padding-bottom: 200px;
-  margin: auto $marginRight auto 150px;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+  margin: 10vh $marginRight auto 150px;
   position: relative;
 
   @include respond-width($w-s) {

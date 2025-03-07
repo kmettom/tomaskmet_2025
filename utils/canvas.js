@@ -22,7 +22,6 @@ import test1Vertex from './shaders/projectVertexBNebula.glsl';
 import TextBlurFragment from './shaders/TextBlurFragment.glsl';
 import TextBlurVertex from './shaders/TextBlurVertex.glsl';
 import { generateBindingLogic } from '~/utils/canvasHelpers';
-import * as logger from 'three/tsl';
 
 const { MSDFTextGeometry } = pkg;
 

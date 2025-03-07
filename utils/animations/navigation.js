@@ -1,5 +1,4 @@
 import { gsap } from 'gsap';
-// import {SplitText} from "gsap/SplitText";
 
 function navigationItems(timeline) {
   timeline.fromTo(
