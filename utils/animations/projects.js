@@ -201,12 +201,13 @@ export function activeProjectTransition(ref) {
 
   timeline.fromTo(
     linesStatistics,
-    { y: '15px', opacity: 0 },
+    { y: '15px', opacity: 0, filter: 'blur(15px)' },
     {
       duration: 0.2,
       opacity: 1,
       y: '0px',
       stagger: 0.1,
+      filter: 'blur(0px)',
     },
   );
 
