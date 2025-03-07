@@ -64,30 +64,20 @@ float createOverlay(float activeOverlay) {
 }
 
 void main() {
-  //  vec2 gridUV = floor(vUv *vec2(40.0,40.0))/ vec2(40.0,40.0);
-  //  vec2 centerOfPixel = gridUV + vec2(1.0/40.0,1.0/40.0);
-  //
-  //  vec2 mouseDirection = uMouse - uMousePrev;
-  //
-  //  vec2 pixelToMouseDirection = centerOfPixel - uMouse;
-  //  float pixelDistanceToMouse = length(pixelToMouseDirection);
-  //  float strength = smoothstep(0.3, 0.0, pixelDistanceToMouse);
-  //
-  //  vec2 uvOffset = strength * -mouseDirection *0.3;
-  //  vec2 uv = vUv - uvOffset;
-
-  //  vec4 color = texture2D()
-
   float overlayOpacity = createOverlay(uAniIn);
-  float circleTrail = createCircleTrail(10.0);
+  float circleTrail = createCircleTrail(1.0);
+  vec2 newUv = vUv;
 
-  vec3 mySample = texture2D(uMap, vUv).rgb;
+  vec3 mySample = texture2D(uMap, newUv).rgb;
+  vec3 mySampleRGB = mySample.rgb;
 
-  float sigDist = median(mySample.r, mySample.g, mySample.b) - DISTANCE_COEF;
+  float sigDist =
+    median(mySampleRGB.r, mySampleRGB.g, mySampleRGB.b) -
+    DISTANCE_COEF / circleTrail;
   float fill = clamp(sigDist / fwidth(sigDist) + DISTANCE_COEF, 0.0, 1.0);
 
-  //  float finalAlpha = fill * overlayOpacity * circleTrail;
-  float finalAlpha = fill * overlayOpacity;
+  float finalAlpha = fill * overlayOpacity * circleTrail;
+  //  float finalAlpha = fill * overlayOpacity;
 
   gl_FragColor = vec4(uColor, finalAlpha);
   if (finalAlpha < uAlphaTest) discard;

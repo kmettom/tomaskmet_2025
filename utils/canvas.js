@@ -119,9 +119,9 @@ const Canvas = {
       setTimeout(() => {
         this.mouse.xPrev = event.clientX / this.width;
         this.mouse.yPrev = event.clientY / this.height;
-      }, 75);
-      this.mouse.movementX = Math.abs(event.movementX);
-      this.mouse.movementY = Math.abs(event.movementY);
+      }, 50);
+      this.mouse.movementX = event.movementX / this.width;
+      this.mouse.movementY = event.movementY / this.height;
     });
   },
   setResizeListener() {
@@ -527,7 +527,7 @@ const Canvas = {
     this.camera.updateProjectionMatrix();
 
     this.renderer.setSize(this.width, this.height);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.render(this.scene, this.camera); // -> Also needed
   },
 
