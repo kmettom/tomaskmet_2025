@@ -73,11 +73,10 @@ void main() {
 
   float sigDist =
     median(mySampleRGB.r, mySampleRGB.g, mySampleRGB.b) -
-    DISTANCE_COEF / circleTrail;
+    DISTANCE_COEF / uAniIn / circleTrail;
   float fill = clamp(sigDist / fwidth(sigDist) + DISTANCE_COEF, 0.0, 1.0);
 
   float finalAlpha = fill * overlayOpacity * circleTrail;
-  //  float finalAlpha = fill * overlayOpacity;
 
   gl_FragColor = vec4(uColor, finalAlpha);
   if (finalAlpha < uAlphaTest) discard;

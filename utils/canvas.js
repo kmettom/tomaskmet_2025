@@ -202,7 +202,7 @@ const Canvas = {
   activateMesh(id, isActive) {
     const mesh = this.scene.getObjectByName(id);
     gsap.to(mesh.material.uniforms.uAniIn, {
-      duration: 1.0, // 1.0
+      duration: 1.25, // 1.0
       value: isActive ? 1 : 0,
     });
     gsap.to(mesh.material.uniforms.uAniInBlur, {
