@@ -63,19 +63,24 @@ const heroSectionAnimation = () => {
   mainTextIn.value = true;
 
   const split = new SplitText('.hero-content-sm', { type: 'words,lines' });
-  gsap.from(split.words, {
-    opacity: 0,
-    y: 10,
-    delay: 0.5,
-    duration: 0.2,
-    stagger: 0.005,
-    onStart: () => {
-      gsap.to('.hero-content-sm', { opacity: 1, duration: 0 });
+  gsap.fromTo(
+    split.lines,
+    {
+      opacity: 0,
+      y: 10,
+      filter: 'blur(15px)',
     },
-    onComplete: () => {
-      // split.revert();
+    {
+      opacity: 1,
+      delay: 0.5,
+      duration: 0.1,
+      stagger: 0.05,
+      filter: 'blur(0px)',
+      onStart: () => {
+        gsap.set('.hero-content-sm', { opacity: 1 });
+      },
     },
-  });
+  );
 };
 
 watch(

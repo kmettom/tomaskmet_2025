@@ -84,6 +84,7 @@ watch(
   padding: 20px;
   z-index: 9;
   opacity: 0;
+  pointer-events: none;
 
   &.dark {
     color: var(--dark-color);
@@ -104,6 +105,7 @@ watch(
 .navigation-item {
   cursor: pointer;
   line-height: 20px;
+  pointer-events: auto;
   &:before {
     opacity: 0;
     content: '👉';

@@ -19,7 +19,10 @@
         }"
       >
         <div v-onScrollActivate="{ fixToParentId: 'gallery' }">
-          <div class="gallery-controls">
+          <div
+            class="gallery-controls"
+            :class="{ active: navigationStore.projects.galleryOpen }"
+          >
             <button
               v-set-data-attrs="{
                 cursoropacity: 0.7,
@@ -154,15 +157,15 @@ $marginRight: 50px;
   height: 100vh;
   bottom: 0;
   z-index: -1;
-  //pointer-events: none;
+  pointer-events: none;
+  &.active {
+    pointer-events: auto;
+  }
 }
 
 .gallery-controls-btn {
   position: absolute;
   background: none;
-  //background: rgba(255, 255, 255, 0);
-  //backdrop-filter: blur(15px);
-  //-webkit-backdrop-filter: blur(15px);
   outline: none;
   border: none;
   cursor: pointer;
