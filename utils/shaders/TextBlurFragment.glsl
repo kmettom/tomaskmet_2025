@@ -38,7 +38,6 @@ float createCircleTrail(float radius) {
   //  vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);
   vec2 mousePointTrail = vec2(uMousePrev.x, 1.0 - uMousePrev.y);
 
-  // Calculate distance for the tail separately
   vec2 shapeUvTrail = viewportUv - mousePointTrail;
   shapeUvTrail /= vec2(1.0, viewportAspect);
   shapeUvTrail += mousePointTrail;
@@ -46,14 +45,6 @@ float createCircleTrail(float radius) {
 
   //  float circleRadius = max(0.0, radius / uViewport.x);
   float circleRadiusTail = max(0.0, radius / uViewport.x);
-
-  // Smooth interpolation for both head and the trail
-  //  float circleHead = smoothstep(circleRadius, circleRadius + 0.05, distHead);
-  float circleTrail = smoothstep(
-    circleRadiusTail,
-    circleRadiusTail + 0.05,
-    distTail
-  );
 
   //  return max(circleHead, circleTrail * (1.0 - tailLength));
   float dist = smoothstep(circleRadiusTail, circleRadiusTail + 0.05, distTail);
@@ -73,6 +64,20 @@ float createOverlay(float activeOverlay) {
 }
 
 void main() {
+  //  vec2 gridUV = floor(vUv *vec2(40.0,40.0))/ vec2(40.0,40.0);
+  //  vec2 centerOfPixel = gridUV + vec2(1.0/40.0,1.0/40.0);
+  //
+  //  vec2 mouseDirection = uMouse - uMousePrev;
+  //
+  //  vec2 pixelToMouseDirection = centerOfPixel - uMouse;
+  //  float pixelDistanceToMouse = length(pixelToMouseDirection);
+  //  float strength = smoothstep(0.3, 0.0, pixelDistanceToMouse);
+  //
+  //  vec2 uvOffset = strength * -mouseDirection *0.3;
+  //  vec2 uv = vUv - uvOffset;
+
+  //  vec4 color = texture2D()
+
   float overlayOpacity = createOverlay(uAniIn);
   float circleTrail = createCircleTrail(10.0);
 
@@ -81,7 +86,8 @@ void main() {
   float sigDist = median(mySample.r, mySample.g, mySample.b) - DISTANCE_COEF;
   float fill = clamp(sigDist / fwidth(sigDist) + DISTANCE_COEF, 0.0, 1.0);
 
-  float finalAlpha = fill * overlayOpacity * circleTrail;
+  //  float finalAlpha = fill * overlayOpacity * circleTrail;
+  float finalAlpha = fill * overlayOpacity;
 
   gl_FragColor = vec4(uColor, finalAlpha);
   if (finalAlpha < uAlphaTest) discard;
