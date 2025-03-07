@@ -53,7 +53,7 @@ export const useNavigationStore = defineStore('navigationStore', {
         await this.scrollToProject(index);
         Canvas.setFixedScrollToElement(
           this.projects.htmlRefs[index],
-            window.innerHeight * projectDefaults.margin,
+          window.innerHeight * projectDefaults.margin,
         );
         await openGalleryTransition(
           this.projects.htmlGalleryRef,
