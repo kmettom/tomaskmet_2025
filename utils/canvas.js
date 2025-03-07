@@ -22,6 +22,7 @@ import test1Vertex from './shaders/projectVertexBNebula.glsl';
 import TextBlurFragment from './shaders/TextBlurFragment.glsl';
 import TextBlurVertex from './shaders/TextBlurVertex.glsl';
 import { generateBindingLogic } from '~/utils/canvasHelpers';
+import * as logger from 'three/tsl';
 
 const { MSDFTextGeometry } = pkg;
 
@@ -66,7 +67,7 @@ const Canvas = {
     welcome: {},
     cursorCallback: () => {},
   },
-  mouse: { x: 0, y: 0, movementX: 0, movementY: 0 },
+  mouse: { x: 0, y: 0, movementX: 0, movementY: 0, xPrev: 0, yPrev: 0 },
   triggerSectionPositions: {},
 
   widthPositionCoef: 1,
@@ -115,6 +116,10 @@ const Canvas = {
     window.addEventListener('mousemove', (event) => {
       this.mouse.x = event.clientX / this.width;
       this.mouse.y = event.clientY / this.height;
+      setTimeout(() => {
+        this.mouse.xPrev = event.clientX / this.width;
+        this.mouse.yPrev = event.clientY / this.height;
+      }, 75);
       this.mouse.movementX = Math.abs(event.movementX);
       this.mouse.movementY = Math.abs(event.movementY);
     });
@@ -339,6 +344,7 @@ const Canvas = {
           },
           // Common
           uMouse: { value: new THREE.Vector2(0, 0) },
+          uMousePrev: { value: new THREE.Vector2(0, 0) },
           uMouseMovement: { value: new THREE.Vector2(0, 0) },
           uMap: { value: null },
           // Rendering
@@ -429,6 +435,7 @@ const Canvas = {
         uAniIn: { value: meshUniforms.uAniIn?.value ?? 0 },
         uAniInBlur: { value: meshUniforms.uAniInBlur?.value ?? 0 },
         uMouse: { value: new THREE.Vector2(0, 0) },
+        uMousePrev: { value: new THREE.Vector2(0, 0) },
         uMouseMovement: { value: new THREE.Vector2(0, 0) },
         uMeshSize: { value: new THREE.Vector2(bounds.width, bounds.height) },
         uTextureSize: { value: new THREE.Vector2(500, 500) },
@@ -574,6 +581,10 @@ const Canvas = {
       this.materials[i].uniforms.uMouseMovement.value = new THREE.Vector2(
         this.mouse.movementX,
         this.mouse.movementY,
+      );
+      this.materials[i].uniforms.uMousePrev.value = new THREE.Vector2(
+        this.mouse.xPrev,
+        this.mouse.yPrev,
       );
     }
 

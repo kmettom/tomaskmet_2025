@@ -17,6 +17,7 @@ uniform float uAniInBlur;
 uniform float uDevicePixelRatio;
 uniform vec2 uViewport;
 uniform vec2 uMouse;
+uniform vec2 uMousePrev;
 uniform vec2 uMouseMovement;
 uniform vec2 uMeshSize;
 uniform float devicePixelRatio;
@@ -30,38 +31,34 @@ float median(float r, float g, float b) {
   return max(min(r, g), min(max(r, g), b));
 }
 
-float createCircleTail(float radius) {
+float createCircleTrail(float radius) {
   vec2 viewportUv = gl_FragCoord.xy / uViewport / uDevicePixelRatio;
   float viewportAspect = uViewport.x / uViewport.y;
 
-  vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);
-
-  float tailOffset = 10.0;
-
-  vec2 tailPoint = mousePoint - vec2(0.0, tailOffset); // Offset for the trail effect
-
-  vec2 shapeUv = viewportUv - mousePoint;
-  shapeUv /= vec2(1.0, viewportAspect);
-  shapeUv += mousePoint;
-  float dist = distance(shapeUv, mousePoint);
-
-  float distHead = distance(shapeUv, mousePoint);
+  //  vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);
+  vec2 mousePointTrail = vec2(uMousePrev.x, 1.0 - uMousePrev.y);
 
   // Calculate distance for the tail separately
-  vec2 shapeUvTail = viewportUv - tailPoint;
-  shapeUvTail /= vec2(1.0, viewportAspect);
-  shapeUvTail += tailPoint;
-  float distTail = distance(shapeUvTail, tailPoint);
+  vec2 shapeUvTrail = viewportUv - mousePointTrail;
+  shapeUvTrail /= vec2(1.0, viewportAspect);
+  shapeUvTrail += mousePointTrail;
+  float distTail = distance(shapeUvTrail, mousePointTrail);
 
-  float circleRadius = max(0.0, radius / uViewport.x);
+  //  float circleRadius = max(0.0, radius / uViewport.x);
+  float circleRadiusTail = max(0.0, radius / uViewport.x);
 
   // Smooth interpolation for both head and the trail
-  float circleHead = smoothstep(circleRadius, circleRadius + 0.05, distHead);
-  float circleTail = smoothstep(circleRadius, circleRadius + 0.1, distTail);
+  //  float circleHead = smoothstep(circleRadius, circleRadius + 0.05, distHead);
+  float circleTrail = smoothstep(
+    circleRadiusTail,
+    circleRadiusTail + 0.05,
+    distTail
+  );
 
-  return max(circleHead, circleTail * 0.5);
-  //  dist = smoothstep(circleRadius, circleRadius + 0.05, dist);
-  //  return dist;
+  //  return max(circleHead, circleTrail * (1.0 - tailLength));
+  float dist = smoothstep(circleRadiusTail, circleRadiusTail + 0.05, distTail);
+  //    dist += smoothstep(circleRadius, circleRadius + 0.05, distHead);
+  return dist;
 }
 
 float createOverlay(float activeOverlay) {
@@ -77,14 +74,14 @@ float createOverlay(float activeOverlay) {
 
 void main() {
   float overlayOpacity = createOverlay(uAniIn);
-  float circle = createCircleTail(10.0);
+  float circleTrail = createCircleTrail(10.0);
 
   vec3 mySample = texture2D(uMap, vUv).rgb;
 
   float sigDist = median(mySample.r, mySample.g, mySample.b) - DISTANCE_COEF;
   float fill = clamp(sigDist / fwidth(sigDist) + DISTANCE_COEF, 0.0, 1.0);
 
-  float finalAlpha = fill * overlayOpacity * circle;
+  float finalAlpha = fill * overlayOpacity * circleTrail;
 
   gl_FragColor = vec4(uColor, finalAlpha);
   if (finalAlpha < uAlphaTest) discard;

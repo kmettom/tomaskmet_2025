@@ -7,6 +7,7 @@ uniform sampler2D uImage;
 uniform float uTime;
 uniform float uHover;
 uniform vec2 uMouse;
+uniform vec2 uMousePrev;
 uniform vec2 uMouseMovement;
 uniform float uAniIn;
 uniform float uAniInBlur;
@@ -67,7 +68,7 @@ float createCircle(float radius) {
   vec2 viewportUv = gl_FragCoord.xy / uViewport / uDevicePixelRatio;
   float viewportAspect = uViewport.x / uViewport.y;
 
-  vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);
+  vec2 mousePoint = vec2(uMousePrev.x, 1.0 - uMousePrev.y);
 
   vec2 shapeUv = viewportUv - mousePoint;
   shapeUv /= vec2(1.0, viewportAspect);
