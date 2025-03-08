@@ -91,6 +91,7 @@ export const useNavigationStore = defineStore('navigationStore', {
       await closeGalleryTransition(
         this.projects.htmlRefs,
         this.projects.htmlSizeOrigins,
+        projectDefaults.margin,
       );
       this.projects.galleryOpen = false;
       Canvas.setFixedScrollToElement(null);

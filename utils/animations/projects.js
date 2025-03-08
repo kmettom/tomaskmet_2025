@@ -43,26 +43,39 @@ export function openGalleryTransition(
         resolve();
       },
     });
+
     timeline.to('.gallery-controls-margin', {
       duration: aniDuration,
       height: `${projectMargin * 100}vh`,
     });
+    timeline.to(
+      '.project-item',
+      {
+        paddingTop: `${(projectMargin * 100) / 2}vh`,
+        duration: aniDuration,
+      },
+      '<',
+    );
     const galleryWidthHalfPx =
       galleryRef.getBoundingClientRect().width / 2 + 'px';
 
     const nameChars = new SplitText('.project-name', {
       type: 'words,chars',
     });
-    timeline.to(nameChars.chars, {
-      duration: 0.1,
-      y: -10,
-      opacity: 0,
-      stagger: 0.02,
-      onComplete: () => {
-        nameChars.revert();
-        gsap.set('.project-name', { opacity: 0 });
+    timeline.to(
+      nameChars.chars,
+      {
+        duration: 0.1,
+        y: -10,
+        opacity: 0,
+        stagger: 0.02,
+        onComplete: () => {
+          nameChars.revert();
+          gsap.set('.project-name', { opacity: 0 });
+        },
       },
-    });
+      '<',
+    );
     timeline.to(
       '.project-info-wrapper',
       {
@@ -92,7 +105,7 @@ export function openGalleryTransition(
   });
 }
 
-export function closeGalleryTransition(refs, sizeOrigins) {
+export function closeGalleryTransition(refs, sizeOrigins, projectMargin) {
   const aniDuration = 0.3; // 0.5
   return new Promise((resolve) => {
     const timeline = gsap.timeline({
@@ -104,6 +117,14 @@ export function closeGalleryTransition(refs, sizeOrigins) {
         resolve();
       },
     });
+    timeline.to(
+      '.project-item',
+      {
+        paddingTop: `${projectMargin * 100}vh`,
+        duration: aniDuration,
+      },
+      '<',
+    );
     timeline.to(
       '.project-info-wrapper',
       {
@@ -244,5 +265,4 @@ export function activeProjectTransition(ref) {
       y: '0px',
     },
   );
-  // });
 }

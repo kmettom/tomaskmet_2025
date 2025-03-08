@@ -66,7 +66,6 @@
           :key="project.name"
           :ref="projectItemRefs.set"
           class="project-item"
-          :style="`padding-top: ${projectMargin}vh`"
           :class="{ first: index === 0 }"
         >
           <Project
@@ -86,7 +85,6 @@ import projectsData from '~/content/projects.json';
 import Project from '~/pages/index/projects/Project.vue';
 import IconsClose from '~/components/common/icons/close.client.vue';
 import { useTemplateRefsList } from '@vueuse/core';
-import { projectDefaults } from '~/constants/projectDefaults.js';
 
 const navigationStore = useNavigationStore();
 
@@ -108,10 +106,6 @@ const prevProjectName = computed(() => {
   return projects.value[activeProjectIndex.value - 1]?.name ?? null;
 });
 
-const projectMargin = computed(() => {
-  return (projectDefaults.margin * 100) / 2; // 100 for %, /2 for top & bottom
-});
-
 const openProject = (index: number) => {
   navigationStore.openGalleryProject(index);
 };
@@ -122,8 +116,6 @@ const closeGallery = () => {
 </script>
 
 <style lang="scss" scoped>
-//=======>>>   WORKS   <<<==========//
-
 $marginRight: 50px;
 
 .works-section {
@@ -197,5 +189,6 @@ $marginRight: 50px;
 
 .project-item {
   position: relative;
+  padding-top: 10vh;
 }
 </style>

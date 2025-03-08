@@ -16,7 +16,6 @@
   <CanvasCursor v-if="contentActive" />
 </template>
 <script setup>
-import { Canvas } from '~/utils/canvas';
 import DefaultPageLayout from '~/layout/DefaultPageLayout.vue';
 
 const welcomeInit = ref(false);
