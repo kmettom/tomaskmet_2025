@@ -41,7 +41,6 @@ export function navigationShow(isVisible) {
     duration: 0.5,
     y: 0,
     opacity: isVisible ? 1 : 0,
-    pointerEvents: isVisible ? 'auto' : 'none',
   });
   if (isVisible) navigationItems(tl);
 }

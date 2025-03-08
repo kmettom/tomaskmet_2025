@@ -120,7 +120,6 @@ export const useNavigationStore = defineStore('navigationStore', {
       });
     },
     setActiveProject(index) {
-      // projectNumberAni(this.projects.htmlRefs[index]);
       if (!this.projects.galleryOpen) return;
       this.projects.pastActiveProject = { ...this.projects.activeProject };
       this.projects.activeProject.index = index;
