@@ -17,7 +17,7 @@
     "name": "Ease DeFi",
     "year": "2023",
     "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur. isus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
-    "websiteLink": "https://app.inediblex.com/",
+    "websiteLink": "https://www.goat.trading/",
     "image": {
       "src": "images/01.png",
       "alt": "image description",
@@ -69,18 +69,5 @@
       "alt": "image description"
     },
     "position": {}
-  },
-  {
-    "name": "Goat Trading",
-    "year": "2023",
-    "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur. isus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
-    "websiteLink": "https://www.goat.trading/",
-    "image": {
-      "src": "images/01.png",
-      "alt": "image description"
-    },
-    "position": {
-      "alignRight": true
-    }
   }
 ]
