@@ -2,7 +2,7 @@
   <div class="services-section">
     <Container>
       <h2 class="heading-1">
-        <span v-onScrollActivate="{ activeRange: 0.85 }">
+        <span v-onScrollActivate="{ activeRange: 0.95, activateOnce: true }">
           <CanvasText :theme="'dark'"> SERVICES </CanvasText>
         </span>
       </h2>
@@ -49,6 +49,7 @@ import gsap from 'gsap';
 
 const serviceBlockSize = 340;
 const serviceTopPadding = 50;
+const maxBlur = 5;
 
 const activeItemIndex = ref();
 const setItemActive = (index: number, isActive: boolean) => {
@@ -72,6 +73,7 @@ const setServiceBlockBlur = (elNode: any, styles: any) => {
   );
   const rotateDeg = styles.rotate * aniInCoef;
   const blur = 5 * (1 - aniInCoef) + 15 * aniOutCoef;
+  if (blur > maxBlur) return;
   gsap.set(elNode.querySelector('.service-item-inner'), {
     filter: `blur(${blur}px)`,
     rotation: rotateDeg,

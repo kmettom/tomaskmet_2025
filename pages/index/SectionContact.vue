@@ -4,10 +4,12 @@
       <div class="">
         <div class="contact-line">
           <div class="heading-1">
-            <span v-onScrollActivate="{ activeRange: 0.85 }">
+            <span
+              v-onScrollActivate="{ activeRange: 0.85, activateOnce: true }"
+            >
               <CanvasText :theme="'dark'"> GET </CanvasText>
               <span
-                v-onScrollActivate="{ activeRange: 0.85 }"
+                v-onScrollActivate="{ activeRange: 0.85, activateOnce: true }"
                 class="canvas-text-spacing"
               >
                 <CanvasText :theme="'dark'"> IN </CanvasText>
@@ -17,6 +19,7 @@
           <div
             v-onScrollActivate="{
               activeRange: 0.85,
+              activateOnce: true,
               activateCallback: (item: any) => {
                 splitLineAnimation(item.elNode);
               },
@@ -55,6 +58,7 @@
           <div
             v-onScrollActivate="{
               activeRange: 0.85,
+              activateOnce: true,
               activateCallback: (item: any) => {
                 splitLineAnimation(item.elNode);
               },
@@ -112,7 +116,9 @@
             </div>
           </div>
           <div class="heading-1">
-            <span v-onScrollActivate="{ activeRange: 0.85 }">
+            <span
+              v-onScrollActivate="{ activeRange: 0.85, activateOnce: true }"
+            >
               <CanvasText :theme="'dark'"> TOUCH </CanvasText>
             </span>
           </div>

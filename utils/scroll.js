@@ -109,6 +109,9 @@ export default class Scroll {
         bounds.bottom - itemRangeMargin >=
           activeRangeInPx + activeRangeOriginPx;
 
+      if (item.options.onScrollCallback) {
+        console.log('scroll', activeFromBottom);
+      }
       if (activeFromTop && activeFromBottom) {
         if (item.options.onScrollCallback)
           item.options.onScrollCallback(item, this.speed);
