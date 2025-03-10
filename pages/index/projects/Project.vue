@@ -107,10 +107,7 @@ watch(
               <div>{{ project.award }}</div>
             </div>
           </div>
-          <p
-            class="project-description body-m"
-            v-html="project.description"
-          ></p>
+          <p class="project-description body-m" v-html="project.description" />
           <a class="project-link" :href="project.websiteLink" target="_blank"
             >👉 visit website</a
           >
