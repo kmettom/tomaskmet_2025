@@ -62,25 +62,20 @@ const mainTextInUniforms = computed(() => {
 const heroSectionAnimation = () => {
   mainTextIn.value = true;
 
+  const tl = gsap.timeline();
   const split = new SplitText('.hero-content-sm', { type: 'words,lines' });
-  gsap.fromTo(
-    split.lines,
-    {
-      opacity: 0,
-      y: 10,
-      filter: 'blur(15px)',
-    },
-    {
-      opacity: 1,
-      delay: 1.5,
-      duration: 0.1,
-      stagger: 0.05,
-      filter: 'blur(0px)',
-      onStart: () => {
-        gsap.set('.hero-content-sm', { opacity: 1 });
-      },
-    },
-  );
+  tl.set(split.lines, {
+    opacity: 0,
+    y: 10,
+  });
+  tl.set('.hero-content-sm', { opacity: 1 });
+  tl.to(split.lines, {
+    y: 0,
+    opacity: 1,
+    delay: 1.5,
+    duration: 0.2,
+    stagger: 0.05,
+  });
 };
 
 watch(
@@ -117,6 +112,7 @@ watch(
   }
   &.hero-line-kmet {
     left: 20%;
+    bottom: 35px;
   }
 }
 
@@ -137,6 +133,9 @@ watch(
     @include respond-width($w-m-s) {
       display: none;
     }
+  }
+  p {
+    position: relative;
   }
 }
 .hero-bg-image {

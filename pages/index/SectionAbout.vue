@@ -57,13 +57,12 @@ function textAniCallback(item: any) {
   tl.set(selector, { opacity: 1 });
   tl.fromTo(
     lines,
-    { y: '15px', opacity: 0, filter: 'blur(15px)' },
+    { y: 10, opacity: 0 },
     {
-      duration: 0.25,
+      duration: 0.3,
       opacity: 1,
-      y: '0px',
-      stagger: 0.05,
-      filter: 'blur(0px)',
+      y: 0,
+      stagger: 0.1,
     },
   );
 }

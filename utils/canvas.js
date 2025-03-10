@@ -395,7 +395,13 @@ const Canvas = {
       if (mouseListeners) this.meshMouseListeners(newMesh, material);
     });
   },
-  async addImageAsMesh(htmlEl, shader, meshId, mouseListeners, meshUniforms) {
+  async addImageAsMesh(
+    imgHtmlEl,
+    shader,
+    meshId,
+    mouseListeners,
+    meshUniforms,
+  ) {
     let vertexShader = this.options.default.vertexShader;
     let fragmentShader = this.options.default.fragmentShader;
 
@@ -405,7 +411,8 @@ const Canvas = {
     }
 
     let geometry;
-    let bounds = htmlEl.getBoundingClientRect();
+    let bounds = imgHtmlEl.getBoundingClientRect();
+    console.log("2 bounds" , bounds)
     let position = { top: bounds.top, left: bounds.left };
     position.top += this.currentScroll;
 
@@ -414,9 +421,9 @@ const Canvas = {
     let id = meshId
       ? meshId
       : `meshImage_${shader || 'default'}_${this.imageStore.length}`;
-    htmlEl.dataset.meshId = id;
+    imgHtmlEl.dataset.meshId = id;
 
-    let texture = new THREE.Texture(htmlEl);
+    let texture = new THREE.Texture(imgHtmlEl);
 
     texture.needsUpdate = true;
 
@@ -433,7 +440,7 @@ const Canvas = {
         uMouseMovement: { value: new THREE.Vector2(0, 0) },
         uMeshSize: { value: new THREE.Vector2(bounds.width, bounds.height) },
         uTextureSize: {
-          value: new THREE.Vector2(texture.image.width, texture.image.height),
+          value: new THREE.Vector2(bounds.width, bounds.height),
         },
         uViewport: {
           type: 'v2',
@@ -458,7 +465,7 @@ const Canvas = {
 
     const newMesh = {
       name: id,
-      htmlEl: htmlEl,
+      htmlEl: imgHtmlEl,
       mesh: mesh,
       top: position.top,
       left: position.left,
