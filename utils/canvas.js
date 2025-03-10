@@ -204,12 +204,12 @@ const Canvas = {
       return;
     }
     gsap.to(mesh.material.uniforms.uAniIn, {
-      duration: 2.5, // 1.0
+      duration: 1, // 1.0
       value: isActive ? 1 : 0,
     });
     gsap.to(mesh.material.uniforms.uAniInBlur, {
-      delay: 1.75,
-      duration: 1.75,
+      delay: 1,
+      duration: 1,
       value: isActive ? 1 : 0,
     });
   },
