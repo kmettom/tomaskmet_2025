@@ -54,10 +54,12 @@ function textAniCallback(item: any) {
   const lines = new SplitText(selector, {
     type: 'lines',
   }).lines;
-  tl.set(selector, { opacity: 1 });
+  const wrappedLines = new SplitText(lines, { type: 'lines' }).lines;
+  tl.set(selector, { opacity: 1, overflow: 'hidden' });
+  tl.set(lines, { opacity: 1, overflow: 'hidden' });
   tl.fromTo(
-    lines,
-    { y: 10, opacity: 0 },
+    wrappedLines,
+    { y: 50, opacity: 1 },
     {
       duration: 0.3,
       opacity: 1,
