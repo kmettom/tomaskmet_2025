@@ -69,6 +69,7 @@ export default class Scroll {
   }
 
   setElementActive(item, isActive) {
+    // console.log("setElementActive", item)
     if (isActive) {
       item.elNode.dataset.activeScroll = 'true';
       item.elNode.classList.add('active');
