@@ -51,3 +51,14 @@ export function loadTexture(src) {
     );
   });
 }
+
+const widthPositionCoef = 1;
+const heightPositionCoef = 1.38;
+const heightSizeCoef = 1;
+
+export function getMSDFFontMeshScales(boundsWidth, geometryWidth) {
+  const scaleX = (boundsWidth / geometryWidth) * heightSizeCoef;
+  const scaleY = -1 * scaleX * heightSizeCoef;
+
+  return { scaleX, scaleY };
+}

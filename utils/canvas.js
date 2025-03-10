@@ -138,7 +138,6 @@ const Canvas = {
     for (var i = 0; i < this.imageStore.length; i++) {
       let bounds = this.imageStore[i].htmlEl.getBoundingClientRect();
       this.imageStore[i].mesh.scale.set(bounds.width, bounds.height);
-      //TODO: xxxyyy meshSize remove and access in fragment?
       this.imageStore[i].mesh.material.uniforms.uMeshSize.value.set(
         bounds.width,
         bounds.height,
@@ -151,11 +150,12 @@ const Canvas = {
   resizeTextStore() {
     for (var i = 0; i < this.textStore.length; i++) {
       let bounds = this.textStore[i].htmlEl.getBoundingClientRect();
-      //TODO: make the ScaleX and heightSizeCoef generic and better organized
-      const scaleX =
-        (bounds.width / this.textStore[i].mesh.geometry._layout._width) *
-        this.heightSizeCoef;
-      const scaleY = -1 * scaleX * this.heightSizeCoef;
+      const scales = getMSDFFontMeshScales(
+        bounds.width,
+        this.textStore[i].mesh.geometry._layout._width,
+      );
+      const scaleX = scales.scaleX;
+      const scaleY = scales.scaleY;
 
       this.textStore[i].mesh.scale.set(scaleX, scaleY, 1);
       this.textStore[i].width = bounds.width * this.widthPositionCoef;
@@ -371,9 +371,12 @@ const Canvas = {
       mesh.name = meshId;
       htmlEl.dataset.meshId = meshId;
 
-      const scaleX =
-        (bounds.width / mesh.geometry._layout._width) * this.heightSizeCoef;
-      const scaleY = -1 * scaleX * this.heightSizeCoef;
+      const scales = getMSDFFontMeshScales(
+        bounds.width,
+        mesh.geometry._layout._width,
+      );
+      const scaleX = scales.scaleX;
+      const scaleY = scales.scaleY;
 
       mesh.scale.set(scaleX, scaleY, 1);
 
