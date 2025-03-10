@@ -104,7 +104,7 @@ const serviceBoxStyle = (index: number) => {
 <style lang="scss" scoped>
 .services-section {
   padding-top: 50px;
-  padding-bottom: 475px;
+  padding-bottom: 425px;
   background-color: var(--light-color);
   color: var(--dark-color);
   text-align: center;
