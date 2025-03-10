@@ -6,6 +6,7 @@ uniform sampler2D uImage;
 
 uniform float uTime;
 uniform float uHover;
+uniform float uSepiaColor;
 uniform vec2 uMouse;
 uniform vec2 uMousePrev;
 uniform vec2 uMouseMovement;
@@ -13,7 +14,7 @@ uniform float uAniIn;
 uniform float uAniInBlur;
 uniform float uImageGallery;
 uniform float uImageGalleryActive;
-uniform float uIsHeroSection;
+//uniform float uIsHeroSection;
 
 uniform vec2 uMeshSize; // The size of the mesh (width, height)
 uniform vec2 uTextureSize; // The size of the texture (width, height)
@@ -108,11 +109,16 @@ vec3 applySepia(vec3 color) {
   float g = color.g;
   float b = color.b;
 
-  return vec3(
-    clamp(r * 0.358 + g * 0.704 + b * 0.138, 0.0, 1.0),
-    clamp(r * 0.357 + g * 0.705 + b * 0.141, 0.0, 1.0),
-    clamp(r * 0.3 + g * 0.497 + b * 0.203, 0.0, 1.0)
-  );
+  if (uSepiaColor != 0.0) {
+    return vec3(
+      clamp(r * 0.358 + g * 0.704 + b * 0.138, 0.0, 1.0),
+      clamp(r * 0.357 + g * 0.705 + b * 0.141, 0.0, 1.0),
+      clamp(r * 0.3 + g * 0.497 + b * 0.203, 0.0, 1.0)
+    );
+  } else {
+    return color;
+  }
+
 }
 
 void main() {
@@ -142,6 +148,7 @@ void main() {
   float overlayOpacity = createOverlayOpacity(uAniIn);
 
   // Apply sepia to the texture color
+
   vec3 sepiaColor = applySepia(blur(uv, uImage, 0.08));
   vec4 final = vec4(sepiaColor, overlayOpacity);
 

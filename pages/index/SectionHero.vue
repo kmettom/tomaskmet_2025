@@ -55,7 +55,7 @@ const mainTextInUniforms = computed(() => {
     uAniIn: { active: mainTextIn.value, duration: 2.5 },
     uAniInBlur: { active: mainTextIn.value, duration: 2.0 },
     uBlurAmount: { active: true, duration: 0 },
-    uIsHeroSection: { active: true, duration: 0 },
+    uSepiaColor: { active: false, duration: 0 },
   };
 });
 
