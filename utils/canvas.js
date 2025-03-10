@@ -202,6 +202,10 @@ const Canvas = {
 
   activateMesh(id, isActive) {
     const mesh = this.scene.getObjectByName(id);
+    if (!mesh) {
+      console.error('no Mesh found with ID: ' + id);
+      return;
+    }
     gsap.to(mesh.material.uniforms.uAniIn, {
       duration: 2.5, // 1.0
       value: isActive ? 1 : 0,
@@ -370,7 +374,6 @@ const Canvas = {
 
       let mesh = new THREE.Mesh(geometry, material);
       mesh.name = meshId;
-      htmlEl.dataset.meshId = meshId;
 
       const scales = getMSDFFontMeshScales(
         bounds.width,
@@ -382,6 +385,8 @@ const Canvas = {
       mesh.scale.set(scaleX, scaleY, 1);
 
       this.scene.add(mesh);
+
+      const test = this.scene.getObjectByName(meshId);
 
       const newMesh = {
         name: meshId,

@@ -1,5 +1,5 @@
 <template>
-  <span ref="html" :data-mesh-id="meshId" class="text-wrapper">
+  <span ref="htmlEl" class="text-wrapper">
     <slot />
   </span>
 </template>
@@ -22,9 +22,7 @@ const props = defineProps({
   },
 });
 
-const html = ref('html');
-
-const meshId = crypto.randomUUID();
+const htmlEl = ref('htmlEl');
 
 const meshUniforms = computed(() => {
   const uni = {};
@@ -37,19 +35,22 @@ const meshUniforms = computed(() => {
 });
 
 onMounted(async () => {
-  let innerHTML = html.value?.innerHTML;
+  let innerHTML = htmlEl.value.innerHTML;
   //remove nuxt slot comment from innerHTML, only once
   if (innerHTML.includes('<!--]-->')) {
     const start = innerHTML.indexOf('<!--[-->') + 8; // Start after '<!--[-->'
     const end = innerHTML.indexOf('<!--]-->'); // End just before '<!--]-->'
     innerHTML = innerHTML.slice(start, end);
   }
+  const meshId = crypto.randomUUID();
+
+  htmlEl.value.dataset.meshId = meshId;
   // delay canvas initialization to wait for font loaded
   setTimeout(() => {
     Canvas.addTextAsMSDF(
       props.shader,
       meshId,
-      html.value,
+      htmlEl.value,
       innerHTML,
       props.theme,
       false,
