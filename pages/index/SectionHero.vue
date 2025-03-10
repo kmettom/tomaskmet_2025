@@ -109,10 +109,11 @@ watch(
   justify-content: center;
   &.hero-line-tomas {
     right: 15%;
+    top: 20px;
   }
   &.hero-line-kmet {
     left: 20%;
-    bottom: 35px;
+    bottom: 20px;
   }
 }
 
