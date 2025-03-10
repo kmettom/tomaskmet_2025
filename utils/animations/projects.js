@@ -36,9 +36,6 @@ export function openGalleryTransition(
   return new Promise((resolve) => {
     const timeline = gsap.timeline({
       ease: 'linear',
-      onStart: () => {
-        Canvas.animateImageMesh = true;
-      },
       onComplete: () => {
         resolve();
       },
@@ -110,9 +107,6 @@ export function closeGalleryTransition(refs, sizeOrigins, projectMargin) {
   return new Promise((resolve) => {
     const timeline = gsap.timeline({
       ease: 'linear',
-      onStart: () => {
-        Canvas.animateImageMesh = true;
-      },
       onComplete: () => {
         resolve();
       },
@@ -176,12 +170,6 @@ export function closeGalleryTransition(refs, sizeOrigins, projectMargin) {
 export function showGalleryControls(show) {
   const timeline = gsap.timeline({
     ease: 'linear',
-    onStart: () => {
-      Canvas.animateImageMesh = true;
-    },
-    onComplete: () => {
-      // Canvas.animateImageMesh = false;
-    },
   });
 
   timeline.to('.gallery-controls', {
@@ -208,32 +196,22 @@ export function activeProjectTransition(ref) {
   // return new Promise((resolve) => {
   const timeline = gsap.timeline({
     ease: 'linear',
-    onStart: () => {
-      Canvas.animateImageMesh = true;
-    },
-    onComplete: () => {
-      // resolve();
-      // Canvas.animateImageMesh = false;
-    },
   });
-
   timeline.set(ref.querySelector('.expand-description'), {
     opacity: 1,
   });
-
   const linesStatistics = new SplitText(ref.querySelector('.statistics'), {
     type: 'lines',
   }).lines;
 
   timeline.fromTo(
     linesStatistics,
-    { y: '15px', opacity: 0, filter: 'blur(15px)' },
+    { y: '10px', opacity: 0 },
     {
       duration: 0.2,
       opacity: 1,
       y: '0px',
       stagger: 0.1,
-      filter: 'blur(0px)',
     },
   );
 

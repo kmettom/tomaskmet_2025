@@ -32,7 +32,7 @@
     </Container>
     <div class="hero-bg-image">
       <CanvasImage
-        :src-link="'images/hero.png'"
+        :src-link="'images/hero.jpg'"
         :uniforms="mainTextInUniforms"
       />
     </div>
