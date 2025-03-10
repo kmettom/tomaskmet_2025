@@ -23,6 +23,7 @@ const props = defineProps({
 });
 
 const htmlEl = ref('htmlEl');
+const meshId = crypto.randomUUID();
 
 const meshUniforms = computed(() => {
   const uni = {};
@@ -42,7 +43,6 @@ onMounted(async () => {
     const end = innerHTML.indexOf('<!--]-->'); // End just before '<!--]-->'
     innerHTML = innerHTML.slice(start, end);
   }
-  const meshId = crypto.randomUUID();
 
   htmlEl.value.dataset.meshId = meshId;
   // delay canvas initialization to wait for font loaded
