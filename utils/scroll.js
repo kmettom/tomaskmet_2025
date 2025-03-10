@@ -69,7 +69,6 @@ export default class Scroll {
   }
 
   setElementActive(item, isActive) {
-    // console.log("setElementActive", item)
     if (isActive) {
       item.elNode.dataset.activeScroll = 'true';
       item.elNode.classList.add('active');
@@ -79,11 +78,7 @@ export default class Scroll {
       if (!item.trackOnly) item.elNode.classList.remove('active');
     }
 
-    if (
-      item.containedMeshIds &&
-      item.containedMeshIds.length > 0 &&
-      !item.trackOnly
-    ) {
+    if (item.containedMeshIds.length > 0 && !item.trackOnly) {
       for (const meshId of item.containedMeshIds) {
         Canvas.activateMesh(meshId, isActive);
       }

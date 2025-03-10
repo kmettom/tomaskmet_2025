@@ -55,7 +55,7 @@ onMounted(async () => {
       false,
       meshUniforms.value,
     );
-  }, 50);
+  }, 0);
 });
 
 watch(

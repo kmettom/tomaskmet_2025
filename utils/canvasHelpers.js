@@ -4,6 +4,7 @@ export function generateBindingLogic(newBinding) {
   let binding = newBinding;
   binding.elNode.dataset.activeScroll =
     newBinding?.elNode?.dataset?.activeScroll ?? 'false';
+  binding.containedMeshIds = [];
   if (!binding.options.trackOnly) {
     binding.containedMeshIds = findMeshIDs(binding.elNode, true);
     binding.elNode.classList.add('show-on-scroll');
