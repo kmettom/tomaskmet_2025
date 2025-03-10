@@ -151,13 +151,10 @@ const Canvas = {
   resizeTextStore() {
     for (var i = 0; i < this.textStore.length; i++) {
       let bounds = this.textStore[i].htmlEl.getBoundingClientRect();
-      const scales = getMSDFFontMeshScales(
+      const { scaleX, scaleY } = getMSDFFontMeshScales(
         bounds.width,
         this.textStore[i].mesh.geometry._layout._width,
       );
-      const scaleX = scales.scaleX;
-      const scaleY = scales.scaleY;
-
       this.textStore[i].mesh.scale.set(scaleX, scaleY, 1);
       this.textStore[i].width = bounds.width;
       this.textStore[i].height = bounds.height * heightPositionCoef;
@@ -375,18 +372,14 @@ const Canvas = {
       let mesh = new THREE.Mesh(geometry, material);
       mesh.name = meshId;
 
-      const scales = getMSDFFontMeshScales(
+      const { scaleX, scaleY } = getMSDFFontMeshScales(
         bounds.width,
         mesh.geometry._layout._width,
       );
-      const scaleX = scales.scaleX;
-      const scaleY = scales.scaleY;
 
       mesh.scale.set(scaleX, scaleY, 1);
 
       this.scene.add(mesh);
-
-      const test = this.scene.getObjectByName(meshId);
 
       const newMesh = {
         name: meshId,
