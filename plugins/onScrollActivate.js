@@ -10,7 +10,7 @@ export default defineNuxtPlugin((nuxtApp) => {
           options: binding.value,
           arg: binding.arg,
         });
-      }, 150);
+      }, 50);
     },
     updated(el, binding) {
       Canvas.updateOnScrollActiveElement({
