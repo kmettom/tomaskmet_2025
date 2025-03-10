@@ -16,7 +16,7 @@
             fixToParentId: 'servicesList',
             onScrollCallback: (item: any, speed: any) => {
               if (speed < 0.03) return;
-              setServiceBlockBlur(item.elNode, service.styles);
+              setServiceBlockBlur(index, item.elNode, service.styles);
             },
           }"
           class="service-item"
@@ -56,14 +56,14 @@ const setItemActive = (index: number, isActive: boolean) => {
   activeItemIndex.value = isActive ? index : null;
 };
 
-const setServiceBlockBlur = (elNode: any, styles: any) => {
+const setServiceBlockBlur = (index: number, elNode: any, styles: any) => {
   const aniInCoef = Math.min(
     1,
     1 -
       (elNode.getBoundingClientRect().top - serviceBlockSize / 2) /
         window.innerHeight,
   );
-  const aniOutCoef = Math.min(
+  let aniOutCoef = Math.min(
     1,
     Math.max(
       0,
@@ -71,6 +71,9 @@ const setServiceBlockBlur = (elNode: any, styles: any) => {
         window.innerHeight,
     ),
   );
+  if (index === services.length - 1) {
+    aniOutCoef = 0;
+  }
   const rotateDeg = styles.rotate * aniInCoef;
   const blur = 5 * (1 - aniInCoef) + 15 * aniOutCoef;
   if (blur > maxBlur) return;
