@@ -73,7 +73,7 @@ function textAniCallback(item: any) {
   display: grid;
   grid-template-columns: 10fr 14fr;
   text-transform: uppercase;
-  padding-bottom: 200px;
+  padding-bottom: 125px;
   padding-top: 10vh;
 
   @include respond-width($w-m-s) {
@@ -87,13 +87,15 @@ function textAniCallback(item: any) {
 }
 .about-txt {
   opacity: 0;
-  margin-bottom: 30px;
   @include respond-width($w-m) {
     margin-bottom: 10px;
   }
   @include respond-width($w-xs) {
     margin-top: 10px;
     margin-bottom: 10px;
+  }
+  &.about-1 {
+    margin-bottom: 30px;
   }
   div {
     opacity: 0;
