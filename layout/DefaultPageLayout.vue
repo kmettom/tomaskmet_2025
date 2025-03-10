@@ -43,10 +43,13 @@ onMounted(() => {
 <style lang="scss">
 #scrollContainer {
   position: fixed;
-  height: 100%;
   left: 0;
+  top: 0;
+  height: 100%;
   width: 100%;
   overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 #scrollableContent {

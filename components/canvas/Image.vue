@@ -1,6 +1,12 @@
 <template>
-  <div ref="imageWrapper" class="webgl-img-wrapper">
-    <img class="webgl-img" alt="picture" :src="srcLink" @load="imageLoaded" />
+  <div class="webgl-img-wrapper">
+    <img
+      ref="image"
+      class="webgl-img"
+      alt="picture"
+      :src="srcLink"
+      @load="imageLoaded"
+    />
   </div>
 </template>
 
@@ -24,7 +30,7 @@ const props = defineProps({
 
 const generatedMeshId = props.srcLink + crypto.randomUUID();
 
-const imageWrapper = ref('imageWrapper');
+const image = ref('image');
 const imgLoaded = ref(false);
 
 const meshUniforms = computed(() => {
@@ -44,15 +50,12 @@ onMounted(async () => {
 const addImageToCanvas = (_timeout) => {
   setTimeout(
     () => {
-      if (
-        !imageWrapper.value ||
-        imageWrapper.value.children[0]?.getBoundingClientRect()?.width === 0
-      ) {
+      if (!image.value || image.value?.getBoundingClientRect()?.width === 0) {
         addImageToCanvas(true);
         return;
       }
       Canvas.addImageAsMesh(
-        imageWrapper.value.children[0],
+        image.value,
         props.shader,
         generatedMeshId,
         false,

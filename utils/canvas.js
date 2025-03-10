@@ -395,7 +395,7 @@ const Canvas = {
       if (mouseListeners) this.meshMouseListeners(newMesh, material);
     });
   },
-  addImageAsMesh(htmlEl, shader, meshId, mouseListeners, meshUniforms) {
+  async addImageAsMesh(htmlEl, shader, meshId, mouseListeners, meshUniforms) {
     let vertexShader = this.options.default.vertexShader;
     let fragmentShader = this.options.default.fragmentShader;
 
@@ -416,13 +416,8 @@ const Canvas = {
       : `meshImage_${shader || 'default'}_${this.imageStore.length}`;
     htmlEl.dataset.meshId = id;
 
-    let texture = new THREE.TextureLoader().load(htmlEl.src, () => {
-      //TODO: change to async for Image loading
-      material.uniforms.uTextureSize.value.set(
-        texture.image.width,
-        texture.image.height,
-      );
-    });
+    let texture = new THREE.Texture(htmlEl);
+
     texture.needsUpdate = true;
 
     let material = new THREE.ShaderMaterial({
@@ -437,7 +432,9 @@ const Canvas = {
         uMousePrev: { value: new THREE.Vector2(0, 0) },
         uMouseMovement: { value: new THREE.Vector2(0, 0) },
         uMeshSize: { value: new THREE.Vector2(bounds.width, bounds.height) },
-        uTextureSize: { value: new THREE.Vector2(500, 500) },
+        uTextureSize: {
+          value: new THREE.Vector2(texture.image.width, texture.image.height),
+        },
         uViewport: {
           type: 'v2',
           value: new THREE.Vector2(this.width, this.height),
