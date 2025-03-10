@@ -109,9 +109,9 @@ vec3 applySepia(vec3 color) {
   float b = color.b;
 
   return vec3(
-    clamp(r * 0.393 + g * 0.769 + b * 0.189, 0.0, 1.0),
-    clamp(r * 0.349 + g * 0.686 + b * 0.168, 0.0, 1.0),
-    clamp(r * 0.272 + g * 0.534 + b * 0.131, 0.0, 1.0)
+    clamp(r * 0.358 + g * 0.704 + b * 0.138, 0.0, 1.0),
+    clamp(r * 0.357 + g * 0.705 + b * 0.141, 0.0, 1.0),
+    clamp(r * 0.3 + g * 0.497 + b * 0.203, 0.0, 1.0)
   );
 }
 
@@ -142,10 +142,10 @@ void main() {
   float overlayOpacity = createOverlayOpacity(uAniIn);
 
   // Apply sepia to the texture color
-  //  vec3 sepiaColor = applySepia(blur(uv, uImage, 0.08));
-  //  vec4 final = vec4(sepiaColor, overlayOpacity);
+  vec3 sepiaColor = applySepia(blur(uv, uImage, 0.08));
+  vec4 final = vec4(sepiaColor, overlayOpacity);
 
-  vec4 final = vec4(blur(uv, uImage, 0.08), overlayOpacity);
+  //  vec4 final = vec4(blur(uv, uImage, 0.08), overlayOpacity);
   //  vec4 final = vec4(blur(uv, uImage, 0.08), 1.0);
 
   gl_FragColor = final;

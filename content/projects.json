@@ -2,7 +2,7 @@
   {
     "name": "OVP",
     "year": "2024",
-    "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur. isus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
+    "description": "Website for strategy consulting specialists. Minimalist design, with animated morphing svg elements. Based on Nuxt with some WebGL elements and smooth scroll. Designed by <a href=\"https://jagodakondratiuk.com\" target=\"_blank\">Jagoda Kondratiuk</a>. ",
     "websiteLink": "https://www.ovpartners.net/",
     "image": {
       "src": "images/01.png",
@@ -16,7 +16,7 @@
   {
     "name": "Ease DeFi",
     "year": "2023",
-    "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur. isus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
+    "description": "DeFi insurance platform Ease.org decided to branch out to make meme coins saver. We have build couple of projects with safe meme coin launches protecting the users from hacks and rug-pulls. Apps based on React and Next",
     "websiteLink": "https://www.goat.trading/",
     "image": {
       "src": "images/01.png",
@@ -34,7 +34,7 @@
     "name": "Jagoda",
     "year": "2023",
     "award": "Honorable Mention Awwwards",
-    "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur. isus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
+    "description": "Portfolio website for designer Jagoda Kondratiuk. No framework used, with help of Request Animation Frame for smooth scroll and animation and transitions.",
     "websiteLink": "https://jagodakondratiuk.com/",
     "image": {
       "src": "images/jk.jpeg",
@@ -48,7 +48,7 @@
   {
     "name": "Bright Union",
     "year": "2022",
-    "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur. isus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
+    "description": "DeFi insurance platform built on Vue.js. Bright Union helps to navigate, search for and buy insurance covers for your crypto.",
     "websiteLink": "https://app.brightunion.io/",
     "image": {
       "src": "images/bu.png",
@@ -62,7 +62,7 @@
     "name": "Neosephiri",
     "year": "2021",
     "award": "Honorable Mention Awwwards",
-    "description": "Risus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur. isus vulputate nisl facilisi a in integer. Egestas pulvinar mattis etiam ultrices. Massa eu feugiat id ur",
+    "description": "Shopify e-commerce website for a high end skin care product.",
     "websiteLink": "https://neosephiri.com/",
     "image": {
       "src": "images/neo.jpeg",
