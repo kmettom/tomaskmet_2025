@@ -371,6 +371,7 @@ const Canvas = {
 
       let mesh = new THREE.Mesh(geometry, material);
       mesh.name = meshId;
+      mesh.renderOrder = 1;
 
       const { scaleX, scaleY } = getMSDFFontMeshScales(
         bounds.width,
