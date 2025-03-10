@@ -1,3 +1,5 @@
+import * as THREE from 'three';
+
 export function generateBindingLogic(newBinding) {
   let binding = newBinding;
   binding.elNode.dataset.activeScroll =
@@ -36,4 +38,16 @@ export function findMeshIDs(elParent, isActiveScroll) {
     meshIds.push(el.dataset.meshId);
   }
   return meshIds;
+}
+
+export function loadTexture(src) {
+  return new Promise((resolve, reject) => {
+    const loader = new THREE.TextureLoader();
+    loader.load(
+      src,
+      (texture) => resolve(texture), // On success
+      undefined, // On progress (optional)
+      (err) => reject(err), // On error
+    );
+  });
 }

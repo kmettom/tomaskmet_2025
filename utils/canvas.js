@@ -21,7 +21,7 @@ import test1Vertex from './shaders/projectVertexBNebula.glsl';
 
 import TextBlurFragment from './shaders/TextBlurFragment.glsl';
 import TextBlurVertex from './shaders/TextBlurVertex.glsl';
-import { generateBindingLogic } from '~/utils/canvasHelpers';
+import { generateBindingLogic, loadTexture } from '~/utils/canvasHelpers';
 
 const { MSDFTextGeometry } = pkg;
 
@@ -190,6 +190,7 @@ const Canvas = {
 
   meshUniformsUpdate(id, uniforms) {
     const mesh = this.scene.getObjectByName(id);
+    if (!mesh) return;
     for (const uniKey in uniforms) {
       gsap.to(mesh.material.uniforms[uniKey], {
         duration: uniforms[uniKey].duration,
@@ -412,19 +413,13 @@ const Canvas = {
 
     let geometry;
     let bounds = imgHtmlEl.getBoundingClientRect();
-    console.log("2 bounds" , bounds)
     let position = { top: bounds.top, left: bounds.left };
     position.top += this.currentScroll;
 
     geometry = new THREE.PlaneGeometry(1, 1);
 
-    let id = meshId
-      ? meshId
-      : `meshImage_${shader || 'default'}_${this.imageStore.length}`;
-    imgHtmlEl.dataset.meshId = id;
-
-    let texture = new THREE.Texture(imgHtmlEl);
-
+    imgHtmlEl.dataset.meshId = meshId;
+    const texture = await loadTexture(imgHtmlEl.src);
     texture.needsUpdate = true;
 
     let material = new THREE.ShaderMaterial({
@@ -440,7 +435,7 @@ const Canvas = {
         uMouseMovement: { value: new THREE.Vector2(0, 0) },
         uMeshSize: { value: new THREE.Vector2(bounds.width, bounds.height) },
         uTextureSize: {
-          value: new THREE.Vector2(bounds.width, bounds.height),
+          value: new THREE.Vector2(texture.image.width, texture.image.height),
         },
         uViewport: {
           type: 'v2',
@@ -451,20 +446,20 @@ const Canvas = {
       fragmentShader: fragmentShader,
       vertexShader: vertexShader,
       transparent: true,
-      name: id,
+      name: meshId,
     });
 
     this.materials.push(material);
 
     let mesh = new THREE.Mesh(geometry, material);
-    mesh.name = id;
+    mesh.name = meshId;
 
     mesh.scale.set(bounds.width, bounds.height);
 
     this.scene.add(mesh);
 
     const newMesh = {
-      name: id,
+      name: meshId,
       htmlEl: imgHtmlEl,
       mesh: mesh,
       top: position.top,

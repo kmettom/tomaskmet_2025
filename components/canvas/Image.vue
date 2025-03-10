@@ -47,22 +47,13 @@ onMounted(async () => {
   addImageToCanvas(false);
 });
 
-const addImageToCanvas = (_timeout) => {
-  setTimeout(
-    () => {
-      if (!image.value || image.value?.getBoundingClientRect()?.width === 0) {
-        addImageToCanvas(true);
-        return;
-      }
-      Canvas.addImageAsMesh(
-        image.value,
-        props.shader,
-        generatedMeshId,
-        false,
-        meshUniforms.value,
-      );
-    },
-    _timeout ? 200 : 0,
+const addImageToCanvas = async (_timeout) => {
+  await Canvas.addImageAsMesh(
+    image.value,
+    props.shader,
+    generatedMeshId,
+    false,
+    meshUniforms.value,
   );
 };
 
