@@ -102,6 +102,19 @@ float createOverlayOpacity(float activeOverlay) {
   return progress;
 }
 
+// Function to apply a sepia tone to a given RGB color
+vec3 applySepia(vec3 color) {
+  float r = color.r;
+  float g = color.g;
+  float b = color.b;
+
+  return vec3(
+    clamp(r * 0.393 + g * 0.769 + b * 0.189, 0.0, 1.0),
+    clamp(r * 0.349 + g * 0.686 + b * 0.168, 0.0, 1.0),
+    clamp(r * 0.272 + g * 0.534 + b * 0.131, 0.0, 1.0)
+  );
+}
+
 void main() {
   float overlayBlur = createOverlayBlur(uHover);
   float circle = createCircle(70.0);
@@ -127,6 +140,10 @@ void main() {
   }
 
   float overlayOpacity = createOverlayOpacity(uAniIn);
+
+  // Apply sepia to the texture color
+  //  vec3 sepiaColor = applySepia(blur(uv, uImage, 0.08));
+  //  vec4 final = vec4(sepiaColor, overlayOpacity);
 
   vec4 final = vec4(blur(uv, uImage, 0.08), overlayOpacity);
   //  vec4 final = vec4(blur(uv, uImage, 0.08), 1.0);
