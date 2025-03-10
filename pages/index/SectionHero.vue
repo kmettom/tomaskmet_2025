@@ -34,6 +34,7 @@
       <CanvasImage
         :src-link="'images/hero.jpg'"
         :uniforms="mainTextInUniforms"
+        :shader="'hero'"
       />
     </div>
   </div>

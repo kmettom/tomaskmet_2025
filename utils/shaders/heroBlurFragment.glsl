@@ -6,7 +6,6 @@ uniform sampler2D uImage;
 
 uniform float uTime;
 uniform float uHover;
-uniform float uSepiaColor;
 uniform vec2 uMouse;
 uniform vec2 uMousePrev;
 uniform vec2 uMouseMovement;
@@ -102,23 +101,9 @@ float createOverlayOpacity(float activeOverlay) {
   return progress;
 }
 
-// Function to apply a sepia tone to a given RGB color
-vec3 applySepia(vec3 color) {
-  float r = color.r;
-  float g = color.g;
-  float b = color.b;
-
-  vec3 sepiaColor = vec3(
-    clamp(r * 0.358 + g * 0.704 + b * 0.138, 0.0, 1.0),
-    clamp(r * 0.357 + g * 0.705 + b * 0.141, 0.0, 1.0),
-    clamp(r * 0.3 + g * 0.497 + b * 0.203, 0.0, 1.0)
-  );
-  return mix(sepiaColor, vec3(0.5), 0.4);
-}
-
 void main() {
   float overlayBlur = createOverlayBlur(uHover);
-  float circle = createCircle(70.0);
+  float circle = createCircle(50.0);
 
   // Calculate the aspect ratios
   float meshAspect = uMeshSize.x / uMeshSize.y;
@@ -138,14 +123,12 @@ void main() {
 
   float overlayOpacity = createOverlayOpacity(uAniIn);
 
-  // Apply sepia to the texture color
   float blurStrength =
     1.0 * circle * (overlayBlur * uAniInBlur) * (1.0 - uImageGallery);
 
   vec3 originalColor = blur(uv, uImage, 0.08, blurStrength);
-  vec3 sepiaColor = mix(originalColor, applySepia(originalColor), circle);
 
-  vec4 final = vec4(sepiaColor, overlayOpacity);
+  vec4 final = vec4(originalColor, overlayOpacity);
 
   gl_FragColor = final;
 

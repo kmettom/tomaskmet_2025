@@ -16,8 +16,8 @@ import scrollVertex from './shaders/scrollVertex.glsl';
 import projectBlurFragment from './shaders/projectBlurFragment.glsl';
 import projectBlurVertex from './shaders/projectBlurVertex.glsl';
 
-import test1Frag from './shaders/projectFragmentBNebula.glsl';
-import test1Vertex from './shaders/projectVertexBNebula.glsl';
+import heroBlurFragment from './shaders/heroBlurFragment.glsl';
+import heroBlurVertex from './shaders/heroBlurVertex.glsl';
 
 import TextBlurFragment from './shaders/TextBlurFragment.glsl';
 import TextBlurVertex from './shaders/TextBlurVertex.glsl';
@@ -47,9 +47,9 @@ const CanvasOptions = {
     textFragment: TextBlurFragment,
     textVertex: TextBlurVertex,
   },
-  test1: {
-    fragmentShader: test1Frag,
-    vertexShader: test1Vertex,
+  hero: {
+    fragmentShader: heroBlurFragment,
+    vertexShader: heroBlurVertex,
   },
 };
 
