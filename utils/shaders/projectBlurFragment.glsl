@@ -21,7 +21,6 @@ uniform vec2 uTextureSize; // The size of the texture (width, height)
 uniform vec2 uViewport;
 uniform float uDevicePixelRatio;
 
-float uBlurStrength;
 //sampler2D tMap;
 
 float tvNoise(vec2 p, float ta, float tb) {
@@ -34,13 +33,13 @@ float rand(vec2 co) {
   return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);
 }
 
-vec3 blur(vec2 uv, sampler2D image, float blurAmount) {
+vec3 blur(vec2 uv, sampler2D image, float blurAmount, float blurStrength) {
   vec3 blurredImage = vec3(0.0);
   float gradient =
     smoothstep(0.8, 0.0, 3.4 - gl_FragCoord.y / uViewport.y / uViewport.y) *
-      uBlurStrength +
+      blurStrength +
     smoothstep(0.8, 0.0, gl_FragCoord.y / uViewport.y / uViewport.y) *
-      uBlurStrength;
+      blurStrength;
   #define repeats (40.0)
   for (float i = 0.0; i < repeats; i++) {
     vec2 q =
@@ -110,11 +109,12 @@ vec3 applySepia(vec3 color) {
   float b = color.b;
 
   if (uSepiaColor != 0.0) {
-    return vec3(
+    vec3 sepiaColor = vec3(
       clamp(r * 0.358 + g * 0.704 + b * 0.138, 0.0, 1.0),
       clamp(r * 0.357 + g * 0.705 + b * 0.141, 0.0, 1.0),
       clamp(r * 0.3 + g * 0.497 + b * 0.203, 0.0, 1.0)
     );
+    return mix(sepiaColor, vec3(0.5), 0.4);
   } else {
     return color;
   }
@@ -124,10 +124,6 @@ vec3 applySepia(vec3 color) {
 void main() {
   float overlayBlur = createOverlayBlur(uHover);
   float circle = createCircle(70.0);
-
-  //  uBlurStrength = 1.0 - uHover - uImageGalleryActive;
-  uBlurStrength =
-    1.0 * circle * (overlayBlur * uAniInBlur) * (1.0 - uImageGallery);
 
   // Calculate the aspect ratios
   float meshAspect = uMeshSize.x / uMeshSize.y;
@@ -148,12 +144,13 @@ void main() {
   float overlayOpacity = createOverlayOpacity(uAniIn);
 
   // Apply sepia to the texture color
+  float blurStrength =
+    1.0 * circle * (overlayBlur * uAniInBlur) * (1.0 - uImageGallery);
 
-  vec3 sepiaColor = applySepia(blur(uv, uImage, 0.08));
+  vec3 originalColor = blur(uv, uImage, 0.08, blurStrength);
+  vec3 sepiaColor = mix(originalColor, applySepia(originalColor), circle);
+
   vec4 final = vec4(sepiaColor, overlayOpacity);
-
-  //  vec4 final = vec4(blur(uv, uImage, 0.08), overlayOpacity);
-  //  vec4 final = vec4(blur(uv, uImage, 0.08), 1.0);
 
   gl_FragColor = final;
 
