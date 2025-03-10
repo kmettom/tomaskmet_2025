@@ -21,7 +21,12 @@ import test1Vertex from './shaders/projectVertexBNebula.glsl';
 
 import TextBlurFragment from './shaders/TextBlurFragment.glsl';
 import TextBlurVertex from './shaders/TextBlurVertex.glsl';
-import { generateBindingLogic, loadTexture } from '~/utils/canvasHelpers';
+import {
+  generateBindingLogic,
+  loadTexture,
+  getMSDFFontMeshScales,
+  heightPositionCoef,
+} from '~/utils/canvasHelpers';
 
 const { MSDFTextGeometry } = pkg;
 
@@ -68,10 +73,6 @@ const Canvas = {
   },
   mouse: { x: 0, y: 0, movementX: 0, movementY: 0, xPrev: 0, yPrev: 0 },
   triggerSectionPositions: {},
-
-  widthPositionCoef: 1,
-  heightPositionCoef: 1.38,
-  heightSizeCoef: 1,
 
   initScroll() {
     this.scroll = new Scroll({
@@ -158,8 +159,8 @@ const Canvas = {
       const scaleY = scales.scaleY;
 
       this.textStore[i].mesh.scale.set(scaleX, scaleY, 1);
-      this.textStore[i].width = bounds.width * this.widthPositionCoef;
-      this.textStore[i].height = bounds.height * this.heightPositionCoef;
+      this.textStore[i].width = bounds.width;
+      this.textStore[i].height = bounds.height * heightPositionCoef;
     }
     this.setTextMeshPositions();
   },
@@ -201,6 +202,7 @@ const Canvas = {
 
   activateMesh(id, isActive) {
     const mesh = this.scene.getObjectByName(id);
+    console.log('activateMesh', mesh);
     gsap.to(mesh.material.uniforms.uAniIn, {
       duration: 2.5, // 1.0
       value: isActive ? 1 : 0,
@@ -388,8 +390,8 @@ const Canvas = {
         mesh: mesh,
         top: position.top,
         left: position.left,
-        width: bounds.width * this.widthPositionCoef,
-        height: bounds.height * this.heightPositionCoef,
+        width: bounds.width,
+        height: bounds.height * heightPositionCoef,
       };
 
       this.textStore.push(newMesh);
@@ -570,6 +572,7 @@ const Canvas = {
 
     if (this.animateImageMesh) {
       this.resizeImageStore();
+      this.resizeTextStore();
     }
 
     //animate on hover
