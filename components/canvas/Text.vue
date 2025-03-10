@@ -1,5 +1,5 @@
 <template>
-  <span ref="html" class="text-wrapper">
+  <span ref="html" :data-mesh-id="meshId" class="text-wrapper">
     <slot />
   </span>
 </template>
