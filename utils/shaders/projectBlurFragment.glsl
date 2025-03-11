@@ -113,7 +113,7 @@ vec3 applySepia(vec3 color) {
     clamp(r * 0.357 + g * 0.705 + b * 0.141, 0.0, 1.0),
     clamp(r * 0.3 + g * 0.497 + b * 0.203, 0.0, 1.0)
   );
-  return mix(sepiaColor, vec3(0.5), 0.75);
+  return mix(sepiaColor, vec3(0.5), 0.5);
 }
 
 void main() {
@@ -150,7 +150,7 @@ void main() {
     circle * (1.0 - uImageGalleryActive)
   );
 
-  float galleryOpacity = 1.0 - 0.5 * (uImageGallery - uImageGalleryActive);
+  float galleryOpacity = 1.0 - 0.8 * (uImageGallery - uImageGalleryActive);
 
   vec4 final = vec4(sepiaColor, overlayOpacity * galleryOpacity);
 

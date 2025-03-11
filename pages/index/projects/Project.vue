@@ -27,7 +27,8 @@ const projectNumber = computed(() => {
 });
 
 const projectNumberTheme = computed(() => {
-  return isMobile ? 'dark' : 'light';
+  // return isMobile ? 'dark' : 'light';
+  return 'light';
 });
 
 const hoverProject = (status) => {
