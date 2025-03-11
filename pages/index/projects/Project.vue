@@ -6,6 +6,7 @@ const navigationStore = useNavigationStore();
 
 gsap.registerPlugin(SplitText);
 
+const isMobile = ref(Display.isMobile);
 const props = defineProps({
   project: {
     type: Object,
@@ -24,6 +25,10 @@ const projectElClasses = computed(() => {
 const projectNumber = computed(() => {
   return '0' + (props.index + 1).toString();
 });
+
+const projectNumberTheme = computed(() => {
+  return isMobile ? 'dark' : 'light'
+})
 
 const hoverProject = (status) => {
   if (status) {
@@ -88,7 +93,7 @@ watch(
     >
       <div class="project-info-wrapper">
         <div class="heading-3 project-index">
-          <CanvasText :theme="'light'" :uniforms="projectImageUniforms">
+          <CanvasText :theme="projectNumberTheme" :uniforms="projectImageUniforms">
             {{ projectNumber }}
           </CanvasText>
         </div>
@@ -145,6 +150,7 @@ $nameSize: 30px;
   display: flex;
   justify-content: left;
   position: relative;
+  max-width: 100%;
   &.project-right {
     justify-content: right;
   }
@@ -153,11 +159,16 @@ $nameSize: 30px;
   cursor: pointer;
   position: relative;
   display: flex;
+  max-width: 100%;
 }
 
 .project-index {
   position: absolute;
   left: -75px;
+  @include respond-width($w-s) {
+    position: relative;
+    left: 0;
+  }
 }
 
 .project-image {

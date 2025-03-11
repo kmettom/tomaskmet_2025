@@ -67,6 +67,14 @@ watch(
   { deep: true },
 );
 
+// watch(
+//     () => props.theme,
+//     (uniforms) => {
+//       Canvas.meshUniformsUpdate(meshId, uniforms);
+//     },
+//     { deep: true },
+// );
+
 onBeforeUnmount(() => {
   Canvas.removeMesh(meshId);
 });
