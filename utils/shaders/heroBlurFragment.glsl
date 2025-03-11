@@ -126,8 +126,7 @@ void main() {
   float blurStrength =
     1.0 * circle * (overlayBlur * uAniInBlur) * (1.0 - uImageGallery);
 
-  vec3 originalColor = blur(uv, uImage, 0.08, blurStrength);
-
+  vec3 originalColor = blur(uv, uImage, 0.06, blurStrength);
   vec4 final = vec4(originalColor, overlayOpacity);
 
   gl_FragColor = final;

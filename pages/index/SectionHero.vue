@@ -33,7 +33,7 @@
     <div class="hero-bg-image">
       <CanvasImage
         :src-link="'images/hero.jpg'"
-        :uniforms="mainTextInUniforms"
+        :uniforms="imageUniforms"
         :shader="'hero'"
       />
     </div>
@@ -51,17 +51,27 @@ const props = defineProps({
 });
 
 const mainTextIn = ref(false);
+const imageIn = ref(false);
 const mainTextInUniforms = computed(() => {
   return {
     uAniIn: { active: mainTextIn.value, duration: 2.5 },
     uAniInBlur: { active: mainTextIn.value, duration: 2.0 },
-    uBlurAmount: { active: true, duration: 0 },
-    uSepiaColor: { active: false, duration: 0 },
+  };
+});
+
+const imageUniforms = computed(() => {
+  return {
+    uAniIn: { active: imageIn.value, duration: 2.5 },
+    uAniInBlur: { active: imageIn.value, duration: 2.0 },
   };
 });
 
 const heroSectionAnimation = () => {
-  mainTextIn.value = true;
+  imageIn.value = true;
+
+  setTimeout(() => {
+    mainTextIn.value = true;
+  }, 500);
 
   const tl = gsap.timeline();
   const split = new SplitText('.hero-content-sm', { type: 'words,lines' });
@@ -73,7 +83,7 @@ const heroSectionAnimation = () => {
   tl.to(split.lines, {
     y: 0,
     opacity: 1,
-    delay: 1.5,
+    delay: 2,
     duration: 0.2,
     stagger: 0.05,
   });
