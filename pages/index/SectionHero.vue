@@ -110,6 +110,9 @@ watch(
   @include respond-width($w-m-s) {
     padding-top: 150px;
   }
+  @include respond-width($w-xs) {
+    padding: 16vh 0px;
+  }
 }
 
 .hero-content-line {
@@ -121,10 +124,19 @@ watch(
   &.hero-line-tomas {
     right: 15%;
     top: 20px;
+    @include respond-width($w-m-s) {
+      top: 0px;
+    }
+    @include respond-width($w-xs) {
+      right: auto;
+    }
   }
   &.hero-line-kmet {
     left: 20%;
     bottom: 20px;
+    @include respond-width($w-m-s) {
+      bottom: 20px;
+    }
   }
 }
 

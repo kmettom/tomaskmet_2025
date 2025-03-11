@@ -150,7 +150,7 @@ void main() {
     circle * (1.0 - uImageGalleryActive)
   );
 
-  float galleryOpacity = 1.0 - 0.65 * (uImageGallery - uImageGalleryActive);
+  float galleryOpacity = 1.0 - 0.5 * (uImageGallery - uImageGalleryActive);
 
   vec4 final = vec4(sepiaColor, overlayOpacity * galleryOpacity);
 

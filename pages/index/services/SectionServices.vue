@@ -111,7 +111,7 @@ const serviceBoxStyle = (index: number) => {
 
   @include respond-width($w-xs) {
     padding-top: 50px;
-    padding-bottom: 50px;
+    padding-bottom: 350px;
     & h2 {
       margin-bottom: 50px;
     }
