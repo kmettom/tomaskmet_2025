@@ -120,7 +120,7 @@ $marginRight: 50px;
 
 .works-section {
   padding-top: 10vh;
-  padding-bottom: 10vh;
+  padding-bottom: 20vh;
   margin: 10vh $marginRight auto 100px;
   position: relative;
 
