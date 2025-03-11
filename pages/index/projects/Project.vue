@@ -108,9 +108,17 @@ watch(
             </div>
           </div>
           <p class="project-description body-m" v-html="project.description" />
-          <a class="project-link" :href="project.websiteLink" target="_blank"
-            >👉 visit website</a
+          <div
+            v-set-data-attrs="{
+              cursoropacity: 0.7,
+              cursorsize: 70,
+              cursoricon: 'true',
+            }"
           >
+            <a class="project-link" :href="project.websiteLink" target="_blank"
+              >👉 visit website</a
+            >
+          </div>
         </div>
       </div>
 

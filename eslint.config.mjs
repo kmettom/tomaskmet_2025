@@ -6,6 +6,7 @@ export default withNuxt({
     // 'no-warn-ignored': true,
   },
   rules: {
+    'vue/no-v-html': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     'vue/html-self-closing': [
       'warn',

@@ -113,12 +113,12 @@ vec3 applySepia(vec3 color) {
     clamp(r * 0.357 + g * 0.705 + b * 0.141, 0.0, 1.0),
     clamp(r * 0.3 + g * 0.497 + b * 0.203, 0.0, 1.0)
   );
-  return mix(sepiaColor, vec3(0.5), 0.4);
+  return mix(sepiaColor, vec3(0.5), 0.7);
 }
 
 void main() {
   float overlayBlur = createOverlayBlur(uHover);
-  float circle = createCircle(70.0);
+  float circle = createCircle(80.0);
 
   // Calculate the aspect ratios
   float meshAspect = uMeshSize.x / uMeshSize.y;
@@ -142,7 +142,7 @@ void main() {
   float blurStrength =
     1.0 * circle * (overlayBlur * uAniInBlur) * (1.0 - uImageGallery);
 
-  vec3 originalColor = blur(uv, uImage, 0.08, blurStrength);
+  vec3 originalColor = blur(uv, uImage, 0.05, blurStrength);
   vec3 sepiaColor = mix(originalColor, applySepia(originalColor), circle);
 
   vec4 final = vec4(sepiaColor, overlayOpacity);
