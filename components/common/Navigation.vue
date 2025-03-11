@@ -137,6 +137,9 @@ watch(
     display: inline-block;
     position: relative;
   }
+  &:hover span {
+    font-weight: bold;
+  }
   &:before {
     opacity: 0;
     content: '👉';
