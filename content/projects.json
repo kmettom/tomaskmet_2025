@@ -2,28 +2,28 @@
   {
     "name": "OVP",
     "year": "2024",
-    "description": "Website for strategy consulting specialists. Minimalist design, with animated morphing svg elements. Based on Nuxt with some WebGL elements and smooth scroll. Designed by <a href=\"https://jagodakondratiuk.com\" target=\"_blank\">Jagoda Kondratiuk</a>. ",
+    "description": "Website for strategy consulting specialists. Minimalist design, with animated morphing svg elements. Based on Nuxt with WebGL elements and smooth scroll. Designed by <a href=\"https://jagodakondratiuk.com\" target=\"_blank\">Jagoda Kondratiuk</a>. ",
     "websiteLink": "https://www.ovpartners.net/",
     "image": {
       "src": "images/01.png",
       "alt": "image description",
       "size": {
-        "width": "400px",
-        "height": "400px"
+        "width": "510px",
+        "height": "600px"
       }
     }
   },
   {
     "name": "Ease DeFi",
     "year": "2023",
-    "description": "DeFi insurance platform Ease.org decided to branch out to make meme coins saver. We have build couple of projects with safe meme coin launches protecting the users from hacks and rug-pulls. Apps based on React and Next",
+    "description": "DeFi insurance platform Ease.org decided to branch out to make meme coins saver. We have build couple of projects with safe meme coin launches protecting the users from hacks and rug-pulls. App based on Next under goat.trading",
     "websiteLink": "https://www.goat.trading/",
     "image": {
       "src": "images/01.png",
       "alt": "image description",
       "size": {
-        "width": "300px",
-        "height": "300px"
+        "width": "330px",
+        "height": "338px"
       }
     },
     "position": {
@@ -34,21 +34,21 @@
     "name": "Jagoda",
     "year": "2023",
     "award": "HM Awwwards",
-    "description": "Portfolio website for designer Jagoda Kondratiuk. No framework used, with help of Request Animation Frame for smooth scroll and animation and transitions.",
+    "description": "Portfolio website for designer Jagoda Kondratiuk. No framework used, with help of Request Animation Frame for smooth scroll and transitions.",
     "websiteLink": "https://jagodakondratiuk.com/",
     "image": {
       "src": "images/jk.jpeg",
       "alt": "image description",
       "size": {
-        "width": "700px",
-        "height": "300px"
+        "width": "1050px",
+        "height": "600px"
       }
     }
   },
   {
     "name": "Bright Union",
     "year": "2022",
-    "description": "DeFi insurance platform built on Vue.js. Bright Union helps to navigate, search for and buy insurance covers for your crypto.",
+    "description": "DeFi insurance platform built on Vue.js. BrightUnion.io helps to navigate, search for and buy insurance covers for your crypto assets.",
     "websiteLink": "https://app.brightunion.io/",
     "image": {
       "src": "images/bu.png",
@@ -66,7 +66,11 @@
     "websiteLink": "https://neosephiri.com/",
     "image": {
       "src": "images/neo.jpeg",
-      "alt": "image description"
+      "alt": "image description",
+      "size": {
+        "width": "1050px",
+        "height": "600px"
+      }
     }
   }
 ]
