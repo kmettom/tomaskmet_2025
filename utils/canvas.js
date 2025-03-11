@@ -312,7 +312,7 @@ const Canvas = {
         loader.load(path, resolve);
       });
     };
-
+    //TODO: load font on Canvas Init, ideally even before
     Promise.all([
       loadFontAtlas(CanvasOptions.fonts.PPFormula.atlas),
       loadFont(CanvasOptions.fonts.PPFormula.fnt),
