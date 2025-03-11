@@ -27,8 +27,8 @@ const projectNumber = computed(() => {
 });
 
 const projectNumberTheme = computed(() => {
-  return isMobile ? 'dark' : 'light'
-})
+  return isMobile ? 'dark' : 'light';
+});
 
 const hoverProject = (status) => {
   if (status) {
@@ -93,7 +93,10 @@ watch(
     >
       <div class="project-info-wrapper">
         <div class="heading-3 project-index">
-          <CanvasText :theme="projectNumberTheme" :uniforms="projectImageUniforms">
+          <CanvasText
+            :theme="projectNumberTheme"
+            :uniforms="projectImageUniforms"
+          >
             {{ projectNumber }}
           </CanvasText>
         </div>
