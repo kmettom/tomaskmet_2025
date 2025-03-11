@@ -135,6 +135,9 @@ $marginRight: 50px;
     padding-top: 50px;
     padding-bottom: 50px;
   }
+  @include respond-width($w-xxs) {
+    margin: auto 10px auto 10px;
+  }
 }
 
 #gallery {
@@ -151,6 +154,9 @@ $marginRight: 50px;
   bottom: 0;
   z-index: -1;
   pointer-events: none;
+  @include respond-width($w-xs) {
+    width: 100%;
+  }
   &.active {
     pointer-events: auto;
   }
@@ -162,6 +168,9 @@ $marginRight: 50px;
   outline: none;
   border: none;
   cursor: pointer;
+  @include respond-width($w-xs) {
+    font-size: 12px;
+  }
 }
 
 .close-btn {
@@ -172,6 +181,11 @@ $marginRight: 50px;
   border: none;
   top: 115px;
   right: -35px;
+  z-index: 10;
+  @include respond-width($w-xs) {
+    top: 50px;
+    right: 0px;
+  }
 }
 
 .change-project-btn {

@@ -59,6 +59,7 @@ $w-m: 1280px; // ipad big resolution
 $w-m-s: 1080px; // ipad big resolution
 $w-s: 768px; // ipad small resolution
 $w-xs: 550px; // mobile resolution
+$w-xxs: 450px; // mobile resolution
 
 @mixin respond-width($media) {
   $max-width: $media + 1px;
@@ -189,15 +190,17 @@ $w-xs: 550px; // mobile resolution
   @include respond-width($w-xs) {
     font-size: 140px;
   }
+  @include respond-width($w-xxs) {
+    font-size: 110px;
+  }
 }
 
 .heading-3 {
   @include header-font;
   font-size: 70px;
   line-height: 120%;
-
   @include respond-width($w-xs) {
-    font-size: 30px;
+    font-size: 50px;
   }
 }
 

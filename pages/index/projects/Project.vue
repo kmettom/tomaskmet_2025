@@ -6,7 +6,7 @@ const navigationStore = useNavigationStore();
 
 gsap.registerPlugin(SplitText);
 
-const isMobile = ref(Display.isMobile);
+// const isMobile = ref(Display.isMobile);
 const props = defineProps({
   project: {
     type: Object,
@@ -104,15 +104,15 @@ watch(
         <div class="expand-description">
           <div class="statistics">
             <div class="info-row">
-              <div>client:</div>
+              <div class="info-category">client:</div>
               <div>{{ project.name }}</div>
             </div>
             <div class="info-row">
-              <div>year:</div>
+              <div class="info-category">year:</div>
               <div>{{ project.year }}</div>
             </div>
             <div v-if="project.award" class="info-row">
-              <div>award</div>
+              <div class="info-category">award:</div>
               <div>{{ project.award }}</div>
             </div>
           </div>
@@ -196,20 +196,40 @@ $nameSize: 30px;
 
 .project-description {
   margin-top: 75px;
+  @include respond-width($w-xs) {
+    margin-top: 10px;
+    font-size: 12px;
+  }
 }
 
 .expand-description {
   opacity: 0;
   padding: 0 50px 50px 50px;
   position: relative;
-
+  @include respond-width($w-xs) {
+    padding: 0 5px 10px 0;
+  }
   .statistics {
     height: 50%;
-
+    @include respond-width($w-xs) {
+      height: initial;
+      padding-bottom: 10px;
+    }
     .info-row {
+      @include respond-width($w-xs) {
+        padding-bottom: 5px;
+      }
       * {
         display: inline-block;
         width: 50%;
+        @include respond-width($w-xs) {
+          width: 100%;
+        }
+      }
+    }
+    .info-category {
+      @include respond-width($w-xs) {
+        font-size: 12px;
       }
     }
   }
@@ -217,6 +237,9 @@ $nameSize: 30px;
   a {
     display: inline-block;
     margin-top: 20px;
+    @include respond-width($w-xs) {
+      margin-top: 10px;
+    }
   }
 }
 
@@ -225,5 +248,10 @@ $nameSize: 30px;
   position: absolute;
   bottom: -$nameSize;
   left: 0;
+}
+.project-link {
+  @include respond-width($w-xs) {
+    font-size: 12px;
+  }
 }
 </style>

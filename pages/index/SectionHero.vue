@@ -111,7 +111,7 @@ watch(
     padding-top: 150px;
   }
   @include respond-width($w-xs) {
-    padding: 16vh 0px;
+    padding: 20vh 0;
   }
 }
 
