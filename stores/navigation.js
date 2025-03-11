@@ -8,6 +8,7 @@ import {
 } from '~/utils/animations/projects';
 import { gsap } from 'gsap';
 import { projectDefaults } from '~/constants/projectDefaults.js';
+import { Canvas } from '~/utils/canvas';
 
 export const useNavigationStore = defineStore('navigationStore', {
   state: () => ({

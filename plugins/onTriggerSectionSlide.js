@@ -1,4 +1,5 @@
 import { Canvas } from '~/utils/canvas.js';
+
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.directive('onTriggerSectionSlide', {
     mounted(el, binding) {
