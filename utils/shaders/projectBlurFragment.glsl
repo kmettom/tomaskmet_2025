@@ -113,12 +113,12 @@ vec3 applySepia(vec3 color) {
     clamp(r * 0.357 + g * 0.705 + b * 0.141, 0.0, 1.0),
     clamp(r * 0.3 + g * 0.497 + b * 0.203, 0.0, 1.0)
   );
-  return mix(sepiaColor, vec3(0.5), 0.7);
+  return mix(sepiaColor, vec3(0.5), 0.75);
 }
 
 void main() {
   float overlayBlur = createOverlayBlur(uHover);
-  float circle = createCircle(80.0);
+  float circle = createCircle(85.0);
 
   // Calculate the aspect ratios
   float meshAspect = uMeshSize.x / uMeshSize.y;
@@ -136,16 +136,23 @@ void main() {
     uv.x = uv.x * scale + (1.0 - scale) / 2.0; // Center the texture horizontally
   }
 
-  float overlayOpacity = createOverlayOpacity(uAniIn);
+  float newAniIn = max(uAniIn, uImageGallery);
+  float overlayOpacity = createOverlayOpacity(newAniIn);
 
   // Apply sepia to the texture color
-  float blurStrength =
-    1.0 * circle * (overlayBlur * uAniInBlur) * (1.0 - uImageGallery);
+  float blurStrength = 1.0 * circle * overlayBlur * (1.0 - uImageGalleryActive);
+  float blurAmount = 0.025;
 
-  vec3 originalColor = blur(uv, uImage, 0.05, blurStrength);
-  vec3 sepiaColor = mix(originalColor, applySepia(originalColor), circle);
+  vec3 originalColor = blur(uv, uImage, blurAmount, blurStrength);
+  vec3 sepiaColor = mix(
+    originalColor,
+    applySepia(originalColor),
+    circle * (1.0 - uImageGalleryActive)
+  );
 
-  vec4 final = vec4(sepiaColor, overlayOpacity);
+  float galleryOpacity = 1.0 - 0.65 * (uImageGallery - uImageGalleryActive);
+
+  vec4 final = vec4(sepiaColor, overlayOpacity * galleryOpacity);
 
   gl_FragColor = final;
 

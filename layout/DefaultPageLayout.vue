@@ -1,6 +1,6 @@
 <template>
   <div id="appContainer">
-    <SpeedInsights />
+    <!--    <SpeedInsights />-->
     <CommonNavigation :page-active="null" />
 
     <div id="scrollContainer">
@@ -20,7 +20,7 @@
 <script setup lang="ts">
 import { Display } from '~/utils/display';
 import { Canvas } from '~/utils/canvas';
-import { SpeedInsights } from '@vercel/speed-insights/nuxt';
+// import { SpeedInsights } from '@vercel/speed-insights/nuxt';
 
 const navigationStore = useNavigationStore();
 
