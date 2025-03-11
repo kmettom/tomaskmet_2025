@@ -26,7 +26,7 @@
     </nav>
   </div>
 </template>
-<script setup lang="ts">
+<script setup>
 import {
   navigationFirstEnter,
   navigationShow,
@@ -34,7 +34,7 @@ import {
 import { gsap } from 'gsap';
 import { useTemplateRefsList } from '@vueuse/core';
 
-const navItemRefs = useTemplateRefsList<HTMLDivElement>();
+const navItemRefs = useTemplateRefsList();
 const navAniDuration = 0.2;
 const navAniY = 20;
 

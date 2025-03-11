@@ -17,7 +17,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { Display } from '~/utils/display';
 import { Canvas } from '~/utils/canvas';
 // import { SpeedInsights } from '@vercel/speed-insights/nuxt';
