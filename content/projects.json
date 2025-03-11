@@ -67,7 +67,6 @@
     "image": {
       "src": "images/neo.jpeg",
       "alt": "image description"
-    },
-    "position": {}
+    }
   }
 ]
