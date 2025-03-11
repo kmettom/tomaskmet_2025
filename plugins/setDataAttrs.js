@@ -1,3 +1,5 @@
+import { defineNuxtPlugin } from '#app';
+
 const addDataSetToEl = (_attrs, _el) => {
   if (_el.nodeName == '#text') return;
 

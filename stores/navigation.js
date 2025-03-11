@@ -9,6 +9,7 @@ import {
 import { gsap } from 'gsap';
 import { projectDefaults } from '~/constants/projectDefaults.js';
 import { Canvas } from '~/utils/canvas';
+import { defineStore } from 'pinia';
 
 export const useNavigationStore = defineStore('navigationStore', {
   state: () => ({
