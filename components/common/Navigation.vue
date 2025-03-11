@@ -9,24 +9,50 @@
     <div>Folio {{ currentYear }}</div>
 
     <nav class="navigation-items">
-      <span
-        v-for="navItem in navigationItems"
+      <div
+        v-for="(navItem, index) in navigationItems"
         :key="navItem.id"
+        :ref="navItemRefs.set"
         v-set-data-attrs="{ cursorsize: 30, cursoropacity: 0.7 }"
         class="navigation-item"
         :class="{ active: activeNav === navItem.id }"
         @click="goToSection(navItem.id)"
+        @mouseenter="navigationHoverAnimate(index)"
       >
-        {{ navItem.name }}
-      </span>
+        <span>
+          {{ navItem.name }}
+        </span>
+      </div>
     </nav>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import {
   navigationFirstEnter,
   navigationShow,
 } from '~/utils/animations/navigation';
+import { gsap } from 'gsap';
+import { useTemplateRefsList } from '@vueuse/core';
+
+const navItemRefs = useTemplateRefsList<HTMLDivElement>();
+const navAniDuration = 0.2;
+const navAniY = 20;
+
+const navigationHoverAnimate = (index) => {
+  const tl = gsap.timeline();
+  const text = navItemRefs.value[index].querySelector('span');
+  tl.to(text, {
+    duration: navAniDuration,
+    y: navAniY,
+  });
+  tl.set(text, {
+    y: -navAniY,
+  });
+  tl.to(text, {
+    duration: navAniDuration,
+    y: 0,
+  });
+};
 
 const navigationStore = useNavigationStore();
 
@@ -106,6 +132,11 @@ watch(
   cursor: none;
   line-height: 20px;
   pointer-events: auto;
+  overflow-y: hidden;
+  span {
+    display: inline-block;
+    position: relative;
+  }
   &:before {
     opacity: 0;
     content: '👉';
@@ -115,11 +146,6 @@ watch(
     transform: translateX(-10px);
     transition: ease all 0.3s;
   }
-
-  &:hover {
-    font-weight: bold;
-  }
-
   &.active {
     font-weight: bold;
     &::before {
