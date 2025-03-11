@@ -103,7 +103,7 @@ watch(
   text-align: right;
 }
 .navigation-item {
-  cursor: pointer;
+  cursor: none;
   line-height: 20px;
   pointer-events: auto;
   &:before {

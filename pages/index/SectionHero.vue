@@ -102,16 +102,19 @@ watch(
 <style lang="scss" scoped>
 .hero-section-wrapper {
   position: relative;
+  @include respond-width($w-m-s) {
+    height: 100vh;
+  }
 }
 .hero-section {
   padding: 16vh;
   position: relative;
   text-align: center;
   @include respond-width($w-m-s) {
-    padding-top: 150px;
+    padding-top: 35vh;
   }
   @include respond-width($w-xs) {
-    padding: 20vh 0;
+    padding: 35vh 0 0 0;
   }
 }
 

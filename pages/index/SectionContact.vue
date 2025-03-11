@@ -77,7 +77,6 @@
                 >Instagram</a
               >
             </div>
-
             <div>
               <a
                 v-set-data-attrs="{
@@ -214,6 +213,8 @@ const splitLineAnimation = (item: any) => {
   justify-content: end;
   position: relative;
   bottom: 75px;
+  gap: 5px;
+
   @include respond-width($w-m-s) {
     bottom: 50px;
   }
@@ -221,6 +222,9 @@ const splitLineAnimation = (item: any) => {
     bottom: 0;
     display: block;
     padding: 0 10px;
+  }
+  a {
+    cursor: none;
   }
 }
 
