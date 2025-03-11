@@ -110,8 +110,6 @@ const serviceBoxStyle = (index: number) => {
   text-align: center;
 
   @include respond-width($w-xs) {
-    padding-top: 50px;
-    padding-bottom: 350px;
     & h2 {
       margin-bottom: 50px;
     }

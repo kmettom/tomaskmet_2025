@@ -121,19 +121,14 @@ $marginRight: 50px;
 .works-section {
   padding-top: 10vh;
   padding-bottom: 10vh;
-  margin: 10vh $marginRight auto 150px;
+  margin: 10vh $marginRight auto 100px;
   position: relative;
 
   @include respond-width($w-s) {
     margin: auto $marginRight auto 50px;
-    padding-top: 100px;
-    padding-bottom: 100px;
   }
-
   @include respond-width($w-xs) {
     margin: auto 25px auto 25px;
-    padding-top: 50px;
-    padding-bottom: 50px;
   }
   @include respond-width($w-xxs) {
     margin: auto 10px auto 10px;

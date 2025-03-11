@@ -77,14 +77,9 @@ function textAniCallback(item: any) {
   text-transform: uppercase;
   padding-bottom: 125px;
   padding-top: 10vh;
-
-  @include respond-width($w-m-s) {
-    padding: 40px;
-  }
-
   @include respond-width($w-xs) {
     grid-template-columns: 1fr;
-    padding: 20px;
+    padding: 10vh 10px 125px 10px;
   }
 }
 .about-txt {
