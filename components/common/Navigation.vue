@@ -35,8 +35,8 @@ import { gsap } from 'gsap';
 import { useTemplateRefsList } from '@vueuse/core';
 
 const navItemRefs = useTemplateRefsList();
-const navAniDuration = 0.2;
-const navAniY = 20;
+const navAniDuration = 0.15;
+const navAniY = 10;
 
 const navigationHoverAnimate = (index) => {
   const tl = gsap.timeline();
