@@ -14,11 +14,6 @@ export default defineNuxtConfig({
   image: {
     target: 'static',
     dir: 'public/',
-    // provider: 'ipx',
-    // domains: ['tomaskmet.vercel.app', 'tomaskmet.com'],
-    // ipx: {
-    // baseURL: 'https://your-ipx-instance-url',
-    // },
   },
 
   build: {
