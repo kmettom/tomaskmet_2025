@@ -1,6 +1,6 @@
 import { gsap } from 'gsap';
 import * as THREE from 'three';
-import { FontLoader } from 'three/addons/loaders/FontLoader';
+import { FontLoader } from 'three/addons/loaders/FontLoader.js';
 
 import * as pkg from 'three-msdf-text-utils/build/bundle';
 
