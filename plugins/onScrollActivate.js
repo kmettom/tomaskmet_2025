@@ -26,18 +26,6 @@ export default defineNuxtPlugin((nuxtApp) => {
             unsubscribe(); // Stop listening after completion
           }
         });
-        //  watch(
-        //   () => navigationStore.canvasInitialized,
-        //   (newValue) => {
-        //     if (newValue) {
-        //       Canvas.addOnScrollActivateElement({
-        //         elNode: el,
-        //         options: binding.value,
-        //         arg: binding.arg,
-        //       });
-        //     }
-        //   },
-        // );
       }
     },
     updated(el, binding) {
