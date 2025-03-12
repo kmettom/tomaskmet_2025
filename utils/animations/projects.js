@@ -55,24 +55,8 @@ export function openGalleryTransition(
     );
     const galleryWidthHalfPx =
       galleryRef.getBoundingClientRect().width / 2 + 'px';
+    timeline.to('.project-name', { opacity: 0, duration: 0.3 });
 
-    const nameChars = new SplitText('.project-name', {
-      type: 'words,chars',
-    });
-    timeline.to(
-      nameChars.chars,
-      {
-        duration: 0.1,
-        y: -10,
-        opacity: 0,
-        stagger: 0.02,
-        onComplete: () => {
-          nameChars.revert();
-          gsap.set('.project-name', { opacity: 0 });
-        },
-      },
-      '<',
-    );
     timeline.to(
       '.project-info-wrapper',
       {
@@ -128,6 +112,7 @@ export function closeGalleryTransition(refs, sizeOrigins, projectMargin) {
       },
       '<',
     );
+    timeline.to('.project-name', { opacity: 1, duration: 0.3 }, '>');
     for (const [index, ref] of refs.entries()) {
       //TODO: check the cause of Refs array having more items
       if (!sizeOrigins[index]) return;
@@ -141,29 +126,6 @@ export function closeGalleryTransition(refs, sizeOrigins, projectMargin) {
         '<',
       );
     }
-
-    const nameChars = new SplitText('.project-name', {
-      type: 'words,chars',
-    });
-    timeline.set('.project-name', { opacity: 1 });
-    timeline.fromTo(
-      nameChars.chars,
-      {
-        y: -10,
-        opacity: 0,
-      },
-      {
-        duration: 0.1,
-        y: 0,
-        opacity: 1,
-        stagger: 0.02,
-        onComplete: () => {
-          nameChars.revert();
-        },
-      },
-      '<',
-    );
-    timeline.set('.project-name', { opacity: 1 });
   });
 }
 
