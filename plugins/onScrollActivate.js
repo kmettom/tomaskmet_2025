@@ -1,6 +1,5 @@
 import { Canvas } from '~/utils/canvas.js';
 import { defineNuxtPlugin } from '#app';
-// import { watch } from 'vue';
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.directive('onScrollActivate', {
@@ -17,7 +16,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         });
       } else {
         const unsubscribe = navigationStore.$subscribe((mutation, state) => {
-          if (state.canvasInitialized) {
+          if (state.canvasInitiated) {
             Canvas.addOnScrollActivateElement({
               elNode: el,
               options: binding.value,
