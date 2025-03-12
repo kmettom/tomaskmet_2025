@@ -16,18 +16,18 @@ export default defineNuxtPlugin((nuxtApp) => {
           arg: binding.arg,
         });
       } else {
-         watch(
-          () => navigationStore.canvasInitialized,
-          (newValue) => {
-            if (newValue) {
+         // watch(
+         //  () => navigationStore.canvasInitialized,
+         //  (newValue) => {
+         //    if (newValue) {
               Canvas.addOnScrollActivateElement({
                 elNode: el,
                 options: binding.value,
                 arg: binding.arg,
               });
-            }
-          },
-        );
+            // }
+          // },
+        // );
       }
     },
     updated(el, binding) {
