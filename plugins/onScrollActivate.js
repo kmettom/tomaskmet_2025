@@ -1,6 +1,6 @@
 import { Canvas } from '~/utils/canvas.js';
 import { defineNuxtPlugin } from '#app';
-import { watch } from 'vue';
+// import { watch } from 'vue';
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.directive('onScrollActivate', {
@@ -16,17 +16,27 @@ export default defineNuxtPlugin((nuxtApp) => {
           arg: binding.arg,
         });
       } else {
-         // watch(
-         //  () => navigationStore.canvasInitialized,
-         //  (newValue) => {
-         //    if (newValue) {
-              Canvas.addOnScrollActivateElement({
-                elNode: el,
-                options: binding.value,
-                arg: binding.arg,
-              });
-            // }
-          // },
+        const unsubscribe = navigationStore.$subscribe((mutation, state) => {
+          if (state.canvasInitialized) {
+            Canvas.addOnScrollActivateElement({
+              elNode: el,
+              options: binding.value,
+              arg: binding.arg,
+            });
+            unsubscribe(); // Stop listening after completion
+          }
+        });
+        //  watch(
+        //   () => navigationStore.canvasInitialized,
+        //   (newValue) => {
+        //     if (newValue) {
+        //       Canvas.addOnScrollActivateElement({
+        //         elNode: el,
+        //         options: binding.value,
+        //         arg: binding.arg,
+        //       });
+        //     }
+        //   },
         // );
       }
     },
