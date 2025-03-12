@@ -26,8 +26,6 @@ import {
   loadTexture,
   getMSDFFontMeshScales,
   heightPositionCoef,
-  loadFontAtlas,
-  loadFont,
 } from '~/utils/canvasHelpers';
 
 const { MSDFTextGeometry } = pkg;

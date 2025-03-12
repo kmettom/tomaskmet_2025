@@ -61,4 +61,3 @@ export function getMSDFFontMeshScales(boundsWidth, geometryWidth) {
 
   return { scaleX, scaleY };
 }
-
