@@ -414,12 +414,11 @@ const Canvas = {
       fragmentShader = this.options[shader].fragmentShader;
     }
 
-    let geometry;
     let bounds = imgHtmlEl.getBoundingClientRect();
     let position = { top: bounds.top, left: bounds.left };
     position.top += this.currentScroll;
 
-    geometry = new THREE.PlaneGeometry(1, 1);
+    let geometry = new THREE.PlaneGeometry(1, 1);
 
     imgHtmlEl.dataset.meshId = meshId;
     const texture = await loadTexture(imgHtmlEl.src);
