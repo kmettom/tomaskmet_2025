@@ -5,9 +5,9 @@
       class="webgl-img"
       :alt="alt"
       :src="srcLink"
-      :loading="loadStrategy === 'lazy' ? 'lazy' : 'eager'"
       @load="addImageToCanvas"
     />
+    <!--    :loading="loadStrategy === 'lazy' ? 'lazy' : 'eager'"-->
     <!--    @load="imageLoaded"-->
     <!--    :preload="loadStrategy === 'preload'"-->
   </div>
