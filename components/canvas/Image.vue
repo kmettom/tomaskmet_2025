@@ -6,6 +6,7 @@
       :alt="alt"
       :src="srcLink"
       @load="addImageToCanvas"
+      :loading="loadStrategy === 'lazy' ? 'lazy' : 'eager'"
     />
     <!--    :loading="loadStrategy === 'lazy' ? 'lazy' : 'eager'"-->
     <!--    @load="imageLoaded"-->
@@ -57,6 +58,18 @@ const meshUniforms = computed(() => {
   return uni;
 });
 
+const addImageToCanvas = () => {
+  if (imgAddedToCanvas.value) return;
+  Canvas.addImageAsMesh(
+      image.value,
+      props.shader,
+      generatedMeshId,
+      false,
+      meshUniforms.value,
+  );
+  imgAddedToCanvas.value = true;
+};
+
 onMounted(() => {
   imageWrapper.value.dataset.meshId = generatedMeshId;
 });
@@ -70,17 +83,6 @@ watch(
   },
 );
 
-const addImageToCanvas = () => {
-  if (imgAddedToCanvas.value) return;
-  Canvas.addImageAsMesh(
-    image.value,
-    props.shader,
-    generatedMeshId,
-    false,
-    meshUniforms.value,
-  );
-  imgAddedToCanvas.value = true;
-};
 
 watch(
   () => props.uniforms,
