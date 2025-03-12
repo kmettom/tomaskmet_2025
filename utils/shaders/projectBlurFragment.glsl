@@ -118,7 +118,7 @@ vec3 applySepia(vec3 color) {
 
 void main() {
   float overlayBlur = createOverlayBlur(uHover);
-  float circle = createCircle(85.0);
+  float circle = createCircle(105.0);
 
   // Calculate the aspect ratios
   float meshAspect = uMeshSize.x / uMeshSize.y;
