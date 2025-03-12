@@ -14,12 +14,12 @@
     <NuxtPage :page-active="contentActive" />
   </DefaultPageLayout>
   <CanvasCursor v-if="contentActive" />
-<!--  <img-->
-<!--    alt="hidden image for font"-->
-<!--    loading="eager"-->
-<!--    src="/font/PPFormula-CondensedBlack.png"-->
-<!--    style="display: none"-->
-<!--  />-->
+  <!--  <img-->
+  <!--    alt="hidden image for font"-->
+  <!--    loading="eager"-->
+  <!--    src="/font/PPFormula-CondensedBlack.png"-->
+  <!--    style="display: none"-->
+  <!--  />-->
 </template>
 <script setup>
 import DefaultPageLayout from '~/layout/DefaultPageLayout.vue';
