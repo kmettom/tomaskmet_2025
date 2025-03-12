@@ -16,7 +16,7 @@ export default defineNuxtPlugin((nuxtApp) => {
           arg: binding.arg,
         });
       } else {
-        const unwatch = watch(
+         watch(
           () => navigationStore.canvasInitialized,
           (newValue) => {
             if (newValue) {
@@ -25,7 +25,6 @@ export default defineNuxtPlugin((nuxtApp) => {
                 options: binding.value,
                 arg: binding.arg,
               });
-              unwatch();
             }
           },
         );
