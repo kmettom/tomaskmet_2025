@@ -16,7 +16,7 @@ export default {
   data() {
     return {
       show: false,
-      welcomeAniDuration: 0.0, //0.5
+      welcomeAniDuration: 3.0, //0.5
       welcomeAniDelay: 0.25, //0.25
       welcomeHideDuration: 0, //0.5
       welcomeHideDelay: 0.5, //0.5
