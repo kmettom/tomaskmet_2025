@@ -5,7 +5,7 @@
       class="webgl-img"
       :alt="alt"
       :src="srcLink"
-      :loading="loadStrategy === 'lazy' ? 'lazy' : 'eager'"
+      loading="eager"
       @load="addImageToCanvas"
     />
     <!--    @load="imageLoaded"-->
