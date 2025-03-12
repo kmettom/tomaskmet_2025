@@ -55,11 +55,18 @@ watch(
   { deep: true },
 );
 
+onMounted(() => {
+  htmlEl.value.dataset.meshId = meshId;
+});
+
+onBeforeUnmount(() => {
+  Canvas.removeMesh(meshId);
+});
+
 watch(
   () => navigationStore.canvasInitiated,
   (newVal) => {
     if (newVal) {
-      htmlEl.value.dataset.meshId = meshId;
       // delay canvas initialization to wait for font loaded
       setTimeout(() => {
         Canvas.addTextAsMSDF(
@@ -75,10 +82,6 @@ watch(
     }
   },
 );
-
-onBeforeUnmount(() => {
-  Canvas.removeMesh(meshId);
-});
 </script>
 
 <style lang="scss" scoped>

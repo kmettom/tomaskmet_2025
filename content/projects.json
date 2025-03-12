@@ -5,7 +5,7 @@
     "description": "Website for strategy consulting specialists. Minimalist design, with animated morphing svg elements. Based on Nuxt with WebGL elements and smooth scroll. Designed by <a href=\"https://jagodakondratiuk.com\" target=\"_blank\">Jagoda Kondratiuk</a>. ",
     "websiteLink": "https://www.ovpartners.net/",
     "image": {
-      "src": "images/01.png",
+      "src": "images/ovp.png",
       "alt": "image description",
       "size": {
         "width": "510px",
@@ -19,7 +19,7 @@
     "description": "DeFi insurance platform Ease.org decided to branch out to make meme coins saver. We have build couple of projects with safe meme coin launches protecting the users from hacks and rug-pulls. App based on Next under goat.trading",
     "websiteLink": "https://www.goat.trading/",
     "image": {
-      "src": "images/01.png",
+      "src": "images/goat.png",
       "alt": "image description",
       "size": {
         "width": "330px",

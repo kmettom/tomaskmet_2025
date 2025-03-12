@@ -57,11 +57,9 @@ const meshUniforms = computed(() => {
   return uni;
 });
 
-// onMounted(() => {
-//   if (image.value.naturalWidth !== 0) {
-//     addImageToCanvas();
-//   }
-// });
+onMounted(() => {
+  imageWrapper.value.dataset.meshId = generatedMeshId;
+});
 
 watch(
   () => navigationStore.canvasInitiated,

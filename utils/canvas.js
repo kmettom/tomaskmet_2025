@@ -425,7 +425,6 @@ const Canvas = {
 
     let geometry = new THREE.PlaneGeometry(1, 1);
 
-    imgHtmlEl.dataset.meshId = meshId;
     const texture = await loadTexture(imgHtmlEl.src);
     texture.needsUpdate = true;
 
