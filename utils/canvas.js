@@ -23,7 +23,7 @@ import TextBlurFragment from './shaders/TextBlurFragment.glsl';
 import TextBlurVertex from './shaders/TextBlurVertex.glsl';
 import {
   generateBindingLogic,
-  loadTexture,
+  // loadTexture,
   getMSDFFontMeshScales,
   heightPositionCoef,
 } from '~/utils/canvasHelpers';
@@ -423,7 +423,6 @@ const Canvas = {
 
     imgHtmlEl.dataset.meshId = meshId;
     const texture = await loadTexture(imgHtmlEl.src);
-    // const texture = new THREE.Texture(imgHtmlEl);
     texture.needsUpdate = true;
 
     let material = new THREE.ShaderMaterial({
@@ -439,7 +438,10 @@ const Canvas = {
         uMouseMovement: { value: new THREE.Vector2(0, 0) },
         uMeshSize: { value: new THREE.Vector2(bounds.width, bounds.height) },
         uTextureSize: {
-          value: new THREE.Vector2(texture.image.width, texture.image.height),
+          value: new THREE.Vector2(
+            texture.image.naturalWidth,
+            texture.image.naturalHeight,
+          ),
         },
         uViewport: {
           type: 'v2',
@@ -475,11 +477,11 @@ const Canvas = {
 
     this.imageStore.push(newMesh);
 
-    // if (meshUniforms.uAniIn) {
-    //   setTimeout(() => {
-    //     this.activateMesh(id, true);
-    //   }, 250);
-    // }
+    if (meshUniforms.uAniIn) {
+      setTimeout(() => {
+        this.activateMesh(meshId, true);
+      }, 0);
+    }
 
     this.setImageMeshPositions();
     if (mouseListeners) this.meshMouseListeners(newMesh, material);

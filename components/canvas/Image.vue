@@ -1,12 +1,12 @@
 <template>
-  <div class="webgl-img-wrapper" ref="imageWrapper">
+  <div ref="imageWrapper" class="webgl-img-wrapper">
     <img
       ref="image"
       class="webgl-img"
       alt="picture"
       :src="srcLink"
-      @load="addImageToCanvas"
       :loading="loadStrategy === 'lazy' ? 'lazy' : 'eager'"
+      @load="addImageToCanvas"
     />
     <!--    @load="imageLoaded"-->
     <!--    :preload="loadStrategy === 'preload'"-->
@@ -52,14 +52,14 @@ const meshUniforms = computed(() => {
 });
 
 onMounted(() => {
-  if (image.value && image.value.complete) {
+  if (image.value.naturalWidth !== 0) {
     addImageToCanvas();
   }
 });
 
-const addImageToCanvas = async () => {
+const addImageToCanvas = () => {
   if (imgAddedToCanvas.value) return;
-  await Canvas.addImageAsMesh(
+  Canvas.addImageAsMesh(
     image.value,
     props.shader,
     generatedMeshId,
