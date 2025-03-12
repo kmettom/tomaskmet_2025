@@ -55,7 +55,6 @@ const CanvasOptions = {
 };
 
 const Canvas = {
-  navigationStore: null,
   scrollInProgress: false,
   animateImageMesh: false,
   canvasContainer: null,

@@ -1,17 +1,35 @@
 import { Canvas } from '~/utils/canvas.js';
 import { defineNuxtPlugin } from '#app';
+import { watch } from 'vue';
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.directive('onScrollActivate', {
     mounted(el, binding) {
-      setTimeout(() => {
-        el.dataset.scrollActivateId = crypto.randomUUID();
+      el.dataset.scrollActivateId = crypto.randomUUID();
+
+      const navigationStore = useNavigationStore();
+
+      if (navigationStore.canvasInitiated) {
         Canvas.addOnScrollActivateElement({
           elNode: el,
           options: binding.value,
           arg: binding.arg,
         });
-      }, 0);
+      } else {
+        const unwatch = watch(
+          () => navigationStore.canvasInitialized,
+          (newValue) => {
+            if (newValue) {
+              Canvas.addOnScrollActivateElement({
+                elNode: el,
+                options: binding.value,
+                arg: binding.arg,
+              });
+              unwatch();
+            }
+          },
+        );
+      }
     },
     updated(el, binding) {
       Canvas.updateOnScrollActiveElement({
