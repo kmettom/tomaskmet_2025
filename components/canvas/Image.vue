@@ -3,7 +3,7 @@
     <img
       ref="image"
       class="webgl-img"
-      alt="picture"
+      :alt="alt"
       :src="srcLink"
       :loading="loadStrategy === 'lazy' ? 'lazy' : 'eager'"
       @load="addImageToCanvas"
@@ -15,8 +15,14 @@
 
 <script setup>
 import { Canvas } from '~/utils/canvas';
+const navigationStore = useNavigationStore();
 
 const props = defineProps({
+  alt: {
+    type: String,
+    default: 'picture',
+    // required: true,
+  },
   srcLink: {
     type: String,
     required: true,
@@ -51,11 +57,20 @@ const meshUniforms = computed(() => {
   return uni;
 });
 
-onMounted(() => {
-  if (image.value.naturalWidth !== 0) {
-    addImageToCanvas();
-  }
-});
+// onMounted(() => {
+//   if (image.value.naturalWidth !== 0) {
+//     addImageToCanvas();
+//   }
+// });
+
+watch(
+  () => navigationStore.canvasInitiated,
+  (newVal) => {
+    if (newVal && image.value.naturalWidth !== 0) {
+      addImageToCanvas();
+    }
+  },
+);
 
 const addImageToCanvas = () => {
   if (imgAddedToCanvas.value) return;

@@ -1,7 +1,6 @@
 import { gsap } from 'gsap';
 import * as THREE from 'three';
 
-import { FontLoader } from 'three/addons/loaders/FontLoader.js';
 import * as pkg from 'three-msdf-text-utils/build/bundle';
 
 import Scroll from './scroll.js';
@@ -102,11 +101,11 @@ const Canvas = {
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     this.canvasContainer.appendChild(this.renderer.domElement);
   },
-  init(canvasElement, scrollableContent) {
+  async init(canvasElement, scrollableContent) {
     this.canvasContainer = canvasElement;
     this.scrollableContent = scrollableContent;
 
-    this.loadFontMSDF();
+    await this.loadFontMSDF();
 
     this.initScroll();
 
@@ -298,7 +297,6 @@ const Canvas = {
     mouseListeners,
     meshUniforms,
   ) {
-    console.log('addTextAsMSDF');
     let vertexShader = this.options.default.textVertex;
     let fragmentShader = this.options.default.textFragment;
 

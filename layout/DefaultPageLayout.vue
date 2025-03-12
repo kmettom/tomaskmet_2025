@@ -34,9 +34,10 @@ const canvas = ref('canvas');
 
 const scrollableContent = ref('scrollableContent');
 
-onMounted(() => {
+onMounted(async () => {
   Display.init();
-  Canvas.init(canvas.value, scrollableContent.value);
+  await Canvas.init(canvas.value, scrollableContent.value);
+  navigationStore.canvasInitiated = true;
 });
 </script>
 

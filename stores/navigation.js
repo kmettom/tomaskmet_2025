@@ -13,6 +13,7 @@ import { defineStore } from 'pinia';
 
 export const useNavigationStore = defineStore('navigationStore', {
   state: () => ({
+    canvasInitiated: false,
     activeNavItem: 'home',
     navVisible: true,
     navContrastSwitched: false,

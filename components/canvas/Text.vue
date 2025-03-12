@@ -6,6 +6,7 @@
 
 <script setup>
 import { Canvas } from '~/utils/canvas';
+const navigationStore = useNavigationStore();
 
 const props = defineProps({
   shader: {
@@ -35,7 +36,7 @@ const meshUniforms = computed(() => {
   return uni;
 });
 
-onMounted(async () => {
+const getTrimmedText = () => {
   let innerHTML = htmlEl.value.innerHTML;
   //remove nuxt slot comment from innerHTML, only once
   if (innerHTML.includes('<!--]-->')) {
@@ -43,21 +44,8 @@ onMounted(async () => {
     const end = innerHTML.indexOf('<!--]-->'); // End just before '<!--]-->'
     innerHTML = innerHTML.slice(start, end);
   }
-
-  htmlEl.value.dataset.meshId = meshId;
-  // delay canvas initialization to wait for font loaded
-  setTimeout(() => {
-    Canvas.addTextAsMSDF(
-      props.shader,
-      meshId,
-      htmlEl.value,
-      innerHTML,
-      props.theme,
-      false,
-      meshUniforms.value,
-    );
-  }, 0);
-});
+  return innerHTML;
+};
 
 watch(
   () => props.uniforms,
@@ -67,13 +55,26 @@ watch(
   { deep: true },
 );
 
-// watch(
-//     () => props.theme,
-//     (uniforms) => {
-//       Canvas.meshUniformsUpdate(meshId, uniforms);
-//     },
-//     { deep: true },
-// );
+watch(
+  () => navigationStore.canvasInitiated,
+  (newVal) => {
+    if (newVal) {
+      htmlEl.value.dataset.meshId = meshId;
+      // delay canvas initialization to wait for font loaded
+      setTimeout(() => {
+        Canvas.addTextAsMSDF(
+          props.shader,
+          meshId,
+          htmlEl.value,
+          getTrimmedText(),
+          props.theme,
+          false,
+          meshUniforms.value,
+        );
+      }, 0);
+    }
+  },
+);
 
 onBeforeUnmount(() => {
   Canvas.removeMesh(meshId);
