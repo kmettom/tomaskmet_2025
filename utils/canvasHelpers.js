@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { FontLoader } from 'three/addons/loaders/FontLoader';
 
 export function generateBindingLogic(newBinding) {
   let binding = newBinding;
@@ -61,3 +62,17 @@ export function getMSDFFontMeshScales(boundsWidth, geometryWidth) {
 
   return { scaleX, scaleY };
 }
+
+export const loadFontAtlas = (path) => {
+  return new Promise((resolve) => {
+    const loader = new THREE.TextureLoader();
+    loader.load(path, resolve);
+  });
+};
+
+export const loadFont = (path) => {
+  return new Promise((resolve) => {
+    const loader = new FontLoader();
+    loader.load(path, resolve);
+  });
+};
