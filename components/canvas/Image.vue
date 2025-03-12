@@ -1,12 +1,15 @@
 <template>
-  <div class="webgl-img-wrapper">
+  <div class="webgl-img-wrapper" ref="imageWrapper">
     <img
       ref="image"
       class="webgl-img"
       alt="picture"
       :src="srcLink"
-      @load="imageLoaded"
+      @load="addImageToCanvas"
+      :loading="loadStrategy === 'lazy' ? 'lazy' : 'eager'"
     />
+    <!--    @load="imageLoaded"-->
+    <!--    :preload="loadStrategy === 'preload'"-->
   </div>
 </template>
 
@@ -26,12 +29,17 @@ const props = defineProps({
     type: Object,
     default: () => {},
   },
+  loadStrategy: {
+    type: String,
+    default: 'lazy',
+  },
 });
 
 const generatedMeshId = props.srcLink + crypto.randomUUID();
 
 const image = ref('image');
-const imgLoaded = ref(false);
+const imageWrapper = ref('imageWrapper');
+const imgAddedToCanvas = ref(false);
 
 const meshUniforms = computed(() => {
   const uni = {};
@@ -43,11 +51,14 @@ const meshUniforms = computed(() => {
   return uni;
 });
 
-onMounted(async () => {
-  addImageToCanvas(false);
+onMounted(() => {
+  if (image.value && image.value.complete) {
+    addImageToCanvas();
+  }
 });
 
-const addImageToCanvas = async (_timeout) => {
+const addImageToCanvas = async () => {
+  if (imgAddedToCanvas.value) return;
   await Canvas.addImageAsMesh(
     image.value,
     props.shader,
@@ -55,10 +66,7 @@ const addImageToCanvas = async (_timeout) => {
     false,
     meshUniforms.value,
   );
-};
-
-const imageLoaded = () => {
-  imgLoaded.value = true;
+  imgAddedToCanvas.value = true;
 };
 
 watch(

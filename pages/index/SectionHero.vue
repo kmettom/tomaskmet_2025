@@ -35,6 +35,7 @@
         :src-link="'images/hero.jpg'"
         :uniforms="imageUniforms"
         :shader="'hero'"
+        :load-strategy="'preload'"
       />
     </div>
   </div>

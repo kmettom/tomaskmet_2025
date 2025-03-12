@@ -423,6 +423,7 @@ const Canvas = {
 
     imgHtmlEl.dataset.meshId = meshId;
     const texture = await loadTexture(imgHtmlEl.src);
+    // const texture = new THREE.Texture(imgHtmlEl);
     texture.needsUpdate = true;
 
     let material = new THREE.ShaderMaterial({
