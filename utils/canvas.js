@@ -1,5 +1,6 @@
 import { gsap } from 'gsap';
 import * as THREE from 'three';
+import { FontLoader } from 'three/addons/loaders/FontLoader';
 
 import * as pkg from 'three-msdf-text-utils/build/bundle';
 
@@ -129,6 +130,18 @@ const Canvas = {
     });
   },
   async loadFontMSDF() {
+    const loadFontAtlas = (path) => {
+      return new Promise((resolve) => {
+        const loader = new THREE.TextureLoader();
+        loader.load(path, resolve);
+      });
+    };
+    const loadFont = (path) => {
+      return new Promise((resolve) => {
+        const loader = new FontLoader();
+        loader.load(path, resolve);
+      });
+    };
     await Promise.all([
       loadFontAtlas(CanvasOptions.fonts.PPFormula.atlas),
       loadFont(CanvasOptions.fonts.PPFormula.fnt),
