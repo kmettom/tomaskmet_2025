@@ -58,7 +58,7 @@ onMounted(async () => {
 }
 
 #animationContainer {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   max-height: 100%;
   position: fixed;
