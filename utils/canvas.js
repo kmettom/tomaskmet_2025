@@ -150,14 +150,17 @@ const Canvas = {
   },
   setResizeListener() {
     window.addEventListener('resize', () => {
-      this.width = this.canvasContainer.offsetWidth;
-      this.height = this.canvasContainer.offsetHeight;
-
-      this.setSize();
-
-      this.resizeImageStore();
-      this.resizeTextStore();
+      this.resizeOnChange()
     });
+  },
+  resizeOnChange(){
+    this.width = this.canvasContainer.offsetWidth;
+    this.height = this.canvasContainer.offsetHeight;
+
+    this.setSize();
+
+    this.resizeImageStore();
+    this.resizeTextStore();
   },
   resizeImageStore() {
     for (var i = 0; i < this.imageStore.length; i++) {
@@ -563,6 +566,10 @@ const Canvas = {
   },
 
   render() {
+    if(window.innerWidth < 768) {
+      this.width = this.canvasContainer.offsetWidth;
+      this.height = this.canvasContainer.offsetHeight;
+    }
     this.animations.cursorCallback();
     this.time += 0.05;
 

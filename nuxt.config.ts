@@ -1,16 +1,6 @@
 import { defineNuxtConfig } from 'nuxt/config';
 import glsl from 'vite-plugin-glsl';
 export default defineNuxtConfig({
-  app: {
-    head: {
-      meta: [
-        {
-          name: 'viewport',
-          content: 'width=device-width, minimum-scale=1.0',
-        },
-      ],
-    },
-  },
   devtools: { enabled: true },
   routeRules: {},
   modules: [
