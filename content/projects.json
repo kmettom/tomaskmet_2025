@@ -51,7 +51,7 @@
     "description": "DeFi insurance platform built on Vue.js. BrightUnion.io helps to navigate, search for and buy insurance covers for your crypto assets.",
     "websiteLink": "https://app.brightunion.io/",
     "image": {
-      "src": "images/bu.png",
+      "src": "images/bu.webp",
       "alt": "Mobile phone with an app open on the screen"
     },
     "position": {
