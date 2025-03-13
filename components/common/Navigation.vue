@@ -15,6 +15,7 @@
         :ref="navItemRefs.set"
         v-set-data-attrs="{ cursorsize: 30, cursoropacity: 0.7 }"
         class="navigation-item"
+        :style="`pointer-events: ${navigationStore.projects.galleryOpen ? 'none' : 'auto'};`"
         :class="{ active: activeNav === navItem.id }"
         @click="goToSection(navItem.id)"
         @mouseenter="navigationHoverAnimate(index)"
