@@ -142,6 +142,9 @@ watch(
     @include respond-width($w-m-s) {
       bottom: 20px;
     }
+    @include respond-width($w-s) {
+      bottom: 0;
+    }
   }
 }
 

@@ -50,6 +50,7 @@ const getTrimmedText = () => {
 watch(
   () => props.uniforms,
   (uniforms) => {
+    if (Display.isMobile) return;
     Canvas.meshUniformsUpdate(meshId, uniforms);
   },
   { deep: true },
@@ -66,20 +67,19 @@ onBeforeUnmount(() => {
 watch(
   () => navigationStore.canvasInitiated,
   (newVal) => {
-    if (newVal) {
-      // delay canvas initialization to wait for font loaded
-      setTimeout(() => {
-        Canvas.addTextAsMSDF(
-          props.shader,
-          meshId,
-          htmlEl.value,
-          getTrimmedText(),
-          props.theme,
-          false,
-          meshUniforms.value,
-        );
-      }, 0);
-    }
+    if (Display.isMobile || !newVal) return;
+    // delay canvas initialization to wait for font loaded
+    setTimeout(() => {
+      Canvas.addTextAsMSDF(
+        props.shader,
+        meshId,
+        htmlEl.value,
+        getTrimmedText(),
+        props.theme,
+        false,
+        meshUniforms.value,
+      );
+    }, 0);
   },
 );
 </script>
@@ -88,5 +88,8 @@ watch(
 .text-wrapper {
   opacity: 0;
   display: inline-block;
+  @include respond-width($w-s) {
+    opacity: 1;
+  }
 }
 </style>
