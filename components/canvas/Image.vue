@@ -95,7 +95,7 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
-.webgl-img-wrapper{
+.webgl-img-wrapper {
   @include respond-width($w-s) {
     overflow: hidden;
   }
