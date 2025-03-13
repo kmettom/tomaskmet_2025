@@ -2,7 +2,7 @@
   <div class="webgl-img-wrapper">
     <img
       ref="image"
-      :style="`opacity:${Display.isMobile ? '1': '0'}`"
+      :style="`opacity:${Display.isMobile ? '1' : '0'}`"
       class="webgl-img"
       :alt="alt"
       :src="srcLink"
