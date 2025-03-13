@@ -182,11 +182,11 @@ $nameSize: 30px;
   max-width: 100%;
   max-height: 100%;
   @include respond-width($w-s) {
-    max-height: 500px;
+    //max-height: 500px;
     max-width: 500px;
   }
   @include respond-width($w-xs) {
-    max-height: 300px;
+    //max-height: 300px;
     max-width: 300px;
   }
   * {

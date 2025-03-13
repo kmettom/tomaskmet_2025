@@ -40,7 +40,6 @@ export function openGalleryTransition(
         resolve();
       },
     });
-
     timeline.to('.gallery-controls-margin', {
       duration: aniDuration,
       height: `${projectMargin * 100}vh`,
@@ -62,7 +61,7 @@ export function openGalleryTransition(
       {
         duration: aniDuration,
         width: galleryWidthHalfPx,
-        height: '30vh',
+        height: '65vh',
       },
       '<+=0.15',
     );
