@@ -150,10 +150,10 @@ const Canvas = {
   },
   setResizeListener() {
     window.addEventListener('resize', () => {
-      this.resizeOnChange()
+      this.resizeOnChange();
     });
   },
-  resizeOnChange(){
+  resizeOnChange() {
     this.width = this.canvasContainer.offsetWidth;
     this.height = this.canvasContainer.offsetHeight;
 
@@ -566,9 +566,8 @@ const Canvas = {
   },
 
   render() {
-    if(window.innerWidth < 768) {
-      this.width = this.canvasContainer.offsetWidth;
-      this.height = this.canvasContainer.offsetHeight;
+    if (window.innerWidth < 768) {
+      this.resizeOnChange();
     }
     this.animations.cursorCallback();
     this.time += 0.05;
