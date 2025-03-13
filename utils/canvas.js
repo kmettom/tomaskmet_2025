@@ -566,9 +566,6 @@ const Canvas = {
   },
 
   render() {
-    if (window.innerWidth < 768) {
-      this.resizeOnChange();
-    }
     this.animations.cursorCallback();
     this.time += 0.05;
 
