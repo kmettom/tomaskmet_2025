@@ -1,5 +1,9 @@
 <template>
-  <span ref="htmlEl" class="text-wrapper">
+  <span
+    ref="htmlEl"
+    class="text-wrapper"
+    :style="`opacity:${Display.isMobile ? '1' : '0'}`"
+  >
     <slot />
   </span>
 </template>
@@ -66,7 +70,7 @@ onBeforeUnmount(() => {
 watch(
   () => navigationStore.canvasInitiated,
   (newVal) => {
-    if (newVal) {
+    if (newVal && !Display.isMobile) {
       // delay canvas initialization to wait for font loaded
       setTimeout(() => {
         Canvas.addTextAsMSDF(
