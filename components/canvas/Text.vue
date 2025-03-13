@@ -1,9 +1,5 @@
 <template>
-  <span
-    ref="htmlEl"
-    class="text-wrapper"
-    :style="`opacity:${Display.isMobile ? '1' : '0'}`"
-  >
+  <span ref="htmlEl" class="text-wrapper">
     <slot />
   </span>
 </template>
@@ -28,7 +24,7 @@ const props = defineProps({
 });
 
 const htmlEl = ref('htmlEl');
-const meshId = 'text' + crypto.randomUUID();
+const meshId = 'text'+crypto.randomUUID();
 
 const meshUniforms = computed(() => {
   const uni = {};
@@ -70,7 +66,7 @@ onBeforeUnmount(() => {
 watch(
   () => navigationStore.canvasInitiated,
   (newVal) => {
-    if (newVal && !Display.isMobile) {
+    if (newVal) {
       // delay canvas initialization to wait for font loaded
       setTimeout(() => {
         Canvas.addTextAsMSDF(
