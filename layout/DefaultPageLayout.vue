@@ -12,7 +12,6 @@
     <div
       id="animationContainer"
       ref="canvas"
-      :style="`${windowHeight !== 0 ? windowHeight : '100vh'}`"
       :class="{ 'back-layer': backLayerCanvas }"
     />
   </div>
@@ -24,7 +23,7 @@ import { Canvas } from '~/utils/canvas';
 // import { SpeedInsights } from '@vercel/speed-insights/nuxt';
 
 const navigationStore = useNavigationStore();
-const windowHeight = ref(0)
+
 const backLayerCanvas = computed(() => {
   return (
     navigationStore.activeNavItem === 'home' || !navigationStore.navVisible
@@ -36,7 +35,6 @@ const canvas = ref('canvas');
 const scrollableContent = ref('scrollableContent');
 
 onMounted(async () => {
-  windowHeight.value = window.innerHeight;
   Display.init();
   await Canvas.init(canvas.value, scrollableContent.value);
   navigationStore.canvasInitiated = true;
@@ -44,18 +42,11 @@ onMounted(async () => {
 </script>
 
 <style lang="scss">
-#appContainer {
-  position: absolute;
-  top: 0.5px;
-  left: 0;
-  right: 0;
-  bottom: 0.5px;
-}
 #scrollContainer {
   position: fixed;
   left: 0;
   top: 0;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   overflow: hidden;
   margin: 0;
