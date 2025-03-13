@@ -2,7 +2,6 @@
   <div class="webgl-img-wrapper">
     <img
       ref="image"
-      :style="`opacity:${Display.isMobile ? '1' : '0'}`"
       class="webgl-img"
       :alt="alt"
       :src="srcLink"
@@ -58,7 +57,7 @@ const meshUniforms = computed(() => {
 });
 
 const addImageToCanvas = () => {
-  if (imgAddedToCanvas.value || Display.isMobile) return;
+  if (imgAddedToCanvas.value) return;
   Canvas.addImageAsMesh(
     image.value,
     props.shader,
