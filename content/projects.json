@@ -5,7 +5,7 @@
     "description": "Website for strategy consulting specialists. Minimalist design, with animated morphing svg elements. Based on Nuxt with WebGL elements and smooth scroll. Designed by <a href=\"https://jagodakondratiuk.com\" target=\"_blank\">Jagoda Kondratiuk</a>. ",
     "websiteLink": "https://www.ovpartners.net/",
     "image": {
-      "src": "images/ovp.png",
+      "src": "images/ovp.webp",
       "alt": "image description",
       "size": {
         "width": "510px",
@@ -19,7 +19,7 @@
     "description": "DeFi insurance platform Ease.org decided to branch out to make meme coins saver. We have build couple of projects with safe meme coin launches protecting the users from hacks and rug-pulls. App based on Next under goat.trading",
     "websiteLink": "https://www.goat.trading/",
     "image": {
-      "src": "images/goat.png",
+      "src": "images/goat.webp",
       "alt": "image description",
       "size": {
         "width": "330px",
@@ -37,7 +37,7 @@
     "description": "Portfolio website for designer Jagoda Kondratiuk. No framework used, with help of Request Animation Frame for smooth scroll and transitions.",
     "websiteLink": "https://jagodakondratiuk.com/",
     "image": {
-      "src": "images/jk.jpeg",
+      "src": "images/jk.webp",
       "alt": "image description",
       "size": {
         "width": "1050px",
@@ -65,7 +65,7 @@
     "description": "Shopify e-commerce website for a high end skin care product.",
     "websiteLink": "https://neosephiri.com/",
     "image": {
-      "src": "images/neo.jpeg",
+      "src": "images/neo.webp",
       "alt": "image description",
       "size": {
         "width": "1050px",
