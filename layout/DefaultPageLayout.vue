@@ -60,6 +60,7 @@ onMounted(async () => {
 #animationContainer {
   width: 100vw;
   height: 100vh;
+  max-height: 100%;
   position: fixed;
   top: 0;
   left: 0;
@@ -69,6 +70,10 @@ onMounted(async () => {
   z-index: 0; //-1
   &.back-layer {
     z-index: -1; //-1
+  }
+  @include respond-width($w-s){
+    height: 100%;
+    max-height: 100%;
   }
 }
 </style>
