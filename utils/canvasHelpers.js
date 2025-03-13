@@ -6,7 +6,7 @@ export function generateBindingLogic(newBinding) {
     newBinding?.elNode?.dataset?.activeScroll ?? 'false';
   binding.containedMeshIds = [];
   if (!binding.options.trackOnly) {
-    binding.containedMeshIds = findMeshIDs(binding.elNode, false);
+    binding.containedMeshIds = findMeshIDs(binding.elNode);
     binding.elNode.classList.add('show-on-scroll');
   }
 
@@ -23,11 +23,10 @@ export function generateBindingLogic(newBinding) {
   return binding;
 }
 
-export function findMeshIDs(elParent, isActiveScroll) {
+export function findMeshIDs(elParent) {
   let meshIds = [];
 
   if (elParent.dataset.meshId) {
-    elParent.dataset.scrollActive = isActiveScroll ? 'true' : undefined;
     meshIds.push(elParent.dataset.meshId);
     return meshIds;
   }
@@ -35,7 +34,6 @@ export function findMeshIDs(elParent, isActiveScroll) {
   let elementsWithMesh = elParent.querySelectorAll('[data-mesh-id]');
   if (!elementsWithMesh || elementsWithMesh.length === 0) return false;
   for (const el of elementsWithMesh) {
-    el.dataset.scrollActive = isActiveScroll ? 'true' : undefined;
     meshIds.push(el.dataset.meshId);
   }
   return meshIds;
@@ -60,4 +58,13 @@ export function getMSDFFontMeshScales(boundsWidth, geometryWidth) {
   const scaleY = -1 * scaleX * heightSizeCoef;
 
   return { scaleX, scaleY };
+}
+
+export function setScrollActiveElements(elNode, meshIds, state) {
+  //TODO: carry the Html mesh elements in the item, make it as class Typescript
+  if (!meshIds || meshIds.length === 0) return;
+  for (const id of meshIds) {
+    const el = elNode.querySelector(`[data-mesh-id="${id}"]`);
+    el.dataset.activeScroll = state;
+  }
 }

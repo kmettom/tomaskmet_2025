@@ -1,4 +1,5 @@
 import { Canvas } from './canvas';
+import { setScrollActiveElements } from '~/utils/canvasHelpers';
 
 const lerp = (a, b, n) => (1 - n) * a + n * b;
 
@@ -71,10 +72,12 @@ export default class Scroll {
   setElementActive(item, isActive) {
     if (isActive) {
       item.elNode.dataset.activeScroll = 'true';
+      setScrollActiveElements(item.elNode, item.containedMeshIds, 'true');
       item.elNode.classList.add('active');
       Canvas.onActiveElCallback(item);
     } else {
       item.elNode.dataset.activeScroll = 'false';
+      setScrollActiveElements(item.elNode, item.containedMeshIds, 'false');
       if (!item.trackOnly) item.elNode.classList.remove('active');
     }
 

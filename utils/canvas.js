@@ -401,7 +401,7 @@ const Canvas = {
 
     this.setTextMeshPositions();
 
-    if (htmlEl.dataset.scrollActive === 'true') {
+    if (htmlEl.dataset.activeScroll === 'true') {
       this.activateMesh(meshId, true);
     }
 
@@ -483,7 +483,7 @@ const Canvas = {
 
     this.imageStore.push(newMesh);
 
-    if (meshUniforms.uAniIn || imgHtmlEl.dataset.scrollActive === 'true') {
+    if (meshUniforms.uAniIn || imgHtmlEl.dataset.activeScroll === 'true') {
       setTimeout(() => {
         this.activateMesh(meshId, true);
       }, 0);
