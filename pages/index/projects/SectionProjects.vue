@@ -164,7 +164,12 @@ $marginRight: 50px;
   border: none;
   cursor: pointer;
   @include respond-width($w-xs) {
-    background: rgba(0,0,0, 0.5); /* Transparent white background with 10% opacity */
+    background: rgba(
+      0,
+      0,
+      0,
+      0.5
+    ); /* Transparent white background with 10% opacity */
     backdrop-filter: blur(10px); /* Applies the blur effect */
     -webkit-backdrop-filter: blur(10px); /* Ensures compatibility with Safari */
     font-size: 12px;
