@@ -57,7 +57,7 @@ const meshUniforms = computed(() => {
 });
 
 const addImageToCanvas = () => {
-  if (imgAddedToCanvas.value) return;
+  if (imgAddedToCanvas.value || Display.isMobile) return;
   Canvas.addImageAsMesh(
     image.value,
     props.shader,
@@ -95,9 +95,20 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
+.webgl-img-wrapper{
+  @include respond-width($w-s) {
+    overflow: hidden;
+  }
+}
 .webgl-img {
   max-width: 100%;
   max-height: 100%;
   opacity: 0;
+  @include respond-width($w-s) {
+    opacity: 1;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
 }
 </style>

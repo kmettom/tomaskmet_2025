@@ -180,6 +180,10 @@ watch(
   * {
     width: 100%;
     height: 100%;
+    @include respond-width($w-s) {
+      width: initial;
+      height: initial;
+    }
   }
 }
 </style>

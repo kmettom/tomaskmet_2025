@@ -154,8 +154,7 @@ const Canvas = {
     });
   },
   resizeOnChange() {
-    // this.setSize();
-
+    this.setSize();
     this.resizeImageStore();
     this.resizeTextStore();
   },
