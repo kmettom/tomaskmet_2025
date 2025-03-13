@@ -36,6 +36,7 @@
         :uniforms="imageUniforms"
         :shader="'hero'"
         :load-strategy="'preload'"
+        :alt="'background portrait image of a person'"
       />
     </div>
   </div>

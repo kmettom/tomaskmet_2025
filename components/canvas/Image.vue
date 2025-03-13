@@ -22,7 +22,6 @@ const props = defineProps({
   alt: {
     type: String,
     default: 'picture',
-    // required: true,
   },
   srcLink: {
     type: String,

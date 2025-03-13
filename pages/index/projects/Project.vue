@@ -138,6 +138,7 @@ watch(
         <CanvasImage
           :src-link="project.image.src"
           :uniforms="projectImageUniforms"
+          :alt="project.alt"
         />
       </div>
 

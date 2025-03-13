@@ -6,7 +6,7 @@
     "websiteLink": "https://www.ovpartners.net/",
     "image": {
       "src": "images/ovp.webp",
-      "alt": "image description",
+      "alt": "Building construction from bottom with blue sky",
       "size": {
         "width": "510px",
         "height": "600px"
@@ -20,7 +20,7 @@
     "websiteLink": "https://www.goat.trading/",
     "image": {
       "src": "images/goat.webp",
-      "alt": "image description",
+      "alt": "Mobile phone with an app open on the screen",
       "size": {
         "width": "330px",
         "height": "338px"
@@ -38,7 +38,7 @@
     "websiteLink": "https://jagodakondratiuk.com/",
     "image": {
       "src": "images/jk.webp",
-      "alt": "image description",
+      "alt": "Designer portrait with for the project jagodakondratiuk.com",
       "size": {
         "width": "1050px",
         "height": "600px"
@@ -52,7 +52,7 @@
     "websiteLink": "https://app.brightunion.io/",
     "image": {
       "src": "images/bu.png",
-      "alt": "image description"
+      "alt": "Mobile phone with an app open on the screen"
     },
     "position": {
       "alignRight": true
@@ -66,7 +66,7 @@
     "websiteLink": "https://neosephiri.com/",
     "image": {
       "src": "images/neo.webp",
-      "alt": "image description",
+      "alt": "Woman holding a melon",
       "size": {
         "width": "1050px",
         "height": "600px"
