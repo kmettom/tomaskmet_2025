@@ -58,7 +58,6 @@ onMounted(async () => {
 }
 
 #animationContainer {
-  border: 2px solid red;
   width: 100%;
   height: 100vh;
   max-height: 100%;

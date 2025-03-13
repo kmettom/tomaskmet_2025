@@ -152,19 +152,8 @@ const Canvas = {
     window.addEventListener('resize', () => {
       this.resizeOnChange();
     });
-    // const canvas = document.getElementById('animationContainer');
-    // const resizeObserver = new ResizeObserver((entries) => {
-    //   for (let entry of entries) {
-    //     this.width = canvas.width = Math.round(entry.contentRect.width);
-    //     this.height = canvas.height = Math.round(entry.contentRect.height);
-    //   }
-    // });
-    // resizeObserver.observe(canvas);
   },
   resizeOnChange() {
-    this.width = this.canvasContainer.offsetWidth;
-    this.height = this.canvasContainer.offsetHeight;
-
     this.setSize();
 
     this.resizeImageStore();
