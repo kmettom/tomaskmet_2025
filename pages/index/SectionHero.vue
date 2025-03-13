@@ -177,6 +177,9 @@ watch(
   height: 100%;
   width: 50%;
   z-index: -1;
+  @include respond-width($w-s) {
+    filter: blur(15px);
+  }
   * {
     width: 100%;
     height: 100%;
