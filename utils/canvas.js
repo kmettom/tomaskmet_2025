@@ -220,7 +220,6 @@ const Canvas = {
       });
     }
   },
-
   activateMesh(id, isActive) {
     const mesh = this.scene.getObjectByName(id);
     if (!mesh) {
@@ -402,6 +401,10 @@ const Canvas = {
 
     this.setTextMeshPositions();
 
+    if (htmlEl.dataset.scrollActive === 'true') {
+      this.activateMesh(meshId, true);
+    }
+
     if (mouseListeners) this.meshMouseListeners(newMesh, material);
   },
   async addImageAsMesh(
@@ -480,7 +483,7 @@ const Canvas = {
 
     this.imageStore.push(newMesh);
 
-    if (meshUniforms.uAniIn) {
+    if (meshUniforms.uAniIn || imgHtmlEl.dataset.scrollActive === 'true') {
       setTimeout(() => {
         this.activateMesh(meshId, true);
       }, 0);
