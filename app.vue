@@ -60,3 +60,7 @@ const welcomeFinished = () => {
   contentActive.value = true;
 };
 </script>
+
+<head>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0">
+</head>
