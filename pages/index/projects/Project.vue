@@ -181,6 +181,10 @@ $nameSize: 30px;
   position: relative;
   max-width: 100%;
   max-height: 100%;
+  @include respond-width($w-s) {
+    max-height: 300px;
+    max-width: 300px;
+  }
   * {
     position: relative;
     width: 100%;
