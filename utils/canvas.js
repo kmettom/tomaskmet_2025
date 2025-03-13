@@ -152,7 +152,7 @@ const Canvas = {
     window.addEventListener('resize', () => {
       this.resizeOnChange();
     });
-    const resizeObserver = new ResizeObserver(entries => {
+    const resizeObserver = new ResizeObserver((entries) => {
       for (let entry of entries) {
         const dpr = window.devicePixelRatio || 1;
         this.width = Math.round(entry.contentRect.width * dpr);

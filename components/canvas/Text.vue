@@ -24,7 +24,7 @@ const props = defineProps({
 });
 
 const htmlEl = ref('htmlEl');
-const meshId = 'text'+crypto.randomUUID();
+const meshId = 'text' + crypto.randomUUID();
 
 const meshUniforms = computed(() => {
   const uni = {};
