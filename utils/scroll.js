@@ -34,7 +34,8 @@ export default class Scroll {
   }
 
   getScroll() {
-    this.current = window.scrollY || document.documentElement.scrollTop;
+    this.current = window.pageYOffset || document.documentElement.scrollTop;
+    // window.scrollY
   }
 
   resizeMobileBreakEvents() {
