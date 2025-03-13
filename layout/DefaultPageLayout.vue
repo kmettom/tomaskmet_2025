@@ -66,8 +66,7 @@ onMounted(async () => {
   right: 0;
   margin: 0 auto;
   pointer-events: none;
-  z-index: -1; //-1
-  //z-index: 0; //-1
+  z-index: 0; //-1
   &.back-layer {
     z-index: -1; //-1
   }
