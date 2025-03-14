@@ -11,7 +11,10 @@ const Display = {
     });
   },
   setScreenSize() {
-    if ((window.innerWidth < this.mobileBreakPoint && this.isMobile === false) || (window.innerWidth >= this.mobileBreakPoint && this.isMobile === true)) {
+    if (
+      (window.innerWidth < this.mobileBreakPoint && this.isMobile === false) ||
+      (window.innerWidth >= this.mobileBreakPoint && this.isMobile === true)
+    ) {
       window.location.reload();
     }
     this.isMobile = window.innerWidth < this.mobileBreakPoint;
