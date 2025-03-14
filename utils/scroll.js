@@ -1,5 +1,8 @@
 import { Canvas } from './canvas';
-import { setScrollActiveElements } from '~/utils/canvasHelpers';
+import {
+  elementNearViewport,
+  setScrollActiveElements,
+} from '~/utils/canvasHelpers';
 
 const lerp = (a, b, n) => (1 - n) * a + n * b;
 
@@ -91,34 +94,38 @@ export default class Scroll {
     if (this.DOM.onScrollActivateElements.length === 0) return;
     for (const item of this.DOM.onScrollActivateElements) {
       const bounds = item.elNode.getBoundingClientRect();
-
-      let activeRange = item.options.activeRange ?? 1;
-      let activeRangeOrigin = item.options.activeRangeOrigin ?? 1;
-
-      let activeRangeOriginPx = activeRangeOrigin * window.innerHeight;
-
-      let activeRangeInPx = (1 - activeRange) * activeRangeOriginPx;
-
       const itemRangeMargin = item.options.activeRangeMargin ?? 0;
-      const activeFromTop =
-        bounds.top - itemRangeMargin <= activeRangeOriginPx - activeRangeInPx;
-      const activeFromBottom =
-        !item.options.bidirectionalActivation ||
-        bounds.bottom - itemRangeMargin >=
-          activeRangeInPx + activeRangeOriginPx;
+      let elementTrack = elementNearViewport(bounds, 200 + itemRangeMargin);
+      //TODO: make better logic for elementNearViewport, to include trackOnly nav
+      if (elementTrack || item.options.trackOnly) {
+        let activeRange = item.options.activeRange ?? 1;
+        let activeRangeOrigin = item.options.activeRangeOrigin ?? 1;
 
-      if (activeFromTop && activeFromBottom) {
-        if (item.options.onScrollCallback)
-          item.options.onScrollCallback(item, this.speed);
-        if (item.elNode.dataset.activeScroll !== 'true') {
-          this.setElementActive(item, true);
-        }
-      } else {
-        if (
-          item.elNode.dataset.activeScroll === 'true' &&
-          !item.options.activateOnce
-        ) {
-          this.setElementActive(item, false);
+        let activeRangeOriginPx = activeRangeOrigin * window.innerHeight;
+
+        let activeRangeInPx = (1 - activeRange) * activeRangeOriginPx;
+
+        const itemRangeMargin = item.options.activeRangeMargin ?? 0;
+        const activeFromTop =
+          bounds.top - itemRangeMargin <= activeRangeOriginPx - activeRangeInPx;
+        const activeFromBottom =
+          !item.options.bidirectionalActivation ||
+          bounds.bottom - itemRangeMargin >=
+            activeRangeInPx + activeRangeOriginPx;
+
+        if (activeFromTop && activeFromBottom) {
+          if (item.options.onScrollCallback)
+            item.options.onScrollCallback(item, this.speed);
+          if (item.elNode.dataset.activeScroll !== 'true') {
+            this.setElementActive(item, true);
+          }
+        } else {
+          if (
+            item.elNode.dataset.activeScroll === 'true' &&
+            !item.options.activateOnce
+          ) {
+            this.setElementActive(item, false);
+          }
         }
       }
 
@@ -132,11 +139,14 @@ export default class Scroll {
             : false;
 
         if (item.options.fixToParentId) {
-          const containerBottom =
-            item.containerEl.getBoundingClientRect().bottom;
+          const containerBounds = item.containerEl.getBoundingClientRect();
+          // const containerTrack = elementNearViewport(containerBounds);
+          // if(containerTrack){
+          //
+          // }
           if (
             bounds.top < item.margin &&
-            containerBottom > item.margin + this.scrollSpeedBottomMargin
+            containerBounds.bottom > item.margin + this.scrollSpeedBottomMargin
           ) {
             const fixedPosition = item.margin - bounds.top;
             item.childEl.style.transform = `translate3d(0,${fixedPosition}px,0)`;

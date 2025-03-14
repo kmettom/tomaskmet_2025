@@ -75,9 +75,9 @@ watch(
       activateCallback: () => {
         navigationStore.setActiveProject(props.index);
       },
-      scrollSpeed: navigationStore.projects.galleryOpen
-        ? 0
-        : props.project.scrollSpeed,
+      // scrollSpeed: navigationStore.projects.galleryOpen
+      //   ? 0
+      //   : props.project.scrollSpeed,
     }"
     :class="projectElClasses"
   >

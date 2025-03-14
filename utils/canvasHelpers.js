@@ -68,3 +68,7 @@ export function setScrollActiveElements(elNode, meshIds, state) {
     el.dataset.activeScroll = state;
   }
 }
+
+export function elementNearViewport(bounds, margin = 200) {
+  return bounds.top >= -margin && bounds.bottom <= window.innerHeight;
+}
