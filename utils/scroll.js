@@ -61,7 +61,7 @@ export default class Scroll {
   }
 
   setSize() {
-    // set the heigh of the body in order to keep the scrollbar on the page
+    // set the height of the body in order to keep the scrollbar on the page
     document.body.style.height =
       this.DOM.scrollable.scrollHeight > window.innerHeight
         ? `${this.DOM.scrollable.scrollHeight}px`
