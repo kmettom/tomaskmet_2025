@@ -12,8 +12,7 @@ varying float vNoise;
 // Generic uniforms
 uniform float uTime;
 uniform float uHover;
-uniform float uAniIn;
-uniform float uAniInBlur;
+uniform float uAniInText;
 uniform float uDevicePixelRatio;
 uniform vec2 uViewport;
 uniform vec2 uMouse;
@@ -64,7 +63,7 @@ float createOverlay(float activeOverlay) {
 }
 
 void main() {
-  float overlayOpacity = createOverlay(uAniIn);
+  float overlayOpacity = createOverlay(uAniInText);
   float circleTrail = createCircleTrail(1.0);
   vec2 newUv = vUv;
 
@@ -73,7 +72,7 @@ void main() {
 
   float sigDist =
     median(mySampleRGB.r, mySampleRGB.g, mySampleRGB.b) -
-    DISTANCE_COEF / uAniIn / circleTrail;
+    DISTANCE_COEF / uAniInText / circleTrail;
   float fill = clamp(sigDist / fwidth(sigDist) + DISTANCE_COEF, 0.0, 1.0);
 
   float finalAlpha = fill * overlayOpacity * circleTrail;

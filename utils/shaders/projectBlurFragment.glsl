@@ -5,7 +5,7 @@ uniform sampler2D uImage;
 
 uniform float uHover;
 uniform vec2 uMouse;
-uniform float uAniIn;
+uniform float uAniInImage;
 uniform float uImageGallery;
 uniform float uImageGalleryActive;
 
@@ -124,7 +124,7 @@ void main() {
     uv.x = uv.x * scale + (1.0 - scale) / 2.0; // Center the texture horizontally
   }
 
-  float newAniIn = max(uAniIn, uImageGallery);
+  float newAniIn = max(uAniInImage, uImageGallery);
   float overlayOpacity = createOverlayOpacity(newAniIn);
 
   // Apply sepia to the texture color

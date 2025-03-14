@@ -219,14 +219,14 @@ const Canvas = {
       console.error('no Mesh found with ID: ' + id);
       return;
     }
-    gsap.to(mesh.material.uniforms.uAniIn, {
-      duration: 1.5, // 1.25
-      value: isActive ? 1 : 0,
-    });
-    gsap.to(mesh.material.uniforms.uAniInBlur, {
-      // delay: 0,
+    gsap.to(mesh.material.uniforms.uAniImage, {
       duration: 1.5,
       value: isActive ? 1 : 0,
+    });
+    gsap.to(mesh.material.uniforms.uAniInText, {
+      duration: 1.5,
+      value: isActive ? 1 : 0,
+      ease: 'power2.inOut',
     });
   },
 
