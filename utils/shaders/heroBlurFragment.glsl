@@ -111,8 +111,7 @@ void main() {
 
   float overlayOpacity = createOverlayOpacity(uAniIn);
 
-  float blurStrength =
-    1.0 * circle * (overlayBlur * uAniInBlur);
+  float blurStrength = 1.0 * circle * (overlayBlur * uAniInBlur);
 
   vec3 originalColor = blur(uv, uImage, 0.06, blurStrength);
   vec4 final = vec4(originalColor, overlayOpacity);

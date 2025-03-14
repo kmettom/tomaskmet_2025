@@ -477,7 +477,7 @@ const Canvas = {
     this.imageStore.push(newMesh);
 
     if (meshUniforms.uAniIn || imgHtmlEl.dataset.activeScroll === 'true') {
-        this.activateMesh(meshId, true);
+      this.activateMesh(meshId, true);
     }
 
     this.setImageMeshPositions();
