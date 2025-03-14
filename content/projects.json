@@ -41,7 +41,7 @@
       "alt": "Designer portrait with for the project jagodakondratiuk.com",
       "size": {
         "width": "1050px",
-        "height": "600px"
+        "height": "400px"
       }
     }
   },
@@ -52,7 +52,11 @@
     "websiteLink": "https://app.brightunion.io/",
     "image": {
       "src": "images/bu.webp",
-      "alt": "Mobile phone with an app open on the screen"
+      "alt": "Mobile phone with an app open on the screen",
+      "size": {
+        "width": "510px",
+        "height": "600px"
+      }
     },
     "position": {
       "alignRight": true
@@ -69,7 +73,7 @@
       "alt": "Woman holding a melon",
       "size": {
         "width": "1050px",
-        "height": "600px"
+        "height": "400px"
       }
     }
   }
