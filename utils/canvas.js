@@ -119,12 +119,6 @@ const Canvas = {
     window.addEventListener('mousemove', (event) => {
       this.mouse.x = event.clientX / this.width;
       this.mouse.y = event.clientY / this.height;
-      setTimeout(() => {
-        this.mouse.xPrev = event.clientX / this.width;
-        this.mouse.yPrev = event.clientY / this.height;
-      }, 50);
-      this.mouse.movementX = event.movementX / this.width;
-      this.mouse.movementY = event.movementY / this.height;
     });
   },
   async loadFontMSDF() {
@@ -483,9 +477,7 @@ const Canvas = {
     this.imageStore.push(newMesh);
 
     if (meshUniforms.uAniIn || imgHtmlEl.dataset.activeScroll === 'true') {
-      setTimeout(() => {
         this.activateMesh(meshId, true);
-      }, 0);
     }
 
     this.setImageMeshPositions();

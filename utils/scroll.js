@@ -19,7 +19,6 @@ export default class Scroll {
     this.speed = 0;
     this.speedTarget = 0;
     this.scrollSpeedBottomMargin = 250;
-    this.scrollOnTrigger = false;
 
     this.setSize();
     this.getScroll();
@@ -202,11 +201,6 @@ export default class Scroll {
       this.scrollRenderToFluid(scrollTo);
     } else if (scrollTo !== undefined && fluid === false) {
       this.scrollRenderTo(scrollTo);
-    } else if (this.scrollOnTrigger) {
-      //TODO: finish logic of scroll on trigger sections
-      this.scrollToRender = Math.round(
-        lerp(this.scrollToRender, this.current, this.ease),
-      );
     } else {
       this.scrollToRender = Math.round(
         lerp(this.scrollToRender, this.current, this.ease),

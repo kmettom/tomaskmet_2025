@@ -118,7 +118,7 @@ export const useNavigationStore = defineStore('navigationStore', {
         window.scrollY -
         window.innerHeight * projectDefaults.margin;
       Canvas.scrollTo(projectPosition, scrollDelay);
-      const scrollDurationEnd = scrollDelay + 0.1;
+      const scrollDurationEnd = scrollDelay + 0.2;
       return new Promise((resolve) => {
         setTimeout(() => {
           gsap.set('body', { overflow: 'hidden' });
