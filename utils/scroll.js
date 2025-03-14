@@ -95,7 +95,7 @@ export default class Scroll {
     for (const item of this.DOM.onScrollActivateElements) {
       const bounds = item.elNode.getBoundingClientRect();
       const itemRangeMargin = item.options.activeRangeMargin ?? 0;
-      let elementTrack = elementNearViewport(bounds,200 + itemRangeMargin);
+      let elementTrack = elementNearViewport(bounds, 200 + itemRangeMargin);
       //TODO: make better logic for elementNearViewport, to include trackOnly nav
       if (elementTrack || item.options.trackOnly) {
         let activeRange = item.options.activeRange ?? 1;
