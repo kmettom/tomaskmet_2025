@@ -32,7 +32,7 @@
     </Container>
     <div class="hero-bg-image">
       <CanvasImage
-        :src-link="'images/hero.png'"
+        :src-link="'images/hero.webp'"
         :uniforms="imageUniforms"
         :shader="'hero'"
         :load-strategy="'preload'"
