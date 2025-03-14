@@ -96,8 +96,7 @@ export default class Scroll {
       const bounds = item.elNode.getBoundingClientRect();
       const itemRangeMargin = item.options.activeRangeMargin ?? 0;
       let elementTrack = elementNearViewport(bounds, 200 + itemRangeMargin);
-      //TODO: make better logic for elementNearViewport, to include trackOnly nav
-      if (elementTrack || item.options.trackOnly) {
+      if (elementTrack) {
         let activeRange = item.options.activeRange ?? 1;
         let activeRangeOrigin = item.options.activeRangeOrigin ?? 1;
 
@@ -132,7 +131,6 @@ export default class Scroll {
       //SCROLL SPEED
       if (item.options.scrollSpeed) {
         item.elNode.style.transition = `linear translate3d 0s`;
-
         let speed =
           item.options.scrollSpeed || item.options.scrollSpeed === 0
             ? item.options.scrollSpeed
@@ -140,10 +138,6 @@ export default class Scroll {
 
         if (item.options.fixToParentId) {
           const containerBounds = item.containerEl.getBoundingClientRect();
-          // const containerTrack = elementNearViewport(containerBounds);
-          // if(containerTrack){
-          //
-          // }
           if (
             bounds.top < item.margin &&
             containerBounds.bottom > item.margin + this.scrollSpeedBottomMargin
