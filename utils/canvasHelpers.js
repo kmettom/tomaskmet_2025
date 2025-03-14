@@ -70,5 +70,5 @@ export function setScrollActiveElements(elNode, meshIds, state) {
 }
 
 export function elementNearViewport(bounds, margin = 200) {
-  return bounds.top >= -margin && bounds.bottom <= window.innerHeight + margin;
+  return bounds.top >= -margin && bounds.bottom <= window.innerHeight;
 }

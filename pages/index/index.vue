@@ -69,6 +69,7 @@ const setSectionActivationOptions = (sectionId, sectionContrast) => {
   return {
     trackOnly: true,
     activateCallback: () => {
+      console.log("activateCallback" , sectionId)
       navigationStore.setActiveNavItem(sectionId);
       navigationStore.setNavContrast(sectionContrast);
     },
