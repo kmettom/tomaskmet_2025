@@ -1,31 +1,19 @@
 precision highp float;
 
-varying float vNoise;
 varying vec2 vUv;
 uniform sampler2D uImage;
 
-uniform float uTime;
 uniform float uHover;
-uniform float uSepiaColor;
 uniform vec2 uMouse;
-uniform vec2 uMousePrev;
-uniform vec2 uMouseMovement;
 uniform float uAniIn;
-uniform float uAniInBlur;
 uniform float uImageGallery;
 uniform float uImageGalleryActive;
-//uniform float uIsHeroSection;
 
 uniform vec2 uMeshSize; // The size of the mesh (width, height)
 uniform vec2 uTextureSize; // The size of the texture (width, height)
 uniform vec2 uViewport;
 uniform float uDevicePixelRatio;
 
-//sampler2D tMap;
-
-float tvNoise(vec2 p, float ta, float tb) {
-  return fract(sin(p.x * ta + p.y * tb) * 5678.0);
-}
 vec3 draw(sampler2D image, vec2 uv) {
   return texture2D(image, vec2(uv.x, uv.y)).rgb;
 }
@@ -68,7 +56,7 @@ float createCircle(float radius) {
   vec2 viewportUv = gl_FragCoord.xy / uViewport / uDevicePixelRatio;
   float viewportAspect = uViewport.x / uViewport.y;
 
-  vec2 mousePoint = vec2(uMousePrev.x, 1.0 - uMousePrev.y);
+  vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);
 
   vec2 shapeUv = viewportUv - mousePoint;
   shapeUv /= vec2(1.0, viewportAspect);
