@@ -56,13 +56,13 @@ const mainTextIn = ref(false);
 const imageIn = ref(false);
 const mainTextInUniforms = computed(() => {
   return {
-    uAniInText: { active: mainTextIn.value, duration: 2.0 },
+    uAniInText: { active: mainTextIn.value, duration: 2 },
   };
 });
 
 const imageUniforms = computed(() => {
   return {
-    uAniInImage: { active: imageIn.value, duration: 2.0 },
+    uAniInImage: { active: imageIn.value, duration: 1.25 },
   };
 });
 
@@ -71,7 +71,7 @@ const heroSectionAnimation = () => {
 
   setTimeout(() => {
     mainTextIn.value = true;
-  }, 500);
+  }, 300);
 
   const tl = gsap.timeline();
   const split = new SplitText('.hero-content-sm', { type: 'words,lines' });
@@ -83,7 +83,7 @@ const heroSectionAnimation = () => {
   tl.to(split.lines, {
     y: 0,
     opacity: 1,
-    delay: 2,
+    delay: 1.5,
     duration: 0.2,
     stagger: 0.05,
   });

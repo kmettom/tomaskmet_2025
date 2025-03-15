@@ -52,8 +52,8 @@ float createOverlay(float activeOverlay) {
   vec2 viewportUv =
     gl_FragCoord.xy / uViewport * uDevicePixelRatio * (1.0 - activeOverlay);
   float progress = smoothstep(
-    activeOverlay, // 0 1
-    activeOverlay - 1.0, // 0 1
+    activeOverlay,
+    activeOverlay - 1.0,
     viewportUv.x - vUv.x
   );
   return progress;
@@ -67,9 +67,11 @@ void main() {
   vec3 mySample = texture2D(uMap, newUv).rgb;
   vec3 mySampleRGB = mySample.rgb;
 
+  float aniInDistance = mix(0.5, 1.0, uAniInText * overlayOpacity);
+
   float sigDist =
     median(mySampleRGB.r, mySampleRGB.g, mySampleRGB.b) -
-    DISTANCE_COEF / uAniInText / circleTrail;
+    DISTANCE_COEF / aniInDistance / circleTrail;
   float fill = clamp(sigDist / fwidth(sigDist) + DISTANCE_COEF, 0.0, 1.0);
 
   float finalAlpha = fill * overlayOpacity * circleTrail;
