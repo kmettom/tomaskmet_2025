@@ -52,8 +52,8 @@ float createOverlay(float activeOverlay) {
   vec2 viewportUv =
     gl_FragCoord.xy / uViewport * uDevicePixelRatio * (1.0 - activeOverlay);
   float progress = smoothstep(
-    activeOverlay, // 0 1
-    activeOverlay - 1.0, // 0 1
+    activeOverlay,
+    activeOverlay - 1.0,
     viewportUv.x - vUv.x
   );
   return progress;

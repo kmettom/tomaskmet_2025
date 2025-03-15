@@ -56,13 +56,13 @@ const mainTextIn = ref(false);
 const imageIn = ref(false);
 const mainTextInUniforms = computed(() => {
   return {
-    uAniInText: { active: mainTextIn.value, duration: 2.0 },
+    uAniInText: { active: mainTextIn.value, duration: 2.5 },
   };
 });
 
 const imageUniforms = computed(() => {
   return {
-    uAniInImage: { active: imageIn.value, duration: 2.0 },
+    uAniInImage: { active: imageIn.value, duration: 1.5 },
   };
 });
 
