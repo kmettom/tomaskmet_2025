@@ -3,7 +3,7 @@
     <Container>
       <h2 class="heading-1 text-align-right">
         <span
-          v-onScrollActivate="{ activeRange: 0.85, activateOnce: true }"
+          v-onScrollActivate="{ activeRange: 0.99, activateOnce: true }"
           v-set-data-attrs="{ cursorcolor: 'dark' }"
         >
           <CanvasText :theme="'light'"> WORK </CanvasText>

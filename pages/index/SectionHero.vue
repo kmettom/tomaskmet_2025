@@ -62,7 +62,7 @@ const mainTextInUniforms = computed(() => {
 
 const imageUniforms = computed(() => {
   return {
-    uAniInImage: { active: imageIn.value, duration: 2.5 },
+    uAniInImage: { active: imageIn.value, duration: 2.0 },
   };
 });
 

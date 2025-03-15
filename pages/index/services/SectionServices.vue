@@ -2,7 +2,7 @@
   <div class="services-section">
     <Container>
       <h2 class="heading-1">
-        <span v-onScrollActivate="{ activeRange: 0.95, activateOnce: true }">
+        <span v-onScrollActivate="{ activeRange: 0.99, activateOnce: true }">
           <CanvasText :theme="'dark'"> SERVICES </CanvasText>
         </span>
       </h2>

@@ -219,15 +219,20 @@ const Canvas = {
       console.error('no Mesh found with ID: ' + id);
       return;
     }
-    gsap.to(mesh.material.uniforms.uAniInImage, {
-      duration: 1.5,
-      value: isActive ? 1 : 0,
-    });
-    gsap.to(mesh.material.uniforms.uAniInText, {
-      duration: 1.5,
-      value: isActive ? 1 : 0,
-      ease: 'power2.inOut',
-    });
+    if(mesh.material.uniforms.uAniInImage){
+      gsap.to(mesh.material.uniforms.uAniInImage, {
+        duration: 1.25,
+        value: isActive ? 1 : 0,
+        ease: 'power1.inOut',
+      });
+    }
+    if(mesh.material.uniforms.uAniInText) {
+      gsap.to(mesh.material.uniforms.uAniInText, {
+        duration: 1.75,
+        value: isActive ? 1 : 0,
+        ease: 'power4.inOut',
+      });
+    }
   },
 
   onActiveElCallback(item) {
