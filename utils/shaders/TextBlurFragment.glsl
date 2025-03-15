@@ -11,13 +11,10 @@ varying float vNoise;
 
 // Generic uniforms
 uniform float uTime;
-uniform float uHover;
 uniform float uAniInText;
 uniform float uDevicePixelRatio;
 uniform vec2 uViewport;
 uniform vec2 uMouse;
-uniform vec2 uMousePrev;
-uniform vec2 uMouseMovement;
 uniform vec2 uMeshSize;
 uniform float devicePixelRatio;
 
@@ -35,7 +32,7 @@ float createCircleTrail(float radius) {
   float viewportAspect = uViewport.x / uViewport.y;
 
   //  vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);
-  vec2 mousePointTrail = vec2(uMousePrev.x, 1.0 - uMousePrev.y);
+  vec2 mousePointTrail = vec2(uMouse.x, 1.0 - uMouse.y);
 
   vec2 shapeUvTrail = viewportUv - mousePointTrail;
   shapeUvTrail /= vec2(1.0, viewportAspect);
