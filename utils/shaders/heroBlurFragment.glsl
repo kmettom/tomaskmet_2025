@@ -5,8 +5,7 @@ uniform sampler2D uImage;
 
 uniform float uHover;
 uniform vec2 uMouse;
-uniform float uAniIn;
-uniform float uAniInBlur;
+uniform float uAniInImage;
 
 uniform vec2 uMeshSize; // The size of the mesh (width, height)
 uniform vec2 uTextureSize; // The size of the texture (width, height)
@@ -109,9 +108,9 @@ void main() {
     uv.x = uv.x * scale + (1.0 - scale) / 2.0; // Center the texture horizontally
   }
 
-  float overlayOpacity = createOverlayOpacity(uAniIn);
+  float overlayOpacity = createOverlayOpacity(uAniInImage);
 
-  float blurStrength = 1.0 * circle * (overlayBlur * uAniInBlur);
+  float blurStrength = 1.0 * circle * (overlayBlur * uAniInImage);
 
   vec3 originalColor = blur(uv, uImage, 0.06, blurStrength);
   vec4 final = vec4(originalColor, overlayOpacity);

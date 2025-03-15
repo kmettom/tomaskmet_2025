@@ -11,14 +11,10 @@ varying float vNoise;
 
 // Generic uniforms
 uniform float uTime;
-uniform float uHover;
-uniform float uAniIn;
-uniform float uAniInBlur;
+uniform float uAniInText;
 uniform float uDevicePixelRatio;
 uniform vec2 uViewport;
 uniform vec2 uMouse;
-uniform vec2 uMousePrev;
-uniform vec2 uMouseMovement;
 uniform vec2 uMeshSize;
 uniform float devicePixelRatio;
 
@@ -36,7 +32,7 @@ float createCircleTrail(float radius) {
   float viewportAspect = uViewport.x / uViewport.y;
 
   //  vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);
-  vec2 mousePointTrail = vec2(uMousePrev.x, 1.0 - uMousePrev.y);
+  vec2 mousePointTrail = vec2(uMouse.x, 1.0 - uMouse.y);
 
   vec2 shapeUvTrail = viewportUv - mousePointTrail;
   shapeUvTrail /= vec2(1.0, viewportAspect);
@@ -64,7 +60,7 @@ float createOverlay(float activeOverlay) {
 }
 
 void main() {
-  float overlayOpacity = createOverlay(uAniIn);
+  float overlayOpacity = createOverlay(uAniInText);
   float circleTrail = createCircleTrail(1.0);
   vec2 newUv = vUv;
 
@@ -73,7 +69,7 @@ void main() {
 
   float sigDist =
     median(mySampleRGB.r, mySampleRGB.g, mySampleRGB.b) -
-    DISTANCE_COEF / uAniIn / circleTrail;
+    DISTANCE_COEF / uAniInText / circleTrail;
   float fill = clamp(sigDist / fwidth(sigDist) + DISTANCE_COEF, 0.0, 1.0);
 
   float finalAlpha = fill * overlayOpacity * circleTrail;

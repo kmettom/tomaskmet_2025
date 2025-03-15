@@ -219,15 +219,20 @@ const Canvas = {
       console.error('no Mesh found with ID: ' + id);
       return;
     }
-    gsap.to(mesh.material.uniforms.uAniIn, {
-      duration: 1.5, // 1.25
-      value: isActive ? 1 : 0,
-    });
-    gsap.to(mesh.material.uniforms.uAniInBlur, {
-      // delay: 0,
-      duration: 1.5,
-      value: isActive ? 1 : 0,
-    });
+    if(mesh.material.uniforms.uAniInImage){
+      gsap.to(mesh.material.uniforms.uAniInImage, {
+        duration: 1.25,
+        value: isActive ? 1 : 0,
+        ease: 'power1.inOut',
+      });
+    }
+    if(mesh.material.uniforms.uAniInText) {
+      gsap.to(mesh.material.uniforms.uAniInText, {
+        duration: 1.75,
+        value: isActive ? 1 : 0,
+        ease: 'power4.inOut',
+      });
+    }
   },
 
   onActiveElCallback(item) {
@@ -355,8 +360,7 @@ const Canvas = {
         // new generic
         uTime: { value: 0 },
         uMeshSize: { value: new THREE.Vector2(bounds.width, bounds.height) },
-        uAniIn: { value: meshUniforms.uAniIn?.value ?? 0 },
-        uAniInBlur: { value: meshUniforms.uAniInBlur?.value ?? 0 },
+        uAniInText: { value: meshUniforms.uAniInText?.value ?? 0 },
         ...meshUniforms,
       },
       vertexShader: vertexShader,
@@ -430,8 +434,7 @@ const Canvas = {
         uTime: { value: 0 },
         uImage: { value: texture },
         vectorVNoise: { value: new THREE.Vector2(1.5, 1.5) }, // 1.5
-        uAniIn: { value: meshUniforms.uAniIn?.value ?? 0 },
-        uAniInBlur: { value: meshUniforms.uAniInBlur?.value ?? 0 },
+        uAniInImage: { value: meshUniforms.uAniInImage?.value ?? 0 },
         uMouse: { value: new THREE.Vector2(0, 0) },
         uMousePrev: { value: new THREE.Vector2(0, 0) },
         uMouseMovement: { value: new THREE.Vector2(0, 0) },
@@ -476,7 +479,7 @@ const Canvas = {
 
     this.imageStore.push(newMesh);
 
-    if (meshUniforms.uAniIn || imgHtmlEl.dataset.activeScroll === 'true') {
+    if (meshUniforms.uAniInImage || imgHtmlEl.dataset.activeScroll === 'true') {
       this.activateMesh(meshId, true);
     }
 

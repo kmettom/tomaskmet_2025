@@ -5,11 +5,11 @@
         <div class="contact-line">
           <div class="heading-1">
             <span
-              v-onScrollActivate="{ activeRange: 0.85, activateOnce: true }"
+              v-onScrollActivate="{ activeRange: 0.99, activateOnce: true }"
             >
               <CanvasText :theme="'dark'"> GET </CanvasText>
               <span
-                v-onScrollActivate="{ activeRange: 0.85, activateOnce: true }"
+                v-onScrollActivate="{ activeRange: 0.99, activateOnce: true }"
                 class="canvas-text-spacing"
               >
                 <CanvasText :theme="'dark'"> IN </CanvasText>
@@ -116,7 +116,7 @@
           </div>
           <div class="heading-1">
             <span
-              v-onScrollActivate="{ activeRange: 0.85, activateOnce: true }"
+              v-onScrollActivate="{ activeRange: 0.99, activateOnce: true }"
             >
               <CanvasText :theme="'dark'"> TOUCH </CanvasText>
             </span>

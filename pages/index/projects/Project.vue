@@ -44,7 +44,6 @@ const projectImageUniforms = ref({
   uHover: { active: false, duration: 0.55 },
   uImageGallery: { active: false, duration: 0.5 },
   uImageGalleryActive: { active: false, duration: 0.5 },
-  uSepiaColor: { active: true, duration: 0 },
 });
 
 const emit = defineEmits(['openGallery']);
