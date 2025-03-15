@@ -221,16 +221,16 @@ const Canvas = {
     }
     if (mesh.material.uniforms.uAniInImage) {
       gsap.to(mesh.material.uniforms.uAniInImage, {
-        duration: 1.5,
+        duration: 1.0,
         value: isActive ? 1 : 0,
-        ease: 'power4.inOut',
+        ease: 'power1.inOut',
       });
     }
     if (mesh.material.uniforms.uAniInText) {
       gsap.to(mesh.material.uniforms.uAniInText, {
-        duration: 1.75,
+        duration: 1.5,
         value: isActive ? 1 : 0,
-        ease: 'power4.inOut',
+        ease: 'power2.out',
       });
     }
   },
