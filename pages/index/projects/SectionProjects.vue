@@ -4,7 +4,7 @@
       <h2 class="heading-1 text-align-right">
         <span
           v-onScrollActivate="{ activeRange: 0.99, activateOnce: true }"
-          v-set-data-attrs="{ cursorcolor: 'dark' }"
+          v-set-data-attrs="{ cursorcolor: 'light' }"
         >
           <CanvasText :theme="'light'"> WORK </CanvasText>
         </span>
