@@ -223,6 +223,9 @@ const splitLineAnimation = (item: any) => {
     display: block;
     padding: 0 10px;
   }
+  &.social-media-list div {
+    text-align: right;
+  }
   a {
     cursor: none;
   }

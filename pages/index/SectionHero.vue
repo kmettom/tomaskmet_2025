@@ -175,8 +175,8 @@ watch(
   height: 100%;
   width: 50%;
   z-index: -1;
-  max-height: 660px;
   @include respond-width($w-s) {
+    max-height: 660px;
     filter: blur(15px);
   }
   * {

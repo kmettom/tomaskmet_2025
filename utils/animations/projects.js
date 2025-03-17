@@ -97,7 +97,7 @@ export function closeGalleryTransition(refs, sizeOrigins, projectMargin) {
     timeline.to(
       '.project-item',
       {
-        paddingTop: `${projectMargin * 100}vh`,
+        paddingTop: `${projectMargin * 100 * 2}vh`,
         duration: aniDuration,
       },
       '<',
