@@ -11,8 +11,8 @@
         class="about-1 about-txt"
         data-about-id="about-1"
       >
-        A developer with managerial background and 10+ years of
-        hands on coding experience.
+        A developer with managerial background and 10+ years of hands on coding
+        experience.
         <br />
         WORKING WITH AGENCIES, COMPANIES and freelancers using broad spectrum
         frameworks and backend API's.
