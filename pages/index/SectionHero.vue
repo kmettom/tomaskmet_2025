@@ -2,7 +2,7 @@
   <div class="hero-section-wrapper">
     <Container additional-class="hero-section">
       <div class="hero-content-line hero-line-tomas">
-        <h2 v-set-data-attrs="{ cursorcolor: 'dark' }" class="heading-1">
+        <h2 v-set-data-attrs="{ cursorcolor: 'light' }" class="heading-1">
           <CanvasText :theme="'light'" :uniforms="mainTextInUniforms">
             TOMAS
           </CanvasText>
@@ -23,7 +23,7 @@
           <p>websites</p>
           <p>e-commerce</p>
         </div>
-        <h2 v-set-data-attrs="{ cursorcolor: 'dark' }" class="heading-1">
+        <h2 v-set-data-attrs="{ cursorcolor: 'light' }" class="heading-1">
           <CanvasText :theme="'light'" :uniforms="mainTextInUniforms">
             KMET
           </CanvasText>
@@ -175,8 +175,8 @@ watch(
   height: 100%;
   width: 50%;
   z-index: -1;
-  max-height: 660px;
   @include respond-width($w-s) {
+    max-height: 660px;
     filter: blur(15px);
   }
   * {

@@ -50,6 +50,20 @@ vec3 blur(vec2 uv, sampler2D image, float blurAmount, float blurStrength) {
 
 float DISTANCE_COEF = 0.5;
 
+// Function to apply a sepia tone to a given RGB color
+vec3 applySepia(vec3 color) {
+  float r = color.r;
+  float g = color.g;
+  float b = color.b;
+
+  vec3 sepiaColor = vec3(
+    clamp(r * 0.358 + g * 0.704 + b * 0.138, 0.0, 1.0),
+    clamp(r * 0.357 + g * 0.705 + b * 0.141, 0.0, 1.0),
+    clamp(r * 0.3 + g * 0.497 + b * 0.203, 0.0, 1.0)
+  );
+  return mix(sepiaColor, vec3(0.5), 0.5);
+}
+
 float createCircle(float radius) {
   vec2 viewportUv = gl_FragCoord.xy / uViewport / uDevicePixelRatio;
   float viewportAspect = uViewport.x / uViewport.y;
@@ -111,8 +125,16 @@ void main() {
   float overlayOpacity = createOverlayOpacity(uAniInImage);
 
   float blurStrength = 1.0 * circle * (overlayBlur * uAniInImage);
+  float blurAmount = 0.06;
 
-  vec3 originalColor = blur(uv, uImage, 0.06, blurStrength);
+  vec3 originalColor = blur(uv, uImage, blurAmount, blurStrength);
+  //  vec3 sepiaColor = mix(
+  //  originalColor,
+  //  applySepia(originalColor),
+  //  circle
+  //  );
+
+  //  vec3 originalColor = blur(uv, uImage, 0.06, blurStrength);
   vec4 final = vec4(originalColor, overlayOpacity);
 
   gl_FragColor = final;
