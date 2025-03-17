@@ -81,6 +81,7 @@ export const useNavigationStore = defineStore('navigationStore', {
         this.projects.htmlSizeOrigins.push({
           width: imageBounds.width,
           height: imageBounds.height,
+          bottom: imageBounds.bottom,
         });
       }
     },

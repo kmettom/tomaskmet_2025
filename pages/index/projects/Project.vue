@@ -1,12 +1,10 @@
 <script setup>
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
-// import { projectNumberAni } from '~/utils/animations/projects';
 const navigationStore = useNavigationStore();
 
 gsap.registerPlugin(SplitText);
 
-// const isMobile = ref(Display.isMobile);
 const props = defineProps({
   project: {
     type: Object,
@@ -74,11 +72,13 @@ watch(
       activateCallback: () => {
         navigationStore.setActiveProject(props.index);
       },
-      // scrollSpeed: navigationStore.projects.galleryOpen
-      //   ? 0
-      //   : props.project.scrollSpeed,
+      scrollSpeed:
+        navigationStore.projects.galleryOpen || Display.isMobile
+          ? 0
+          : props.project.scrollSpeed,
     }"
     :class="projectElClasses"
+    :style="`${project.position?.bottom ? 'bottom:' + project.position?.bottom + 'vh' : 'initial'};`"
   >
     <div
       v-set-data-attrs="{

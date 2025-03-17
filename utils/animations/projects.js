@@ -1,5 +1,7 @@
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
+import projectsData from '~/content/projects.json';
+
 gsap.registerPlugin(SplitText);
 
 // export function projectNumberAni(ref) {
@@ -48,6 +50,14 @@ export function openGalleryTransition(
       '.project-item',
       {
         paddingTop: `${(projectMargin * 100) / 2}vh`,
+        duration: aniDuration,
+      },
+      '<',
+    );
+    timeline.to(
+      '.project',
+      {
+        bottom: 0,
         duration: aniDuration,
       },
       '<',
@@ -114,16 +124,27 @@ export function closeGalleryTransition(refs, sizeOrigins, projectMargin) {
     timeline.to('.project-name', { opacity: 1, duration: 0.3 }, '>');
     for (const [index, ref] of refs.entries()) {
       //TODO: check the cause of Refs array having more items
-      if (!sizeOrigins[index]) return;
-      timeline.to(
-        ref.querySelector('.project-image'),
-        {
-          height: sizeOrigins[index].height + 'px',
-          width: sizeOrigins[index].width + 'px',
-          duration: aniDuration,
-        },
-        '<',
-      );
+      if (sizeOrigins[index]) {
+        timeline.to(
+          ref.querySelector('.project-image'),
+          {
+            height: sizeOrigins[index].height + 'px',
+            width: sizeOrigins[index].width + 'px',
+            duration: aniDuration,
+          },
+          '<',
+        );
+        if (projectsData[index]?.position?.bottom ?? false) {
+          timeline.to(
+            ref.querySelector('.project'),
+            {
+              bottom: projectsData[index].position.bottom + 'vh',
+              duration: aniDuration,
+            },
+            '<',
+          );
+        }
+      }
     }
   });
 }

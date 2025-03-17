@@ -27,8 +27,10 @@
       }
     },
     "position": {
-      "alignRight": true
-    }
+      "alignRight": true,
+      "bottom": 60
+    },
+    "scrollSpeed": -0.1
   },
   {
     "name": "Jagoda",

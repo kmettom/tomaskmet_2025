@@ -261,6 +261,7 @@ const Canvas = {
       ) {
         this.scroll.DOM.onScrollActivateElements[index] =
           generateBindingLogic(updatedBinding);
+        console.log('updatedBinding', updatedBinding);
       }
     }
   },
