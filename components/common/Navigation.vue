@@ -13,7 +13,11 @@
         v-for="(navItem, index) in navigationItems"
         :key="navItem.id"
         :ref="navItemRefs.set"
-        v-set-data-attrs="{ cursorsize: 30, cursoropacity: 0.7 }"
+        v-set-data-attrs="{
+          cursorsize: 30,
+          cursoropacity: 0.6,
+          cursorcolor: navContrastSwitched ? 'dark' : 'light',
+        }"
         class="navigation-item"
         :style="`pointer-events: ${navigationStore.projects.galleryOpen ? 'none' : 'auto'};`"
         :class="{ active: activeNav === navItem.id }"
