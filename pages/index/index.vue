@@ -12,7 +12,7 @@
       class="page-section"
       data-nav-id="about"
     >
-      <!--      <SectionAbout />-->
+      <SectionAbout />
     </div>
     <div
       v-onScrollActivate="setSectionActivationOptions('services', true)"
@@ -20,7 +20,7 @@
       class="page-section"
       data-nav-id="services"
     >
-      <!--      <SectionServices />-->
+      <SectionServices />
     </div>
     <div
       v-onScrollActivate="setSectionActivationOptions('work', false)"
