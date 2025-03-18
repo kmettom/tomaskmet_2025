@@ -4,7 +4,6 @@ import {
   openGalleryTransition,
   showGalleryControls,
   closeGalleryTransition,
-  // projectNumberAni,
 } from '~/utils/animations/projects';
 import { gsap } from 'gsap';
 import { projectDefaults } from '~/constants/projectDefaults.js';
@@ -72,7 +71,7 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.setGalleryNavigationVisible(true);
       this.projects.galleryOpen = true;
       await this.setActiveProject(index);
-      // Canvas.animateImageMesh = false;
+      Canvas.animateImageMesh = false;
     },
     setProjectOriginSizes() {
       if (this.projects.htmlSizeOrigins !== null) return;
@@ -105,7 +104,7 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.projects.galleryOpen = false;
       Canvas.setFixedScrollToElement(null);
       gsap.set('body', { overflow: 'auto' });
-      // Canvas.animateImageMesh = false;
+      Canvas.animateImageMesh = false;
     },
     setGalleryNavigationVisible(visible) {
       this.projects.navigationVisible = visible;
@@ -140,7 +139,7 @@ export const useNavigationStore = defineStore('navigationStore', {
         nonActiveProjectTransition(this.projects.pastActiveProject.ref, 0.2);
       }
       await activeProjectTransition(this.projects.activeProject.ref);
-      // Canvas.animateImageMesh = false;
+      Canvas.animateImageMesh = false;
     },
     async closeActiveProject() {
       this.projects.pastActiveProject = { ...this.projects.activeProject };
