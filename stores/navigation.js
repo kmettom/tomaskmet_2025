@@ -26,6 +26,7 @@ export const useNavigationStore = defineStore('navigationStore', {
     ],
     projects: {
       galleryOpen: false,
+      galleryToOpen: false,
       navigationVisible: false,
       htmlRefs: undefined,
       htmlSizeOrigins: null,
@@ -52,6 +53,7 @@ export const useNavigationStore = defineStore('navigationStore', {
     async openGalleryProject(index) {
       if (this.projects.galleryOpen) return;
       Canvas.animateImageMesh = true;
+      this.galleryToOpen = true;
       this.setNavVisible(false);
       this.setProjectOriginSizes();
       await this.scrollToProject(index);
@@ -70,7 +72,7 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.setGalleryNavigationVisible(true);
       this.projects.galleryOpen = true;
       await this.setActiveProject(index);
-      // Canvas.animateImageMesh = false;
+      Canvas.animateImageMesh = false;
     },
     setProjectOriginSizes() {
       if (this.projects.htmlSizeOrigins !== null) return;
@@ -87,7 +89,7 @@ export const useNavigationStore = defineStore('navigationStore', {
     },
     async closeGallery() {
       Canvas.animateImageMesh = true;
-
+      this.projects.galleryToOpen = false;
       Canvas.setFixedScrollToElement(
         this.projects.activeProject.ref,
         window.innerHeight * projectDefaults.margin,
@@ -103,7 +105,7 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.projects.galleryOpen = false;
       Canvas.setFixedScrollToElement(null);
       gsap.set('body', { overflow: 'auto' });
-      // Canvas.animateImageMesh = false;
+      Canvas.animateImageMesh = false;
     },
     setGalleryNavigationVisible(visible) {
       this.projects.navigationVisible = visible;
@@ -138,7 +140,7 @@ export const useNavigationStore = defineStore('navigationStore', {
         nonActiveProjectTransition(this.projects.pastActiveProject.ref, 0.2);
       }
       await activeProjectTransition(this.projects.activeProject.ref);
-      // Canvas.animateImageMesh = false;
+      Canvas.animateImageMesh = false;
     },
     async closeActiveProject() {
       this.projects.pastActiveProject = { ...this.projects.activeProject };

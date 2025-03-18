@@ -20,6 +20,11 @@ export function generateBindingLogic(newBinding) {
       binding.containerEl.getBoundingClientRect().bottom;
     binding.margin = 0;
   }
+  if (typeof newBinding.options.scrollSpeedTransition === 'number') {
+    binding.options.scrollSpeed = {
+      value: newBinding.options.scrollSpeedTransition,
+    };
+  }
   return binding;
 }
 
