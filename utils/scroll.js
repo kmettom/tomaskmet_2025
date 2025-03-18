@@ -131,10 +131,6 @@ export default class Scroll {
       //SCROLL SPEED
       if (item.options.scrollSpeed) {
         item.elNode.style.transition = `linear translate3d 0s`;
-        let speed =
-          item.options.scrollSpeed || item.options.scrollSpeed === 0
-            ? item.options.scrollSpeed
-            : false;
 
         if (item.options.fixToParentId) {
           const containerBounds = item.containerEl.getBoundingClientRect();
@@ -147,7 +143,11 @@ export default class Scroll {
           }
         } else {
           if (bounds.top < window.innerHeight && bounds.bottom > 0) {
-            item.elNode.style.transform = `translate3d(0,${-1 * (this.scrollToRender - bounds.top) * speed}px,0)`;
+            let speed =
+                typeof item.options.scrollSpeed === "number"
+                    ? item.options.scrollSpeed
+                    : false;
+            item.elNode.style.transform = `translate3d(0,${ (this.scrollToRender - bounds.top) * speed}px,0)`;
           }
         }
       } else {
