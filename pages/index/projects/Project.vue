@@ -47,7 +47,7 @@ const projectImageUniforms = ref({
 const emit = defineEmits(['openGallery']);
 const scrollSpeed = computed(() => {
   return navigationStore.projects.galleryToOpen || Display.isMobile
-    ? 0
+    ? 0.001
     : props.project.scrollSpeed;
 });
 watch(

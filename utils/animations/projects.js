@@ -11,7 +11,7 @@ export function openGalleryTransition(
   slideHeight,
   projectMargin,
 ) {
-  const aniDuration = 2.3; // 0.5
+  const aniDuration = 1.3; // 0.5
   return new Promise((resolve) => {
     const timeline = gsap.timeline({
       ease: 'linear',
@@ -42,7 +42,7 @@ export function openGalleryTransition(
     );
     const galleryWidthHalfPx =
       galleryRef.getBoundingClientRect().width / 2 + 'px';
-    timeline.to('.project-name', { opacity: 0, duration: 0.3 });
+    timeline.to('.project-name', { opacity: 0, duration: aniDuration });
 
     timeline.to(
       '.project-info-wrapper',
@@ -74,7 +74,7 @@ export function openGalleryTransition(
 }
 
 export function closeGalleryTransition(refs, sizeOrigins, projectMargin) {
-  const aniDuration = 2.3; // 0.5
+  const aniDuration = 1.3; // 0.5
   return new Promise((resolve) => {
     const timeline = gsap.timeline({
       ease: 'linear',
@@ -99,7 +99,7 @@ export function closeGalleryTransition(refs, sizeOrigins, projectMargin) {
       },
       '<',
     );
-    timeline.to('.project-name', { opacity: 1, duration: 0.3 }, '>');
+    timeline.to('.project-name', { opacity: 1, duration: aniDuration }, '>');
     for (const [index, ref] of refs.entries()) {
       //TODO: check the cause of Refs array having more items
       if (sizeOrigins[index]) {
