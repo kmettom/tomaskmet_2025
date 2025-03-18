@@ -76,7 +76,8 @@ watch(
         navigationStore.projects.galleryOpen || Display.isMobile
           ? 0
           : props.project.scrollSpeed,
-      scrollSpeedTransition:  navigationStore.projects.galleryOpen || Display.isMobile
+      scrollSpeedTransition:
+        navigationStore.projects.galleryOpen || Display.isMobile
           ? 0
           : props.project.scrollSpeed,
     }"

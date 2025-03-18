@@ -261,13 +261,12 @@ const Canvas = {
       ) {
         this.scroll.DOM.onScrollActivateElements[index] =
           generateBindingLogic(updatedBinding);
-        if(typeof updatedBinding.options.scrollSpeedTransition === "number"){
+        if (typeof updatedBinding.options.scrollSpeedTransition === 'number') {
           gsap.to(this.scroll.DOM.onScrollActivateElements[index].options, {
             duration: 0.2,
             scrollSpeed: updatedBinding.options.scrollSpeedTransition ?? 0,
           });
         }
-
       }
     }
   },
@@ -568,7 +567,9 @@ const Canvas = {
     this.time += 0.05;
 
     this.scroll.render();
-    this.scrollInProgress = this.currentScroll !== this.scroll.scrollToRender || this.animateImageMesh;
+    this.scrollInProgress =
+      this.currentScroll !== this.scroll.scrollToRender ||
+      this.animateImageMesh;
     this.currentScroll = this.scroll.scrollToRender;
 
     //animate on scroll
