@@ -144,7 +144,7 @@ export default class Scroll {
         } else {
           if (bounds.top < window.innerHeight && bounds.bottom > 0) {
             let speed = item.options.scrollSpeed.value;
-            console.log('speed', speed);
+            // console.log('speed', speed);
             item.elNode.style.transform = `translate3d(0,${(this.scrollToRender - bounds.top) * speed}px,0)`;
           }
         }

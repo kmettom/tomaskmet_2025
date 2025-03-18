@@ -53,7 +53,7 @@ export const useNavigationStore = defineStore('navigationStore', {
     async openGalleryProject(index) {
       if (this.projects.galleryOpen) return;
       Canvas.animateImageMesh = true;
-      this.galleryToOpen = true;
+      this.projects.galleryToOpen = true;
       this.setNavVisible(false);
       this.setProjectOriginSizes();
       await this.scrollToProject(index);
