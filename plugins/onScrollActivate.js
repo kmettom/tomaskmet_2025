@@ -48,9 +48,11 @@ export default defineNuxtPlugin((nuxtApp) => {
 //   bidirectionalActivation: Boolean (default: false),
 //   activeRangeOrigin: Number (0-1, 0 from top of screen, 1 bottom of the screen)
 //   activeRangeMargin: Number
-//   scrollSpeed: Number,
 //   fixToParentId: String,
 //   onScrollCallback: (item, speed) => {},
+
+//  TODO: implement new scrollSpeed structure with Value
+//   scrollSpeed: {value: Number},
 
 //  TODO: implement scrollSpeedTransition
 //  scrollSpeedTransition: {transitionTo: Number, duration: Number}

@@ -262,10 +262,13 @@ const Canvas = {
         this.scroll.DOM.onScrollActivateElements[index] =
           generateBindingLogic(updatedBinding);
         if (typeof updatedBinding.options.scrollSpeedTransition === 'number') {
-          gsap.to(this.scroll.DOM.onScrollActivateElements[index].options, {
-            duration: 0.2,
-            scrollSpeed: updatedBinding.options.scrollSpeedTransition ?? 0,
-          });
+          gsap.to(
+            this.scroll.DOM.onScrollActivateElements[index].options.scrollSpeed,
+            {
+              duration: 2.2,
+              value: updatedBinding.options.scrollSpeedTransition,
+            },
+          );
         }
       }
     }

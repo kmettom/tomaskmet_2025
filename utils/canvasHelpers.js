@@ -12,7 +12,7 @@ export function generateBindingLogic(newBinding) {
 
   if (binding.options.fixToParentId) {
     binding.containerId = binding.options.fixToParentId;
-    binding.options.scrollSpeed = 1;
+    binding.options.scrollSpeed = { value: 1 };
     binding.bounds = binding.elNode.getBoundingClientRect();
     binding.containerEl = document.getElementById(binding.containerId);
     binding.childEl = binding.elNode.children[0];

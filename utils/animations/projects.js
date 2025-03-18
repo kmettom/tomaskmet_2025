@@ -4,29 +4,6 @@ import projectsData from '~/content/projects.json';
 
 gsap.registerPlugin(SplitText);
 
-// export function projectNumberAni(ref) {
-//   const numbers = new SplitText(ref.querySelector('.project-index'), {
-//     type: 'words,chars',
-//   }).chars;
-//   const tl = gsap.timeline();
-//   tl.to(numbers, {
-//     duration: 0.25,
-//     opacity: 0,
-//     y: 10,
-//     stagger: 0.05,
-//   });
-//   tl.set(numbers, {
-//     opacity: 0,
-//     y: -10,
-//   });
-//   tl.to(numbers, {
-//     duration: 0.35,
-//     opacity: 1,
-//     y: 0,
-//     stagger: 0.05,
-//   });
-// }
-
 export function openGalleryTransition(
   galleryRef,
   refs,
@@ -34,7 +11,7 @@ export function openGalleryTransition(
   slideHeight,
   projectMargin,
 ) {
-  const aniDuration = 0.3; // 0.5
+  const aniDuration = 2.3; // 0.5
   return new Promise((resolve) => {
     const timeline = gsap.timeline({
       ease: 'linear',
@@ -57,7 +34,7 @@ export function openGalleryTransition(
     timeline.to(
       '.project',
       {
-        transform: 'translate3D(0 ,0 ,0)',
+        // transform: 'translate3D(0 ,0 ,0)',
         bottom: 0,
         duration: aniDuration,
       },
@@ -97,7 +74,7 @@ export function openGalleryTransition(
 }
 
 export function closeGalleryTransition(refs, sizeOrigins, projectMargin) {
-  const aniDuration = 0.3; // 0.5
+  const aniDuration = 2.3; // 0.5
   return new Promise((resolve) => {
     const timeline = gsap.timeline({
       ease: 'linear',

@@ -45,7 +45,11 @@ const projectImageUniforms = ref({
 });
 
 const emit = defineEmits(['openGallery']);
-
+const scrollSpeed = computed(() => {
+  return navigationStore.projects.galleryOpen || Display.isMobile
+    ? 0
+    : props.project.scrollSpeed;
+});
 watch(
   () => navigationStore.projects.galleryOpen,
   (galleryOpen) => {
@@ -72,14 +76,9 @@ watch(
       activateCallback: () => {
         navigationStore.setActiveProject(props.index);
       },
-      scrollSpeed:
-        navigationStore.projects.galleryOpen || Display.isMobile
-          ? 0
-          : props.project.scrollSpeed,
-      scrollSpeedTransition:
-        navigationStore.projects.galleryOpen || Display.isMobile
-          ? 0
-          : props.project.scrollSpeed,
+      // scrollSpeed: scrollSpeed,
+      scrollSpeed: { value: scrollSpeed },
+      scrollSpeedTransition: { value: scrollSpeed },
     }"
     :class="projectElClasses"
     :style="`${project.position?.bottom ? 'bottom:' + project.position?.bottom + 'vh' : 'initial'};`"
