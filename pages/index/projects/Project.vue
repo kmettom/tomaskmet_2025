@@ -76,6 +76,9 @@ watch(
         navigationStore.projects.galleryOpen || Display.isMobile
           ? 0
           : props.project.scrollSpeed,
+      scrollSpeedTransition:  navigationStore.projects.galleryOpen || Display.isMobile
+          ? 0
+          : props.project.scrollSpeed,
     }"
     :class="projectElClasses"
     :style="`${project.position?.bottom ? 'bottom:' + project.position?.bottom + 'vh' : 'initial'};`"

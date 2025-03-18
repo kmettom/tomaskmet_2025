@@ -57,6 +57,7 @@ export function openGalleryTransition(
     timeline.to(
       '.project',
       {
+          transform: 'translate3D(0 ,0 ,0)',
         bottom: 0,
         duration: aniDuration,
       },
@@ -138,6 +139,7 @@ export function closeGalleryTransition(refs, sizeOrigins, projectMargin) {
           timeline.to(
             ref.querySelector('.project'),
             {
+              // transform: 'translate3D(0 ,0 ,0)',
               bottom: projectsData[index].position.bottom + 'vh',
               duration: aniDuration,
             },
@@ -163,7 +165,7 @@ export function showGalleryControls(show) {
 
 export function nonActiveProjectTransition(ref, duration = 0) {
   return new Promise((resolve) => {
-    gsap.to(ref.querySelector('.expand-description'), {
+      gsap.to(ref.querySelector('.expand-description'), {
       y: 0,
       opacity: 0,
       duration: duration,
@@ -175,54 +177,58 @@ export function nonActiveProjectTransition(ref, duration = 0) {
 }
 
 export function activeProjectTransition(ref) {
-  // return new Promise((resolve) => {
-  const timeline = gsap.timeline({
-    ease: 'linear',
+  return new Promise((resolve) => {
+      const timeline = gsap.timeline({
+          ease: 'linear',
+          onComplete: () => {
+              resolve();
+          },
+      });
+      timeline.set(ref.querySelector('.expand-description'), {
+          opacity: 1,
+      });
+      const linesStatistics = new SplitText(ref.querySelector('.statistics'), {
+          type: 'lines',
+      }).lines;
+
+      timeline.fromTo(
+          linesStatistics,
+          {y: '10px', opacity: 0},
+          {
+              duration: 0.2,
+              opacity: 1,
+              y: '0px',
+              stagger: 0.1,
+          },
+      );
+
+      const wordsDescription = new SplitText(
+          ref.querySelector('.project-description'),
+          {
+              type: 'words',
+          },
+      ).words;
+
+      timeline.fromTo(
+          wordsDescription,
+          {y: '15px', opacity: 0},
+          {
+              duration: 0.1,
+              opacity: 1,
+              y: '0px',
+              stagger: 0.01,
+          },
+          '<',
+      );
+
+      timeline.fromTo(
+          ref.querySelector('.project-link'),
+          {y: '15px', opacity: 0},
+          {
+              duration: 0.25,
+              opacity: 1,
+              y: '0px',
+          },
+      );
   });
-  timeline.set(ref.querySelector('.expand-description'), {
-    opacity: 1,
-  });
-  const linesStatistics = new SplitText(ref.querySelector('.statistics'), {
-    type: 'lines',
-  }).lines;
-
-  timeline.fromTo(
-    linesStatistics,
-    { y: '10px', opacity: 0 },
-    {
-      duration: 0.2,
-      opacity: 1,
-      y: '0px',
-      stagger: 0.1,
-    },
-  );
-
-  const wordsDescription = new SplitText(
-    ref.querySelector('.project-description'),
-    {
-      type: 'words',
-    },
-  ).words;
-
-  timeline.fromTo(
-    wordsDescription,
-    { y: '15px', opacity: 0 },
-    {
-      duration: 0.1,
-      opacity: 1,
-      y: '0px',
-      stagger: 0.01,
-    },
-    '<',
-  );
-
-  timeline.fromTo(
-    ref.querySelector('.project-link'),
-    { y: '15px', opacity: 0 },
-    {
-      duration: 0.25,
-      opacity: 1,
-      y: '0px',
-    },
-  );
 }

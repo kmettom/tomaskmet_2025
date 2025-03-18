@@ -69,7 +69,7 @@ export const useNavigationStore = defineStore('navigationStore', {
       Canvas.setFixedScrollToElement(null);
       this.setGalleryNavigationVisible(true);
       this.projects.galleryOpen = true;
-      this.setActiveProject(index);
+      await this.setActiveProject(index);
       Canvas.animateImageMesh = false;
     },
     setProjectOriginSizes() {
@@ -127,15 +127,18 @@ export const useNavigationStore = defineStore('navigationStore', {
         }, scrollDurationEnd * 1000);
       });
     },
-    setActiveProject(index) {
+    async setActiveProject(index) {
       if (!this.projects.galleryOpen) return;
+      Canvas.animateImageMesh = true;
+
       this.projects.pastActiveProject = { ...this.projects.activeProject };
       this.projects.activeProject.index = index;
       this.projects.activeProject.ref = this.projects.htmlRefs[index];
-      activeProjectTransition(this.projects.activeProject.ref);
       if (this.projects.pastActiveProject.ref) {
-        nonActiveProjectTransition(this.projects.pastActiveProject.ref, 0.3);
+        nonActiveProjectTransition(this.projects.pastActiveProject.ref, 0.2);
       }
+      await activeProjectTransition(this.projects.activeProject.ref);
+      Canvas.animateImageMesh = false;
     },
     async closeActiveProject() {
       this.projects.pastActiveProject = { ...this.projects.activeProject };

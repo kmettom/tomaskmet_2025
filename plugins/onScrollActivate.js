@@ -51,4 +51,8 @@ export default defineNuxtPlugin((nuxtApp) => {
 //   scrollSpeed: Number,
 //   fixToParentId: String,
 //   onScrollCallback: (item, speed) => {},
+
+//  TODO: implement scrollSpeedTransition
+//  scrollSpeedTransition: {transitionTo: Number, duration: Number}
+
 // }
