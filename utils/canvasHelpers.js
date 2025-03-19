@@ -22,10 +22,15 @@ export function generateBindingLogic(newBindingData) {
     binding.margin = 0;
   }
   if (newBindingData.options.scrollSpeedSetTo) {
-    gsap.to(binding.options.scrollSpeed, {
-      duration: newBindingData.options.scrollSpeedSetTo.duration,
-      value: newBindingData.options.scrollSpeedSetTo.value,
-    });
+    if (
+      binding.options.scrollSpeed.value !==
+      newBindingData.options.scrollSpeedSetTo.value
+    ) {
+      gsap.to(binding.options.scrollSpeed, {
+        duration: newBindingData.options.scrollSpeedSetTo.duration,
+        value: newBindingData.options.scrollSpeedSetTo.value,
+      });
+    }
   }
   return binding;
 }

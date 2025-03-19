@@ -78,7 +78,7 @@ watch(
       },
       // scrollSpeed: scrollSpeed,
       scrollSpeed: { value: props.project.scrollSpeed },
-      scrollSpeedSetTo: { value: scrollSpeedUpdate, duration: 1.3 },
+      scrollSpeedSetTo: { value: scrollSpeedUpdate, duration: 0.2 },
     }"
     :class="projectElClasses"
     :style="`${project.position?.bottom ? 'bottom:' + project.position?.bottom + 'vh' : 'initial'};`"
