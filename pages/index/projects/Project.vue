@@ -46,10 +46,12 @@ const projectImageUniforms = ref({
 
 const emit = defineEmits(['openGallery']);
 const scrollSpeedUpdate = computed(() => {
+  if (!props.project.scrollSpeed) return;
   return navigationStore.projects.galleryToOpen || Display.isMobile
     ? 0.0001
     : props.project.scrollSpeed;
 });
+
 watch(
   () => navigationStore.projects.galleryOpen,
   (galleryOpen) => {
@@ -76,8 +78,6 @@ watch(
       activateCallback: () => {
         navigationStore.setActiveProject(props.index);
       },
-      // scrollSpeed: scrollSpeed,
-      scrollSpeed: { value: props.project.scrollSpeed },
       scrollSpeedSetTo: { value: scrollSpeedUpdate, duration: 0.2 },
     }"
     :class="projectElClasses"

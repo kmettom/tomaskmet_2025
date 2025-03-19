@@ -21,16 +21,20 @@ export function generateBindingLogic(newBindingData) {
       binding.containerEl.getBoundingClientRect().bottom;
     binding.margin = 0;
   }
-  if (newBindingData.options.scrollSpeedSetTo) {
-    if (
-      binding.options.scrollSpeed.value !==
-      newBindingData.options.scrollSpeedSetTo.value
-    ) {
-      gsap.to(binding.options.scrollSpeed, {
-        duration: newBindingData.options.scrollSpeedSetTo.duration,
-        value: newBindingData.options.scrollSpeedSetTo.value,
-      });
+  if (newBindingData.options.scrollSpeedSetTo?.value) {
+    if (!binding.options.scrollSpeed) {
+      binding.options.scrollSpeed = {
+        value: binding.elNode.dataset.scrollSpeed,
+      };
     }
+    gsap.to(binding.options.scrollSpeed, {
+      duration: newBindingData.options.scrollSpeedSetTo.duration,
+      value: newBindingData.options.scrollSpeedSetTo.value,
+      onComplete: () => {
+        binding.elNode.dataset.scrollSpeed =
+          newBindingData.options.scrollSpeedSetTo.value;
+      },
+    });
   }
   return binding;
 }

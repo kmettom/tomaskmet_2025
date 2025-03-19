@@ -6,6 +6,10 @@ export default defineNuxtPlugin((nuxtApp) => {
     mounted(el, binding) {
       el.dataset.scrollActivateId = crypto.randomUUID();
 
+      if (binding.value?.scrollSpeedSetTo?.value) {
+        el.dataset.scrollSpeed = binding.value?.scrollSpeedSetTo?.value;
+      }
+
       const navigationStore = useNavigationStore();
 
       if (navigationStore.canvasInitiated) {
@@ -50,8 +54,6 @@ export default defineNuxtPlugin((nuxtApp) => {
 //   activeRangeMargin: Number
 //   fixToParentId: String,
 //   onScrollCallback: (item, speed) => {},
-
-//  TODO: implement new scrollSpeed structure with Value
 //   scrollSpeed: {value: Number},
 //  scrollSpeedSetTo: {value: Number, duration: Number}
 
