@@ -141,16 +141,16 @@ export function showGalleryControls(show) {
 }
 
 export function nonActiveProjectTransition(ref, duration = 0) {
-  return new Promise((resolve) => {
+  // return new Promise((resolve) => {
     gsap.to(ref.querySelector('.expand-description'), {
       y: 0,
       opacity: 0,
       duration: duration,
-      onComplete: () => {
-        resolve();
-      },
+      // onComplete: () => {
+      //   resolve();
+      // },
     });
-  });
+  // });
 }
 
 export function activeProjectTransition(ref) {
