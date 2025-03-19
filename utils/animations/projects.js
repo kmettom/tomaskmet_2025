@@ -34,7 +34,7 @@ export function openGalleryTransition(
     timeline.to(
       '.project',
       {
-        // transform: 'translate3D(0 ,0 ,0)',
+        // transform: 'translate3D(0, 0, 0)',
         bottom: 0,
         duration: aniDuration,
       },
@@ -116,7 +116,7 @@ export function closeGalleryTransition(refs, sizeOrigins, projectMargin) {
           timeline.to(
             ref.querySelector('.project'),
             {
-              // transform: 'translate3D(0 ,0 ,0)',
+              // transform: 'translate3D(0, 0, 0)',
               bottom: projectsData[index].position.bottom + 'vh',
               duration: aniDuration,
             },
@@ -142,14 +142,14 @@ export function showGalleryControls(show) {
 
 export function nonActiveProjectTransition(ref, duration = 0) {
   // return new Promise((resolve) => {
-    gsap.to(ref.querySelector('.expand-description'), {
-      y: 0,
-      opacity: 0,
-      duration: duration,
-      // onComplete: () => {
-      //   resolve();
-      // },
-    });
+  gsap.to(ref.querySelector('.expand-description'), {
+    y: 0,
+    opacity: 0,
+    duration: duration,
+    // onComplete: () => {
+    //   resolve();
+    // },
+  });
   // });
 }
 

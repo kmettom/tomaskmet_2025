@@ -261,15 +261,6 @@ const Canvas = {
       ) {
         this.scroll.DOM.onScrollActivateElements[index] =
           generateBindingLogic(updatedBinding);
-        if (typeof updatedBinding.options.scrollSpeedTransition === 'number') {
-          gsap.to(
-            this.scroll.DOM.onScrollActivateElements[index].options.scrollSpeed,
-            {
-              duration: 0.3,
-              value: updatedBinding.options.scrollSpeedTransition,
-            },
-          );
-        }
       }
     }
   },

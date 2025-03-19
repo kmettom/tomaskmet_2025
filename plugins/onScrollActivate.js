@@ -53,8 +53,6 @@ export default defineNuxtPlugin((nuxtApp) => {
 
 //  TODO: implement new scrollSpeed structure with Value
 //   scrollSpeed: {value: Number},
-
-//  TODO: implement scrollSpeedTransition
-//  scrollSpeedTransition: {transitionTo: Number, duration: Number}
+//  scrollSpeedSetTo: {value: Number, duration: Number}
 
 // }

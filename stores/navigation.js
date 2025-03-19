@@ -52,10 +52,10 @@ export const useNavigationStore = defineStore('navigationStore', {
     async openGalleryProject(index) {
       if (this.projects.galleryOpen) return;
       Canvas.animateImageMesh = true;
-      this.projects.galleryToOpen = true;
       this.setNavVisible(false);
       this.setProjectOriginSizes();
       await this.scrollToProject(index);
+      this.projects.galleryToOpen = true;
       Canvas.setFixedScrollToElement(
         this.projects.htmlRefs[index],
         window.innerHeight * projectDefaults.margin,
@@ -130,21 +130,21 @@ export const useNavigationStore = defineStore('navigationStore', {
     },
     async setActiveProject(index) {
       if (!this.projects.galleryOpen) return;
-      Canvas.animateImageMesh = true;
+      // Canvas.animateImageMesh = true;
       this.projects.pastActiveProject = { ...this.projects.activeProject };
       this.projects.activeProject.index = index;
       this.projects.activeProject.ref = this.projects.htmlRefs[index];
-      activeProjectTransition(this.projects.activeProject.ref);
+      await activeProjectTransition(this.projects.activeProject.ref);
       if (this.projects.pastActiveProject.ref) {
         nonActiveProjectTransition(this.projects.pastActiveProject.ref, 0.3);
       }
       // Canvas.animateImageMesh = false;
     },
-     closeActiveProject() {
+    closeActiveProject() {
       this.projects.pastActiveProject = { ...this.projects.activeProject };
       this.projects.activeProject.index = null;
       this.projects.activeProject.ref = null;
-       nonActiveProjectTransition(this.projects.pastActiveProject.ref);
+      nonActiveProjectTransition(this.projects.pastActiveProject.ref);
     },
   },
 });

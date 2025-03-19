@@ -1,9 +1,10 @@
 import * as THREE from 'three';
+import { gsap } from 'gsap';
 
-export function generateBindingLogic(newBinding) {
-  let binding = newBinding;
+export function generateBindingLogic(newBindingData) {
+  let binding = newBindingData;
   binding.elNode.dataset.activeScroll =
-    newBinding?.elNode?.dataset?.activeScroll ?? 'false';
+    newBindingData?.elNode?.dataset?.activeScroll ?? 'false';
   binding.containedMeshIds = [];
   if (!binding.options.trackOnly) {
     binding.containedMeshIds = findMeshIDs(binding.elNode);
@@ -20,10 +21,11 @@ export function generateBindingLogic(newBinding) {
       binding.containerEl.getBoundingClientRect().bottom;
     binding.margin = 0;
   }
-  if (typeof newBinding.options.scrollSpeedTransition === 'number') {
-    binding.options.scrollSpeed = {
-      value: newBinding.options.scrollSpeedTransition,
-    };
+  if (newBindingData.options.scrollSpeedSetTo) {
+    gsap.to(binding.options.scrollSpeed, {
+      duration: newBindingData.options.scrollSpeedSetTo.duration,
+      value: newBindingData.options.scrollSpeedSetTo.value,
+    });
   }
   return binding;
 }

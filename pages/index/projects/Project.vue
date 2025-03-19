@@ -45,9 +45,9 @@ const projectImageUniforms = ref({
 });
 
 const emit = defineEmits(['openGallery']);
-const scrollSpeed = computed(() => {
+const scrollSpeedUpdate = computed(() => {
   return navigationStore.projects.galleryToOpen || Display.isMobile
-    ? 0.001
+    ? 0.0001
     : props.project.scrollSpeed;
 });
 watch(
@@ -77,8 +77,8 @@ watch(
         navigationStore.setActiveProject(props.index);
       },
       // scrollSpeed: scrollSpeed,
-      // scrollSpeed: { value: scrollSpeed },
-      scrollSpeedTransition: scrollSpeed,
+      scrollSpeed: { value: props.project.scrollSpeed },
+      scrollSpeedSetTo: { value: scrollSpeedUpdate, duration: 1.3 },
     }"
     :class="projectElClasses"
     :style="`${project.position?.bottom ? 'bottom:' + project.position?.bottom + 'vh' : 'initial'};`"
@@ -195,6 +195,7 @@ $nameSize: 30px;
   width: 0;
   height: 0;
   position: relative;
+  overflow: hidden;
 }
 
 .project-description {
