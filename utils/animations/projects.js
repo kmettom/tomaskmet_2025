@@ -141,6 +141,7 @@ export function showGalleryControls(show) {
 }
 
 export function nonActiveProjectTransition(ref, duration = 0) {
+  console.log('nonActiveProjectTransition', ref, duration);
   // return new Promise((resolve) => {
   gsap.to(ref.querySelector('.expand-description'), {
     y: 0,

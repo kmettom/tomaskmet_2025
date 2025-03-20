@@ -129,8 +129,7 @@ export const useNavigationStore = defineStore('navigationStore', {
       });
     },
     async setActiveProject(index) {
-      if (!this.projects.galleryOpen) return;
-      // Canvas.animateImageMesh = true;
+      if (!this.projects.galleryOpen || !this.projects.galleryToOpen) return;
       this.projects.pastActiveProject = { ...this.projects.activeProject };
       this.projects.activeProject.index = index;
       this.projects.activeProject.ref = this.projects.htmlRefs[index];
@@ -138,7 +137,6 @@ export const useNavigationStore = defineStore('navigationStore', {
       if (this.projects.pastActiveProject.ref) {
         nonActiveProjectTransition(this.projects.pastActiveProject.ref, 0.3);
       }
-      // Canvas.animateImageMesh = false;
     },
     closeActiveProject() {
       this.projects.pastActiveProject = { ...this.projects.activeProject };
