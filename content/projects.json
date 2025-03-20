@@ -28,7 +28,7 @@
     },
     "position": {
       "alignRight": true,
-      "bottom": 40
+      "bottom": 65
     },
     "scrollSpeed": 0.5
   },
@@ -42,8 +42,8 @@
       "src": "images/jk.webp",
       "alt": "Designer portrait with for the project jagodakondratiuk.com",
       "size": {
-        "width": "550px",
-        "height": "500px"
+        "width": "700px",
+        "height": "400px"
       }
     }
   },
