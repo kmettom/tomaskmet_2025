@@ -63,11 +63,12 @@
         <div class="gallery-controls-margin" />
         <div
           v-for="(project, index) in projectsData"
-          :key="project.name"
-          :ref="projectItemRefs.set"
+          :key="index"
           class="project-item"
           :class="{ first: index === 0 }"
         >
+          <!--          :ref="projectItemRefs.set"-->
+
           <Project
             :project="project"
             :index="index"
@@ -79,22 +80,33 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import Container from '~/components/common/Container.vue';
 import projectsData from '~/content/projects.json';
 import Project from '~/pages/index/projects/Project.vue';
 import IconsClose from '~/components/common/icons/close.client.vue';
-import { useTemplateRefsList } from '@vueuse/core';
 
 const navigationStore = useNavigationStore();
 
 const projects = ref(projectsData);
 
-const projectItemRefs = useTemplateRefsList<HTMLDivElement>();
-navigationStore.setProjectRefs(projectItemRefs);
+const updateProjectReferenceList = () => {
+  const projectItemRefs =
+    projectGalleryRef.value.querySelectorAll('.project-item');
+  navigationStore.setProjectRefs(projectItemRefs);
+};
+
+onMounted(() => {
+  updateProjectReferenceList();
+});
+
+onUpdated(() => {
+  updateProjectReferenceList();
+});
 
 const projectGalleryRef = ref();
 navigationStore.setGalleryRef(projectGalleryRef);
+
 const activeProjectIndex = computed(() => {
   return navigationStore.projects.activeProject.index ?? 0;
 });
@@ -106,7 +118,7 @@ const prevProjectName = computed(() => {
   return projects.value[activeProjectIndex.value - 1]?.name ?? null;
 });
 
-const openProject = (index: number) => {
+const openProject = (index) => {
   navigationStore.openGalleryProject(index);
 };
 

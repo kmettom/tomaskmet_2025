@@ -100,8 +100,8 @@ export function closeGalleryTransition(refs, sizeOrigins, projectMargin) {
       '<',
     );
     timeline.to('.project-name', { opacity: 1, duration: aniDuration }, '>');
+
     for (const [index, ref] of refs.entries()) {
-      //TODO: check the cause of Refs array having more items
       if (sizeOrigins[index]) {
         timeline.to(
           ref.querySelector('.project-image'),
@@ -141,7 +141,6 @@ export function showGalleryControls(show) {
 }
 
 export function nonActiveProjectTransition(ref, duration = 0) {
-  console.log('nonActiveProjectTransition', ref, duration);
   // return new Promise((resolve) => {
   gsap.to(ref.querySelector('.expand-description'), {
     y: 0,

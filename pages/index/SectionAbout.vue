@@ -40,7 +40,7 @@
   </Container>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import Container from '~/components/common/Container.vue';
 
 import { gsap } from 'gsap';
@@ -48,7 +48,7 @@ import { SplitText } from 'gsap/SplitText';
 
 gsap.registerPlugin(SplitText);
 
-function textAniCallback(item: any) {
+function textAniCallback(item) {
   const selector = `.${item.elNode.dataset.aboutId}`;
   const tl = gsap.timeline();
   const lines = new SplitText(selector, {
