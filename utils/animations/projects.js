@@ -42,7 +42,7 @@ export function openGalleryTransition(
     );
     const galleryWidthHalfPx =
       galleryRef.getBoundingClientRect().width / 2 + 'px';
-    timeline.to('.project-name', { opacity: 0, duration: aniDuration });
+    timeline.to('.project-name', { opacity: 0, duration: aniDuration }, '>');
 
     timeline.to(
       '.project-info-wrapper',
