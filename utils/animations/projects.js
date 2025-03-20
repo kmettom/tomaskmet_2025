@@ -34,7 +34,6 @@ export function openGalleryTransition(
     timeline.to(
       '.project',
       {
-        // transform: 'translate3D(0, 0, 0)',
         bottom: 0,
         duration: aniDuration,
       },
@@ -54,7 +53,6 @@ export function openGalleryTransition(
       '<+=0.15',
     );
     for (const [index, ref] of refs.entries()) {
-      if (!sizeOrigins[index]) return;
       timeline.fromTo(
         ref.querySelector('.project-image'),
         {
@@ -116,7 +114,6 @@ export function closeGalleryTransition(refs, sizeOrigins, projectMargin) {
           timeline.to(
             ref.querySelector('.project'),
             {
-              // transform: 'translate3D(0, 0, 0)',
               bottom: projectsData[index].position.bottom + 'vh',
               duration: aniDuration,
             },
