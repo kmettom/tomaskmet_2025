@@ -143,8 +143,10 @@ export default class Scroll {
           }
         } else {
           if (bounds.top < window.innerHeight && bounds.bottom > 0) {
-            let speed = item.options.scrollSpeed.value;
-            item.elNode.style.transform = `translate3d(0,${(this.scrollToRender - bounds.top) * speed}px,0)`;
+            let speed =
+              (window.innerHeight - bounds.top) *
+              item.options.scrollSpeed.value;
+            item.elNode.style.transform = `translate3d(0,${speed}px,0)`;
           }
         }
       } else {

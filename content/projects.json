@@ -28,9 +28,9 @@
     },
     "position": {
       "alignRight": true,
-      "bottom": 60
+      "bottom": 70
     },
-    "scrollSpeed": 0.15
+    "scrollSpeed": 0.5
   },
   {
     "name": "Jagoda",
@@ -59,13 +59,11 @@
       "src": "images/bu.webp",
       "alt": "Mobile phone with an app open on the screen",
       "size": {
-        "width": "510px",
-        "height": "600px"
+        "width": "400px",
+        "height": "550px"
       }
     },
-    "position": {
-      "alignRight": true
-    }
+    "scrollSpeed": 0.3
   },
   {
     "name": "Neosephiri",
@@ -77,9 +75,12 @@
       "src": "images/neo.webp",
       "alt": "Woman holding a melon",
       "size": {
-        "width": "1050px",
+        "width": "450px",
         "height": "450px"
       }
+    },
+    "position": {
+      "alignRight": true
     }
   }
 ]

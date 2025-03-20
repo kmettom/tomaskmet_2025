@@ -71,14 +71,14 @@ watch(
 <template>
   <div
     v-onScrollActivate="{
-      activeRange: navigationStore.projects.galleryOpen ? 1 : 0.85,
+      activeRange: navigationStore.projects.galleryToOpen ? 1 : 0.95,
       activateOnce: !navigationStore.projects.galleryOpen,
       activeRangeOrigin: navigationStore.projects.galleryOpen ? 0.5 : 1,
       bidirectionalActivation: navigationStore.projects.galleryOpen,
       activateCallback: () => {
         navigationStore.setActiveProject(props.index);
       },
-      scrollSpeedSetTo: { value: scrollSpeedUpdate, duration: 0.55 },
+      scrollSpeedSetTo: { value: scrollSpeedUpdate, duration: 0.35 },
     }"
     :class="projectElClasses"
     :style="`${project.position?.bottom ? 'bottom:' + project.position?.bottom + 'vh' : 'initial'};`"
