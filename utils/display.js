@@ -1,6 +1,8 @@
 const Display = {
   isMobile: null,
+  isTablet: null,
   mobileBreakPoint: 768,
+  tabletBreakPoint: 1050,
   init() {
     this.setScreenSize();
     this.resizeListener();
@@ -18,6 +20,7 @@ const Display = {
       window.location.reload();
     }
     this.isMobile = window.innerWidth < this.mobileBreakPoint;
+    this.isTablet = window.innerWidth < this.tabletBreakPoint;
   },
 };
 

@@ -25,7 +25,6 @@ const projectNumber = computed(() => {
 });
 
 const projectNumberTheme = computed(() => {
-  // return isMobile ? 'dark' : 'light';
   return 'light';
 });
 
@@ -47,7 +46,7 @@ const projectImageUniforms = ref({
 const emit = defineEmits(['openGallery']);
 const scrollSpeedUpdate = computed(() => {
   if (!props.project.scrollSpeed) return;
-  return navigationStore.projects.galleryToOpen || Display.isMobile
+  return navigationStore.projects.galleryToOpen || Display.isTablet
     ? 0.0001
     : props.project.scrollSpeed;
 });
