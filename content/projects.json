@@ -28,12 +28,12 @@
     },
     "position": {
       "alignRight": true,
-      "bottom": 70
+      "bottom": 40
     },
     "scrollSpeed": 0.5
   },
   {
-    "name": "Jagoda",
+    "name": "Jagoda Kondratiuk",
     "year": "2023",
     "award": "HM Awwwards",
     "description": "Portfolio website for designer Jagoda Kondratiuk. No framework used, with help of Request Animation Frame for smooth scroll and transitions.",
@@ -42,12 +42,9 @@
       "src": "images/jk.webp",
       "alt": "Designer portrait with for the project jagodakondratiuk.com",
       "size": {
-        "width": "1050px",
+        "width": "550px",
         "height": "500px"
       }
-    },
-    "position": {
-      "alignRight": true
     }
   },
   {
@@ -62,6 +59,9 @@
         "width": "400px",
         "height": "550px"
       }
+    },
+    "position": {
+      "alignRight": true
     },
     "scrollSpeed": 0.3
   },
@@ -78,9 +78,6 @@
         "width": "450px",
         "height": "450px"
       }
-    },
-    "position": {
-      "alignRight": true
     }
   }
 ]
