@@ -77,7 +77,7 @@ watch(
       activateCallback: () => {
         navigationStore.setActiveProject(props.index);
       },
-      scrollSpeedSetTo: { value: scrollSpeedUpdate, duration: 0.35 },
+      scrollSpeedSetTo: { value: scrollSpeedUpdate, duration: 0.25 },
     }"
     :class="projectElClasses"
     :style="`${project.position?.bottom ? 'bottom:' + project.position?.bottom + 'vh' : 'initial'};`"

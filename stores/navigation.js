@@ -51,7 +51,7 @@ export const useNavigationStore = defineStore('navigationStore', {
     },
     async openGalleryProject(index) {
       if (this.projects.galleryOpen) return;
-      this.projects.galleryToOpen = true;
+      Canvas.animateImageMesh = true;
       this.setNavVisible(false);
       this.setProjectOriginSizes();
       await this.scrollToProject(index);
@@ -59,7 +59,7 @@ export const useNavigationStore = defineStore('navigationStore', {
         this.projects.htmlRefs[index],
         window.innerHeight * projectDefaults.margin,
       );
-      Canvas.animateImageMesh = true;
+      this.projects.galleryToOpen = true;
       await openGalleryTransition(
         this.projects.htmlGalleryRef,
         this.projects.htmlRefs,
@@ -67,11 +67,11 @@ export const useNavigationStore = defineStore('navigationStore', {
         projectDefaults.activeImageHeightVH,
         projectDefaults.margin,
       );
-      Canvas.animateImageMesh = false;
       Canvas.setFixedScrollToElement(null);
       this.setGalleryNavigationVisible(true);
       this.projects.galleryOpen = true;
       await this.setActiveProject(index);
+      Canvas.animateImageMesh = false;
     },
     setProjectOriginSizes() {
       if (this.projects.htmlSizeOrigins !== null) return;
@@ -87,6 +87,7 @@ export const useNavigationStore = defineStore('navigationStore', {
       }
     },
     async closeGallery() {
+      Canvas.animateImageMesh = true;
       this.projects.galleryToOpen = false;
       Canvas.setFixedScrollToElement(
         this.projects.activeProject.ref,
@@ -95,16 +96,15 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.setGalleryNavigationVisible(false);
       this.closeActiveProject();
       this.setNavVisible(true);
-      Canvas.animateImageMesh = true;
       await closeGalleryTransition(
         this.projects.htmlRefs,
         this.projects.htmlSizeOrigins,
         projectDefaults.margin,
       );
-      Canvas.animateImageMesh = false;
       this.projects.galleryOpen = false;
       Canvas.setFixedScrollToElement(null);
       gsap.set('body', { overflow: 'auto' });
+      Canvas.animateImageMesh = false;
     },
     setGalleryNavigationVisible(visible) {
       this.projects.navigationVisible = visible;
