@@ -11,7 +11,7 @@ export function openGalleryTransition(
   slideHeight,
   projectMargin,
 ) {
-  const aniDuration = 0.3;
+  const aniDuration = 0.35;
   return new Promise((resolve) => {
     const timeline = gsap.timeline({
       ease: 'linear',
@@ -72,7 +72,7 @@ export function openGalleryTransition(
 }
 
 export function closeGalleryTransition(refs, sizeOrigins, projectMargin) {
-  const aniDuration = 0.2; // 0.5
+  const aniDuration = 0.35; // 0.5
   return new Promise((resolve) => {
     const timeline = gsap.timeline({
       ease: 'linear',

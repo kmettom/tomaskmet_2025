@@ -174,7 +174,7 @@ $marginRight: 50px;
   background: none;
   outline: none;
   border: none;
-  cursor: pointer;
+  cursor: none;
   @include respond-width($w-xs) {
     background: rgba(
       0,
@@ -204,7 +204,7 @@ $marginRight: 50px;
 }
 
 .change-project-btn {
-  cursor: pointer;
+  cursor: none;
   height: 75px;
   width: 100%;
   color: var(--light-color);
