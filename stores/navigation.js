@@ -133,7 +133,7 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.projects.pastActiveProject = { ...this.projects.activeProject };
       this.projects.activeProject.index = index;
       this.projects.activeProject.ref = this.projects.htmlRefs[index];
-      await activeProjectTransition(this.projects.activeProject.ref);
+      activeProjectTransition(this.projects.activeProject.ref);
       if (this.projects.pastActiveProject.ref) {
         nonActiveProjectTransition(this.projects.pastActiveProject.ref, 0.3);
       }
