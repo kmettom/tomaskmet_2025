@@ -349,7 +349,6 @@ const Canvas = {
         },
         // Common
         uMouse: { value: new THREE.Vector2(0, 0) },
-        uMousePrev: { value: new THREE.Vector2(0, 0) },
         uMouseMovement: { value: new THREE.Vector2(0, 0) },
         uMap: { value: null },
         // Rendering
@@ -436,7 +435,6 @@ const Canvas = {
         vectorVNoise: { value: new THREE.Vector2(1.5, 1.5) }, // 1.5
         uAniInImage: { value: meshUniforms.uAniInImage?.value ?? 0 },
         uMouse: { value: new THREE.Vector2(0, 0) },
-        uMousePrev: { value: new THREE.Vector2(0, 0) },
         uMouseMovement: { value: new THREE.Vector2(0, 0) },
         uMeshSize: { value: new THREE.Vector2(bounds.width, bounds.height) },
         uTextureSize: {
@@ -588,10 +586,6 @@ const Canvas = {
       this.materials[i].uniforms.uMouseMovement.value = new THREE.Vector2(
         this.mouse.movementX,
         this.mouse.movementY,
-      );
-      this.materials[i].uniforms.uMousePrev.value = new THREE.Vector2(
-        this.mouse.xPrev,
-        this.mouse.yPrev,
       );
     }
 

@@ -15,6 +15,7 @@ uniform float uAniInText;
 uniform float uDevicePixelRatio;
 uniform vec2 uViewport;
 uniform vec2 uMouse;
+uniform vec2 uMouseMovement;
 uniform vec2 uMeshSize;
 uniform float devicePixelRatio;
 
