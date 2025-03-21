@@ -124,8 +124,8 @@ void main() {
     uv.x = uv.x * scale + (1.0 - scale) / 2.0; // Center the texture horizontally
   }
 
-  float newAniIn = max(uAniInImage, uImageGallery);
-  float overlayOpacity = createOverlayOpacity(newAniIn);
+  float overlayAniIn = max(1.0, uImageGallery + uAniInImage - (uImageGallery * uAniInImage));
+  float overlayOpacity = createOverlayOpacity(overlayAniIn);
 
   // Apply sepia to the texture color
   float blurStrength = 1.0 * circle * overlayBlur * (1.0 - uImageGalleryActive);
@@ -138,7 +138,7 @@ void main() {
     circle * (1.0 - uImageGalleryActive)
   );
 
-  float galleryOpacity = 1.0 - 0.8 * (uImageGallery - uImageGalleryActive);
+  float galleryOpacity = 1.0 - 0.8 * (abs ( uImageGallery - uImageGalleryActive));
 
   vec4 final = vec4(sepiaColor, overlayOpacity * galleryOpacity);
 
