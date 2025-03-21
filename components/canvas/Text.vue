@@ -6,6 +6,9 @@
 
 <script setup>
 import { Canvas } from '~/utils/canvas';
+import { useDisplayStore } from '~/stores/display';
+
+const displayStore = useDisplayStore();
 const navigationStore = useNavigationStore();
 
 const props = defineProps({
@@ -50,7 +53,7 @@ const getTrimmedText = () => {
 watch(
   () => props.uniforms,
   (uniforms) => {
-    if (Display.isMobile) return;
+    if (displayStore.isMobile) return;
     Canvas.meshUniformsUpdate(meshId, uniforms);
   },
   { deep: true },
@@ -67,7 +70,7 @@ onBeforeUnmount(() => {
 watch(
   () => navigationStore.canvasInitiated,
   (newVal) => {
-    if (Display.isMobile || !newVal) return;
+    if (displayStore.isMobile || !newVal) return;
     // delay canvas initialization to wait for font loaded
     setTimeout(() => {
       Canvas.addTextAsMSDF(

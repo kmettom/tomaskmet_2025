@@ -1,6 +1,9 @@
 <script setup>
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
+import { useDisplayStore } from '~/stores/display';
+
+const displayStore = useDisplayStore();
 const navigationStore = useNavigationStore();
 
 gsap.registerPlugin(SplitText);
@@ -46,7 +49,7 @@ const projectImageUniforms = ref({
 const emit = defineEmits(['openGallery']);
 const scrollSpeedUpdate = computed(() => {
   if (!props.project.scrollSpeed) return;
-  return navigationStore.projects.galleryToOpen || Display.isTablet
+  return navigationStore.projects.galleryToOpen || displayStore.isTablet
     ? 0.0001
     : props.project.scrollSpeed;
 });
@@ -80,7 +83,7 @@ watch(
       scrollSpeedSetTo: { value: scrollSpeedUpdate, duration: 0.25 },
     }"
     :class="projectElClasses"
-    :style="`${project.position?.bottom ? 'bottom:' + project.position?.bottom + 'vh' : 'initial'};`"
+    :style="`${project.position?.bottom && !displayStore.isTablet ? 'bottom:' + project.position?.bottom + 'vh' : 'initial'};`"
   >
     <div
       v-set-data-attrs="{

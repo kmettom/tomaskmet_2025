@@ -253,6 +253,7 @@ const Canvas = {
   },
 
   updateOnScrollActiveElement(updatedBinding) {
+    if (!this.scroll) return;
     for (let [
       index,
       item,
