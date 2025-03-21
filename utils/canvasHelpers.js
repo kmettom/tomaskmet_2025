@@ -22,11 +22,10 @@ export function generateBindingLogic(newBindingData) {
     binding.margin = 0;
   }
   if (newBindingData.options.scrollSpeedSetTo?.value) {
-    if (!binding.options.scrollSpeed) {
-      binding.options.scrollSpeed = {
-        value: binding.elNode.dataset.scrollSpeed,
-      };
-    }
+    const dataSetScrollSpeed = Number(binding.elNode.dataset.scrollSpeed);
+    binding.options.scrollSpeed = {
+      value: dataSetScrollSpeed,
+    };
     gsap.to(binding.options.scrollSpeed, {
       duration: newBindingData.options.scrollSpeedSetTo.duration,
       value: newBindingData.options.scrollSpeedSetTo.value,
@@ -36,6 +35,8 @@ export function generateBindingLogic(newBindingData) {
       },
     });
   }
+
+  // }
   return binding;
 }
 
