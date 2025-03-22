@@ -41,7 +41,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import Container from '~/components/common/Container.vue';
 import services from '~/content/services.model.json';
 import Service from '~/pages/index/services/Service.vue';
@@ -52,11 +52,11 @@ const serviceTopPadding = 50;
 const maxBlur = 5;
 
 const activeItemIndex = ref();
-const setItemActive = (index: number, isActive: boolean) => {
+const setItemActive = (index, isActive) => {
   activeItemIndex.value = isActive ? index : null;
 };
 
-const setServiceBlockBlur = (index: number, elNode: any, styles: any) => {
+const setServiceBlockBlur = (index, elNode, styles) => {
   const aniInCoef = Math.min(
     1,
     1 -
@@ -83,16 +83,16 @@ const setServiceBlockBlur = (index: number, elNode: any, styles: any) => {
   });
 };
 
-const serviceMarginTop = (indexInRow: number) => {
+const serviceMarginTop = (indexInRow) => {
   return ` margin-top:${indexInRow * serviceBlockSize}px; `;
 };
 
-const servicePaddingTop = (index: number) => {
+const servicePaddingTop = (index) => {
   const rowIndex = Math.floor(index / 3);
   return ` padding-top: ${serviceTopPadding + (rowIndex * serviceBlockSize) / 2}px; `;
 };
 
-const serviceBoxStyle = (index: number) => {
+const serviceBoxStyle = (index) => {
   let indexInRow = index;
   if (index > 2) {
     indexInRow = index - 3;

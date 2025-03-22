@@ -18,11 +18,11 @@
 </template>
 
 <script setup>
-import { Display } from '~/utils/display';
 import { Canvas } from '~/utils/canvas';
-// import { SpeedInsights } from '@vercel/speed-insights/nuxt';
+import { useDisplayStore } from '~/stores/display';
 
 const navigationStore = useNavigationStore();
+const displayStore = useDisplayStore();
 
 const backLayerCanvas = computed(() => {
   return (
@@ -35,8 +35,8 @@ const canvas = ref('canvas');
 const scrollableContent = ref('scrollableContent');
 
 onMounted(async () => {
-  Display.init();
   await Canvas.init(canvas.value, scrollableContent.value);
+  displayStore.init();
   navigationStore.canvasInitiated = true;
 });
 </script>

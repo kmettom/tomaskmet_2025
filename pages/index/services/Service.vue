@@ -11,8 +11,6 @@
 </template>
 
 <script>
-import { useNuxtApp } from '#app';
-
 export default {
   props: {
     text: {
@@ -37,14 +35,7 @@ export default {
       required: true,
     },
   },
-  setup() {
-    const { $viewport } = useNuxtApp();
-
-    const isTablet = computed(() => $viewport.isLessThan('tablet'));
-    return {
-      isTablet,
-    };
-  },
+  setup() {},
 };
 </script>
 

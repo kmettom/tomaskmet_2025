@@ -16,6 +16,9 @@
 
 <script setup>
 import { Canvas } from '~/utils/canvas';
+import { useDisplayStore } from '~/stores/display';
+
+const displayStore = useDisplayStore();
 const navigationStore = useNavigationStore();
 
 const props = defineProps({
@@ -57,7 +60,7 @@ const meshUniforms = computed(() => {
 });
 
 const addImageToCanvas = () => {
-  if (imgAddedToCanvas.value || Display.isMobile) return;
+  if (imgAddedToCanvas.value || displayStore.isMobile) return;
   Canvas.addImageAsMesh(
     image.value,
     props.shader,

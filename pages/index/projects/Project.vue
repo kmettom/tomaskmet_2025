@@ -1,12 +1,13 @@
 <script setup>
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
-// import { projectNumberAni } from '~/utils/animations/projects';
+import { useDisplayStore } from '~/stores/display';
+
+const displayStore = useDisplayStore();
 const navigationStore = useNavigationStore();
 
 gsap.registerPlugin(SplitText);
 
-// const isMobile = ref(Display.isMobile);
 const props = defineProps({
   project: {
     type: Object,
@@ -27,7 +28,6 @@ const projectNumber = computed(() => {
 });
 
 const projectNumberTheme = computed(() => {
-  // return isMobile ? 'dark' : 'light';
   return 'light';
 });
 
@@ -47,6 +47,12 @@ const projectImageUniforms = ref({
 });
 
 const emit = defineEmits(['openGallery']);
+const scrollSpeedUpdate = computed(() => {
+  if (!props.project.scrollSpeed) return;
+  return navigationStore.projects.galleryToOpen || displayStore.isTablet
+    ? 0.0001
+    : props.project.scrollSpeed;
+});
 
 watch(
   () => navigationStore.projects.galleryOpen,
@@ -67,18 +73,17 @@ watch(
 <template>
   <div
     v-onScrollActivate="{
-      activeRange: navigationStore.projects.galleryOpen ? 1 : 0.85,
+      activeRange: navigationStore.projects.galleryToOpen ? 1 : 0.95,
       activateOnce: !navigationStore.projects.galleryOpen,
       activeRangeOrigin: navigationStore.projects.galleryOpen ? 0.5 : 1,
       bidirectionalActivation: navigationStore.projects.galleryOpen,
       activateCallback: () => {
         navigationStore.setActiveProject(props.index);
       },
-      // scrollSpeed: navigationStore.projects.galleryOpen
-      //   ? 0
-      //   : props.project.scrollSpeed,
+      scrollSpeedSetTo: { value: scrollSpeedUpdate, duration: 0.25 },
     }"
     :class="projectElClasses"
+    :style="`${project.position?.bottom && !displayStore.isTablet ? 'bottom:' + project.position?.bottom + 'vh' : 'initial'};`"
   >
     <div
       v-set-data-attrs="{
@@ -192,6 +197,7 @@ $nameSize: 30px;
   width: 0;
   height: 0;
   position: relative;
+  overflow: hidden;
 }
 
 .project-description {

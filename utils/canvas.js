@@ -119,6 +119,8 @@ const Canvas = {
     window.addEventListener('mousemove', (event) => {
       this.mouse.x = event.clientX / this.width;
       this.mouse.y = event.clientY / this.height;
+      this.mouse.movementX = event.movementX / this.width;
+      this.mouse.movementY = event.movementY / this.height;
     });
   },
   async loadFontMSDF() {
@@ -251,6 +253,7 @@ const Canvas = {
   },
 
   updateOnScrollActiveElement(updatedBinding) {
+    if (!this.scroll) return;
     for (let [
       index,
       item,
@@ -349,7 +352,6 @@ const Canvas = {
         },
         // Common
         uMouse: { value: new THREE.Vector2(0, 0) },
-        uMousePrev: { value: new THREE.Vector2(0, 0) },
         uMouseMovement: { value: new THREE.Vector2(0, 0) },
         uMap: { value: null },
         // Rendering
@@ -436,7 +438,6 @@ const Canvas = {
         vectorVNoise: { value: new THREE.Vector2(1.5, 1.5) }, // 1.5
         uAniInImage: { value: meshUniforms.uAniInImage?.value ?? 0 },
         uMouse: { value: new THREE.Vector2(0, 0) },
-        uMousePrev: { value: new THREE.Vector2(0, 0) },
         uMouseMovement: { value: new THREE.Vector2(0, 0) },
         uMeshSize: { value: new THREE.Vector2(bounds.width, bounds.height) },
         uTextureSize: {
@@ -561,7 +562,9 @@ const Canvas = {
     this.time += 0.05;
 
     this.scroll.render();
-    this.scrollInProgress = this.currentScroll !== this.scroll.scrollToRender;
+    this.scrollInProgress =
+      this.currentScroll !== this.scroll.scrollToRender ||
+      this.animateImageMesh;
     this.currentScroll = this.scroll.scrollToRender;
 
     //animate on scroll
@@ -586,10 +589,6 @@ const Canvas = {
       this.materials[i].uniforms.uMouseMovement.value = new THREE.Vector2(
         this.mouse.movementX,
         this.mouse.movementY,
-      );
-      this.materials[i].uniforms.uMousePrev.value = new THREE.Vector2(
-        this.mouse.xPrev,
-        this.mouse.yPrev,
       );
     }
 

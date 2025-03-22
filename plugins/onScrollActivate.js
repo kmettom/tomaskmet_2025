@@ -6,6 +6,10 @@ export default defineNuxtPlugin((nuxtApp) => {
     mounted(el, binding) {
       el.dataset.scrollActivateId = crypto.randomUUID();
 
+      if (binding.value?.scrollSpeedSetTo?.value) {
+        el.dataset.scrollSpeed = binding.value?.scrollSpeedSetTo?.value;
+      }
+
       const navigationStore = useNavigationStore();
 
       if (navigationStore.canvasInitiated) {
@@ -48,7 +52,9 @@ export default defineNuxtPlugin((nuxtApp) => {
 //   bidirectionalActivation: Boolean (default: false),
 //   activeRangeOrigin: Number (0-1, 0 from top of screen, 1 bottom of the screen)
 //   activeRangeMargin: Number
-//   scrollSpeed: Number,
 //   fixToParentId: String,
 //   onScrollCallback: (item, speed) => {},
+//   scrollSpeed: {value: Number},
+//  scrollSpeedSetTo: {value: Number, duration: Number}
+
 // }

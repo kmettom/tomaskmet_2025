@@ -27,11 +27,13 @@
       }
     },
     "position": {
-      "alignRight": true
-    }
+      "alignRight": true,
+      "bottom": 65
+    },
+    "scrollSpeed": 0.5
   },
   {
-    "name": "Jagoda",
+    "name": "Jagoda Kondratiuk",
     "year": "2023",
     "award": "HM Awwwards",
     "description": "Portfolio website for designer Jagoda Kondratiuk. No framework used, with help of Request Animation Frame for smooth scroll and transitions.",
@@ -40,8 +42,8 @@
       "src": "images/jk.webp",
       "alt": "Designer portrait with for the project jagodakondratiuk.com",
       "size": {
-        "width": "1050px",
-        "height": "500px"
+        "width": "700px",
+        "height": "400px"
       }
     }
   },
@@ -54,13 +56,14 @@
       "src": "images/bu.webp",
       "alt": "Mobile phone with an app open on the screen",
       "size": {
-        "width": "510px",
-        "height": "600px"
+        "width": "400px",
+        "height": "550px"
       }
     },
     "position": {
       "alignRight": true
-    }
+    },
+    "scrollSpeed": 0.3
   },
   {
     "name": "Neosephiri",
@@ -72,7 +75,7 @@
       "src": "images/neo.webp",
       "alt": "Woman holding a melon",
       "size": {
-        "width": "1050px",
+        "width": "450px",
         "height": "450px"
       }
     }

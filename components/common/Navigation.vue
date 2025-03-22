@@ -14,8 +14,8 @@
         :key="navItem.id"
         :ref="navItemRefs.set"
         v-set-data-attrs="{
-          cursorsize: 30,
-          cursoropacity: 0.6,
+          cursorsize: 25,
+          cursoropacity: 0.65,
           cursorcolor: navContrastSwitched ? 'dark' : 'light',
         }"
         class="navigation-item"

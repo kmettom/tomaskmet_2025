@@ -136,7 +136,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import Container from '~/components/common/Container.vue';
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
@@ -144,7 +144,7 @@ import { SplitText } from 'gsap/SplitText';
 gsap.registerPlugin(SplitText);
 // import BasketBallIcon from '~/public/icons/basket-ball.png';
 
-const splitLineAnimation = (item: any) => {
+const splitLineAnimation = (item) => {
   const tl = gsap.timeline({ delay: 0.5 });
   const lines = new SplitText(item, {
     type: 'lines',

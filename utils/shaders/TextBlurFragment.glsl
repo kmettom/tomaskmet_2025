@@ -15,6 +15,7 @@ uniform float uAniInText;
 uniform float uDevicePixelRatio;
 uniform vec2 uViewport;
 uniform vec2 uMouse;
+uniform vec2 uMouseMovement;
 uniform vec2 uMeshSize;
 uniform float devicePixelRatio;
 
@@ -31,20 +32,23 @@ float createCircleTrail(float radius) {
   vec2 viewportUv = gl_FragCoord.xy / uViewport / uDevicePixelRatio;
   float viewportAspect = uViewport.x / uViewport.y;
 
-  //  vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);
-  vec2 mousePointTrail = vec2(uMouse.x, 1.0 - uMouse.y);
+  vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);
 
-  vec2 shapeUvTrail = viewportUv - mousePointTrail;
+  vec2 shapeUvTrail = viewportUv - mousePoint;
   shapeUvTrail /= vec2(1.0, viewportAspect);
-  shapeUvTrail += mousePointTrail;
-  float distTail = distance(shapeUvTrail, mousePointTrail);
+  shapeUvTrail += mousePoint;
+  float distTail = distance(shapeUvTrail, mousePoint);
 
-  //  float circleRadius = max(0.0, radius / uViewport.x);
-  float circleRadiusTail = max(0.0, radius / uViewport.x);
+  float circleRadius = max(0.0, radius / uViewport.x);
+
+  //  float trailStrenght = 20.0;
+  //  vec2 mousePointTrail = vec2(uMouse.x - ( uMouseMovement.x * trailStrenght ), 1.0 - uMouse.y + ( uMouseMovement.y * trailStrenght ));
+
+  //  float circleRadiusTail = max(0.0, radius / uViewport.x);
 
   //  return max(circleHead, circleTrail * (1.0 - tailLength));
-  float dist = smoothstep(circleRadiusTail, circleRadiusTail + 0.05, distTail);
-  //    dist += smoothstep(circleRadius, circleRadius + 0.05, distHead);
+  //  float dist = smoothstep(circleRadiusTail, circleRadiusTail + 0.05, distTail);
+  float dist = smoothstep(circleRadius, circleRadius + 0.05, distTail);
   return dist;
 }
 

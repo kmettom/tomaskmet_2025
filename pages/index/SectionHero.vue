@@ -42,7 +42,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import Container from '~/components/common/Container.vue';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';

@@ -4,7 +4,6 @@ import {
   openGalleryTransition,
   showGalleryControls,
   closeGalleryTransition,
-  // projectNumberAni,
 } from '~/utils/animations/projects';
 import { gsap } from 'gsap';
 import { projectDefaults } from '~/constants/projectDefaults.js';
@@ -26,6 +25,7 @@ export const useNavigationStore = defineStore('navigationStore', {
     ],
     projects: {
       galleryOpen: false,
+      galleryToOpen: false,
       navigationVisible: false,
       htmlRefs: undefined,
       htmlSizeOrigins: null,
@@ -59,6 +59,7 @@ export const useNavigationStore = defineStore('navigationStore', {
         this.projects.htmlRefs[index],
         window.innerHeight * projectDefaults.margin,
       );
+      this.projects.galleryToOpen = true;
       await openGalleryTransition(
         this.projects.htmlGalleryRef,
         this.projects.htmlRefs,
@@ -69,7 +70,7 @@ export const useNavigationStore = defineStore('navigationStore', {
       Canvas.setFixedScrollToElement(null);
       this.setGalleryNavigationVisible(true);
       this.projects.galleryOpen = true;
-      this.setActiveProject(index);
+      await this.setActiveProject(index);
       Canvas.animateImageMesh = false;
     },
     setProjectOriginSizes() {
@@ -81,18 +82,19 @@ export const useNavigationStore = defineStore('navigationStore', {
         this.projects.htmlSizeOrigins.push({
           width: imageBounds.width,
           height: imageBounds.height,
+          bottom: imageBounds.bottom,
         });
       }
     },
     async closeGallery() {
       Canvas.animateImageMesh = true;
-
+      this.projects.galleryToOpen = false;
       Canvas.setFixedScrollToElement(
         this.projects.activeProject.ref,
         window.innerHeight * projectDefaults.margin,
       );
       this.setGalleryNavigationVisible(false);
-      await this.closeActiveProject();
+      this.closeActiveProject();
       this.setNavVisible(true);
       await closeGalleryTransition(
         this.projects.htmlRefs,
@@ -126,8 +128,8 @@ export const useNavigationStore = defineStore('navigationStore', {
         }, scrollDurationEnd * 1000);
       });
     },
-    setActiveProject(index) {
-      if (!this.projects.galleryOpen) return;
+    async setActiveProject(index) {
+      if (!this.projects.galleryOpen || !this.projects.galleryToOpen) return;
       this.projects.pastActiveProject = { ...this.projects.activeProject };
       this.projects.activeProject.index = index;
       this.projects.activeProject.ref = this.projects.htmlRefs[index];
@@ -136,11 +138,11 @@ export const useNavigationStore = defineStore('navigationStore', {
         nonActiveProjectTransition(this.projects.pastActiveProject.ref, 0.3);
       }
     },
-    async closeActiveProject() {
+    closeActiveProject() {
       this.projects.pastActiveProject = { ...this.projects.activeProject };
       this.projects.activeProject.index = null;
       this.projects.activeProject.ref = null;
-      await nonActiveProjectTransition(this.projects.pastActiveProject.ref);
+      nonActiveProjectTransition(this.projects.pastActiveProject.ref);
     },
   },
 });
