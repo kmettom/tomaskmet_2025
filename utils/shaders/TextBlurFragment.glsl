@@ -28,11 +28,9 @@ float median(float r, float g, float b) {
   return max(min(r, g), min(max(r, g), b));
 }
 
-float createCircleTrail(float radius) {
+float createCircleTrail(float radius, vec2 mousePoint) {
   vec2 viewportUv = gl_FragCoord.xy / uViewport / uDevicePixelRatio;
   float viewportAspect = uViewport.x / uViewport.y;
-
-  vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);
 
   vec2 shapeUvTrail = viewportUv - mousePoint;
   shapeUvTrail /= vec2(1.0, viewportAspect);
@@ -40,14 +38,6 @@ float createCircleTrail(float radius) {
   float distTail = distance(shapeUvTrail, mousePoint);
 
   float circleRadius = max(0.0, radius / uViewport.x);
-
-  //  float trailStrenght = 20.0;
-  //  vec2 mousePointTrail = vec2(uMouse.x - ( uMouseMovement.x * trailStrenght ), 1.0 - uMouse.y + ( uMouseMovement.y * trailStrenght ));
-
-  //  float circleRadiusTail = max(0.0, radius / uViewport.x);
-
-  //  return max(circleHead, circleTrail * (1.0 - tailLength));
-  //  float dist = smoothstep(circleRadiusTail, circleRadiusTail + 0.05, distTail);
   float dist = smoothstep(circleRadius, circleRadius + 0.05, distTail);
   return dist;
 }
@@ -64,8 +54,16 @@ float createOverlay(float activeOverlay) {
 }
 
 void main() {
+
+  vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);
+  float circleTrail = createCircleTrail(1.0, mousePoint);
+
+//  vec2 mouseMovePoint = uMouse - ( uMouseMovement * 5.0);
+//  vec2 mousePos = vec2(mouseMovePoint.x , 1.0 - mouseMovePoint.y);
+//  float rawCircleTrail = createCircleTrail(1.0, mousePos);
+//  float circleTrail = smoothstep(0.0, 1.0, rawCircleTrail);
+
   float overlayOpacity = createOverlay(uAniInText);
-  float circleTrail = createCircleTrail(1.0);
   vec2 newUv = vUv;
 
   vec3 mySample = texture2D(uMap, newUv).rgb;
@@ -75,7 +73,7 @@ void main() {
 
   float sigDist =
     median(mySampleRGB.r, mySampleRGB.g, mySampleRGB.b) -
-    DISTANCE_COEF / aniInDistance / circleTrail;
+    DISTANCE_COEF / aniInDistance / circleTrail ;
   float fill = clamp(sigDist / fwidth(sigDist) + DISTANCE_COEF, 0.0, 1.0);
 
   float finalAlpha = fill * overlayOpacity * circleTrail;
