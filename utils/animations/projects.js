@@ -110,7 +110,7 @@ export function closeGalleryTransition(refs, sizeOrigins, projectMargin) {
           },
           '<',
         );
-        if (projectsData[index]?.position?.bottom ?? false) {
+        if (projectsData[index]?.position?.bottom && window.innerWidth > 1050 ) {
           timeline.to(
             ref.querySelector('.project'),
             {
