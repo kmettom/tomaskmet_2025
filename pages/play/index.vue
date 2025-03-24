@@ -5,7 +5,7 @@
     </h1>
     <div class="play-1-img-wrapper">
       <CanvasImage :src-link="'images/play/play1.jpg'" :shader="'play1'" />
-      </div>
+    </div>
   </div>
 </template>
 <script setup>
@@ -42,7 +42,7 @@ watch(
 );
 </script>
 <style lang="scss" scoped>
-.play-1-img-wrapper{
+.play-1-img-wrapper {
   margin-left: 200px;
   width: 700px;
 }
