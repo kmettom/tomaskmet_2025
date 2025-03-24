@@ -21,6 +21,10 @@ import heroBlurVertex from './shaders/heroBlurVertex.glsl';
 
 import TextBlurFragment from './shaders/TextBlurFragment.glsl';
 import TextBlurVertex from './shaders/TextBlurVertex.glsl';
+
+import play1Fragment from './shaders/play1Fragment.glsl';
+import play1Vertex from './shaders/play1Vertex.glsl';
+
 import {
   generateBindingLogic,
   loadTexture,
@@ -50,6 +54,10 @@ const CanvasOptions = {
   hero: {
     fragmentShader: heroBlurFragment,
     vertexShader: heroBlurVertex,
+  },
+  play1: {
+    fragmentShader: play1Fragment,
+    vertexShader: play1Vertex,
   },
 };
 

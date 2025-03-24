@@ -3,6 +3,9 @@
     <h1 class="headline">
       <CanvasText :theme="'light'"> Playground </CanvasText>
     </h1>
+    <div class="play-1-img-wrapper">
+      <CanvasImage :src-link="'images/play/play1.jpg'" :shader="'play1'" />
+      </div>
   </div>
 </template>
 <script setup>
@@ -18,9 +21,6 @@ useSeoMeta({
 const props = defineProps({
   pageActive: Boolean,
 });
-
-const hoverImage = ref(false);
-// const textHover = ref(false);
 
 const pageAnimateIn = () => {
   // console.log('Example method - animate page transition');
@@ -41,4 +41,9 @@ watch(
   },
 );
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.play-1-img-wrapper{
+  margin-left: 200px;
+  width: 700px;
+}
+</style>
