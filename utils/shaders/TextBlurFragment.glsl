@@ -54,14 +54,13 @@ float createOverlay(float activeOverlay) {
 }
 
 void main() {
-
   vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);
   float circleTrail = createCircleTrail(1.0, mousePoint);
 
-//  vec2 mouseMovePoint = uMouse - ( uMouseMovement * 5.0);
-//  vec2 mousePos = vec2(mouseMovePoint.x , 1.0 - mouseMovePoint.y);
-//  float rawCircleTrail = createCircleTrail(1.0, mousePos);
-//  float circleTrail = smoothstep(0.0, 1.0, rawCircleTrail);
+  //  vec2 mouseMovePoint = uMouse - ( uMouseMovement * 5.0);
+  //  vec2 mousePos = vec2(mouseMovePoint.x , 1.0 - mouseMovePoint.y);
+  //  float rawCircleTrail = createCircleTrail(1.0, mousePos);
+  //  float circleTrail = smoothstep(0.0, 1.0, rawCircleTrail);
 
   float overlayOpacity = createOverlay(uAniInText);
   vec2 newUv = vUv;
@@ -73,7 +72,7 @@ void main() {
 
   float sigDist =
     median(mySampleRGB.r, mySampleRGB.g, mySampleRGB.b) -
-    DISTANCE_COEF / aniInDistance / circleTrail ;
+    DISTANCE_COEF / aniInDistance / circleTrail;
   float fill = clamp(sigDist / fwidth(sigDist) + DISTANCE_COEF, 0.0, 1.0);
 
   float finalAlpha = fill * overlayOpacity * circleTrail;
