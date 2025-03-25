@@ -125,7 +125,7 @@ void main() {
   }
 
   float overlayAniIn = max(
-    1.0,
+  uAniInImage,
     uImageGallery + uAniInImage - uImageGallery * uAniInImage
   );
   float overlayOpacity = createOverlayOpacity(overlayAniIn);
