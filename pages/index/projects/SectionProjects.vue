@@ -219,5 +219,6 @@ $marginRight: 50px;
 .project-item {
   position: relative;
   padding-top: 20vh;
+  pointer-events: none;
 }
 </style>

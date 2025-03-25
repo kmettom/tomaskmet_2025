@@ -164,11 +164,13 @@ $nameSize: 30px;
   justify-content: left;
   position: relative;
   max-width: 100%;
+  pointer-events: none;
   &.project-right {
     justify-content: right;
   }
 }
 .project-wrapper {
+  pointer-events: auto;
   cursor: pointer;
   position: relative;
   display: flex;
