@@ -58,9 +58,9 @@ watch(
   () => navigationStore.projects.galleryOpen,
   (galleryOpen) => {
     projectImageUniforms.value.uImageGallery.active = galleryOpen;
-    if(galleryOpen === false){
-      projectImageUniforms.value.uAniInImage = {active : true, duration: 0};
-      projectImageUniforms.value.uAniInText = {active : true, duration: 0};
+    if (galleryOpen === false) {
+      projectImageUniforms.value.uAniInImage = { active: true, duration: 0 };
+      projectImageUniforms.value.uAniInText = { active: true, duration: 0 };
     }
   },
 );

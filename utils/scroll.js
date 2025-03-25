@@ -142,7 +142,10 @@ export default class Scroll {
             item.childEl.style.transform = `translate3d(0,${fixedPosition}px,0)`;
           }
         } else {
-          let speedTrack = elementNearViewport(bounds, (window.innerHeight * 0.5) + itemRangeMargin);
+          let speedTrack = elementNearViewport(
+            bounds,
+            window.innerHeight * 0.5 + itemRangeMargin,
+          );
           if (speedTrack) {
             let speed =
               (window.innerHeight - bounds.top) *
