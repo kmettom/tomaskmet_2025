@@ -72,8 +72,8 @@ export function openGalleryTransition(
         width: galleryWidthHalfPx,
         height: '65vh',
       },
-      '<+=0.15',
-      // '<',
+      // '<+=0.15',
+      '<',
     );
   });
 }
