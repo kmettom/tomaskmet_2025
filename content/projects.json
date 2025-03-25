@@ -28,9 +28,9 @@
     },
     "position": {
       "alignRight": true,
-      "bottom": 55
+      "bottom": 30
     },
-    "scrollSpeed": 0.38
+    "scrollSpeed": 0.2
   },
   {
     "name": "Jagoda Kondratiuk",
@@ -62,9 +62,9 @@
     },
     "position": {
       "alignRight": true,
-      "bottom": 10
+      "bottom": 20
     },
-    "scrollSpeed": 0.35
+    "scrollSpeed": 0.18
   },
   {
     "name": "Neosephiri",
