@@ -144,7 +144,7 @@ export default class Scroll {
         } else {
           let speedTrack = elementNearViewport(
             bounds,
-            window.innerHeight * 0.5 + itemRangeMargin,
+            window.innerHeight * 0.75 + itemRangeMargin, // 0.75 = maximum amount of project VH bottom
           );
           if (speedTrack) {
             let speed =
