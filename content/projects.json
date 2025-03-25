@@ -62,9 +62,9 @@
     },
     "position": {
       "alignRight": true,
-      "bottom": 20
+      "bottom": 10
     },
-    "scrollSpeed": 0.20
+    "scrollSpeed": 0.10
   },
   {
     "name": "Neosephiri",

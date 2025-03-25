@@ -125,9 +125,10 @@ void main() {
   }
 
   float overlayAniIn = max(
-  uAniInImage,
+    uAniInImage,
     uImageGallery + uAniInImage - uImageGallery * uAniInImage
   );
+
   float overlayOpacity = createOverlayOpacity(overlayAniIn);
 
   // Apply sepia to the texture color

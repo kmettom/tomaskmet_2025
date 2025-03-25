@@ -217,6 +217,7 @@ const Canvas = {
     const mesh = this.scene.getObjectByName(id);
     if (!mesh) return;
     for (const uniKey in uniforms) {
+      if(!mesh.material.uniforms[uniKey]) mesh.material.uniforms[uniKey] = { value: uniforms[uniKey].active ? 1 : 0 , duration: 0}
       gsap.to(mesh.material.uniforms[uniKey], {
         duration: uniforms[uniKey].duration,
         value: uniforms[uniKey].active ? 1 : 0,
