@@ -8,8 +8,8 @@
       "src": "images/ovp.webp",
       "alt": "Building construction from bottom with blue sky",
       "size": {
-        "width": "510px",
-        "height": "600px"
+        "width": "450px",
+        "height": "550px"
       }
     }
   },
@@ -22,15 +22,15 @@
       "src": "images/goat.webp",
       "alt": "Mobile phone with an app open on the screen",
       "size": {
-        "width": "330px",
-        "height": "338px"
+        "width": "350px",
+        "height": "438px"
       }
     },
     "position": {
       "alignRight": true,
-      "bottom": 65
+      "bottom": 55
     },
-    "scrollSpeed": 0.5
+    "scrollSpeed": 0.38
   },
   {
     "name": "Jagoda Kondratiuk",
@@ -61,9 +61,10 @@
       }
     },
     "position": {
-      "alignRight": true
+      "alignRight": true,
+      "bottom": 10
     },
-    "scrollSpeed": 0.3
+    "scrollSpeed": 0.35
   },
   {
     "name": "Neosephiri",

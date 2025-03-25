@@ -13,16 +13,25 @@ export function openGalleryTransition(
 ) {
   const aniDuration = 0.35;
   return new Promise((resolve) => {
+      const galleryWidthHalfPx =
+          galleryRef.getBoundingClientRect().width / 2 + 'px';
     const timeline = gsap.timeline({
       ease: 'linear',
       onComplete: () => {
         resolve();
       },
     });
-    timeline.to('.gallery-controls-margin', {
-      duration: aniDuration,
-      height: `${projectMargin * 100}vh`,
-    });
+
+    timeline.to('.project-name', { opacity: 0, duration: 0 });
+
+    timeline.to(
+      '.gallery-controls-margin',
+      {
+        duration: aniDuration,
+        height: `${projectMargin * 100}vh`,
+      },
+      '<',
+    );
     timeline.to(
       '.project-item',
       {
@@ -31,6 +40,7 @@ export function openGalleryTransition(
       },
       '<',
     );
+
     timeline.to(
       '.project',
       {
@@ -39,10 +49,22 @@ export function openGalleryTransition(
       },
       '<',
     );
-    const galleryWidthHalfPx =
-      galleryRef.getBoundingClientRect().width / 2 + 'px';
-    timeline.to('.project-name', { opacity: 0, duration: aniDuration }, '>');
-
+      for (const [index, ref] of refs.entries()) {
+          timeline.fromTo(
+              ref.querySelector('.project-image'),
+              {
+                  height: sizeOrigins[index].height + 'px',
+                  width: sizeOrigins[index].width + 'px',
+                  immediateRender: true,
+              },
+              {
+                  height: `${slideHeight * 100}vh`,
+                  width: galleryWidthHalfPx,
+                  duration: aniDuration,
+              },
+              '<',
+          );
+      }
     timeline.to(
       '.project-info-wrapper',
       {
@@ -51,23 +73,8 @@ export function openGalleryTransition(
         height: '65vh',
       },
       '<+=0.15',
+      // '<',
     );
-    for (const [index, ref] of refs.entries()) {
-      timeline.fromTo(
-        ref.querySelector('.project-image'),
-        {
-          height: sizeOrigins[index].height + 'px',
-          width: sizeOrigins[index].width + 'px',
-          immediateRender: true,
-        },
-        {
-          height: `${slideHeight * 100}vh`,
-          width: galleryWidthHalfPx,
-          duration: aniDuration,
-        },
-        '<',
-      );
-    }
   });
 }
 
