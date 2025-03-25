@@ -88,7 +88,6 @@ export const useNavigationStore = defineStore('navigationStore', {
     },
     async closeGallery() {
       Canvas.animateImageMesh = true;
-      this.projects.galleryToOpen = false;
       Canvas.setFixedScrollToElement(
         this.projects.activeProject.ref,
         window.innerHeight * projectDefaults.margin,
@@ -96,6 +95,7 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.setGalleryNavigationVisible(false);
       this.closeActiveProject();
       this.setNavVisible(true);
+      this.projects.galleryToOpen = false;
       await closeGalleryTransition(
         this.projects.htmlRefs,
         this.projects.htmlSizeOrigins,
@@ -119,7 +119,8 @@ export const useNavigationStore = defineStore('navigationStore', {
         window.scrollY -
         window.innerHeight * projectDefaults.margin;
       Canvas.scrollTo(projectPosition);
-      const scrollDurationEnd = Math.abs(projectPosition - Canvas.scroll.current) + 200;
+      const scrollDurationEnd =
+        Math.abs(projectPosition - Canvas.scroll.current) + 200;
       return new Promise((resolve) => {
         setTimeout(() => {
           gsap.set('body', { overflow: 'hidden' });
