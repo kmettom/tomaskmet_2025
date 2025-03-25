@@ -13,8 +13,8 @@ export function openGalleryTransition(
 ) {
   const aniDuration = 0.35;
   return new Promise((resolve) => {
-      const galleryWidthHalfPx =
-          galleryRef.getBoundingClientRect().width / 2 + 'px';
+    const galleryWidthHalfPx =
+      galleryRef.getBoundingClientRect().width / 2 + 'px';
     const timeline = gsap.timeline({
       ease: 'linear',
       onComplete: () => {
@@ -49,22 +49,22 @@ export function openGalleryTransition(
       },
       '<',
     );
-      for (const [index, ref] of refs.entries()) {
-          timeline.fromTo(
-              ref.querySelector('.project-image'),
-              {
-                  height: sizeOrigins[index].height + 'px',
-                  width: sizeOrigins[index].width + 'px',
-                  immediateRender: true,
-              },
-              {
-                  height: `${slideHeight * 100}vh`,
-                  width: galleryWidthHalfPx,
-                  duration: aniDuration,
-              },
-              '<',
-          );
-      }
+    for (const [index, ref] of refs.entries()) {
+      timeline.fromTo(
+        ref.querySelector('.project-image'),
+        {
+          height: sizeOrigins[index].height + 'px',
+          width: sizeOrigins[index].width + 'px',
+          immediateRender: true,
+        },
+        {
+          height: `${slideHeight * 100}vh`,
+          width: galleryWidthHalfPx,
+          duration: aniDuration,
+        },
+        '<',
+      );
+    }
     timeline.to(
       '.project-info-wrapper',
       {
@@ -87,6 +87,17 @@ export function closeGalleryTransition(refs, sizeOrigins, projectMargin) {
         resolve();
       },
     });
+
+    timeline.to(
+      '.project-info-wrapper',
+      {
+        duration: aniDuration,
+        height: '0',
+        width: '0',
+      },
+      '<',
+    );
+
     for (const [index, ref] of refs.entries()) {
       if (sizeOrigins[index]) {
         if (projectsData[index]?.position?.bottom && window.innerWidth > 1050) {
@@ -96,7 +107,7 @@ export function closeGalleryTransition(refs, sizeOrigins, projectMargin) {
               bottom: projectsData[index].position.bottom + 'vh',
               duration: aniDuration,
             },
-            // '<',
+            '<',
           );
         }
       }
@@ -110,16 +121,6 @@ export function closeGalleryTransition(refs, sizeOrigins, projectMargin) {
       },
       '<',
     );
-    timeline.to(
-      '.project-info-wrapper',
-      {
-        duration: aniDuration,
-        height: '0',
-        width: '0',
-      },
-      '<',
-    );
-    timeline.to('.project-name', { opacity: 1, duration: aniDuration }, '>');
 
     for (const [index, ref] of refs.entries()) {
       if (sizeOrigins[index]) {
@@ -134,6 +135,8 @@ export function closeGalleryTransition(refs, sizeOrigins, projectMargin) {
         );
       }
     }
+
+    timeline.to('.project-name', { opacity: 1, duration: aniDuration }, '>');
   });
 }
 
