@@ -8,10 +8,11 @@
       "src": "images/ovp.webp",
       "alt": "Building construction from bottom with blue sky",
       "size": {
-        "width": "425px",
+        "width": "375px",
         "height": "500px"
       }
-    }
+    },
+    "scrollSpeed": 0.3
   },
   {
     "name": "Ease DeFi",
@@ -22,15 +23,13 @@
       "src": "images/goat.webp",
       "alt": "Mobile phone with an app open on the screen",
       "size": {
-        "width": "375px",
+        "width": "425px",
         "height": "450px"
       }
     },
     "position": {
-      "alignRight": true,
-      "bottom": 65
-    },
-    "scrollSpeed": 0.40
+      "alignRight": true
+    }
   },
   {
     "name": "Jagoda Kondratiuk",
@@ -42,7 +41,7 @@
       "src": "images/jk.webp",
       "alt": "Designer portrait with for the project jagodakondratiuk.com",
       "size": {
-        "width": "700px",
+        "width": "750px",
         "height": "400px"
       }
     }
@@ -62,7 +61,8 @@
     },
     "position": {
       "alignRight": true
-    }
+    },
+    "scrollSpeed": 0.35
   },
   {
     "name": "Neosephiri",
@@ -77,10 +77,6 @@
         "width": "450px",
         "height": "450px"
       }
-    },
-    "position": {
-      "bottom": 50
-    },
-    "scrollSpeed": 0.35
+    }
   }
 ]
