@@ -78,9 +78,9 @@ watch(
   <div
     v-onScrollActivate="{
       activeRange: navigationStore.projects.galleryToOpen ? 1 : 0.95,
-      activateOnce: !navigationStore.projects.galleryOpen,
-      activeRangeOrigin: navigationStore.projects.galleryOpen ? 0.5 : 1,
-      bidirectionalActivation: navigationStore.projects.galleryOpen,
+      activateOnce: !navigationStore.projects.galleryToOpen,
+      activeRangeOrigin: navigationStore.projects.galleryToOpen ? 0.5 : 1,
+      bidirectionalActivation: navigationStore.projects.galleryToOpen,
       activateCallback: () => {
         navigationStore.setActiveProject(props.index);
       },
