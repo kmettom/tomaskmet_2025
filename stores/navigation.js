@@ -96,12 +96,12 @@ export const useNavigationStore = defineStore('navigationStore', {
       this.closeActiveProject();
       this.setNavVisible(true);
       this.projects.galleryToOpen = false;
+      this.projects.galleryOpen = false;
       await closeGalleryTransition(
         this.projects.htmlRefs,
         this.projects.htmlSizeOrigins,
         projectDefaults.margin,
       );
-      this.projects.galleryOpen = false;
       Canvas.setFixedScrollToElement(null);
       gsap.set('body', { overflow: 'auto' });
       Canvas.animateImageMesh = false;
