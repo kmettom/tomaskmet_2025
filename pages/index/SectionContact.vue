@@ -1,5 +1,5 @@
 <template>
-  <div class="contact-section"  ref="gameContainer" >
+  <div class="contact-section" ref="gameContainer">
     <Container>
       <div class="">
         <div class="contact-line">
@@ -124,22 +124,27 @@
         </div>
       </div>
     </Container>
-    <div class="basketball-icon-wrapper" ref="gameBall" @click="startGame"   v-set-data-attrs="{
-                  cursoropacity: 0.7,
-                  cursorsize: 70,
-                  cursoricon: game.started ? '' : '⏵',
-                }">
+    <div
+      class="basketball-icon-wrapper"
+      ref="gameBall"
+      @click="startGame"
+      v-set-data-attrs="{
+        cursoropacity: 0.7,
+        cursorsize: 70,
+        cursoricon: game.started ? '' : '⏵',
+      }"
+    >
       <img
-          class="basketball-icon"
-          :src="BasketBallIcon"
-          alt="Basket ball icon"
+        class="basketball-icon"
+        :src="BasketBallIcon"
+        alt="Basket ball icon"
       />
     </div>
 
-        <div class="basketball-game">
-          <div  ref="gamePad" class="game-pad"></div>
-          </div>
-        </div>
+    <div class="basketball-game">
+      <div ref="gamePad" class="game-pad"></div>
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -178,53 +183,76 @@ const gameBaseSpeed = 7;
 const game = ref({
   activated: false,
   started: false,
-  ball: {position: {y:0,x:0},speed:{x:0,y:gameBaseSpeed}, elNode: null },
-  container: {elNode: null}
-})
+  ball: {
+    position: { y: 0, x: 0 },
+    speed: { x: 0, y: gameBaseSpeed },
+    elNode: null,
+  },
+  container: { elNode: null },
+});
 
 const startGame = () => {
   game.value.started = true;
   game.value.ball.speed.y = -gameBaseSpeed;
   animateBall();
-}
+};
 
 const gameStop = () => {
   game.value.ball.speed.y = 0;
   game.value.ball.position.y = gameContainer.value.clientHeight - 125;
-  gsap.to(game.value.ball.position, {x: gamePad.value.getBoundingClientRect().x, duration: 0.5, onComplete: () => {
+  gsap.to(game.value.ball.position, {
+    x: gamePad.value.getBoundingClientRect().x,
+    duration: 0.5,
+    onComplete: () => {
       game.value.started = false;
-    }})
+    },
+  });
   // game.value.ball.position.x = gamePad.value.getBoundingClientRect().x;
-}
-
+};
 
 const gameInit = () => {
-  if(game.value.activated) return;
+  if (game.value.activated) return;
   game.value.activated = true;
   game.value.ball.position.x = gameContainer.value.clientWidth / 2;
-  game.value.ball.position = { x: gameContainer.value.clientWidth / 2, y: gameContainer.value.clientHeight - 125 };
+  game.value.ball.position = {
+    x: gameContainer.value.clientWidth / 2,
+    y: gameContainer.value.clientHeight - 125,
+  };
   gsap.set(gameBall.value, { x: game.value.ball.position.x });
-  gsap.set(gamePad.value, { x:  gameContainer.value.clientWidth / 2 });
+  gsap.set(gamePad.value, { x: gameContainer.value.clientWidth / 2 });
 
-  gsap.fromTo(gameBall.value, {y:game.value.ball.position.y + 100},{ opacity: 1, duration: 0.5, y:game.value.ball.position.y });
+  gsap.fromTo(
+    gameBall.value,
+    { y: game.value.ball.position.y + 100 },
+    { opacity: 1, duration: 0.5, y: game.value.ball.position.y },
+  );
   gsap.to(gamePad.value, { opacity: 1, duration: 0.5 });
 
   window.addEventListener('mousemove', (e) => {
-    gsap.to(gamePad.value, { x: e.clientX - gamePad.value.clientWidth / 2 , duration: 0.1 });
-    if(!game.value.started) {
-      game.value.ball.position.x = e.clientX - gamePad.value.clientWidth / 2 + (gameBall.value.clientWidth/2);
-      gsap.to(gameBall.value, { x: game.value.ball.position.x , duration: 0.1 });
+    gsap.to(gamePad.value, {
+      x: e.clientX - gamePad.value.clientWidth / 2,
+      duration: 0.1,
+    });
+    if (!game.value.started) {
+      game.value.ball.position.x =
+        e.clientX -
+        gamePad.value.clientWidth / 2 +
+        gameBall.value.clientWidth / 2;
+      gsap.to(gameBall.value, { x: game.value.ball.position.x, duration: 0.1 });
     }
-  })
-}
-
+  });
+};
 
 function animateBall() {
   game.value.ball.position.x += game.value.ball.speed.x;
   game.value.ball.position.y += game.value.ball.speed.y;
 
   // Wall collision detection
-  if (game.value.ball.position.x <= 0 || game.value.ball.position.x >= gameContainer.value.clientWidth - gameBall.value.clientWidth) {
+  if (
+    game.value.ball.position.x <= 0 ||
+    game.value.ball.position.x >=
+      gameContainer.value.clientWidth - gameBall.value.clientWidth
+  ) {
     game.value.ball.speed.x *= -1;
   }
   if (game.value.ball.position.y <= 0) {
@@ -235,26 +263,37 @@ function animateBall() {
   const paddleRect = gamePad.value.getBoundingClientRect();
   const ballRect = gameBall.value.getBoundingClientRect();
   if (
-      ballRect.bottom >= paddleRect.top &&
-      ballRect.right >= paddleRect.left &&
-      ballRect.left <= paddleRect.right
+    ballRect.bottom >= paddleRect.top &&
+    ballRect.right >= paddleRect.left &&
+    ballRect.left <= paddleRect.right
   ) {
     game.value.ball.speed.y = -gameBaseSpeed;
     // Adjust ball speed based on where it hits the paddle
-    const hitPosition = (ballRect.left + ballRect.width / 2) - (paddleRect.left + paddleRect.width / 2);
+    const hitPosition =
+      ballRect.left +
+      ballRect.width / 2 -
+      (paddleRect.left + paddleRect.width / 2);
     game.value.ball.speed.x = hitPosition * 0.05;
   }
 
   // Reset ball if it goes below the paddle
-  if (game.value.ball.position.y >= gameContainer.value.clientHeight - gameBall.value.clientHeight) {
+  if (
+    game.value.ball.position.y >=
+    gameContainer.value.clientHeight - gameBall.value.clientHeight
+  ) {
     gameStop();
   }
-  
-  gsap.to(gameBall.value, { x: game.value.ball.position.x, y: game.value.ball.position.y, duration: 0.01, onComplete: () => {
-    if(game.value.started) {
-      animateBall();
-    }
-    }  });
+
+  gsap.to(gameBall.value, {
+    x: game.value.ball.position.x,
+    y: game.value.ball.position.y,
+    duration: 0.01,
+    onComplete: () => {
+      if (game.value.started) {
+        animateBall();
+      }
+    },
+  });
 }
 
 watch(
@@ -263,7 +302,7 @@ watch(
     if (activeNavItem === 'contact') {
       setTimeout(() => {
         gameInit();
-      },1000)
+      }, 1000);
     }
   },
 );
