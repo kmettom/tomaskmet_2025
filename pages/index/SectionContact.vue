@@ -125,15 +125,16 @@
       </div>
     </Container>
     <div class="basketball-icon-wrapper" ref="gameBall">
+      <img
+          class="basketball-icon"
+          :src="BasketBallIcon"
+          alt="Basket ball icon"
+      />
     </div>
 
         <div class="basketball-game">
           <div  ref="gamePad" class="game-pad"></div>
-            <img
-              class="basketball-icon"
-              :src="BasketBallIcon"
-              alt="Basket ball icon"
-            />
+
           </div>
         </div>
 </template>
@@ -144,7 +145,7 @@ import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 
 gsap.registerPlugin(SplitText);
-import BasketBallIcon from '~/public/images/ball.png';
+import BasketBallIcon from 'public/images/ball-l.png';
 
 const splitLineAnimation = (item) => {
   const tl = gsap.timeline({ delay: 0.5 });
@@ -174,13 +175,14 @@ const gameContainer = ref('gameContainer');
 const game = ref({
   activated: false,
   // pad: {position: {y:0,x:0}, elNode: null, width: 150 },
-  ball: {position: {y:0,x:0}, elNode: null },
+  ball: {position: {y:0,x:0},speed:{x:5,y:5}, elNode: null },
   container: {elNode: null}
 })
 
 const gameInit = () => {
   if(game.value.activated) return;
   game.value.activated = true;
+  animateBall();
   // game.value.pad.elNode = gamePad.value;
   // game.value.ball.elNode = gameBall.value;
   // game.value.container.elNode = gameContainer.value;
@@ -188,6 +190,43 @@ const gameInit = () => {
     gsap.to(gamePad.value, { x: e.clientX - gamePad.value.clientWidth / 2 , duration: 0.1 });
   })
 }
+
+
+function animateBall() {
+  game.value.ball.position.x += game.value.ball.speed.x;
+  game.value.ball.position.y += game.value.ball.speed.y;
+
+  // Wall collision detection
+  if (game.value.ball.position.x <= 0 || game.value.ball.position.x >= gameContainer.value.clientWidth - gameBall.value.clientWidth) {
+    game.value.ball.speed.x *= -1;
+  }
+  if (game.value.ball.position.y <= 0) {
+    game.value.ball.speed.y *= -1;
+  }
+
+  // Paddle collision detection
+  const paddleRect = gamePad.value.getBoundingClientRect();
+  const ballRect = gameBall.value.getBoundingClientRect();
+  if (
+      ballRect.bottom >= paddleRect.top &&
+      ballRect.right >= paddleRect.left &&
+      ballRect.left <= paddleRect.right
+  ) {
+    game.value.ball.speed.y *= -1;
+    // Adjust ball speed based on where it hits the paddle
+    const hitPosition = (ballRect.left + ballRect.width / 2) - (paddleRect.left + paddleRect.width / 2);
+    game.value.ball.speed.x = hitPosition * 0.1;
+  }
+
+  // Reset ball if it goes below the paddle
+  if (game.value.ball.position.y >= gameContainer.clientHeight - gameBall.value.clientHeight) {
+    game.value.ball.position = { x: gameContainer.clientWidth / 2, y: gameContainer.clientHeight / 2 };
+    game.value.ball.speed = { x: 5, y: 5 };
+  }
+  console.log("animate" ,game.value.ball.position.x , game.value.ball.position.y)
+  gsap.to(gameBall.value, { x: game.value.ball.position.x, y: game.value.ball.position.y, duration: 0.01, onComplete: animateBall });
+}
+
 
 
 watch(
