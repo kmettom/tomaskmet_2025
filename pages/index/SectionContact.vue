@@ -1,5 +1,5 @@
 <template>
-  <div class="contact-section">
+  <div class="contact-section"  ref="gameContainer" >
     <Container>
       <div class="">
         <div class="contact-line">
@@ -124,16 +124,18 @@
         </div>
       </div>
     </Container>
-    <!--    <div class="basketball-game">-->
-    <!--      <div class="basketball-icon-wrapper">-->
-    <!--        <img-->
-    <!--          class="basketball-icon"-->
-    <!--          :src="BasketBallIcon"-->
-    <!--          alt="Basket ball icon"-->
-    <!--        />-->
-    <!--      </div>-->
-    <!--    </div>-->
-  </div>
+    <div class="basketball-icon-wrapper" ref="gameBall">
+    </div>
+
+        <div class="basketball-game">
+          <div  ref="gamePad" class="game-pad"></div>
+            <img
+              class="basketball-icon"
+              :src="BasketBallIcon"
+              alt="Basket ball icon"
+            />
+          </div>
+        </div>
 </template>
 
 <script setup>
@@ -142,7 +144,7 @@ import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 
 gsap.registerPlugin(SplitText);
-// import BasketBallIcon from '~/public/images/ball.png';
+import BasketBallIcon from '~/public/images/ball.png';
 
 const splitLineAnimation = (item) => {
   const tl = gsap.timeline({ delay: 0.5 });
@@ -161,6 +163,41 @@ const splitLineAnimation = (item) => {
     },
   );
 };
+
+// game
+const navigationStore = useNavigationStore();
+
+const gamePad = ref('gamePad');
+const gameBall = ref('gameBall');
+const gameContainer = ref('gameContainer');
+
+const game = ref({
+  activated: false,
+  // pad: {position: {y:0,x:0}, elNode: null, width: 150 },
+  ball: {position: {y:0,x:0}, elNode: null },
+  container: {elNode: null}
+})
+
+const gameInit = () => {
+  if(game.value.activated) return;
+  game.value.activated = true;
+  // game.value.pad.elNode = gamePad.value;
+  // game.value.ball.elNode = gameBall.value;
+  // game.value.container.elNode = gameContainer.value;
+  window.addEventListener('mousemove', (e) => {
+    gsap.to(gamePad.value, { x: e.clientX - gamePad.value.clientWidth / 2 , duration: 0.1 });
+  })
+}
+
+
+watch(
+  () => navigationStore.activeNavItem,
+  (activeNavItem) => {
+    if (activeNavItem === 'contact') {
+      gameInit()
+    }
+  },
+);
 </script>
 
 <style lang="scss" scoped>
@@ -231,29 +268,36 @@ const splitLineAnimation = (item) => {
   }
 }
 
-//.basketball-game {
-//  width: 150px;
-//  height: 25px;
-//  background-color: var(--dark-color);
-//  position: absolute;
-//  left: 30%;
-//  bottom: 0;
-//
-//  @include respond-width($w-s) {
-//    width: 100px;
-//  }
-//}
-//
-//.basketball-icon-wrapper {
-//  position: absolute;
-//  left: 75%;
-//  bottom: 100%;
-//  transform: translateX(-50%);
-//
-//  .basketball-icon {
-//    width: 100%;
-//    height: 100%;
-//    object-fit: cover;
-//  }
-//}
+.basketball-game {
+  width: 100%;
+  height: 25px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  //@include respond-width($w-s) {
+  //  width: 100px;
+  //}
+}
+
+.game-pad {
+  width: 150px;
+  height: 25px;
+  background-color: var(--dark-color);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.basketball-icon-wrapper {
+  position: absolute;
+  left: 75%;
+  bottom: 100%;
+  transform: translateX(-50%);
+
+  .basketball-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
 </style>
