@@ -20,7 +20,7 @@
             v-onScrollActivate="{
               activeRange: 0.85,
               activateOnce: true,
-              activateCallback: (item: any) => {
+              activateCallback: (item) => {
                 splitLineAnimation(item.elNode);
               },
             }"
@@ -59,7 +59,7 @@
             v-onScrollActivate="{
               activeRange: 0.85,
               activateOnce: true,
-              activateCallback: (item: any) => {
+              activateCallback: (item) => {
                 splitLineAnimation(item.elNode);
               },
             }"
@@ -142,7 +142,7 @@ import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 
 gsap.registerPlugin(SplitText);
-// import BasketBallIcon from '~/public/icons/basket-ball.png';
+// import BasketBallIcon from '~/public/images/ball.png';
 
 const splitLineAnimation = (item) => {
   const tl = gsap.timeline({ delay: 0.5 });
