@@ -175,20 +175,22 @@ const gameContainer = ref('gameContainer');
 const game = ref({
   activated: false,
   // pad: {position: {y:0,x:0}, elNode: null, width: 150 },
-  ball: {position: {y:0,x:0},speed:{x:5,y:5}, elNode: null },
+  ball: {position: {y:0,x:0},speed:{x:0,y:5}, elNode: null },
   container: {elNode: null}
 })
 
 const gameInit = () => {
   if(game.value.activated) return;
   game.value.activated = true;
-  animateBall();
+  game.value.ball.position.x = gameContainer.value.clientWidth / 2;
   // game.value.pad.elNode = gamePad.value;
   // game.value.ball.elNode = gameBall.value;
   // game.value.container.elNode = gameContainer.value;
   window.addEventListener('mousemove', (e) => {
     gsap.to(gamePad.value, { x: e.clientX - gamePad.value.clientWidth / 2 , duration: 0.1 });
   })
+  animateBall();
+
 }
 
 
@@ -212,18 +214,18 @@ function animateBall() {
       ballRect.right >= paddleRect.left &&
       ballRect.left <= paddleRect.right
   ) {
-    game.value.ball.speed.y *= -1;
+    game.value.ball.speed.y = -5;
     // Adjust ball speed based on where it hits the paddle
     const hitPosition = (ballRect.left + ballRect.width / 2) - (paddleRect.left + paddleRect.width / 2);
-    game.value.ball.speed.x = hitPosition * 0.1;
+    game.value.ball.speed.x = hitPosition * 0.05;
   }
 
   // Reset ball if it goes below the paddle
-  if (game.value.ball.position.y >= gameContainer.clientHeight - gameBall.value.clientHeight) {
-    game.value.ball.position = { x: gameContainer.clientWidth / 2, y: gameContainer.clientHeight / 2 };
-    game.value.ball.speed = { x: 5, y: 5 };
+  if (game.value.ball.position.y >= gameContainer.value.clientHeight - gameBall.value.clientHeight) {
+    game.value.ball.position = { x: gameContainer.value.clientWidth / 2, y: 0 };
+    game.value.ball.speed = { x: 0, y: 5 };
   }
-  console.log("animate" ,game.value.ball.position.x , game.value.ball.position.y)
+  
   gsap.to(gameBall.value, { x: game.value.ball.position.x, y: game.value.ball.position.y, duration: 0.01, onComplete: animateBall });
 }
 
@@ -329,9 +331,8 @@ watch(
 
 .basketball-icon-wrapper {
   position: absolute;
-  left: 75%;
-  bottom: 100%;
-  transform: translateX(-50%);
+  left: 0;
+  top: 0;
 
   .basketball-icon {
     width: 100%;
