@@ -1,5 +1,5 @@
 <template>
-  <div class="contact-section" ref="gameContainer">
+  <div ref="gameContainer" class="contact-section">
     <Container>
       <div class="">
         <div class="contact-line">
@@ -125,14 +125,14 @@
       </div>
     </Container>
     <div
-      class="basketball-icon-wrapper"
       ref="gameBall"
-      @click="startGame"
       v-set-data-attrs="{
         cursoropacity: 0.7,
         cursorsize: 70,
         cursoricon: game.started ? '' : '⏵',
       }"
+      class="basketball-icon-wrapper"
+      @click="startGame"
     >
       <img
         class="basketball-icon"
@@ -142,7 +142,7 @@
     </div>
 
     <div class="basketball-game">
-      <div ref="gamePad" class="game-pad"></div>
+      <div ref="gamePad" class="game-pad" />
     </div>
   </div>
 </template>
@@ -151,9 +151,9 @@
 import Container from '~/components/common/Container.vue';
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
+import BasketBallIcon from 'public/images/ball-l.png';
 
 gsap.registerPlugin(SplitText);
-import BasketBallIcon from 'public/images/ball-l.png';
 
 const splitLineAnimation = (item) => {
   const tl = gsap.timeline({ delay: 0.5 });
