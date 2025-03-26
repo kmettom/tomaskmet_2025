@@ -124,7 +124,11 @@
         </div>
       </div>
     </Container>
-    <div class="basketball-icon-wrapper" ref="gameBall">
+    <div class="basketball-icon-wrapper" ref="gameBall" @click="startGame"   v-set-data-attrs="{
+                  cursoropacity: 0.7,
+                  cursorsize: 70,
+                  cursoricon: game.started ? '' : '⏵',
+                }">
       <img
           class="basketball-icon"
           :src="BasketBallIcon"
@@ -134,7 +138,6 @@
 
         <div class="basketball-game">
           <div  ref="gamePad" class="game-pad"></div>
-
           </div>
         </div>
 </template>
@@ -171,26 +174,48 @@ const navigationStore = useNavigationStore();
 const gamePad = ref('gamePad');
 const gameBall = ref('gameBall');
 const gameContainer = ref('gameContainer');
-
+const gameBaseSpeed = 7;
 const game = ref({
   activated: false,
-  // pad: {position: {y:0,x:0}, elNode: null, width: 150 },
-  ball: {position: {y:0,x:0},speed:{x:0,y:5}, elNode: null },
+  started: false,
+  ball: {position: {y:0,x:0},speed:{x:0,y:gameBaseSpeed}, elNode: null },
   container: {elNode: null}
 })
+
+const startGame = () => {
+  game.value.started = true;
+  game.value.ball.speed.y = -gameBaseSpeed;
+  animateBall();
+}
+
+const gameStop = () => {
+  game.value.ball.speed.y = 0;
+  game.value.ball.position.y = gameContainer.value.clientHeight - 125;
+  gsap.to(game.value.ball.position, {x: gamePad.value.getBoundingClientRect().x, duration: 0.5, onComplete: () => {
+      game.value.started = false;
+    }})
+  // game.value.ball.position.x = gamePad.value.getBoundingClientRect().x;
+}
+
 
 const gameInit = () => {
   if(game.value.activated) return;
   game.value.activated = true;
   game.value.ball.position.x = gameContainer.value.clientWidth / 2;
-  // game.value.pad.elNode = gamePad.value;
-  // game.value.ball.elNode = gameBall.value;
-  // game.value.container.elNode = gameContainer.value;
+  game.value.ball.position = { x: gameContainer.value.clientWidth / 2, y: gameContainer.value.clientHeight - 125 };
+  gsap.set(gameBall.value, { x: game.value.ball.position.x });
+  gsap.set(gamePad.value, { x:  gameContainer.value.clientWidth / 2 });
+
+  gsap.fromTo(gameBall.value, {y:game.value.ball.position.y + 100},{ opacity: 1, duration: 0.5, y:game.value.ball.position.y });
+  gsap.to(gamePad.value, { opacity: 1, duration: 0.5 });
+
   window.addEventListener('mousemove', (e) => {
     gsap.to(gamePad.value, { x: e.clientX - gamePad.value.clientWidth / 2 , duration: 0.1 });
+    if(!game.value.started) {
+      game.value.ball.position.x = e.clientX - gamePad.value.clientWidth / 2 + (gameBall.value.clientWidth/2);
+      gsap.to(gameBall.value, { x: game.value.ball.position.x , duration: 0.1 });
+    }
   })
-  animateBall();
-
 }
 
 
@@ -214,7 +239,7 @@ function animateBall() {
       ballRect.right >= paddleRect.left &&
       ballRect.left <= paddleRect.right
   ) {
-    game.value.ball.speed.y = -5;
+    game.value.ball.speed.y = -gameBaseSpeed;
     // Adjust ball speed based on where it hits the paddle
     const hitPosition = (ballRect.left + ballRect.width / 2) - (paddleRect.left + paddleRect.width / 2);
     game.value.ball.speed.x = hitPosition * 0.05;
@@ -222,20 +247,23 @@ function animateBall() {
 
   // Reset ball if it goes below the paddle
   if (game.value.ball.position.y >= gameContainer.value.clientHeight - gameBall.value.clientHeight) {
-    game.value.ball.position = { x: gameContainer.value.clientWidth / 2, y: 0 };
-    game.value.ball.speed = { x: 0, y: 5 };
+    gameStop();
   }
   
-  gsap.to(gameBall.value, { x: game.value.ball.position.x, y: game.value.ball.position.y, duration: 0.01, onComplete: animateBall });
+  gsap.to(gameBall.value, { x: game.value.ball.position.x, y: game.value.ball.position.y, duration: 0.01, onComplete: () => {
+    if(game.value.started) {
+      animateBall();
+    }
+    }  });
 }
-
-
 
 watch(
   () => navigationStore.activeNavItem,
   (activeNavItem) => {
     if (activeNavItem === 'contact') {
-      gameInit()
+      setTimeout(() => {
+        gameInit();
+      },1000)
     }
   },
 );
@@ -246,7 +274,7 @@ watch(
   position: relative;
   color: var(--dark-color);
   background-color: var(--light-color);
-  padding: 25vh 0 10vh;
+  padding: 17vh 0 7vh;
   @include respond-width($w-xs) {
     padding: 20vh 0 12vh;
   }
@@ -321,6 +349,7 @@ watch(
 }
 
 .game-pad {
+  opacity: 0;
   width: 150px;
   height: 25px;
   background-color: var(--dark-color);
@@ -330,6 +359,7 @@ watch(
 }
 
 .basketball-icon-wrapper {
+  opacity: 0;
   position: absolute;
   left: 0;
   top: 0;
