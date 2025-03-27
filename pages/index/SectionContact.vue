@@ -241,7 +241,6 @@ const gameStop = () => {
     gameBall.value,
     { opacity: 0 },
     { opacity: 1, duration: 0.3 },
-    // '<',
   );
 
   tl.fromTo(gameBall.value, { opacity: 0 }, { opacity: 1, duration: 0.2 }, '<');
@@ -261,9 +260,9 @@ const gameInit = () => {
   gsap.fromTo(
     gameBall.value,
     { y: game.value.ball.position.y + 100 },
-    { opacity: 1, duration: 0.5, y: game.value.ball.position.y },
+    { opacity: 1, duration: 0, y: game.value.ball.position.y },
   );
-  gsap.to(gamePad.value, { opacity: 1, duration: 0.5 });
+  gsap.to(gamePad.value, { opacity: 1, duration: 0 });
 
   window.addEventListener('mousemove', (e) => {
     gsap.to(gamePad.value, {
@@ -365,9 +364,9 @@ watch(
   () => navigationStore.activeNavItem,
   (activeNavItem) => {
     if (activeNavItem === 'contact' && window.innerWidth > 1050) {
-      setTimeout(() => {
+      // setTimeout(() => {
         gameInit();
-      }, 0);
+      // }, 0);
     }
   },
 );
