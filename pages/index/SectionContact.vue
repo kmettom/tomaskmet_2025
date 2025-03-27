@@ -233,17 +233,14 @@ const gameStop = () => {
   });
 
   tl.to(gamePoints.value, { opacity: 0, duration: 0.5, scale: 2 });
-  tl.set(
-    gameBall.value,
-    {
-      x: game.value.ball.position.x,
-      y: game.value.ball.position.y,
-    },
-  );
+  tl.set(gameBall.value, {
+    x: game.value.ball.position.x,
+    y: game.value.ball.position.y,
+  });
   tl.fromTo(
     gameBall.value,
     { opacity: 0 },
-    { opacity: 1, duration: 0.3, },
+    { opacity: 1, duration: 0.3 },
     // '<',
   );
 
