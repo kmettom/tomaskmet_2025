@@ -144,7 +144,7 @@
     <div class="basketball-game">
       <div ref="gamePad" class="game-pad">
         <div class="game-points" ref="gamePoints">
-          <!--          {{ game.points }}-->
+          {{ game.points }}
         </div>
       </div>
     </div>
@@ -185,7 +185,7 @@ const gamePad = ref('gamePad');
 const gameBall = ref('gameBall');
 const gamePoints = ref('gamePoints');
 const gameContainer = ref('gameContainer');
-const gameBaseSpeed = -8;
+const gameBaseSpeed = -6;
 const gameBallPadding = 75;
 const game = ref({
   activated: false,
@@ -297,7 +297,12 @@ function animateBall() {
   }
   if (game.value.ball.position.y <= 0) {
     game.value.ball.speed.y *= -1;
-    game.value.ball.speed.x = (Math.random() * 2 - 1) * game.value.points * 0.3;
+    if (game.value.points < 50) {
+      game.value.ball.speed.x =
+        (Math.random() * 2 - 1) * game.value.points * 0.1;
+    } else {
+      game.value.ball.speed.x = (Math.random() * 2 - 1) * 50 * 0.1;
+    }
   }
 
   // Paddle collision detection
@@ -309,8 +314,12 @@ function animateBall() {
     ballRect.left <= paddleRect.right
   ) {
     if (game.value.currentSpeed < 13) {
-      game.value.currentSpeed -= 0.05;
+      game.value.currentSpeed -= 0.04;
     }
+    if (game.value.currentSpeed < 16) {
+      game.value.currentSpeed -= 0.01;
+    }
+
     game.value.points += 1;
     game.value.ball.speed.y = game.value.currentSpeed;
     // Adjust ball speed based on where it hits the paddle
@@ -338,7 +347,7 @@ function animateBall() {
 watch(
   () => navigationStore.activeNavItem,
   (activeNavItem) => {
-    if (activeNavItem === 'contact') {
+    if (activeNavItem === 'contact' && window.innerWidth > 1050) {
       setTimeout(() => {
         gameInit();
       }, 1000);
