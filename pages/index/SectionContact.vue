@@ -249,20 +249,18 @@ const gameStop = () => {
 const gameInit = () => {
   if (game.value.activated) return;
   game.value.activated = true;
-  game.value.ball.position.x = gameContainer.value.clientWidth / 2;
   game.value.ball.position = {
-    x: gameContainer.value.clientWidth / 2,
+    x: gameContainer.value.clientWidth / 2 ,
     y: gameContainer.value.clientHeight - gameBallPadding,
   };
   gsap.set(gameBall.value, { x: game.value.ball.position.x });
   gsap.set(gamePad.value, { x: gameContainer.value.clientWidth / 2 });
 
-  gsap.fromTo(
+  gsap.set(
     gameBall.value,
-    { y: game.value.ball.position.y + 100 },
-    { opacity: 1, duration: 0, y: game.value.ball.position.y },
+    { y: game.value.ball.position.y },
   );
-  gsap.to(gamePad.value, { opacity: 1, duration: 0 });
+  // gsap.to(gamePad.value, { opacity: 1, duration: 0 });
 
   window.addEventListener('mousemove', (e) => {
     gsap.to(gamePad.value, {
@@ -449,7 +447,7 @@ watch(
 }
 
 .game-pad {
-  opacity: 0;
+  //opacity: 0;
   width: 150px;
   height: 25px;
   background-color: var(--dark-color);
@@ -472,9 +470,8 @@ watch(
 }
 
 .basketball-icon-wrapper {
-  opacity: 0;
   position: absolute;
   left: 0;
-  top: 0;
+  bottom: 0;
 }
 </style>
