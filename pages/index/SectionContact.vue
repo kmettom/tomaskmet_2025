@@ -207,6 +207,7 @@ const game = ref({
 
 const startGame = () => {
   game.value.started = true;
+  gsap.set(gamePoints.value, { scale: 1 });
   gsap.to(gamePoints.value, { opacity: 1, duration: 0.2, y: 0 });
   game.value.ball.speed.y = game.value.currentSpeed;
   Canvas.animations.footerBallGame = animateBall;
@@ -214,7 +215,6 @@ const startGame = () => {
 
 const gameStop = () => {
   Canvas.animations.footerBallGame = null;
-  game.value.points = 0;
   game.value.currentSpeed = gameBaseSpeed;
   game.value.ball.speed.y = 0;
   game.value.ball.position = {
@@ -228,11 +228,11 @@ const gameStop = () => {
 
   const tl = gsap.timeline({
     onComplete: () => {
-      // game.value.started = false;
+      game.value.points = 0;
     },
   });
 
-  // tl.to(gamePoints.value, { opacity: 0, duration: 0.5, y:25 });
+  tl.to(gamePoints.value, { opacity: 0, duration: 0.5, scale: 2 });
   tl.set(
     gameBall.value,
     {
@@ -313,6 +313,9 @@ function animateBall() {
     ballRect.right >= paddleRect.left &&
     ballRect.left <= paddleRect.right
   ) {
+    if (game.value.currentSpeed < 11) {
+      game.value.currentSpeed -= 0.02;
+    }
     if (game.value.currentSpeed < 13) {
       game.value.currentSpeed -= 0.04;
     }
@@ -322,6 +325,11 @@ function animateBall() {
 
     game.value.points += 1;
     game.value.ball.speed.y = game.value.currentSpeed;
+    gsap.fromTo(
+      gamePoints.value,
+      { opacity: 0, y: 10 },
+      { opacity: 1, duration: 0.15, y: 0 },
+    );
     // Adjust ball speed based on where it hits the paddle
     const hitPosition =
       ballRect.left +
@@ -451,7 +459,7 @@ watch(
   margin: 0 auto;
   position: absolute;
   pointer-events: none;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bold;
 }
 
