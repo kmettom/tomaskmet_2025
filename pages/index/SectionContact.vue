@@ -185,7 +185,7 @@ const gamePad = ref('gamePad');
 const gameBall = ref('gameBall');
 const gamePoints = ref('gamePoints');
 const gameContainer = ref('gameContainer');
-const gameBaseSpeed = -6;
+const gameBaseSpeed = -5;
 const gameBallPadding = 75;
 const game = ref({
   activated: false,
@@ -254,7 +254,6 @@ const gameStop = () => {
 const gameInit = () => {
   if (game.value.activated) return;
   game.value.activated = true;
-  // Canvas.animations.footerBallGame = animateBall;
   game.value.ball.position.x = gameContainer.value.clientWidth / 2;
   game.value.ball.position = {
     x: gameContainer.value.clientWidth / 2,
@@ -287,6 +286,15 @@ function animateBall() {
   game.value.ball.position.x += game.value.ball.speed.x;
   game.value.ball.position.y += game.value.ball.speed.y;
 
+  Canvas.footerGameBall = {
+    x:
+      (game.value.ball.position.x + gameBall.value.clientWidth / 2) /
+      gameContainer.value.clientWidth,
+    y:
+      (game.value.ball.position.y - gameBall.value.clientHeight / 2) /
+      gameContainer.value.clientHeight,
+  };
+
   // Wall collision detection
   if (
     game.value.ball.position.x <= 0 ||
@@ -313,29 +321,34 @@ function animateBall() {
     ballRect.right >= paddleRect.left &&
     ballRect.left <= paddleRect.right
   ) {
-    if (game.value.currentSpeed < 11) {
-      game.value.currentSpeed -= 0.02;
-    }
-    if (game.value.currentSpeed < 13) {
-      game.value.currentSpeed -= 0.04;
-    }
-    if (game.value.currentSpeed < 16) {
-      game.value.currentSpeed -= 0.01;
-    }
-
-    game.value.points += 1;
     game.value.ball.speed.y = game.value.currentSpeed;
-    gsap.fromTo(
-      gamePoints.value,
-      { opacity: 0, y: 10 },
-      { opacity: 1, duration: 0.15, y: 0 },
-    );
     // Adjust ball speed based on where it hits the paddle
     const hitPosition =
       ballRect.left +
       ballRect.width / 2 -
       (paddleRect.left + paddleRect.width / 2);
     game.value.ball.speed.x = hitPosition * 0.05;
+
+    game.value.points += 1;
+    if (game.value.currentSpeed < 9) {
+      game.value.currentSpeed -= 0.01;
+      game.value.points += 1;
+    }
+    if (game.value.currentSpeed < 12) {
+      game.value.currentSpeed -= 0.02;
+      game.value.points += 1;
+    }
+    if (game.value.currentSpeed < 15) {
+      game.value.currentSpeed -= 0.01;
+    }
+    if (game.value.currentSpeed > 13) {
+      game.value.points += 1;
+    }
+    gsap.fromTo(
+      gamePoints.value,
+      { opacity: 0, y: 10 },
+      { opacity: 1, duration: 0.15, y: 0 },
+    );
   }
 
   gsap.set(gameBall.value, {
