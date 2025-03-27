@@ -129,7 +129,7 @@
       v-set-data-attrs="{
         cursoropacity: 0.7,
         cursorsize: 70,
-        cursoricon: game.started ? '' : '⏵',
+        cursoricon: game.started ? '' : '🏁',
       }"
       class="basketball-icon-wrapper"
       @click="startGame"
@@ -143,7 +143,7 @@
 
     <div class="basketball-game">
       <div ref="gamePad" class="game-pad">
-        <div class="game-points" ref="gamePoints">
+        <div ref="gamePoints" class="game-points">
           {{ game.points }}
         </div>
       </div>
@@ -239,13 +239,12 @@ const gameStop = () => {
       x: game.value.ball.position.x,
       y: game.value.ball.position.y,
     },
-    '<',
   );
   tl.fromTo(
     gameBall.value,
-    { opacity: 1 },
-    { opacity: 0, duration: 0.1, repeat: 3, yoyo: true },
-    '<',
+    { opacity: 0 },
+    { opacity: 1, duration: 0.3, },
+    // '<',
   );
 
   tl.fromTo(gameBall.value, { opacity: 0 }, { opacity: 1, duration: 0.2 }, '<');
@@ -371,7 +370,7 @@ watch(
     if (activeNavItem === 'contact' && window.innerWidth > 1050) {
       setTimeout(() => {
         gameInit();
-      }, 1000);
+      }, 0);
     }
   },
 );
