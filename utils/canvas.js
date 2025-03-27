@@ -77,7 +77,6 @@ const Canvas = {
   currentScroll: 0,
   options: CanvasOptions,
   animations: {
-    welcome: {},
     cursorCallback: () => {},
   },
   mouse: { x: 0, y: 0, movementX: 0, movementY: 0, xPrev: 0, yPrev: 0 },
@@ -571,7 +570,8 @@ const Canvas = {
   },
 
   render() {
-    this.animations.cursorCallback();
+    // this.animations.footerBallGame();
+    // this.animations.cursorCallback();
     this.time += 0.05;
 
     this.scroll.render();
@@ -606,6 +606,10 @@ const Canvas = {
     }
 
     this.composer.render();
+
+    for (const argumentsKey in this.animations) {
+      if (this.animations[argumentsKey]) this.animations[argumentsKey]();
+    }
 
     try {
       requestAnimationFrame(this.render.bind(this));

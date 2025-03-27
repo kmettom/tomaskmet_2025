@@ -142,7 +142,11 @@
     </div>
 
     <div class="basketball-game">
-      <div ref="gamePad" class="game-pad" />
+      <div ref="gamePad" class="game-pad">
+        <div class="game-points" ref="gamePoints">
+          <!--          {{ game.points }}-->
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -151,7 +155,8 @@
 import Container from '~/components/common/Container.vue';
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
-import BasketBallIcon from 'public/images/ball-l.png';
+import BasketBallIcon from 'public/images/ball.png';
+import { Canvas } from '~/utils/canvas';
 
 gsap.registerPlugin(SplitText);
 
@@ -178,14 +183,23 @@ const navigationStore = useNavigationStore();
 
 const gamePad = ref('gamePad');
 const gameBall = ref('gameBall');
+const gamePoints = ref('gamePoints');
 const gameContainer = ref('gameContainer');
-const gameBaseSpeed = 7;
+const gameBaseSpeed = -8;
+const gameBallPadding = 75;
 const game = ref({
   activated: false,
   started: false,
+  points: 0,
+  currentSpeed: gameBaseSpeed,
+  // difficulty: {
+  //   easy: true,
+  //   medium: false,
+  //   hard: false,
+  // },
   ball: {
     position: { y: 0, x: 0 },
-    speed: { x: 0, y: gameBaseSpeed },
+    speed: { x: 0, y: 0 },
     elNode: null,
   },
   container: { elNode: null },
@@ -193,30 +207,58 @@ const game = ref({
 
 const startGame = () => {
   game.value.started = true;
-  game.value.ball.speed.y = -gameBaseSpeed;
-  animateBall();
+  gsap.to(gamePoints.value, { opacity: 1, duration: 0.2, y: 0 });
+  game.value.ball.speed.y = game.value.currentSpeed;
+  Canvas.animations.footerBallGame = animateBall;
 };
 
 const gameStop = () => {
+  Canvas.animations.footerBallGame = null;
+  game.value.points = 0;
+  game.value.currentSpeed = gameBaseSpeed;
   game.value.ball.speed.y = 0;
-  game.value.ball.position.y = gameContainer.value.clientHeight - 125;
-  gsap.to(game.value.ball.position, {
-    x: gamePad.value.getBoundingClientRect().x,
-    duration: 0.5,
+  game.value.ball.position = {
+    x:
+      gamePad.value.getBoundingClientRect().x +
+      gamePad.value.clientWidth / 2 -
+      gameBall.value.clientWidth / 2,
+    y: gameContainer.value.clientHeight - gameBallPadding,
+  };
+  game.value.started = false;
+
+  const tl = gsap.timeline({
     onComplete: () => {
-      game.value.started = false;
+      // game.value.started = false;
     },
   });
-  // game.value.ball.position.x = gamePad.value.getBoundingClientRect().x;
+
+  // tl.to(gamePoints.value, { opacity: 0, duration: 0.5, y:25 });
+  tl.set(
+    gameBall.value,
+    {
+      x: game.value.ball.position.x,
+      y: game.value.ball.position.y,
+    },
+    '<',
+  );
+  tl.fromTo(
+    gameBall.value,
+    { opacity: 1 },
+    { opacity: 0, duration: 0.1, repeat: 3, yoyo: true },
+    '<',
+  );
+
+  tl.fromTo(gameBall.value, { opacity: 0 }, { opacity: 1, duration: 0.2 }, '<');
 };
 
 const gameInit = () => {
   if (game.value.activated) return;
   game.value.activated = true;
+  // Canvas.animations.footerBallGame = animateBall;
   game.value.ball.position.x = gameContainer.value.clientWidth / 2;
   game.value.ball.position = {
     x: gameContainer.value.clientWidth / 2,
-    y: gameContainer.value.clientHeight - 125,
+    y: gameContainer.value.clientHeight - gameBallPadding,
   };
   gsap.set(gameBall.value, { x: game.value.ball.position.x });
   gsap.set(gamePad.value, { x: gameContainer.value.clientWidth / 2 });
@@ -235,9 +277,7 @@ const gameInit = () => {
     });
     if (!game.value.started) {
       game.value.ball.position.x =
-        e.clientX -
-        gamePad.value.clientWidth / 2 +
-        gameBall.value.clientWidth / 2;
+        e.clientX - gamePad.value.clientWidth / 2 + gameBall.value.clientWidth;
       gsap.to(gameBall.value, { x: game.value.ball.position.x, duration: 0.1 });
     }
   });
@@ -257,6 +297,7 @@ function animateBall() {
   }
   if (game.value.ball.position.y <= 0) {
     game.value.ball.speed.y *= -1;
+    game.value.ball.speed.x = (Math.random() * 2 - 1) * game.value.points * 0.3;
   }
 
   // Paddle collision detection
@@ -267,7 +308,11 @@ function animateBall() {
     ballRect.right >= paddleRect.left &&
     ballRect.left <= paddleRect.right
   ) {
-    game.value.ball.speed.y = -gameBaseSpeed;
+    if (game.value.currentSpeed < 13) {
+      game.value.currentSpeed -= 0.05;
+    }
+    game.value.points += 1;
+    game.value.ball.speed.y = game.value.currentSpeed;
     // Adjust ball speed based on where it hits the paddle
     const hitPosition =
       ballRect.left +
@@ -276,24 +321,18 @@ function animateBall() {
     game.value.ball.speed.x = hitPosition * 0.05;
   }
 
+  gsap.set(gameBall.value, {
+    x: game.value.ball.position.x,
+    y: game.value.ball.position.y,
+  });
+
   // Reset ball if it goes below the paddle
   if (
     game.value.ball.position.y >=
-    gameContainer.value.clientHeight - gameBall.value.clientHeight
+    gameContainer.value.clientHeight - gameBall.value.clientHeight + 100
   ) {
     gameStop();
   }
-
-  gsap.to(gameBall.value, {
-    x: game.value.ball.position.x,
-    y: game.value.ball.position.y,
-    duration: 0.01,
-    onComplete: () => {
-      if (game.value.started) {
-        animateBall();
-      }
-    },
-  });
 }
 
 watch(
@@ -382,9 +421,6 @@ watch(
   position: absolute;
   bottom: 0;
   left: 0;
-  //@include respond-width($w-s) {
-  //  width: 100px;
-  //}
 }
 
 .game-pad {
@@ -397,16 +433,23 @@ watch(
   bottom: 0;
 }
 
+.game-points {
+  text-align: center;
+  opacity: 0;
+  bottom: 35px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  position: absolute;
+  pointer-events: none;
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .basketball-icon-wrapper {
   opacity: 0;
   position: absolute;
   left: 0;
   top: 0;
-
-  .basketball-icon {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
 }
 </style>
