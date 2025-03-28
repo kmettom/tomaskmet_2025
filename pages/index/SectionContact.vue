@@ -361,7 +361,7 @@ function animateBall() {
 watch(
   () => navigationStore.activeNavItem,
   (activeNavItem) => {
-    if (activeNavItem === 'contact' && window.innerWidth > 1050) {
+    if (activeNavItem === 'contact' && window.innerWidth > 1080) {
       gameInit();
     }
   },
