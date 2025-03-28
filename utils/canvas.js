@@ -77,9 +77,9 @@ const Canvas = {
   currentScroll: 0,
   options: CanvasOptions,
   animations: {
-    welcome: {},
     cursorCallback: () => {},
   },
+  footerGameBall: { x: 0, y: 0 },
   mouse: { x: 0, y: 0, movementX: 0, movementY: 0, xPrev: 0, yPrev: 0 },
   triggerSectionPositions: {},
 
@@ -366,6 +366,7 @@ const Canvas = {
         // Common
         uMouse: { value: new THREE.Vector2(0, 0) },
         uMouseMovement: { value: new THREE.Vector2(0, 0) },
+        uFooterGameBall: { value: new THREE.Vector2(0, 0) },
         uMap: { value: null },
         // Rendering
         uThreshold: { value: 0.05 },
@@ -571,7 +572,8 @@ const Canvas = {
   },
 
   render() {
-    this.animations.cursorCallback();
+    // this.animations.footerBallGame();
+    // this.animations.cursorCallback();
     this.time += 0.05;
 
     this.scroll.render();
@@ -603,9 +605,19 @@ const Canvas = {
         this.mouse.movementX,
         this.mouse.movementY,
       );
+      if (this.materials[i].uniforms.uFooterGameBall) {
+        this.materials[i].uniforms.uFooterGameBall.value = new THREE.Vector2(
+          this.footerGameBall.x,
+          this.footerGameBall.y,
+        );
+      }
     }
 
     this.composer.render();
+
+    for (const argumentsKey in this.animations) {
+      if (this.animations[argumentsKey]) this.animations[argumentsKey]();
+    }
 
     try {
       requestAnimationFrame(this.render.bind(this));
