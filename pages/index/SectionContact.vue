@@ -245,19 +245,22 @@ const gameStop = () => {
 const gameInit = () => {
   if (game.value.activated) return;
   game.value.activated = true;
-  game.value.ball.position = {
+
+  gsap.set(gamePad.value, {
     x: gameContainer.value.clientWidth / 2,
+  });
+  game.value.ball.position = {
+    x:
+      gamePad.value.getBoundingClientRect().x +
+      gamePad.value.clientWidth / 2 -
+      gameBall.value.clientWidth / 2,
     y: gameContainer.value.clientHeight - gameBallPadding,
   };
-  gsap.set(gameBall.value, { x: game.value.ball.position.x });
-  gsap.set(gamePad.value, { x: gameContainer.value.clientWidth / 2 });
-
   gsap.set(gameBall.value, {
     opacity: 1,
-    duration: 0,
     y: game.value.ball.position.y,
+    x: game.value.ball.position.x,
   });
-  // gsap.to(gamePad.value, { opacity: 1, duration: 0 });
 
   window.addEventListener('mousemove', (e) => {
     gsap.to(gamePad.value, {
@@ -321,7 +324,7 @@ function animateBall() {
 
     game.value.points += 1;
     if (game.value.currentSpeed < 9) {
-      game.value.currentSpeed -= 0.01;
+      game.value.currentSpeed -= 0.03;
       game.value.points += 1;
     }
     if (game.value.currentSpeed < 12) {
@@ -359,9 +362,7 @@ watch(
   () => navigationStore.activeNavItem,
   (activeNavItem) => {
     if (activeNavItem === 'contact' && window.innerWidth > 1050) {
-      // setTimeout(() => {
       gameInit();
-      // }, 0);
     }
   },
 );
