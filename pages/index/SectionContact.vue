@@ -237,11 +237,7 @@ const gameStop = () => {
     x: game.value.ball.position.x,
     y: game.value.ball.position.y,
   });
-  tl.fromTo(
-    gameBall.value,
-    { opacity: 0 },
-    { opacity: 1, duration: 0.3 },
-  );
+  tl.fromTo(gameBall.value, { opacity: 0 }, { opacity: 1, duration: 0.3 });
 
   tl.fromTo(gameBall.value, { opacity: 0 }, { opacity: 1, duration: 0.2 }, '<');
 };
@@ -250,16 +246,17 @@ const gameInit = () => {
   if (game.value.activated) return;
   game.value.activated = true;
   game.value.ball.position = {
-    x: gameContainer.value.clientWidth / 2 ,
+    x: gameContainer.value.clientWidth / 2,
     y: gameContainer.value.clientHeight - gameBallPadding,
   };
   gsap.set(gameBall.value, { x: game.value.ball.position.x });
   gsap.set(gamePad.value, { x: gameContainer.value.clientWidth / 2 });
 
-  gsap.set(
-    gameBall.value,
-    { y: game.value.ball.position.y },
-  );
+  gsap.set(gameBall.value, {
+    opacity: 1,
+    duration: 0,
+    y: game.value.ball.position.y,
+  });
   // gsap.to(gamePad.value, { opacity: 1, duration: 0 });
 
   window.addEventListener('mousemove', (e) => {
@@ -363,7 +360,7 @@ watch(
   (activeNavItem) => {
     if (activeNavItem === 'contact' && window.innerWidth > 1050) {
       // setTimeout(() => {
-        gameInit();
+      gameInit();
       // }, 0);
     }
   },
@@ -447,7 +444,6 @@ watch(
 }
 
 .game-pad {
-  //opacity: 0;
   width: 150px;
   height: 25px;
   background-color: var(--dark-color);
@@ -470,8 +466,9 @@ watch(
 }
 
 .basketball-icon-wrapper {
+  opacity: 0;
   position: absolute;
   left: 0;
-  bottom: 0;
+  top: 0;
 }
 </style>
