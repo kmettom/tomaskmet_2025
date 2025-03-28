@@ -442,6 +442,9 @@ watch(
   position: absolute;
   bottom: 0;
   left: 0;
+  @include respond-width($w-m-s) {
+    display: none;
+  }
 }
 
 .game-pad {
@@ -471,5 +474,8 @@ watch(
   position: absolute;
   left: 0;
   top: 0;
+  @include respond-width($w-m-s) {
+    display: none;
+  }
 }
 </style>
