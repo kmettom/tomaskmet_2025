@@ -6,11 +6,15 @@ export const useDisplayStore = defineStore('displayStore', {
     isTablet: null,
     mobileBreakPoint: 768,
     tabletBreakPoint: 1050,
+    prefersReducedMotion: false,
   }),
   actions: {
     init() {
       this.setScreenSize();
       this.resizeListener();
+      this.prefersReducedMotion = window.matchMedia(
+        '(prefers-reduced-motion: reduce)',
+      ).matches;
     },
     resizeListener() {
       window.addEventListener('resize', () => {
