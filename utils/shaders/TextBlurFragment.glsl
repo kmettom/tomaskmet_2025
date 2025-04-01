@@ -61,11 +61,6 @@ void main() {
   float circleTrail = createCircleTrail(1.0, mousePoint);
   float ballTrail = createCircleTrail(10.0, ballPoint);
 
-  //  vec2 mouseMovePoint = uMouse - ( uMouseMovement * 5.0);
-  //  vec2 mousePos = vec2(mouseMovePoint.x , 1.0 - mouseMovePoint.y);
-  //  float rawCircleTrail = createCircleTrail(1.0, mousePos);
-  //  float circleTrail = smoothstep(0.0, 1.0, rawCircleTrail);
-
   float overlayOpacity = createOverlay(uAniInText);
   vec2 newUv = vUv;
 
