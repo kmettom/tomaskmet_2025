@@ -130,7 +130,7 @@ const Canvas = {
       setTimeout(() => {
         this.mouse.movementX = event.clientX / this.width;
         this.mouse.movementY = event.clientY / this.height;
-      },100)
+      },150)
     });
   },
   async loadFontMSDF() {
