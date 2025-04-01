@@ -102,7 +102,7 @@ void main() {
   vec2 mousePointPrev = vec2(uMouseMovement.x, 1.0 - uMouseMovement.y);
   vec2 ballPoint = vec2(uFooterGameBall.x, 1.0 - uFooterGameBall.y);
 
-    float circleTrail = createDraggedTrail(mousePoint, mousePointPrev, 35.0 ,1.0 );
+  float circleTrail = createDraggedTrail(mousePoint, mousePointPrev, 35.0, 1.0);
 
   float ballTrail = createCircleTrail(10.0, ballPoint);
 

@@ -365,7 +365,11 @@ function animateBall() {
 watch(
   () => navigationStore.activeNavItem,
   (activeNavItem) => {
-    if (activeNavItem === 'contact' && !displayStore.isTablet && !displayStore.prefersReducedMotion) {
+    if (
+      activeNavItem === 'contact' &&
+      !displayStore.isTablet &&
+      !displayStore.prefersReducedMotion
+    ) {
       gameInit();
     }
   },

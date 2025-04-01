@@ -12,7 +12,9 @@ export const useDisplayStore = defineStore('displayStore', {
     init() {
       this.setScreenSize();
       this.resizeListener();
-      this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      this.prefersReducedMotion = window.matchMedia(
+        '(prefers-reduced-motion: reduce)',
+      ).matches;
     },
     resizeListener() {
       window.addEventListener('resize', () => {

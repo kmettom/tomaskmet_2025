@@ -1,5 +1,9 @@
 <template>
-  <span ref="htmlEl" class="text-wrapper" :class="{'reduced-motion': displayStore.prefersReducedMotion}">
+  <span
+    ref="htmlEl"
+    class="text-wrapper"
+    :class="{ 'reduced-motion': displayStore.prefersReducedMotion }"
+  >
     <slot />
   </span>
 </template>
@@ -70,7 +74,8 @@ onBeforeUnmount(() => {
 watch(
   () => navigationStore.canvasInitiated,
   (newVal) => {
-    if (displayStore.isMobile || !newVal || displayStore.prefersReducedMotion) return;
+    if (displayStore.isMobile || !newVal || displayStore.prefersReducedMotion)
+      return;
     // delay canvas initialization to wait for font loaded
     setTimeout(() => {
       Canvas.addTextAsMSDF(

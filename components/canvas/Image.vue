@@ -3,7 +3,7 @@
     <img
       ref="image"
       class="webgl-img"
-      :class="{'reduced-motion': displayStore.prefersReducedMotion}"
+      :class="{ 'reduced-motion': displayStore.prefersReducedMotion }"
       :alt="alt"
       :src="srcLink"
       :loading="loadStrategy === 'lazy' ? 'lazy' : 'eager'"
@@ -61,7 +61,12 @@ const meshUniforms = computed(() => {
 });
 
 const addImageToCanvas = () => {
-  if (imgAddedToCanvas.value || displayStore.isMobile || displayStore.prefersReducedMotion) return;
+  if (
+    imgAddedToCanvas.value ||
+    displayStore.isMobile ||
+    displayStore.prefersReducedMotion
+  )
+    return;
   Canvas.addImageAsMesh(
     image.value,
     props.shader,
@@ -108,7 +113,7 @@ onBeforeUnmount(() => {
   max-width: 100%;
   max-height: 100%;
   opacity: 0;
-  &.reduced-motion{
+  &.reduced-motion {
     opacity: 1;
     object-fit: cover;
     width: 100%;
