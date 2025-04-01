@@ -56,9 +56,11 @@ float createOverlay(float activeOverlay) {
 
 void main() {
   vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);
+  vec2 mousePointPrev = vec2(uMouseMovement.x, 1.0 - uMouseMovement.y);
   vec2 ballPoint = vec2(uFooterGameBall.x, 1.0 - uFooterGameBall.y);
 
   float circleTrail = createCircleTrail(1.0, mousePoint);
+  float circleTrail2 = createCircleTrail(0.5, mousePointPrev);
   float ballTrail = createCircleTrail(10.0, ballPoint);
 
   float overlayOpacity = createOverlay(uAniInText);
@@ -71,10 +73,10 @@ void main() {
 
   float sigDist =
     median(mySampleRGB.r, mySampleRGB.g, mySampleRGB.b) -
-    DISTANCE_COEF / aniInDistance / circleTrail / ballTrail;
+    DISTANCE_COEF / aniInDistance / circleTrail / ballTrail / circleTrail2;
   float fill = clamp(sigDist / fwidth(sigDist) + DISTANCE_COEF, 0.0, 1.0);
 
-  float finalAlpha = fill * overlayOpacity * circleTrail * ballTrail;
+  float finalAlpha = fill * overlayOpacity * circleTrail * ballTrail * circleTrail2;
 
   gl_FragColor = vec4(uColor, finalAlpha);
   if (finalAlpha < uAlphaTest) discard;

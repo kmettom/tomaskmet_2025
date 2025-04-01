@@ -127,8 +127,10 @@ const Canvas = {
     window.addEventListener('mousemove', (event) => {
       this.mouse.x = event.clientX / this.width;
       this.mouse.y = event.clientY / this.height;
-      this.mouse.movementX = event.movementX / this.width;
-      this.mouse.movementY = event.movementY / this.height;
+      setTimeout(() => {
+        this.mouse.movementX = event.clientX / this.width;
+        this.mouse.movementY = event.clientY / this.height;
+      },100)
     });
   },
   async loadFontMSDF() {
