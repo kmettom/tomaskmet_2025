@@ -10,6 +10,10 @@
 import { ref, reactive, onMounted } from 'vue';
 import { Canvas } from '~/utils/canvas';
 
+import { useDisplayStore } from '~/stores/display';
+
+const displayStore = useDisplayStore();
+
 const baseSize = 12;
 const baseOpacity = 1;
 const easingPosition = 2;
@@ -143,7 +147,7 @@ const draw = () => {
 
 // Lifecycle hook: Mounted
 onMounted(() => {
-  if (window.innerWidth > 768) {
+  if (!displayStore.isMobile && !displayStore.prefersReducedMotion) {
     cursorInit();
   }
 });

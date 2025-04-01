@@ -32,6 +32,21 @@ body {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  body {
+    cursor: default;
+    * {
+      cursor: default;
+    }
+    button {
+      cursor: default;
+    }
+    a {
+      cursor: default;
+    }
+  }
+}
+
 //html, body{
 //  margin: 0;
 //  height: 100%;

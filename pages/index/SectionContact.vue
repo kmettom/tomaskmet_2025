@@ -158,6 +158,10 @@ import { SplitText } from 'gsap/SplitText';
 import BasketBallIcon from 'public/images/ball.png';
 import { Canvas } from '~/utils/canvas';
 
+import { useDisplayStore } from '~/stores/display';
+
+const displayStore = useDisplayStore();
+
 gsap.registerPlugin(SplitText);
 
 const splitLineAnimation = (item) => {
@@ -361,7 +365,7 @@ function animateBall() {
 watch(
   () => navigationStore.activeNavItem,
   (activeNavItem) => {
-    if (activeNavItem === 'contact' && window.innerWidth > 1080) {
+    if (activeNavItem === 'contact' && !displayStore.isTablet && !displayStore.prefersReducedMotion) {
       gameInit();
     }
   },

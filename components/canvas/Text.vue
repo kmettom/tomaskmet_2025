@@ -1,5 +1,5 @@
 <template>
-  <span ref="htmlEl" class="text-wrapper">
+  <span ref="htmlEl" class="text-wrapper" :class="{'reduced-motion': displayStore.prefersReducedMotion}">
     <slot />
   </span>
 </template>
@@ -53,7 +53,7 @@ const getTrimmedText = () => {
 watch(
   () => props.uniforms,
   (uniforms) => {
-    if (displayStore.isMobile) return;
+    if (displayStore.isMobile || displayStore.prefersReducedMotion) return;
     Canvas.meshUniformsUpdate(meshId, uniforms);
   },
   { deep: true },
@@ -70,7 +70,7 @@ onBeforeUnmount(() => {
 watch(
   () => navigationStore.canvasInitiated,
   (newVal) => {
-    if (displayStore.isMobile || !newVal) return;
+    if (displayStore.isMobile || !newVal || displayStore.prefersReducedMotion) return;
     // delay canvas initialization to wait for font loaded
     setTimeout(() => {
       Canvas.addTextAsMSDF(
@@ -91,6 +91,9 @@ watch(
 .text-wrapper {
   opacity: 0;
   display: inline-block;
+  &.reduced-motion {
+    opacity: 1;
+  }
   @include respond-width($w-s) {
     opacity: 1;
   }
