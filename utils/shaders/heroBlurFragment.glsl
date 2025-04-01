@@ -128,13 +128,7 @@ void main() {
   float blurAmount = 0.06;
 
   vec3 originalColor = blur(uv, uImage, blurAmount, blurStrength);
-  //  vec3 sepiaColor = mix(
-  //  originalColor,
-  //  applySepia(originalColor),
-  //  circle
-  //  );
 
-  //  vec3 originalColor = blur(uv, uImage, 0.06, blurStrength);
   vec4 final = vec4(originalColor, overlayOpacity);
 
   gl_FragColor = final;

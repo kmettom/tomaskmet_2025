@@ -44,47 +44,6 @@ float fbm(vec2 p) {
   return f;
 }
 
-//void main() {
-//  // Normalize coordinates to [-1,1] and preserve aspect ratio
-////  vec2 uv = gl_fragCoord.xy / uMeshSize.xy * 2.0 - 1.0;
-////  uv.x *= uMeshSize.x / uMeshSize.y;
-
-//  vec2 uv = vUv;
-//
-//  // Time factor for animation
-//  float t = time * 0.2;
-//
-//  // Convert to polar coordinates
-//  float angle = atan(uv.y, uv.x);
-//  float radius = length(uv);
-//
-//  // Apply a swirling distortion using fractal noise
-//  angle += fbm(uv * 3.0 + t);
-//  vec2 swirled = vec2(cos(angle), sin(angle)) * radius;
-//
-//  // Compute fractal noise pattern for the nebula texture
-//  float n = fbm(swirled * 2.0 + vec2(t, t));
-//
-//  // Create a blooming nebula effect using smooth thresholding
-//  float nebula = smoothstep(0.3, 0.6, n);
-//
-//  // Define a rich, cosmic color palette
-//  vec3 col1 = vec3(0.1, 0.0, 0.3); // deep cosmic purple
-//  vec3 col2 = vec3(0.8, 0.3, 0.9); // vibrant magenta
-//  vec3 col3 = vec3(0.0, 0.7, 0.9); // cool turquoise
-//
-//  // Blend colors based on the noise value
-//  vec3 color = mix(col1, col2, n);
-//  color = mix(color, col3, smoothstep(0.2, 0.4, n));
-//
-//  // Enhance vibrancy with gamma correction
-//  color = pow(color, vec3(1.5));
-//
-//  // Final color output modulated by the nebula bloom effect
-//  gl_fragColor = vec4(color * nebula, 1.0);
-////  gl_fragColor = vUv;
-//}
-
 void main() {
   // Calculate the aspect ratios
   float meshAspect = uMeshSize.x / uMeshSize.y;
@@ -113,23 +72,6 @@ void main() {
   // Sample the texture using the provided texture coordinates
   vec4 texColor = texture2D(uImage, swirled);
 
-  //  float n = fbm(swirled * 2.0 + vec2(t, t));
-  //  float nebula = smoothstep(0.3, 0.6, n);
-  //    // Define a rich, cosmic color palette
-  //    vec3 col1 = vec3(0.1, 0.0, 0.3); // deep cosmic purple
-  //    vec3 col2 = vec3(0.8, 0.3, 0.9); // vibrant magenta
-  //    vec3 col3 = vec3(0.0, 0.7, 0.9); // cool turquoise
-  //
-  //    // Blend colors based on the noise value
-  //    vec4 color = mix(col1, col2, col3, n);
-  //    color = mix(color, col3, smoothstep(0.2, 0.4, n));
-
-  // Enhance vibrancy with gamma correction
-  //    color = pow(color, vec3(1.5));
-  //  vec4 combinedColor = mix(texColor, nebula, 0.5);
-
   // Output the final color
-  //    gl_fragColor = vec4(color * nebula, 1.0);
   gl_FragColor = texColor;
-  //  gl_FragColor = combinedColor;
 }
