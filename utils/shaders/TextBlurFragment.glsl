@@ -43,6 +43,37 @@ float createCircleTrail(float radius, vec2 mousePoint) {
   return dist;
 }
 
+float createDraggedTrail(vec2 mousePoint, vec2 mousePointPrev, float radiusStart, float radiusEnd) {
+  vec2 viewportUv = gl_FragCoord.xy / uViewport / uDevicePixelRatio;
+  float viewportAspect = uViewport.x / uViewport.y;
+
+  // Adjust UV coordinates for aspect ratio
+  vec2 adjustedUv = viewportUv;
+  adjustedUv.y /= viewportAspect;
+  vec2 adjustedMousePoint = vec2(mousePoint.x, mousePoint.y / viewportAspect);
+  vec2 adjustedMousePointPrev = vec2(mousePointPrev.x, mousePointPrev.y / viewportAspect);
+
+  // Compute distances to current and previous mouse points
+  float distToCurrent = distance(adjustedUv, adjustedMousePoint);
+  float distToPrev = distance(adjustedUv, adjustedMousePointPrev);
+
+  // Interpolate radius based on proximity to current or previous point
+  float interpFactor = distToCurrent / (distToCurrent + distToPrev + 0.0001);
+  float circleRadius = mix(radiusStart, radiusEnd, interpFactor) / uViewport.x;
+
+  // Compute minimum distance to the line segment between points
+  vec2 lineDir = adjustedMousePointPrev - adjustedMousePoint;
+  float lineLength = length(lineDir);
+  vec2 lineDirNorm = lineDir / (lineLength + 0.0001);
+  float proj = clamp(dot(adjustedUv - adjustedMousePoint, lineDirNorm), 0.0, lineLength);
+  vec2 closestPoint = adjustedMousePoint + lineDirNorm * proj;
+  float distToLine = distance(adjustedUv, closestPoint);
+
+  // Smoothly fade out the trail based on distance
+  float trail = smoothstep(circleRadius, circleRadius + 0.05, distToLine);
+  return trail;
+}
+
 float createOverlay(float activeOverlay) {
   vec2 viewportUv =
     gl_FragCoord.xy / uViewport * uDevicePixelRatio * (1.0 - activeOverlay);
@@ -56,15 +87,14 @@ float createOverlay(float activeOverlay) {
 
 void main() {
   vec2 mousePoint = vec2(uMouse.x, 1.0 - uMouse.y);
+  vec2 mousePointPrev = vec2(uMouseMovement.x, 1.0 - uMouseMovement.y);
   vec2 ballPoint = vec2(uFooterGameBall.x, 1.0 - uFooterGameBall.y);
 
-  float circleTrail = createCircleTrail(1.0, mousePoint);
-  float ballTrail = createCircleTrail(10.0, ballPoint);
+//  float circleTrail = 1.0;
+//  float circleTrail = createCircleTrail(1.0, mousePoint);
+  float circleTrail2 = createCircleTrail(1.0,mousePoint);
 
-  //  vec2 mouseMovePoint = uMouse - ( uMouseMovement * 5.0);
-  //  vec2 mousePos = vec2(mouseMovePoint.x , 1.0 - mouseMovePoint.y);
-  //  float rawCircleTrail = createCircleTrail(1.0, mousePos);
-  //  float circleTrail = smoothstep(0.0, 1.0, rawCircleTrail);
+  float ballTrail = createCircleTrail(10.0, ballPoint);
 
   float overlayOpacity = createOverlay(uAniInText);
   vec2 newUv = vUv;
@@ -76,10 +106,10 @@ void main() {
 
   float sigDist =
     median(mySampleRGB.r, mySampleRGB.g, mySampleRGB.b) -
-    DISTANCE_COEF / aniInDistance / circleTrail / ballTrail;
+    DISTANCE_COEF / aniInDistance  / ballTrail / circleTrail2;
   float fill = clamp(sigDist / fwidth(sigDist) + DISTANCE_COEF, 0.0, 1.0);
 
-  float finalAlpha = fill * overlayOpacity * circleTrail * ballTrail;
+  float finalAlpha = fill * overlayOpacity * ballTrail * circleTrail2;
 
   gl_FragColor = vec4(uColor, finalAlpha);
   if (finalAlpha < uAlphaTest) discard;
