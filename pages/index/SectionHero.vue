@@ -2,32 +2,32 @@
   <div class="hero-section-wrapper">
     <Container additional-class="hero-section">
       <div class="hero-content-line hero-line-tomas">
-        <h2 v-set-data-attrs="{ cursorcolor: 'light' }" class="heading-1">
-          <CanvasText :theme="'light'" :uniforms="mainTextInUniforms">
-            TOMAS
-          </CanvasText>
-        </h2>
-        <div class="body-m hero-content-sm hero-summary">
+        <h1 class="body-m hero-content-sm hero-summary">
           <p>Web Developer with</p>
           <p>managerial background,</p>
           <p>coding and bringing a full</p>
           <p>team to help your project.</p>
+        </h1>
+        <div v-set-data-attrs="{ cursorcolor: 'light' }" class="heading-1">
+          <CanvasText :theme="'light'" :uniforms="mainTextInUniforms">
+            TOMAS
+          </CanvasText>
         </div>
       </div>
 
       <div class="hero-content-line hero-line-kmet">
-        <div class="body-m hero-content-sm hero-services">
+        <h2 class="body-m hero-content-sm hero-services">
           <p>web3</p>
           <p>creative</p>
           <p>web apps</p>
           <p>websites</p>
           <p>e-commerce</p>
-        </div>
-        <h2 v-set-data-attrs="{ cursorcolor: 'light' }" class="heading-1">
+        </h2>
+        <div v-set-data-attrs="{ cursorcolor: 'light' }" class="heading-1">
           <CanvasText :theme="'light'" :uniforms="mainTextInUniforms">
             KMET
           </CanvasText>
-        </h2>
+        </div>
       </div>
     </Container>
     <div class="hero-bg-image">

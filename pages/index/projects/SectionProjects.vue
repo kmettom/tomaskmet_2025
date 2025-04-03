@@ -29,6 +29,7 @@
                 cursorsize: 70,
                 cursoricon: '🤏',
               }"
+              aria-label="Close gallery"
               class="gallery-controls-btn close-btn"
               @click="closeGallery()"
             >
@@ -42,6 +43,7 @@
                 cursoricon: '👇',
               }"
               class="gallery-controls-btn change-project-btn next-item"
+              aria-label="Open next project"
               @click="navigationStore.scrollToProject(activeProjectIndex + 1)"
             >
               next: {{ nextProjectName }} 👇
@@ -54,6 +56,7 @@
                 cursoricon: '👆',
               }"
               class="gallery-controls-btn change-project-btn prev-item"
+              aria-label="Open previous project"
               @click="navigationStore.scrollToProject(activeProjectIndex - 1)"
             >
               previous: {{ prevProjectName }} 👆
