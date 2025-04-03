@@ -4,7 +4,7 @@
       <div class="iconFrame">
         {{ icon }}
       </div>
-      <h4 class="heading-4">{{ title }}</h4>
+      <h3 class="heading-4">{{ title }}</h3>
     </div>
     <p class="body-m">{{ text }}</p>
   </div>
