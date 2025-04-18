@@ -1,7 +1,7 @@
 <template>
   <div class="page-container">
     <h1 class="heading-1 play-headline">
-      <CanvasText :theme="'dark'" :uniforms="{ uAniInText: { active: true , duration: 0 }}"> Playground </CanvasText>
+      <CanvasText :theme="'light'" :uniforms="{ uAniInText: { active: true , duration: 0 }}"> Playground </CanvasText>
     </h1>
     <div class="playground-projects">
       <nuxt-link href="/play/1">

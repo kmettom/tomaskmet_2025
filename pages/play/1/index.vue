@@ -1,16 +1,17 @@
 <template>
   <div class="page-container">
     <h1 class="headline">
-      <CanvasText :theme="'light'"> Playground </CanvasText>
+      <CanvasText :theme="'light'"> 1 </CanvasText>
     </h1>
-    xxxx
-    <div class="play-1-img-wrapper">
-<!--      <CanvasImage :src-link="'images/play/play1.jpg'" :shader="'play1'" />-->
+    <div>
+      x
     </div>
+
   </div>
 </template>
 <script setup>
 import { onMounted, watch } from 'vue';
+// import {addObjectPlay1} from "~/utils/play/play1";
 
 useSeoMeta({
   title: 'Tomas Kmet - Web developer - Playground',
@@ -23,24 +24,13 @@ const props = defineProps({
   pageActive: Boolean,
 });
 
-const pageAnimateIn = () => {
-  // console.log('Example method - animate page transition');
-};
 
 onMounted(() => {
   if (props.pageActive) {
-    pageAnimateIn();
+    // addObjectPlay1()
   }
 });
 
-watch(
-  () => props.pageActive,
-  (newValue) => {
-    if (newValue) {
-      pageAnimateIn();
-    }
-  },
-);
 </script>
 <style lang="scss" scoped>
 .play-1-img-wrapper {
