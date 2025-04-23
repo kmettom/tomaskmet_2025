@@ -17,5 +17,8 @@ uniform vec2 uTextureSize; // The size of the texture (width, height)
 
 
 void main() {
-  gl_FragColor = vec4(vUv, 1.0, 1.0);
+  gl_FragColor = texture2D(uImage, vUv);
+
+
+  //  gl_FragColor = vec4(vUv, 1.0, 1.0);
 }

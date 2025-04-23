@@ -17,7 +17,8 @@ export async function addObjectPlay1(
     let position = {top: bounds.top, left: bounds.left};
     position.top += Canvas.currentScroll;
 
-    let geometry = new THREE.PlaneGeometry(1, 1, 10, 10);
+    let geometry = new THREE.SphereGeometry(1, 32, 32 );
+    // let geometry = new THREE.PlaneGeometry(1, 1, 10, 10);
 
     const texture = await loadTexture('http://localhost:4200/images/neo.webp');
     texture.needsUpdate = true;
@@ -25,10 +26,11 @@ export async function addObjectPlay1(
     // console.log("texture", texture);
 
     let material = new THREE.ShaderMaterial({
+        side: THREE.DoubleSide,
         uniforms: {
             // uDevicePixelRatio: {value: window.devicePixelRatio},
             uTime: {value: 0},
-            // uImage: {value: texture},
+            uImage: {value: texture},
             // vectorVNoise: {value: new THREE.Vector2(1.5, 1.5)}, // 1.5
             // uAniInImage: {value: meshUniforms.uAniInImage?.value ?? 0},
             uMouse: {value: new THREE.Vector2(0, 0)},

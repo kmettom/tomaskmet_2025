@@ -36,8 +36,8 @@ onMounted(() => {
 }
 .play1-el{
   margin: 100px;
-  width: 400px;
-  height: 400px;
+  width: 300px;
+  height: 300px;
   //border: 1px solid green;
 }
 </style>
