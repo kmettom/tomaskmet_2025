@@ -15,10 +15,9 @@ uniform float seed; // = 12.9898
 uniform vec2 uMeshSize; // The size of the mesh (width, height)
 uniform vec2 uTextureSize; // The size of the texture (width, height)
 
-
 void main() {
   gl_FragColor = texture2D(uImage, vUv);
 
-
   //  gl_FragColor = vec4(vUv, 1.0, 1.0);
+
 }
