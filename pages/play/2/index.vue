@@ -5,7 +5,13 @@
         1
       </CanvasText>
     </h1>
-    <div ref="play2el" class="play2-el" />
+    <div ref="play2el" class="play2-el">
+      <div class="play-2-section">I</div>
+      <div class="play-2-section"></div>
+      <div class="play-2-section"></div>
+      <div class="play-2-section"></div>
+      <div class="play-2-section">X</div>
+    </div>
   </div>
 </template>
 <script setup>
@@ -34,5 +40,11 @@ onMounted(() => {
 <style lang="scss" scoped>
 .play2-el {
   width: 100%;
+}
+.play-2-section {
+  height: 200px;
+  margin: 50px;
+  border: purple 2px solid;
+  border-radius: 15px;
 }
 </style>
