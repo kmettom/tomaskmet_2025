@@ -29,3 +29,53 @@ export async function infiniteLoopScrollSection(imgHtmlEl) {
     },
   });
 }
+
+
+// 1. Setup Virtual Scroll Container
+const VirtualScroller = {
+  containerHeight: 0,
+  itemHeight: 0,
+  totalItems: 0,
+  visibleItems: [],
+
+  init(config) {
+    this.containerHeight = config.height;
+    this.itemHeight = config.itemHeight;
+    this.totalItems = config.totalItems;
+
+    // Setup Intersection Observer
+    const options = {
+      root: null,
+      rootMargin: '200px 0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          this.recycleItems();
+        }
+      });
+    }, options);
+
+    // Observe sentinel elements
+    observer.observe(document.querySelector('.sentinel-top'));
+    observer.observe(document.querySelector('.sentinel-bottom'));
+  },
+
+  recycleItems() {
+    requestAnimationFrame(() => {
+      // Calculate visible range
+      const scrollTop = container.scrollTop;
+      const startIndex = Math.floor(scrollTop / this.itemHeight);
+      const endIndex = Math.min(
+          startIndex + Math.ceil(this.containerHeight / this.itemHeight),
+          this.totalItems
+      );
+
+      // Update visible items using transforms
+      this.visibleItems = this.getItemsInRange(startIndex, endIndex);
+      this.updateDOM();
+    });
+  }
+};
