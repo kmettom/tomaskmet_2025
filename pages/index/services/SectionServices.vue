@@ -14,7 +14,7 @@
           v-onScrollActivate="{
             activeRange: 0.75,
             fixToParentId: 'servicesList',
-            onScrollCallback: (item: any, speed: any) => {
+            onScrollCallback: (item , speed) => {
               if (speed < 0.03) return;
               setServiceBlockBlur(index, item.elNode, service.styles);
             },

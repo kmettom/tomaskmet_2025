@@ -5,18 +5,27 @@
         1
       </CanvasText>
     </h1>
-    <div ref="play2el" class="play2-el">
+    <div ref="play2el" class="play2-el" v-onScrollActivate="{ activeRange: 1, onScrollCallback: (el, speed, bounds)=>{
+
+
+      console.log(bounds);
+
+      if(bounds.bottom < 1000){
+        console.log('action');
+      }
+
+    } }">
       <div class="play-2-section">I</div>
-      <div class="play-2-section"></div>
-      <div class="play-2-section"></div>
-      <div class="play-2-section"></div>
+      <div class="play-2-section"/>
+      <div class="play-2-section"/>
+      <div class="play-2-section"/>
       <div class="play-2-section">X</div>
     </div>
   </div>
 </template>
 <script setup>
-import { onMounted } from 'vue';
-import { infiniteLoopScrollSection } from '~/utils/play/play2';
+import {onMounted} from 'vue';
+import {infiniteLoopScrollSection} from '~/utils/play/play2';
 
 useSeoMeta({
   title: 'Tomas Kmet - Web developer - Playground',
@@ -26,7 +35,7 @@ useSeoMeta({
 });
 
 const mainTextInUniforms = {
-  uAniInText: { value: 1, duration: 1 },
+  uAniInText: {value: 1, duration: 1},
 };
 
 const play2el = ref('play2el');
@@ -41,6 +50,7 @@ onMounted(() => {
 .play2-el {
   width: 100%;
 }
+
 .play-2-section {
   height: 200px;
   margin: 50px;
