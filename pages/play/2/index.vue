@@ -5,22 +5,30 @@
         1
       </CanvasText>
     </h1>
-    <div ref="play2el" class="play2-el" v-onScrollActivate="{ activeRange: 1, onScrollCallback: (el, speed, bounds)=>{
-
-
+    <div ref="infiniteParent">
+      <div ref="play2el" class="play2-el" v-onScrollActivate="{ activeRange: 1, onScrollCallback: (el, speed, bounds)=>{
       console.log(bounds);
+        const clonedElement = play2el.value.cloneNode(true);
 
+          clonedElement.value.id = 'clonedElement';
       if(bounds.bottom < 1000){
-        console.log('action');
+         infiniteParent.value.appendChild(clonedElement);
       }
-
+      else if(bounds.top > 200){
+        infiniteParent.value.appendChild(clonedElement);
+      }
+      // else{
+      //
+      // }
     } }">
-      <div class="play-2-section">I</div>
-      <div class="play-2-section"/>
-      <div class="play-2-section"/>
-      <div class="play-2-section"/>
-      <div class="play-2-section">X</div>
+        <div class="play-2-section">I</div>
+        <div class="play-2-section"/>
+        <div class="play-2-section"/>
+        <div class="play-2-section"/>
+        <div class="play-2-section">X</div>
+      </div>
     </div>
+
   </div>
 </template>
 <script setup>
@@ -39,6 +47,7 @@ const mainTextInUniforms = {
 };
 
 const play2el = ref('play2el');
+const infiniteParent = ref('infiniteParent');
 
 onMounted(() => {
   setTimeout(() => {
