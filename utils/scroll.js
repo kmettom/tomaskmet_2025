@@ -114,7 +114,7 @@ export default class Scroll {
 
         if (activeFromTop && activeFromBottom) {
           if (item.options.onScrollCallback)
-            item.options.onScrollCallback(item, this.speed);
+            item.options.onScrollCallback(item, this.speed, bounds);
           if (item.elNode.dataset.activeScroll !== 'true') {
             this.setElementActive(item, true);
           }
