@@ -16,5 +16,8 @@ uniform vec2 uMeshSize;// The size of the mesh (width, height)
 uniform vec2 uTextureSize;// The size of the texture (width, height)
 
 void main() {
-    gl_FragColor = texture2D(uImage, vUv);
+    vec2 uv = vUv;
+    uv.x = fract(uv.x + uTime * 0.05); // wrap horizontally
+    uv.x = fract(uv.x + uTime * 0.05);
+    gl_FragColor = texture2D(uImage, uv);
 }
