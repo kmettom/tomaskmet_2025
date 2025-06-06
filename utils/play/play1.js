@@ -51,8 +51,8 @@ export async function addObjectPlay1(
 
     let mesh = new THREE.Mesh(geometry, material);
     mesh.name = meshId;
-    // mesh.scale.set(bounds.width, bounds.height);
-    mesh.scale.set(window.innerWidth, window.innerHeight);
+    mesh.scale.set(bounds.width, bounds.height);
+    // mesh.scale.set(window.innerWidth, window.innerHeight);
     Canvas.scene.add(mesh);
     const newMesh = {
         name: meshId,
