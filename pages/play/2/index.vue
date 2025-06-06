@@ -6,34 +6,39 @@
       </CanvasText>
     </h1>
     <div ref="infiniteParent">
-      <div ref="play2el" class="play2-el" v-onScrollActivate="{ activeRange: 1, onScrollCallback: (el, speed, bounds)=>{
-      console.log(bounds);
-        const clonedElement = play2el.value.cloneNode(true);
+      <div
+        ref="play2el"
+        v-onScrollActivate="{
+          activeRange: 1,
+          onScrollCallback: (el, speed, bounds) => {
+            console.log(bounds);
+            const clonedElement = play2el.value.cloneNode(true);
 
-          clonedElement.value.id = 'clonedElement';
-      if(bounds.bottom < 1000){
-         infiniteParent.value.appendChild(clonedElement);
-      }
-      else if(bounds.top > 200){
-        infiniteParent.value.appendChild(clonedElement);
-      }
-      // else{
-      //
-      // }
-    } }">
+            clonedElement.value.id = 'clonedElement';
+            if (bounds.bottom < 1000) {
+              infiniteParent.value.appendChild(clonedElement);
+            } else if (bounds.top > 200) {
+              infiniteParent.value.appendChild(clonedElement);
+            }
+            // else{
+            //
+            // }
+          },
+        }"
+        class="play2-el"
+      >
         <div class="play-2-section">I</div>
-        <div class="play-2-section"/>
-        <div class="play-2-section"/>
-        <div class="play-2-section"/>
+        <div class="play-2-section" />
+        <div class="play-2-section" />
+        <div class="play-2-section" />
         <div class="play-2-section">X</div>
       </div>
     </div>
-
   </div>
 </template>
 <script setup>
-import {onMounted} from 'vue';
-import {infiniteLoopScrollSection} from '~/utils/play/play2';
+import { onMounted } from 'vue';
+import { infiniteLoopScrollSection } from '~/utils/play/play2';
 
 useSeoMeta({
   title: 'Tomas Kmet - Web developer - Playground',
@@ -43,7 +48,7 @@ useSeoMeta({
 });
 
 const mainTextInUniforms = {
-  uAniInText: {value: 1, duration: 1},
+  uAniInText: { value: 1, duration: 1 },
 };
 
 const play2el = ref('play2el');
